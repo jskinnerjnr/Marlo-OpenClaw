@@ -425,12 +425,15 @@
     loadQuotes();
   }
 
-  (async () => {
-    const { data: { session } } = await sb.auth.getSession();
+  sb.auth.onAuthStateChange(async (event, session) => {
     if (session) {
       await initDashboard();
+    } else {
+      document.getElementById('auth-section').style.display = '';
+      document.getElementById('dashboard').style.display = 'none';
+      document.getElementById('logout-btn').style.display = 'none';
     }
-  })();
+  });
 </script>
 </body>
 </html>

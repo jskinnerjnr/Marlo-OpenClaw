@@ -305,17 +305,17 @@
     document.getElementById('rem-' + id)?.remove();
   }
 
-  (async () => {
-    const { data: { session } } = await sb.auth.getSession();
+  sb.auth.onAuthStateChange(async (event, session) => {
     document.getElementById('loading').style.display = 'none';
     if (!session) { document.getElementById('denied').style.display = ''; return; }
 
-    const { data: adminRow } = await sb.from('admin_users').select('id').eq('id', session.user.id).single();
+    const { data: adminRow } = await sb.from('admin_users').select('id, name').eq('id', session.user.id).single();
     if (!adminRow) { document.getElementById('denied').style.display = ''; return; }
 
+    document.getElementById('denied').style.display = 'none';
     document.getElementById('main').style.display = '';
     await Promise.all([loadQuotes(), loadReminders()]);
-  })();
+  });
 </script>
 </body>
 </html>
