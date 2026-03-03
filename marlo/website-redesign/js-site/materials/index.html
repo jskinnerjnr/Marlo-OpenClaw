@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Materials &amp; Colours — John Skinner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #181e38;
+      --navy-light: #272e66;
+      --gold: #c8ba9a;
+      --gold-light: #d4cdb8;
+      --cream: #f6f6f3;
+      --warm-bg: #efede9;
+      --text: #2a2a2a;
+      --text-muted: #5a5a5a;
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-sans: 'Open Sans', Arial, sans-serif;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--text);
+      background: var(--cream);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--navy);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-brand {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      color: white;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+    }
+
+    .nav-brand span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      background: var(--warm-bg);
+      border-bottom: 1px solid var(--gold-light);
+      padding: 0.6rem 2rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .breadcrumb a { color: var(--navy-light); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 0.4rem; color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--navy);
+      color: white;
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 640px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── EXPLAINER BAND ── */
+    .explainer {
+      background: var(--gold-light);
+      border-top: 3px solid var(--gold);
+      padding: 1.5rem 2rem;
+      text-align: center;
+    }
+
+    .explainer p {
+      max-width: 720px;
+      margin: 0 auto;
+      font-size: 0.95rem;
+      color: var(--navy);
+      line-height: 1.7;
+    }
+
+    /* ── PAGE CONTENT ── */
+    .page-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+    }
+
+    /* ── SECTION HEADERS ── */
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 400;
+      color: var(--navy);
+      margin-bottom: 0.6rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 3px solid var(--gold);
+      display: inline-block;
+    }
+
+    .section-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 640px;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .primary-section { margin-bottom: 3.5rem; }
+
+    .material-type-header {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      color: var(--navy);
+      margin: 2rem 0 0.5rem;
+      padding-bottom: 0.3rem;
+      border-bottom: 2px solid var(--gold-light);
+    }
+
+    .material-type-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+      max-width: 560px;
+      line-height: 1.6;
+    }
+
+    /* ── SWATCH GRID ── */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .swatch-card {
+      background: white;
+      border: 1.5px solid var(--gold-light);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+      cursor: default;
+    }
+
+    .swatch-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold);
+      box-shadow: 0 6px 18px rgba(200,186,154,0.35);
+    }
+
+    .swatch-img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      background: var(--warm-bg);
+    }
+
+    .swatch-info {
+      padding: 0.5rem 0.6rem 0.6rem;
+    }
+
+    .swatch-name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--navy);
+      line-height: 1.3;
+      margin-bottom: 0.3rem;
+    }
+
+    .swatch-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: var(--warm-bg);
+      color: var(--text-muted);
+      border: 1px solid var(--gold-light);
+      border-radius: 3px;
+      padding: 0.1rem 0.4rem;
+    }
+
+    /* ── SECONDARY SECTION ── */
+    .secondary-section { margin-bottom: 3.5rem; }
+
+    .secondary-divider {
+      border: none;
+      border-top: 1px solid var(--gold-light);
+      margin: 2rem 0 1.5rem;
+    }
+
+    /* ── SAMPLES CTA ── */
+    .samples-section {
+      background: var(--navy);
+      border-radius: 10px;
+      padding: 3rem 2rem;
+      text-align: center;
+      color: white;
+      margin-top: 2rem;
+    }
+
+    .samples-section h2 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+
+    .samples-section p {
+      color: rgba(255,255,255,0.75);
+      font-size: 1rem;
+      max-width: 520px;
+      margin: 0 auto 1.8rem;
+      line-height: 1.7;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 0.85rem 2.2rem;
+      border-radius: 4px;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.55);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      line-height: 1.8;
+    }
+
+    footer a { color: var(--gold); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 1rem; }
+      .nav-links { display: none; }
+      .page-content { padding: 2rem 1rem 3rem; }
+      .swatch-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="../index.html">John <span>Skinner</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../jaguar/index.html">Jaguar</a></li>
+    <li><a href="../triumph/index.html">Triumph</a></li>
+    <li><a href="index.html" style="color:var(--gold)">Materials</a></li>
+    <li><a href="../quote/index.html">Get a Quote</a></li>
+  </ul>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="../index.html">Home</a>
+  <span>›</span>
+  Materials &amp; Colours
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-eyebrow">Colour &amp; Material Guide</p>
+  <h1>Materials &amp; Colours</h1>
+  <p>Your material and colour choices are the starting point for a beautiful interior. We break our range into Primary and Secondary materials — here's everything we offer.</p>
+</div>
+
+<!-- EXPLAINER BAND -->
+<div class="explainer">
+  <p>Primary Materials (Leather, Vinyl, Leathercloth) are used across panels and seats and determine the dominant interior colour. Secondary Materials (Carpet, Moquette, Furflex etc.) are used across flooring and other areas, with a colour range designed to complement your Primary Material choice.</p>
+</div>
+
+<!-- PAGE CONTENT -->
+<div class="page-content">
+
+  <!-- PRIMARY MATERIALS -->
+  <div class="primary-section">
+    <p class="section-label">Primary Materials</p>
+    <h2 class="section-title">Seats &amp; Panels</h2>
+    <p class="section-desc">These materials cover the seats, door cards, and main panels — they define the look and feel of your interior. Choose your primary material and colour first.</p>
+
+    <!-- VINYL -->
+    <h3 class="material-type-header">Vinyl</h3>
+    <p class="material-type-desc">Our most popular primary material. Highly durable, easy to clean, and available in the widest colour range — including original factory correct shades for most British classics.</p>
+    <div class="swatch-grid">
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Black.jpg" alt="Vinyl Black" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Black</div><span class="swatch-tag">Vinyl</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Bright-Red.jpg" alt="Vinyl Bright Red" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Bright Red</div><span class="swatch-tag">Vinyl</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Cherry-Red.jpg" alt="Vinyl Cherry Red" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Cherry Red</div><span class="swatch-tag">Vinyl</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Dark-Brown.jpg" alt="Vinyl Dark Brown" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Dark Brown</div><span class="swatch-tag">Vinyl</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Dark-Blue.jpg" alt="Vinyl Dark Blue" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Dark Blue</div><span class="swatch-tag">Vinyl</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-White.jpg" alt="Vinyl White" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">White</div><span class="swatch-tag">Vinyl</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-British-Racing-Green.jpg" alt="Vinyl British Racing Green" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">British Racing Green</div><span class="swatch-tag">Vinyl</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Biscuit-Light-Tan.jpg" alt="Vinyl Biscuit Light Tan" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Biscuit Light Tan</div><span class="swatch-tag">Vinyl</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Ferrari-Beige.jpg" alt="Vinyl Ferrari Beige" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Ferrari Beige</div><span class="swatch-tag">Vinyl</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-AH-Blue.jpg" alt="Vinyl AH Blue" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">AH Blue</div><span class="swatch-tag">Vinyl</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Matador-Red.jpg" alt="Vinyl Matador Red" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Matador Red</div><span class="swatch-tag">Vinyl</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Vinyl-French-Blue.jpg" alt="Vinyl French Blue" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">French Blue</div><span class="swatch-tag">Vinyl</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Chestnut-Brown-RG-1290.jpg" alt="Vinyl Chestnut Brown RG-1290" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Chestnut Brown RG-1290</div><span class="swatch-tag">Vinyl</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Black-RG-1290.jpg" alt="Vinyl Black RG-1290" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Black RG-1290</div><span class="swatch-tag">Vinyl</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Antiqued-Old-Beige.jpg" alt="Vinyl Antiqued Old Beige" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Antiqued Old Beige</div><span class="swatch-tag">Vinyl</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Antiqued-Old-Grey.jpg" alt="Vinyl Antiqued Old Grey" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Antiqued Old Grey</div><span class="swatch-tag">Vinyl</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Antiqued-Cinnamon.jpg" alt="Vinyl Antiqued Cinnamon" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Antiqued Cinnamon</div><span class="swatch-tag">Vinyl</span></div>
+      </div>
+    </div>
+
+    <!-- LEATHER -->
+    <h3 class="material-type-header">Leather</h3>
+    <p class="material-type-desc">Genuine leather for a premium finish. Available in grained, smooth, and antiqued finishes — each with a different texture and depth of colour that only improves with age.</p>
+    <div class="swatch-grid">
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Leather-Grained-AH-Blue.jpg" alt="Leather Grained AH Blue" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">AH Blue Grained</div><span class="swatch-tag">Leather</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Leather-Grained-Dark-Brown.jpg" alt="Leather Grained Dark Brown" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Dark Brown Grained</div><span class="swatch-tag">Leather</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Leather-Grained-Dark-Jaguar-Green.jpg" alt="Leather Grained Dark Jaguar Green" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Dark Jaguar Green Grained</div><span class="swatch-tag">Leather</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Leather-Grained-White.jpg" alt="Leather Grained White" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">White Grained</div><span class="swatch-tag">Leather</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Leather-Grained-Porcelain-Green.jpg" alt="Leather Grained Porcelain Green" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Porcelain Green Grained</div><span class="swatch-tag">Leather</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Leather-Smooth-Pale-Shadow-Blue.jpg" alt="Leather Smooth Pale Shadow Blue" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Pale Shadow Blue Smooth</div><span class="swatch-tag">Leather</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Leather-Antiqued-Chestnut-Brown.jpg" alt="Leather Antiqued Chestnut Brown" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Chestnut Brown Antiqued</div><span class="swatch-tag">Leather</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Leather-Antiqued-Cinnamon.jpg" alt="Leather Antiqued Cinnamon" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Cinnamon Antiqued</div><span class="swatch-tag">Leather</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Leather-Antiqued-Old-Beige.jpg" alt="Leather Antiqued Old Beige" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Old Beige Antiqued</div><span class="swatch-tag">Leather</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Leather-Antiqued-Old-Grey.jpg" alt="Leather Antiqued Old Grey" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Old Grey Antiqued</div><span class="swatch-tag">Leather</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Leather-Antiqued-Russet-Red.jpg" alt="Leather Antiqued Russet Red" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Russet Red Antiqued</div><span class="swatch-tag">Leather</span></div>
+      </div>
+    </div>
+
+    <!-- LEATHERCLOTH -->
+    <h3 class="material-type-header">Leathercloth</h3>
+    <p class="material-type-desc">A period-correct alternative to vinyl — leathercloth has a softer, more supple feel and was widely used in British cars of the 1950s and 60s. Ideal for correct restoration work.</p>
+    <div class="swatch-grid">
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Leathercloth-AH-Blue.jpg" alt="Leathercloth AH Blue" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">AH Blue</div><span class="swatch-tag">Leathercloth</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECONDARY MATERIALS -->
+  <div class="secondary-section">
+    <p class="section-label">Secondary Materials</p>
+    <h2 class="section-title">Carpet, Lining &amp; Trim</h2>
+    <p class="section-desc">Secondary materials cover carpets, headlinings, hoods, piping, and binding. Colours are designed to complement the primary material range — you can mix and match across categories.</p>
+
+    <!-- Carpet -->
+    <h3 class="material-type-header">Carpet</h3>
+    <div class="swatch-grid">
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Wool-Dark-Green.jpg" alt="Wool Dark Green" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Dark Green</div><span class="swatch-tag">Wool</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Nylon-Pale-Shadow-Blue.jpg" alt="Nylon Pale Shadow Blue" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Pale Shadow Blue</div><span class="swatch-tag">Nylon</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Karvel-Dark-Blue.jpg" alt="Karvel Dark Blue" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Dark Blue</div><span class="swatch-tag">Karvel</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Hardura-Suede-Green.jpg" alt="Hardura Suede Green" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Suede Green</div><span class="swatch-tag">Hardura</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Armacord-Biscuit.jpg" alt="Armacord Biscuit" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Biscuit</div><span class="swatch-tag">Armacord</span></div>
+      </div>
+    </div>
+
+    <!-- Moquette & Furflex -->
+    <h3 class="material-type-header">Moquette &amp; Furflex</h3>
+    <div class="swatch-grid">
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Moquette-Red.jpg" alt="Moquette Red" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Red</div><span class="swatch-tag">Moquette</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Furflex-Beige.jpg" alt="Furflex Beige" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Beige</div><span class="swatch-tag">Furflex</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Furflex-Snap-On-Thin-Tan.jpg" alt="Furflex Snap-On Thin Tan" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Snap-On Thin Tan</div><span class="swatch-tag">Furflex</span></div>
+      </div>
+    </div>
+
+    <!-- Binding -->
+    <h3 class="material-type-header">Binding</h3>
+    <div class="swatch-grid">
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Binding-French-Blue.jpg" alt="Binding French Blue" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">French Blue</div><span class="swatch-tag">Binding</span></div>
+      </div>
+    </div>
+
+    <!-- Headlining -->
+    <h3 class="material-type-header">Headlining</h3>
+    <div class="swatch-grid">
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Headlining-Brushed-Nylon-Biscuit.jpg" alt="Headlining Brushed Nylon Biscuit" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Brushed Nylon Biscuit</div><span class="swatch-tag">Headlining</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Headlining-PVC-White.jpg" alt="Headlining PVC White" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">PVC White</div><span class="swatch-tag">Headlining</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Headlining-Wool-Cloth-Grey.jpg" alt="Headlining Wool Cloth Grey" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Wool Cloth Grey</div><span class="swatch-tag">Headlining</span></div>
+      </div>
+    </div>
+
+    <!-- Hooding -->
+    <h3 class="material-type-header">Hooding</h3>
+    <div class="swatch-grid">
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Hooding-PVC-Off-White.jpg" alt="Hooding PVC Off White" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">PVC Off White</div><span class="swatch-tag">Hooding</span></div>
+      </div>
+      <div class="swatch-card">
+        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Hooding-Mohair-Dark-Red.jpg" alt="Hooding Mohair Dark Red" loading="lazy">
+        <div class="swatch-info"><div class="swatch-name">Mohair Dark Red</div><span class="swatch-tag">Hooding</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SAMPLES CTA -->
+  <div class="samples-section">
+    <h2>Order Free Samples</h2>
+    <p>Choosing the right colour from a screen is almost impossible. We strongly recommend ordering physical samples before committing to a colour. Samples are free and sent to your door.</p>
+    <a class="btn-primary" href="../quote/index.html">Request Samples</a>
+  </div>
+
+</div><!-- /page-content -->
+
+<footer>
+  <p>John Skinner (Manufacturing) Ltd · Classic Car Interior Trim Specialists · Est. 1980 · Cheltenham, England<br><br>
+  <a href="../index.html">Home</a> &nbsp;·&nbsp; <a href="../quote/index.html">Get a Quote</a></p>
+</footer>
+
+</body>
+</html>
