@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quote — John Skinner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #181e38; --navy-light: #272e66;
+      --gold: #c8ba9a; --gold-light: #d4cdb8;
+      --cream: #f6f6f3; --white: #fff;
+      --grey: #5a6373; --warm-bg: #efede9;
+      --text: #1e1e1e; --red: #e52328;
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-sans: 'Open Sans', Arial, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-sans); background: var(--cream); color: var(--text); min-height: 100vh; }
+
+    header {
+      background: var(--navy); border-bottom: 3px solid var(--gold);
+      padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    .logo { font-family: var(--font-serif); font-size: 1.6rem; color: var(--white); text-decoration: none; }
+    .logo span { color: var(--gold); }
+    .header-nav { display: flex; align-items: center; gap: 1rem; }
+    .header-nav a { color: var(--gold-light); font-size: 0.85rem; text-decoration: none; }
+    #logout-btn {
+      background: transparent; border: 1px solid var(--gold); color: var(--gold);
+      padding: 0.4rem 1rem; border-radius: 3px; cursor: pointer;
+      font-family: var(--font-sans); font-size: 0.8rem; letter-spacing: 0.05em;
+    }
+    #logout-btn:hover { background: var(--gold); color: var(--navy); }
+
+    .breadcrumb { padding: 1rem 2rem; font-size: 0.82rem; color: var(--grey); }
+    .breadcrumb a { color: var(--grey); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--navy); }
+    .breadcrumb span { margin: 0 0.4rem; }
+
+    .page-wrap {
+      max-width: 1100px; margin: 0 auto; padding: 0 1.5rem 3rem;
+      display: grid; grid-template-columns: 1fr 400px; gap: 2rem;
+    }
+    @media (max-width: 768px) { .page-wrap { grid-template-columns: 1fr; } }
+
+    /* STATUS BADGE */
+    .badge {
+      display: inline-block; padding: 0.3rem 0.85rem;
+      border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .badge-open { background: #dbeafe; color: #1e40af; }
+    .badge-quoted { background: #fef9ee; color: #92400e; border: 1px solid var(--gold); }
+    .badge-samples_sent { background: #ede9fe; color: #5b21b6; }
+    .badge-accepted { background: #dcfce7; color: #166534; }
+    .badge-in_production { background: #ffedd5; color: #9a3412; }
+    .badge-dispatched { background: #ccfbf1; color: #0f766e; }
+    .badge-complete { background: #f3f4f6; color: #374151; }
+    .badge-dormant { background: #f9fafb; color: #9ca3af; }
+    .badge-cancelled { background: #fee2e2; color: #991b1b; }
+
+    /* CARD */
+    .card { background: var(--white); border-radius: 6px; border: 1px solid #e8e6e0; padding: 1.6rem; margin-bottom: 1.2rem; }
+    .card-title { font-family: var(--font-serif); font-size: 1.3rem; color: var(--navy); margin-bottom: 1rem; }
+    .car-title-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
+    .car-name { font-family: var(--font-serif); font-size: 1.8rem; color: var(--navy); }
+
+    .detail-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
+    @media (max-width: 500px) { .detail-grid { grid-template-columns: repeat(2, 1fr); } }
+    .detail-item label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--grey); font-weight: 600; display: block; margin-bottom: 0.2rem; }
+    .detail-item span { font-size: 0.9rem; color: var(--text); }
+
+    /* ITEMS */
+    .item-row {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 0.8rem 0; border-bottom: 1px solid var(--cream);
+    }
+    .item-row:last-child { border-bottom: none; }
+    .item-info { flex: 1; }
+    .item-name { font-weight: 600; font-size: 0.9rem; color: var(--navy); }
+    .item-sub { font-size: 0.8rem; color: var(--grey); margin-top: 0.15rem; }
+    .btn-remove {
+      background: none; border: 1px solid #ddd; color: var(--grey);
+      padding: 0.3rem 0.8rem; border-radius: 3px; cursor: pointer;
+      font-size: 0.75rem; transition: all 0.2s;
+    }
+    .btn-remove:hover { border-color: var(--red); color: var(--red); }
+    .empty-items { color: var(--grey); font-size: 0.88rem; padding: 1rem 0; }
+
+    /* MESSAGE THREAD */
+    .messages-panel {
+      background: var(--white); border-radius: 6px; border: 1px solid #e8e6e0;
+      display: flex; flex-direction: column; height: calc(100vh - 180px); min-height: 500px;
+      position: sticky; top: 1rem;
+    }
+    @media (max-width: 768px) { .messages-panel { position: static; height: auto; min-height: 0; } }
+    .messages-header { padding: 1.2rem 1.4rem; border-bottom: 1px solid var(--cream); }
+    .messages-header h3 { font-family: var(--font-serif); font-size: 1.2rem; color: var(--navy); }
+    .messages-scroll { flex: 1; overflow-y: auto; padding: 1.2rem; display: flex; flex-direction: column; gap: 0.8rem; }
+    .msg-bubble { max-width: 80%; }
+    .msg-bubble.customer { align-self: flex-end; }
+    .msg-bubble.admin { align-self: flex-start; }
+    .msg-content {
+      padding: 0.75rem 1rem; border-radius: 12px;
+      font-size: 0.875rem; line-height: 1.5;
+    }
+    .msg-bubble.customer .msg-content { background: var(--navy); color: var(--white); border-bottom-right-radius: 3px; }
+    .msg-bubble.admin .msg-content { background: var(--warm-bg); color: var(--navy); border-bottom-left-radius: 3px; }
+    .msg-meta { font-size: 0.72rem; color: var(--grey); margin-top: 0.3rem; }
+    .msg-bubble.customer .msg-meta { text-align: right; }
+    .msg-attachments { margin-top: 0.4rem; }
+    .msg-attachments a { display: inline-block; font-size: 0.75rem; color: var(--gold); text-decoration: none; margin-right: 0.5rem; }
+    .msg-attachments a:hover { text-decoration: underline; }
+    .msg-sender-name { font-size: 0.72rem; font-weight: 600; color: var(--navy-light); margin-bottom: 0.2rem; }
+
+    /* MESSAGE INPUT */
+    .message-input { padding: 1rem; border-top: 1px solid var(--cream); }
+    .message-input textarea {
+      width: 100%; height: 80px; padding: 0.75rem;
+      border: 1px solid #ddd; border-radius: 4px;
+      font-family: var(--font-sans); font-size: 0.875rem; resize: none;
+      color: var(--text);
+    }
+    .message-input textarea:focus { outline: none; border-color: var(--navy); }
+    .input-actions { display: flex; gap: 0.5rem; margin-top: 0.6rem; align-items: center; }
+    .btn-send {
+      background: var(--navy); color: var(--white);
+      border: none; padding: 0.6rem 1.4rem; border-radius: 4px; cursor: pointer;
+      font-family: var(--font-sans); font-size: 0.85rem; font-weight: 600;
+    }
+    .btn-send:hover { background: var(--navy-light); }
+    .btn-attach {
+      background: none; border: 1px solid #ddd; color: var(--grey);
+      padding: 0.55rem 1rem; border-radius: 4px; cursor: pointer;
+      font-size: 0.82rem;
+    }
+    .btn-attach:hover { border-color: var(--navy); color: var(--navy); }
+    #file-upload { display: none; }
+    .attach-preview { font-size: 0.78rem; color: var(--grey); flex: 1; }
+
+    .no-access { text-align: center; padding: 4rem 2rem; color: var(--grey); }
+    .spinner { text-align: center; padding: 2rem; color: var(--grey); }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="../index.html" class="logo">John <span>Skinner</span></a>
+  <div class="header-nav">
+    <a href="index.html">← My Quotes</a>
+    <button id="logout-btn" onclick="logout()">Sign Out</button>
+  </div>
+</header>
+
+<div id="no-access" class="no-access" style="display:none">
+  <p>Please <a href="index.html">sign in</a> to view your quote.</p>
+</div>
+
+<div id="page-content" style="display:none">
+  <div class="breadcrumb">
+    <a href="../index.html">Home</a><span>›</span>
+    <a href="index.html">My Quotes</a><span>›</span>
+    <span id="bread-car">Quote</span>
+  </div>
+
+  <div class="page-wrap">
+    <!-- LEFT COLUMN -->
+    <div>
+      <!-- Car summary card -->
+      <div class="card" id="car-card">
+        <div class="car-title-row">
+          <h1 class="car-name" id="car-title">Loading…</h1>
+          <span id="status-badge" class="badge badge-open">Open</span>
+        </div>
+        <div class="detail-grid" id="car-details"></div>
+      </div>
+
+      <!-- Quote items -->
+      <div class="card">
+        <h2 class="card-title">Quote Items</h2>
+        <div id="items-list"><div class="spinner">Loading…</div></div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN — Messages -->
+    <div class="messages-panel">
+      <div class="messages-header">
+        <h3>Messages</h3>
+      </div>
+      <div class="messages-scroll" id="messages-scroll">
+        <div class="spinner">Loading messages…</div>
+      </div>
+      <div class="message-input">
+        <textarea id="msg-text" placeholder="Type your message…"></textarea>
+        <div class="input-actions">
+          <button class="btn-attach" onclick="document.getElementById('file-upload').click()">📎 Attach</button>
+          <input type="file" id="file-upload" onchange="handleFileSelect(this)" />
+          <span class="attach-preview" id="attach-preview"></span>
+          <button class="btn-send" onclick="sendMessage()">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const { createClient } = supabase;
+  const sb = createClient(
+    'https://vojzzmqpectwswagftjv.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZvanp6bXFwZWN0d3N3YWdmdGp2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI1NjgwNzIsImV4cCI6MjA4ODE0NDA3Mn0.xJvKfh6QafvyQKR-lazAkFUrLHd_nXzPerOwZ0KSsUM'
+  );
+
+  const params = new URLSearchParams(location.search);
+  const quoteId = params.get('id');
+  let currentUser = null, customerData = null, quoteData = null;
+  let pendingAttachments = [];
+
+  function statusClass(s) {
+    return 'badge badge-' + (s || 'open');
+  }
+  function statusLabel(s) {
+    return (s || 'open').replace(/_/g,' ').replace(/\b\w/g, c => c.toUpperCase());
+  }
+
+  function relativeTime(d) {
+    const diff = Date.now() - new Date(d).getTime();
+    const mins = Math.floor(diff / 60000);
+    if (mins < 1) return 'just now';
+    if (mins < 60) return `${mins}m ago`;
+    const hrs = Math.floor(mins / 60);
+    if (hrs < 24) return `${hrs}h ago`;
+    const days = Math.floor(hrs / 24);
+    if (days < 7) return `${days}d ago`;
+    return new Date(d).toLocaleDateString('en-GB', { day:'numeric', month:'short' });
+  }
+
+  async function logout() { await sb.auth.signOut(); location.href = 'index.html'; }
+
+  async function loadQuote() {
+    const { data: q } = await sb.from('quotes').select('*').eq('id', quoteId).single();
+    if (!q || q.customer_id !== currentUser.id) {
+      document.getElementById('page-content').style.display = 'none';
+      document.getElementById('no-access').style.display = '';
+      return;
+    }
+    quoteData = q;
+    const carName = `${q.marque || ''} ${q.model || ''} ${q.year ? '(' + q.year + ')' : ''}`.trim();
+    document.getElementById('car-title').textContent = carName;
+    document.getElementById('bread-car').textContent = carName;
+    document.title = carName + ' — John Skinner';
+
+    const badge = document.getElementById('status-badge');
+    badge.className = statusClass(q.status);
+    badge.textContent = statusLabel(q.status);
+
+    document.getElementById('car-details').innerHTML = [
+      ['Marque', q.marque], ['Model', q.model], ['Year', q.year],
+      ['Chassis', q.chassis], ['Driver Side', q.driver_side], ['Paint Colour', q.paint_colour]
+    ].filter(([,v]) => v).map(([l,v]) => `
+      <div class="detail-item"><label>${l}</label><span>${v}</span></div>
+    `).join('');
+  }
+
+  async function loadItems() {
+    const { data: items } = await sb.from('quote_items')
+      .select('*').eq('quote_id', quoteId).eq('active', true);
+    const container = document.getElementById('items-list');
+    if (!items || items.length === 0) {
+      container.innerHTML = '<p class="empty-items">No items yet. Items will be added by the John Skinner team or from your kit selection.</p>';
+      return;
+    }
+    container.innerHTML = items.map(item => `
+      <div class="item-row" id="item-${item.id}">
+        <div class="item-info">
+          <div class="item-name">${item.name}</div>
+          <div class="item-sub">${[item.material, item.colour].filter(Boolean).join(' · ')}</div>
+        </div>
+        ${quoteData?.status === 'open' ? `<button class="btn-remove" onclick="removeItem('${item.id}')">Remove</button>` : ''}
+      </div>
+    `).join('');
+  }
+
+  async function removeItem(id) {
+    await sb.from('quote_items').update({ active: false }).eq('id', id);
+    document.getElementById('item-' + id)?.remove();
+  }
+
+  async function markAdminMessagesRead() {
+    await sb.from('messages')
+      .update({ read_at: new Date().toISOString() })
+      .eq('quote_id', quoteId)
+      .eq('sender_type', 'admin')
+      .is('read_at', null);
+  }
+
+  function buildBubble(msg) {
+    const isCustomer = msg.sender_type === 'customer';
+    const attachHtml = (msg.attachments || []).length > 0 ? `
+      <div class="msg-attachments">
+        ${msg.attachments.map(a => `<a href="${a.url}" target="_blank">📎 ${a.name}</a>`).join('')}
+      </div>` : '';
+    return `
+      <div class="msg-bubble ${isCustomer ? 'customer' : 'admin'}">
+        ${!isCustomer ? `<div class="msg-sender-name">${msg.sender_name || 'John Skinner'}</div>` : ''}
+        <div class="msg-content">${escHtml(msg.content || '')}${attachHtml}</div>
+        <div class="msg-meta">${relativeTime(msg.created_at)}</div>
+      </div>`;
+  }
+
+  function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>'); }
+
+  async function loadMessages() {
+    const { data: msgs } = await sb.from('messages')
+      .select('*')
+      .eq('quote_id', quoteId)
+      .eq('is_internal', false)
+      .order('created_at', { ascending: true });
+    const scroll = document.getElementById('messages-scroll');
+    if (!msgs || msgs.length === 0) {
+      scroll.innerHTML = '<p style="color:var(--grey);font-size:0.85rem;text-align:center;padding:2rem">No messages yet. Send a message to the team below.</p>';
+      return;
+    }
+    scroll.innerHTML = msgs.map(buildBubble).join('');
+    scroll.scrollTop = scroll.scrollHeight;
+    markAdminMessagesRead();
+  }
+
+  async function handleFileSelect(input) {
+    const file = input.files[0];
+    if (!file) return;
+    document.getElementById('attach-preview').textContent = 'Uploading ' + file.name + '…';
+    const path = `${quoteId}/${Date.now()}_${file.name}`;
+    const { data, error } = await sb.storage.from('attachments').upload(path, file);
+    if (error) { document.getElementById('attach-preview').textContent = 'Upload failed.'; return; }
+    const { data: { publicUrl } } = sb.storage.from('attachments').getPublicUrl(path);
+    pendingAttachments.push({ name: file.name, url: publicUrl });
+    document.getElementById('attach-preview').textContent = file.name + ' ready';
+  }
+
+  async function sendMessage() {
+    const text = document.getElementById('msg-text').value.trim();
+    if (!text && pendingAttachments.length === 0) return;
+    const { error } = await sb.from('messages').insert({
+      quote_id: quoteId,
+      sender_type: 'customer',
+      sender_id: currentUser.id,
+      sender_name: customerData?.first_name || 'Customer',
+      content: text,
+      attachments: pendingAttachments,
+      is_internal: false
+    });
+    if (!error) {
+      document.getElementById('msg-text').value = '';
+      document.getElementById('attach-preview').textContent = '';
+      document.getElementById('file-upload').value = '';
+      pendingAttachments = [];
+      loadMessages();
+    }
+  }
+
+  function subscribeRealtime() {
+    sb.channel('quote-messages-' + quoteId)
+      .on('postgres_changes', {
+        event: 'INSERT', schema: 'public', table: 'messages',
+        filter: `quote_id=eq.${quoteId}`
+      }, (payload) => {
+        const msg = payload.new;
+        if (msg.is_internal) return;
+        const scroll = document.getElementById('messages-scroll');
+        const isAtBottom = scroll.scrollHeight - scroll.scrollTop - scroll.clientHeight < 60;
+        const empty = scroll.querySelector('p');
+        if (empty) scroll.innerHTML = '';
+        scroll.insertAdjacentHTML('beforeend', buildBubble(msg));
+        if (isAtBottom) scroll.scrollTop = scroll.scrollHeight;
+        if (msg.sender_type === 'admin') markAdminMessagesRead();
+      })
+      .subscribe();
+  }
+
+  (async () => {
+    const { data: { session } } = await sb.auth.getSession();
+    if (!session) { document.getElementById('no-access').style.display = ''; return; }
+    currentUser = session.user;
+    const { data: cust } = await sb.from('customers').select('*').eq('id', currentUser.id).single();
+    customerData = cust;
+    document.getElementById('page-content').style.display = '';
+    await loadQuote();
+    await loadItems();
+    await loadMessages();
+    subscribeRealtime();
+  })();
+</script>
+</body>
+</html>

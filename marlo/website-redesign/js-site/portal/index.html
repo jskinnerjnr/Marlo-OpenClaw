@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Account — John Skinner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #181e38; --navy-light: #272e66;
+      --gold: #c8ba9a; --gold-light: #d4cdb8;
+      --cream: #f6f6f3; --white: #fff;
+      --grey: #5a6373; --warm-bg: #efede9;
+      --text: #1e1e1e; --red: #e52328;
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-sans: 'Open Sans', Arial, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-sans); background: var(--cream); color: var(--text); min-height: 100vh; }
+
+    /* HEADER */
+    header {
+      background: var(--navy);
+      border-bottom: 3px solid var(--gold);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .logo { font-family: var(--font-serif); font-size: 1.6rem; color: var(--white); text-decoration: none; letter-spacing: 0.02em; }
+    .logo span { color: var(--gold); }
+    .header-nav { display: flex; align-items: center; gap: 1rem; }
+    .header-nav a { color: var(--gold-light); font-size: 0.85rem; text-decoration: none; }
+    .header-nav a:hover { color: var(--white); }
+    #logout-btn {
+      background: transparent; border: 1px solid var(--gold); color: var(--gold);
+      padding: 0.4rem 1rem; border-radius: 3px; cursor: pointer;
+      font-family: var(--font-sans); font-size: 0.8rem; letter-spacing: 0.05em;
+      transition: all 0.2s;
+    }
+    #logout-btn:hover { background: var(--gold); color: var(--navy); }
+
+    /* MAIN LAYOUT */
+    .container { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+
+    /* AUTH FORMS */
+    .auth-wrap {
+      max-width: 440px; margin: 3rem auto;
+      background: var(--white); border-radius: 6px;
+      box-shadow: 0 2px 20px rgba(24,30,56,0.1);
+      overflow: hidden;
+    }
+    .auth-tabs { display: flex; border-bottom: 2px solid var(--cream); }
+    .auth-tab {
+      flex: 1; padding: 1rem; text-align: center; cursor: pointer;
+      font-family: var(--font-sans); font-size: 0.9rem; font-weight: 600;
+      color: var(--grey); border: none; background: var(--white);
+      transition: all 0.2s; letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .auth-tab.active { color: var(--navy); border-bottom: 3px solid var(--gold); margin-bottom: -2px; }
+    .auth-body { padding: 2rem; }
+    .form-group { margin-bottom: 1.2rem; }
+    label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--grey); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem; }
+    input[type=text], input[type=email], input[type=password], select, textarea {
+      width: 100%; padding: 0.75rem 1rem;
+      border: 1px solid #ddd; border-radius: 4px;
+      font-family: var(--font-sans); font-size: 0.9rem; color: var(--text);
+      transition: border-color 0.2s; background: var(--white);
+    }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--navy); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .btn-primary {
+      width: 100%; padding: 0.85rem;
+      background: var(--navy); color: var(--white);
+      border: none; border-radius: 4px; cursor: pointer;
+      font-family: var(--font-sans); font-size: 0.9rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--navy-light); }
+    .auth-msg { margin-top: 1rem; padding: 0.75rem; border-radius: 4px; font-size: 0.85rem; text-align: center; }
+    .auth-msg.error { background: #fef2f2; color: var(--red); }
+    .auth-msg.success { background: #f0fdf4; color: #166534; }
+
+    /* DASHBOARD */
+    #dashboard { display: none; }
+    .greeting { font-family: var(--font-serif); font-size: 2rem; color: var(--navy); margin-bottom: 0.4rem; }
+    .greeting-sub { color: var(--grey); font-size: 0.9rem; margin-bottom: 2rem; }
+
+    .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem; }
+    .section-title { font-family: var(--font-serif); font-size: 1.4rem; color: var(--navy); }
+
+    /* QUOTE CARDS */
+    .quote-grid { display: grid; gap: 1rem; }
+    .quote-card {
+      background: var(--white); border-radius: 6px;
+      border: 1px solid #e8e6e0;
+      padding: 1.4rem 1.6rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; transition: box-shadow 0.2s;
+      text-decoration: none; color: inherit;
+    }
+    .quote-card:hover { box-shadow: 0 4px 16px rgba(24,30,56,0.12); }
+    .quote-car { font-family: var(--font-serif); font-size: 1.2rem; color: var(--navy); margin-bottom: 0.3rem; }
+    .quote-meta { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; }
+    .quote-date { font-size: 0.8rem; color: var(--grey); }
+    .unread-badge {
+      background: var(--red); color: var(--white);
+      border-radius: 12px; padding: 0.15rem 0.6rem;
+      font-size: 0.72rem; font-weight: 600;
+    }
+    .quote-arrow { color: var(--gold); font-size: 1.2rem; flex-shrink: 0; }
+
+    /* STATUS BADGES */
+    .badge {
+      display: inline-block; padding: 0.25rem 0.75rem;
+      border-radius: 20px; font-size: 0.72rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .badge-open { background: #dbeafe; color: #1e40af; }
+    .badge-quoted { background: #fef9ee; color: #92400e; border: 1px solid var(--gold); }
+    .badge-samples_sent { background: #ede9fe; color: #5b21b6; }
+    .badge-accepted { background: #dcfce7; color: #166534; }
+    .badge-in_production { background: #ffedd5; color: #9a3412; }
+    .badge-dispatched { background: #ccfbf1; color: #0f766e; }
+    .badge-complete { background: #f3f4f6; color: #374151; }
+    .badge-dormant { background: #f9fafb; color: #9ca3af; }
+    .badge-cancelled { background: #fee2e2; color: #991b1b; }
+
+    /* EMPTY STATE */
+    .empty-state {
+      text-align: center; padding: 3rem 2rem;
+      background: var(--white); border-radius: 6px; border: 1px dashed #d0cec8;
+    }
+    .empty-state p { color: var(--grey); margin-bottom: 1.5rem; font-size: 0.95rem; }
+    .btn-outline {
+      display: inline-block; padding: 0.75rem 1.8rem;
+      border: 2px solid var(--navy); color: var(--navy);
+      border-radius: 4px; text-decoration: none;
+      font-size: 0.85rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { background: var(--navy); color: var(--white); }
+
+    /* NEW QUOTE FORM */
+    .new-quote-section {
+      margin-top: 2.5rem; background: var(--white);
+      border-radius: 6px; border: 1px solid #e8e6e0;
+      padding: 1.8rem;
+    }
+    .new-quote-section h3 { font-family: var(--font-serif); font-size: 1.3rem; color: var(--navy); margin-bottom: 0.4rem; }
+    .new-quote-section p { color: var(--grey); font-size: 0.85rem; margin-bottom: 1.4rem; }
+    .new-quote-row { display: grid; grid-template-columns: 1fr 1fr 100px; gap: 1rem; align-items: end; }
+    @media (max-width: 600px) { .new-quote-row { grid-template-columns: 1fr; } .form-row { grid-template-columns: 1fr; } }
+
+    .spinner { text-align: center; padding: 3rem; color: var(--grey); font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="../index.html" class="logo">John <span>Skinner</span></a>
+  <div class="header-nav">
+    <a href="../index.html">Our Kits</a>
+    <button id="logout-btn" style="display:none" onclick="logout()">Sign Out</button>
+  </div>
+</header>
+
+<div class="container">
+  <!-- AUTH SECTION -->
+  <div id="auth-section">
+    <div class="auth-wrap">
+      <div class="auth-tabs">
+        <button class="auth-tab active" onclick="showTab('login')">Sign In</button>
+        <button class="auth-tab" onclick="showTab('register')">Register</button>
+      </div>
+      <div class="auth-body">
+        <!-- LOGIN -->
+        <div id="login-form">
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="login-email" placeholder="your@email.com" />
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="login-password" placeholder="••••••••" />
+          </div>
+          <button class="btn-primary" onclick="doLogin()">Sign In</button>
+          <div id="login-msg"></div>
+        </div>
+        <!-- REGISTER -->
+        <div id="register-form" style="display:none">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" id="reg-first" placeholder="James" />
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" id="reg-last" placeholder="Hunt" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="reg-email" placeholder="your@email.com" />
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="reg-password" placeholder="Min 6 characters" />
+          </div>
+          <div class="form-group">
+            <label>Country</label>
+            <select id="reg-location">
+              <option value="">Select country...</option>
+              <option>United Kingdom</option><option>United States</option><option>Canada</option>
+              <option>Australia</option><option>New Zealand</option><option>Germany</option>
+              <option>France</option><option>Netherlands</option><option>Belgium</option>
+              <option>Sweden</option><option>Norway</option><option>Denmark</option>
+              <option>Switzerland</option><option>Austria</option><option>Italy</option>
+              <option>Spain</option><option>Japan</option><option>Other</option>
+            </select>
+          </div>
+          <button class="btn-primary" onclick="doRegister()">Create Account</button>
+          <div id="register-msg"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="dashboard">
+    <h1 class="greeting" id="greeting">Welcome back</h1>
+    <p class="greeting-sub">Manage your quotes and track your order progress below.</p>
+
+    <div class="section-header">
+      <h2 class="section-title">Your Quotes</h2>
+    </div>
+
+    <div id="quotes-loading" class="spinner">Loading your quotes…</div>
+    <div id="quotes-list" class="quote-grid" style="display:none"></div>
+    <div id="quotes-empty" class="empty-state" style="display:none">
+      <p>No quotes yet. Start by browsing our kits and requesting a quote.</p>
+      <a href="../index.html" class="btn-outline">Browse Our Kits →</a>
+    </div>
+
+    <!-- NEW QUOTE -->
+    <div class="new-quote-section">
+      <h3>Start a New Quote</h3>
+      <p>Tell us about your car and we'll get back to you with pricing.</p>
+      <div class="new-quote-row">
+        <div class="form-group" style="margin:0">
+          <label>Marque</label>
+          <select id="nq-marque">
+            <option value="">Select make...</option>
+            <option>MGB</option><option>MGA</option><option>Triumph TR2</option>
+            <option>Triumph TR3</option><option>Triumph TR4</option><option>Triumph TR5</option>
+            <option>Triumph TR6</option><option>Austin Healey 100</option>
+            <option>Austin Healey 3000</option><option>Jaguar E-Type</option>
+            <option>Jaguar XK120</option><option>Jaguar XK140</option><option>Jaguar XK150</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group" style="margin:0">
+          <label>Model / Variant</label>
+          <input type="text" id="nq-model" placeholder="e.g. GT, Roadster" />
+        </div>
+        <div class="form-group" style="margin:0">
+          <label>Year</label>
+          <input type="text" id="nq-year" placeholder="1968" />
+        </div>
+      </div>
+      <div style="margin-top:1rem">
+        <button class="btn-primary" style="width:auto;padding:0.75rem 2rem" onclick="createQuote()">Request Quote</button>
+        <div id="nq-msg" style="margin-top:0.75rem; font-size:0.85rem"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const { createClient } = supabase;
+  const sb = createClient(
+    'https://vojzzmqpectwswagftjv.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZvanp6bXFwZWN0d3N3YWdmdGp2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI1NjgwNzIsImV4cCI6MjA4ODE0NDA3Mn0.xJvKfh6QafvyQKR-lazAkFUrLHd_nXzPerOwZ0KSsUM'
+  );
+
+  let currentUser = null;
+  let customerData = null;
+
+  function showTab(tab) {
+    document.querySelectorAll('.auth-tab').forEach((t, i) => t.classList.toggle('active', (i === 0) === (tab === 'login')));
+    document.getElementById('login-form').style.display = tab === 'login' ? '' : 'none';
+    document.getElementById('register-form').style.display = tab === 'register' ? '' : 'none';
+  }
+
+  function showMsg(id, msg, type='error') {
+    const el = document.getElementById(id);
+    el.innerHTML = `<div class="auth-msg ${type}">${msg}</div>`;
+  }
+
+  async function doLogin() {
+    const email = document.getElementById('login-email').value.trim();
+    const password = document.getElementById('login-password').value;
+    const { error } = await sb.auth.signInWithPassword({ email, password });
+    if (error) return showMsg('login-msg', error.message);
+    await initDashboard();
+  }
+
+  async function doRegister() {
+    const first = document.getElementById('reg-first').value.trim();
+    const last = document.getElementById('reg-last').value.trim();
+    const email = document.getElementById('reg-email').value.trim();
+    const password = document.getElementById('reg-password').value;
+    const location = document.getElementById('reg-location').value;
+    if (!first || !last || !email || !password) return showMsg('register-msg', 'Please fill in all fields.');
+    const { data, error } = await sb.auth.signUp({ email, password });
+    if (error) return showMsg('register-msg', error.message);
+    if (data.user) {
+      await sb.from('customers').insert({ id: data.user.id, email, first_name: first, last_name: last, location });
+    }
+    showMsg('register-msg', 'Account created! Please check your email to confirm.', 'success');
+    await initDashboard();
+  }
+
+  async function logout() {
+    await sb.auth.signOut();
+    location.reload();
+  }
+
+  function statusClass(s) {
+    const map = { open:'open', quoted:'quoted', samples_sent:'samples_sent', accepted:'accepted', in_production:'in_production', dispatched:'dispatched', complete:'complete', dormant:'dormant', cancelled:'cancelled' };
+    return 'badge badge-' + (map[s] || 'open');
+  }
+
+  function statusLabel(s) {
+    return (s || 'open').replace(/_/g,' ').replace(/\b\w/g, c => c.toUpperCase());
+  }
+
+  function formatDate(d) {
+    if (!d) return '';
+    return new Date(d).toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+  }
+
+  async function loadQuotes() {
+    document.getElementById('quotes-loading').style.display = '';
+    document.getElementById('quotes-list').style.display = 'none';
+    document.getElementById('quotes-empty').style.display = 'none';
+
+    const { data: quotes } = await sb.from('quotes')
+      .select('*')
+      .eq('customer_id', currentUser.id)
+      .order('last_activity_at', { ascending: false });
+
+    document.getElementById('quotes-loading').style.display = 'none';
+
+    if (!quotes || quotes.length === 0) {
+      document.getElementById('quotes-empty').style.display = '';
+      return;
+    }
+
+    // Fetch unread counts
+    const qIds = quotes.map(q => q.id);
+    const { data: unread } = await sb.from('messages')
+      .select('quote_id')
+      .in('quote_id', qIds)
+      .eq('sender_type', 'admin')
+      .is('read_at', null);
+
+    const unreadMap = {};
+    (unread || []).forEach(m => { unreadMap[m.quote_id] = (unreadMap[m.quote_id] || 0) + 1; });
+
+    const list = document.getElementById('quotes-list');
+    list.innerHTML = quotes.map(q => `
+      <a class="quote-card" href="quote.html?id=${q.id}">
+        <div>
+          <div class="quote-car">${q.marque || ''} ${q.model || ''} ${q.year ? '(' + q.year + ')' : ''}</div>
+          <div class="quote-meta">
+            <span class="${statusClass(q.status)}">${statusLabel(q.status)}</span>
+            <span class="quote-date">${q.last_activity_at ? 'Last update ' + formatDate(q.last_activity_at) : 'Created ' + formatDate(q.created_at)}</span>
+            ${unreadMap[q.id] ? `<span class="unread-badge">${unreadMap[q.id]} new</span>` : ''}
+          </div>
+        </div>
+        <span class="quote-arrow">→</span>
+      </a>
+    `).join('');
+    list.style.display = '';
+  }
+
+  async function createQuote() {
+    const marque = document.getElementById('nq-marque').value;
+    const model = document.getElementById('nq-model').value.trim();
+    const year = document.getElementById('nq-year').value.trim();
+    const msg = document.getElementById('nq-msg');
+    if (!marque) return msg.textContent = 'Please select a make.';
+    const { error } = await sb.from('quotes').insert({
+      customer_id: currentUser.id,
+      marque, model, year,
+      status: 'open',
+      last_activity_at: new Date().toISOString()
+    });
+    if (error) return msg.textContent = 'Error: ' + error.message;
+    msg.style.color = '#166534';
+    msg.textContent = 'Quote request sent! We\'ll be in touch soon.';
+    document.getElementById('nq-marque').value = '';
+    document.getElementById('nq-model').value = '';
+    document.getElementById('nq-year').value = '';
+    loadQuotes();
+  }
+
+  async function initDashboard() {
+    const { data: { session } } = await sb.auth.getSession();
+    if (!session) return;
+    currentUser = session.user;
+
+    document.getElementById('auth-section').style.display = 'none';
+    document.getElementById('dashboard').style.display = '';
+    document.getElementById('logout-btn').style.display = '';
+
+    const { data: cust } = await sb.from('customers').select('*').eq('id', currentUser.id).single();
+    customerData = cust;
+    document.getElementById('greeting').textContent = `Welcome back, ${cust?.first_name || 'there'}`;
+    loadQuotes();
+  }
+
+  (async () => {
+    const { data: { session } } = await sb.auth.getSession();
+    if (session) {
+      await initDashboard();
+    }
+  })();
+</script>
+</body>
+</html>
