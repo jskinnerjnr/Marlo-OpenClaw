@@ -394,12 +394,20 @@
     const year = document.getElementById('nq-year').value.trim();
     const msg = document.getElementById('nq-msg');
     if (!marque) return msg.textContent = 'Please select a make.';
-    const { error } = await sb.from('quotes').insert({
-      customer_id: currentUser.id,
-      marque, model, year,
-      status: 'open',
-      last_activity_at: new Date().toISOString()
-    });
+    if (!currentUser) return msg.textContent = 'Error: not signed in. Please refresh and try again.';
+    let insertError;
+    try {
+      const { error } = await sb.from('quotes').insert({
+        customer_id: currentUser.id,
+        marque, model, year,
+        status: 'open',
+        last_activity_at: new Date().toISOString()
+      });
+      insertError = error;
+    } catch(e) {
+      return msg.textContent = 'Error: ' + e.message;
+    }
+    const error = insertError;
     if (error) return msg.textContent = 'Error: ' + error.message;
     msg.style.color = '#166534';
     msg.textContent = 'Quote request sent! We\'ll be in touch soon.';
