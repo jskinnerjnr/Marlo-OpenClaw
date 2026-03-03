@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TR6 Front Seat Cover Kit — John Skinner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #181e38; --navy-light: #272e66;
+      --gold: #c8ba9a; --gold-light: #d4cdb8;
+      --cream: #f6f6f3; --white: #fff;
+      --grey: #5a6373; --warm-bg: #efede9;
+      --text: #1e1e1e; --red: #e52328;
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-sans: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+      --radius: 6px; --shadow: 0 2px 16px rgba(0,0,0,0.07);
+      --shadow-md: 0 6px 32px rgba(0,0,0,0.13);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--cream); font-size: 15px; line-height: 1.7; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* HEADER */
+    .site-header { background: var(--navy); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); position: sticky; top: 0; z-index: 100; }
+    .logo-wrap { padding: 13px 0; text-decoration: none; display: block; }
+    .logo { font-family: var(--font-serif); color: var(--white); font-size: 1.12rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
+    .logo em { color: var(--gold); font-style: normal; }
+    .logo-sub { font-size: 0.6rem; color: rgba(255,255,255,0.38); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 2px; }
+    nav { display: flex; gap: 4px; align-items: center; }
+    nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.76rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; padding: 20px 10px; border-bottom: 2px solid transparent; transition: color 0.2s; }
+    nav a:hover { color: var(--gold-light); }
+    nav a.cta { background: var(--gold); color: var(--navy); padding: 8px 18px; border-radius: var(--radius); margin-left: 10px; border-bottom: none; }
+    nav a.cta:hover { background: var(--gold-light); }
+
+    /* BREADCRUMB */
+    .breadcrumb { background: var(--navy-light); padding: 9px 32px; font-size: 0.76rem; color: rgba(255,255,255,0.5); }
+    .breadcrumb a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb span { margin: 0 7px; opacity: 0.5; }
+
+    /* ═══ PRODUCT HERO ═══ */
+    .product-hero { padding: 40px 0 0; background: var(--white); border-bottom: 1px solid #e5e0d8; }
+    .product-grid { display: grid; grid-template-columns: 1fr 420px; gap: 56px; align-items: start; }
+    @media (max-width: 920px) { .product-grid { grid-template-columns: 1fr; gap: 36px; } }
+
+    /* GALLERY */
+    .gallery { position: sticky; top: 80px; }
+    .gallery-toggle { display: flex; gap: 8px; margin-bottom: 14px; }
+    .gallery-btn { padding: 7px 16px; border-radius: 20px; border: 1.5px solid #d8d2c8; background: transparent; font-family: var(--font-sans); font-size: 0.76rem; font-weight: 600; color: var(--grey); cursor: pointer; transition: all 0.18s; text-transform: uppercase; letter-spacing: 0.06em; }
+    .gallery-btn.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+    .main-image {
+      width: 100%; aspect-ratio: 4/3; border-radius: 10px; overflow: hidden;
+      background: var(--warm-bg); position: relative; margin-bottom: 12px;
+    }
+    .main-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .main-image .img-placeholder {
+      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 12px; color: rgba(0,0,0,0.2);
+    }
+    .img-placeholder .placeholder-icon { font-size: 3rem; }
+    .img-placeholder .placeholder-label { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+    .thumb-row { display: flex; gap: 8px; }
+    .thumb {
+      width: 72px; height: 72px; border-radius: 6px; overflow: hidden;
+      border: 2px solid transparent; cursor: pointer; transition: border-color 0.18s;
+      background: var(--warm-bg); flex-shrink: 0;
+    }
+    .thumb.active { border-color: var(--navy); }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .thumb-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; opacity: 0.3; }
+
+    /* PRODUCT INFO */
+    .product-info { padding-bottom: 40px; }
+    .product-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--warm-bg); color: var(--navy); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; }
+    .product-badge::before { content: '✓'; color: var(--gold); }
+    .product-title { font-family: var(--font-serif); font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 600; color: var(--navy); line-height: 1.18; margin-bottom: 10px; }
+    .product-subtitle { color: var(--grey); font-size: 0.95rem; margin-bottom: 20px; line-height: 1.7; }
+    .product-meta { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #e5e0d8; }
+    .meta-item { }
+    .meta-label { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey); margin-bottom: 2px; }
+    .meta-value { font-size: 0.88rem; color: var(--navy); font-weight: 600; }
+
+    /* MATERIAL SELECTOR */
+    .option-group { margin-bottom: 20px; }
+    .option-label { font-size: 0.78rem; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
+    .option-label a { font-weight: 400; color: var(--gold); text-decoration: none; font-size: 0.72rem; text-transform: none; letter-spacing: 0; }
+    .option-label a:hover { text-decoration: underline; }
+    .material-options { display: flex; gap: 8px; flex-wrap: wrap; }
+    .material-btn { padding: 8px 16px; border-radius: var(--radius); border: 1.5px solid #d8d2c8; background: var(--white); font-family: var(--font-sans); font-size: 0.8rem; font-weight: 600; color: var(--grey); cursor: pointer; transition: all 0.18s; }
+    .material-btn:hover { border-color: var(--navy); color: var(--navy); }
+    .material-btn.selected { border-color: var(--navy); background: var(--navy); color: var(--white); }
+
+    /* COLOUR SWATCHES */
+    .colour-options { display: flex; gap: 8px; flex-wrap: wrap; }
+    .colour-swatch { width: 36px; height: 36px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: all 0.18s; position: relative; }
+    .colour-swatch:hover { transform: scale(1.12); }
+    .colour-swatch.selected { border-color: var(--navy); box-shadow: 0 0 0 2px var(--white), 0 0 0 4px var(--navy); }
+    .colour-swatch[title]:hover::after { content: attr(title); position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); background: var(--navy); color: var(--white); font-size: 0.7rem; white-space: nowrap; padding: 3px 8px; border-radius: 4px; pointer-events: none; }
+
+    /* CTA BLOCK */
+    .cta-block { background: var(--warm-bg); border-radius: 10px; padding: 22px; margin-top: 24px; }
+    .cta-note { font-size: 0.8rem; color: var(--grey); margin-bottom: 14px; line-height: 1.6; }
+    .btn-quote-add { width: 100%; background: var(--navy); color: var(--white); border: none; padding: 15px; border-radius: var(--radius); font-family: var(--font-sans); font-size: 0.88rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; margin-bottom: 10px; }
+    .btn-quote-add:hover { background: var(--navy-light); }
+    .btn-quote-add.added { background: #2a6b2a; }
+    .btn-samples { width: 100%; background: transparent; color: var(--navy); border: 1.5px solid var(--navy); padding: 12px; border-radius: var(--radius); font-family: var(--font-sans); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; transition: all 0.18s; }
+    .btn-samples:hover { background: var(--navy); color: var(--white); }
+    .cta-assurance { display: flex; flex-direction: column; gap: 6px; margin-top: 16px; }
+    .assurance-row { display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: var(--grey); }
+    .assurance-row .icon { font-size: 0.9rem; }
+
+    /* ═══ TABS ═══ */
+    .product-tabs-section { background: var(--white); border-top: 1px solid #e5e0d8; }
+    .tab-nav { display: flex; border-bottom: 2px solid #e5e0d8; overflow-x: auto; }
+    .tab-btn { padding: 16px 24px; border: none; background: transparent; font-family: var(--font-sans); font-size: 0.82rem; font-weight: 600; color: var(--grey); cursor: pointer; white-space: nowrap; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.18s; text-transform: uppercase; letter-spacing: 0.06em; }
+    .tab-btn:hover { color: var(--navy); }
+    .tab-btn.active { color: var(--navy); border-bottom-color: var(--navy); }
+    .tab-content { padding: 36px 0 48px; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* DESCRIPTION TAB */
+    .desc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    @media (max-width: 768px) { .desc-grid { grid-template-columns: 1fr; } }
+    .desc-body { font-size: 0.93rem; color: var(--grey); line-height: 1.85; }
+    .desc-body p { margin-bottom: 14px; }
+    .desc-body p:last-child { margin-bottom: 0; }
+    .desc-body strong { color: var(--navy); }
+    .desc-visual { background: var(--warm-bg); border-radius: 10px; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; color: rgba(0,0,0,0.2); font-size: 0.85rem; text-align: center; padding: 20px; }
+
+    /* WHAT'S INCLUDED TAB */
+    .included-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+    .included-item {
+      background: var(--warm-bg); border-radius: 8px; padding: 20px;
+      display: flex; align-items: flex-start; gap: 14px;
+      border-left: 3px solid var(--gold);
+    }
+    .included-icon { font-size: 1.6rem; flex-shrink: 0; }
+    .included-text h4 { font-family: var(--font-serif); font-size: 1rem; color: var(--navy); margin-bottom: 3px; }
+    .included-text p { font-size: 0.8rem; color: var(--grey); line-height: 1.6; }
+    .included-note { margin-top: 24px; background: rgba(200,186,154,0.15); border: 1px solid rgba(200,186,154,0.4); border-radius: 8px; padding: 16px 20px; font-size: 0.84rem; color: var(--navy); line-height: 1.7; }
+
+    /* FITTING NOTES TAB */
+    .fitting-intro { font-size: 0.93rem; color: var(--grey); line-height: 1.85; max-width: 680px; margin-bottom: 28px; }
+    .fitting-steps { display: flex; flex-direction: column; gap: 16px; max-width: 720px; }
+    .fitting-step { display: flex; gap: 16px; align-items: flex-start; }
+    .fitting-num { width: 32px; height: 32px; border-radius: 50%; background: var(--navy); color: var(--white); font-family: var(--font-serif); font-size: 1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .fitting-step h4 { font-size: 0.9rem; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+    .fitting-step p { font-size: 0.84rem; color: var(--grey); line-height: 1.7; }
+    .fitting-video { margin-top: 28px; background: var(--navy); border-radius: 10px; padding: 28px; color: var(--white); display: flex; align-items: center; gap: 20px; }
+    .fitting-video .video-icon { font-size: 2.4rem; flex-shrink: 0; }
+    .fitting-video h4 { font-family: var(--font-serif); font-size: 1.1rem; margin-bottom: 4px; }
+    .fitting-video p { font-size: 0.82rem; color: rgba(255,255,255,0.65); line-height: 1.6; }
+    .fitting-video a { color: var(--gold); font-size: 0.8rem; font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 0.06em; }
+
+    /* DELIVERY TAB */
+    .delivery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 760px; }
+    @media (max-width: 640px) { .delivery-grid { grid-template-columns: 1fr; } }
+    .delivery-card { background: var(--warm-bg); border-radius: 8px; padding: 22px; }
+    .delivery-card h4 { font-family: var(--font-serif); font-size: 1.05rem; color: var(--navy); margin-bottom: 10px; }
+    .delivery-card p { font-size: 0.84rem; color: var(--grey); line-height: 1.75; }
+    .delivery-card ul { list-style: none; margin-top: 8px; }
+    .delivery-card li { font-size: 0.84rem; color: var(--grey); padding: 5px 0; border-bottom: 1px solid #e5e0d8; }
+    .delivery-card li::before { content: '→ '; color: var(--gold); }
+    .delivery-card li:last-child { border-bottom: none; }
+
+    /* ═══ RELATED PRODUCTS ═══ */
+    .related-section { padding: 56px 0; background: var(--warm-bg); }
+    .related-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 28px; }
+    .related-header h2 { font-family: var(--font-serif); font-size: 1.5rem; color: var(--navy); }
+    .related-header a { font-size: 0.78rem; font-weight: 700; color: var(--grey); text-decoration: none; }
+    .related-header a:hover { color: var(--navy); }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 16px; }
+    .related-card { background: var(--white); border-radius: 8px; overflow: hidden; text-decoration: none; box-shadow: var(--shadow); transition: transform 0.18s, box-shadow 0.18s; }
+    .related-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .related-img { aspect-ratio: 4/3; background: var(--navy); display: flex; align-items: center; justify-content: center; font-size: 2rem; opacity: 0.5; }
+    .related-body { padding: 14px 16px; }
+    .related-body h4 { font-family: var(--font-serif); font-size: 1rem; color: var(--navy); margin-bottom: 4px; }
+    .related-body p { font-size: 0.78rem; color: var(--grey); line-height: 1.55; margin-bottom: 10px; }
+    .related-link { font-size: 0.72rem; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.06em; }
+    .related-link::after { content: ' →'; }
+
+    /* UTILS */
+    .section-label { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; display: block; }
+
+    footer { background: #111820; color: rgba(255,255,255,0.42); padding: 40px 24px; text-align: center; font-size: 0.82rem; line-height: 2; }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer strong { color: rgba(255,255,255,0.65); }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="logo-wrap" href="../index.html">
+      <div class="logo">John <em>Skinner</em></div>
+      <div class="logo-sub">Est. 1980 · Cheltenham</div>
+    </a>
+    <nav>
+      <a href="../index.html#find-your-car">Our Cars</a>
+      <a href="../materials/index.html">Materials</a>
+      <a href="#">Why Us</a>
+      <a href="../quote/index.html" class="cta">Request a Quote</a>
+    </nav>
+  </header>
+
+  <div class="breadcrumb">
+    <a href="../index.html">Home</a><span>›</span>
+    <a href="index.html">Triumph TR</a><span>›</span>
+    <a href="tr6.html">TR6</a><span>›</span>
+    Front Seat Cover Kit
+  </div>
+
+  <!-- ═══ PRODUCT HERO ═══ -->
+  <div class="product-hero">
+    <div class="wrap">
+      <div class="product-grid">
+
+        <!-- GALLERY -->
+        <div class="gallery">
+          <div class="gallery-toggle">
+            <button class="gallery-btn active" onclick="switchGallery('product', this)">Product photos</button>
+            <button class="gallery-btn" onclick="switchGallery('fitted', this)">Fitted in car</button>
+          </div>
+
+          <div class="main-image" id="mainImage">
+            <!-- Product photos view -->
+            <div id="gallery-product">
+              <div class="img-placeholder">
+                <img src="https://john-skinner.co.uk/wp-content/uploads/2020/12/TR6-Rear-Seat-Cover-Kit-Master-Image.jpg"
+                  style="width:100%;height:100%;object-fit:cover;"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                  alt="TR6 Front Seat Cover Kit">
+                <div class="img-placeholder" style="display:none; position:absolute; inset:0;">
+                  <span class="placeholder-icon">🪑</span>
+                  <span class="placeholder-label">Product photography</span>
+                </div>
+              </div>
+            </div>
+            <!-- Fitted in car view (hidden by default) -->
+            <div id="gallery-fitted" style="display:none; position:absolute; inset:0;">
+              <div class="img-placeholder">
+                <span class="placeholder-icon">🏎️</span>
+                <span class="placeholder-label">In-car photography</span>
+                <span style="font-size:0.75rem; margin-top:4px; opacity:0.7;">Photos of TR6 interiors using our kits</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- THUMBNAILS -->
+          <div class="thumb-row" id="thumbRow">
+            <div class="thumb active" onclick="selectThumb(this, 0)">
+              <img src="https://john-skinner.co.uk/wp-content/uploads/2020/12/TR6-Rear-Seat-Cover-Kit-Master-Image.jpg"
+                onerror="this.style.display='none'"
+                alt="">
+              <div class="thumb-placeholder" style="display:none">🪑</div>
+            </div>
+            <div class="thumb" onclick="selectThumb(this, 1)"><div class="thumb-placeholder">📐</div></div>
+            <div class="thumb" onclick="selectThumb(this, 2)"><div class="thumb-placeholder">🔍</div></div>
+            <div class="thumb" onclick="selectThumb(this, 3)"><div class="thumb-placeholder">📏</div></div>
+          </div>
+        </div>
+
+        <!-- PRODUCT INFO -->
+        <div class="product-info">
+          <div class="product-badge">Made to order in Cheltenham</div>
+          <h1 class="product-title">Triumph TR6<br>Front Seat Cover Kit</h1>
+          <p class="product-subtitle">Complete front seat cover set manufactured to original OEM factory specification. Covers both driver and passenger seats — squab, backrest, and all associated finishing. Available in vinyl, leather-faced or full leather.</p>
+
+          <div class="product-meta">
+            <div class="meta-item"><div class="meta-label">Fits</div><div class="meta-value">Triumph TR6 (1969–1976)</div></div>
+            <div class="meta-item"><div class="meta-label">Pieces</div><div class="meta-value">Full set — both seats</div></div>
+            <div class="meta-item"><div class="meta-label">Lead time</div><div class="meta-value">4–8 weeks (approx.)</div></div>
+          </div>
+
+          <!-- MATERIAL CHOICE -->
+          <div class="option-group">
+            <div class="option-label">
+              Material
+              <a href="../materials/index.html">View all materials & samples →</a>
+            </div>
+            <div class="material-options">
+              <button class="material-btn selected" onclick="selectMaterial(this)">Vinyl / Ambla</button>
+              <button class="material-btn" onclick="selectMaterial(this)">Leather-faced</button>
+              <button class="material-btn" onclick="selectMaterial(this)">Full leather</button>
+            </div>
+          </div>
+
+          <!-- MAIN COLOUR -->
+          <div class="option-group">
+            <div class="option-label">Main colour <a href="../materials/index.html">Request samples →</a></div>
+            <div class="colour-options">
+              <div class="colour-swatch selected" style="background:#1a1a1a;" title="Black" onclick="selectSwatch(this)"></div>
+              <div class="colour-swatch" style="background:#c0392b;" title="Bright Red" onclick="selectSwatch(this)"></div>
+              <div class="colour-swatch" style="background:#8b2020;" title="Cherry Red" onclick="selectSwatch(this)"></div>
+              <div class="colour-swatch" style="background:#3b2510;" title="Dark Brown" onclick="selectSwatch(this)"></div>
+              <div class="colour-swatch" style="background:#1a2e4a;" title="Dark Blue" onclick="selectSwatch(this)"></div>
+              <div class="colour-swatch" style="background:#f5f5f0;" title="White" style="border:1px solid #ddd;" onclick="selectSwatch(this)"></div>
+              <div class="colour-swatch" style="background:#1b3a2b;" title="British Racing Green" onclick="selectSwatch(this)"></div>
+              <div class="colour-swatch" style="background:#c9b48a;" title="Biscuit / Light Tan" onclick="selectSwatch(this)"></div>
+              <div class="colour-swatch" style="background:#d4b896;" title="Ferrari Beige" onclick="selectSwatch(this)"></div>
+              <div class="colour-swatch" style="background:#4a6b8a;" title="AH Blue" onclick="selectSwatch(this)"></div>
+              <div class="colour-swatch" style="background:#2b4a6b;" title="French Blue" onclick="selectSwatch(this)"></div>
+            </div>
+            <p style="font-size:0.74rem; color:var(--grey); margin-top:8px;">Colours shown are approximate. <a href="../quote/index.html" style="color:var(--gold);">Request physical samples</a> before ordering — strongly recommended.</p>
+          </div>
+
+          <!-- PIPING COLOUR -->
+          <div class="option-group">
+            <div class="option-label">Piping colour</div>
+            <div class="material-options">
+              <button class="material-btn selected" onclick="selectMaterial(this)">Matching</button>
+              <button class="material-btn" onclick="selectMaterial(this)">Contrasting</button>
+              <button class="material-btn" onclick="selectMaterial(this)">Advise me</button>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <div class="cta-block">
+            <p class="cta-note">This kit is made-to-order. Add it to your quote and we'll confirm all specifications, pricing and lead time when we respond.</p>
+            <button class="btn-quote-add" id="addBtn" onclick="addToQuote()">Add to quote →</button>
+            <button class="btn-samples">Request a free sample swatch</button>
+            <div class="cta-assurance">
+              <div class="assurance-row"><span class="icon">🔒</span> No payment required — this is a quote request</div>
+              <div class="assurance-row"><span class="icon">📩</span> We'll respond within 1–2 working days</div>
+              <div class="assurance-row"><span class="icon">🎨</span> Free material samples available before you commit</div>
+              <div class="assurance-row"><span class="icon">🏭</span> Hand-made to order in Cheltenham</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ TABS ═══ -->
+  <div class="product-tabs-section">
+    <div class="wrap">
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('description', this)">Description</button>
+        <button class="tab-btn" onclick="switchTab('included', this)">What's included</button>
+        <button class="tab-btn" onclick="switchTab('fitting', this)">Fitting notes</button>
+        <button class="tab-btn" onclick="switchTab('delivery', this)">Lead time &amp; delivery</button>
+      </div>
+
+      <div class="tab-content">
+
+        <!-- DESCRIPTION -->
+        <div class="tab-panel active" id="tab-description">
+          <div class="desc-grid">
+            <div class="desc-body">
+              <p>The TR6 front seat cover kit is one of our most popular products — and for good reason. The TR6 is a beautiful car, and a well-trimmed interior is the difference between a car that looks finished and one that looks restored.</p>
+              <p>Every kit is cut from the <strong>original factory patterns</strong> that we've held and refined since we first made TR6 trim in 1980. The fit is exact. We know where the seams go, we know the correct piping profile, and we know the small details that make the difference between a trim job that looks right and one that doesn't.</p>
+              <p>The kit covers <strong>both front seats</strong> — driver and passenger. Squab covers, backrest covers, and all associated finishing panels are included. Available in vinyl, leather-faced (a combination of leather on the seat faces with vinyl on the back and sides) or full leather throughout.</p>
+              <p>Our <strong>colour range</strong> is the most comprehensive in the industry. If you want to match the original factory colour exactly, we can do that. If you want to do something slightly different — contrasting piping, a custom colour combination — we can discuss that too. The starting point is always a conversation.</p>
+              <p>We strongly recommend <strong>ordering physical samples</strong> before confirming your colour choice. What looks one way on a screen is often quite different in person, and in natural light. Samples are free.</p>
+            </div>
+            <div class="desc-visual">
+              Detail photography of kit construction<br>
+              <span style="font-size:0.8rem; margin-top:8px; display:block; color:var(--gold);">[ Image placeholder ]</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- WHAT'S INCLUDED -->
+        <div class="tab-panel" id="tab-included">
+          <p style="font-size:0.9rem; color:var(--grey); margin-bottom:24px; max-width:600px;">Everything you need to retrim both front seats — nothing more, nothing less. All pieces are pre-cut to original specification and ready to fit.</p>
+          <div class="included-grid">
+            <div class="included-item">
+              <span class="included-icon">🪑</span>
+              <div class="included-text">
+                <h4>Driver seat squab cover</h4>
+                <p>Pre-cut to original pattern. Includes piping in your chosen colour.</p>
+              </div>
+            </div>
+            <div class="included-item">
+              <span class="included-icon">🪑</span>
+              <div class="included-text">
+                <h4>Passenger seat squab cover</h4>
+                <p>Pre-cut to match driver seat. Same material and colour throughout.</p>
+              </div>
+            </div>
+            <div class="included-item">
+              <span class="included-icon">📋</span>
+              <div class="included-text">
+                <h4>Driver seat backrest cover</h4>
+                <p>Full backrest cover to original spec, including rear panel in correct material.</p>
+              </div>
+            </div>
+            <div class="included-item">
+              <span class="included-icon">📋</span>
+              <div class="included-text">
+                <h4>Passenger seat backrest cover</h4>
+                <p>Full backrest cover matching driver side.</p>
+              </div>
+            </div>
+            <div class="included-item">
+              <span class="included-icon">🧵</span>
+              <div class="included-text">
+                <h4>Piping throughout</h4>
+                <p>Pre-sewn piping in your chosen colour. Matching or contrasting available.</p>
+              </div>
+            </div>
+            <div class="included-item">
+              <span class="included-icon">🔩</span>
+              <div class="included-text">
+                <h4>Fixings &amp; fastenings</h4>
+                <p>All clips, hog rings and associated fixings required for installation.</p>
+              </div>
+            </div>
+            <div class="included-item">
+              <span class="included-icon">📄</span>
+              <div class="included-text">
+                <h4>Fitting guide</h4>
+                <p>Step-by-step fitting instructions specific to the TR6. Plain English, no guesswork.</p>
+              </div>
+            </div>
+            <div class="included-item">
+              <span class="included-icon">🎥</span>
+              <div class="included-text">
+                <h4>Video support</h4>
+                <p>Access to our YouTube fitting videos. Hundreds of product and fitting videos available.</p>
+              </div>
+            </div>
+          </div>
+          <div class="included-note">
+            <strong>Note on seat foams:</strong> Seat foam and wadding are not included in this kit — they are available separately. If your original foams are in good condition, these covers will fit over them. If you need replacement foams, add them to your quote and we'll include them.
+          </div>
+        </div>
+
+        <!-- FITTING NOTES -->
+        <div class="tab-panel" id="tab-fitting">
+          <p class="fitting-intro">These kits are designed for the capable enthusiast — you don't need to be a professional trimmer to fit them, but you do need patience, the right tools, and a willingness to take your time. If you've never trimmed before, read through our Handbook fitting guides first.</p>
+          <div class="fitting-steps">
+            <div class="fitting-step">
+              <div class="fitting-num">1</div>
+              <div><h4>Remove the seats from the car</h4><p>Unbolt the seats and remove completely. It's much easier to trim seats on a workbench than in the car.</p></div>
+            </div>
+            <div class="fitting-step">
+              <div class="fitting-num">2</div>
+              <div><h4>Strip the old covers</h4><p>Remove existing covers carefully. Note how they're attached — hog rings, clips, or both. This helps when fitting the new covers.</p></div>
+            </div>
+            <div class="fitting-step">
+              <div class="fitting-num">3</div>
+              <div><h4>Check the foam condition</h4><p>Inspect the seat foams while the covers are off. If they've collapsed or broken down, now is the time to replace them.</p></div>
+            </div>
+            <div class="fitting-step">
+              <div class="fitting-num">4</div>
+              <div><h4>Fit the new covers</h4><p>Work from the centre outward. Don't rush — pull the cover evenly to avoid creasing. Use the hog ring pliers to secure where indicated.</p></div>
+            </div>
+            <div class="fitting-step">
+              <div class="fitting-num">5</div>
+              <div><h4>Refit to car</h4><p>Once happy with the fit, refit the seats to the car and check the finished result in situ.</p></div>
+            </div>
+          </div>
+          <div class="fitting-video">
+            <div class="video-icon">▶️</div>
+            <div>
+              <h4>Watch our TR6 fitting videos</h4>
+              <p>We have a YouTube channel with hundreds of product and fitting videos. If you get stuck, the answer is probably already there.</p>
+              <a href="https://www.youtube.com/channel/UCuf-VSkQXOqPsDQOIYH_FFA" target="_blank">Visit our YouTube channel →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- DELIVERY & LEAD TIME -->
+        <div class="tab-panel" id="tab-delivery">
+          <div class="delivery-grid">
+            <div class="delivery-card">
+              <h4>Lead time</h4>
+              <p>All kits are made to order in our Cheltenham workshop. Current lead time for TR6 seat covers is approximately <strong>4–8 weeks</strong> from order confirmation.</p>
+              <p style="margin-top:10px;">We'll confirm exact lead time when we respond to your quote request. Lead times vary by kit and time of year.</p>
+            </div>
+            <div class="delivery-card">
+              <h4>Shipping</h4>
+              <ul>
+                <li>UK — tracked courier, 1–2 days</li>
+                <li>Europe — 3–5 working days</li>
+                <li>USA &amp; Canada — 5–7 working days</li>
+                <li>Australia &amp; NZ — 7–10 working days</li>
+                <li>Rest of world — available on request</li>
+              </ul>
+            </div>
+            <div class="delivery-card">
+              <h4>Samples first</h4>
+              <p>We strongly recommend requesting physical material samples before placing your order. We send them free of charge to your address anywhere in the world.</p>
+              <p style="margin-top:10px;">Just mention samples in your quote request and we'll get them in the post.</p>
+            </div>
+            <div class="delivery-card">
+              <h4>After your order</h4>
+              <p>We'll keep you updated on progress. If there are any questions about your specification during production, we'll be in touch. Our pre and post-sales support is part of what makes us different.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ RELATED PRODUCTS ═══ -->
+  <section class="related-section">
+    <div class="wrap">
+      <div class="related-header">
+        <h2>Other TR6 trim kits</h2>
+        <a href="tr6.html">View all TR6 kits →</a>
+      </div>
+      <div class="related-grid">
+        <a href="tr6.html" class="related-card">
+          <div class="related-img">🚗</div>
+          <div class="related-body">
+            <h4>Rear Seat Cover Kit</h4>
+            <p>Complete rear seat cover set. Match to your front seats for a consistent finish.</p>
+            <span class="related-link">Add to quote</span>
+          </div>
+        </a>
+        <a href="tr6.html" class="related-card">
+          <div class="related-img">🚪</div>
+          <div class="related-body">
+            <h4>Door Trim Panel Kit</h4>
+            <p>Full door panel set for both sides. OEM specification including door pockets.</p>
+            <span class="related-link">Add to quote</span>
+          </div>
+        </a>
+        <a href="tr6.html" class="related-card">
+          <div class="related-img">🏎️</div>
+          <div class="related-body">
+            <h4>Carpet Set</h4>
+            <p>Complete carpet for the TR6 passenger compartment. Wool or nylon.</p>
+            <span class="related-link">Add to quote</span>
+          </div>
+        </a>
+        <a href="tr6.html" class="related-card">
+          <div class="related-img">🔝</div>
+          <div class="related-body">
+            <h4>Hood (Soft Top)</h4>
+            <p>Replacement hood in PVC (Everflex) or Mohair (Stayfast). All fixings included.</p>
+            <span class="related-link">Add to quote</span>
+          </div>
+        </a>
+        <a href="tr6.html" class="related-card">
+          <div class="related-img">🛡️</div>
+          <div class="related-body">
+            <h4>Tonneau Cover</h4>
+            <p>Full or half tonneau to original spec. Press stud fixing.</p>
+            <span class="related-link">Add to quote</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <strong>John Skinner (Manufacturing) Ltd</strong><br>
+    Classic Car Interior Trim Specialists · Est. 1980 · Cheltenham, England<br><br>
+    <a href="mailto:sales@john-skinner.co.uk">sales@john-skinner.co.uk</a> ·
+    <a href="../quote/index.html">Request a Quote</a><br><br>
+    <span style="opacity:0.45; font-size:0.75rem;">© 2025 John Skinner (Manufacturing) Ltd. All rights reserved.</span>
+  </footer>
+
+  <script>
+    // Gallery toggle
+    function switchGallery(type, btn) {
+      document.querySelectorAll('.gallery-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('gallery-product').style.display = type === 'product' ? 'block' : 'none';
+      document.getElementById('gallery-fitted').style.display = type === 'fitted' ? 'block' : 'none';
+    }
+
+    function selectThumb(el, idx) {
+      document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+    }
+
+    // Material selection
+    function selectMaterial(btn) {
+      btn.closest('.material-options').querySelectorAll('.material-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    }
+
+    // Colour swatch selection
+    function selectSwatch(el) {
+      document.querySelectorAll('.colour-swatch').forEach(s => s.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+
+    // Tab switching
+    function switchTab(name, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + name).classList.add('active');
+    }
+
+    // Add to quote
+    function addToQuote() {
+      const btn = document.getElementById('addBtn');
+      const mat = document.querySelector('.material-options .selected')?.textContent || '';
+      const items = JSON.parse(localStorage.getItem('js_quote_items') || '[]');
+      items.push('TR6 Front Seat Cover Kit (' + mat + ')');
+      localStorage.setItem('js_quote_items', JSON.stringify(items));
+      localStorage.setItem('js_quote_model', 'Triumph TR6');
+      btn.classList.add('added');
+      btn.textContent = '✓ Added to quote — continue browsing or request quote';
+    }
+  </script>
+
+</body>
+</html>
