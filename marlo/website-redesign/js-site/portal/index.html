@@ -305,7 +305,7 @@
     const password = document.getElementById('login-password').value;
     const { error } = await sb.auth.signInWithPassword({ email, password });
     if (error) return showMsg('login-msg', error.message);
-    location.reload();
+    await initDashboard();
   }
 
   async function doRegister() {
@@ -318,12 +318,10 @@
     const { data, error } = await sb.auth.signUp({ email, password });
     if (error) return showMsg('register-msg', error.message);
     if (data.user) {
-      try {
-        await sb.from('customers').upsert({ id: data.user.id, email, first_name: first, last_name: last, location });
-      } catch(e) { /* RLS may block — session will handle on reload */ }
+      await sb.from('customers').insert({ id: data.user.id, email, first_name: first, last_name: last, location });
     }
-    showMsg('register-msg', 'Account created! Signing you in…', 'success');
-    setTimeout(() => location.reload(), 1500);
+    showMsg('register-msg', 'Account created! Please check your email to confirm.', 'success');
+    await initDashboard();
   }
 
   async function logout() {
@@ -412,40 +410,30 @@
   }
 
   async function initDashboard() {
-    try {
-      const { data: { session } } = await sb.auth.getSession();
-      if (!session) return;
-      currentUser = session.user;
+    const { data: { session } } = await sb.auth.getSession();
+    if (!session) return;
+    currentUser = session.user;
 
-      document.getElementById('auth-section').style.display = 'none';
-      document.getElementById('dashboard').style.display = 'block';
-      document.getElementById('logout-btn').style.display = 'block';
+    document.getElementById('auth-section').style.display = 'none';
+    document.getElementById('dashboard').style.display = '';
+    document.getElementById('logout-btn').style.display = '';
 
-      try {
-        const { data: cust } = await sb.from('customers').select('*').eq('id', currentUser.id).maybeSingle();
-        customerData = cust;
-        document.getElementById('greeting').textContent = `Welcome back, ${cust?.first_name || currentUser.email.split('@')[0]}`;
-      } catch(e) {
-        document.getElementById('greeting').textContent = `Welcome back`;
-      }
-
-      loadQuotes();
-    } catch(e) {
-      console.error('initDashboard error:', e);
-    }
+    const { data: cust, error: custErr } = await sb.from('customers').select('*').eq('id', currentUser.id).maybeSingle();
+    customerData = cust;
+    document.getElementById('greeting').textContent = `Welcome back, ${cust?.first_name || currentUser.email.split('@')[0]}`;
+    document.getElementById('dashboard').style.display = 'block';
+    loadQuotes();
   }
 
-  // On page load, check for existing session once
-  (async () => {
-    try {
-      const { data: { session } } = await sb.auth.getSession();
-      if (session) {
-        await initDashboard();
-      }
-    } catch(e) {
-      console.error('Session check failed:', e);
+  sb.auth.onAuthStateChange(async (event, session) => {
+    if (session) {
+      await initDashboard();
+    } else {
+      document.getElementById('auth-section').style.display = '';
+      document.getElementById('dashboard').style.display = 'none';
+      document.getElementById('logout-btn').style.display = 'none';
     }
-  })();
+  });
 </script>
 </body>
 </html>
