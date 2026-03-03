@@ -268,7 +268,7 @@
     const in7 = new Date(today); in7.setDate(in7.getDate() + 7);
     const { data: reminders } = await sb.from('follow_up_reminders')
       .select('*, quotes(marque, model, year, customer_id, customers(first_name, last_name))')
-      .eq('done', false)
+      .is('completed_at', null)
       .lte('due_date', in7.toISOString().split('T')[0])
       .order('due_date', { ascending: true });
 
@@ -301,7 +301,7 @@
   }
 
   async function markDone(id) {
-    await sb.from('follow_up_reminders').update({ done: true }).eq('id', id);
+    await sb.from('follow_up_reminders').update({ completed_at: new Date().toISOString() }).eq('id', id);
     document.getElementById('rem-' + id)?.remove();
   }
 
