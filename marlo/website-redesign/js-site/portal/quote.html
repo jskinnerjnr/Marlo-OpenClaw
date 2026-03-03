@@ -306,7 +306,7 @@
     return `
       <div class="msg-bubble ${isCustomer ? 'customer' : 'admin'}">
         ${!isCustomer ? `<div class="msg-sender-name">${msg.sender_name || 'John Skinner'}</div>` : ''}
-        <div class="msg-content">${escHtml(msg.content || '')}${attachHtml}</div>
+        <div class="msg-content">${escHtml(msg.body || '')}${attachHtml}</div>
         <div class="msg-meta">${relativeTime(msg.created_at)}</div>
       </div>`;
   }
@@ -349,7 +349,7 @@
       sender_type: 'customer',
       sender_id: currentUser.id,
       sender_name: customerData?.first_name || 'Customer',
-      content: text,
+      body: text,
       attachments: pendingAttachments,
       is_internal: false
     });
