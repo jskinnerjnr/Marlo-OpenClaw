@@ -318,7 +318,7 @@
     const { data, error } = await sb.auth.signUp({ email, password });
     if (error) return showMsg('register-msg', error.message);
     if (data.user) {
-      await sb.from('customers').insert({ id: data.user.id, email, first_name: first, last_name: last, location });
+      await sb.from('customers').upsert({ id: data.user.id, email, first_name: first, last_name: last, location });
     }
     showMsg('register-msg', 'Account created! Please check your email to confirm.', 'success');
     await initDashboard();
