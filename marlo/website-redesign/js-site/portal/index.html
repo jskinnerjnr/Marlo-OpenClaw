@@ -394,20 +394,12 @@
     const year = document.getElementById('nq-year').value.trim();
     const msg = document.getElementById('nq-msg');
     if (!marque) return msg.textContent = 'Please select a make.';
-    if (!currentUser) return msg.textContent = 'Error: not signed in. Please refresh and try again.';
-    let insertError;
-    try {
-      const { error } = await sb.from('quotes').insert({
-        customer_id: currentUser.id,
-        marque, model, year,
-        status: 'open',
-        last_activity_at: new Date().toISOString()
-      });
-      insertError = error;
-    } catch(e) {
-      return msg.textContent = 'Error: ' + e.message;
-    }
-    const error = insertError;
+    const { error } = await sb.from('quotes').insert({
+      customer_id: currentUser.id,
+      marque, model, year,
+      status: 'open',
+      last_activity_at: new Date().toISOString()
+    });
     if (error) return msg.textContent = 'Error: ' + error.message;
     msg.style.color = '#166534';
     msg.textContent = 'Quote request sent! We\'ll be in touch soon.';
@@ -433,15 +425,12 @@
     loadQuotes();
   }
 
-  sb.auth.onAuthStateChange(async (event, session) => {
+  (async () => {
+    const { data: { session } } = await sb.auth.getSession();
     if (session) {
       await initDashboard();
-    } else {
-      document.getElementById('auth-section').style.display = '';
-      document.getElementById('dashboard').style.display = 'none';
-      document.getElementById('logout-btn').style.display = 'none';
     }
-  });
+  })();
 </script>
 </body>
 </html>
