@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Richard Hammond's Jaguar XK150 FHC – John Skinner (Manufacturing) Ltd</title>
+  <meta name="description" content="John Skinner supplied the full interior trim kit for Richard Hammond's meticulous restoration of his Jaguar XK150 FHC. See the full project story, specification, and videos.">
+  <style>
+    /* ── Reset & Design Tokens ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1a2535; --navy-light: #243350;
+      --gold: #b8922a; --gold-light: #d4a940;
+      --cream: #f7f3eb; --white: #ffffff;
+      --grey: #5a6373; --light-grey: #e5e0d6;
+      --text: #1e1e1e; --warm-bg: #fdf9f2;
+      --font-serif: Georgia, 'Times New Roman', serif;
+      --font-sans: 'Helvetica Neue', Arial, sans-serif;
+      --radius: 6px;
+      --shadow: 0 2px 16px rgba(0,0,0,0.07);
+      --shadow-md: 0 6px 32px rgba(0,0,0,0.11);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--cream); font-size: 17px; line-height: 1.65; }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+    /* ── Header ── */
+    .site-header { background: var(--navy); padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); }
+    .logo { font-family: var(--font-serif); color: var(--white); font-size: clamp(0.95rem, 2.5vw, 1.2rem); letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; }
+    .logo em { color: var(--gold); font-style: normal; }
+    .header-sub { font-size: 0.7rem; color: rgba(255,255,255,0.45); letter-spacing: 0.14em; text-transform: uppercase; display: none; }
+    @media (min-width: 600px) { .header-sub { display: block; } }
+
+    /* ── Floating back button ── */
+    .float-back { display: none; }
+    @media (min-width: 768px) {
+      .float-back { display: flex; position: fixed; top: 50%; left: 20px; transform: translateY(-50%); z-index: 200; flex-direction: column; align-items: center; gap: 8px; text-decoration: none; background: var(--navy); border: 2px solid var(--gold); color: var(--white); border-radius: 8px; padding: 14px 10px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; box-shadow: var(--shadow-md); transition: background 0.2s, transform 0.2s; writing-mode: vertical-rl; width: 44px; }
+      .float-back:hover { background: var(--gold); transform: translateY(-50%) scale(1.05); }
+      .float-back .float-arrow { writing-mode: horizontal-tb; font-size: 1.1rem; margin-bottom: 4px; }
+    }
+
+    /* ── Hero ── */
+    .hero-hammond { background: var(--navy); color: var(--white); }
+    .hero-hammond-inner { display: grid; grid-template-columns: 1fr; }
+    @media (min-width: 768px) { .hero-hammond-inner { grid-template-columns: 1fr 1fr; min-height: 500px; } }
+    .hero-text-col { padding: 56px 24px; display: flex; flex-direction: column; justify-content: center; }
+    @media (min-width: 768px) { .hero-text-col { padding: 72px 48px 72px 40px; } }
+    .hero-img-col { background: #111; min-height: 280px; position: relative; overflow: hidden; }
+    .hero-img-col img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; display: block; }
+    .hero-img-placeholder { width: 100%; height: 100%; min-height: 280px; background: linear-gradient(135deg, #1a2535 0%, #2d3f5a 100%); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.2); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    .hero-kicker { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: var(--white); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; margin-bottom: 20px; width: fit-content; }
+    .hero-hammond h1 { font-family: var(--font-serif); font-size: clamp(1.9rem, 4.5vw, 3rem); font-weight: normal; line-height: 1.2; margin-bottom: 18px; }
+    .hero-hammond h1 em { color: var(--gold-light); font-style: normal; }
+    .hero-sub { color: rgba(255,255,255,0.7); font-size: clamp(0.95rem, 2vw, 1.08rem); line-height: 1.75; max-width: 460px; }
+    .hero-quote-bar { margin-top: 28px; border-left: 3px solid var(--gold); padding-left: 16px; }
+    .hero-quote-bar blockquote { font-family: var(--font-serif); font-size: clamp(1rem, 2.2vw, 1.2rem); color: rgba(255,255,255,0.9); font-style: italic; line-height: 1.6; margin-bottom: 6px; }
+    .hero-quote-bar cite { font-size: 0.8rem; color: var(--gold); font-style: normal; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+
+    /* ── Stats strip ── */
+    .project-strip { background: var(--gold); color: var(--white); padding: 16px 24px; }
+    .project-strip-inner { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; align-items: center; }
+    .strip-stat { text-align: center; }
+    .strip-stat .val { font-family: var(--font-serif); font-size: 1.5rem; display: block; line-height: 1; }
+    .strip-stat .lbl { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.85; }
+    .strip-div { width: 1px; height: 36px; background: rgba(255,255,255,0.35); }
+    @media (max-width: 480px) { .strip-div { display: none; } }
+
+    /* ── Story ── */
+    .section { padding: 56px 0; }
+    .story-grid { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: start; }
+    @media (min-width: 860px) { .story-grid { grid-template-columns: 3fr 2fr; gap: 60px; } }
+    .eyebrow { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 8px; display: block; }
+    .section-title { font-family: var(--font-serif); font-size: clamp(1.4rem, 3.5vw, 2rem); color: var(--navy); font-weight: normal; margin-bottom: 16px; }
+    .story-body p { color: var(--grey); line-height: 1.85; margin-bottom: 18px; font-size: clamp(0.95rem, 1.8vw, 1.05rem); }
+    .story-body p:last-child { margin-bottom: 0; }
+    .story-body strong { color: var(--text); }
+
+    /* ── Spec card ── */
+    .spec-card { background: var(--navy); color: var(--white); border-radius: 10px; padding: 28px 24px; }
+    @media (min-width: 860px) { .spec-card { position: sticky; top: 24px; } }
+    .spec-card h3 { font-family: var(--font-serif); font-size: 1.15rem; font-weight: normal; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .spec-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 0.9rem; }
+    .spec-row:last-child { border-bottom: none; }
+    .spec-label { color: rgba(255,255,255,0.55); }
+    .spec-value { color: var(--gold-light); font-weight: 600; text-align: right; }
+
+    /* ── Videos ── */
+    .section-dark { padding: 56px 0; background: var(--navy); }
+    .video-section-head { text-align: center; margin-bottom: 40px; }
+    .video-section-head .section-title { color: var(--white); }
+    .video-section-head .section-sub { color: rgba(255,255,255,0.6); max-width: 520px; margin: 0 auto; }
+    .video-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+    @media (min-width: 640px) { .video-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 960px) { .video-grid.three { grid-template-columns: 1fr 1fr 1fr; } }
+    .video-card { border-radius: 8px; overflow: hidden; background: #0d1a2b; box-shadow: var(--shadow-md); }
+    .video-embed { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+    .video-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+    .video-meta { padding: 14px 16px; }
+    .v-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; display: block; }
+    .video-meta h4 { font-family: var(--font-serif); font-size: 0.98rem; color: var(--white); font-weight: normal; line-height: 1.45; }
+    .video-placeholder { padding-bottom: 56.25%; position: relative; background: #0d1520; }
+    .video-placeholder-inner { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: rgba(255,255,255,0.3); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    .play-icon { width: 48px; height: 48px; border: 2px solid rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .video-featured { border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-md); background: #0d1a2b; margin-bottom: 32px; }
+    .video-featured .video-embed { padding-bottom: 44%; }
+    @media (max-width: 640px) { .video-featured .video-embed { padding-bottom: 56.25%; } }
+    .video-featured-meta { padding: 20px 24px; }
+    .video-featured-meta h3 { font-family: var(--font-serif); font-size: clamp(1.1rem, 2.5vw, 1.4rem); font-weight: normal; color: var(--white); margin-bottom: 6px; }
+    .video-featured-meta p { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+    /* ── Trim lists ── */
+    .section-warm { padding: 56px 0; background: var(--warm-bg); }
+    .trim-lists { display: grid; grid-template-columns: 1fr; gap: 24px; }
+    @media (min-width: 640px) { .trim-lists { grid-template-columns: 1fr 1fr; } }
+    .trim-list-card { background: var(--white); border: 1.5px solid var(--light-grey); border-radius: 8px; padding: 24px; }
+    .trim-list-card h4 { font-family: var(--font-serif); font-size: 1rem; color: var(--navy); font-weight: normal; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid var(--gold); }
+    .trim-list-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .trim-list-card ul li { font-size: 0.9rem; color: var(--grey); padding-left: 16px; position: relative; line-height: 1.5; }
+    .trim-list-card ul li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+
+    /* ── CTA ── */
+    .cta-band { background: var(--navy); color: var(--white); text-align: center; padding: 64px 24px; }
+    .cta-band h2 { font-family: var(--font-serif); font-size: clamp(1.5rem, 3.5vw, 2.2rem); font-weight: normal; margin-bottom: 14px; }
+    .cta-band p { color: rgba(255,255,255,0.68); max-width: 480px; margin: 0 auto 28px; font-size: clamp(0.95rem, 1.8vw, 1.05rem); line-height: 1.75; }
+    .cta-buttons { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .btn-gold { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--gold); color: var(--white); border: none; padding: 15px 32px; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; border-radius: var(--radius); cursor: pointer; transition: background 0.2s; text-decoration: none; }
+    .btn-gold:hover { background: var(--gold-light); }
+    .btn-outline-white { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.4); padding: 15px 32px; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; border-radius: var(--radius); transition: border-color 0.2s, background 0.2s; text-decoration: none; }
+    .btn-outline-white:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+
+    /* ── Divider ── */
+    hr.div { border: none; border-top: 1.5px solid var(--light-grey); max-width: 880px; margin: 0 auto; }
+
+    /* ── Footer ── */
+    .site-footer { background: var(--navy); color: rgba(255,255,255,0.42); text-align: center; padding: 28px 24px; font-size: 0.8rem; line-height: 1.9; }
+    .site-footer a { color: var(--gold); text-decoration: none; }
+    .site-footer strong { color: rgba(255,255,255,0.65); }
+
+    /* ── Mobile sticky bar ── */
+    .sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--navy); display: flex; gap: 8px; padding: 10px 14px; z-index: 999; box-shadow: 0 -4px 24px rgba(0,0,0,0.22); }
+    .sticky-bar a { flex: 1; text-align: center; padding: 12px 6px; border-radius: var(--radius); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; line-height: 1.25; }
+    .s-primary { background: var(--gold); color: var(--white); }
+    .s-ghost { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.3); }
+    @media (min-width: 768px) { .sticky-bar { display: none; } }
+    @media (max-width: 767px) { body { padding-bottom: 74px; } }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <a class="logo" href="/">John <em>Skinner</em></a>
+    <span class="header-sub">Interior Trim Specialists · Est. 1980</span>
+  </header>
+
+  <!-- FLOATING BACK BUTTON -->
+  <a class="float-back" href="/why-john-skinner/">
+    <span class="float-arrow">←</span>
+    Back
+  </a>
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════ -->
+  <section class="hero-hammond">
+    <div class="wrap">
+      <div class="hero-hammond-inner">
+
+        <div class="hero-text-col">
+          <span class="hero-kicker">★ Celebrity Restoration</span>
+          <h1>Richard Hammond's<br><em>Jaguar XK150 FHC</em></h1>
+          <p class="hero-sub">
+            When Richard Hammond wanted the finest interior trim for his beloved XK150,
+            he chose John Skinner — the same Cheltenham workshop, the same craftsmanship,
+            the same eye for original specification.
+          </p>
+          <div class="hero-quote-bar">
+            <blockquote>"The interior… is in its original colour, it's beautiful."</blockquote>
+            <cite>— Richard Hammond</cite>
+          </div>
+        </div>
+
+        <div class="hero-img-col">
+          <!--
+            REPLACE with actual image of the finished XK150 interior:
+            <img src="/images/hammond-xk150-hero.jpg"
+                 alt="Richard Hammond's Jaguar XK150 FHC – Cherry Red interior by John Skinner">
+          -->
+          <div class="hero-img-placeholder">Hero photo here</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       PROJECT STATS STRIP
+  ═══════════════════════════════════════════ -->
+  <div class="project-strip">
+    <div class="wrap">
+      <div class="project-strip-inner">
+        <div class="strip-stat">
+          <span class="val">XK150 FHC</span>
+          <span class="lbl">Vehicle</span>
+        </div>
+        <div class="strip-div"></div>
+        <div class="strip-stat">
+          <span class="val">Cherry Red</span>
+          <span class="lbl">Interior Colour</span>
+        </div>
+        <div class="strip-div"></div>
+        <div class="strip-stat">
+          <span class="val">Full Kit</span>
+          <span class="lbl">Scope of Work</span>
+        </div>
+        <div class="strip-div"></div>
+        <div class="strip-stat">
+          <span class="val">Cheltenham</span>
+          <span class="lbl">Made in</span>
+        </div>
+        <div class="strip-div"></div>
+        <div class="strip-stat">
+          <span class="val">2020</span>
+          <span class="lbl">Project Year</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       THE STORY
+  ═══════════════════════════════════════════ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="story-grid">
+
+        <div class="story-body">
+          <span class="eyebrow">The Story</span>
+          <h2 class="section-title">How It Started</h2>
+          <p>
+            It was Lockdown 1.0, summer 2020. Jonathon Skinner was working from home when
+            his phone rang — Richard Hammond on the line, wanting to talk interior trim.
+          </p>
+          <p>
+            Neil and Anthony Greenhouse of <strong>Tram Inn Garage, Herefordshire</strong>
+            were deep into a thorough restoration of the XK150 FHC. After seeing an example
+            of our work, Richard was so impressed by the quality that he needed to see more.
+            Jonathon was happy to help — extensive advice on originality, colours, specification,
+            and material options followed.
+          </p>
+          <p>
+            And so began one of the most exciting projects in our workshop's history: manufacturing
+            the complete interior trim for Richard Hammond's Jaguar XK150 FHC.
+          </p>
+          <p>
+            To complement the <strong>Dove Grey</strong> paintwork, Richard chose a
+            <strong>Cherry Red interior</strong> — smooth leather and vinyl, Red wool,
+            moquette and hardura, all made to original OEM specification. We also custom-made
+            a bespoke fire extinguisher cover in Cherry Red leather for the footwell.
+          </p>
+          <p>
+            The finished result was featured on <strong>DriveTribe</strong> — an incredible
+            moment for everyone in our Cheltenham workshop.
+          </p>
+        </div>
+
+        <aside>
+          <div class="spec-card">
+            <h3>Project Specification</h3>
+            <div class="spec-row">
+              <span class="spec-label">Car</span>
+              <span class="spec-value">Jaguar XK150 FHC</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Restored by</span>
+              <span class="spec-value">Tram Inn Garage, Herefordshire</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Paintwork</span>
+              <span class="spec-value">Dove Grey</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Interior Colour</span>
+              <span class="spec-value">Cherry Red</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Panels</span>
+              <span class="spec-value">Cherry Red Vinyl &amp; Hardura</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Seats</span>
+              <span class="spec-value">Smooth Leather &amp; Vinyl</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Carpets</span>
+              <span class="spec-value">Red Wool, Cherry Red binding</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Moquette</span>
+              <span class="spec-value">Red</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Headlining</span>
+              <span class="spec-value">Grey Wool Cloth</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Bespoke item</span>
+              <span class="spec-value">Fire extinguisher cover</span>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="div">
+
+  <!-- ═══════════════════════════════════════════
+       VIDEOS — HAMMOND'S CHANNEL
+  ═══════════════════════════════════════════ -->
+  <section class="section-dark">
+    <div class="wrap">
+
+      <div class="video-section-head">
+        <span class="eyebrow">As Seen on Richard Hammond's Channel</span>
+        <h2 class="section-title">The Finished Car — In Richard's Own Words</h2>
+        <p class="section-sub">
+          Watch Richard Hammond reveal the completed XK150, discuss the restoration journey,
+          and show off the Cherry Red interior for the first time.
+        </p>
+      </div>
+
+      <!-- FEATURED: Richard drives the finished car -->
+      <div class="video-featured">
+        <div class="video-embed">
+          <iframe src="https://www.youtube.com/embed/Yi2_HY9nf9E?rel=0&modestbranding=1"
+                  title="Richard Hammond drives his finished Jaguar XK150 for the first time"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen></iframe>
+        </div>
+        <div class="video-featured-meta">
+          <h3>Richard Hammond Drives His Finished XK150 for the First Time</h3>
+          <p>The payoff — Richard gets behind the wheel of the completed XK150 FHC, featuring our Cherry Red interior trimmed to original OEM specification in our Cheltenham workshop.</p>
+        </div>
+      </div>
+
+      <!-- Hammond supporting videos -->
+      <div class="video-grid three">
+
+        <div class="video-card">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/EUmDf1Gn22E?rel=0&modestbranding=1"
+                    title="The interior of Richard Hammond's project car is coming together"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+          </div>
+          <div class="video-meta">
+            <span class="v-label">Progress Update</span>
+            <h4>The Interior Is Coming Together</h4>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/li_cEjBssbQ?rel=0&modestbranding=1"
+                    title="Richard Hammond's latest update on his lockdown projects"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+          </div>
+          <div class="video-meta">
+            <span class="v-label">Lockdown Projects</span>
+            <h4>Richard's Latest Update — XK150 &amp; More</h4>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/EhODa7dDxRE?rel=0&modestbranding=1"
+                    title="Richard Hammond's Jaguar restoration hasn't gone to plan"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+          </div>
+          <div class="video-meta">
+            <span class="v-label">Behind the Scenes</span>
+            <h4>When the Restoration Didn't Go to Plan</h4>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="div">
+
+  <!-- ═══════════════════════════════════════════
+       VIDEOS — JOHN SKINNER CHANNEL (DEEP DIVE)
+  ═══════════════════════════════════════════ -->
+  <section style="padding: 56px 0; background: #111d2e;">
+    <div class="wrap">
+
+      <div class="video-section-head" style="margin-bottom: 40px;">
+        <span class="eyebrow">The Build in Detail</span>
+        <h2 class="section-title" style="color: var(--white);">Deep Dive — From Our Workshop</h2>
+        <p class="section-sub">
+          Jonathon Skinner talks through every element of the XK150 interior — component by
+          component — on the John Skinner YouTube channel.
+        </p>
+      </div>
+
+      <div class="video-grid three">
+
+        <!-- Bench Seats -->
+        <div class="video-card">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/OWqbFrT_q20?rel=0&modestbranding=1"
+                    title="Richard Hammond's XK150: Fully Trimmed Bench Seats"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+          </div>
+          <div class="video-meta">
+            <span class="v-label">Seats</span>
+            <h4>Fully Trimmed Front Bench Seats</h4>
+          </div>
+        </div>
+
+        <!-- Rear Seat -->
+        <div class="video-card">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/vnrqgZXryEU?rel=0&modestbranding=1"
+                    title="Rear Seat Kit for Richard Hammond's XK150 FHC Restoration"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+          </div>
+          <div class="video-meta">
+            <span class="v-label">Seats</span>
+            <h4>Rear Seat Kit — Trimmed</h4>
+          </div>
+        </div>
+
+        <!-- Dash Ep1 -->
+        <div class="video-card">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/erK-khrjLuM?rel=0&modestbranding=1"
+                    title="Restoring Richard Hammond's Jaguar XK150 Dash: Ep1"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+          </div>
+          <div class="video-meta">
+            <span class="v-label">Dashboard · Ep 1</span>
+            <h4>XK150 Dash Restoration — Original vs New</h4>
+          </div>
+        </div>
+
+        <!-- Dash Ep2 -->
+        <div class="video-card">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/NBoAhMja6W0?rel=0&modestbranding=1"
+                    title="Restoring Richard Hammond's Jaguar XK150 Dash: Ep2"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+          </div>
+          <div class="video-meta">
+            <span class="v-label">Dashboard · Ep 2</span>
+            <h4>XK150 Dash — Finished &amp; Fitted</h4>
+          </div>
+        </div>
+
+        <!-- Dash & Crash Roll -->
+        <div class="video-card">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/9r2oFfPadKo?rel=0&modestbranding=1"
+                    title="Jaguar XK150 Dashboard & Crash Roll – Hammond Restoration"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+          </div>
+          <div class="video-meta">
+            <span class="v-label">Dashboard &amp; Crash Roll</span>
+            <h4>XK150 Dashboard &amp; Crash Roll</h4>
+          </div>
+        </div>
+
+        <!-- Carpet -->
+        <div class="video-card">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/LzsdH3yPgFM?rel=0&modestbranding=1"
+                    title="Richard Hammond's Jaguar XK150 FHC: Premium Carpet Set"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+          </div>
+          <div class="video-meta">
+            <span class="v-label">Carpets</span>
+            <h4>Premium Red Wool Carpet Set</h4>
+          </div>
+        </div>
+
+        <!-- Armrest -->
+        <div class="video-card">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/yXPL99C10d0?rel=0&modestbranding=1"
+                    title="Richard Hammond's XK150 Armrest – Cherry Red Leather"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+          </div>
+          <div class="video-meta">
+            <span class="v-label">Armrest</span>
+            <h4>Centre Cushion Armrest — Cherry Red</h4>
+          </div>
+        </div>
+
+        <!-- Fuel Filler -->
+        <div class="video-card">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/xahg9uJK4_8?rel=0&modestbranding=1"
+                    title="Jaguar XK Fuel Filler Cover – Hammond XK150 Restoration"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+          </div>
+          <div class="video-meta">
+            <span class="v-label">Bespoke Detail</span>
+            <h4>Petrol Filler Neck Cover</h4>
+          </div>
+        </div>
+
+        <!-- Fire Extinguisher -->
+        <div class="video-card">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/i1N_o8OsYM8?rel=0&modestbranding=1"
+                    title="Custom Fire Extinguisher Cover – Hammond XK150 Restoration"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+          </div>
+          <div class="video-meta">
+            <span class="v-label">Bespoke Detail</span>
+            <h4>Custom Fire Extinguisher Cover</h4>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="text-align:center; margin-top: 36px;">
+        <a href="https://www.youtube.com/channel/UCuf-VSkQXOqPsDQOIYH_FFA"
+           class="btn-gold" target="_blank" rel="noopener">
+          View All Videos on YouTube →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="div">
+
+  <!-- ═══════════════════════════════════════════
+       WHAT WE MADE
+  ═══════════════════════════════════════════ -->
+  <section class="section-warm">
+    <div class="wrap">
+
+      <div style="text-align:center; margin-bottom: 36px;">
+        <span class="eyebrow">The Work</span>
+        <h2 class="section-title">What We Manufactured &amp; Supplied</h2>
+        <p style="color: var(--grey); max-width: 520px; margin: 0 auto; font-size: clamp(0.92rem, 1.8vw, 1.02rem); line-height: 1.75;">
+          A full XK150 FHC trim kit — some parts supplied as a standard kit, others
+          fully trimmed at our Cheltenham workshop before delivery to Tram Inn Garage.
+        </p>
+      </div>
+
+      <div class="trim-lists">
+
+        <div class="trim-list-card">
+          <h4>✦ Fully Trimmed at Our Workshop</h4>
+          <ul>
+            <li>Front &amp; Rear Seats (with new moulded paddings)</li>
+            <li>Centre Cushion Armrest</li>
+            <li>Dash Facia, Dash Top, Crash Roll &amp; Glove Box</li>
+            <li>Door Surround Metalwork</li>
+            <li>Rear Access Hatch (incl. replacement leather straps)</li>
+            <li>Petrol Filler Neck Cover</li>
+            <li>Bespoke Fire Extinguisher Cover (Cherry Red leather)</li>
+          </ul>
+        </div>
+
+        <div class="trim-list-card">
+          <h4>✦ Supplied as Standard Kit Parts</h4>
+          <ul>
+            <li>Door Panels, Pockets &amp; Armrests</li>
+            <li>A Post &amp; Footwell Panels</li>
+            <li>Under-Dash Panels</li>
+            <li>Wheel Arch Panels (Main, Upper &amp; Lower)</li>
+            <li>Rear Light Area Panel</li>
+            <li>Rear Bulkhead &amp; Diff Hump</li>
+            <li>Rear Parcel Shelf</li>
+            <li>Furflex Draught Excluder Kit</li>
+            <li>Boot Lid Panel &amp; Boot Hardura Set</li>
+            <li>Carpet Set &amp; Underfelt Soundproofing Kit</li>
+            <li>Headliner Roof Lining Kit</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="div">
+
+  <!-- ═══════════════════════════════════════════
+       CTA
+  ═══════════════════════════════════════════ -->
+  <section class="cta-band">
+    <div class="wrap">
+      <span class="eyebrow" style="color: var(--gold); display:block; margin-bottom: 12px;">Your Jaguar Awaits</span>
+      <h2>Ready to trim your Jaguar?</h2>
+      <p>
+        We make complete interior trim kits for the full Jaguar XK and E-Type range —
+        the same quality and craftsmanship Richard Hammond chose for his XK150.
+      </p>
+      <div class="cta-buttons">
+        <a href="/build-a-quote/" class="btn-gold">Get a Quote →</a>
+        <a href="/jaguar-trim-kits/" class="btn-outline-white">View Jaguar Kits</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><strong>John Skinner (Manufacturing) Ltd</strong></p>
+      <p>Interior Trim Specialists · Est. 1980 · Cheltenham, England</p>
+      <p style="margin-top:8px;">
+        <a href="mailto:sales@john-skinner.co.uk">sales@john-skinner.co.uk</a>
+        &nbsp;·&nbsp;
+        <a href="/contact/">Contact Us</a>
+        &nbsp;·&nbsp;
+        <a href="/jaguar-trim-kits/">Jaguar Kits</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- MOBILE STICKY BAR -->
+  <div class="sticky-bar">
+    <a href="/build-a-quote/" class="s-primary">Get a Quote</a>
+    <a href="/jaguar-trim-kits/" class="s-ghost">Jaguar Kits</a>
+  </div>
+
+</body>
+</html>
