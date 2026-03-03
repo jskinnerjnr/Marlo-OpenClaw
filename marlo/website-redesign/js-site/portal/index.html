@@ -418,9 +418,10 @@
     document.getElementById('dashboard').style.display = '';
     document.getElementById('logout-btn').style.display = '';
 
-    const { data: cust } = await sb.from('customers').select('*').eq('id', currentUser.id).single();
+    const { data: cust, error: custErr } = await sb.from('customers').select('*').eq('id', currentUser.id).maybeSingle();
     customerData = cust;
-    document.getElementById('greeting').textContent = `Welcome back, ${cust?.first_name || 'there'}`;
+    document.getElementById('greeting').textContent = `Welcome back, ${cust?.first_name || currentUser.email.split('@')[0]}`;
+    document.getElementById('dashboard').style.display = 'block';
     loadQuotes();
   }
 
