@@ -305,13 +305,16 @@
     document.getElementById('rem-' + id)?.remove();
   }
 
+  let adminLoaded = false;
   sb.auth.onAuthStateChange(async (event, session) => {
+    if (adminLoaded) return;
     document.getElementById('loading').style.display = 'none';
     if (!session) { document.getElementById('denied').style.display = ''; return; }
 
     const { data: adminRow } = await sb.from('admin_users').select('id, name').eq('id', session.user.id).single();
     if (!adminRow) { document.getElementById('denied').style.display = ''; return; }
 
+    adminLoaded = true;
     document.getElementById('denied').style.display = 'none';
     document.getElementById('main').style.display = '';
     await Promise.all([loadQuotes(), loadReminders()]);
