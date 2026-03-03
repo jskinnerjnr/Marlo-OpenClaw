@@ -202,6 +202,8 @@
     location.reload();
   }
 
+  async function logout() { await sb.auth.signOut(); location.reload(); }
+
   function setFilter(status, btn) {
     currentFilter = status;
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
