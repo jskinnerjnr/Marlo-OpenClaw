@@ -112,15 +112,31 @@
     .assurance-row { display: flex; align-items: center; gap: 8px; font-size: 0.78rem; color: var(--grey); }
     .assurance-row .icon { font-size: 0.9rem; }
 
-    /* ═══ TABS ═══ */
+    /* ═══ TABS — Desktop ═══ */
     .product-tabs-section { background: var(--white); border-top: 1px solid #e5e0d8; }
-    .tab-nav { display: flex; border-bottom: 2px solid #e5e0d8; overflow-x: auto; }
+    .tab-nav { display: flex; border-bottom: 2px solid #e5e0d8; }
     .tab-btn { padding: 16px 24px; border: none; background: transparent; font-family: var(--font-sans); font-size: 0.82rem; font-weight: 600; color: var(--grey); cursor: pointer; white-space: nowrap; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.18s; text-transform: uppercase; letter-spacing: 0.06em; }
     .tab-btn:hover { color: var(--navy); }
     .tab-btn.active { color: var(--navy); border-bottom-color: var(--navy); }
     .tab-content { padding: 36px 0 48px; }
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
+
+    /* ═══ TABS — Mobile accordion ═══ */
+    .accordion-item { border-bottom: 1px solid #e5e0d8; display: none; }
+    .accordion-header { width: 100%; background: transparent; border: none; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; font-family: var(--font-sans); font-size: 0.88rem; font-weight: 700; color: var(--navy); cursor: pointer; text-align: left; letter-spacing: 0.03em; }
+    .accordion-header .acc-icon { font-size: 1.1rem; color: var(--grey); transition: transform 0.22s; flex-shrink: 0; margin-left: 12px; }
+    .accordion-header.open .acc-icon { transform: rotate(45deg); }
+    .accordion-body { display: none; padding: 8px 20px 24px; }
+    .accordion-body.open { display: block; }
+
+    @media (max-width: 720px) {
+      .tab-nav { display: none; }
+      .tab-content { display: none; }
+      .accordion-item { display: block; }
+      /* fix gallery sticky on mobile */
+      .gallery { position: static !important; }
+    }
 
     /* DESCRIPTION TAB */
     .desc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
@@ -496,6 +512,40 @@
         </div>
 
       </div>
+
+      <!-- MOBILE ACCORDION (hidden on desktop) -->
+      <div id="accordionTabs">
+
+        <div class="accordion-item">
+          <button class="accordion-header" onclick="toggleAccordion(this, 'acc-description')">
+            Description <span class="acc-icon">+</span>
+          </button>
+          <div class="accordion-body" id="acc-description"></div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header" onclick="toggleAccordion(this, 'acc-included')">
+            What's included <span class="acc-icon">+</span>
+          </button>
+          <div class="accordion-body" id="acc-included"></div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header" onclick="toggleAccordion(this, 'acc-fitting')">
+            Fitting notes <span class="acc-icon">+</span>
+          </button>
+          <div class="accordion-body" id="acc-fitting"></div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-header" onclick="toggleAccordion(this, 'acc-delivery')">
+            Lead time &amp; delivery <span class="acc-icon">+</span>
+          </button>
+          <div class="accordion-body" id="acc-delivery"></div>
+        </div>
+
+      </div>
+
     </div>
   </div>
 
@@ -585,12 +635,37 @@
       el.classList.add('selected');
     }
 
-    // Tab switching
+    // Tab switching (desktop)
     function switchTab(name, btn) {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
       btn.classList.add('active');
       document.getElementById('tab-' + name).classList.add('active');
+    }
+
+    // Mirror tab content into accordion panels on load
+    const tabMap = { description: 'acc-description', included: 'acc-included', fitting: 'acc-fitting', delivery: 'acc-delivery' };
+    window.addEventListener('DOMContentLoaded', () => {
+      Object.entries(tabMap).forEach(([tabId, accId]) => {
+        const src = document.getElementById('tab-' + tabId);
+        const dest = document.getElementById(accId);
+        if (src && dest) dest.innerHTML = src.innerHTML;
+      });
+    });
+
+    // Accordion toggle (mobile)
+    function toggleAccordion(header, bodyId) {
+      const body = document.getElementById(bodyId);
+      const isOpen = body.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.accordion-body').forEach(b => b.classList.remove('open'));
+      document.querySelectorAll('.accordion-header').forEach(h => h.classList.remove('open'));
+      // Open clicked (if it was closed)
+      if (!isOpen) {
+        body.classList.add('open');
+        header.classList.add('open');
+        setTimeout(() => body.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+      }
     }
 
     // Add to quote
