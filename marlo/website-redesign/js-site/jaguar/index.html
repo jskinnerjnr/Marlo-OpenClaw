@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jaguar Interior Trim Kits — John Skinner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1a2535; --navy-light: #243350; --gold: #b8922a; --gold-light: #d4a940;
+      --cream: #f7f3eb; --white: #fff; --grey: #5a6373; --warm-bg: #fdf9f2;
+      --font-serif: 'EB Garamond', Georgia, serif; --font-sans: 'Inter', Arial, sans-serif;
+      --radius: 6px; --shadow: 0 2px 16px rgba(0,0,0,0.07); --shadow-md: 0 6px 32px rgba(0,0,0,0.13);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); color: #1e1e1e; background: var(--cream); font-size: 16px; line-height: 1.7; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* HEADER */
+    .site-header { background: var(--navy); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); }
+    .logo-wrap { padding: 14px 0; text-decoration: none; display: block; }
+    .logo { font-family: var(--font-serif); color: var(--white); font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
+    .logo em { color: var(--gold); font-style: normal; }
+    .logo-sub { font-size: 0.62rem; color: rgba(255,255,255,0.38); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 3px; }
+    nav { display: flex; gap: 4px; align-items: center; }
+    nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 22px 11px; border-bottom: 2px solid transparent; transition: color 0.2s; }
+    nav a:hover { color: var(--gold-light); }
+    nav a.cta { background: var(--gold); color: var(--navy); padding: 9px 20px; border-radius: var(--radius); margin-left: 10px; border-bottom: none; font-weight: 700; }
+    nav a.cta:hover { background: var(--gold-light); }
+
+    /* BREADCRUMB */
+    .breadcrumb { background: var(--navy-light); padding: 10px 32px; font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+    .breadcrumb a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb span { margin: 0 8px; }
+
+    /* HERO */
+    .hero { background: var(--navy); color: var(--white); padding: 56px 24px 68px; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(184,146,42,0.1) 0%, transparent 60%); }
+    .hero-inner { max-width: 700px; position: relative; }
+    .hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 14px; }
+    .hero h1 { font-family: var(--font-serif); font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 400; line-height: 1.15; margin-bottom: 16px; }
+    .hero p { color: rgba(255,255,255,0.62); font-size: 1.05rem; line-height: 1.8; max-width: 560px; }
+
+    /* MODEL FAMILIES */
+    .models-section { padding: 72px 0; }
+    .family-block { margin-bottom: 64px; }
+    .family-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 28px; padding-bottom: 16px; border-bottom: 2px solid var(--gold); }
+    .family-header h2 { font-family: var(--font-serif); font-size: 1.8rem; color: var(--navy); font-weight: 400; }
+    .family-header p { color: var(--grey); font-size: 0.88rem; }
+    .model-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+    .model-card { background: var(--white); border-radius: 8px; box-shadow: var(--shadow); text-decoration: none; display: block; padding: 22px 20px; transition: transform 0.18s, box-shadow 0.18s; border-left: 4px solid transparent; }
+    .model-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-left-color: var(--gold); }
+    .model-card .model-name { font-family: var(--font-serif); font-size: 1.1rem; color: var(--navy); font-weight: 600; margin-bottom: 4px; }
+    .model-card .model-variants { font-size: 0.78rem; color: var(--grey); margin-bottom: 12px; }
+    .model-card .model-range { font-size: 0.72rem; color: rgba(0,0,0,0.35); margin-bottom: 14px; letter-spacing: 0.04em; }
+    .model-card .model-link { font-size: 0.76rem; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em; }
+    .model-card .model-link::after { content: ' →'; }
+
+    /* BODY STYLE TABS (for E-Type) */
+    .body-tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+    .body-tab { background: var(--white); border: 2px solid var(--light-grey, #e5e0d6); border-radius: var(--radius); padding: 8px 18px; font-size: 0.82rem; font-weight: 600; color: var(--grey); cursor: pointer; transition: all 0.18s; text-transform: uppercase; letter-spacing: 0.06em; }
+    .body-tab.active, .body-tab:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
+
+    .trust-strip { background: var(--gold); padding: 12px 24px; display: flex; justify-content: center; flex-wrap: wrap; }
+    .trust-item { color: var(--navy); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 18px; border-right: 1px solid rgba(26,37,53,0.2); }
+    .trust-item:last-child { border-right: none; }
+
+    .section-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .btn { display: inline-block; padding: 13px 28px; border-radius: var(--radius); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
+    .btn-primary { background: var(--gold); color: var(--navy); }
+    .btn-primary:hover { background: var(--gold-light); }
+
+    /* INFO ASIDE */
+    .marque-info { background: var(--warm-bg); border-top: 1px solid #e8e1d5; padding: 56px 0; }
+    .info-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 56px; align-items: start; }
+    @media (max-width: 768px) { .info-grid { grid-template-columns: 1fr; gap: 32px; } }
+    .info-grid p { color: var(--grey); font-size: 0.95rem; line-height: 1.82; margin-bottom: 14px; }
+    .info-card { background: var(--white); border-radius: 8px; padding: 24px; box-shadow: var(--shadow); border-top: 3px solid var(--gold); }
+    .info-card h4 { font-family: var(--font-serif); font-size: 1.1rem; color: var(--navy); margin-bottom: 12px; }
+    .info-card ul { list-style: none; }
+    .info-card li { font-size: 0.88rem; color: var(--grey); padding: 7px 0; border-bottom: 1px solid #f0ebe1; display: flex; align-items: center; gap: 8px; }
+    .info-card li:last-child { border-bottom: none; }
+    .info-card li::before { content: '✓'; color: var(--gold); font-weight: 700; }
+
+    footer { background: #111820; color: rgba(255,255,255,0.42); padding: 40px 24px; text-align: center; font-size: 0.82rem; line-height: 2; }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer strong { color: rgba(255,255,255,0.65); }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="logo-wrap" href="../index.html">
+      <div class="logo">John <em>Skinner</em></div>
+      <div class="logo-sub">Est. 1980 · Cheltenham</div>
+    </a>
+    <nav>
+      <a href="../index.html#find-your-car">Our Cars</a>
+      <a href="#">Materials</a>
+      <a href="#">Workshop</a>
+      <a href="#">Why Us</a>
+      <a href="#">Handbook</a>
+      <a href="../quote/index.html" class="cta">Request a Quote</a>
+    </nav>
+  </header>
+
+  <div class="breadcrumb">
+    <a href="../index.html">Home</a><span>›</span>
+    <a href="../index.html#find-your-car">Our Cars</a><span>›</span>
+    Jaguar
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-inner">
+        <p class="hero-eyebrow">Jaguar Interior Trim</p>
+        <h1>E-Type &amp; XK Series<br>Interior Trim Kits</h1>
+        <p>We've been making Jaguar interior trim kits since 1980. Every kit is built to original factory specification — the right materials, the right patterns, the right result. Select your model below.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="trust-strip">
+    <div class="trust-item">OEM Factory Specification</div>
+    <div class="trust-item">All Body Styles Covered</div>
+    <div class="trust-item">Series 1 to Series 3</div>
+    <div class="trust-item">Made to Order</div>
+  </div>
+
+  <section class="models-section">
+    <div class="wrap">
+
+      <!-- E-TYPE -->
+      <div class="family-block">
+        <div class="family-header">
+          <h2>Jaguar E-Type</h2>
+          <p>All series · All body styles · 1961–1975</p>
+        </div>
+
+        <p class="section-label" style="margin-bottom:12px;">Open Two Seater (OTS)</p>
+        <div class="model-grid" style="margin-bottom:28px;">
+          <a href="e-type-ots-s1.html" class="model-card">
+            <div class="model-name">OTS · Series 1</div>
+            <div class="model-variants">3.8 litre &amp; 4.2 litre</div>
+            <div class="model-range">1961 – 1968</div>
+            <span class="model-link">View kits</span>
+          </a>
+          <a href="#" class="model-card">
+            <div class="model-name">OTS · Series 2</div>
+            <div class="model-variants">4.2 litre</div>
+            <div class="model-range">1968 – 1971</div>
+            <span class="model-link">View kits</span>
+          </a>
+          <a href="#" class="model-card">
+            <div class="model-name">OTS · Series 3</div>
+            <div class="model-variants">V12</div>
+            <div class="model-range">1971 – 1975</div>
+            <span class="model-link">View kits</span>
+          </a>
+        </div>
+
+        <p class="section-label" style="margin-bottom:12px;">Fixed Head Coupé (FHC)</p>
+        <div class="model-grid" style="margin-bottom:28px;">
+          <a href="#" class="model-card">
+            <div class="model-name">FHC · Series 1</div>
+            <div class="model-variants">3.8 litre &amp; 4.2 litre</div>
+            <div class="model-range">1961 – 1968</div>
+            <span class="model-link">View kits</span>
+          </a>
+          <a href="#" class="model-card">
+            <div class="model-name">FHC · Series 2</div>
+            <div class="model-variants">4.2 litre</div>
+            <div class="model-range">1968 – 1971</div>
+            <span class="model-link">View kits</span>
+          </a>
+        </div>
+
+        <p class="section-label" style="margin-bottom:12px;">2+2</p>
+        <div class="model-grid">
+          <a href="#" class="model-card">
+            <div class="model-name">2+2 · Series 1</div>
+            <div class="model-variants">4.2 litre</div>
+            <div class="model-range">1966 – 1968</div>
+            <span class="model-link">View kits</span>
+          </a>
+          <a href="#" class="model-card">
+            <div class="model-name">2+2 · Series 2</div>
+            <div class="model-variants">4.2 litre</div>
+            <div class="model-range">1968 – 1971</div>
+            <span class="model-link">View kits</span>
+          </a>
+          <a href="#" class="model-card">
+            <div class="model-name">2+2 · Series 3</div>
+            <div class="model-variants">V12</div>
+            <div class="model-range">1971 – 1975</div>
+            <span class="model-link">View kits</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- XK SERIES -->
+      <div class="family-block">
+        <div class="family-header">
+          <h2>Jaguar XK Series</h2>
+          <p>All body styles · 1949–1961</p>
+        </div>
+
+        <p class="section-label" style="margin-bottom:12px;">XK120 · 1949–1954</p>
+        <div class="model-grid" style="margin-bottom:28px;">
+          <a href="#" class="model-card">
+            <div class="model-name">XK120 Roadster</div>
+            <div class="model-variants">Open Two Seater</div>
+            <div class="model-range">1949 – 1954</div>
+            <span class="model-link">View kits</span>
+          </a>
+          <a href="#" class="model-card">
+            <div class="model-name">XK120 DHC</div>
+            <div class="model-variants">Drophead Coupé</div>
+            <div class="model-range">1951 – 1954</div>
+            <span class="model-link">View kits</span>
+          </a>
+          <a href="#" class="model-card">
+            <div class="model-name">XK120 FHC</div>
+            <div class="model-variants">Fixed Head Coupé</div>
+            <div class="model-range">1951 – 1954</div>
+            <span class="model-link">View kits</span>
+          </a>
+        </div>
+
+        <p class="section-label" style="margin-bottom:12px;">XK140 · 1954–1957</p>
+        <div class="model-grid" style="margin-bottom:28px;">
+          <a href="#" class="model-card">
+            <div class="model-name">XK140 Roadster</div>
+            <div class="model-variants">Open Two Seater</div>
+            <div class="model-range">1954 – 1957</div>
+            <span class="model-link">View kits</span>
+          </a>
+          <a href="#" class="model-card">
+            <div class="model-name">XK140 DHC</div>
+            <div class="model-variants">Drophead Coupé</div>
+            <div class="model-range">1954 – 1957</div>
+            <span class="model-link">View kits</span>
+          </a>
+          <a href="#" class="model-card">
+            <div class="model-name">XK140 FHC</div>
+            <div class="model-variants">Fixed Head Coupé</div>
+            <div class="model-range">1954 – 1957</div>
+            <span class="model-link">View kits</span>
+          </a>
+        </div>
+
+        <p class="section-label" style="margin-bottom:12px;">XK150 · 1957–1961</p>
+        <div class="model-grid">
+          <a href="#" class="model-card">
+            <div class="model-name">XK150 Roadster</div>
+            <div class="model-variants">Open Two Seater (OTS)</div>
+            <div class="model-range">1958 – 1961</div>
+            <span class="model-link">View kits</span>
+          </a>
+          <a href="#" class="model-card">
+            <div class="model-name">XK150 DHC</div>
+            <div class="model-variants">Drophead Coupé</div>
+            <div class="model-range">1957 – 1961</div>
+            <span class="model-link">View kits</span>
+          </a>
+          <a href="#" class="model-card">
+            <div class="model-name">XK150 FHC</div>
+            <div class="model-variants">Fixed Head Coupé</div>
+            <div class="model-range">1957 – 1961</div>
+            <span class="model-link">View kits</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="marque-info">
+    <div class="wrap">
+      <div class="info-grid">
+        <div>
+          <p class="section-label">About Our Jaguar Kits</p>
+          <p style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--navy); line-height: 1.45; margin-bottom: 20px;">We've been manufacturing Jaguar interior trim since 1980. In that time, we've developed a depth of knowledge about these cars that very few people in the world can match.</p>
+          <p>Every kit is made to original factory specification — not an approximation, not a generic fit. We hold original patterns for all the models listed above, refined over decades of production and customer feedback.</p>
+          <p>Our materials are sourced from the same quality suppliers we've worked with for years. We don't substitute for cheaper alternatives. The result is a kit that fits correctly, looks correct, and lasts.</p>
+          <p>Not sure which specification is right for your car? That's what we're here for. Tell us your chassis number and we'll identify exactly what you need.</p>
+          <a href="../quote/index.html" class="btn btn-primary" style="margin-top: 20px;">Start your quote →</a>
+        </div>
+        <div>
+          <div class="info-card">
+            <h4>What's included in our kits</h4>
+            <ul>
+              <li>Front seat cover kits</li>
+              <li>Rear seat cover kits</li>
+              <li>Door trim panel sets</li>
+              <li>Carpet sets &amp; flooring</li>
+              <li>Hood &amp; tonneau covers</li>
+              <li>Headlining kits</li>
+              <li>Dash &amp; capping re-trim</li>
+              <li>Boot / trunk trim</li>
+              <li>Fixings &amp; hardware</li>
+              <li>Seat foams &amp; wadding</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <strong>John Skinner (Manufacturing) Ltd</strong><br>
+    Classic Car Interior Trim Specialists · Est. 1980 · Cheltenham, England<br><br>
+    <a href="mailto:sales@john-skinner.co.uk">sales@john-skinner.co.uk</a> ·
+    <a href="../quote/index.html">Request a Quote</a><br><br>
+    <span style="opacity:0.45; font-size:0.75rem;">© 2025 John Skinner (Manufacturing) Ltd. All rights reserved.</span>
+  </footer>
+
+</body>
+</html>

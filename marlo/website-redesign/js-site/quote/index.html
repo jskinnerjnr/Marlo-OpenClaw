@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request a Quote — John Skinner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1a2535; --navy-light: #243350; --gold: #b8922a; --gold-light: #d4a940;
+      --cream: #f7f3eb; --white: #fff; --grey: #5a6373; --warm-bg: #fdf9f2;
+      --text: #1e1e1e; --font-serif: 'EB Garamond', Georgia, serif;
+      --font-sans: 'Inter', Arial, sans-serif; --radius: 6px;
+      --shadow: 0 2px 16px rgba(0,0,0,0.07); --shadow-md: 0 6px 32px rgba(0,0,0,0.13);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--cream); font-size: 16px; line-height: 1.7; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .site-header { background: var(--navy); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); }
+    .logo-wrap { padding: 14px 0; text-decoration: none; display: block; }
+    .logo { font-family: var(--font-serif); color: var(--white); font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
+    .logo em { color: var(--gold); font-style: normal; }
+    .logo-sub { font-size: 0.62rem; color: rgba(255,255,255,0.38); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 3px; }
+
+    /* HERO */
+    .hero { background: var(--navy); color: var(--white); padding: 48px 24px 60px; border-bottom: 3px solid var(--gold); }
+    .hero-eyebrow { font-size: 0.66rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 10px; }
+    .hero h1 { font-family: var(--font-serif); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 400; line-height: 1.15; margin-bottom: 12px; }
+    .hero p { color: rgba(255,255,255,0.6); font-size: 0.98rem; line-height: 1.8; max-width: 520px; }
+
+    /* PROGRESS BAR */
+    .progress-bar { background: var(--white); border-bottom: 1px solid #e8e1d5; padding: 20px 24px; }
+    .progress-inner { max-width: 720px; margin: 0 auto; }
+    .steps { display: flex; align-items: center; gap: 0; }
+    .step { display: flex; align-items: center; gap: 8px; flex: 1; }
+    .step-num { width: 30px; height: 30px; border-radius: 50%; background: var(--light-grey, #e5e0d6); color: var(--grey); font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s; }
+    .step.active .step-num { background: var(--gold); color: var(--navy); }
+    .step.done .step-num { background: var(--navy); color: var(--white); }
+    .step.done .step-num::after { content: '✓'; }
+    .step-label { font-size: 0.78rem; font-weight: 600; color: var(--grey); }
+    .step.active .step-label { color: var(--navy); }
+    .step-line { flex: 1; height: 2px; background: #e5e0d6; margin: 0 8px; min-width: 20px; }
+    .step-line.done { background: var(--gold); }
+
+    /* FORM LAYOUT */
+    .form-area { padding: 48px 0 80px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 340px; gap: 48px; align-items: start; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    @media (max-width: 900px) { .form-grid { grid-template-columns: 1fr; } }
+
+    /* FORM PANEL */
+    .form-panel { background: var(--white); border-radius: 10px; box-shadow: var(--shadow); overflow: hidden; }
+    .form-step { display: none; }
+    .form-step.active { display: block; }
+    .form-step-header { background: var(--warm-bg); padding: 22px 28px; border-bottom: 1px solid #ede7dc; }
+    .form-step-header h2 { font-family: var(--font-serif); font-size: 1.35rem; color: var(--navy); margin-bottom: 4px; }
+    .form-step-header p { font-size: 0.85rem; color: var(--grey); }
+    .form-fields { padding: 28px; }
+    .field { margin-bottom: 20px; }
+    .field label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--navy); margin-bottom: 6px; letter-spacing: 0.02em; }
+    .field label .req { color: var(--gold); }
+    .field input, .field select, .field textarea {
+      width: 100%; padding: 11px 14px; border: 1.5px solid #d8d2c8; border-radius: var(--radius);
+      font-family: var(--font-sans); font-size: 0.9rem; color: var(--text);
+      background: var(--white); transition: border-color 0.18s, box-shadow 0.18s;
+      -webkit-appearance: none; appearance: none;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(184,146,42,0.12); }
+    .field textarea { resize: vertical; min-height: 100px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 560px) { .field-row { grid-template-columns: 1fr; } }
+    .field-hint { font-size: 0.76rem; color: var(--grey); margin-top: 5px; line-height: 1.5; }
+    .save-note { font-size: 0.75rem; color: var(--gold); background: rgba(184,146,42,0.08); border: 1px solid rgba(184,146,42,0.2); border-radius: 5px; padding: 8px 12px; margin-bottom: 20px; display: flex; align-items: center; gap: 6px; }
+    .form-actions { display: flex; justify-content: space-between; align-items: center; padding: 20px 28px; border-top: 1px solid #ede7dc; background: var(--warm-bg); }
+    .btn { display: inline-block; padding: 12px 26px; border-radius: var(--radius); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; border: none; }
+    .btn-primary { background: var(--gold); color: var(--navy); }
+    .btn-primary:hover { background: var(--gold-light); }
+    .btn-secondary { background: transparent; color: var(--grey); border: 1.5px solid #d8d2c8; padding: 11px 22px; }
+    .btn-secondary:hover { border-color: var(--navy); color: var(--navy); }
+    .btn-submit { background: var(--navy); color: var(--white); }
+    .btn-submit:hover { background: var(--navy-light); }
+
+    /* SIDEBAR */
+    .quote-summary { background: var(--white); border-radius: 10px; box-shadow: var(--shadow); border-top: 4px solid var(--gold); padding: 24px; position: sticky; top: 24px; }
+    .quote-summary h3 { font-family: var(--font-serif); font-size: 1.2rem; color: var(--navy); margin-bottom: 14px; }
+    .summary-model { font-size: 0.82rem; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #ede7dc; }
+    .summary-item { font-size: 0.84rem; color: var(--grey); padding: 5px 0; border-bottom: 1px solid #f5f0e8; display: flex; align-items: center; gap: 6px; }
+    .summary-item::before { content: '✓'; color: var(--gold); font-weight: 700; font-size: 0.76rem; }
+    .summary-empty { font-size: 0.82rem; color: rgba(0,0,0,0.3); font-style: italic; }
+    .assurance { margin-top: 18px; }
+    .assurance-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 10px; font-size: 0.8rem; color: var(--grey); line-height: 1.55; }
+    .assurance-item .icon { flex-shrink: 0; font-size: 1rem; }
+
+    /* CONFIRMATION */
+    .confirmation { display: none; text-align: center; padding: 60px 40px; }
+    .confirmation.active { display: block; }
+    .conf-icon { font-size: 3.5rem; margin-bottom: 20px; }
+    .confirmation h2 { font-family: var(--font-serif); font-size: 2rem; color: var(--navy); margin-bottom: 12px; }
+    .confirmation p { color: var(--grey); font-size: 0.95rem; line-height: 1.8; max-width: 420px; margin: 0 auto 24px; }
+    footer { background: #111820; color: rgba(255,255,255,0.42); padding: 40px 24px; text-align: center; font-size: 0.82rem; line-height: 2; }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer strong { color: rgba(255,255,255,0.65); }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="logo-wrap" href="../index.html">
+      <div class="logo">John <em>Skinner</em></div>
+      <div class="logo-sub">Est. 1980 · Cheltenham</div>
+    </a>
+  </header>
+
+  <div class="hero">
+    <div class="wrap">
+      <p class="hero-eyebrow">Request a Quote</p>
+      <h1>Tell us about your restoration</h1>
+      <p>We'll come back to you with full pricing, material options, and lead times. No obligation — just a conversation to get things started.</p>
+    </div>
+  </div>
+
+  <!-- PROGRESS STEPS -->
+  <div class="progress-bar">
+    <div class="progress-inner">
+      <div class="steps">
+        <div class="step active" id="prog-1">
+          <div class="step-num">1</div>
+          <div class="step-label">Your details</div>
+        </div>
+        <div class="step-line" id="line-1"></div>
+        <div class="step" id="prog-2">
+          <div class="step-num">2</div>
+          <div class="step-label">Your car</div>
+        </div>
+        <div class="step-line" id="line-2"></div>
+        <div class="step" id="prog-3">
+          <div class="step-num">3</div>
+          <div class="step-label">Materials &amp; kits</div>
+        </div>
+        <div class="step-line" id="line-3"></div>
+        <div class="step" id="prog-4">
+          <div class="step-num">4</div>
+          <div class="step-label">Submit</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-area">
+    <div class="form-grid">
+
+      <!-- FORM PANEL -->
+      <div>
+        <div class="form-panel" id="formPanel">
+
+          <!-- STEP 1: Contact details -->
+          <div class="form-step active" id="step-1">
+            <div class="form-step-header">
+              <h2>Your contact details</h2>
+              <p>We'll use this to send you a quote and follow up if we have questions.</p>
+            </div>
+            <div class="form-fields">
+              <div class="save-note">💾 Your details are saved as you go — so if you get interrupted, just come back and continue.</div>
+              <div class="field-row">
+                <div class="field">
+                  <label>First name <span class="req">*</span></label>
+                  <input type="text" id="firstName" placeholder="e.g. James" oninput="autosave()">
+                </div>
+                <div class="field">
+                  <label>Surname</label>
+                  <input type="text" id="lastName" placeholder="e.g. Smith" oninput="autosave()">
+                </div>
+              </div>
+              <div class="field">
+                <label>Email address <span class="req">*</span></label>
+                <input type="email" id="email" placeholder="your@email.com" oninput="autosave()">
+                <p class="field-hint">We'll send your quote to this address. We don't share it with anyone.</p>
+              </div>
+              <div class="field">
+                <label>Country / Location</label>
+                <input type="text" id="location" placeholder="e.g. United Kingdom, USA, Australia" oninput="autosave()">
+                <p class="field-hint">Helps us with shipping information when we quote.</p>
+              </div>
+              <div class="field">
+                <label>Phone (optional)</label>
+                <input type="tel" id="phone" placeholder="+44 (0)..." oninput="autosave()">
+                <p class="field-hint">Only used for shipping purposes or if you'd prefer us to call.</p>
+              </div>
+            </div>
+            <div class="form-actions">
+              <span></span>
+              <button class="btn btn-primary" onclick="goToStep(2)">Next: Your car →</button>
+            </div>
+          </div>
+
+          <!-- STEP 2: Car details -->
+          <div class="form-step" id="step-2">
+            <div class="form-step-header">
+              <h2>Your car</h2>
+              <p>The more detail you can give us, the more accurately we can spec your kit.</p>
+            </div>
+            <div class="form-fields">
+              <div class="field-row">
+                <div class="field">
+                  <label>Marque <span class="req">*</span></label>
+                  <select id="marque" onchange="autosave()">
+                    <option value="">Select marque…</option>
+                    <option>Jaguar</option>
+                    <option>Triumph TR</option>
+                    <option>Austin Healey</option>
+                    <option>MGA</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Model <span class="req">*</span></label>
+                  <input type="text" id="model" placeholder="e.g. TR6, E-Type OTS S1" oninput="autosave()" id="modelField">
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label>Year of manufacture <span class="req">*</span></label>
+                  <input type="text" id="year" placeholder="e.g. 1972" oninput="autosave()">
+                </div>
+                <div class="field">
+                  <label>Chassis / Commission number</label>
+                  <input type="text" id="chassis" placeholder="If known" oninput="autosave()">
+                  <p class="field-hint">Helps us identify spec differences between production years.</p>
+                </div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label>Driver's side</label>
+                  <select id="driverSide" onchange="autosave()">
+                    <option value="">Select…</option>
+                    <option>Right hand drive (UK)</option>
+                    <option>Left hand drive (USA/Europe)</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Body paint colour</label>
+                  <input type="text" id="paintColour" placeholder="e.g. British Racing Green" oninput="autosave()">
+                  <p class="field-hint">Helps us advise on interior colour coordination.</p>
+                </div>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-secondary" onclick="goToStep(1)">← Back</button>
+              <button class="btn btn-primary" onclick="goToStep(3)">Next: Materials &amp; kits →</button>
+            </div>
+          </div>
+
+          <!-- STEP 3: Materials & kits -->
+          <div class="form-step" id="step-3">
+            <div class="form-step-header">
+              <h2>Materials &amp; kits required</h2>
+              <p>Tell us what you need and your material preferences. We'll advise on suitability and options when we respond.</p>
+            </div>
+            <div class="form-fields">
+              <div class="field">
+                <label>Main interior trim material</label>
+                <select id="material" onchange="autosave()">
+                  <option value="">Select if known…</option>
+                  <option>Vinyl / Ambla</option>
+                  <option>Leather-faced (combination)</option>
+                  <option>Full leather</option>
+                  <option>Not sure yet — please advise</option>
+                </select>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label>Main trim colour</label>
+                  <input type="text" id="trimColour" placeholder="e.g. Black, Red, Tan" oninput="autosave()">
+                </div>
+                <div class="field">
+                  <label>Piping colour</label>
+                  <input type="text" id="pipingColour" placeholder="e.g. matching or contrasting" oninput="autosave()">
+                </div>
+              </div>
+              <div class="field">
+                <label>Carpet material</label>
+                <select id="carpet" onchange="autosave()">
+                  <option value="">Select if known…</option>
+                  <option>Wool carpet</option>
+                  <option>Nylon carpet</option>
+                  <option>Karvel (AH / MGA only)</option>
+                  <option>Not sure yet</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Kits required</label>
+                <textarea id="kitsRequired" placeholder="e.g. Front seat covers, door panels, carpet set, hood. Or describe what you need and we'll work it out." oninput="autosave()"></textarea>
+                <p class="field-hint">If you browsed our model pages, these may have been pre-filled above.</p>
+              </div>
+              <div class="field">
+                <label>Samples required?</label>
+                <select id="samples" onchange="autosave()">
+                  <option value="">Select…</option>
+                  <option>Yes please — send me material samples</option>
+                  <option>No — I know what I want</option>
+                  <option>Not sure yet</option>
+                </select>
+                <p class="field-hint">We strongly recommend samples — screen colours are misleading. We'll send them to your address at no cost.</p>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-secondary" onclick="goToStep(2)">← Back</button>
+              <button class="btn btn-primary" onclick="goToStep(4)">Next: Review &amp; send →</button>
+            </div>
+          </div>
+
+          <!-- STEP 4: Review & submit -->
+          <div class="form-step" id="step-4">
+            <div class="form-step-header">
+              <h2>Final details &amp; send</h2>
+              <p>Anything else we should know? Then hit send and we'll come back to you.</p>
+            </div>
+            <div class="form-fields">
+              <div class="field">
+                <label>Any modifications or special requirements?</label>
+                <textarea id="modifications" placeholder="e.g. non-standard colour, custom piping, concours vs. driver restoration, specific panel areas only…" oninput="autosave()"></textarea>
+              </div>
+              <div class="field">
+                <label>Additional information</label>
+                <textarea id="additionalInfo" placeholder="Anything else relevant to your enquiry — photos welcome if you have them."></textarea>
+              </div>
+              <div id="reviewSummary" style="background: var(--warm-bg); border-radius: 8px; padding: 18px 20px; font-size: 0.84rem; color: var(--grey); line-height: 1.75; border: 1px solid #e8e1d5;">
+                <!-- populated by JS -->
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-secondary" onclick="goToStep(3)">← Back</button>
+              <button class="btn btn-submit" onclick="submitForm()">Send enquiry →</button>
+            </div>
+          </div>
+
+          <!-- CONFIRMATION -->
+          <div class="confirmation" id="confirmation">
+            <div class="conf-icon">✉️</div>
+            <h2>Enquiry sent — thank you</h2>
+            <p>We've received your enquiry and will come back to you within 1–2 working days with a quote and any questions.</p>
+            <p style="margin-top:8px;">If you'd like to send photos of your car or interior, email them to <strong><a href="mailto:sales@john-skinner.co.uk" style="color:var(--gold)">sales@john-skinner.co.uk</a></strong> with your name in the subject line.</p>
+            <a href="../index.html" class="btn btn-primary" style="margin-top:28px;">Back to homepage</a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside>
+        <div class="quote-summary" id="quoteSummary">
+          <h3>Your quote</h3>
+          <div id="summaryModel" class="summary-model" style="display:none;"></div>
+          <div id="summaryItems"></div>
+          <div class="assurance" style="margin-top:22px; padding-top:18px; border-top:1px solid #ede7dc;">
+            <div class="assurance-item"><span class="icon">🔒</span><span>No payment taken — this is a quote request only</span></div>
+            <div class="assurance-item"><span class="icon">📩</span><span>We'll respond within 1–2 working days</span></div>
+            <div class="assurance-item"><span class="icon">🎨</span><span>Samples available at no cost before you commit</span></div>
+            <div class="assurance-item"><span class="icon">📞</span><span>Happy to discuss by phone if you prefer</span></div>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <footer>
+    <strong>John Skinner (Manufacturing) Ltd</strong><br>
+    Classic Car Interior Trim Specialists · Est. 1980 · Cheltenham, England<br><br>
+    <a href="mailto:sales@john-skinner.co.uk">sales@john-skinner.co.uk</a><br><br>
+    <span style="opacity:0.45; font-size:0.75rem;">© 2025 John Skinner (Manufacturing) Ltd. All rights reserved.</span>
+  </footer>
+
+  <script>
+    let currentStep = 1;
+
+    // Load from localStorage on arrival
+    window.addEventListener('load', () => {
+      const savedModel = localStorage.getItem('js_quote_model');
+      const savedItems = localStorage.getItem('js_quote_items');
+      if (savedModel) {
+        document.getElementById('model').value = savedModel;
+        // pre-fill marque if possible
+        if (savedModel.includes('Jaguar')) document.getElementById('marque').value = 'Jaguar';
+        else if (savedModel.includes('Triumph')) document.getElementById('marque').value = 'Triumph TR';
+        else if (savedModel.includes('Healey')) document.getElementById('marque').value = 'Austin Healey';
+        else if (savedModel.includes('MGA')) document.getElementById('marque').value = 'MGA';
+      }
+      if (savedItems) {
+        try {
+          const items = JSON.parse(savedItems);
+          document.getElementById('kitsRequired').value = items.join(', ');
+          updateSidebar(savedModel, items);
+        } catch(e) {}
+      }
+      // restore form state
+      const saved = JSON.parse(localStorage.getItem('js_quote_form') || '{}');
+      Object.keys(saved).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = saved[id];
+      });
+    });
+
+    function autosave() {
+      const ids = ['firstName','lastName','email','location','phone','marque','model','year','chassis','driverSide','paintColour','material','trimColour','pipingColour','carpet','kitsRequired','samples'];
+      const data = {};
+      ids.forEach(id => { const el = document.getElementById(id); if (el) data[id] = el.value; });
+      localStorage.setItem('js_quote_form', JSON.stringify(data));
+    }
+
+    function updateSidebar(model, items) {
+      const modelEl = document.getElementById('summaryModel');
+      const itemsEl = document.getElementById('summaryItems');
+      if (model) { modelEl.style.display = 'block'; modelEl.textContent = model; }
+      if (items && items.length) {
+        itemsEl.innerHTML = items.map(i => `<div class="summary-item">${i}</div>`).join('');
+      } else {
+        itemsEl.innerHTML = '<p class="summary-empty">No items pre-selected — describe what you need in step 3.</p>';
+      }
+    }
+
+    function goToStep(n) {
+      if (n === 2) {
+        const email = document.getElementById('email').value.trim();
+        const first = document.getElementById('firstName').value.trim();
+        if (!email || !first) {
+          alert('Please enter your first name and email address to continue.');
+          return;
+        }
+        // Save lead data immediately — this is the key abandoned cart capture
+        const leadData = {
+          name: first + ' ' + document.getElementById('lastName').value.trim(),
+          email: email,
+          location: document.getElementById('location').value,
+          savedAt: new Date().toISOString()
+        };
+        localStorage.setItem('js_lead_captured', JSON.stringify(leadData));
+        // In production this would POST to a backend endpoint
+      }
+      document.getElementById(`step-${currentStep}`).classList.remove('active');
+      document.getElementById(`prog-${currentStep}`).classList.remove('active');
+      document.getElementById(`prog-${currentStep}`).classList.add('done');
+      if (currentStep < 4) document.getElementById(`line-${currentStep}`).classList.add('done');
+      currentStep = n;
+      document.getElementById(`step-${n}`).classList.add('active');
+      document.getElementById(`prog-${n}`).classList.add('active');
+      document.getElementById(`prog-${n}`).classList.remove('done');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (n === 4) populateReview();
+    }
+
+    function populateReview() {
+      const fields = {
+        'Name': (document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value).trim(),
+        'Email': document.getElementById('email').value,
+        'Location': document.getElementById('location').value,
+        'Marque': document.getElementById('marque').value,
+        'Model': document.getElementById('model').value,
+        'Year': document.getElementById('year').value,
+        'Chassis': document.getElementById('chassis').value,
+        'Driver side': document.getElementById('driverSide').value,
+        'Material': document.getElementById('material').value,
+        'Trim colour': document.getElementById('trimColour').value,
+        'Kits required': document.getElementById('kitsRequired').value,
+      };
+      const el = document.getElementById('reviewSummary');
+      el.innerHTML = '<strong style="color:var(--navy); font-size:0.82rem; text-transform:uppercase; letter-spacing:0.08em;">Review your enquiry</strong><br><br>' +
+        Object.entries(fields).filter(([k,v]) => v).map(([k,v]) => `<strong>${k}:</strong> ${v}`).join('<br>');
+    }
+
+    function submitForm() {
+      // In production: POST all form data to backend/Formspree
+      document.getElementById('step-4').classList.remove('active');
+      document.getElementById('confirmation').classList.add('active');
+      document.getElementById('prog-4').classList.remove('active');
+      document.getElementById('prog-4').classList.add('done');
+      document.getElementById('line-3').classList.add('done');
+      // Clear stored quote items
+      localStorage.removeItem('js_quote_model');
+      localStorage.removeItem('js_quote_items');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // initialise sidebar
+    updateSidebar(localStorage.getItem('js_quote_model'), null);
+  </script>
+
+</body>
+</html>
