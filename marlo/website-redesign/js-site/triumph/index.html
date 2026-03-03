@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triumph TR Interior Trim Kits — John Skinner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1a2535; --navy-light: #243350; --gold: #b8922a; --gold-light: #d4a940;
+      --cream: #f7f3eb; --white: #fff; --grey: #5a6373; --warm-bg: #fdf9f2;
+      --font-serif: 'EB Garamond', Georgia, serif; --font-sans: 'Inter', Arial, sans-serif;
+      --radius: 6px; --shadow: 0 2px 16px rgba(0,0,0,0.07); --shadow-md: 0 6px 32px rgba(0,0,0,0.13);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); color: #1e1e1e; background: var(--cream); font-size: 16px; line-height: 1.7; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .site-header { background: var(--navy); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); }
+    .logo-wrap { padding: 14px 0; text-decoration: none; display: block; }
+    .logo { font-family: var(--font-serif); color: var(--white); font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
+    .logo em { color: var(--gold); font-style: normal; }
+    .logo-sub { font-size: 0.62rem; color: rgba(255,255,255,0.38); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 3px; }
+    nav { display: flex; gap: 4px; align-items: center; }
+    nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 22px 11px; }
+    nav a.cta { background: var(--gold); color: var(--navy); padding: 9px 20px; border-radius: var(--radius); margin-left: 10px; font-weight: 700; }
+    .breadcrumb { background: var(--navy-light); padding: 10px 32px; font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+    .breadcrumb a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    .breadcrumb span { margin: 0 8px; }
+    .hero { background: var(--navy); color: var(--white); padding: 56px 24px 68px; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(184,146,42,0.1) 0%, transparent 60%); }
+    .hero-inner { max-width: 680px; position: relative; }
+    .hero-eyebrow { font-size: 0.66rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 12px; }
+    .hero h1 { font-family: var(--font-serif); font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 400; line-height: 1.15; margin-bottom: 14px; }
+    .hero p { color: rgba(255,255,255,0.62); font-size: 1.02rem; line-height: 1.8; }
+    .trust-strip { background: var(--gold); padding: 12px 24px; display: flex; justify-content: center; flex-wrap: wrap; }
+    .trust-item { color: var(--navy); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 18px; border-right: 1px solid rgba(26,37,53,0.2); }
+    .trust-item:last-child { border-right: none; }
+    .models-section { padding: 64px 0 80px; }
+    .section-intro { max-width: 620px; margin-bottom: 48px; }
+    .section-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .section-title { font-family: var(--font-serif); font-size: clamp(1.7rem, 3.5vw, 2.4rem); color: var(--navy); font-weight: 400; line-height: 1.18; margin-bottom: 12px; }
+    .section-sub { color: var(--grey); font-size: 0.95rem; line-height: 1.8; }
+
+    /* TR MODEL CARDS - horizontal timeline style */
+    .tr-timeline { display: flex; flex-direction: column; gap: 0; }
+    .tr-card {
+      display: grid; grid-template-columns: 100px 1fr auto;
+      align-items: center; background: var(--white);
+      border-radius: 0; box-shadow: none;
+      border-bottom: 1px solid #ede7dc;
+      padding: 20px 24px; transition: background 0.15s;
+      text-decoration: none; color: inherit;
+    }
+    .tr-card:first-child { border-radius: 10px 10px 0 0; border-top: 4px solid var(--gold); }
+    .tr-card:last-child { border-radius: 0 0 10px 10px; border-bottom: none; }
+    .tr-card:hover { background: var(--warm-bg); }
+    .tr-years { font-size: 0.75rem; color: var(--grey); font-weight: 600; letter-spacing: 0.06em; }
+    .tr-name { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 600; color: var(--navy); margin-bottom: 3px; }
+    .tr-desc { font-size: 0.84rem; color: var(--grey); }
+    .tr-link { font-size: 0.76rem; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap; }
+    .tr-link::after { content: ' →'; }
+    .box-shadow-wrap { box-shadow: var(--shadow); border-radius: 10px; overflow: hidden; }
+
+    .info-section { background: var(--warm-bg); border-top: 1px solid #e8e1d5; padding: 52px 0; }
+    .info-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 56px; }
+    @media (max-width: 768px) { .info-grid { grid-template-columns: 1fr; } }
+    .info-grid p { color: var(--grey); font-size: 0.93rem; line-height: 1.82; margin-bottom: 14px; }
+    .info-card { background: var(--white); border-radius: 8px; padding: 24px; box-shadow: var(--shadow); border-top: 3px solid var(--gold); }
+    .info-card h4 { font-family: var(--font-serif); font-size: 1.1rem; color: var(--navy); margin-bottom: 12px; }
+    .info-card ul { list-style: none; }
+    .info-card li { font-size: 0.86rem; color: var(--grey); padding: 7px 0; border-bottom: 1px solid #f0ebe1; display: flex; align-items: center; gap: 8px; }
+    .info-card li:last-child { border-bottom: none; }
+    .info-card li::before { content: '✓'; color: var(--gold); font-weight: 700; }
+    .btn { display: inline-block; padding: 13px 28px; border-radius: var(--radius); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
+    .btn-primary { background: var(--gold); color: var(--navy); }
+    .btn-primary:hover { background: var(--gold-light); }
+    footer { background: #111820; color: rgba(255,255,255,0.42); padding: 40px 24px; text-align: center; font-size: 0.82rem; line-height: 2; }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer strong { color: rgba(255,255,255,0.65); }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="logo-wrap" href="../index.html">
+      <div class="logo">John <em>Skinner</em></div>
+      <div class="logo-sub">Est. 1980 · Cheltenham</div>
+    </a>
+    <nav>
+      <a href="../index.html#find-your-car">Our Cars</a>
+      <a href="#">Materials</a>
+      <a href="#">Why Us</a>
+      <a href="../quote/index.html" class="cta">Request a Quote</a>
+    </nav>
+  </header>
+
+  <div class="breadcrumb">
+    <a href="../index.html">Home</a><span>›</span>
+    <a href="../index.html#find-your-car">Our Cars</a><span>›</span>
+    Triumph TR
+  </div>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-inner">
+        <p class="hero-eyebrow">Triumph TR Interior Trim</p>
+        <h1>The complete range of<br>Triumph TR trim kits</h1>
+        <p>From TR2 to TR6 — we manufacture interior trim kits for the full Triumph TR range. Original specification, made-to-order in Cheltenham. Select your model below.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="trust-strip">
+    <div class="trust-item">TR2 through TR6</div>
+    <div class="trust-item">All trim areas covered</div>
+    <div class="trust-item">OEM specification</div>
+    <div class="trust-item">Made to order</div>
+  </div>
+
+  <section class="models-section">
+    <div class="wrap">
+      <div class="section-intro">
+        <p class="section-label">Select your model</p>
+        <h2 class="section-title">Triumph TR Models</h2>
+        <p class="section-sub">Each TR model has specific trim requirements. Select yours for the full list of available kits.</p>
+      </div>
+      <div class="box-shadow-wrap">
+        <div class="tr-timeline">
+          <a href="#" class="tr-card">
+            <div class="tr-years">1953 – 1955</div>
+            <div><div class="tr-name">Triumph TR2</div><div class="tr-desc">The original TR. Seats, panels, carpet, tonneau cover.</div></div>
+            <span class="tr-link">View kits</span>
+          </a>
+          <a href="#" class="tr-card">
+            <div class="tr-years">1955 – 1957</div>
+            <div><div class="tr-name">Triumph TR3</div><div class="tr-desc">First significant TR update. Similar trim to TR2 with detail changes.</div></div>
+            <span class="tr-link">View kits</span>
+          </a>
+          <a href="#" class="tr-card">
+            <div class="tr-years">1957 – 1962</div>
+            <div><div class="tr-name">Triumph TR3A / TR3B</div><div class="tr-desc">Full-width grille revision. Distinct trim specifications.</div></div>
+            <span class="tr-link">View kits</span>
+          </a>
+          <a href="#" class="tr-card">
+            <div class="tr-years">1961 – 1965</div>
+            <div><div class="tr-name">Triumph TR4</div><div class="tr-desc">New body style. Updated interior with wind-up windows.</div></div>
+            <span class="tr-link">View kits</span>
+          </a>
+          <a href="#" class="tr-card">
+            <div class="tr-years">1965 – 1967</div>
+            <div><div class="tr-name">Triumph TR4A</div><div class="tr-desc">IRS rear suspension. Minor interior trim updates from TR4.</div></div>
+            <span class="tr-link">View kits</span>
+          </a>
+          <a href="#" class="tr-card">
+            <div class="tr-years">1967 – 1968</div>
+            <div><div class="tr-name">Triumph TR5</div><div class="tr-desc">Fuel injection. Updated interior — trim differs from TR4A.</div></div>
+            <span class="tr-link">View kits</span>
+          </a>
+          <a href="#" class="tr-card">
+            <div class="tr-years">1967 – 1968</div>
+            <div><div class="tr-name">Triumph TR250</div><div class="tr-desc">US market carburettor version of the TR5. Same trim specification.</div></div>
+            <span class="tr-link">View kits</span>
+          </a>
+          <a href="tr6.html" class="tr-card">
+            <div class="tr-years">1969 – 1976</div>
+            <div><div class="tr-name">Triumph TR6</div><div class="tr-desc">The most popular TR. Full range of kits available — seats, panels, carpet, hood, tonneau.</div></div>
+            <span class="tr-link">View kits</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="info-section">
+    <div class="wrap">
+      <div class="info-grid">
+        <div>
+          <p class="section-label">About our Triumph TR kits</p>
+          <p style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--navy); line-height: 1.45; margin-bottom: 20px;">The Triumph TR range spans 23 years and several generations — each with its own trim specifications and quirks. We know them all.</p>
+          <p>We've been making TR trim kits since 1980. The patterns are original, the materials are correct, and we know where the spec changed between models and production years.</p>
+          <p>If you're not certain which trim specification applies to your car, tell us the chassis number. We'll identify exactly what you need before you commit to anything.</p>
+          <a href="../quote/index.html" class="btn btn-primary" style="margin-top:20px;">Request a quote</a>
+        </div>
+        <div>
+          <div class="info-card">
+            <h4>Available for all TR models</h4>
+            <ul>
+              <li>Front seat cover kits</li>
+              <li>Rear seat covers (TR4 onwards)</li>
+              <li>Door trim panel sets</li>
+              <li>Carpet sets &amp; footwells</li>
+              <li>Hood (soft top)</li>
+              <li>Tonneau cover</li>
+              <li>Headlining (hardtop models)</li>
+              <li>Dash trim</li>
+              <li>Seat foams &amp; wadding</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <strong>John Skinner (Manufacturing) Ltd</strong><br>
+    Classic Car Interior Trim Specialists · Est. 1980 · Cheltenham, England<br><br>
+    <a href="mailto:sales@john-skinner.co.uk">sales@john-skinner.co.uk</a> ·
+    <a href="../quote/index.html">Request a Quote</a><br><br>
+    <span style="opacity:0.45; font-size:0.75rem;">© 2025 John Skinner (Manufacturing) Ltd. All rights reserved.</span>
+  </footer>
+
+</body>
+</html>
