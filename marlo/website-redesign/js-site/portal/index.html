@@ -412,30 +412,40 @@
   }
 
   async function initDashboard() {
-    const { data: { session } } = await sb.auth.getSession();
-    if (!session) return;
-    currentUser = session.user;
+    try {
+      const { data: { session } } = await sb.auth.getSession();
+      if (!session) return;
+      currentUser = session.user;
 
-    document.getElementById('auth-section').style.display = 'none';
-    document.getElementById('dashboard').style.display = 'block';
-    document.getElementById('logout-btn').style.display = 'block';
+      document.getElementById('auth-section').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+      document.getElementById('logout-btn').style.display = 'block';
 
-    const { data: cust, error: custErr } = await sb.from('customers').select('*').eq('id', currentUser.id).maybeSingle();
-    customerData = cust;
-    document.getElementById('greeting').textContent = `Welcome back, ${cust?.first_name || currentUser.email.split('@')[0]}`;
-    document.getElementById('dashboard').style.display = 'block';
-    loadQuotes();
+      try {
+        const { data: cust } = await sb.from('customers').select('*').eq('id', currentUser.id).maybeSingle();
+        customerData = cust;
+        document.getElementById('greeting').textContent = `Welcome back, ${cust?.first_name || currentUser.email.split('@')[0]}`;
+      } catch(e) {
+        document.getElementById('greeting').textContent = `Welcome back`;
+      }
+
+      loadQuotes();
+    } catch(e) {
+      console.error('initDashboard error:', e);
+    }
   }
 
-  sb.auth.onAuthStateChange(async (event, session) => {
-    if (session) {
-      await initDashboard();
-    } else {
-      document.getElementById('auth-section').style.display = '';
-      document.getElementById('dashboard').style.display = 'none';
-      document.getElementById('logout-btn').style.display = 'none';
+  // On page load, check for existing session once
+  (async () => {
+    try {
+      const { data: { session } } = await sb.auth.getSession();
+      if (session) {
+        await initDashboard();
+      }
+    } catch(e) {
+      console.error('Session check failed:', e);
     }
-  });
+  })();
 </script>
 </body>
 </html>
