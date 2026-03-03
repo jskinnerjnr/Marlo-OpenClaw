@@ -126,8 +126,20 @@
 
 <div id="loading" class="spinner">Verifying access…</div>
 <div id="denied" class="denied" style="display:none">
-  <h2>Access Denied</h2>
-  <p>You do not have admin privileges. Please sign in with an admin account.</p>
+  <h2>Admin Sign In</h2>
+  <p>Sign in with your JSM admin account.</p>
+  <div style="max-width:340px;margin:24px auto 0;text-align:left;">
+    <div style="margin-bottom:14px;">
+      <label style="font-size:0.8rem;font-weight:700;color:var(--navy);display:block;margin-bottom:5px;">Email</label>
+      <input id="admin-email" type="email" placeholder="your@email.com" style="width:100%;padding:10px 14px;border:1.5px solid #d8d2c8;border-radius:6px;font-size:0.9rem;font-family:var(--font-sans);">
+    </div>
+    <div style="margin-bottom:20px;">
+      <label style="font-size:0.8rem;font-weight:700;color:var(--navy);display:block;margin-bottom:5px;">Password</label>
+      <input id="admin-password" type="password" placeholder="••••••••" style="width:100%;padding:10px 14px;border:1.5px solid #d8d2c8;border-radius:6px;font-size:0.9rem;font-family:var(--font-sans);">
+    </div>
+    <button onclick="adminLogin()" style="width:100%;background:var(--navy);color:#fff;border:none;padding:13px;border-radius:6px;font-family:var(--font-sans);font-size:0.88rem;font-weight:700;cursor:pointer;letter-spacing:0.05em;text-transform:uppercase;">Sign in →</button>
+    <p id="admin-login-error" style="color:#c0392b;font-size:0.8rem;margin-top:10px;display:none;"></p>
+  </div>
 </div>
 
 <div id="main" style="display:none">
@@ -179,6 +191,16 @@
   }
 
   async function logout() { await sb.auth.signOut(); location.reload(); }
+
+  async function adminLogin() {
+    const email = document.getElementById('admin-email').value.trim();
+    const password = document.getElementById('admin-password').value;
+    const err = document.getElementById('admin-login-error');
+    err.style.display = 'none';
+    const { error } = await sb.auth.signInWithPassword({ email, password });
+    if (error) { err.textContent = error.message; err.style.display = 'block'; return; }
+    location.reload();
+  }
 
   function setFilter(status, btn) {
     currentFilter = status;
