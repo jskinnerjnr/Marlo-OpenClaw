@@ -326,6 +326,7 @@
     }
     scroll.innerHTML = msgs.map(buildBubble).join('');
     scroll.scrollTop = scroll.scrollHeight;
+    lastMessageTime = msgs[msgs.length - 1].created_at;
     markAdminMessagesRead();
   }
 
@@ -362,23 +363,33 @@
     }
   }
 
+  let lastMessageTime = null;
+
+  async function pollMessages() {
+    const query = sb.from('messages').select('*')
+      .eq('quote_id', quoteId).eq('is_internal', false)
+      .order('created_at', { ascending: true });
+    if (lastMessageTime) query.gt('created_at', lastMessageTime);
+    const { data: newMsgs } = await query;
+    if (!newMsgs || newMsgs.length === 0) return;
+    const scroll = document.getElementById('messages-scroll');
+    const isAtBottom = scroll.scrollHeight - scroll.scrollTop - scroll.clientHeight < 60;
+    const empty = scroll.querySelector('p');
+    if (empty) scroll.innerHTML = '';
+    newMsgs.forEach(msg => {
+      scroll.insertAdjacentHTML('beforeend', buildBubble(msg));
+      lastMessageTime = msg.created_at;
+    });
+    if (isAtBottom) scroll.scrollTop = scroll.scrollHeight;
+    markAdminMessagesRead();
+  }
+
   function subscribeRealtime() {
-    sb.channel('quote-messages-' + quoteId)
-      .on('postgres_changes', {
-        event: 'INSERT', schema: 'public', table: 'messages',
-        filter: `quote_id=eq.${quoteId}`
-      }, (payload) => {
-        const msg = payload.new;
-        if (msg.is_internal) return;
-        const scroll = document.getElementById('messages-scroll');
-        const isAtBottom = scroll.scrollHeight - scroll.scrollTop - scroll.clientHeight < 60;
-        const empty = scroll.querySelector('p');
-        if (empty) scroll.innerHTML = '';
-        scroll.insertAdjacentHTML('beforeend', buildBubble(msg));
-        if (isAtBottom) scroll.scrollTop = scroll.scrollHeight;
-        if (msg.sender_type === 'admin') markAdminMessagesRead();
-      })
-      .subscribe();
+    // Set lastMessageTime from current messages
+    const scroll = document.getElementById('messages-scroll');
+    const bubbles = scroll.querySelectorAll('.msg-bubble');
+    // Poll every 3 seconds for new messages
+    setInterval(pollMessages, 3000);
   }
 
   (async () => {
