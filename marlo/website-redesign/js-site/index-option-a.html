@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>John Skinner — Classic Car Interior Trim Specialists</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #181e38; --navy-light: #272e66;
+      --gold: #c8ba9a; --gold-light: #d4cdb8;
+      --cream: #f6f6f3; --white: #ffffff;
+      --grey: #5a6373; --light-grey: #e5e0d6;
+      --text: #1e1e1e; --warm-bg: #efede9;
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-sans: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+      --radius: 6px; --shadow: 0 2px 20px rgba(0,0,0,0.06);
+      --shadow-md: 0 8px 40px rgba(0,0,0,0.11);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--cream); font-size: 16px; line-height: 1.7; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* HEADER */
+    .site-header { background: var(--navy); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); position: sticky; top: 0; z-index: 100; }
+    .logo-wrap { padding: 14px 0; text-decoration: none; display: block; }
+    .logo { font-family: var(--font-serif); color: var(--white); font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
+    .logo em { color: var(--gold); font-style: normal; }
+    .logo-sub { font-size: 0.62rem; color: rgba(255,255,255,0.38); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 3px; }
+    nav { display: flex; gap: 4px; align-items: center; }
+    nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 22px 11px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold-light); }
+    nav a.cta { background: var(--navy); color: var(--gold); border: 2px solid var(--gold); padding: 9px 20px; border-radius: var(--radius); margin-left: 10px; border-bottom: 2px solid var(--gold); font-weight: 700; }
+    nav a.cta:hover { background: var(--gold); color: var(--navy); }
+
+    /* HERO */
+    .hero { background: var(--navy); color: var(--white); padding: 100px 24px 120px; text-align: center; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 40%, rgba(200,186,154,0.08) 0%, transparent 65%); pointer-events: none; }
+    .hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 24px; }
+    .hero h1 { font-family: var(--font-serif); font-size: clamp(2.6rem, 5.5vw, 4.2rem); font-weight: 400; line-height: 1.1; margin-bottom: 26px; }
+    .hero h1 em { color: var(--gold-light); font-style: italic; }
+    .hero p { color: rgba(255,255,255,0.58); font-size: clamp(1rem, 2vw, 1.12rem); max-width: 520px; margin: 0 auto 48px; line-height: 1.9; }
+    .hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 15px 36px; border-radius: var(--radius); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.22s; cursor: pointer; }
+    .btn-primary { background: var(--navy); color: var(--white); border: 2px solid var(--white); }
+    .btn-primary:hover { background: var(--white); color: var(--navy); }
+    .btn-primary-cream { background: var(--gold); color: var(--navy); border: 2px solid var(--gold); }
+    .btn-primary-cream:hover { background: transparent; color: var(--navy); border-color: var(--navy); }
+    .btn-outline { border: 2px solid rgba(255,255,255,0.28); color: var(--white); background: transparent; }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+    .btn-outline-dark { border: 2px solid var(--navy); color: var(--navy); background: transparent; letter-spacing: 0.07em; }
+    .btn-outline-dark:hover { background: var(--navy); color: var(--white); }
+
+    /* SECTION DIVIDER */
+    .section-rule { border: none; border-top: 1px solid var(--gold); opacity: 0.45; margin: 0; }
+
+    /* TRUST STRIP */
+    .trust-strip { background: var(--cream); padding: 20px 24px; display: flex; justify-content: center; flex-wrap: wrap; border-bottom: 1px solid var(--gold); opacity: 1; }
+    .trust-item { color: var(--navy); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; padding: 4px 22px; border-right: 1px solid rgba(200,186,154,0.5); }
+    .trust-item:last-child { border-right: none; }
+
+    /* SECTIONS — generous spacing, cream/white backgrounds */
+    section { padding: 100px 0; }
+    .section-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .section-title { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.15; margin-bottom: 18px; color: var(--navy); }
+    .section-sub { color: var(--grey); font-size: 1.02rem; line-height: 1.85; }
+    .divider { width: 44px; height: 1px; background: var(--gold); margin: 22px 0; }
+
+    /* MARQUE SECTION — white bg, gold accents */
+    .marque-section { background: var(--white); }
+    .marque-intro { text-align: center; max-width: 600px; margin: 0 auto 64px; }
+    .marque-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px; }
+    .marque-card { background: var(--white); border-radius: 8px; box-shadow: var(--shadow); overflow: hidden; text-decoration: none; transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s; display: flex; flex-direction: column; border: 1px solid #e8e3da; }
+    .marque-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--gold); }
+    .marque-img { height: 155px; background: var(--navy); display: flex; align-items: center; justify-content: center; position: relative; }
+    .marque-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(200,186,154,0.12) 0%, transparent 55%); }
+    .marque-emblem { font-family: var(--font-serif); font-size: 2.1rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; z-index: 1; }
+    .marque-body { padding: 28px 26px 30px; flex: 1; display: flex; flex-direction: column; }
+    .marque-body h3 { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 600; color: var(--navy); margin-bottom: 10px; }
+    .marque-body p { color: var(--grey); font-size: 0.89rem; line-height: 1.7; flex: 1; margin-bottom: 18px; }
+    .model-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+    .tag { background: var(--cream); color: var(--navy); font-size: 0.67rem; font-weight: 600; padding: 4px 11px; border-radius: 20px; border: 1px solid #ddd8ce; }
+    .marque-link { font-size: 0.77rem; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid var(--gold); padding-bottom: 2px; display: inline-block; }
+    .marque-link::after { content: ' →'; }
+
+    /* WHY SECTION — cream bg */
+    .why-section { background: var(--cream); }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+    @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; gap: 48px; } }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px 52px; }
+    @media (max-width: 560px) { .why-grid { grid-template-columns: 1fr; } }
+    .why-item { padding-top: 6px; border-top: 1px solid rgba(200,186,154,0.4); }
+    .why-item .why-icon { font-size: 1.5rem; margin-bottom: 10px; }
+    .why-item h4 { font-family: var(--font-serif); font-size: 1.14rem; color: var(--navy); margin-bottom: 8px; }
+    .why-item p { font-size: 0.88rem; color: var(--grey); line-height: 1.8; }
+
+    /* HAMMOND — navy section */
+    .hammond-section { background: var(--navy); color: var(--white); }
+    .hammond-section .section-title { color: var(--white); }
+    .hammond-section .section-sub { color: rgba(255,255,255,0.58); }
+    .hammond-quote { border-left: 2px solid var(--gold); padding: 24px 30px; margin-top: 32px; }
+    .hammond-quote blockquote { font-family: var(--font-serif); font-size: 1.2rem; font-style: italic; line-height: 1.8; color: rgba(255,255,255,0.85); margin-bottom: 14px; }
+    .hammond-quote cite { font-size: 0.74rem; color: var(--gold); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+    .hammond-visual { background: rgba(255,255,255,0.04); border-radius: 8px; height: 340px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(200,186,154,0.2); text-align: center; padding: 24px; font-family: var(--font-serif); color: rgba(255,255,255,0.2); font-size: 0.95rem; }
+
+    /* PROCESS — white bg */
+    .process-section { background: var(--white); }
+    .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 40px; margin-top: 60px; }
+    .process-step { text-align: center; }
+    .step-num { width: 48px; height: 48px; border-radius: 50%; background: transparent; border: 1px solid var(--gold); color: var(--navy); font-family: var(--font-serif); font-size: 1.4rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+    .process-step h4 { font-family: var(--font-serif); font-size: 1.12rem; color: var(--navy); margin-bottom: 10px; }
+    .process-step p { font-size: 0.87rem; color: var(--grey); line-height: 1.78; }
+
+    /* CTA BANNER — navy */
+    .cta-banner { background: var(--navy); color: var(--white); text-align: center; padding: 100px 24px; border-top: 1px solid rgba(200,186,154,0.35); }
+    .cta-banner h2 { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 18px; font-weight: 400; }
+    .cta-banner p { color: rgba(255,255,255,0.55); font-size: 1.05rem; margin-bottom: 42px; max-width: 440px; margin-left: auto; margin-right: auto; }
+
+    /* FOOTER */
+    footer { background: #111820; color: rgba(255,255,255,0.42); padding: 52px 24px; text-align: center; font-size: 0.82rem; line-height: 2.1; border-top: 1px solid rgba(200,186,154,0.15); }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer strong { color: rgba(255,255,255,0.65); }
+
+    /* MOBILE */
+    @media (max-width: 640px) {
+      .site-header { padding: 0 18px; }
+      nav { display: none; }
+      .hero { padding: 70px 20px 80px; }
+      section { padding: 72px 0; }
+      .cta-banner { padding: 72px 20px; }
+      .trust-strip { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="logo-wrap" href="index.html">
+      <div class="logo">John <em>Skinner</em></div>
+      <div class="logo-sub">Est. 1980 · Cheltenham</div>
+    </a>
+    <nav>
+      <a href="jaguar/index.html">Our Cars</a>
+      <a href="materials/index.html">Materials</a>
+      <a href="workshop/index.html">Workshop</a>
+      <a href="why-us/index.html">Why Us</a>
+      <a href="gallery/index.html">Gallery</a>
+      <a href="handbook/index.html">Handbook</a>
+      <a href="about/index.html">About</a>
+      <a href="quote/index.html" class="cta">Request a Quote</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <p class="hero-eyebrow">Award-winning interior trim · Made in Cheltenham · Ships worldwide</p>
+    <h1>The finest interior trim<br>for <em>classic British cars</em></h1>
+    <p>Made-to-order in our Cheltenham workshop since 1980. Original specification trim kits for Jaguar, Triumph TR, Austin Healey and MG — backed by 45 years of expertise.</p>
+    <div class="hero-cta">
+      <a href="#find-your-car" class="btn btn-primary">Find your car →</a>
+      <a href="#why-us" class="btn btn-outline">Why John Skinner</a>
+    </div>
+  </section>
+
+  <div class="trust-strip">
+    <div class="trust-item">45 Years of Craft</div>
+    <div class="trust-item">Made in Britain</div>
+    <div class="trust-item">Ships Worldwide</div>
+    <div class="trust-item">Award-Winning Kits</div>
+    <div class="trust-item">OEM Specification</div>
+  </div>
+
+  <hr class="section-rule">
+
+  <section class="marque-section" id="find-your-car">
+    <div class="wrap">
+      <div class="marque-intro">
+        <p class="section-label">Browse by Marque</p>
+        <h2 class="section-title">Find your car</h2>
+        <p class="section-sub">We manufacture complete interior trim kits for four of Britain's most celebrated classic marques. Select yours to explore available kits by model.</p>
+      </div>
+      <div class="marque-grid">
+        <a href="jaguar/index.html" class="marque-card">
+          <div class="marque-img"><span class="marque-emblem">Jaguar</span></div>
+          <div class="marque-body">
+            <h3>Jaguar</h3>
+            <p>Complete interior kits for E-Type and XK series — built to original factory specification across all body styles and series.</p>
+            <div class="model-tags">
+              <span class="tag">E-Type OTS</span><span class="tag">E-Type FHC</span><span class="tag">E-Type 2+2</span>
+              <span class="tag">XK120</span><span class="tag">XK140</span><span class="tag">XK150</span>
+            </div>
+            <span class="marque-link">View Jaguar kits</span>
+          </div>
+        </a>
+        <a href="triumph/index.html" class="marque-card">
+          <div class="marque-img"><span class="marque-emblem">Triumph</span></div>
+          <div class="marque-body">
+            <h3>Triumph TR</h3>
+            <p>Trim kits covering the full TR range from TR2 through TR6 — one of the most comprehensive ranges available.</p>
+            <div class="model-tags">
+              <span class="tag">TR2</span><span class="tag">TR3 / TR3A/B</span><span class="tag">TR4 / TR4A</span>
+              <span class="tag">TR5 / TR250</span><span class="tag">TR6</span>
+            </div>
+            <span class="marque-link">View Triumph kits</span>
+          </div>
+        </a>
+        <a href="#" class="marque-card">
+          <div class="marque-img"><span class="marque-emblem">Healey</span></div>
+          <div class="marque-body">
+            <h3>Austin Healey</h3>
+            <p>Kits for the 100, 100-6 and 3000 series, with full knowledge of specification changes across each variant.</p>
+            <div class="model-tags">
+              <span class="tag">100 (BN1/BN2)</span><span class="tag">100-6 (BN4/BN6)</span><span class="tag">3000 (BN7–BJ8)</span>
+            </div>
+            <span class="marque-link">View Healey kits</span>
+          </div>
+        </a>
+        <a href="#" class="marque-card">
+          <div class="marque-img"><span class="marque-emblem">MGA</span></div>
+          <div class="marque-body">
+            <h3>MGA</h3>
+            <p>Interior trim kits for MGA Roadster and Coupé — factory correct, beautifully made, and built to last.</p>
+            <div class="model-tags">
+              <span class="tag">MGA Roadster</span><span class="tag">MGA Coupé</span>
+            </div>
+            <span class="marque-link">View MGA kits</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-rule">
+
+  <section class="why-section" id="why-us">
+    <div class="wrap">
+      <div class="two-col">
+        <div>
+          <p class="section-label">Why John Skinner</p>
+          <h2 class="section-title">This is what 45 years of focus looks like</h2>
+          <div class="divider"></div>
+          <p class="section-sub">We do one thing. We've done it since 1980. Our focus on a handful of marques means our knowledge goes deeper than any generalist trimmer can match — and it shows in every kit we make.</p>
+          <p style="margin-top:18px;" class="section-sub">We're more expensive than some alternatives. Deliberately so. The materials cost more, the patterns are original spec, and workshop skill isn't a commodity. Our customers know the difference — and they don't buy twice.</p>
+          <a href="#" class="btn btn-outline-dark" style="margin-top:36px;">Read our philosophy</a>
+        </div>
+        <div class="why-grid">
+          <div class="why-item"><div class="why-icon">🪡</div><h4>Original specification</h4><p>Every kit made to OEM factory spec. Not approximate — accurate. Patterns refined over four decades.</p></div>
+          <div class="why-item"><div class="why-icon">🏭</div><h4>Made in Cheltenham</h4><p>Cut, sewn and trimmed in our own workshop by skilled craftspeople. We don't outsource.</p></div>
+          <div class="why-item"><div class="why-icon">🎨</div><h4>Widest colour range</h4><p>The most comprehensive library of trim materials and colours in the industry — all in-house.</p></div>
+          <div class="why-item"><div class="why-icon">📞</div><h4>Expert guidance</h4><p>Every enquiry handled by someone who genuinely knows these cars. We'll guide your choices.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-rule">
+
+  <section class="hammond-section">
+    <div class="wrap">
+      <div class="two-col">
+        <div>
+          <p class="section-label" style="color:var(--gold);">A Famous Customer</p>
+          <h2 class="section-title">Richard Hammond chose John Skinner</h2>
+          <p class="section-sub">When Richard Hammond wanted his Jaguar XK150 FHC restored to perfection, he came to us. Not the cheapest option — the right one.</p>
+          <div class="hammond-quote">
+            <blockquote>"The attention to detail and quality of the trim is absolutely superb — exactly what you'd expect from specialists who truly know these cars."</blockquote>
+            <cite>Richard Hammond · Jaguar XK150 FHC restoration</cite>
+          </div>
+          <a href="#" class="btn btn-outline" style="margin-top:32px; border-color:rgba(255,255,255,0.3);">See the XK150 project</a>
+        </div>
+        <div class="hammond-visual">
+          Photography from the Hammond XK150 project<br><br>
+          <span style="color:var(--gold); font-size:0.85rem;">[ Image ]</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-rule" style="border-color:rgba(200,186,154,0.2); opacity:1;">
+
+  <section class="process-section">
+    <div class="wrap">
+      <div style="text-align:center; max-width:580px; margin:0 auto 8px;">
+        <p class="section-label">How It Works</p>
+        <h2 class="section-title">From enquiry to finished kit</h2>
+        <p class="section-sub">No cart, no checkout, no guesswork. Every kit is made-to-order — so we start with a conversation.</p>
+      </div>
+      <div class="process-steps">
+        <div class="process-step"><div class="step-num">1</div><h4>Find your model</h4><p>Browse by marque and model. Every variant is listed — select yours to see what we make for it.</p></div>
+        <div class="process-step"><div class="step-num">2</div><h4>Choose your kits</h4><p>Select the trim items you need — seats, panels, carpet, hood — and add to your quote list.</p></div>
+        <div class="process-step"><div class="step-num">3</div><h4>Tell us about your car</h4><p>Share your car's details and material preferences. We use this to spec your kit correctly.</p></div>
+        <div class="process-step"><div class="step-num">4</div><h4>We get back to you</h4><p>We'll come back with a full quote, lead time, and any questions about your restoration.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-banner">
+    <h2>Ready to start your restoration?</h2>
+    <p>Find your car, choose your kits, and request a quote — no commitment required.</p>
+    <a href="#find-your-car" class="btn btn-primary-cream">Browse by car →</a>
+  </div>
+
+  <footer>
+    <strong>John Skinner (Manufacturing) Ltd</strong><br>
+    Classic Car Interior Trim Specialists · Est. 1980 · Cheltenham, England<br><br>
+    <a href="mailto:sales@john-skinner.co.uk">sales@john-skinner.co.uk</a> ·
+    <a href="quote/index.html">Request a Quote</a> ·
+    <a href="#why-us">Why John Skinner</a><br><br>
+    <span style="opacity:0.45; font-size:0.75rem;">© 2025 John Skinner (Manufacturing) Ltd. All rights reserved.</span>
+  </footer>
+
+</body>
+</html>
