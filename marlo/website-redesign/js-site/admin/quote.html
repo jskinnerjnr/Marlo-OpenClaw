@@ -249,7 +249,7 @@
             <button class="type-btn active" id="type-reply" onclick="setMsgType('reply')">Reply to Customer</button>
             <button class="type-btn internal" id="type-internal" onclick="setMsgType('internal')">Internal Note</button>
           </div>
-          <textarea id="admin-msg-text" placeholder="Type your message…"></textarea>
+          <textarea id="admin-msg-text" placeholder="Type your message…" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendAdminMsg();}"></textarea>
           <div class="input-actions">
             <button class="btn-sm btn-ghost" onclick="document.getElementById('admin-file').click()">📎 Attach</button>
             <input type="file" id="admin-file" style="display:none" onchange="handleAttach(this)" />

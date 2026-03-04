@@ -194,7 +194,7 @@
         <div class="spinner">Loading messages…</div>
       </div>
       <div class="message-input">
-        <textarea id="msg-text" placeholder="Type your message…"></textarea>
+        <textarea id="msg-text" placeholder="Type your message…" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage();}"></textarea>
         <div class="input-actions">
           <button class="btn-attach" onclick="document.getElementById('file-upload').click()">📎 Attach</button>
           <input type="file" id="file-upload" onchange="handleFileSelect(this)" />
