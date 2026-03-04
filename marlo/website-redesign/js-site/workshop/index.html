@@ -29,7 +29,8 @@
     nav { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
     nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 22px 10px; border-bottom: 2px solid transparent; transition: color 0.2s; }
     nav a:hover, nav a.active { color: var(--gold-light); border-bottom-color: var(--gold-light); }
-    nav a.cta { background: var(--gold); color: var(--navy); padding: 9px 20px; border-radius: var(--radius); margin-left: 8px; border-bottom: none; font-weight: 700; }
+    nav a.cta { background: var(--navy); color: var(--gold); border: 2px solid var(--gold); padding: 9px 20px; border-radius: var(--radius); margin-left: 8px; border-bottom: none; font-weight: 700; }
+    nav a.cta:hover { background: var(--gold); color: var(--navy); }
 
     .page-hero { background: var(--navy); color: var(--white); padding: 80px 24px 96px; text-align: center; position: relative; overflow: hidden; }
     .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 40%, rgba(200,186,154,0.1) 0%, transparent 65%); pointer-events: none; }
@@ -286,5 +287,39 @@
   <span style="opacity:0.45; font-size:0.75rem;">© 2025 John Skinner (Manufacturing) Ltd. All rights reserved.</span>
 </footer>
 
+
+  <!-- SCROLL TO TOP -->
+  <style>
+    #scrollTopBtn {
+      position: fixed; right: 24px; bottom: 40px;
+      width: 54px; height: 54px; border-radius: 50%;
+      background: #181e38; border: none; cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.28);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s, transform 0.2s;
+      z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+    }
+    #scrollTopBtn:hover { transform: translateY(-2px); }
+    #scrollTopBtn span {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.5rem; color: #c8ba9a; font-weight: 700;
+      line-height: 1; margin-top: -2px;
+    }
+    #scrollTopBtn.visible { opacity: 1; pointer-events: auto; }
+    @media (max-width: 640px) { #scrollTopBtn { bottom: 80px; } }
+  </style>
+  <button id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
+    <span>↑</span>
+  </button>
+  <script>
+    (function(){
+      var btn = document.getElementById('scrollTopBtn');
+      window.addEventListener('scroll', function(){
+        if (window.pageYOffset > 300) { btn.classList.add('visible'); }
+        else { btn.classList.remove('visible'); }
+      }, {passive: true});
+    })();
+  </script>
 </body>
 </html>

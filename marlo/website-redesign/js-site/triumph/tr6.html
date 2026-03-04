@@ -25,7 +25,7 @@
     .logo-sub { font-size: 0.62rem; color: rgba(255,255,255,0.38); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 3px; }
     nav { display: flex; gap: 4px; align-items: center; }
     nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 22px 11px; }
-    nav a.cta { background: var(--gold); color: var(--navy); padding: 9px 20px; border-radius: var(--radius); margin-left: 10px; font-weight: 700; }
+    nav a.cta { background: var(--navy); color: var(--gold); border: 2px solid var(--gold); padding: 9px 20px; border-radius: var(--radius); margin-left: 10px; font-weight: 700; }
     nav a.cta:hover { background: var(--gold-light); }
     .breadcrumb { background: var(--navy-light); padding: 10px 32px; font-size: 0.78rem; color: rgba(255,255,255,0.5); }
     .breadcrumb a { color: rgba(255,255,255,0.6); text-decoration: none; }
@@ -304,5 +304,39 @@
     }
   </script>
 
+
+  <!-- SCROLL TO TOP -->
+  <style>
+    #scrollTopBtn {
+      position: fixed; right: 24px; bottom: 40px;
+      width: 54px; height: 54px; border-radius: 50%;
+      background: #181e38; border: none; cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.28);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s, transform 0.2s;
+      z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+    }
+    #scrollTopBtn:hover { transform: translateY(-2px); }
+    #scrollTopBtn span {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.5rem; color: #c8ba9a; font-weight: 700;
+      line-height: 1; margin-top: -2px;
+    }
+    #scrollTopBtn.visible { opacity: 1; pointer-events: auto; }
+    @media (max-width: 640px) { #scrollTopBtn { bottom: 80px; } }
+  </style>
+  <button id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
+    <span>↑</span>
+  </button>
+  <script>
+    (function(){
+      var btn = document.getElementById('scrollTopBtn');
+      window.addEventListener('scroll', function(){
+        if (window.pageYOffset > 300) { btn.classList.add('visible'); }
+        else { btn.classList.remove('visible'); }
+      }, {passive: true});
+    })();
+  </script>
 </body>
 </html>
