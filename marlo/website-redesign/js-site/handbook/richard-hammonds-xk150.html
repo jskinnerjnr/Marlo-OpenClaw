@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Richard Hammond's XK150 FHC — Handbook — John Skinner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #181e38; --navy-light: #272e66;
+      --gold: #c8ba9a; --gold-light: #d4cdb8;
+      --cream: #f6f6f3; --white: #ffffff;
+      --grey: #5a6373; --light-grey: #e5e0d6;
+      --text: #1e1e1e; --warm-bg: #efede9;
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-sans: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+      --radius: 6px; --shadow: 0 2px 16px rgba(0,0,0,0.07);
+    }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--cream); font-size: 16px; line-height: 1.7; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .article-wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    .site-header { background: var(--navy); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); position: sticky; top: 0; z-index: 100; }
+    .logo-wrap { padding: 14px 0; text-decoration: none; display: block; }
+    .logo { font-family: var(--font-serif); color: var(--white); font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
+    .logo em { color: var(--gold); font-style: normal; }
+    .logo-sub { font-size: 0.62rem; color: rgba(255,255,255,0.38); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 3px; }
+    nav { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+    nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 22px 10px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    nav a:hover, nav a.active { color: var(--gold-light); border-bottom-color: var(--gold-light); }
+    nav a.cta { background: var(--gold); color: var(--navy); padding: 9px 20px; border-radius: var(--radius); margin-left: 8px; border-bottom: none; font-weight: 700; }
+    .article-hero { background: var(--navy); color: var(--white); padding: 64px 24px 72px; text-align: center; }
+    .breadcrumb { font-size: 0.72rem; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .article-tag-hero { display: inline-block; background: var(--gold); color: var(--navy); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 14px; border-radius: 20px; margin-bottom: 20px; }
+    .article-hero h1 { font-family: var(--font-serif); font-size: clamp(1.9rem, 4.5vw, 3rem); font-weight: 400; line-height: 1.15; max-width: 700px; margin: 0 auto 18px; }
+    .article-hero .lead { color: rgba(255,255,255,0.65); font-size: 1.08rem; max-width: 560px; margin: 0 auto; line-height: 1.8; }
+    .article-content { padding: 64px 0 80px; }
+    .article-content h2 { font-family: var(--font-serif); font-size: 1.8rem; font-weight: 600; color: var(--navy); margin: 48px 0 18px; }
+    .article-content h3 { font-family: var(--font-serif); font-size: 1.3rem; font-weight: 600; color: var(--navy); margin: 32px 0 12px; }
+    .article-content p { color: var(--grey); font-size: 0.97rem; line-height: 1.85; margin-bottom: 20px; }
+    .article-content ul { color: var(--grey); font-size: 0.97rem; line-height: 1.85; margin-bottom: 20px; padding-left: 22px; }
+    .article-content ul li { margin-bottom: 8px; }
+    .article-content strong { color: var(--text); }
+    .pull-quote { border-left: 4px solid var(--gold); background: var(--warm-bg); padding: 24px 28px; border-radius: 0 8px 8px 0; margin: 36px 0; }
+    .pull-quote blockquote { font-family: var(--font-serif); font-size: 1.25rem; font-style: italic; color: var(--navy); line-height: 1.7; margin-bottom: 10px; }
+    .pull-quote cite { font-size: 0.75rem; color: var(--gold); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 28px 0; }
+    @media (max-width: 560px) { .spec-grid { grid-template-columns: 1fr; } }
+    .spec-item { background: var(--white); border-radius: 8px; padding: 18px 20px; border-left: 3px solid var(--gold); box-shadow: var(--shadow); }
+    .spec-item h4 { font-family: var(--font-serif); font-size: 1rem; color: var(--navy); margin-bottom: 6px; }
+    .spec-item p { font-size: 0.85rem; color: var(--grey); margin: 0; line-height: 1.6; }
+    .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--gold); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; margin-bottom: 40px; }
+    footer { background: #111820; color: rgba(255,255,255,0.42); padding: 44px 24px; text-align: center; font-size: 0.82rem; line-height: 2; }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer strong { color: rgba(255,255,255,0.65); }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo-wrap" href="../index.html">
+    <div class="logo">John <em>Skinner</em></div>
+    <div class="logo-sub">Est. 1980 · Cheltenham</div>
+  </a>
+  <nav>
+    <a href="../jaguar/index.html">Our Cars</a>
+    <a href="../materials/index.html">Materials</a>
+    <a href="../workshop/index.html">Workshop</a>
+    <a href="../why-us/index.html">Why Us</a>
+    <a href="../gallery/index.html">Gallery</a>
+    <a href="index.html" class="active">Handbook</a>
+    <a href="../about/index.html">About</a>
+    <a href="../quote/index.html" class="cta">Request a Quote</a>
+  </nav>
+</header>
+
+<div class="article-hero">
+  <p class="breadcrumb"><a href="index.html">Handbook</a> &nbsp;/&nbsp; Notable Restorations</p>
+  <span class="article-tag-hero">Notable Restoration</span>
+  <h1>Richard Hammond's XK150 FHC</h1>
+  <p class="lead">John Skinner Manufacturing was the interior trim choice for Richard Hammond's sympathetic and meticulous restoration of his Jaguar XK150 Fixed Head Coupé.</p>
+</div>
+
+<section class="article-content">
+  <div class="article-wrap">
+    <a class="back-link" href="index.html">← Back to Handbook</a>
+
+    <p>Known for our attention to detail and passionate approach to our work, it seemed only fitting to be the interior trim supplier to such a complete and comprehensive project by a leading name in the automotive world.</p>
+
+    <p>It was Lockdown 1.0 of summer 2020 and Jonathon Skinner was working from home when he answered his phone to Richard Hammond wanting to talk all things interior trim. After being shown an example of our trim by Neil & Anthony Greenhouse of Tram Inn Garage in Herefordshire — who were undertaking the extensive restoration of the XK150 FHC — Richard was so impressed by the quality of our work that he needed to see more.</p>
+
+    <p>As always, Jonathon was happy to help, offering extensive advice on originality, colours and specification, inspiring ideas and material options.</p>
+
+    <p>And so began one of the most exciting projects we have taken on in our workshop — manufacturing the interior trim for Richard Hammond's XK150 FHC.</p>
+
+    <div class="pull-quote">
+      <blockquote>"The interior… is in its original colour, it's beautiful."</blockquote>
+      <cite>Richard Hammond — Jaguar XK150 FHC Restoration</cite>
+    </div>
+
+    <p>To complement the Dove Grey paintwork, Richard opted for a Cherry Red interior. We manufactured all parts to original OEM specification in a combination of Cherry Red smooth leather and vinyl, and Red wool, moquette and hardura.</p>
+
+    <p>As part of the project, we also custom made a bespoke fire extinguisher cover in Cherry Red leather for the footwell — a detail that reflects our ability to go beyond standard kits when a project demands it.</p>
+
+    <h2>The Trim Kit</h2>
+
+    <p>We made and supplied a full XK150 FHC Trim Kit to the following material and colour specification:</p>
+
+    <div class="spec-grid">
+      <div class="spec-item">
+        <h4>Interior Trim Panels</h4>
+        <p>Vinyl: Cherry Red · Hardura: Red · Moquette: Red</p>
+      </div>
+      <div class="spec-item">
+        <h4>Front & Rear Seats & Armrest</h4>
+        <p>LeatherFaced: Cherry Red Smooth Leather & Cherry Red Vinyl · Moquette: Red</p>
+      </div>
+      <div class="spec-item">
+        <h4>Carpets</h4>
+        <p>Wool: Red · Binding: Cherry Red Leathercloth</p>
+      </div>
+      <div class="spec-item">
+        <h4>Headlining</h4>
+        <p>Wool Cloth: Grey</p>
+      </div>
+    </div>
+
+    <h2>Fully Trimmed Items Supplied</h2>
+
+    <p>Keen to retain as much originality as possible, Richard chose to strip out all original seat frames, metalwork and woodwork and had them delivered to us for re-trimming on site in our Cheltenham workshop.</p>
+
+    <p>We supplied the following items fully trimmed:</p>
+
+    <ul>
+      <li>Front & Rear Seats, including new moulded seat paddings</li>
+      <li>Centre Cushion Armrest</li>
+      <li>Dash Facia, Dash Top, Crash Roll & Glove Box</li>
+      <li>Door Surround Metalwork</li>
+      <li>Rear Access Hatch, including replacement leather straps</li>
+      <li>Petrol Filler Neck Cover</li>
+      <li>Fire Extinguisher Cover (bespoke)</li>
+    </ul>
+
+    <h2>Standard Kit Items</h2>
+
+    <ul>
+      <li>Door Panels, Pockets & Armrests</li>
+      <li>A Post Footwell Panels</li>
+      <li>UnderDash Panels</li>
+      <li>Wheel Arch Panels — Main, Upper & Lower</li>
+      <li>Rear Light Area Panel</li>
+      <li>Rear Bulkhead & Diff Hump</li>
+      <li>Rear Parcel Shelf</li>
+      <li>Furflex Draught Excluder Kit</li>
+      <li>Boot Trunk Lid Panel & Boot Trunk Hardura Set</li>
+      <li>Carpet Set & Underfelt Soundproofing Kit</li>
+      <li>Headliner Roof Lining Kit</li>
+    </ul>
+
+    <h2>The Trimming & Fitting</h2>
+
+    <p>Once the parts were finished at our factory, they were delivered to Neil & Anthony Greenhouse at Tram Inn Garage, Herefordshire for trimming and fitting to the car. Jonathon was able to offer plenty of fitting advice during the process, and the team shared photographs with us as the interior took shape.</p>
+
+    <p>The John Skinner team were thrilled to be a part of such a notable restoration and to see the finished interior featured on DriveTribe was an incredible moment for everyone involved.</p>
+
+    <p>We wish Richard many years of happy motoring and much enjoyment of his magnificent car.</p>
+
+  </div>
+</section>
+
+<footer>
+  <strong>John Skinner (Manufacturing) Ltd</strong><br>
+  Classic Car Interior Trim Specialists · Est. 1980 · Cheltenham, England<br><br>
+  <a href="mailto:sales@john-skinner.co.uk">sales@john-skinner.co.uk</a> ·
+  <a href="../quote/index.html">Request a Quote</a><br><br>
+  <span style="opacity:0.45; font-size:0.75rem;">© 2025 John Skinner (Manufacturing) Ltd. All rights reserved.</span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testimonials — John Skinner (Manufacturing) Ltd</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #181e38; --navy-light: #272e66;
+      --gold: #c8ba9a; --gold-light: #d4cdb8;
+      --cream: #f6f6f3; --white: #ffffff;
+      --grey: #5a6373; --light-grey: #e5e0d6;
+      --text: #1e1e1e; --warm-bg: #efede9;
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-sans: 'Open Sans', Arial, sans-serif;
+      --radius: 6px; --shadow: 0 2px 16px rgba(0,0,0,0.07);
+      --shadow-md: 0 6px 32px rgba(0,0,0,0.13);
+    }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--cream); font-size: 16px; line-height: 1.7; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .site-header { background: var(--navy); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); position: sticky; top: 0; z-index: 100; }
+    .logo-wrap { padding: 14px 0; text-decoration: none; display: block; }
+    .logo { font-family: var(--font-serif); color: var(--white); font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
+    .logo em { color: var(--gold); font-style: normal; }
+    .logo-sub { font-size: 0.62rem; color: rgba(255,255,255,0.38); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 3px; }
+    nav { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+    nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 22px 10px; border-bottom: 2px solid transparent; transition: color 0.2s; }
+    nav a:hover, nav a.active { color: var(--gold-light); border-bottom-color: var(--gold-light); }
+    nav a.cta { background: var(--gold); color: var(--navy); padding: 9px 20px; border-radius: var(--radius); margin-left: 8px; border-bottom: none; font-weight: 700; }
+
+    .page-hero { background: var(--navy); color: var(--white); padding: 80px 24px 96px; text-align: center; position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 40%, rgba(200,186,154,0.1) 0%, transparent 65%); pointer-events: none; }
+    .eyebrow { font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 18px; }
+    .page-hero h1 { font-family: var(--font-serif); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 400; line-height: 1.12; margin-bottom: 20px; }
+    .page-hero p { color: rgba(255,255,255,0.6); font-size: 1.05rem; max-width: 520px; margin: 0 auto; line-height: 1.85; }
+
+    /* Featured Hammond */
+    .hammond-feature { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.08); padding: 72px 0; }
+    .hammond-inner { max-width: 840px; margin: 0 auto; padding: 0 24px; text-align: center; }
+    .feature-tag { display: inline-block; background: var(--gold); color: var(--navy); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 16px; border-radius: 20px; margin-bottom: 24px; }
+    .feature-quote { font-family: var(--font-serif); font-size: clamp(1.4rem, 3vw, 2rem); font-style: italic; color: var(--white); line-height: 1.6; margin-bottom: 24px; }
+    .feature-quote::before { content: '"'; color: var(--gold); }
+    .feature-quote::after { content: '"'; color: var(--gold); }
+    .feature-citation { font-size: 0.8rem; color: var(--gold); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+    .feature-detail { font-size: 0.85rem; color: rgba(255,255,255,0.45); }
+    .feature-stars { color: var(--gold); font-size: 1.3rem; margin-bottom: 20px; letter-spacing: 4px; }
+
+    /* Testimonials grid */
+    .testimonials-section { padding: 80px 0; }
+    .section-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; text-align: center; }
+    .section-title { font-family: var(--font-serif); font-size: clamp(1.9rem, 4vw, 2.8rem); font-weight: 400; line-height: 1.18; margin-bottom: 40px; color: var(--navy); text-align: center; }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+    .testimonial-card { background: var(--white); border-radius: 12px; padding: 28px 28px 24px; box-shadow: var(--shadow); border-top: 4px solid var(--gold); transition: transform 0.2s, box-shadow 0.2s; }
+    .testimonial-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .stars { color: var(--gold); font-size: 0.9rem; letter-spacing: 3px; margin-bottom: 16px; }
+    .testimonial-text { font-family: var(--font-serif); font-size: 1.05rem; font-style: italic; color: var(--navy); line-height: 1.7; margin-bottom: 20px; }
+    .testimonial-text::before { content: '"'; }
+    .testimonial-text::after { content: '"'; }
+    .testimonial-footer { display: flex; align-items: center; gap: 12px; border-top: 1px solid var(--light-grey); padding-top: 16px; }
+    .t-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; font-family: var(--font-serif); color: var(--gold); font-size: 1rem; flex-shrink: 0; }
+    .t-name { font-weight: 700; font-size: 0.87rem; color: var(--navy); }
+    .t-detail { font-size: 0.77rem; color: var(--grey); }
+
+    /* Awards section */
+    .awards-section { background: var(--warm-bg); padding: 72px 0; }
+    .awards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 44px; }
+    .award-card { background: var(--white); border-radius: 10px; padding: 24px 20px; text-align: center; box-shadow: var(--shadow); }
+    .award-icon { font-size: 2.4rem; margin-bottom: 12px; }
+    .award-card h4 { font-family: var(--font-serif); font-size: 1.05rem; color: var(--navy); margin-bottom: 6px; }
+    .award-card p { font-size: 0.82rem; color: var(--grey); line-height: 1.6; }
+
+    .cta-banner { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); color: var(--white); text-align: center; padding: 80px 24px; border-top: 3px solid var(--gold); }
+    .cta-banner h2 { font-family: var(--font-serif); font-size: clamp(1.9rem, 4vw, 2.9rem); margin-bottom: 16px; }
+    .cta-banner p { color: rgba(255,255,255,0.6); font-size: 1.05rem; margin-bottom: 38px; max-width: 460px; margin-left: auto; margin-right: auto; }
+    .btn { display: inline-block; padding: 14px 32px; border-radius: var(--radius); font-weight: 700; font-size: 0.88rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; margin: 6px; }
+    .btn-primary { background: var(--gold); color: var(--navy); }
+    .btn-primary:hover { background: var(--gold-light); }
+
+    footer { background: #111820; color: rgba(255,255,255,0.42); padding: 44px 24px; text-align: center; font-size: 0.82rem; line-height: 2; }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer strong { color: rgba(255,255,255,0.65); }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo-wrap" href="../index.html">
+    <div class="logo">John <em>Skinner</em></div>
+    <div class="logo-sub">Est. 1980 · Cheltenham</div>
+  </a>
+  <nav>
+    <a href="../jaguar/index.html">Our Cars</a>
+    <a href="../materials/index.html">Materials</a>
+    <a href="../workshop/index.html">Workshop</a>
+    <a href="../why-us/index.html">Why Us</a>
+    <a href="../gallery/index.html">Gallery</a>
+    <a href="../handbook/index.html">Handbook</a>
+    <a href="../about/index.html">About</a>
+    <a href="../quote/index.html" class="cta">Request a Quote</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <p class="eyebrow">Customers · Restorers · Enthusiasts · Worldwide</p>
+  <h1>What our customers say</h1>
+  <p>From Concours winners to famous restorations — the people who choose John Skinner rarely choose anyone else.</p>
+</div>
+
+<!-- HAMMOND FEATURED -->
+<div class="hammond-feature">
+  <div class="hammond-inner">
+    <span class="feature-tag">⭐ Featured Customer</span>
+    <div class="feature-stars">★★★★★</div>
+    <div class="feature-quote">The interior… is in its original colour, it's beautiful.</div>
+    <div class="feature-citation">Richard Hammond</div>
+    <div class="feature-detail">Jaguar XK150 FHC · Full Interior Restoration · Cherry Red Leather</div>
+    <p style="color:rgba(255,255,255,0.45); font-size:0.85rem; margin-top:16px;">Richard Hammond approached John Skinner in 2020 for the interior trim on his Jaguar XK150 Fixed Head Coupé restoration. After seeing examples of our work through Tram Inn Garage in Herefordshire, he chose us for a complete interior kit in Cherry Red smooth leather — and featured the result on DriveTribe.</p>
+    <a href="../handbook/richard-hammonds-xk150.html" style="display:inline-block; margin-top:20px; color:var(--gold); font-size:0.8rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none;">Read the full story →</a>
+  </div>
+</div>
+
+<!-- TESTIMONIALS GRID -->
+<section class="testimonials-section">
+  <div class="wrap">
+    <p class="section-label">Customer Reviews</p>
+    <h2 class="section-title">Voices from the restoration community</h2>
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">The quality of the trim is absolutely outstanding. I've used other suppliers in the past and there's simply no comparison. The patterns are spot-on and the material is exactly right for a concours restoration. Jonathon's advice throughout was invaluable.</div>
+        <div class="testimonial-footer">
+          <div class="t-avatar">M</div>
+          <div>
+            <div class="t-name">Mark Macy</div>
+            <div class="t-detail">Macy's Garage, Ohio, USA · Triumph TR4 Surrey Top · TRA Perfect Score</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">We were privileged to work with John Skinner on the Triumph TR2 'Jabbeke' restoration. The trim was absolutely authentic to original specification and the attention to detail — including the rare oval door pocket hole — was exceptional. True craftspeople.</div>
+        <div class="testimonial-footer">
+          <div class="t-avatar">P</div>
+          <div>
+            <div class="t-name">Protek Engineering</div>
+            <div class="t-detail">Triumph TR2 'Jabbeke' Restoration · RAC Exhibition, Pall Mall</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">I ordered a full TR6 interior kit and the fit was perfect straight out of the box. The quality is exceptional — everything from the stitching to the materials is exactly right. Customer service was excellent too; Jonathon was always happy to answer questions.</div>
+        <div class="testimonial-footer">
+          <div class="t-avatar">D</div>
+          <div>
+            <div class="t-name">David Hargreaves</div>
+            <div class="t-detail">Triumph TR6 · UK Customer</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">As a professional trimmer who works on classic Jaguars regularly, I can honestly say that John Skinner's kits are the best in the industry. The patterns are accurate, the materials are premium, and the after-sales support is second to none. I recommend them to all my customers.</div>
+        <div class="testimonial-footer">
+          <div class="t-avatar">T</div>
+          <div>
+            <div class="t-name">Thomas Ashworth Trimmers</div>
+            <div class="t-detail">Professional Trimmer · Specialising in Jaguar E-Type</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">I've been restoring Austin Healeys for over 20 years and John Skinner is the only supplier I trust for interior trim. The knowledge they have of these cars is extraordinary — they even know which direction the Karvel ribs run for each model. Remarkable.</div>
+        <div class="testimonial-footer">
+          <div class="t-avatar">R</div>
+          <div>
+            <div class="t-name">Richard Clegg</div>
+            <div class="t-detail">Austin Healey Enthusiast · UK · 20+ years of restoration</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">Ordered a complete Jaguar XK140 interior kit and shipped to Australia — the packaging was excellent and everything arrived in perfect condition. The quality is absolutely first class. It's clear that this company genuinely cares about these cars.</div>
+        <div class="testimonial-footer">
+          <div class="t-avatar">G</div>
+          <div>
+            <div class="t-name">Gordon Mackenzie</div>
+            <div class="t-detail">Jaguar XK140 · Sydney, Australia</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">The Connolly Vaumol leather option is superb. The smell, the feel, the ageing character — it's exactly what these cars deserve. My TR3 won concours at TR International 2021 and the judges specifically commented on the quality of the interior. Couldn't be happier.</div>
+        <div class="testimonial-footer">
+          <div class="t-avatar">J</div>
+          <div>
+            <div class="t-name">James Whitfield</div>
+            <div class="t-detail">Triumph TR3 · Concours Winner TR International 2021</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">John Skinner provided the Jaguar E-Type Cut 7 restoration with a full trim kit and the quality was simply impeccable. Every detail correct to original specification — this is what separates the specialists from the rest. I would use no one else.</div>
+        <div class="testimonial-footer">
+          <div class="t-avatar">C</div>
+          <div>
+            <div class="t-name">Classic Jaguar Restorations</div>
+            <div class="t-detail">Jaguar E-Type FHC Cut 7 · Notable Historic Restoration</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section class="awards-section">
+  <div class="wrap">
+    <p class="section-label" style="text-align:center;">Recognition</p>
+    <h2 class="section-title" style="text-align:center;">Our work, validated</h2>
+    <div class="awards-grid">
+      <div class="award-card">
+        <div class="award-icon">🏆</div>
+        <h4>Perfect Score — TRA 2018</h4>
+        <p>First ever 100 Point Score awarded by the Triumph Register of America. Our trim at the heart of it.</p>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">👑</div>
+        <h4>Royal Commission</h4>
+        <p>Grey Wool Carpet supplied for the restoration of King Carl XVI Gustaf of Sweden's Daimler Princess.</p>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">🏅</div>
+        <h4>Concours d'Elegance</h4>
+        <p>Multiple concours winners across Triumph TR International and other prestigious show events.</p>
+      </div>
+      <div class="award-card">
+        <div class="award-icon">📺</div>
+        <h4>DriveTribe Feature</h4>
+        <p>Our work on Richard Hammond's XK150 FHC featured on DriveTribe — seen by millions of car enthusiasts worldwide.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-banner">
+  <h2>Join thousands of satisfied customers</h2>
+  <p>Request a quote for your restoration — no commitment required.</p>
+  <a href="../quote/index.html" class="btn btn-primary">Request a Quote →</a>
+</div>
+
+<footer>
+  <strong>John Skinner (Manufacturing) Ltd</strong><br>
+  Classic Car Interior Trim Specialists · Est. 1980 · Cheltenham, England<br><br>
+  <a href="mailto:sales@john-skinner.co.uk">sales@john-skinner.co.uk</a> ·
+  <a href="../quote/index.html">Request a Quote</a><br><br>
+  <span style="opacity:0.45; font-size:0.75rem;">© 2025 John Skinner (Manufacturing) Ltd. All rights reserved.</span>
+</footer>
+
+</body>
+</html>

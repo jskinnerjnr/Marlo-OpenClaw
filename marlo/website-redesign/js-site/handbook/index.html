@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Handbook — John Skinner Classic Car Interior Trim</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #181e38; --navy-light: #272e66;
+      --gold: #c8ba9a; --gold-light: #d4cdb8;
+      --cream: #f6f6f3; --white: #ffffff;
+      --grey: #5a6373; --light-grey: #e5e0d6;
+      --text: #1e1e1e; --warm-bg: #efede9;
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-sans: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+      --radius: 6px; --shadow: 0 2px 16px rgba(0,0,0,0.07);
+      --shadow-md: 0 6px 32px rgba(0,0,0,0.13);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--cream); font-size: 16px; line-height: 1.7; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .site-header { background: var(--navy); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); position: sticky; top: 0; z-index: 100; }
+    .logo-wrap { padding: 14px 0; text-decoration: none; display: block; }
+    .logo { font-family: var(--font-serif); color: var(--white); font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
+    .logo em { color: var(--gold); font-style: normal; }
+    .logo-sub { font-size: 0.62rem; color: rgba(255,255,255,0.38); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 3px; }
+    nav { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+    nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 22px 10px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    nav a:hover, nav a.active { color: var(--gold-light); border-bottom-color: var(--gold-light); }
+    nav a.cta { background: var(--gold); color: var(--navy); padding: 9px 20px; border-radius: var(--radius); margin-left: 8px; border-bottom: none; font-weight: 700; }
+    nav a.cta:hover { background: var(--gold-light); }
+    .page-hero { background: var(--navy); color: var(--white); padding: 72px 24px 80px; text-align: center; }
+    .page-hero .eyebrow { font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 18px; }
+    .page-hero h1 { font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 400; line-height: 1.15; margin-bottom: 18px; }
+    .page-hero p { color: rgba(255,255,255,0.6); font-size: 1.05rem; max-width: 520px; margin: 0 auto; line-height: 1.8; }
+    .filter-bar { background: var(--warm-bg); border-bottom: 1px solid var(--light-grey); padding: 18px 24px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .filter-btn { background: transparent; border: 1.5px solid var(--light-grey); color: var(--grey); font-family: var(--font-sans); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 7px 18px; border-radius: 20px; cursor: pointer; transition: all 0.2s; }
+    .filter-btn:hover, .filter-btn.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+    .articles-section { padding: 60px 0 80px; }
+    .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px; margin-top: 48px; }
+    .article-card { background: var(--white); border-radius: 10px; box-shadow: var(--shadow); overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.22s, box-shadow 0.22s; display: flex; flex-direction: column; border-top: 4px solid var(--gold); }
+    .article-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+    .article-card-img { height: 160px; background: var(--navy); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .article-card-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
+    .article-card-img .img-placeholder { font-family: var(--font-serif); font-size: 2.4rem; color: var(--gold); opacity: 0.5; }
+    .article-tag { position: absolute; top: 12px; left: 12px; background: var(--gold); color: var(--navy); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; }
+    .article-body { padding: 22px 24px 26px; flex: 1; display: flex; flex-direction: column; }
+    .article-body h3 { font-family: var(--font-serif); font-size: 1.28rem; font-weight: 600; color: var(--navy); margin-bottom: 10px; line-height: 1.3; }
+    .article-body p { color: var(--grey); font-size: 0.88rem; line-height: 1.7; flex: 1; margin-bottom: 18px; }
+    .article-meta { font-size: 0.72rem; color: var(--gold); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+    .article-meta::after { content: ' →'; }
+    footer { background: #111820; color: rgba(255,255,255,0.42); padding: 44px 24px; text-align: center; font-size: 0.82rem; line-height: 2; }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer strong { color: rgba(255,255,255,0.65); }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo-wrap" href="../index.html">
+    <div class="logo">John <em>Skinner</em></div>
+    <div class="logo-sub">Est. 1980 · Cheltenham</div>
+  </a>
+  <nav>
+    <a href="../jaguar/index.html">Our Cars</a>
+    <a href="../materials/index.html">Materials</a>
+    <a href="../workshop/index.html">Workshop</a>
+    <a href="../why-us/index.html">Why Us</a>
+    <a href="../gallery/index.html">Gallery</a>
+    <a href="index.html" class="active">Handbook</a>
+    <a href="../about/index.html">About</a>
+    <a href="../quote/index.html" class="cta">Request a Quote</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <p class="eyebrow">Knowledge · Craft · Detail</p>
+  <h1>The Handbook</h1>
+  <p>Everything you need to know about classic car interior trim — materials, methods, colour, and craft — from our team in Cheltenham.</p>
+</div>
+
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterArticles('all')">All Articles</button>
+  <button class="filter-btn" onclick="filterArticles('materials')">Materials</button>
+  <button class="filter-btn" onclick="filterArticles('colours')">Colours</button>
+  <button class="filter-btn" onclick="filterArticles('in-detail')">In Detail</button>
+  <button class="filter-btn" onclick="filterArticles('workshop')">Workshop</button>
+  <button class="filter-btn" onclick="filterArticles('notable')">Notable Restorations</button>
+</div>
+
+<section class="articles-section">
+  <div class="wrap">
+    <div class="articles-grid" id="articles-grid">
+
+      <a href="richard-hammonds-xk150.html" class="article-card" data-cat="notable">
+        <div class="article-card-img">
+          <div class="img-placeholder">✦</div>
+          <span class="article-tag">Notable</span>
+        </div>
+        <div class="article-body">
+          <h3>Richard Hammond's XK150 FHC</h3>
+          <p>John Skinner was Richard Hammond's interior trim choice for a sympathetic and meticulous restoration of his Jaguar XK150 FHC — a Cherry Red interior to complement Dove Grey paintwork.</p>
+          <span class="article-meta">Read Article</span>
+        </div>
+      </a>
+
+      <a href="our-notable-restorations.html" class="article-card" data-cat="notable">
+        <div class="article-card-img">
+          <div class="img-placeholder">🏆</div>
+          <span class="article-tag">Notable</span>
+        </div>
+        <div class="article-body">
+          <h3>Our Notable Restorations</h3>
+          <p>From the Jaguar E-Type Cut 7 to the first production Triumph TR TS01, we have been the choice for many historic and high-profile restorations — including a royal commission.</p>
+          <span class="article-meta">Read Article</span>
+        </div>
+      </a>
+
+      <a href="in-detail-seat-kits.html" class="article-card" data-cat="in-detail">
+        <div class="article-card-img">
+          <div class="img-placeholder">◈</div>
+          <span class="article-tag">In Detail</span>
+        </div>
+        <div class="article-body">
+          <h3>In Detail: Our Seat Kits</h3>
+          <p>Our seat kits are the best in the industry. Made to original specification with quality materials — from accurate pattern making to digital cutting technology.</p>
+          <span class="article-meta">Read Article</span>
+        </div>
+      </a>
+
+      <a href="in-detail-carpet-kits.html" class="article-card" data-cat="in-detail">
+        <div class="article-card-img">
+          <div class="img-placeholder">◈</div>
+          <span class="article-tag">In Detail</span>
+        </div>
+        <div class="article-body">
+          <h3>In Detail: Our Carpet Kits</h3>
+          <p>Our carpet kits are renowned worldwide for their excellent fit and finish. Crafted from highest quality materials, cut with precision on our CNC machine and assembled by skilled machinists.</p>
+          <span class="article-meta">Read Article</span>
+        </div>
+      </a>
+
+      <a href="leather-connolly-vaumol.html" class="article-card" data-cat="materials">
+        <div class="article-card-img">
+          <div class="img-placeholder">◉</div>
+          <span class="article-tag">Materials</span>
+        </div>
+        <div class="article-body">
+          <h3>Leather: Connolly Vaumol™</h3>
+          <p>Connolly is a recognised and admired name amongst classic car restorers. With a steeped history in automotive upholstery, here we take a closer look at the leather behind the brand.</p>
+          <span class="article-meta">Read Article</span>
+        </div>
+      </a>
+
+      <a href="colour-schemes.html" class="article-card" data-cat="colours">
+        <div class="article-card-img">
+          <div class="img-placeholder">◐</div>
+          <span class="article-tag">Colours</span>
+        </div>
+        <div class="article-body">
+          <h3>Colour Focus: Colour Schemes</h3>
+          <p>Complement, Contrast or Connect — these are the three approaches to building the colour scheme for your restoration interior. Here we share inspiration for every approach.</p>
+          <span class="article-meta">Read Article</span>
+        </div>
+      </a>
+
+      <a href="our-bespoke-service.html" class="article-card" data-cat="in-detail">
+        <div class="article-card-img">
+          <div class="img-placeholder">✦</div>
+          <span class="article-tag">Bespoke</span>
+        </div>
+        <div class="article-body">
+          <h3>Our Bespoke Service</h3>
+          <p>We are not limited by 'as original' interiors. Our bespoke service works with you to create the interior you've always wanted, using highest quality materials across any combination.</p>
+          <span class="article-meta">Read Article</span>
+        </div>
+      </a>
+
+      <a href="do-our-kits-fit.html" class="article-card" data-cat="in-detail">
+        <div class="article-card-img">
+          <div class="img-placeholder">◻</div>
+          <span class="article-tag">In Detail</span>
+        </div>
+        <div class="article-body">
+          <h3>Do Our Kits Fit?</h3>
+          <p>We are often asked this question and the simple answer is… yes, they do. With our meticulous pattern making and precision CNC cutting, our kits are among the best fitting in the industry.</p>
+          <span class="article-meta">Read Article</span>
+        </div>
+      </a>
+
+      <a href="working-with-a-trimmer.html" class="article-card" data-cat="workshop">
+        <div class="article-card-img">
+          <div class="img-placeholder">✂</div>
+          <span class="article-tag">Workshop</span>
+        </div>
+        <div class="article-body">
+          <h3>Working with a Trimmer</h3>
+          <p>The combination of our kits in the hands of a skilled, capable and competent trimmer — who is familiar with the marques and models we manufacture for — reaps rewards for any restoration.</p>
+          <span class="article-meta">Read Article</span>
+        </div>
+      </a>
+
+      <a href="tr4-perfect-score.html" class="article-card" data-cat="notable">
+        <div class="article-card-img">
+          <div class="img-placeholder">🏅</div>
+          <span class="article-tag">Notable</span>
+        </div>
+        <div class="article-body">
+          <h3>TR4 Wins Perfect 100 Point Score</h3>
+          <p>John Skinner proudly supplied Mark Macy of Macy's Garage with interior trim for his 1961 Triumph TR4 restoration — achieving the first ever 100 Point Score awarded by the Triumph Register of America.</p>
+          <span class="article-meta">Read Article</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>John Skinner (Manufacturing) Ltd</strong><br>
+  Classic Car Interior Trim Specialists · Est. 1980 · Cheltenham, England<br><br>
+  <a href="mailto:sales@john-skinner.co.uk">sales@john-skinner.co.uk</a> ·
+  <a href="../quote/index.html">Request a Quote</a> ·
+  <a href="../why-us/index.html">Why John Skinner</a><br><br>
+  <span style="opacity:0.45; font-size:0.75rem;">© 2025 John Skinner (Manufacturing) Ltd. All rights reserved.</span>
+</footer>
+
+<script>
+function filterArticles(cat) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.article-card').forEach(card => {
+    if (cat === 'all' || card.dataset.cat === cat) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+</body>
+</html>

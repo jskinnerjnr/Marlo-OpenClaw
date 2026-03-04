@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>In Detail: Our Carpet Kits — Handbook — John Skinner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy: #181e38; --navy-light: #272e66; --gold: #c8ba9a; --gold-light: #d4cdb8; --cream: #f6f6f3; --white: #ffffff; --grey: #5a6373; --light-grey: #e5e0d6; --text: #1e1e1e; --warm-bg: #efede9; --font-serif: 'EB Garamond', Georgia, serif; --font-sans: 'Open Sans', 'Helvetica Neue', Arial, sans-serif; --radius: 6px; --shadow: 0 2px 16px rgba(0,0,0,0.07); }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--cream); font-size: 16px; line-height: 1.7; }
+    .article-wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    .site-header { background: var(--navy); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); position: sticky; top: 0; z-index: 100; }
+    .logo-wrap { padding: 14px 0; text-decoration: none; display: block; }
+    .logo { font-family: var(--font-serif); color: var(--white); font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
+    .logo em { color: var(--gold); font-style: normal; }
+    .logo-sub { font-size: 0.62rem; color: rgba(255,255,255,0.38); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 3px; }
+    nav { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+    nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 22px 10px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    nav a:hover, nav a.active { color: var(--gold-light); border-bottom-color: var(--gold-light); }
+    nav a.cta { background: var(--gold); color: var(--navy); padding: 9px 20px; border-radius: var(--radius); margin-left: 8px; border-bottom: none; font-weight: 700; }
+    .article-hero { background: var(--navy); color: var(--white); padding: 64px 24px 72px; text-align: center; }
+    .breadcrumb { font-size: 0.72rem; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .article-tag-hero { display: inline-block; background: var(--gold); color: var(--navy); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 14px; border-radius: 20px; margin-bottom: 20px; }
+    .article-hero h1 { font-family: var(--font-serif); font-size: clamp(1.9rem, 4.5vw, 3rem); font-weight: 400; line-height: 1.15; max-width: 700px; margin: 0 auto 18px; }
+    .article-hero .lead { color: rgba(255,255,255,0.65); font-size: 1.08rem; max-width: 560px; margin: 0 auto; line-height: 1.8; }
+    .article-content { padding: 64px 0 80px; }
+    .article-content h2 { font-family: var(--font-serif); font-size: 1.8rem; font-weight: 600; color: var(--navy); margin: 48px 0 18px; }
+    .article-content h3 { font-family: var(--font-serif); font-size: 1.3rem; font-weight: 600; color: var(--navy); margin: 32px 0 12px; }
+    .article-content p { color: var(--grey); font-size: 0.97rem; line-height: 1.85; margin-bottom: 20px; }
+    .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--gold); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; margin-bottom: 40px; }
+    .material-card { background: var(--white); border-radius: 10px; padding: 24px 28px; border-left: 4px solid var(--gold); box-shadow: var(--shadow); margin: 24px 0; }
+    .material-card h3 { font-family: var(--font-serif); font-size: 1.3rem; color: var(--navy); margin-bottom: 10px; }
+    .material-card p { color: var(--grey); font-size: 0.92rem; line-height: 1.75; margin: 0; }
+    footer { background: #111820; color: rgba(255,255,255,0.42); padding: 44px 24px; text-align: center; font-size: 0.82rem; line-height: 2; }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer strong { color: rgba(255,255,255,0.65); }
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <a class="logo-wrap" href="../index.html">
+    <div class="logo">John <em>Skinner</em></div>
+    <div class="logo-sub">Est. 1980 · Cheltenham</div>
+  </a>
+  <nav>
+    <a href="../jaguar/index.html">Our Cars</a>
+    <a href="../materials/index.html">Materials</a>
+    <a href="../workshop/index.html">Workshop</a>
+    <a href="../why-us/index.html">Why Us</a>
+    <a href="../gallery/index.html">Gallery</a>
+    <a href="index.html" class="active">Handbook</a>
+    <a href="../about/index.html">About</a>
+    <a href="../quote/index.html" class="cta">Request a Quote</a>
+  </nav>
+</header>
+
+<div class="article-hero">
+  <p class="breadcrumb"><a href="index.html">Handbook</a> &nbsp;/&nbsp; In Detail</p>
+  <span class="article-tag-hero">In Detail</span>
+  <h1>In Detail: Our Carpet Kits</h1>
+  <p class="lead">Renowned worldwide for their excellent fit and finish — crafted from highest quality materials, cut with precision on our CNC machine and assembled by our skilled machinists.</p>
+</div>
+
+<section class="article-content">
+  <div class="article-wrap">
+    <a class="back-link" href="index.html">← Back to Handbook</a>
+
+    <p>Over the years, we have adapted our carpet kits to allow for greater flexibility in fitting. We have updated production-line patterns without compromising originality and our kits are designed to accommodate modern-day soundproofing technology should your restoration demand.</p>
+
+    <p>The nostalgic part? Our carpet kits are bound and sewn with the Seiko and Singer sewing machine models that would have been seen on the original factory production lines.</p>
+
+    <h2>Expert Knowledge of Original Materials</h2>
+
+    <p>When it comes to car flooring, we really know our stuff. We have developed all our Carpet Kits with a highly informed level of knowledge which not only informs good fit, but also accurate material allocation throughout the car cockpit.</p>
+
+    <p>Whilst some models simply have carpet running through the whole flooring area (such as the Triumph TRs), other models (such as the Jaguar E-Types) feature carpet, hardura, moquette and vinyl materials in a variety of combinations depending on the year of manufacture. Austin Healeys were unique in their use of a ribbed flooring material called Armacord, complemented by a ribbed effect carpet known as Karvel.</p>
+
+    <div class="material-card">
+      <h3>Wool</h3>
+      <p>A truly beautiful material, our Wool carpet is of exceptional quality; luxurious to the touch with a deep, springy pile and befitting of high-end restorations. The rubber backing provides flexibility and malleability in fitting whilst also holding the carpet firmly in place once in the car. Available in a range of around 20 colours.</p>
+    </div>
+
+    <div class="material-card">
+      <h3>Karvel</h3>
+      <p>Karvel carpet has a ribbed effect to the surface and is finished with a hessian backing. Its ribbed weave makes it a sturdy and robust material, suitable for day-to-day automotive use. Most commonly seen throughout Austin Healey and MGA interiors. Available in 4 colours: Black, Blue, Red and Grey.</p>
+    </div>
+
+    <div class="material-card">
+      <h3>Nylon</h3>
+      <p>Our tufted nylon is a man-made material that offers an affordable option for those not wanting to go to the expense of wool. With a deep pile of 100% polypropylene fibres and a rubber backing, it is flexible, durable and hard wearing. Ideal for restorations working to a budget.</p>
+    </div>
+
+    <h2>Precision CNC Cutting</h2>
+
+    <p>In recent years, we have invested heavily in technology that cuts our materials with a level of precision that could never be achieved by hand. Our digital CNC machine ensures every piece is cut with millimetre accuracy — notches, drill holes, and all shaped pieces are placed perfectly, every time.</p>
+
+    <p>The result is a carpet kit that drops into the car correctly, without the need for excessive trimming or adjustment. Our meticulous pattern archive — built over 45 years of working exclusively with these marques — means every cut is informed by genuine, original specification knowledge.</p>
+
+  </div>
+</section>
+
+<footer>
+  <strong>John Skinner (Manufacturing) Ltd</strong><br>
+  Classic Car Interior Trim Specialists · Est. 1980 · Cheltenham, England<br><br>
+  <a href="mailto:sales@john-skinner.co.uk">sales@john-skinner.co.uk</a> · <a href="../quote/index.html">Request a Quote</a><br><br>
+  <span style="opacity:0.45; font-size:0.75rem;">© 2025 John Skinner (Manufacturing) Ltd. All rights reserved.</span>
+</footer>
+</body>
+</html>

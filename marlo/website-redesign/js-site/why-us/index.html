@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why Choose Us — John Skinner (Manufacturing) Ltd</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #181e38; --navy-light: #272e66;
+      --gold: #c8ba9a; --gold-light: #d4cdb8;
+      --cream: #f6f6f3; --white: #ffffff;
+      --grey: #5a6373; --light-grey: #e5e0d6;
+      --text: #1e1e1e; --warm-bg: #efede9;
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-sans: 'Open Sans', Arial, sans-serif;
+      --radius: 6px; --shadow: 0 2px 16px rgba(0,0,0,0.07);
+      --shadow-md: 0 6px 32px rgba(0,0,0,0.13);
+    }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--cream); font-size: 16px; line-height: 1.7; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .site-header { background: var(--navy); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); position: sticky; top: 0; z-index: 100; }
+    .logo-wrap { padding: 14px 0; text-decoration: none; display: block; }
+    .logo { font-family: var(--font-serif); color: var(--white); font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
+    .logo em { color: var(--gold); font-style: normal; }
+    .logo-sub { font-size: 0.62rem; color: rgba(255,255,255,0.38); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 3px; }
+    nav { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+    nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 22px 10px; border-bottom: 2px solid transparent; transition: color 0.2s; }
+    nav a:hover, nav a.active { color: var(--gold-light); border-bottom-color: var(--gold-light); }
+    nav a.cta { background: var(--gold); color: var(--navy); padding: 9px 20px; border-radius: var(--radius); margin-left: 8px; border-bottom: none; font-weight: 700; }
+
+    .page-hero { background: var(--navy); color: var(--white); padding: 80px 24px 96px; text-align: center; position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 40%, rgba(200,186,154,0.1) 0%, transparent 65%); pointer-events: none; }
+    .eyebrow { font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 18px; }
+    .page-hero h1 { font-family: var(--font-serif); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 400; line-height: 1.12; margin-bottom: 20px; }
+    .page-hero p { color: rgba(255,255,255,0.6); font-size: 1.05rem; max-width: 540px; margin: 0 auto; line-height: 1.85; }
+
+    .trust-strip { background: var(--gold); padding: 13px 24px; display: flex; justify-content: center; flex-wrap: wrap; }
+    .trust-item { color: var(--navy); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 20px; border-right: 1px solid rgba(26,37,53,0.2); }
+    .trust-item:last-child { border-right: none; }
+
+    section { padding: 80px 0; }
+    .section-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .section-title { font-family: var(--font-serif); font-size: clamp(1.9rem, 4vw, 2.8rem); font-weight: 400; line-height: 1.18; margin-bottom: 16px; color: var(--navy); }
+    .section-sub { color: var(--grey); font-size: 1rem; line-height: 1.85; }
+    .divider { width: 44px; height: 3px; background: var(--gold); margin: 18px 0 28px; }
+
+    .usp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 56px; }
+    .usp-card { background: var(--white); border-radius: 12px; padding: 32px 28px; box-shadow: var(--shadow); border-top: 4px solid var(--gold); transition: transform 0.2s, box-shadow 0.2s; }
+    .usp-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .usp-icon { font-size: 2.2rem; margin-bottom: 16px; }
+    .usp-card h3 { font-family: var(--font-serif); font-size: 1.35rem; color: var(--navy); margin-bottom: 12px; }
+    .usp-card p { font-size: 0.9rem; color: var(--grey); line-height: 1.8; }
+
+    .comparison-section { background: var(--navy); color: var(--white); }
+    .comparison-section .section-title { color: var(--white); }
+    .comparison-section .section-sub { color: rgba(255,255,255,0.6); }
+    .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 44px; }
+    @media (max-width: 620px) { .comparison-grid { grid-template-columns: 1fr; } }
+    .comp-col { background: rgba(255,255,255,0.05); border-radius: 10px; padding: 28px 24px; }
+    .comp-col.them { border: 1px solid rgba(255,255,255,0.08); }
+    .comp-col.us { border: 2px solid var(--gold); background: rgba(200,186,154,0.08); }
+    .comp-col h3 { font-family: var(--font-serif); font-size: 1.2rem; margin-bottom: 20px; }
+    .comp-col.them h3 { color: rgba(255,255,255,0.45); }
+    .comp-col.us h3 { color: var(--gold); }
+    .comp-item { display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start; font-size: 0.88rem; line-height: 1.6; }
+    .comp-item .ci-icon { flex-shrink: 0; margin-top: 2px; }
+    .comp-col.them .comp-item { color: rgba(255,255,255,0.45); }
+    .comp-col.us .comp-item { color: rgba(255,255,255,0.82); }
+
+    .stats-section { background: var(--warm-bg); }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 24px; margin-top: 48px; }
+    .stat-card { text-align: center; background: var(--white); border-radius: 10px; padding: 32px 20px; box-shadow: var(--shadow); }
+    .stat-card .num { font-family: var(--font-serif); font-size: 3.2rem; color: var(--navy); line-height: 1; margin-bottom: 8px; }
+    .stat-card .label { font-size: 0.75rem; font-weight: 700; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase; }
+
+    .philosophy-section { background: var(--cream); }
+    .philosophy-text { max-width: 780px; margin: 0 auto; text-align: center; }
+    .philosophy-text p { color: var(--grey); font-size: 1.05rem; line-height: 1.9; margin-bottom: 20px; }
+    .philosophy-quote { font-family: var(--font-serif); font-size: 1.5rem; color: var(--navy); font-style: italic; line-height: 1.6; margin: 40px 0; }
+
+    .cta-banner { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); color: var(--white); text-align: center; padding: 80px 24px; border-top: 3px solid var(--gold); }
+    .cta-banner h2 { font-family: var(--font-serif); font-size: clamp(1.9rem, 4vw, 2.9rem); margin-bottom: 16px; }
+    .cta-banner p { color: rgba(255,255,255,0.6); font-size: 1.05rem; margin-bottom: 38px; max-width: 460px; margin-left: auto; margin-right: auto; }
+    .btn { display: inline-block; padding: 14px 32px; border-radius: var(--radius); font-weight: 700; font-size: 0.88rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; margin: 6px; }
+    .btn-primary { background: var(--gold); color: var(--navy); }
+    .btn-primary:hover { background: var(--gold-light); }
+    .btn-outline { border: 2px solid rgba(255,255,255,0.28); color: var(--white); }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    footer { background: #111820; color: rgba(255,255,255,0.42); padding: 44px 24px; text-align: center; font-size: 0.82rem; line-height: 2; }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer strong { color: rgba(255,255,255,0.65); }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo-wrap" href="../index.html">
+    <div class="logo">John <em>Skinner</em></div>
+    <div class="logo-sub">Est. 1980 · Cheltenham</div>
+  </a>
+  <nav>
+    <a href="../jaguar/index.html">Our Cars</a>
+    <a href="../materials/index.html">Materials</a>
+    <a href="../workshop/index.html">Workshop</a>
+    <a href="index.html" class="active">Why Us</a>
+    <a href="../gallery/index.html">Gallery</a>
+    <a href="../handbook/index.html">Handbook</a>
+    <a href="../about/index.html">About</a>
+    <a href="../quote/index.html" class="cta">Request a Quote</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <p class="eyebrow">45 Years · Made in Britain · Unmatched Expertise</p>
+  <h1>This is what 45 years<br>of focus looks like</h1>
+  <p>We do one thing. We've done it since 1980. Our focus on a handful of marques means our knowledge goes deeper than any generalist trimmer can match — and it shows in every kit we make.</p>
+</div>
+
+<div class="trust-strip">
+  <div class="trust-item">45 Years of Craft</div>
+  <div class="trust-item">Made in Britain</div>
+  <div class="trust-item">Ships Worldwide</div>
+  <div class="trust-item">Award-Winning Kits</div>
+  <div class="trust-item">OEM Specification</div>
+  <div class="trust-item">Royal Commission</div>
+</div>
+
+<!-- USP GRID -->
+<section>
+  <div class="wrap">
+    <div style="text-align:center; max-width:620px; margin:0 auto;">
+      <p class="section-label">Our Advantages</p>
+      <h2 class="section-title">Why the world's best restorations choose John Skinner</h2>
+    </div>
+    <div class="usp-grid">
+      <div class="usp-card">
+        <div class="usp-icon">🪡</div>
+        <h3>Original Specification Patterns</h3>
+        <p>Every pattern reverse-engineered from genuine, original factory trim — not after-market replica. Four decades of pattern archive, refined by customer feedback and professional trimmer input. When concours judges scrutinise your interior, these details are what matter.</p>
+      </div>
+      <div class="usp-card">
+        <div class="usp-icon">🏭</div>
+        <h3>Made in Cheltenham</h3>
+        <p>Cut, sewn and trimmed in our own workshop by skilled craftspeople. We don't outsource a single piece. Every kit that leaves our doors was made by our team, on our machines, in our factory. British manufacturing. Not a badge we wear — a commitment we keep.</p>
+      </div>
+      <div class="usp-card">
+        <div class="usp-icon">🎯</div>
+        <h3>Deep Marque Expertise</h3>
+        <p>We make trim for Jaguar, Triumph TR, Austin Healey and MG — and nothing else. That deliberate focus means our knowledge of these specific cars is unmatched. We know which direction the ribs run in an Austin Healey. We know the exact weld pattern on a TR6 seat. That's the difference.</p>
+      </div>
+      <div class="usp-card">
+        <div class="usp-icon">🎨</div>
+        <h3>Widest Colour & Material Range</h3>
+        <p>The most comprehensive library of trim materials and colours available in the industry — all in-house. Leather in three finishes, Connolly Vaumol™, wool carpet in 20+ colours, Karvel, Hardura, Moquette. If it originally went in these cars, we have it.</p>
+      </div>
+      <div class="usp-card">
+        <div class="usp-icon">🔬</div>
+        <h3>Precision CNC Cutting</h3>
+        <p>Modern technology serving traditional craft. Our digital CNC machine cuts every piece with millimetre accuracy — notches, drill holes, shaped curves. The kind of consistency that handcutting simply cannot achieve. Better fit, every time.</p>
+      </div>
+      <div class="usp-card">
+        <div class="usp-icon">🤝</div>
+        <h3>Personal Expert Guidance</h3>
+        <p>Every enquiry handled by someone who genuinely knows these cars. We'll guide your colour choices, advise on originality, and be on hand throughout the process — from first call to fitting questions. You connect with us directly. Always.</p>
+      </div>
+      <div class="usp-card">
+        <div class="usp-icon">🌍</div>
+        <h3>Ships Worldwide</h3>
+        <p>Our kits travel from Cheltenham to customers across the UK, Europe, North America, Australia and beyond. Classic car restoration is a global pursuit — and we've been supplying it globally for decades.</p>
+      </div>
+      <div class="usp-card">
+        <div class="usp-icon">🏆</div>
+        <h3>Award-Winning Results</h3>
+        <p>Our trim has featured in Concours d'Elegance winners, perfect-score judging results, F1 Grand Prix parade cars, and royal commissions. When the stakes are highest, restorers choose John Skinner.</p>
+      </div>
+      <div class="usp-card">
+        <div class="usp-icon">👨‍👩‍👧‍👦</div>
+        <h3>Family Business, Second Generation</h3>
+        <p>Founded by John Skinner, now managed by his son Jonathon and wife Lucy. The same family values, the same commitment to quality — with modern technology and processes added by the second generation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="comparison-section">
+  <div class="wrap">
+    <div style="text-align:center; max-width:620px; margin:0 auto 8px;">
+      <p class="section-label" style="color:var(--gold);">The Honest Truth</p>
+      <h2 class="section-title">We're not the cheapest option. Deliberately.</h2>
+      <p class="section-sub">The materials cost more. The patterns are original spec. Workshop skill isn't a commodity. Our customers know the difference — and they don't buy twice.</p>
+    </div>
+    <div class="comparison-grid">
+      <div class="comp-col them">
+        <h3>Other suppliers</h3>
+        <div class="comp-item"><span class="ci-icon">✗</span> Generic patterns, not original spec</div>
+        <div class="comp-item"><span class="ci-icon">✗</span> Outsourced manufacturing</div>
+        <div class="comp-item"><span class="ci-icon">✗</span> Limited colour options</div>
+        <div class="comp-item"><span class="ci-icon">✗</span> No specialist marque knowledge</div>
+        <div class="comp-item"><span class="ci-icon">✗</span> No after-sales support</div>
+        <div class="comp-item"><span class="ci-icon">✗</span> Won't last a concours judge</div>
+      </div>
+      <div class="comp-col us">
+        <h3>John Skinner</h3>
+        <div class="comp-item"><span class="ci-icon">✓</span> Original specification, reverse-engineered patterns</div>
+        <div class="comp-item"><span class="ci-icon">✓</span> Made in our Cheltenham workshop</div>
+        <div class="comp-item"><span class="ci-icon">✓</span> Widest colour & material range in the industry</div>
+        <div class="comp-item"><span class="ci-icon">✓</span> 45 years of focused marque expertise</div>
+        <div class="comp-item"><span class="ci-icon">✓</span> Personal support from people who know these cars</div>
+        <div class="comp-item"><span class="ci-icon">✓</span> Trusted by concours winners, royal restorations, celebrity builds</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-section">
+  <div class="wrap">
+    <div style="text-align:center; max-width:620px; margin:0 auto 8px;">
+      <p class="section-label">By the Numbers</p>
+      <h2 class="section-title">45 years of results</h2>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="num">45+</div><div class="label">Years Trading</div></div>
+      <div class="stat-card"><div class="num">4</div><div class="label">Classic Marques</div></div>
+      <div class="stat-card"><div class="num">20+</div><div class="label">Wool Carpet Colours</div></div>
+      <div class="stat-card"><div class="num">1st</div><div class="label">Perfect TRA Score Ever</div></div>
+      <div class="stat-card"><div class="num">🌍</div><div class="label">Ships Worldwide</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy-section">
+  <div class="wrap">
+    <div class="philosophy-text">
+      <p class="section-label" style="color:var(--gold); text-align:center;">Our Philosophy</p>
+      <div class="philosophy-quote">"We do one thing. We've done it since 1980. We're more expensive than some alternatives — deliberately so."</div>
+      <p>The materials cost more. The patterns are original specification. Workshop skill isn't a commodity. We've never tried to compete on price — and we never will. What we compete on is accuracy, knowledge, quality and service. Our customers know the difference. And they don't buy twice.</p>
+      <p>Classic car restoration demands patience, investment and commitment. The interior is what you see and touch every time you open the door. It deserves to be right. We make sure it is.</p>
+    </div>
+  </div>
+</section>
+
+<div class="cta-banner">
+  <h2>Ready to experience the difference?</h2>
+  <p>Find your car, choose your kits, and request a quote. No commitment required.</p>
+  <a href="../jaguar/index.html" class="btn btn-primary">Browse by car →</a>
+  <a href="../quote/index.html" class="btn btn-outline">Request a Quote</a>
+</div>
+
+<footer>
+  <strong>John Skinner (Manufacturing) Ltd</strong><br>
+  Classic Car Interior Trim Specialists · Est. 1980 · Cheltenham, England<br><br>
+  <a href="mailto:sales@john-skinner.co.uk">sales@john-skinner.co.uk</a> ·
+  <a href="../quote/index.html">Request a Quote</a> ·
+  <a href="../about/index.html">About Us</a><br><br>
+  <span style="opacity:0.45; font-size:0.75rem;">© 2025 John Skinner (Manufacturing) Ltd. All rights reserved.</span>
+</footer>
+
+</body>
+</html>

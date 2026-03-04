@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Workshop — John Skinner (Manufacturing) Ltd</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #181e38; --navy-light: #272e66;
+      --gold: #c8ba9a; --gold-light: #d4cdb8;
+      --cream: #f6f6f3; --white: #ffffff;
+      --grey: #5a6373; --light-grey: #e5e0d6;
+      --text: #1e1e1e; --warm-bg: #efede9;
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-sans: 'Open Sans', Arial, sans-serif;
+      --radius: 6px; --shadow: 0 2px 16px rgba(0,0,0,0.07);
+      --shadow-md: 0 6px 32px rgba(0,0,0,0.13);
+    }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--cream); font-size: 16px; line-height: 1.7; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .site-header { background: var(--navy); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); position: sticky; top: 0; z-index: 100; }
+    .logo-wrap { padding: 14px 0; text-decoration: none; display: block; }
+    .logo { font-family: var(--font-serif); color: var(--white); font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
+    .logo em { color: var(--gold); font-style: normal; }
+    .logo-sub { font-size: 0.62rem; color: rgba(255,255,255,0.38); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 3px; }
+    nav { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+    nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 22px 10px; border-bottom: 2px solid transparent; transition: color 0.2s; }
+    nav a:hover, nav a.active { color: var(--gold-light); border-bottom-color: var(--gold-light); }
+    nav a.cta { background: var(--gold); color: var(--navy); padding: 9px 20px; border-radius: var(--radius); margin-left: 8px; border-bottom: none; font-weight: 700; }
+
+    .page-hero { background: var(--navy); color: var(--white); padding: 80px 24px 96px; text-align: center; position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 40%, rgba(200,186,154,0.1) 0%, transparent 65%); pointer-events: none; }
+    .eyebrow { font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 18px; }
+    .page-hero h1 { font-family: var(--font-serif); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 400; line-height: 1.12; margin-bottom: 20px; }
+    .page-hero p { color: rgba(255,255,255,0.6); font-size: 1.05rem; max-width: 520px; margin: 0 auto; line-height: 1.85; }
+
+    section { padding: 80px 0; }
+    .section-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .section-title { font-family: var(--font-serif); font-size: clamp(1.9rem, 4vw, 2.8rem); font-weight: 400; line-height: 1.18; margin-bottom: 16px; color: var(--navy); }
+    .section-sub { color: var(--grey); font-size: 1rem; line-height: 1.85; }
+    .divider { width: 44px; height: 3px; background: var(--gold); margin: 18px 0 28px; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; gap: 40px; } }
+
+    /* Process steps */
+    .process-section { background: var(--warm-bg); }
+    .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 36px; margin-top: 52px; }
+    .process-step { text-align: center; }
+    .step-num { width: 52px; height: 52px; border-radius: 50%; background: var(--navy); color: var(--gold); font-family: var(--font-serif); font-size: 1.4rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; }
+    .process-step h4 { font-family: var(--font-serif); font-size: 1.12rem; color: var(--navy); margin-bottom: 8px; }
+    .process-step p { font-size: 0.87rem; color: var(--grey); line-height: 1.72; }
+
+    /* Technology cards */
+    .tech-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; margin-top: 48px; }
+    .tech-card { background: var(--white); border-radius: 12px; padding: 28px 24px; box-shadow: var(--shadow); border-left: 4px solid var(--gold); transition: transform 0.2s, box-shadow 0.2s; }
+    .tech-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .tech-icon { font-size: 2rem; margin-bottom: 14px; }
+    .tech-card h3 { font-family: var(--font-serif); font-size: 1.2rem; color: var(--navy); margin-bottom: 10px; }
+    .tech-card p { font-size: 0.87rem; color: var(--grey); line-height: 1.75; }
+
+    /* Archive section */
+    .archive-section { background: var(--navy); color: var(--white); }
+    .archive-section .section-title { color: var(--white); }
+    .archive-section .section-sub { color: rgba(255,255,255,0.6); }
+    .archive-items { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 40px; }
+    .archive-item { background: rgba(255,255,255,0.06); border-radius: 10px; padding: 22px 20px; border: 1px solid rgba(255,255,255,0.08); }
+    .archive-item .ai-num { font-family: var(--font-serif); font-size: 2.4rem; color: var(--gold); line-height: 1; margin-bottom: 6px; }
+    .archive-item p { font-size: 0.82rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+
+    /* Order section */
+    .order-section { background: var(--cream); }
+    .order-steps { margin-top: 40px; }
+    .order-step { display: flex; gap: 24px; margin-bottom: 36px; padding-bottom: 36px; border-bottom: 1px solid var(--light-grey); align-items: flex-start; }
+    .order-step:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .os-num { width: 44px; height: 44px; border-radius: 50%; background: var(--gold); color: var(--navy); font-family: var(--font-serif); font-size: 1.2rem; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .os-body h4 { font-family: var(--font-serif); font-size: 1.2rem; color: var(--navy); margin-bottom: 8px; }
+    .os-body p { font-size: 0.9rem; color: var(--grey); line-height: 1.75; margin: 0; }
+
+    .cta-banner { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); color: var(--white); text-align: center; padding: 80px 24px; border-top: 3px solid var(--gold); }
+    .cta-banner h2 { font-family: var(--font-serif); font-size: clamp(1.9rem, 4vw, 2.9rem); margin-bottom: 16px; }
+    .cta-banner p { color: rgba(255,255,255,0.6); font-size: 1.05rem; margin-bottom: 38px; max-width: 460px; margin-left: auto; margin-right: auto; }
+    .btn { display: inline-block; padding: 14px 32px; border-radius: var(--radius); font-weight: 700; font-size: 0.88rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; margin: 6px; }
+    .btn-primary { background: var(--gold); color: var(--navy); }
+    .btn-primary:hover { background: var(--gold-light); }
+
+    footer { background: #111820; color: rgba(255,255,255,0.42); padding: 44px 24px; text-align: center; font-size: 0.82rem; line-height: 2; }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer strong { color: rgba(255,255,255,0.65); }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo-wrap" href="../index.html">
+    <div class="logo">John <em>Skinner</em></div>
+    <div class="logo-sub">Est. 1980 · Cheltenham</div>
+  </a>
+  <nav>
+    <a href="../jaguar/index.html">Our Cars</a>
+    <a href="../materials/index.html">Materials</a>
+    <a href="index.html" class="active">Workshop</a>
+    <a href="../why-us/index.html">Why Us</a>
+    <a href="../gallery/index.html">Gallery</a>
+    <a href="../handbook/index.html">Handbook</a>
+    <a href="../about/index.html">About</a>
+    <a href="../quote/index.html" class="cta">Request a Quote</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <p class="eyebrow">Made in Britain · Cheltenham · Est. 1980</p>
+  <h1>Inside our workshop</h1>
+  <p>Every kit that leaves our doors was made here — in Cheltenham, by our team, on our machines. No outsourcing. No shortcuts. Just craft.</p>
+</div>
+
+<!-- WORKSHOP OVERVIEW -->
+<section>
+  <div class="wrap">
+    <div class="two-col">
+      <div>
+        <p class="section-label">Our Home</p>
+        <h2 class="section-title">The Cheltenham workshop</h2>
+        <div class="divider"></div>
+        <p class="section-sub">Based in Cheltenham, Gloucestershire, our workshop is where everything happens. From the moment a pattern is laid on the cutting table to the final quality check before dispatch — every step takes place in-house.</p>
+        <p class="section-sub" style="margin-top:16px;">We've been making interior trim here since the early days of the business, and the workshop has evolved significantly over the decades — embracing new technology while keeping the traditional craft skills that define what we do.</p>
+        <p class="section-sub" style="margin-top:16px;">We don't take cars into the workshop for trimming — but we do offer a re-trimming service for parts that can be removed and delivered to us. Seat frames, metalwork, dashboards — if it comes out of the car, we can trim it.</p>
+      </div>
+      <div style="background: var(--navy); border-radius: 12px; padding: 36px 32px; display: flex; flex-direction: column; gap: 20px; border: 1px solid rgba(255,255,255,0.06);">
+        <div style="font-family: var(--font-serif); color: var(--gold); font-size: 1.1rem; margin-bottom: 4px;">Workshop Facts</div>
+        <div style="display: flex; gap: 12px; align-items: flex-start; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 16px;">
+          <div style="font-size: 1.3rem; flex-shrink:0;">📍</div>
+          <div><div style="font-size:0.8rem; color:var(--gold); font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Location</div><div style="font-size:0.9rem; color:rgba(255,255,255,0.7);">Cheltenham, Gloucestershire, England</div></div>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: flex-start; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 16px;">
+          <div style="font-size: 1.3rem; flex-shrink:0;">⚙</div>
+          <div><div style="font-size:0.8rem; color:var(--gold); font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Key Technology</div><div style="font-size:0.9rem; color:rgba(255,255,255,0.7);">Digital CNC Cutting · HF Welding · Seiko & Singer Sewing</div></div>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: flex-start; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 16px;">
+          <div style="font-size: 1.3rem; flex-shrink:0;">👥</div>
+          <div><div style="font-size:0.8rem; color:var(--gold); font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Team</div><div style="font-size:0.9rem; color:rgba(255,255,255,0.7);">Small, skilled machinists · Some with us nearly a decade</div></div>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: flex-start;">
+          <div style="font-size: 1.3rem; flex-shrink:0;">📦</div>
+          <div><div style="font-size:0.8rem; color:var(--gold); font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:4px;">Output</div><div style="font-size:0.9rem; color:rgba(255,255,255,0.7);">Ships worldwide · Every kit made to order</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNOLOGY -->
+<section style="background: var(--warm-bg); padding: 80px 0;">
+  <div class="wrap">
+    <div style="text-align:center; max-width:620px; margin:0 auto 8px;">
+      <p class="section-label">Our Technology</p>
+      <h2 class="section-title">Modern precision. Traditional craft.</h2>
+      <p class="section-sub">We've embraced modern technology within a traditional industry — enabling us to deliver exceptional interior trim with the accuracy that the original manufacturers would have envied.</p>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-icon">🖥️</div>
+        <h3>Digital CNC Cutting</h3>
+        <p>Our on-site CNC machine cuts every piece with millimetre precision. Every notch, drill hole and shaped curve is placed exactly right — eliminating the risk of human error and ensuring consistency across every kit we produce.</p>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">⚡</div>
+        <h3>HF (High Frequency) Welding</h3>
+        <p>We use our on-site HF welder to add original specification weld patterns to vinyl cushions, backrests and panel work. We are one of only a few companies in the world to hold the original weld template designs for Austin Healey BJ8 and Triumph TR models.</p>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">🧵</div>
+        <h3>Seiko & Singer Sewing</h3>
+        <p>The nostalgic touch: our carpet kits are bound and sewn with Seiko and Singer sewing machine models that would have been seen on the original factory production lines. Traditional equipment doing what it was made to do.</p>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">📐</div>
+        <h3>Pattern Archive</h3>
+        <p>A physical archive of original seat and trim patterns, built over 45 years. All patterns now digitised into our CNC library — but we still reference original trim in the workshop regularly for accuracy. You can't build patterns like this from a computer. You need the cars.</p>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">⚙️</div>
+        <h3>Leather Embossing</h3>
+        <p>For leather seat upgrades, we offer an embossed 'Perforated' finish that replicates the visual character of the original vinyl weld patterns — giving leather seats the period-correct look while delivering genuine leather luxury.</p>
+      </div>
+      <div class="tech-card">
+        <div class="tech-icon">🔍</div>
+        <h3>Quality Control</h3>
+        <p>Every kit is checked before it leaves our workshop. No conveyor belt, no automated dispatch — every item is reviewed by our team. Small workshop. Personal responsibility. It matters to us.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHIVE STATS -->
+<section class="archive-section">
+  <div class="wrap">
+    <div style="max-width:620px;">
+      <p class="section-label" style="color:var(--gold);">The Archive</p>
+      <h2 class="section-title">45 years of pattern knowledge</h2>
+      <p class="section-sub">One of the most valuable things in our workshop isn't a machine — it's the archive. Four decades of patterns, original trim pieces, production notes and fitting knowledge. This is what genuine expertise looks like.</p>
+    </div>
+    <div class="archive-items">
+      <div class="archive-item">
+        <div class="ai-num">4</div>
+        <p>Classic marques covered in depth</p>
+      </div>
+      <div class="archive-item">
+        <div class="ai-num">45+</div>
+        <p>Years of pattern development and refinement</p>
+      </div>
+      <div class="archive-item">
+        <div class="ai-num">100%</div>
+        <p>Original specification patterns — not aftermarket replica</p>
+      </div>
+      <div class="archive-item">
+        <div class="ai-num">🌍</div>
+        <p>Customers from UK to Australia trust our knowledge</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER PROCESS -->
+<section class="order-section">
+  <div class="wrap">
+    <div style="max-width:680px; margin:0 auto;">
+      <p class="section-label" style="text-align:center;">The Process</p>
+      <h2 class="section-title" style="text-align:center;">How your kit is made</h2>
+      <p class="section-sub" style="text-align:center; margin-bottom:48px;">Every kit is made to order. No stock-room pulls. No off-the-shelf guesswork. Here's what happens after you place your order.</p>
+      <div class="order-steps">
+        <div class="order-step">
+          <div class="os-num">1</div>
+          <div class="os-body">
+            <h4>Your order is received and reviewed</h4>
+            <p>We review your order details — car model, variant, material choices and colour specifications. If anything needs clarifying, Jonathon will get in touch personally to confirm before we start.</p>
+          </div>
+        </div>
+        <div class="order-step">
+          <div class="os-num">2</div>
+          <div class="os-body">
+            <h4>Patterns are pulled from the digital archive</h4>
+            <p>Your car's specific patterns are loaded into the CNC system. Model variant, series, and any specification details are all accounted for — this is where the 45 years of pattern knowledge pays off.</p>
+          </div>
+        </div>
+        <div class="order-step">
+          <div class="os-num">3</div>
+          <div class="os-body">
+            <h4>Materials are cut with millimetre precision</h4>
+            <p>The CNC machine cuts your materials — leather, vinyl, carpet, hardura, moquette — with exact placement of every notch, hole and edge. No hand-cutting inconsistency. Every piece identical to spec.</p>
+          </div>
+        </div>
+        <div class="order-step">
+          <div class="os-num">4</div>
+          <div class="os-body">
+            <h4>Sewing and assembly</h4>
+            <p>Our machinists sew, bind and assemble the kit. Seat covers are pleated and sewn. Carpet is bound and edged. Panels are finished. This is where the craft lives — and where our team's experience shows.</p>
+          </div>
+        </div>
+        <div class="order-step">
+          <div class="os-num">5</div>
+          <div class="os-body">
+            <h4>Quality check and dispatch</h4>
+            <p>Every kit is checked before it leaves the workshop. Then carefully packed — ready to ship to you, wherever you are in the world. Most orders ship within our stated lead time, and we'll keep you informed throughout.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-banner">
+  <h2>Ready to start your restoration?</h2>
+  <p>Request a quote — find your car, choose your kits, and we'll do the rest.</p>
+  <a href="../quote/index.html" class="btn btn-primary">Request a Quote →</a>
+</div>
+
+<footer>
+  <strong>John Skinner (Manufacturing) Ltd</strong><br>
+  Classic Car Interior Trim Specialists · Est. 1980 · Cheltenham, England<br><br>
+  <a href="mailto:sales@john-skinner.co.uk">sales@john-skinner.co.uk</a> ·
+  <a href="../quote/index.html">Request a Quote</a> ·
+  <a href="../about/index.html">About Us</a><br><br>
+  <span style="opacity:0.45; font-size:0.75rem;">© 2025 John Skinner (Manufacturing) Ltd. All rights reserved.</span>
+</footer>
+
+</body>
+</html>
