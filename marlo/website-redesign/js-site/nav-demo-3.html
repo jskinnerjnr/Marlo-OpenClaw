@@ -3,51 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>John Skinner — Nav Demo 3: Bottom Nav Bar</title>
+  <title>John Skinner — Nav Demo 3: Bottom Navigation Bar</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --navy: #181e38; --gold: #c8ba9a; --gold-light: #dbd6ca;
-      --cream: #f6f6f3; --white: #ffffff; --grey: #7d807e;
+      --navy: #181e38; --navy-light: #272e66;
+      --gold: #c8ba9a; --gold-light: #dbd6ca;
+      --cream: #f6f6f3; --white: #ffffff;
+      --grey: #7d807e; --light-grey: #e3e3df;
       --text: #404041; --warm-bg: #efede9;
       --font-serif: 'EB Garamond', Georgia, serif;
       --font-sans: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
       --radius: 6px; --shadow: 0 2px 20px rgba(0,0,0,0.06);
       --shadow-md: 0 8px 40px rgba(0,0,0,0.11);
+      --bottom-nav-height: 68px;
     }
     html { scroll-behavior: smooth; }
     body { font-family: var(--font-sans); color: var(--text); background: var(--cream); font-size: 16px; line-height: 1.7; }
     .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
-    /* ===== HEADER — logo only on mobile ===== */
-    .site-header { background: var(--navy); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); position: sticky; top: 0; z-index: 200; }
+    /* ===== HEADER ===== */
+    .site-header {
+      background: var(--navy);
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 3px solid var(--gold);
+      position: sticky;
+      top: 0;
+      z-index: 200;
+    }
     .logo-wrap { padding: 14px 0; text-decoration: none; display: block; }
     .logo { font-family: var(--font-serif); color: var(--white); font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
     .logo em { color: var(--gold); font-style: normal; }
     .logo-sub { font-size: 0.62rem; color: rgba(255,255,255,0.38); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 3px; }
+
+    /* Desktop nav — hidden on mobile */
     .desktop-nav { display: flex; gap: 4px; align-items: center; }
     .desktop-nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 22px 11px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
     .desktop-nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold-light); }
     .desktop-nav a.cta { background: var(--navy); color: var(--gold); border: 2px solid var(--gold); padding: 9px 20px; border-radius: var(--radius); margin-left: 10px; border-bottom: 2px solid var(--gold); font-weight: 700; }
     .desktop-nav a.cta:hover { background: var(--gold); color: var(--navy); }
 
-    /* ===== BOTTOM NAV BAR ===== */
+    /* ===== BOTTOM NAV BAR — mobile only ===== */
     .bottom-nav {
-      display: none;
+      display: none; /* shown via media query */
       position: fixed;
-      bottom: 0; left: 0; right: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: var(--bottom-nav-height);
       background: var(--navy);
-      border-top: 2px solid var(--gold);
+      border-top: 2px solid rgba(200,186,154,0.3);
       z-index: 300;
-      padding: 0;
-      padding-bottom: env(safe-area-inset-bottom, 0);
-    }
-    .bottom-nav-items {
-      display: flex;
-      justify-content: space-around;
+      flex-direction: row;
       align-items: stretch;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
     }
     .bottom-nav-item {
       flex: 1;
@@ -55,93 +69,105 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 10px 4px 8px;
       text-decoration: none;
-      color: rgba(255,255,255,0.52);
+      color: rgba(255,255,255,0.5);
       font-size: 0.58rem;
       font-weight: 600;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
+      gap: 3px;
+      padding: 8px 4px 10px;
       transition: color 0.15s, background 0.15s;
       cursor: pointer;
       background: none;
       border: none;
       font-family: var(--font-sans);
-      gap: 4px;
-      min-height: 58px;
-      -webkit-tap-highlight-color: transparent;
     }
-    .bottom-nav-item:hover, .bottom-nav-item:active { color: var(--gold); background: rgba(200,186,154,0.07); }
-    .bottom-nav-item .nav-icon { font-size: 1.3rem; line-height: 1; display: block; }
-    /* Quote item stands out */
+    .bottom-nav-item .nav-icon {
+      font-size: 1.3rem;
+      line-height: 1;
+      display: block;
+    }
+    .bottom-nav-item:hover,
+    .bottom-nav-item.active {
+      color: var(--gold);
+    }
+
+    /* Quote item — stands out */
     .bottom-nav-item.quote-item {
       background: var(--gold);
       color: var(--navy);
       font-weight: 700;
-      border-radius: 0;
-      flex: 1.2;
     }
-    .bottom-nav-item.quote-item:hover { background: var(--gold-light); }
-    .bottom-nav-item.quote-item .nav-icon { color: var(--navy); }
+    .bottom-nav-item.quote-item:hover {
+      background: var(--gold-light);
+      color: var(--navy);
+    }
 
-    /* More sheet */
-    .more-sheet-overlay {
+    /* More button */
+    .bottom-nav-item.more-item { cursor: pointer; }
+
+    /* ===== MORE SHEET ===== */
+    .more-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.45);
-      z-index: 400;
-      opacity: 0;
-      transition: opacity 0.25s;
+      background: rgba(0,0,0,0.55);
+      z-index: 290;
     }
-    .more-sheet-overlay.open { display: block; opacity: 1; }
+    .more-overlay.open { display: block; }
+
     .more-sheet {
       position: fixed;
-      bottom: 0; left: 0; right: 0;
+      bottom: var(--bottom-nav-height);
+      left: 0;
+      right: 0;
       background: var(--navy);
       border-top: 2px solid var(--gold);
-      border-radius: 16px 16px 0 0;
-      z-index: 410;
+      border-radius: 14px 14px 0 0;
+      z-index: 295;
+      padding-bottom: 8px;
       transform: translateY(100%);
-      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
-      padding-bottom: calc(72px + env(safe-area-inset-bottom, 0));
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .more-sheet.open { transform: translateY(0); }
-    .more-sheet-handle { width: 36px; height: 4px; background: rgba(200,186,154,0.35); border-radius: 2px; margin: 12px auto 6px; }
-    .more-sheet-title { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); text-align: center; padding: 6px 0 14px; border-bottom: 1px solid rgba(200,186,154,0.1); margin: 0 20px; }
+
+    .more-sheet-handle {
+      width: 36px; height: 4px;
+      background: rgba(200,186,154,0.3);
+      border-radius: 2px;
+      margin: 12px auto 8px;
+    }
+    .more-sheet-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(200,186,154,0.5);
+      padding: 4px 20px 10px;
+    }
     .more-sheet a {
       display: flex;
       align-items: center;
       gap: 14px;
-      color: rgba(255,255,255,0.78);
+      color: rgba(255,255,255,0.82);
       text-decoration: none;
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 500;
       letter-spacing: 0.04em;
-      padding: 16px 24px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+      text-transform: uppercase;
+      padding: 16px 22px;
+      border-bottom: 1px solid rgba(200,186,154,0.08);
       transition: color 0.15s, background 0.15s;
-      -webkit-tap-highlight-color: transparent;
     }
-    .more-sheet a:hover { color: var(--gold); background: rgba(200,186,154,0.05); }
-    .more-sheet a .sheet-icon { font-size: 1.2rem; width: 28px; text-align: center; flex-shrink: 0; }
     .more-sheet a:last-child { border-bottom: none; }
+    .more-sheet a:hover, .more-sheet a:active { color: var(--gold); background: rgba(200,186,154,0.05); }
+    .more-sheet a .sheet-icon { font-size: 1.2rem; }
 
-    /* Page bottom padding so content isn't hidden behind bottom nav on mobile */
-    @media (max-width: 768px) {
-      body { padding-bottom: 64px; }
-      .bottom-nav { display: block; }
-      .desktop-nav { display: none; }
-      .trust-strip { display: none; }
-      .hero { padding: 70px 20px 80px; }
-      section { padding: 72px 0; }
-      .two-col { grid-template-columns: 1fr; gap: 40px; }
-      .cta-banner { padding: 72px 20px; }
-      .option-badge { display: block; }
-      #scrollTopBtn { bottom: 80px; }
-    }
+    /* Body padding for bottom nav on mobile */
+    body.has-bottom-nav { padding-bottom: var(--bottom-nav-height); }
 
-    /* Content styles */
+    /* HERO */
     .hero { background: var(--navy); color: var(--white); padding: 100px 24px 120px; text-align: center; position: relative; overflow: hidden; }
     .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 40%, rgba(200,186,154,0.08) 0%, transparent 65%); pointer-events: none; }
     .hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 24px; }
@@ -156,68 +182,124 @@
     .btn-primary-cream:hover { background: transparent; color: var(--navy); border-color: var(--navy); }
     .btn-outline { border: 2px solid rgba(255,255,255,0.28); color: var(--white); background: transparent; }
     .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+    .btn-outline-dark { border: 2px solid var(--navy); color: var(--navy); background: transparent; letter-spacing: 0.07em; }
+    .btn-outline-dark:hover { background: var(--navy); color: var(--white); }
+
     .section-rule { border: none; border-top: 1px solid var(--gold); opacity: 0.45; margin: 0; }
     .trust-strip { background: var(--cream); padding: 20px 24px; display: flex; justify-content: center; flex-wrap: wrap; border-bottom: 1px solid var(--gold); }
     .trust-item { color: var(--navy); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; padding: 4px 22px; border-right: 1px solid rgba(200,186,154,0.5); }
     .trust-item:last-child { border-right: none; }
+
     section { padding: 100px 0; }
     .section-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
     .section-title { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.15; margin-bottom: 18px; color: var(--navy); }
     .section-sub { color: var(--grey); font-size: 1.02rem; line-height: 1.85; }
     .divider { width: 44px; height: 1px; background: var(--gold); margin: 22px 0; }
+
     .marque-section { background: var(--white); }
     .marque-intro { text-align: center; max-width: 600px; margin: 0 auto 64px; }
     .marque-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px; }
     .marque-card { background: var(--white); border-radius: 8px; box-shadow: var(--shadow); overflow: hidden; text-decoration: none; transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s; display: flex; flex-direction: column; border: 1px solid #efede9; }
     .marque-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--gold); }
-    .marque-img { height: 155px; background: var(--navy); display: flex; align-items: center; justify-content: center; }
-    .marque-emblem { font-family: var(--font-serif); font-size: 2.1rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+    .marque-img { height: 155px; background: var(--navy); display: flex; align-items: center; justify-content: center; position: relative; }
+    .marque-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(200,186,154,0.12) 0%, transparent 55%); }
+    .marque-emblem { font-family: var(--font-serif); font-size: 2.1rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; z-index: 1; }
     .marque-body { padding: 28px 26px 30px; flex: 1; display: flex; flex-direction: column; }
     .marque-body h3 { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 600; color: var(--navy); margin-bottom: 10px; }
     .marque-body p { color: var(--grey); font-size: 0.89rem; line-height: 1.7; flex: 1; margin-bottom: 18px; }
     .model-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
     .tag { background: var(--cream); color: var(--navy); font-size: 0.67rem; font-weight: 600; padding: 4px 11px; border-radius: 20px; border: 1px solid #efede9; }
     .marque-link { font-size: 0.77rem; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid var(--gold); padding-bottom: 2px; display: inline-block; }
+    .marque-link::after { content: ' →'; }
+
+    .why-section { background: var(--cream); }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px 52px; }
+    .why-item { padding-top: 6px; border-top: 1px solid rgba(200,186,154,0.4); }
+    .why-item .why-icon { font-size: 1.5rem; margin-bottom: 10px; }
+    .why-item h4 { font-family: var(--font-serif); font-size: 1.14rem; color: var(--navy); margin-bottom: 8px; }
+    .why-item p { font-size: 0.88rem; color: var(--grey); line-height: 1.8; }
+
     .hammond-section { background: var(--navy); color: var(--white); }
     .hammond-section .section-title { color: var(--white); }
     .hammond-section .section-sub { color: rgba(255,255,255,0.58); }
     .hammond-quote { border-left: 2px solid var(--gold); padding: 24px 30px; margin-top: 32px; }
     .hammond-quote blockquote { font-family: var(--font-serif); font-size: 1.2rem; font-style: italic; line-height: 1.8; color: rgba(255,255,255,0.85); margin-bottom: 14px; }
     .hammond-quote cite { font-size: 0.74rem; color: var(--gold); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
-    .hammond-visual { background: rgba(255,255,255,0.04); border-radius: 8px; height: 340px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(200,186,154,0.2); text-align: center; padding: 24px; font-family: var(--font-serif); color: rgba(255,255,255,0.2); }
-    .cta-banner { background: var(--navy); color: var(--white); text-align: center; padding: 100px 24px; }
+    .hammond-visual { background: rgba(255,255,255,0.04); border-radius: 8px; height: 340px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(200,186,154,0.2); text-align: center; padding: 24px; font-family: var(--font-serif); color: rgba(255,255,255,0.2); font-size: 0.95rem; }
+
+    .process-section { background: var(--white); }
+    .process-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 40px; margin-top: 60px; }
+    .process-step { text-align: center; }
+    .step-num { width: 48px; height: 48px; border-radius: 50%; background: transparent; border: 1px solid var(--gold); color: var(--navy); font-family: var(--font-serif); font-size: 1.4rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+    .process-step h4 { font-family: var(--font-serif); font-size: 1.12rem; color: var(--navy); margin-bottom: 10px; }
+    .process-step p { font-size: 0.87rem; color: var(--grey); line-height: 1.78; }
+
+    .cta-banner { background: var(--navy); color: var(--white); text-align: center; padding: 100px 24px; border-top: 1px solid rgba(200,186,154,0.35); }
     .cta-banner h2 { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 18px; font-weight: 400; }
     .cta-banner p { color: rgba(255,255,255,0.55); font-size: 1.05rem; margin-bottom: 42px; max-width: 440px; margin-left: auto; margin-right: auto; }
-    footer { background: #404041; color: rgba(255,255,255,0.42); padding: 52px 24px; text-align: center; font-size: 0.82rem; line-height: 2.1; }
+
+    footer { background: #404041; color: rgba(255,255,255,0.42); padding: 52px 24px; text-align: center; font-size: 0.82rem; line-height: 2.1; border-top: 1px solid rgba(200,186,154,0.15); }
     footer a { color: var(--gold); text-decoration: none; }
     footer strong { color: rgba(255,255,255,0.65); }
-    .option-badge { display: none; position: fixed; bottom: 72px; left: 16px; background: var(--navy); color: var(--gold); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; border: 1px solid var(--gold); z-index: 9999; }
-    #scrollTopBtn { position: fixed; right: 24px; bottom: 80px; width: 54px; height: 54px; border-radius: 50%; background: #181e38; border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.28); opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.2s; z-index: 9999; display: flex; align-items: center; justify-content: center; }
+
+    .option-badge {
+      display: none;
+      position: fixed;
+      top: 90px;
+      left: 16px;
+      background: var(--navy);
+      color: var(--gold);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--gold);
+      z-index: 9999;
+    }
+
+    /* ===== MOBILE OVERRIDES ===== */
+    @media (max-width: 768px) {
+      .site-header { padding: 0 18px; }
+      .desktop-nav { display: none; }
+      .bottom-nav { display: flex; }
+      .hero { padding: 70px 20px 80px; }
+      section { padding: 72px 0; }
+      .cta-banner { padding: 72px 20px; }
+      .trust-strip { display: none; }
+      .two-col { grid-template-columns: 1fr; gap: 48px; }
+      .why-grid { grid-template-columns: 1fr; }
+      .option-badge { display: block; }
+    }
+
+    #scrollTopBtn {
+      position: fixed; right: 24px; bottom: calc(var(--bottom-nav-height) + 16px);
+      width: 48px; height: 48px; border-radius: 50%;
+      background: #181e38; border: none; cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.28);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s, transform 0.2s;
+      z-index: 280;
+      display: flex; align-items: center; justify-content: center;
+    }
     #scrollTopBtn:hover { transform: translateY(-2px); }
-    #scrollTopBtn span { font-family: 'EB Garamond', Georgia, serif; font-size: 1.5rem; color: #c8ba9a; font-weight: 700; line-height: 1; margin-top: -2px; }
+    #scrollTopBtn span { font-family: 'EB Garamond', Georgia, serif; font-size: 1.3rem; color: #c8ba9a; font-weight: 700; line-height: 1; margin-top: -2px; }
     #scrollTopBtn.visible { opacity: 1; pointer-events: auto; }
   </style>
 </head>
-<body>
-  <div style="background:#c8ba9a;color:#181e38;text-align:center;padding:10px;font-size:0.8rem;font-weight:700;letter-spacing:0.1em;">MOBILE NAV DEMO — OPTION 3 — VIEW ON PHONE</div>
+<body class="has-bottom-nav">
 
-  <!-- More sheet overlay -->
-  <div class="more-sheet-overlay" id="moreOverlay" onclick="closeMore()"></div>
-  <div class="more-sheet" id="moreSheet">
-    <div class="more-sheet-handle"></div>
-    <div class="more-sheet-title">More pages</div>
-    <a href="why-us/index.html"><span class="sheet-icon">⭐</span> Why Choose Us</a>
-    <a href="workshop/index.html"><span class="sheet-icon">🏭</span> Our Workshop</a>
-    <a href="about/index.html"><span class="sheet-icon">ℹ️</span> About Us</a>
-    <a href="testimonials/index.html"><span class="sheet-icon">💬</span> Testimonials</a>
-  </div>
+  <!-- Demo Banner -->
+  <div style="background:#c8ba9a;color:#181e38;text-align:center;padding:10px;font-size:0.8rem;font-weight:700;letter-spacing:0.1em;">MOBILE NAV DEMO — OPTION 3 — VIEW ON PHONE</div>
 
   <header class="site-header">
     <a class="logo-wrap" href="index.html">
       <div class="logo">John <em>Skinner</em></div>
       <div class="logo-sub">Est. 1980 · Cheltenham</div>
     </a>
+    <!-- Desktop nav only -->
     <nav class="desktop-nav">
       <a href="jaguar/index.html">Our Cars</a>
       <a href="materials/index.html">Materials</a>
@@ -230,34 +312,44 @@
     </nav>
   </header>
 
-  <!-- Bottom nav bar -->
-  <nav class="bottom-nav" aria-label="Main navigation">
-    <div class="bottom-nav-items">
-      <a href="jaguar/index.html" class="bottom-nav-item">
-        <span class="nav-icon">🚗</span>
-        <span>Our Cars</span>
-      </a>
-      <a href="materials/index.html" class="bottom-nav-item">
-        <span class="nav-icon">🪡</span>
-        <span>Materials</span>
-      </a>
-      <a href="gallery/index.html" class="bottom-nav-item">
-        <span class="nav-icon">📷</span>
-        <span>Gallery</span>
-      </a>
-      <a href="handbook/index.html" class="bottom-nav-item">
-        <span class="nav-icon">📖</span>
-        <span>Handbook</span>
-      </a>
-      <a href="quote/index.html" class="bottom-nav-item quote-item">
-        <span class="nav-icon">📋</span>
-        <span>Quote</span>
-      </a>
-      <button class="bottom-nav-item" onclick="openMore()" aria-label="More pages">
-        <span class="nav-icon">⋯</span>
-        <span>More</span>
-      </button>
-    </div>
+  <!-- More Sheet Overlay -->
+  <div class="more-overlay" id="moreOverlay" onclick="closeMore()"></div>
+
+  <!-- More Sheet -->
+  <div class="more-sheet" id="moreSheet" role="dialog" aria-label="More navigation options">
+    <div class="more-sheet-handle"></div>
+    <div class="more-sheet-title">More</div>
+    <a href="workshop/index.html" onclick="closeMore()"><span class="sheet-icon">🔧</span> Workshop</a>
+    <a href="why-us/index.html" onclick="closeMore()"><span class="sheet-icon">⭐</span> Why Us</a>
+    <a href="about/index.html" onclick="closeMore()"><span class="sheet-icon">ℹ️</span> About</a>
+  </div>
+
+  <!-- Bottom Nav Bar -->
+  <nav class="bottom-nav" aria-label="Mobile bottom navigation">
+    <a href="jaguar/index.html" class="bottom-nav-item">
+      <span class="nav-icon">🚗</span>
+      <span>Our Cars</span>
+    </a>
+    <a href="materials/index.html" class="bottom-nav-item">
+      <span class="nav-icon">🪡</span>
+      <span>Materials</span>
+    </a>
+    <a href="gallery/index.html" class="bottom-nav-item">
+      <span class="nav-icon">📷</span>
+      <span>Gallery</span>
+    </a>
+    <a href="handbook/index.html" class="bottom-nav-item">
+      <span class="nav-icon">📖</span>
+      <span>Handbook</span>
+    </a>
+    <a href="quote/index.html" class="bottom-nav-item quote-item">
+      <span class="nav-icon">📋</span>
+      <span>Quote</span>
+    </a>
+    <button class="bottom-nav-item more-item" id="moreBtn" onclick="openMore()" aria-label="More links" aria-expanded="false">
+      <span class="nav-icon">⋯</span>
+      <span>More</span>
+    </button>
   </nav>
 
   <section class="hero">
@@ -275,7 +367,9 @@
     <div class="trust-item">Made in Britain</div>
     <div class="trust-item">Ships Worldwide</div>
     <div class="trust-item">Award-Winning Kits</div>
+    <div class="trust-item">OEM Specification</div>
   </div>
+
   <hr class="section-rule">
 
   <section class="marque-section" id="find-your-car">
@@ -283,62 +377,131 @@
       <div class="marque-intro">
         <p class="section-label">Browse by Marque</p>
         <h2 class="section-title">Find your car</h2>
-        <p class="section-sub">Complete interior trim kits for four of Britain's most celebrated classic marques.</p>
+        <p class="section-sub">We manufacture complete interior trim kits for four of Britain's most celebrated classic marques.</p>
       </div>
       <div class="marque-grid">
-        <a href="jaguar/index.html" class="marque-card"><div class="marque-img"><span class="marque-emblem">Jaguar</span></div><div class="marque-body"><h3>Jaguar</h3><p>E-Type and XK series — factory specification kits across all body styles.</p><div class="model-tags"><span class="tag">E-Type</span><span class="tag">XK120</span><span class="tag">XK140</span><span class="tag">XK150</span></div><span class="marque-link">View kits</span></div></a>
-        <a href="triumph/index.html" class="marque-card"><div class="marque-img"><span class="marque-emblem">Triumph</span></div><div class="marque-body"><h3>Triumph TR</h3><p>Full TR range from TR2 through TR6.</p><div class="model-tags"><span class="tag">TR2</span><span class="tag">TR4</span><span class="tag">TR6</span></div><span class="marque-link">View kits</span></div></a>
-        <a href="#" class="marque-card"><div class="marque-img"><span class="marque-emblem">Healey</span></div><div class="marque-body"><h3>Austin Healey</h3><p>100, 100-6 and 3000 series kits.</p><div class="model-tags"><span class="tag">100</span><span class="tag">3000</span></div><span class="marque-link">View kits</span></div></a>
-        <a href="#" class="marque-card"><div class="marque-img"><span class="marque-emblem">MGA</span></div><div class="marque-body"><h3>MGA</h3><p>Roadster and Coupé interior trim kits.</p><div class="model-tags"><span class="tag">Roadster</span><span class="tag">Coupé</span></div><span class="marque-link">View kits</span></div></a>
+        <a href="jaguar/index.html" class="marque-card">
+          <div class="marque-img"><span class="marque-emblem">Jaguar</span></div>
+          <div class="marque-body">
+            <h3>Jaguar</h3>
+            <p>Complete interior kits for E-Type and XK series — built to original factory specification.</p>
+            <div class="model-tags"><span class="tag">E-Type OTS</span><span class="tag">E-Type FHC</span><span class="tag">XK120</span><span class="tag">XK150</span></div>
+            <span class="marque-link">View Jaguar kits</span>
+          </div>
+        </a>
+        <a href="triumph/index.html" class="marque-card">
+          <div class="marque-img"><span class="marque-emblem">Triumph</span></div>
+          <div class="marque-body">
+            <h3>Triumph TR</h3>
+            <p>Trim kits covering the full TR range from TR2 through TR6.</p>
+            <div class="model-tags"><span class="tag">TR2</span><span class="tag">TR3</span><span class="tag">TR4</span><span class="tag">TR6</span></div>
+            <span class="marque-link">View Triumph kits</span>
+          </div>
+        </a>
+        <a href="#" class="marque-card">
+          <div class="marque-img"><span class="marque-emblem">Healey</span></div>
+          <div class="marque-body">
+            <h3>Austin Healey</h3>
+            <p>Kits for the 100, 100-6 and 3000 series.</p>
+            <div class="model-tags"><span class="tag">100</span><span class="tag">100-6</span><span class="tag">3000</span></div>
+            <span class="marque-link">View Healey kits</span>
+          </div>
+        </a>
+        <a href="#" class="marque-card">
+          <div class="marque-img"><span class="marque-emblem">MGA</span></div>
+          <div class="marque-body">
+            <h3>MGA</h3>
+            <p>Interior trim kits for MGA Roadster and Coupé.</p>
+            <div class="model-tags"><span class="tag">MGA Roadster</span><span class="tag">MGA Coupé</span></div>
+            <span class="marque-link">View MGA kits</span>
+          </div>
+        </a>
       </div>
     </div>
   </section>
 
-  <section class="hammond-section" id="why-us">
+  <hr class="section-rule">
+
+  <section class="why-section" id="why-us">
+    <div class="wrap">
+      <div class="two-col">
+        <div>
+          <p class="section-label">Why John Skinner</p>
+          <h2 class="section-title">This is what 45 years of focus looks like</h2>
+          <div class="divider"></div>
+          <p class="section-sub">We do one thing. We've done it since 1980. Our focus on a handful of marques means our knowledge goes deeper than any generalist trimmer can match.</p>
+          <a href="#" class="btn btn-outline-dark" style="margin-top:36px;">Read our philosophy</a>
+        </div>
+        <div class="why-grid">
+          <div class="why-item"><div class="why-icon">🪡</div><h4>Original specification</h4><p>Every kit made to OEM factory spec.</p></div>
+          <div class="why-item"><div class="why-icon">🏭</div><h4>Made in Cheltenham</h4><p>Cut, sewn and trimmed in our own workshop.</p></div>
+          <div class="why-item"><div class="why-icon">🎨</div><h4>Widest colour range</h4><p>The most comprehensive library of trim materials.</p></div>
+          <div class="why-item"><div class="why-icon">📞</div><h4>Expert guidance</h4><p>Every enquiry handled by someone who knows these cars.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-rule">
+
+  <section class="hammond-section">
     <div class="wrap">
       <div class="two-col">
         <div>
           <p class="section-label" style="color:var(--gold);">A Famous Customer</p>
           <h2 class="section-title">Richard Hammond chose John Skinner</h2>
+          <p class="section-sub">When Richard Hammond wanted his Jaguar XK150 FHC restored to perfection, he came to us.</p>
           <div class="hammond-quote">
             <blockquote>"The attention to detail and quality of the trim is absolutely superb."</blockquote>
             <cite>Richard Hammond · Jaguar XK150 FHC restoration</cite>
           </div>
         </div>
-        <div class="hammond-visual">[ Hammond XK150 Photography ]</div>
+        <div class="hammond-visual">Photography from the Hammond XK150 project<br><br><span style="color:var(--gold); font-size:0.85rem;">[ Image ]</span></div>
       </div>
     </div>
   </section>
 
   <div class="cta-banner">
     <h2>Ready to start your restoration?</h2>
-    <p>Find your car, choose your kits, and request a quote.</p>
-    <a href="quote/index.html" class="btn btn-primary-cream">Request a Quote →</a>
+    <p>Find your car, choose your kits, and request a quote — no commitment required.</p>
+    <a href="#find-your-car" class="btn btn-primary-cream">Browse by car →</a>
   </div>
 
   <footer>
     <strong>John Skinner (Manufacturing) Ltd</strong><br>
     Classic Car Interior Trim Specialists · Est. 1980 · Cheltenham, England<br><br>
-    <a href="mailto:sales@john-skinner.co.uk">sales@john-skinner.co.uk</a> · <a href="quote/index.html">Request a Quote</a><br><br>
+    <a href="mailto:sales@john-skinner.co.uk">sales@john-skinner.co.uk</a> ·
+    <a href="quote/index.html">Request a Quote</a><br><br>
     <span style="opacity:0.45; font-size:0.75rem;">© 2025 John Skinner (Manufacturing) Ltd. All rights reserved.</span>
   </footer>
 
   <div class="option-badge">Option 3</div>
-  <button id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top"><span>↑</span></button>
+
+  <button id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
+    <span>↑</span>
+  </button>
 
   <script>
     function openMore() {
       document.getElementById('moreOverlay').classList.add('open');
       document.getElementById('moreSheet').classList.add('open');
+      document.getElementById('moreBtn').setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
     }
     function closeMore() {
       document.getElementById('moreOverlay').classList.remove('open');
       document.getElementById('moreSheet').classList.remove('open');
+      document.getElementById('moreBtn').setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
     }
-    document.querySelectorAll('.more-sheet a').forEach(function(a){
-      a.addEventListener('click', closeMore);
-    });
-    (function(){ var b=document.getElementById('scrollTopBtn'); window.addEventListener('scroll',function(){ b.classList.toggle('visible',window.pageYOffset>300); },{passive:true}); })();
+
+    // Scroll to top
+    (function(){
+      var b = document.getElementById('scrollTopBtn');
+      window.addEventListener('scroll', function(){
+        b.classList.toggle('visible', window.pageYOffset > 300);
+      }, {passive: true});
+    })();
   </script>
 </body>
 </html>
