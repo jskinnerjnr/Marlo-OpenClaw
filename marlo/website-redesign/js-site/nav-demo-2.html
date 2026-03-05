@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>John Skinner — Nav Demo 2: Simplified Top Bar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #181e38; --gold: #c8ba9a; --gold-light: #dbd6ca;
+      --cream: #f6f6f3; --white: #ffffff; --grey: #7d807e;
+      --text: #404041; --warm-bg: #efede9;
+      --font-serif: 'EB Garamond', Georgia, serif;
+      --font-sans: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+      --radius: 6px; --shadow: 0 2px 20px rgba(0,0,0,0.06);
+      --shadow-md: 0 8px 40px rgba(0,0,0,0.11);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--cream); font-size: 16px; line-height: 1.7; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* ===== HEADER ===== */
+    .site-header { background: var(--navy); padding: 0 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); position: sticky; top: 0; z-index: 200; height: 64px; }
+    .logo-wrap { padding: 14px 0; text-decoration: none; display: block; }
+    .logo { font-family: var(--font-serif); color: var(--white); font-size: 1.1rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
+    .logo em { color: var(--gold); font-style: normal; }
+    .logo-sub { font-size: 0.58rem; color: rgba(255,255,255,0.35); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 2px; }
+    .desktop-nav { display: flex; gap: 4px; align-items: center; }
+    .desktop-nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 22px 11px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    .desktop-nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold-light); }
+    .desktop-nav a.cta { background: var(--navy); color: var(--gold); border: 2px solid var(--gold); padding: 9px 20px; border-radius: var(--radius); margin-left: 10px; border-bottom: 2px solid var(--gold); font-weight: 700; }
+    .desktop-nav a.cta:hover { background: var(--gold); color: var(--navy); }
+
+    /* Mobile header right-side controls */
+    .mobile-header-controls { display: none; align-items: center; gap: 10px; }
+    .mobile-cta-btn {
+      background: var(--gold);
+      color: var(--navy);
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 9px 14px;
+      border-radius: var(--radius);
+      white-space: nowrap;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .mobile-cta-btn:hover { background: var(--gold-light); }
+    .menu-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: 1px solid rgba(200,186,154,0.4);
+      border-radius: var(--radius);
+      color: rgba(255,255,255,0.75);
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .menu-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .menu-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    /* Slim dropdown */
+    .slim-dropdown {
+      display: none;
+      position: absolute;
+      top: 64px;
+      left: 0; right: 0;
+      background: #1e2647;
+      border-bottom: 2px solid var(--gold);
+      z-index: 190;
+      flex-direction: column;
+    }
+    .slim-dropdown.open { display: flex; }
+    .slim-dropdown a {
+      display: block;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 15px 22px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: color 0.15s, padding-left 0.15s;
+    }
+    .slim-dropdown a:hover { color: var(--gold); padding-left: 28px; }
+    .slim-dropdown a:last-child { border-bottom: none; }
+
+    /* Content styles */
+    .hero { background: var(--navy); color: var(--white); padding: 100px 24px 120px; text-align: center; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 40%, rgba(200,186,154,0.08) 0%, transparent 65%); pointer-events: none; }
+    .hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 24px; }
+    .hero h1 { font-family: var(--font-serif); font-size: clamp(2.6rem, 5.5vw, 4.2rem); font-weight: 400; line-height: 1.1; margin-bottom: 26px; }
+    .hero h1 em { color: var(--gold-light); font-style: italic; }
+    .hero p { color: rgba(255,255,255,0.58); font-size: clamp(1rem, 2vw, 1.12rem); max-width: 520px; margin: 0 auto 48px; line-height: 1.9; }
+    .hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 15px 36px; border-radius: var(--radius); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.22s; cursor: pointer; }
+    .btn-primary { background: var(--navy); color: var(--white); border: 2px solid var(--white); }
+    .btn-primary:hover { background: var(--white); color: var(--navy); }
+    .btn-primary-cream { background: var(--gold); color: var(--navy); border: 2px solid var(--gold); }
+    .btn-primary-cream:hover { background: transparent; color: var(--navy); border-color: var(--navy); }
+    .btn-outline { border: 2px solid rgba(255,255,255,0.28); color: var(--white); background: transparent; }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+    .section-rule { border: none; border-top: 1px solid var(--gold); opacity: 0.45; margin: 0; }
+    .trust-strip { background: var(--cream); padding: 20px 24px; display: flex; justify-content: center; flex-wrap: wrap; border-bottom: 1px solid var(--gold); }
+    .trust-item { color: var(--navy); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; padding: 4px 22px; border-right: 1px solid rgba(200,186,154,0.5); }
+    .trust-item:last-child { border-right: none; }
+    section { padding: 100px 0; }
+    .section-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .section-title { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.15; margin-bottom: 18px; color: var(--navy); }
+    .section-sub { color: var(--grey); font-size: 1.02rem; line-height: 1.85; }
+    .divider { width: 44px; height: 1px; background: var(--gold); margin: 22px 0; }
+    .marque-section { background: var(--white); }
+    .marque-intro { text-align: center; max-width: 600px; margin: 0 auto 64px; }
+    .marque-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px; }
+    .marque-card { background: var(--white); border-radius: 8px; box-shadow: var(--shadow); overflow: hidden; text-decoration: none; transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s; display: flex; flex-direction: column; border: 1px solid #efede9; }
+    .marque-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--gold); }
+    .marque-img { height: 155px; background: var(--navy); display: flex; align-items: center; justify-content: center; }
+    .marque-emblem { font-family: var(--font-serif); font-size: 2.1rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+    .marque-body { padding: 28px 26px 30px; flex: 1; display: flex; flex-direction: column; }
+    .marque-body h3 { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 600; color: var(--navy); margin-bottom: 10px; }
+    .marque-body p { color: var(--grey); font-size: 0.89rem; line-height: 1.7; flex: 1; margin-bottom: 18px; }
+    .model-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+    .tag { background: var(--cream); color: var(--navy); font-size: 0.67rem; font-weight: 600; padding: 4px 11px; border-radius: 20px; border: 1px solid #efede9; }
+    .marque-link { font-size: 0.77rem; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid var(--gold); padding-bottom: 2px; display: inline-block; }
+    .hammond-section { background: var(--navy); color: var(--white); }
+    .hammond-section .section-title { color: var(--white); }
+    .hammond-section .section-sub { color: rgba(255,255,255,0.58); }
+    .hammond-quote { border-left: 2px solid var(--gold); padding: 24px 30px; margin-top: 32px; }
+    .hammond-quote blockquote { font-family: var(--font-serif); font-size: 1.2rem; font-style: italic; line-height: 1.8; color: rgba(255,255,255,0.85); margin-bottom: 14px; }
+    .hammond-quote cite { font-size: 0.74rem; color: var(--gold); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+    .hammond-visual { background: rgba(255,255,255,0.04); border-radius: 8px; height: 340px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(200,186,154,0.2); text-align: center; padding: 24px; font-family: var(--font-serif); color: rgba(255,255,255,0.2); font-size: 0.95rem; }
+    .cta-banner { background: var(--navy); color: var(--white); text-align: center; padding: 100px 24px; }
+    .cta-banner h2 { font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 18px; font-weight: 400; }
+    .cta-banner p { color: rgba(255,255,255,0.55); font-size: 1.05rem; margin-bottom: 42px; max-width: 440px; margin-left: auto; margin-right: auto; }
+    footer { background: #404041; color: rgba(255,255,255,0.42); padding: 52px 24px; text-align: center; font-size: 0.82rem; line-height: 2.1; }
+    footer a { color: var(--gold); text-decoration: none; }
+    footer strong { color: rgba(255,255,255,0.65); }
+    .option-badge { display: none; position: fixed; bottom: 16px; left: 16px; background: var(--navy); color: var(--gold); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; border: 1px solid var(--gold); z-index: 9999; }
+    #scrollTopBtn { position: fixed; right: 24px; bottom: 40px; width: 54px; height: 54px; border-radius: 50%; background: #181e38; border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(0,0,0,0.28); opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.2s; z-index: 9999; display: flex; align-items: center; justify-content: center; }
+    #scrollTopBtn:hover { transform: translateY(-2px); }
+    #scrollTopBtn span { font-family: 'EB Garamond', Georgia, serif; font-size: 1.5rem; color: #c8ba9a; font-weight: 700; line-height: 1; margin-top: -2px; }
+    #scrollTopBtn.visible { opacity: 1; pointer-events: auto; }
+
+    @media (max-width: 768px) {
+      .site-header { padding: 0 16px; }
+      .desktop-nav { display: none; }
+      .mobile-header-controls { display: flex; }
+      .trust-strip { display: none; }
+      .hero { padding: 70px 20px 80px; }
+      section { padding: 72px 0; }
+      .two-col { grid-template-columns: 1fr; gap: 40px; }
+      .cta-banner { padding: 72px 20px; }
+      .option-badge { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <div style="background:#c8ba9a;color:#181e38;text-align:center;padding:10px;font-size:0.8rem;font-weight:700;letter-spacing:0.1em;">MOBILE NAV DEMO — OPTION 2 — VIEW ON PHONE</div>
+
+  <div class="slim-dropdown" id="slimDropdown">
+    <a href="jaguar/index.html">Our Cars</a>
+    <a href="materials/index.html">Materials</a>
+    <a href="workshop/index.html">Workshop</a>
+    <a href="why-us/index.html">Why Us</a>
+    <a href="gallery/index.html">Gallery</a>
+    <a href="handbook/index.html">Handbook</a>
+    <a href="about/index.html">About</a>
+  </div>
+
+  <header class="site-header">
+    <a class="logo-wrap" href="index.html">
+      <div class="logo">John <em>Skinner</em></div>
+      <div class="logo-sub">Est. 1980 · Cheltenham</div>
+    </a>
+    <nav class="desktop-nav">
+      <a href="jaguar/index.html">Our Cars</a>
+      <a href="materials/index.html">Materials</a>
+      <a href="workshop/index.html">Workshop</a>
+      <a href="why-us/index.html">Why Us</a>
+      <a href="gallery/index.html">Gallery</a>
+      <a href="handbook/index.html">Handbook</a>
+      <a href="about/index.html">About</a>
+      <a href="quote/index.html" class="cta">Request a Quote</a>
+    </nav>
+    <div class="mobile-header-controls">
+      <a href="quote/index.html" class="mobile-cta-btn">📋 Quote</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="1" y1="4" x2="15" y2="4"/><line x1="1" y1="8" x2="15" y2="8"/><line x1="1" y1="12" x2="15" y2="12"/></svg>
+        Menu
+      </button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <p class="hero-eyebrow">Award-winning interior trim · Made in Cheltenham · Ships worldwide</p>
+    <h1>The finest interior trim<br>for <em>classic British cars</em></h1>
+    <p>Made-to-order in our Cheltenham workshop since 1980.</p>
+    <div class="hero-cta">
+      <a href="#find-your-car" class="btn btn-primary">Find your car →</a>
+      <a href="#why-us" class="btn btn-outline">Why John Skinner</a>
+    </div>
+  </section>
+
+  <div class="trust-strip">
+    <div class="trust-item">45 Years of Craft</div>
+    <div class="trust-item">Made in Britain</div>
+    <div class="trust-item">Ships Worldwide</div>
+    <div class="trust-item">Award-Winning Kits</div>
+  </div>
+  <hr class="section-rule">
+
+  <section class="marque-section" id="find-your-car">
+    <div class="wrap">
+      <div class="marque-intro">
+        <p class="section-label">Browse by Marque</p>
+        <h2 class="section-title">Find your car</h2>
+        <p class="section-sub">Complete interior trim kits for four of Britain's most celebrated classic marques.</p>
+      </div>
+      <div class="marque-grid">
+        <a href="jaguar/index.html" class="marque-card"><div class="marque-img"><span class="marque-emblem">Jaguar</span></div><div class="marque-body"><h3>Jaguar</h3><p>E-Type and XK series — factory specification kits.</p><div class="model-tags"><span class="tag">E-Type</span><span class="tag">XK120</span><span class="tag">XK140</span><span class="tag">XK150</span></div><span class="marque-link">View kits</span></div></a>
+        <a href="triumph/index.html" class="marque-card"><div class="marque-img"><span class="marque-emblem">Triumph</span></div><div class="marque-body"><h3>Triumph TR</h3><p>Full TR range from TR2 through TR6.</p><div class="model-tags"><span class="tag">TR2</span><span class="tag">TR4</span><span class="tag">TR6</span></div><span class="marque-link">View kits</span></div></a>
+        <a href="#" class="marque-card"><div class="marque-img"><span class="marque-emblem">Healey</span></div><div class="marque-body"><h3>Austin Healey</h3><p>100, 100-6 and 3000 series kits.</p><div class="model-tags"><span class="tag">100</span><span class="tag">3000</span></div><span class="marque-link">View kits</span></div></a>
+        <a href="#" class="marque-card"><div class="marque-img"><span class="marque-emblem">MGA</span></div><div class="marque-body"><h3>MGA</h3><p>Roadster and Coupé interior trim kits.</p><div class="model-tags"><span class="tag">Roadster</span><span class="tag">Coupé</span></div><span class="marque-link">View kits</span></div></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="hammond-section">
+    <div class="wrap">
+      <div class="two-col">
+        <div>
+          <p class="section-label" style="color:var(--gold);">A Famous Customer</p>
+          <h2 class="section-title">Richard Hammond chose John Skinner</h2>
+          <div class="hammond-quote">
+            <blockquote>"The attention to detail and quality of the trim is absolutely superb."</blockquote>
+            <cite>Richard Hammond · Jaguar XK150 FHC restoration</cite>
+          </div>
+        </div>
+        <div class="hammond-visual">[ Hammond XK150 Photography ]</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-banner">
+    <h2>Ready to start your restoration?</h2>
+    <p>Find your car, choose your kits, and request a quote.</p>
+    <a href="quote/index.html" class="btn btn-primary-cream">Request a Quote →</a>
+  </div>
+
+  <footer>
+    <strong>John Skinner (Manufacturing) Ltd</strong><br>
+    Classic Car Interior Trim Specialists · Est. 1980 · Cheltenham, England<br><br>
+    <a href="mailto:sales@john-skinner.co.uk">sales@john-skinner.co.uk</a> · <a href="quote/index.html">Request a Quote</a><br><br>
+    <span style="opacity:0.45; font-size:0.75rem;">© 2025 John Skinner (Manufacturing) Ltd. All rights reserved.</span>
+  </footer>
+
+  <div class="option-badge">Option 2</div>
+  <button id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top"><span>↑</span></button>
+
+  <script>
+    var btn = document.getElementById('menuBtn');
+    var dd = document.getElementById('slimDropdown');
+    var open = false;
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      open = !open;
+      dd.classList.toggle('open', open);
+    });
+    document.addEventListener('click', function() { open = false; dd.classList.remove('open'); });
+    dd.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ open=false; dd.classList.remove('open'); }); });
+    (function(){ var b=document.getElementById('scrollTopBtn'); window.addEventListener('scroll',function(){ b.classList.toggle('visible',window.pageYOffset>300); },{passive:true}); })();
+  </script>
+</body>
+</html>
