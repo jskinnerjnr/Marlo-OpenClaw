@@ -9,9 +9,26 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --navy: #181e38; --navy-light: #272e66; --gold: #c8ba9a; --gold-light: #d4cdb8;
-      --cream: #f6f6f3; --white: #fff; --grey: #5a6373; --warm-bg: #efede9;
-      --text: #1e1e1e; --font-serif: 'EB Garamond', Georgia, serif;
+      --charcoal-dark: #404041;
+      --charcoal-light: #7d807e;
+      --navy: #181e38;
+      --blue-dark: #272e66;
+      --blue-vintage: #658ba4;
+      --red-dark: #6d2024;
+      --red-light: #b44043;
+      --red-bright: #e52328;
+      --green-dark: #1c382d;
+      --green-light: #677f72;
+      --brown-dark: #2e1e15;
+      --tan: #94542e;
+      --biscuit: #c8ba9a;
+      --biscuit-pale: #dbd6ca;
+      --grey-warm: #e3e3df;
+      --white-warm: #efede9;
+      --white-off: #f6f6f3;
+      --navy: #181e38; --navy-light: #272e66; --gold: #c8ba9a; --gold-light: #dbd6ca;
+      --cream: #f6f6f3; --white: #fff; --grey: #7d807e; --warm-bg: #efede9;
+      --text: #404041; --font-serif: 'EB Garamond', Georgia, serif;
       --font-sans: 'Open Sans', Arial, sans-serif; --radius: 6px;
       --shadow: 0 2px 16px rgba(0,0,0,0.07); --shadow-md: 0 6px 32px rgba(0,0,0,0.13);
     }
@@ -31,17 +48,17 @@
     .hero p { color: rgba(255,255,255,0.6); font-size: 0.98rem; line-height: 1.8; max-width: 520px; }
 
     /* PROGRESS BAR */
-    .progress-bar { background: var(--white); border-bottom: 1px solid #e8e1d5; padding: 20px 24px; }
+    .progress-bar { background: var(--white); border-bottom: 1px solid #efede9; padding: 20px 24px; }
     .progress-inner { max-width: 720px; margin: 0 auto; }
     .steps { display: flex; align-items: center; gap: 0; }
     .step { display: flex; align-items: center; gap: 8px; flex: 1; }
-    .step-num { width: 30px; height: 30px; border-radius: 50%; background: var(--light-grey, #e5e0d6); color: var(--grey); font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s; }
+    .step-num { width: 30px; height: 30px; border-radius: 50%; background: var(--light-grey, #efede9); color: var(--grey); font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s; }
     .step.active .step-num { background: var(--gold); color: var(--navy); }
     .step.done .step-num { background: var(--navy); color: var(--white); }
     .step.done .step-num::after { content: '✓'; }
     .step-label { font-size: 0.78rem; font-weight: 600; color: var(--grey); }
     .step.active .step-label { color: var(--navy); }
-    .step-line { flex: 1; height: 2px; background: #e5e0d6; margin: 0 8px; min-width: 20px; }
+    .step-line { flex: 1; height: 2px; background: #efede9; margin: 0 8px; min-width: 20px; }
     .step-line.done { background: var(--gold); }
 
     /* FORM LAYOUT */
@@ -53,7 +70,7 @@
     .form-panel { background: var(--white); border-radius: 10px; box-shadow: var(--shadow); overflow: hidden; }
     .form-step { display: none; }
     .form-step.active { display: block; }
-    .form-step-header { background: var(--warm-bg); padding: 22px 28px; border-bottom: 1px solid #ede7dc; }
+    .form-step-header { background: var(--warm-bg); padding: 22px 28px; border-bottom: 1px solid #efede9; }
     .form-step-header h2 { font-family: var(--font-serif); font-size: 1.35rem; color: var(--navy); margin-bottom: 4px; }
     .form-step-header p { font-size: 0.85rem; color: var(--grey); }
     .form-fields { padding: 28px; }
@@ -61,7 +78,7 @@
     .field label { display: block; font-size: 0.82rem; font-weight: 600; color: var(--navy); margin-bottom: 6px; letter-spacing: 0.02em; }
     .field label .req { color: var(--gold); }
     .field input, .field select, .field textarea {
-      width: 100%; padding: 11px 14px; border: 1.5px solid #d8d2c8; border-radius: var(--radius);
+      width: 100%; padding: 11px 14px; border: 1.5px solid #dbd6ca; border-radius: var(--radius);
       font-family: var(--font-sans); font-size: 0.9rem; color: var(--text);
       background: var(--white); transition: border-color 0.18s, box-shadow 0.18s;
       -webkit-appearance: none; appearance: none;
@@ -72,11 +89,11 @@
     @media (max-width: 560px) { .field-row { grid-template-columns: 1fr; } }
     .field-hint { font-size: 0.76rem; color: var(--grey); margin-top: 5px; line-height: 1.5; }
     .save-note { font-size: 0.75rem; color: var(--gold); background: rgba(200,186,154,0.08); border: 1px solid rgba(200,186,154,0.2); border-radius: 5px; padding: 8px 12px; margin-bottom: 20px; display: flex; align-items: center; gap: 6px; }
-    .form-actions { display: flex; justify-content: space-between; align-items: center; padding: 20px 28px; border-top: 1px solid #ede7dc; background: var(--warm-bg); }
+    .form-actions { display: flex; justify-content: space-between; align-items: center; padding: 20px 28px; border-top: 1px solid #efede9; background: var(--warm-bg); }
     .btn { display: inline-block; padding: 12px 26px; border-radius: var(--radius); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; border: none; }
     .btn-primary { background: var(--gold); color: var(--navy); }
     .btn-primary:hover { background: var(--gold-light); }
-    .btn-secondary { background: transparent; color: var(--grey); border: 1.5px solid #d8d2c8; padding: 11px 22px; }
+    .btn-secondary { background: transparent; color: var(--grey); border: 1.5px solid #dbd6ca; padding: 11px 22px; }
     .btn-secondary:hover { border-color: var(--navy); color: var(--navy); }
     .btn-submit { background: var(--navy); color: var(--white); }
     .btn-submit:hover { background: var(--navy-light); }
@@ -84,8 +101,8 @@
     /* SIDEBAR */
     .quote-summary { background: var(--white); border-radius: 10px; box-shadow: var(--shadow); border-top: 4px solid var(--gold); padding: 24px; position: sticky; top: 24px; }
     .quote-summary h3 { font-family: var(--font-serif); font-size: 1.2rem; color: var(--navy); margin-bottom: 14px; }
-    .summary-model { font-size: 0.82rem; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #ede7dc; }
-    .summary-item { font-size: 0.84rem; color: var(--grey); padding: 5px 0; border-bottom: 1px solid #f5f0e8; display: flex; align-items: center; gap: 6px; }
+    .summary-model { font-size: 0.82rem; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #efede9; }
+    .summary-item { font-size: 0.84rem; color: var(--grey); padding: 5px 0; border-bottom: 1px solid #efede9; display: flex; align-items: center; gap: 6px; }
     .summary-item::before { content: '✓'; color: var(--gold); font-weight: 700; font-size: 0.76rem; }
     .summary-empty { font-size: 0.82rem; color: rgba(0,0,0,0.3); font-style: italic; }
     .assurance { margin-top: 18px; }
@@ -98,7 +115,7 @@
     .conf-icon { font-size: 3.5rem; margin-bottom: 20px; }
     .confirmation h2 { font-family: var(--font-serif); font-size: 2rem; color: var(--navy); margin-bottom: 12px; }
     .confirmation p { color: var(--grey); font-size: 0.95rem; line-height: 1.8; max-width: 420px; margin: 0 auto 24px; }
-    footer { background: #111820; color: rgba(255,255,255,0.42); padding: 40px 24px; text-align: center; font-size: 0.82rem; line-height: 2; }
+    footer { background: #404041; color: rgba(255,255,255,0.42); padding: 40px 24px; text-align: center; font-size: 0.82rem; line-height: 2; }
     footer a { color: var(--gold); text-decoration: none; }
     footer strong { color: rgba(255,255,255,0.65); }
   </style>
@@ -324,7 +341,7 @@
                 <label>Additional information</label>
                 <textarea id="additionalInfo" placeholder="Anything else relevant to your enquiry — photos welcome if you have them."></textarea>
               </div>
-              <div id="reviewSummary" style="background: var(--warm-bg); border-radius: 8px; padding: 18px 20px; font-size: 0.84rem; color: var(--grey); line-height: 1.75; border: 1px solid #e8e1d5;">
+              <div id="reviewSummary" style="background: var(--warm-bg); border-radius: 8px; padding: 18px 20px; font-size: 0.84rem; color: var(--grey); line-height: 1.75; border: 1px solid #efede9;">
                 <!-- populated by JS -->
               </div>
             </div>
@@ -352,7 +369,7 @@
           <h3>Your quote</h3>
           <div id="summaryModel" class="summary-model" style="display:none;"></div>
           <div id="summaryItems"></div>
-          <div class="assurance" style="margin-top:22px; padding-top:18px; border-top:1px solid #ede7dc;">
+          <div class="assurance" style="margin-top:22px; padding-top:18px; border-top:1px solid #efede9;">
             <div class="assurance-item"><span class="icon">🔒</span><span>No payment taken — this is a quote request only</span></div>
             <div class="assurance-item"><span class="icon">📩</span><span>We'll respond within 1–2 working days</span></div>
             <div class="assurance-item"><span class="icon">🎨</span><span>Samples available at no cost before you commit</span></div>

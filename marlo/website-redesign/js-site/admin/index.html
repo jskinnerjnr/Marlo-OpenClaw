@@ -9,11 +9,28 @@
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
+      --charcoal-dark: #404041;
+      --charcoal-light: #7d807e;
+      --navy: #181e38;
+      --blue-dark: #272e66;
+      --blue-vintage: #658ba4;
+      --red-dark: #6d2024;
+      --red-light: #b44043;
+      --red-bright: #e52328;
+      --green-dark: #1c382d;
+      --green-light: #677f72;
+      --brown-dark: #2e1e15;
+      --tan: #94542e;
+      --biscuit: #c8ba9a;
+      --biscuit-pale: #dbd6ca;
+      --grey-warm: #e3e3df;
+      --white-warm: #efede9;
+      --white-off: #f6f6f3;
       --navy: #181e38; --navy-light: #272e66;
-      --gold: #c8ba9a; --gold-light: #d4cdb8;
+      --gold: #c8ba9a; --gold-light: #dbd6ca;
       --cream: #f6f6f3; --white: #fff;
-      --grey: #5a6373; --warm-bg: #efede9;
-      --text: #1e1e1e; --red: #e52328;
+      --grey: #7d807e; --warm-bg: #efede9;
+      --text: #404041; --red: #e52328;
       --amber: #d97706;
       --font-serif: 'EB Garamond', Georgia, serif;
       --font-sans: 'Open Sans', Arial, sans-serif;
@@ -22,7 +39,7 @@
     body { font-family: var(--font-sans); background: var(--cream); color: var(--text); min-height: 100vh; }
 
     header {
-      background: #2d1a0e; border-bottom: 3px solid #c0392b;
+      background: #6d2024; border-bottom: 3px solid #b44043;
       padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px;
     }
     .logo { font-family: var(--font-serif); font-size: 1.6rem; color: var(--white); text-decoration: none; }
@@ -55,7 +72,7 @@
     .section-title { font-family: var(--font-serif); font-size: 1.5rem; color: var(--navy); margin-bottom: 1rem; }
 
     /* QUOTE TABLE */
-    .quote-table { background: var(--white); border-radius: 6px; border: 1px solid #e8e6e0; overflow: hidden; }
+    .quote-table { background: var(--white); border-radius: 6px; border: 1px solid #efede9; overflow: hidden; }
     .qt-row {
       display: grid;
       grid-template-columns: 2fr 2fr 1fr 1fr 1fr 32px;
@@ -95,7 +112,7 @@
     /* REMINDERS PANEL */
     .reminders-panel { }
     .reminder-card {
-      background: var(--white); border-radius: 6px; border: 1px solid #e8e6e0;
+      background: var(--white); border-radius: 6px; border: 1px solid #efede9;
       padding: 1rem 1.2rem; margin-bottom: 0.8rem;
     }
     .reminder-who { font-weight: 600; font-size: 0.88rem; color: var(--navy); }
@@ -131,14 +148,14 @@
   <div style="max-width:340px;margin:24px auto 0;text-align:left;">
     <div style="margin-bottom:14px;">
       <label style="font-size:0.8rem;font-weight:700;color:var(--navy);display:block;margin-bottom:5px;">Email</label>
-      <input id="admin-email" type="email" placeholder="your@email.com" style="width:100%;padding:10px 14px;border:1.5px solid #d8d2c8;border-radius:6px;font-size:0.9rem;font-family:var(--font-sans);">
+      <input id="admin-email" type="email" placeholder="your@email.com" style="width:100%;padding:10px 14px;border:1.5px solid #dbd6ca;border-radius:6px;font-size:0.9rem;font-family:var(--font-sans);">
     </div>
     <div style="margin-bottom:20px;">
       <label style="font-size:0.8rem;font-weight:700;color:var(--navy);display:block;margin-bottom:5px;">Password</label>
-      <input id="admin-password" type="password" placeholder="••••••••" style="width:100%;padding:10px 14px;border:1.5px solid #d8d2c8;border-radius:6px;font-size:0.9rem;font-family:var(--font-sans);">
+      <input id="admin-password" type="password" placeholder="••••••••" style="width:100%;padding:10px 14px;border:1.5px solid #dbd6ca;border-radius:6px;font-size:0.9rem;font-family:var(--font-sans);">
     </div>
     <button onclick="adminLogin()" style="width:100%;background:var(--navy);color:#fff;border:none;padding:13px;border-radius:6px;font-family:var(--font-sans);font-size:0.88rem;font-weight:700;cursor:pointer;letter-spacing:0.05em;text-transform:uppercase;">Sign in →</button>
-    <p id="admin-login-error" style="color:#c0392b;font-size:0.8rem;margin-top:10px;display:none;"></p>
+    <p id="admin-login-error" style="color:#b44043;font-size:0.8rem;margin-top:10px;display:none;"></p>
   </div>
 </div>
 

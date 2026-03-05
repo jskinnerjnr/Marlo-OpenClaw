@@ -9,9 +9,26 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --navy: #181e38; --navy-light: #272e66; --gold: #c8ba9a; --gold-light: #d4cdb8;
-      --cream: #f6f6f3; --white: #fff; --grey: #5a6373; --warm-bg: #efede9;
-      --text: #1e1e1e; --font-serif: 'EB Garamond', Georgia, serif;
+      --charcoal-dark: #404041;
+      --charcoal-light: #7d807e;
+      --navy: #181e38;
+      --blue-dark: #272e66;
+      --blue-vintage: #658ba4;
+      --red-dark: #6d2024;
+      --red-light: #b44043;
+      --red-bright: #e52328;
+      --green-dark: #1c382d;
+      --green-light: #677f72;
+      --brown-dark: #2e1e15;
+      --tan: #94542e;
+      --biscuit: #c8ba9a;
+      --biscuit-pale: #dbd6ca;
+      --grey-warm: #e3e3df;
+      --white-warm: #efede9;
+      --white-off: #f6f6f3;
+      --navy: #181e38; --navy-light: #272e66; --gold: #c8ba9a; --gold-light: #dbd6ca;
+      --cream: #f6f6f3; --white: #fff; --grey: #7d807e; --warm-bg: #efede9;
+      --text: #404041; --font-serif: 'EB Garamond', Georgia, serif;
       --font-sans: 'Open Sans', Arial, sans-serif; --radius: 6px;
       --shadow: 0 2px 16px rgba(0,0,0,0.07); --shadow-md: 0 6px 32px rgba(0,0,0,0.13);
     }
@@ -95,10 +112,10 @@
     .quote-box > p { font-size: 0.85rem; color: var(--grey); margin-bottom: 20px; line-height: 1.6; }
     .quote-list { min-height: 64px; margin-bottom: 16px; }
     .quote-empty { text-align: center; padding: 20px 0; color: rgba(0,0,0,0.28); font-size: 0.84rem; font-style: italic; }
-    .quote-item { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f0ebe1; font-size: 0.85rem; }
+    .quote-item { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #efede9; font-size: 0.85rem; }
     .quote-item-name { color: var(--text); }
     .quote-item-remove { background: none; border: none; color: var(--grey); cursor: pointer; font-size: 1rem; padding: 0 4px; }
-    .quote-item-remove:hover { color: #c0392b; }
+    .quote-item-remove:hover { color: #b44043; }
     .btn-quote {
       width: 100%; background: var(--gold); color: var(--navy);
       border: none; padding: 14px; border-radius: var(--radius);
@@ -109,7 +126,7 @@
     .btn-quote:hover { background: var(--gold-light); }
     .quote-note { font-size: 0.76rem; color: var(--grey); text-align: center; margin-top: 10px; line-height: 1.5; }
 
-    .expert-box { background: var(--warm-bg); border-radius: 8px; padding: 22px; margin-top: 18px; border: 1px solid #e8e1d5; }
+    .expert-box { background: var(--warm-bg); border-radius: 8px; padding: 22px; margin-top: 18px; border: 1px solid #efede9; }
     .expert-box h4 { font-family: var(--font-serif); font-size: 1rem; color: var(--navy); margin-bottom: 8px; }
     .expert-box p { font-size: 0.82rem; color: var(--grey); line-height: 1.65; }
     .expert-box a { color: var(--gold); text-decoration: none; font-weight: 600; }
@@ -122,7 +139,7 @@
     .trust-point p { font-size: 0.82rem; color: var(--grey); line-height: 1.6; }
 
     /* SPEC SECTION */
-    .spec-section { background: var(--warm-bg); border-top: 1px solid #e8e1d5; padding: 48px 0; }
+    .spec-section { background: var(--warm-bg); border-top: 1px solid #efede9; padding: 48px 0; }
     .spec-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; margin-top: 28px; }
     .spec-card { background: var(--white); border-radius: 6px; padding: 18px; box-shadow: var(--shadow); }
     .spec-card .spec-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
@@ -130,7 +147,7 @@
 
     .section-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
 
-    footer { background: #111820; color: rgba(255,255,255,0.42); padding: 40px 24px; text-align: center; font-size: 0.82rem; line-height: 2; }
+    footer { background: #404041; color: rgba(255,255,255,0.42); padding: 40px 24px; text-align: center; font-size: 0.82rem; line-height: 2; }
     footer a { color: var(--gold); text-decoration: none; }
     footer strong { color: rgba(255,255,255,0.65); }
   </style>
@@ -305,7 +322,7 @@
           </div>
 
           <!-- TRUST ROW -->
-          <div class="trust-row" style="margin-top: 40px; padding-top: 36px; border-top: 1px solid #e8e1d5;">
+          <div class="trust-row" style="margin-top: 40px; padding-top: 36px; border-top: 1px solid #efede9;">
             <div class="trust-point"><span class="icon">🪡</span><div><h5>Original patterns</h5><p>Every kit cut from patterns we've refined over 45 years of production.</p></div></div>
             <div class="trust-point"><span class="icon">📐</span><div><h5>Chassis number accuracy</h5><p>Tell us your chassis number — we'll identify any specification variations specific to your car.</p></div></div>
             <div class="trust-point"><span class="icon">🎨</span><div><h5>Your material choice</h5><p>Full range of leathers, vinyls, carpets and hood materials — samples available on request.</p></div></div>

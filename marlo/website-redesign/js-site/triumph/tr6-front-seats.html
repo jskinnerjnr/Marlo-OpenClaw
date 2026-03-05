@@ -9,11 +9,28 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
+      --charcoal-dark: #404041;
+      --charcoal-light: #7d807e;
+      --navy: #181e38;
+      --blue-dark: #272e66;
+      --blue-vintage: #658ba4;
+      --red-dark: #6d2024;
+      --red-light: #b44043;
+      --red-bright: #e52328;
+      --green-dark: #1c382d;
+      --green-light: #677f72;
+      --brown-dark: #2e1e15;
+      --tan: #94542e;
+      --biscuit: #c8ba9a;
+      --biscuit-pale: #dbd6ca;
+      --grey-warm: #e3e3df;
+      --white-warm: #efede9;
+      --white-off: #f6f6f3;
       --navy: #181e38; --navy-light: #272e66;
-      --gold: #c8ba9a; --gold-light: #d4cdb8;
+      --gold: #c8ba9a; --gold-light: #dbd6ca;
       --cream: #f6f6f3; --white: #fff;
-      --grey: #5a6373; --warm-bg: #efede9;
-      --text: #1e1e1e; --red: #e52328;
+      --grey: #7d807e; --warm-bg: #efede9;
+      --text: #404041; --red: #e52328;
       --font-serif: 'EB Garamond', Georgia, serif;
       --font-sans: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
       --radius: 6px; --shadow: 0 2px 16px rgba(0,0,0,0.07);
@@ -49,7 +66,7 @@
     /* GALLERY */
     .gallery { position: sticky; top: 80px; }
     .gallery-toggle { display: flex; gap: 8px; margin-bottom: 14px; }
-    .gallery-btn { padding: 7px 16px; border-radius: 20px; border: 1.5px solid #d8d2c8; background: transparent; font-family: var(--font-sans); font-size: 0.76rem; font-weight: 600; color: var(--grey); cursor: pointer; transition: all 0.18s; text-transform: uppercase; letter-spacing: 0.06em; }
+    .gallery-btn { padding: 7px 16px; border-radius: 20px; border: 1.5px solid #dbd6ca; background: transparent; font-family: var(--font-sans); font-size: 0.76rem; font-weight: 600; color: var(--grey); cursor: pointer; transition: all 0.18s; text-transform: uppercase; letter-spacing: 0.06em; }
     .gallery-btn.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
     .main-image {
       width: 100%; aspect-ratio: 4/3; border-radius: 10px; overflow: hidden;
@@ -89,7 +106,7 @@
     .option-label a { font-weight: 400; color: var(--gold); text-decoration: none; font-size: 0.72rem; text-transform: none; letter-spacing: 0; }
     .option-label a:hover { text-decoration: underline; }
     .material-options { display: flex; gap: 8px; flex-wrap: wrap; }
-    .material-btn { padding: 8px 16px; border-radius: var(--radius); border: 1.5px solid #d8d2c8; background: var(--white); font-family: var(--font-sans); font-size: 0.8rem; font-weight: 600; color: var(--grey); cursor: pointer; transition: all 0.18s; }
+    .material-btn { padding: 8px 16px; border-radius: var(--radius); border: 1.5px solid #dbd6ca; background: var(--white); font-family: var(--font-sans); font-size: 0.8rem; font-weight: 600; color: var(--grey); cursor: pointer; transition: all 0.18s; }
     .material-btn:hover { border-color: var(--navy); color: var(--navy); }
     .material-btn.selected { border-color: var(--navy); background: var(--navy); color: var(--white); }
 
@@ -202,7 +219,7 @@
     /* UTILS */
     .section-label { font-size: 0.66rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; display: block; }
 
-    footer { background: #111820; color: rgba(255,255,255,0.42); padding: 40px 24px; text-align: center; font-size: 0.82rem; line-height: 2; }
+    footer { background: #404041; color: rgba(255,255,255,0.42); padding: 40px 24px; text-align: center; font-size: 0.82rem; line-height: 2; }
     footer a { color: var(--gold); text-decoration: none; }
     footer strong { color: rgba(255,255,255,0.65); }
   </style>
@@ -312,12 +329,12 @@
           <div class="option-group">
             <div class="option-label">Main colour <a href="../materials/index.html">Request samples →</a></div>
             <div class="colour-options">
-              <div class="colour-swatch selected" style="background:#1a1a1a;" title="Black" onclick="selectSwatch(this)"></div>
-              <div class="colour-swatch" style="background:#c0392b;" title="Bright Red" onclick="selectSwatch(this)"></div>
+              <div class="colour-swatch selected" style="background:#404041;" title="Black" onclick="selectSwatch(this)"></div>
+              <div class="colour-swatch" style="background:#b44043;" title="Bright Red" onclick="selectSwatch(this)"></div>
               <div class="colour-swatch" style="background:#8b2020;" title="Cherry Red" onclick="selectSwatch(this)"></div>
               <div class="colour-swatch" style="background:#3b2510;" title="Dark Brown" onclick="selectSwatch(this)"></div>
               <div class="colour-swatch" style="background:#1a2e4a;" title="Dark Blue" onclick="selectSwatch(this)"></div>
-              <div class="colour-swatch" style="background:#f5f5f0;" title="White" style="border:1px solid #ddd;" onclick="selectSwatch(this)"></div>
+              <div class="colour-swatch" style="background:#efede9;" title="White" style="border:1px solid #ddd;" onclick="selectSwatch(this)"></div>
               <div class="colour-swatch" style="background:#1b3a2b;" title="British Racing Green" onclick="selectSwatch(this)"></div>
               <div class="colour-swatch" style="background:#c9b48a;" title="Biscuit / Light Tan" onclick="selectSwatch(this)"></div>
               <div class="colour-swatch" style="background:#d4b896;" title="Ferrari Beige" onclick="selectSwatch(this)"></div>

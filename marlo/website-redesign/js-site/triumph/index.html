@@ -9,13 +9,30 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --navy: #181e38; --navy-light: #272e66; --gold: #c8ba9a; --gold-light: #d4cdb8;
-      --cream: #f6f6f3; --white: #fff; --grey: #5a6373; --warm-bg: #efede9;
+      --charcoal-dark: #404041;
+      --charcoal-light: #7d807e;
+      --navy: #181e38;
+      --blue-dark: #272e66;
+      --blue-vintage: #658ba4;
+      --red-dark: #6d2024;
+      --red-light: #b44043;
+      --red-bright: #e52328;
+      --green-dark: #1c382d;
+      --green-light: #677f72;
+      --brown-dark: #2e1e15;
+      --tan: #94542e;
+      --biscuit: #c8ba9a;
+      --biscuit-pale: #dbd6ca;
+      --grey-warm: #e3e3df;
+      --white-warm: #efede9;
+      --white-off: #f6f6f3;
+      --navy: #181e38; --navy-light: #272e66; --gold: #c8ba9a; --gold-light: #dbd6ca;
+      --cream: #f6f6f3; --white: #fff; --grey: #7d807e; --warm-bg: #efede9;
       --font-serif: 'EB Garamond', Georgia, serif; --font-sans: 'Open Sans', Arial, sans-serif;
       --radius: 6px; --shadow: 0 2px 16px rgba(0,0,0,0.07); --shadow-md: 0 6px 32px rgba(0,0,0,0.13);
     }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--font-sans); color: #1e1e1e; background: var(--cream); font-size: 16px; line-height: 1.7; }
+    body { font-family: var(--font-sans); color: #404041; background: var(--cream); font-size: 16px; line-height: 1.7; }
     .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
     .site-header { background: var(--navy); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); }
     .logo-wrap { padding: 14px 0; text-decoration: none; display: block; }
@@ -50,7 +67,7 @@
       display: grid; grid-template-columns: 100px 1fr auto;
       align-items: center; background: var(--white);
       border-radius: 0; box-shadow: none;
-      border-bottom: 1px solid #ede7dc;
+      border-bottom: 1px solid #efede9;
       padding: 20px 24px; transition: background 0.15s;
       text-decoration: none; color: inherit;
     }
@@ -64,20 +81,20 @@
     .tr-link::after { content: ' →'; }
     .box-shadow-wrap { box-shadow: var(--shadow); border-radius: 10px; overflow: hidden; }
 
-    .info-section { background: var(--warm-bg); border-top: 1px solid #e8e1d5; padding: 52px 0; }
+    .info-section { background: var(--warm-bg); border-top: 1px solid #efede9; padding: 52px 0; }
     .info-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 56px; }
     @media (max-width: 768px) { .info-grid { grid-template-columns: 1fr; } }
     .info-grid p { color: var(--grey); font-size: 0.93rem; line-height: 1.82; margin-bottom: 14px; }
     .info-card { background: var(--white); border-radius: 8px; padding: 24px; box-shadow: var(--shadow); border-top: 3px solid var(--gold); }
     .info-card h4 { font-family: var(--font-serif); font-size: 1.1rem; color: var(--navy); margin-bottom: 12px; }
     .info-card ul { list-style: none; }
-    .info-card li { font-size: 0.86rem; color: var(--grey); padding: 7px 0; border-bottom: 1px solid #f0ebe1; display: flex; align-items: center; gap: 8px; }
+    .info-card li { font-size: 0.86rem; color: var(--grey); padding: 7px 0; border-bottom: 1px solid #efede9; display: flex; align-items: center; gap: 8px; }
     .info-card li:last-child { border-bottom: none; }
     .info-card li::before { content: '✓'; color: var(--gold); font-weight: 700; }
     .btn { display: inline-block; padding: 13px 28px; border-radius: var(--radius); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
     .btn-primary { background: var(--gold); color: var(--navy); }
     .btn-primary:hover { background: var(--gold-light); }
-    footer { background: #111820; color: rgba(255,255,255,0.42); padding: 40px 24px; text-align: center; font-size: 0.82rem; line-height: 2; }
+    footer { background: #404041; color: rgba(255,255,255,0.42); padding: 40px 24px; text-align: center; font-size: 0.82rem; line-height: 2; }
     footer a { color: var(--gold); text-decoration: none; }
     footer strong { color: rgba(255,255,255,0.65); }
   </style>
