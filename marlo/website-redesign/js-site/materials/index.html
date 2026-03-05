@@ -334,6 +334,74 @@
       .page-content { padding: 2rem 1rem 3rem; }
       .swatch-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
     }
+  
+/* ── Hamburger button ── */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 200;
+}
+.nav-toggle span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: #c8ba9a;
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ── Mobile nav ── */
+@media (max-width: 768px) {
+  .nav-toggle { display: flex; }
+  #main-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #181e38;
+    border-top: 1px solid rgba(200,186,154,0.2);
+    border-bottom: 3px solid #c8ba9a;
+    flex-direction: column;
+    padding: 12px 0 20px;
+    z-index: 150;
+  }
+  #main-nav.open { display: flex; }
+  #main-nav a {
+    padding: 14px 28px;
+    font-size: 0.9rem;
+    border-bottom: none;
+    border-left: 3px solid transparent;
+    color: rgba(255,255,255,0.8);
+  }
+  #main-nav a:hover, #main-nav a:focus {
+    border-left-color: #c8ba9a;
+    color: #c8ba9a;
+    background: rgba(255,255,255,0.04);
+  }
+  #main-nav a.cta {
+    margin: 12px 28px 0;
+    text-align: center;
+    border: 2px solid #c8ba9a;
+    border-left: 2px solid #c8ba9a;
+    border-radius: 4px;
+    padding: 13px 20px;
+    font-size: 0.85rem;
+    color: #c8ba9a;
+  }
+  #main-nav a.cta:hover { background: #c8ba9a; color: #181e38; }
+  .site-header { position: sticky; top: 0; z-index: 100; }
+}
+
   </style>
 </head>
 <body>
@@ -788,5 +856,21 @@
       }, {passive: true});
     })();
   </script>
+<script>
+  const navToggle = document.getElementById('nav-toggle');
+  const mainNav = document.getElementById('main-nav');
+  if (navToggle && mainNav) {
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('open');
+      mainNav.classList.toggle('open');
+    });
+    mainNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navToggle.classList.remove('open');
+        mainNav.classList.remove('open');
+      });
+    });
+  }
+</script>
 </body>
 </html>
