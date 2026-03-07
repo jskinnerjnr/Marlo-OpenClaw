@@ -57,7 +57,7 @@
     }
     .filters-section {
       background: #f6f6f3;
-      padding: 32px 40px;
+      padding: 32px 40px 24px;
       border-bottom: 1px solid #dbd6ca;
     }
     .filters-section h3 {
@@ -129,6 +129,7 @@
       max-width: 1300px;
       margin: 0 auto;
       background: #f6f6f3;
+      box-sizing: border-box;
     }
     .testimonial-card {
       background: #fff;
@@ -382,7 +383,7 @@
   <!-- FILTERS -->
   <section class="filters-section">
     <div style="max-width:1300px;margin:0 auto;">
-      <div style="display:flex;gap:40px;flex-wrap:wrap;align-items:flex-start;">
+      <div>
         <div>
           <h3>Filter by Car</h3>
           <div class="filter-group">
@@ -404,7 +405,7 @@
 <button class="filter-btn" data-filter="car" data-value="Triumph TR6">Triumph TR6</button>
           </div>
         </div>
-        <div>
+        <div style="border-top:1px solid #dbd6ca;padding-top:18px;margin-top:4px;">
           <h3>Filter by Country</h3>
           <div class="filter-group">
             <button class="filter-btn" data-filter="country" data-value="Australia">🇦🇺 Australia</button>
