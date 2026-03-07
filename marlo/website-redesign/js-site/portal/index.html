@@ -37,26 +37,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: var(--font-sans); background: var(--cream); color: var(--text); min-height: 100vh; }
 
-    /* HEADER */
-    header {
-      background: var(--navy);
-      border-bottom: 3px solid var(--gold);
-      padding: 0 2rem;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 64px;
-    }
-    .logo { font-family: var(--font-serif); font-size: 1.6rem; color: var(--white); text-decoration: none; letter-spacing: 0.02em; }
-    .logo span { color: var(--gold); }
-    .header-nav { display: flex; align-items: center; gap: 1rem; }
-    .header-nav a { color: var(--gold-light); font-size: 0.85rem; text-decoration: none; }
-    .header-nav a:hover { color: var(--white); }
-    #logout-btn {
-      background: transparent; border: 1px solid var(--gold); color: var(--gold);
-      padding: 0.4rem 1rem; border-radius: 3px; cursor: pointer;
-      font-family: var(--font-sans); font-size: 0.8rem; letter-spacing: 0.05em;
-      transition: all 0.2s;
-    }
-    #logout-btn:hover { background: var(--gold); color: var(--navy); }
+    /* Header now inline */
 
     /* MAIN LAYOUT */
     .container { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.5rem; }
