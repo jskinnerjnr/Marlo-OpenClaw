@@ -229,7 +229,7 @@
       #main-nav a.nav-account { color: rgba(255,255,255,0.5); font-size: 0.72rem; padding: 22px 8px; border-bottom: none; letter-spacing: 0.08em; }
     #main-nav a.nav-account:hover { color: #c8ba9a; border-bottom: none; }
     @media (max-width: 768px) { #main-nav a.nav-account { padding: 18px 28px !important; } }
-      .fi-section { background:#ede8df; padding:56px 24px 48px; border-top:1px solid #d4cec5; border-bottom:1px solid #d4cec5; text-align:center; }
+      .fi-section { background:#181e38; padding:56px 24px 48px; border-top:none; border-bottom:none; text-align:center; }
     .fi-label { font-family:'Open Sans',sans-serif; font-size:0.7rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:#7d807e; margin-bottom:36px; }
     .fi-slider-wrap { display:flex; align-items:center; justify-content:center; gap:16px; max-width:1100px; margin:0 auto; }
     .fi-viewport { overflow:hidden; flex:1; }
@@ -246,16 +246,16 @@
     .fi-dot { width:7px; height:7px; border-radius:50%; background:#dbd6ca; border:none; cursor:pointer; padding:0; transition:background 0.2s, transform 0.2s; }
     .fi-dot.active { background:#181e38; transform:scale(1.3); }
     @media(max-width:600px) { .fi-slide { gap:0; } .fi-logo { padding:8px 12px; } .fi-logo img { max-height:36px; max-width:90px; } }
-      .fi-section { background:#ede8df; padding:56px 24px 48px; border-top:1px solid #d4cec5; border-bottom:1px solid #d4cec5; text-align:center; }
-    .fi-label { font-family:'Open Sans',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:#404041; margin-bottom:40px; }
+      .fi-section { background:#181e38; padding:56px 24px 48px; border-top:none; border-bottom:none; text-align:center; }
+    .fi-label { font-family:'Open Sans',sans-serif; font-size:0.72rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:rgba(200,186,154,0.7); margin-bottom:40px; }
     .fi-slider-wrap { display:flex; align-items:center; justify-content:center; gap:20px; max-width:1100px; margin:0 auto; }
     .fi-viewport { overflow:hidden; flex:1; }
     .fi-track { display:flex; transition:transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94); }
     .fi-slide { display:flex; align-items:center; justify-content:center; min-width:100%; gap:0; }
-    .fi-logo { flex:1; min-width:0; display:flex; align-items:center; justify-content:center; padding:20px 28px; border-right:1px solid #efede9; min-height:100px; }
+    .fi-logo { flex:1; min-width:0; display:flex; align-items:center; justify-content:center; padding:20px 28px; border-right:1px solid rgba(255,255,255,0.08); min-height:100px; }
     .fi-logo:last-child { border-right:none; }
-    .fi-logo img { max-height:64px; max-width:160px; width:auto; filter:opacity(0.82); transition:filter 0.3s, transform 0.2s; display:block; }
-    .fi-logo img:hover { filter:opacity(1); transform:scale(1.06); }
+    .fi-logo img { max-height:64px; max-width:160px; width:auto; filter:brightness(0) invert(1) opacity(0.65); transition:filter 0.3s, transform 0.2s; display:block; }
+    .fi-logo img:hover { filter:brightness(0) invert(1) opacity(1); transform:scale(1.06); }
     .fi-text { font-family:'Open Sans',sans-serif; font-size:0.85rem; font-weight:800; color:#404041; letter-spacing:0.18em; text-transform:uppercase; }
     .fi-text-link { text-decoration:none; display:flex; flex-direction:column; align-items:center; gap:2px; }
     .fi-text-serif { font-family:'EB Garamond',serif; font-size:1.25rem; font-weight:600; color:#2e1e15; letter-spacing:0.14em; text-transform:uppercase; }
@@ -460,7 +460,7 @@
         <div class="hammond-visual">
           Photography from the Hammond XK150 project<br><br>
           <span style="color:#c8ba9a; font-size:0.85rem;">[ Image ]</span>
-          <span style="display:flex;align-items:center;justify-content:center;padding:0 36px;border-right:1px solid #efede9;min-width:160px;flex-shrink:0;"><a href="https://kilvingtonclassic.com" target="_blank" rel="noopener" style="text-decoration:none;text-align:center;"><span style="font-family:'EB Garamond',serif;font-size:0.95rem;font-weight:600;color:#c4bfb7;letter-spacing:0.18em;text-transform:uppercase;opacity:0.65;display:block;line-height:1.3;">Kilvington<br><span style="font-weight:400;font-style:italic;letter-spacing:0.05em;font-size:0.85em;">Classic</span></span></a></span>
+          <span style="display:flex;align-items:center;justify-content:center;padding:0 36px;border-right:1px solid #efede9;min-width:160px;flex-shrink:0;"><a href="https://kilvingtonclassic.com" target="_blank" rel="noopener" style="text-decoration:none;text-align:center;"><span style="font-family:'EB Garamond',serif;font-size:0.95rem;font-weight:600;color:#c4bfb7;letter-spacing:0.18em;text-transform:uppercase;opacity:0.65;display:block;filter:brightness(0) invert(1);line-height:1.3;">Kilvington<br><span style="font-weight:400;font-style:italic;letter-spacing:0.05em;font-size:0.85em;">Classic</span></span></a></span>
         </div>
       </div>
     </div>
