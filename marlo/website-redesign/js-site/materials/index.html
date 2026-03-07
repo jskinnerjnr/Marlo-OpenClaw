@@ -258,7 +258,7 @@
       footer a { padding: 4px 0; display: inline-block; }
     }
 
-    #jsm-fullview { position:fixed; inset:0; background:rgba(10,10,20,0.95); z-index:1000; display:none; align-items:center; justify-content:center; flex-direction:column; }
+    #jsm-fullview { position:fixed; inset:0; background:rgba(10,10,20,0.97); z-index:9500; display:none; align-items:center; justify-content:center; flex-direction:column; }
     #jsm-fullview.open { display:flex; }
     #jsm-fv-inner { position:relative; display:flex; flex-direction:column; align-items:center; gap:12px; max-width:90vw; }
     #jsm-fullview-img { max-width:min(500px,90vw); max-height:72vh; object-fit:contain; border-radius:4px; display:block; user-select:none; }
@@ -744,6 +744,7 @@ function openFullView(index) {
   fvIndex = index;
   showFvSlide();
   lb.classList.remove('open');
+  document.body.style.overflow = 'hidden';
   fv.classList.add('open');
   document.addEventListener('keydown', fvKeyHandler);
 }
@@ -760,7 +761,8 @@ function showFvSlide() {
 function closeFullView() {
   fv.classList.remove('open');
   document.removeEventListener('keydown', fvKeyHandler);
-  lb.classList.add('open');
+  // Small delay so the transition feels intentional
+  setTimeout(function() { lb.classList.add('open'); }, 80);
 }
 
 function fvKeyHandler(e) {
