@@ -691,12 +691,14 @@ function openLightbox(material, color) {
   const matLabel = MATERIAL_LABELS[material] || material;
   const colLabel = COLOR_LABELS[color] || color;
   lbTitle.innerHTML = '<em>' + colLabel + '</em> — ' + matLabel;
-  lbGrid.innerHTML = shades.map(s =>
-    '<div class="shade-card" onclick="openFullView('' + s.url + '','' + s.name.replace(/'/g, "\'") + '')">' +
-    '<img src="' + s.url + '" alt="' + s.name + '" loading="lazy">' +
-    '<div class="shade-card-name">' + s.name + '</div>' +
-    '</div>'
-  ).join('');
+  lbGrid.innerHTML = shades.map(function(s) {
+    var safeName = s.name.replace(/"/g, '&quot;');
+    return '<div class="shade-card" onclick="openFullView(this)"' +
+           ' data-url="' + s.url + '" data-name="' + safeName + '">' +
+           '<img src="' + s.url + '" alt="' + s.name + '" loading="lazy">' +
+           '<div class="shade-card-name">' + s.name + '</div>' +
+           '</div>';
+  }).join('');
   lb.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
@@ -706,7 +708,9 @@ function closeLightbox() {
   document.body.style.overflow = '';
 }
 
-function openFullView(url, name) {
+function openFullView(el) {
+  var url = el.dataset.url;
+  var name = el.dataset.name;
   fvImg.src = url; fvImg.alt = name;
   fv.classList.add('open');
 }
