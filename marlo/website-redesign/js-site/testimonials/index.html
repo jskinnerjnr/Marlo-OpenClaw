@@ -541,7 +541,17 @@
 
     let activeFilters = { car: null, country: null };
 
-    function renderCards(data) {
+    function marqueClass(car) {
+      if (!car) return '';
+      const c = car.toLowerCase();
+      if (c.includes('jaguar') || c.includes('daimler') || c.includes('e-type') || c.includes('xk') || c.includes('mk2') || c.includes('mk ix') || c.includes('s-type') || c.includes('xj') || c.includes('420')) return 'mc-jaguar';
+      if (c.includes('triumph') || c.includes('tr2') || c.includes('tr3') || c.includes('tr4') || c.includes('tr5') || c.includes('tr6') || c.includes('tr7') || c.includes('tr8') || c.includes('stag') || c.includes('spitfire') || c.includes('vitesse') || c.includes('herald') || c.includes('gt6')) return 'mc-triumph';
+      if (c.includes('austin healey') || c.includes('austin-healey') || c.includes('healey') || c.includes('bj8') || c.includes('bj7') || c.includes('bn') || c.includes('sprite')) return 'mc-healey';
+      if (c.includes('mga') || c.includes('mg a') || c.includes('mgb') || c.includes('mg b')) return 'mc-mga';
+      return '';
+    }
+
+        function renderCards(data) {
       grid.innerHTML = '';
       if (data.length === 0) {
         noResults.style.display = 'block';
