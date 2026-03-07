@@ -91,6 +91,56 @@
       border-color: #181e38;
       color: #c8ba9a;
     }
+    /* Marque colour chips */
+    .filter-btn[data-value="Jaguar E-Type"],
+    .filter-btn[data-value="Jaguar Mk2"],
+    .filter-btn[data-value="Jaguar XK"],
+    .filter-btn[data-value="Jaguar XJS"],
+    .filter-btn[data-value="Jaguar S-Type"],
+    .filter-btn[data-value="Jaguar 420"],
+    .filter-btn[data-value="Daimler"] {
+      border-color: #1c382d; color: #1c382d;
+    }
+    .filter-btn[data-value="Jaguar E-Type"]:hover,
+    .filter-btn[data-value="Jaguar Mk2"]:hover,
+    .filter-btn[data-value="Jaguar XK"]:hover,
+    .filter-btn[data-value="Jaguar XJS"]:hover,
+    .filter-btn[data-value="Jaguar S-Type"]:hover,
+    .filter-btn[data-value="Jaguar 420"]:hover,
+    .filter-btn[data-value="Daimler"]:hover,
+    .filter-btn[data-value="Jaguar E-Type"].active,
+    .filter-btn[data-value="Jaguar Mk2"].active,
+    .filter-btn[data-value="Jaguar XK"].active,
+    .filter-btn[data-value="Jaguar XJS"].active,
+    .filter-btn[data-value="Jaguar S-Type"].active,
+    .filter-btn[data-value="Jaguar 420"].active,
+    .filter-btn[data-value="Daimler"].active { background: #1c382d; border-color: #1c382d; color: #fff; }
+
+    .filter-btn[data-value="Triumph TR2"],
+    .filter-btn[data-value="Triumph TR3"],
+    .filter-btn[data-value="Triumph TR4"],
+    .filter-btn[data-value="Triumph TR5"],
+    .filter-btn[data-value="Triumph TR6"] {
+      border-color: #8a7200; color: #8a7200;
+    }
+    .filter-btn[data-value^="Triumph"]:hover,
+    .filter-btn[data-value^="Triumph"].active { background: #8a7200; border-color: #8a7200; color: #fff; }
+
+    .filter-btn[data-value="Austin Healey"],
+    .filter-btn[data-value="Austin Healey BJ8"] {
+      border-color: #6d2024; color: #6d2024;
+    }
+    .filter-btn[data-value="Austin Healey"]:hover,
+    .filter-btn[data-value="Austin Healey BJ8"]:hover,
+    .filter-btn[data-value="Austin Healey"].active,
+    .filter-btn[data-value="Austin Healey BJ8"].active { background: #6d2024; border-color: #6d2024; color: #fff; }
+
+    .filter-btn[data-value="MGA"] { border-color: #1e4a6b; color: #1e4a6b; }
+    .filter-btn[data-value="MGA"]:hover,
+    .filter-btn[data-value="MGA"].active { background: #1e4a6b; border-color: #1e4a6b; color: #fff; }
+
+    /* Year tag on card */
+    .meta-year { font-size: 0.75rem; color: #c8ba9a; font-family: 'Open Sans',sans-serif; letter-spacing: 0.08em; margin-top: 6px; font-weight: 600; }
     .filter-btn.reset {
       background: #c8ba9a;
       border-color: #c8ba9a;
@@ -500,12 +550,12 @@
             <span class="quote-mark">&ldquo;</span>
             <p class="quote-text">${t.quote}</p>
             <div class="meta">
-              <div class="meta-name">${name || 'Anonymous'}</div>
+              <div class="meta-name">${name || 'Valued Customer'}</div>
               <div class="meta-details">
                 ${t.car ? `<span class="meta-car">${t.car}</span>` : ''}
                 ${t.country ? `<span class="meta-country">${t.flag} ${t.country}</span>` : ''}
-                ${t.year ? `<span>${t.year}</span>` : ''}
               </div>
+              ${t.year ? `<div class="meta-year">${t.year}</div>` : ''}
             </div>
           `;
           grid.appendChild(card);
