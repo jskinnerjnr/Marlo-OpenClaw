@@ -206,14 +206,14 @@
 <body>
 
   <!-- HEADER -->
-  <header class="site-header">
+    <header class="site-header">
     <a class="logo-wrap" href="../index.html">
       <div class="logo">John <em>Skinner</em></div>
       <div class="logo-sub">Est. 1980 · Cheltenham</div>
     </a>
     <nav id="main-nav">
       <div class="nav-dropdown">
-        <a href="../about/index.html">About &#9660;</a>
+        <a href="../about/index.html">About &#9662;</a>
         <div class="dropdown-menu">
           <a href="../about/company-history.html">Company History</a>
           <a href="../about/our-philosophy.html">Our Philosophy</a>
@@ -226,10 +226,6 @@
       <a href="../materials/index.html">Materials &amp; Colours</a>
       <a href="../testimonials/index.html">Testimonials</a>
       <a href="../quote/index.html" class="cta">Request a Quote</a>
-      <a href="../about/company-history.html" class="dropdown-sub" style="display:none;">&#8627; Company History</a>
-      <a href="../about/our-philosophy.html" class="dropdown-sub" style="display:none;">&#8627; Our Philosophy</a>
-      <a href="../about/the-price-of-value.html" class="dropdown-sub" style="display:none;">&#8627; The Price of Value</a>
-      <a href="../about/workshop.html" class="dropdown-sub" style="display:none;">&#8627; Our Workshop</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" aria-label="Open menu">
       <span></span><span></span><span></span>
@@ -436,6 +432,7 @@
     sortSelect.addEventListener('change', applyFilters);
 
     // Mobile nav
+    // replaced
     document.getElementById('nav-toggle').addEventListener('click', () => {
       document.getElementById('main-nav').classList.toggle('open');
       document.getElementById('nav-toggle').classList.toggle('open');
