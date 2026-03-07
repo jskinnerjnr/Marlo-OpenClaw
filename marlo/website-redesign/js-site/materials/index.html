@@ -743,6 +743,7 @@ function closeLightbox() {
 function openFullView(index) {
   fvIndex = index;
   showFvSlide();
+  lb.classList.remove('open');
   fv.classList.add('open');
   document.addEventListener('keydown', fvKeyHandler);
 }
@@ -759,6 +760,7 @@ function showFvSlide() {
 function closeFullView() {
   fv.classList.remove('open');
   document.removeEventListener('keydown', fvKeyHandler);
+  lb.classList.add('open');
 }
 
 function fvKeyHandler(e) {
