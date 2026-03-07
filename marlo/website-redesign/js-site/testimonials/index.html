@@ -10,9 +10,6 @@
   <style>
     /* ── Canonical Header & Nav ── */
     .site-header { background: #181e38; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid #c8ba9a; position: sticky; top: 0; z-index: 100; min-height: 72px; }
-    .nav-logo { display: flex; flex-direction: column; text-decoration: none; padding: 16px 0; flex-shrink: 0; color: #fff; }
-    .nav-logo-name { font-family: 'EB Garamond', serif; font-size: 1.45rem; font-weight: 600; color: #fff; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; }
-    .nav-logo-sub { font-family: 'Open Sans', sans-serif; font-size: 0.6rem; font-weight: 300; color: rgba(200,186,154,0.75); letter-spacing: 0.18em; text-transform: uppercase; margin-top: 4px; }
     #nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; color: #fff; }
     #nav-toggle span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; transition: all 0.3s; }
     #main-nav { display: flex; align-items: center; gap: 4px; flex-wrap: nowrap; }
@@ -397,15 +394,21 @@
 
     @media (max-width: 768px) {
     }
+
+    /* Logo — exact match to homepage */
+    .logo-wrap { padding: 14px 0; text-decoration: none; display: block; }
+    .logo { font-family: 'EB Garamond', serif; color: #fff; font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; font-weight: 600; }
+    .logo em { color: #c8ba9a; font-style: normal; }
+    .logo-sub { font-size: 0.62rem; color: rgba(255,255,255,0.38); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 3px; }
   </style>
 </head>
 <body>
 
   <!-- HEADER -->
     <header class="site-header">
-    <a class="nav-logo" href="../index.html">
-      <span class="nav-logo-name">John <em style="color:#c8ba9a;font-style:normal;">Skinner</em></span>
-      <span class="nav-logo-sub">Est. 1980 &middot; Cheltenham</span>
+    <a class="logo-wrap" href="../index.html">
+      <div class="logo">John <em>Skinner</em></div>
+      <div class="logo-sub">Est. 1980 &middot; Cheltenham</div>
     </a>
     <nav id="main-nav">
       <div class="nav-dropdown">
