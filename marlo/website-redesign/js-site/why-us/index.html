@@ -116,6 +116,9 @@
     .filter-group { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
     .filter-chip { background: var(--white); border: 1.5px solid var(--gold-light); color: var(--text); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; padding: 7px 16px; border-radius: 24px; cursor: pointer; transition: all 0.18s; font-family: var(--font-sans); }
     .filter-chip:hover, .filter-chip.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+      #main-nav a.nav-account { color: rgba(255,255,255,0.5); font-size: 0.72rem; padding: 22px 8px; border-bottom: none; letter-spacing: 0.08em; }
+    #main-nav a.nav-account:hover { color: #c8ba9a; border-bottom: none; }
+    @media (max-width: 768px) { #main-nav a.nav-account { padding: 14px 28px !important; } }
   </style>
 </head>
 <body>
@@ -139,6 +142,7 @@
       <a href="../handbook/index.html">Handbook</a>
       <a href="../materials/index.html">Materials &amp; Colours</a>
       <a href="../testimonials/index.html">Testimonials</a>
+      <a href="../portal/index.html" class="nav-account">My Account</a>
       <a href="../quote/index.html" class="cta">Request a Quote</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" aria-label="Open menu">

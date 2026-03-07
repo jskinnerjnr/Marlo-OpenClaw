@@ -218,6 +218,9 @@
   .site-header { position: sticky; top: 0; z-index: 100; }
 }
 
+      #main-nav a.nav-account { color: rgba(255,255,255,0.5); font-size: 0.72rem; padding: 22px 8px; border-bottom: none; letter-spacing: 0.08em; }
+    #main-nav a.nav-account:hover { color: #c8ba9a; border-bottom: none; }
+    @media (max-width: 768px) { #main-nav a.nav-account { padding: 14px 28px !important; } }
   </style>
 </head>
 <body>
@@ -241,6 +244,7 @@
       <a href="../handbook/index.html">Handbook</a>
       <a href="../materials/index.html">Materials &amp; Colours</a>
       <a href="../testimonials/index.html">Testimonials</a>
+      <a href="../portal/index.html" class="nav-account">My Account</a>
       <a href="../quote/index.html" class="cta">Request a Quote</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" aria-label="Open menu">
