@@ -58,8 +58,8 @@
   }
   #main-nav.open { display: flex; }
   #main-nav a {
-    padding: 14px 28px;
-    font-size: 0.9rem;
+    padding: 18px 28px;
+    font-size: 1rem;
     border-bottom: none;
     border-left: 3px solid transparent;
     color: rgba(255,255,255,0.8);
@@ -75,8 +75,8 @@
     border: 2px solid #c8ba9a;
     border-left: 2px solid #c8ba9a;
     border-radius: 4px;
-    padding: 13px 20px;
-    font-size: 0.85rem;
+    padding: 16px 20px;
+    font-size: 1rem;
     color: #c8ba9a;
   }
   #main-nav a.cta:hover { background: #c8ba9a; color: #181e38; }
@@ -85,7 +85,7 @@
 
       #main-nav a.nav-account { color: rgba(255,255,255,0.5); font-size: 0.72rem; padding: 22px 8px; border-bottom: none; letter-spacing: 0.08em; }
     #main-nav a.nav-account:hover { color: #c8ba9a; border-bottom: none; }
-    @media (max-width: 768px) { #main-nav a.nav-account { padding: 14px 28px !important; } }
+    @media (max-width: 768px) { #main-nav a.nav-account { padding: 18px 28px !important; } }
   </style></head><body>
   <header class="site-header">
     <a class="logo-wrap" href="../index.html">
@@ -158,6 +158,13 @@
     }
     #scrollTopBtn.visible { opacity: 1; pointer-events: auto; }
     @media (max-width: 640px) { #scrollTopBtn { bottom: 80px; } }
+  
+    /* TASK 4: Mobile tap targets */
+    @media (max-width: 768px) {
+      a.btn, .btn, button.btn { min-height: 48px; padding: 14px 24px; font-size: 1rem; }
+      .card { padding: 24px 20px; }
+      footer a { padding: 4px 0; display: inline-block; }
+    }
   </style>
   <button id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
     <span>↑</span>

@@ -48,13 +48,13 @@
       .nav-toggle { display: flex; }
       #main-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #181e38; border-top: 1px solid rgba(200,186,154,0.2); border-bottom: 3px solid #c8ba9a; flex-direction: column; padding: 12px 0 20px; z-index: 150; }
       #main-nav.open { display: flex; }
-      #main-nav a { padding: 14px 28px; font-size: 0.9rem; border-bottom: none; border-left: 3px solid transparent; color: rgba(255,255,255,0.8); }
+      #main-nav a { padding: 18px 28px; font-size: 1rem; border-bottom: none; border-left: 3px solid transparent; color: rgba(255,255,255,0.8); }
       #main-nav a:hover { border-left-color: #c8ba9a; color: #c8ba9a; background: rgba(255,255,255,0.04); }
       #main-nav a.cta { margin: 12px 28px 0; text-align: center; border: 2px solid #c8ba9a; border-left: 2px solid #c8ba9a; border-radius: 4px; padding: 13px 20px; font-size: 0.85rem; color: #c8ba9a; }
       #main-nav a.cta:hover { background: #c8ba9a; color: #181e38; }
       .site-header { background: #181e38; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid #c8ba9a; position: sticky; top: 0; z-index: 100; }
       .nav-dropdown { display: contents; }
-      .dropdown-menu { display: contents; }
+      .dropdown-menu { display: none !important; }
       #main-nav .dropdown-sub { padding-left: 44px !important; font-size: 0.82rem !important; color: rgba(255,255,255,0.55) !important; }
     }
     .page-hero { background: #181e38; color: #fff; padding: 80px 24px 90px; text-align: center; }
@@ -68,7 +68,7 @@
     .article-body { font-size: 1.02rem; line-height: 1.85; color: var(--text); }
     .article-body h2 { font-family: 'EB Garamond', serif; font-size: 1.9rem; color: #181e38; margin: 48px 0 16px; }
     .article-body h3 { font-family: 'EB Garamond', serif; font-size: 1.4rem; color: #181e38; margin: 36px 0 12px; }
-    .article-body p { margin-bottom: 20px; color: #555; }
+    .article-body p { margin-bottom: 20px; color: #555; font-size: 1rem; line-height: 1.9; }
     .article-body ul, .article-body ol { margin: 0 0 20px 24px; color: #555; }
     .article-body li { margin-bottom: 8px; }
     .article-body blockquote { border-left: 3px solid #c8ba9a; padding: 16px 24px; margin: 32px 0; font-family: 'EB Garamond', serif; font-size: 1.2rem; font-style: italic; color: #181e38; background: var(--warm-bg); }
@@ -81,7 +81,7 @@
     .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: #c8ba9a; }
     .card-body { padding: 28px 26px 30px; flex: 1; display: flex; flex-direction: column; }
     .card-body h3 { font-family: 'EB Garamond', serif; font-size: 1.3rem; color: #181e38; margin-bottom: 10px; }
-    .card-body p { color: #7d807e; font-size: 0.9rem; line-height: 1.7; flex: 1; margin-bottom: 18px; }
+    .card-body p { color: #7d807e; font-size: 1rem; line-height: 1.75; flex: 1; margin-bottom: 18px; }
     .card-link { font-size: 0.77rem; font-weight: 700; color: #181e38; text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid #c8ba9a; padding-bottom: 2px; display: inline-block; }
     .card-link::after { content: ' →'; }
     .card-img { height: 140px; background: #181e38; display: flex; align-items: center; justify-content: center; }
@@ -118,7 +118,14 @@
     .filter-chip:hover, .filter-chip.active { background: #181e38; color: #fff; border-color: #181e38; }
       #main-nav a.nav-account { color: rgba(255,255,255,0.5); font-size: 0.72rem; padding: 22px 8px; border-bottom: none; letter-spacing: 0.08em; }
     #main-nav a.nav-account:hover { color: #c8ba9a; border-bottom: none; }
-    @media (max-width: 768px) { #main-nav a.nav-account { padding: 14px 28px !important; } }
+    @media (max-width: 768px) { #main-nav a.nav-account { padding: 18px 28px !important; } }
+  
+    /* TASK 4: Mobile tap targets */
+    @media (max-width: 768px) {
+      a.btn, .btn, button.btn { min-height: 48px; padding: 14px 24px; font-size: 1rem; }
+      .card { padding: 24px 20px; }
+      footer a { padding: 4px 0; display: inline-block; }
+    }
   </style>
 </head>
 <body>
