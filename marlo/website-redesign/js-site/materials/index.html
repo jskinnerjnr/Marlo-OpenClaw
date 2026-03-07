@@ -271,12 +271,13 @@
     #jsm-fullview-close { position:absolute; top:16px; right:16px; background:rgba(200,186,154,0.12); border:2px solid rgba(200,186,154,0.5); color:#c8ba9a; width:48px; height:48px; border-radius:50%; cursor:pointer; font-size:1.1rem; display:flex; align-items:center; justify-content:center; transition:all 0.2s; }
     #jsm-fullview-close:hover { background:rgba(200,186,154,0.2); color:#c8ba9a; }
     @media(max-width:600px) {
-      #jsm-fullview-img { max-width:72vw; max-height:62vh; }
-      #jsm-fv-inner { max-width:72vw; }
-      #jsm-fv-prev { left:-28px; }
-      #jsm-fv-next { right:-28px; }
-      #jsm-fv-prev, #jsm-fv-next { width:52px; height:52px; font-size:1.5rem; background:rgba(200,186,154,0.18); border-color:#c8ba9a; color:#c8ba9a; }
-      #jsm-fullview-close { width:52px; height:52px; font-size:1.2rem; top:12px; right:12px; background:rgba(200,186,154,0.15); border-color:#c8ba9a; color:#c8ba9a; }
+      #jsm-fullview { flex-direction: column; justify-content: center; gap: 0; }
+      #jsm-fv-inner { max-width: calc(100vw - 120px); width: calc(100vw - 120px); }
+      #jsm-fullview-img { max-width: calc(100vw - 120px); max-height: 55vh; width: 100%; }
+      #jsm-fv-prev { left: -56px; width: 48px; height: 48px; font-size: 1.4rem; background: rgba(200,186,154,0.2); border: 2px solid #c8ba9a; color: #c8ba9a; }
+      #jsm-fv-next { right: -56px; width: 48px; height: 48px; font-size: 1.4rem; background: rgba(200,186,154,0.2); border: 2px solid #c8ba9a; color: #c8ba9a; }
+      #jsm-fullview-close { width: 56px; height: 56px; font-size: 1.3rem; top: 16px; right: 16px; background: rgba(200,186,154,0.2); border: 2px solid #c8ba9a; color: #c8ba9a; }
+      #jsm-fv-caption { font-size: 0.9rem; margin-top: 12px; }
     } }
   </style>
 </head>
