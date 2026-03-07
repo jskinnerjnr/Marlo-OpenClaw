@@ -103,6 +103,10 @@
     .footer-bottom { border-top:1px solid rgba(255,255,255,0.08); padding-top:24px; text-align:center; font-size:0.78rem; color:rgba(255,255,255,0.3); }
     .scroll-top { position:fixed; bottom:28px; right:28px; background:#181e38; color:#c8ba9a; border:2px solid #c8ba9a; width:44px; height:44px; border-radius:50%; cursor:pointer; font-size:1.3rem; display:none; align-items:center; justify-content:center; z-index:99; transition:all 0.2s; }
     .scroll-top:hover { background:#c8ba9a; color:#181e38; }
+  @media (max-width: 640px) {
+    .brand-callout { flex-direction: column; align-items: flex-start; gap: 16px; padding: 24px 20px; }
+    .brand-callout .brand-name { white-space: normal; }
+  }
   </style>
 </head>
 <body>
