@@ -170,39 +170,70 @@
       .filters-section { padding: 24px; }
       .testimonials-grid { padding: 24px; gap: 16px; }
     }
+    .site-header { background: #181e38; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid #c8ba9a; position: sticky; top: 0; z-index: 100; }
+    .logo-wrap { padding: 14px 0; text-decoration: none; display: block; }
+    .logo { font-family: 'EB Garamond', serif; color: #fff; font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
+    .logo em { color: #c8ba9a; font-style: normal; }
+    .logo-sub { font-size: 0.62rem; color: rgba(255,255,255,0.38); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 3px; }
+    #main-nav { display: flex; gap: 4px; align-items: center; }
+    #main-nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 22px 11px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    #main-nav a:hover { color: #dbd6ca; border-bottom-color: #dbd6ca; }
+    #main-nav a.cta { background: #181e38; color: #c8ba9a; border: 2px solid #c8ba9a; padding: 9px 20px; border-radius: 4px; margin-left: 10px; font-weight: 700; }
+    #main-nav a.cta:hover { background: #c8ba9a; color: #181e38; }
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #181e38; border: 1px solid rgba(200,186,154,0.3); border-top: 2px solid #c8ba9a; min-width: 220px; z-index: 200; }
+    .nav-dropdown:hover .dropdown-menu { display: block; }
+    .dropdown-menu a { display: block; padding: 12px 18px; font-size: 0.75rem; color: rgba(255,255,255,0.75); border-bottom: 1px solid rgba(255,255,255,0.06); white-space: nowrap; }
+    .dropdown-menu a:hover { background: rgba(200,186,154,0.1); color: #c8ba9a; }
+    .nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 200; }
+    .nav-toggle span { display: block; width: 26px; height: 2px; background: #c8ba9a; border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 768px) {
+      .nav-toggle { display: flex; }
+      #main-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #181e38; border-top: 1px solid rgba(200,186,154,0.2); border-bottom: 3px solid #c8ba9a; flex-direction: column; padding: 12px 0 20px; z-index: 150; }
+      #main-nav.open { display: flex; }
+      #main-nav a { padding: 14px 28px; font-size: 0.9rem; border-bottom: none; border-left: 3px solid transparent; color: rgba(255,255,255,0.8); }
+      #main-nav a:hover { border-left-color: #c8ba9a; color: #c8ba9a; }
+      #main-nav a.cta { margin: 12px 28px 0; text-align: center; border: 2px solid #c8ba9a; border-radius: 4px; padding: 13px 20px; }
+      .nav-dropdown { display: contents; }
+      .dropdown-menu { position: static; display: contents; background: none; border: none; }
+      #main-nav .dropdown-sub { padding-left: 44px !important; font-size: 0.82rem !important; color: rgba(255,255,255,0.55) !important; }
+    }
   </style>
 </head>
 <body>
 
   <!-- HEADER -->
   <header class="site-header">
-    <div class="header-inner">
-      <a href="../index.html" class="logo">
-        <span class="logo-text">John Skinner</span>
-        <span class="logo-sub">Manufacturing Ltd</span>
-      </a>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">&#9776;</button>
-      <nav class="main-nav" id="mainNav">
-        <ul class="nav-list">
-          <li class="has-dropdown">
-            <a href="../about/index.html">About &#9660;</a>
-            <ul class="dropdown">
-              <li><a href="../about/company-history.html">Company History</a></li>
-              <li><a href="../about/our-philosophy.html">Our Philosophy</a></li>
-              <li><a href="../about/the-price-of-value.html">The Price of Value</a></li>
-              <li><a href="../about/workshop.html">Our Workshop</a></li>
-              <li><a href="../testimonials/index.html">Customer Testimonials</a></li>
-            </ul>
-          </li>
-          <li><a href="../handbook/index.html">Handbook</a></li>
-          <li><a href="../materials/index.html">Materials &amp; Colours</a></li>
-          <li><a href="../testimonials/index.html" class="active">Testimonials</a></li>
-          <li><a href="../contact/index.html">Contact</a></li>
-        
-          <li><a href="../portal/index.html" class="cta">Request a Quote</a></li>
-        </ul>
-      </nav>
-    </div>
+    <a class="logo-wrap" href="../index.html">
+      <div class="logo">John <em>Skinner</em></div>
+      <div class="logo-sub">Est. 1980 · Cheltenham</div>
+    </a>
+    <nav id="main-nav">
+      <div class="nav-dropdown">
+        <a href="../about/index.html">About &#9660;</a>
+        <div class="dropdown-menu">
+          <a href="../about/company-history.html">Company History</a>
+          <a href="../about/our-philosophy.html">Our Philosophy</a>
+          <a href="../about/the-price-of-value.html">The Price of Value</a>
+          <a href="../about/workshop.html">Our Workshop</a>
+          <a href="../testimonials/index.html">Customer Testimonials</a>
+        </div>
+      </div>
+      <a href="../handbook/index.html">Handbook</a>
+      <a href="../materials/index.html">Materials &amp; Colours</a>
+      <a href="../testimonials/index.html">Testimonials</a>
+      <a href="../quote/index.html" class="cta">Request a Quote</a>
+      <a href="../about/company-history.html" class="dropdown-sub" style="display:none;">&#8627; Company History</a>
+      <a href="../about/our-philosophy.html" class="dropdown-sub" style="display:none;">&#8627; Our Philosophy</a>
+      <a href="../about/the-price-of-value.html" class="dropdown-sub" style="display:none;">&#8627; The Price of Value</a>
+      <a href="../about/workshop.html" class="dropdown-sub" style="display:none;">&#8627; Our Workshop</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </header>
 
   <!-- HERO -->
@@ -405,8 +436,9 @@
     sortSelect.addEventListener('change', applyFilters);
 
     // Mobile nav
-    document.getElementById('navToggle').addEventListener('click', () => {
-      document.getElementById('mainNav').classList.toggle('open');
+    document.getElementById('nav-toggle').addEventListener('click', () => {
+      document.getElementById('main-nav').classList.toggle('open');
+      document.getElementById('nav-toggle').classList.toggle('open');
     });
 
     // Scroll to top
