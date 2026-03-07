@@ -9,12 +9,12 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --navy:#181e38; --gold:#c8ba9a; --gold-pale:#dbd6ca; --cream:#f6f6f3; --warm:#efede9; --grey:#7d807e; --charcoal:#404041; --radius:4px; --font-serif:'EB Garamond',serif; --font-sans:'Open Sans',sans-serif; }
-    body { font-family: var(--font-sans); color: var(--charcoal); background: var(--cream); }
+    body { font-family: 'Open Sans', sans-serif; color: #404041; background: #f6f6f3; }
 
     /* === HEADER === */
-    .site-header { background:#181e38; padding:0 32px; display:flex; align-items:center; justify-content:space-between; border-bottom:3px solid #c8ba9a; position:sticky; top:0; z-index:100; }
+    .site-header { background: #181e38; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid #c8ba9a; position: sticky; top: 0; z-index: 100; }
     .logo-wrap { padding:14px 0; text-decoration:none; display:block; }
-    .logo { font-family:var(--font-serif); color:#fff; font-size:1.15rem; letter-spacing:0.08em; text-transform:uppercase; line-height:1.2; }
+    .logo { font-family:'EB Garamond', serif; color:#fff; font-size:1.15rem; letter-spacing:0.08em; text-transform:uppercase; line-height:1.2; }
     .logo em { color:#c8ba9a; font-style:normal; }
     .logo-sub { font-size:0.62rem; color:rgba(255,255,255,0.38); letter-spacing:0.2em; text-transform:uppercase; margin-top:3px; }
     #main-nav { display:flex; gap:4px; align-items:center; }
@@ -47,62 +47,62 @@
     }
 
     /* === HERO === */
-    .page-hero { background:var(--navy); color:#fff; padding:80px 24px 72px; text-align:center; position:relative; overflow:hidden; }
+    .page-hero { background:#181e38; color:#fff; padding:80px 24px 72px; text-align:center; position:relative; overflow:hidden; }
     .page-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 60% 50%, rgba(200,186,154,0.08) 0%, transparent 65%); }
-    .eyebrow { font-size:0.7rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:18px; opacity:0.9; }
-    .page-hero h1 { font-family:var(--font-serif); font-size:clamp(2rem,4vw,3.2rem); font-weight:400; line-height:1.15; margin-bottom:18px; }
-    .page-hero h1 em { color:var(--gold); font-style:italic; }
+    .eyebrow { font-size:0.7rem; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:#c8ba9a; margin-bottom:18px; opacity:0.9; }
+    .page-hero h1 { font-family:'EB Garamond', serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:400; line-height:1.15; margin-bottom:18px; }
+    .page-hero h1 em { color:#c8ba9a; font-style:italic; }
     .page-hero .subtitle { font-size:1rem; color:rgba(255,255,255,0.6); max-width:560px; margin:0 auto; line-height:1.7; }
 
     /* === BREADCRUMB === */
-    .breadcrumb { background:var(--warm); padding:14px 40px; font-size:0.78rem; color:var(--grey); border-bottom:1px solid var(--gold-pale); }
-    .breadcrumb a { color:var(--navy); text-decoration:none; font-weight:600; }
-    .breadcrumb a:hover { color:var(--gold); }
+    .breadcrumb { background:var(--warm); padding:14px 40px; font-size:0.78rem; color:#7d807e; border-bottom:1px solid var(--gold-pale); }
+    .breadcrumb a { color:#181e38; text-decoration:none; font-weight:600; }
+    .breadcrumb a:hover { color:#c8ba9a; }
 
     /* === CONTENT === */
     .article-wrap { max-width:800px; margin:0 auto; padding:64px 24px 80px; }
-    .article-wrap h2 { font-family:var(--font-serif); font-size:1.9rem; font-weight:400; color:var(--navy); margin:48px 0 16px; border-bottom:2px solid var(--gold-pale); padding-bottom:12px; }
+    .article-wrap h2 { font-family:'EB Garamond', serif; font-size:1.9rem; font-weight:400; color:#181e38; margin:48px 0 16px; border-bottom:2px solid var(--gold-pale); padding-bottom:12px; }
     .article-wrap h2:first-of-type { margin-top:0; }
-    .article-wrap p { font-size:0.97rem; line-height:1.85; color:var(--charcoal); margin-bottom:18px; }
-    .article-wrap p strong { color:var(--navy); }
+    .article-wrap p { font-size:0.97rem; line-height:1.85; color:#404041; margin-bottom:18px; }
+    .article-wrap p strong { color:#181e38; }
 
     /* Photo placeholder grid */
     .photo-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin:32px 0; }
-    .photo-placeholder { aspect-ratio:4/3; background:var(--warm); border:2px dashed var(--gold-pale); border-radius:6px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--grey); font-size:0.8rem; text-align:center; padding:16px; gap:8px; }
+    .photo-placeholder { aspect-ratio:4/3; background:var(--warm); border:2px dashed var(--gold-pale); border-radius:6px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#7d807e; font-size:0.8rem; text-align:center; padding:16px; gap:8px; }
     .photo-placeholder svg { width:32px; height:32px; opacity:0.4; }
 
     /* Kilvington brand callout */
-    .brand-callout { background:var(--navy); color:#fff; border-radius:8px; padding:36px 40px; margin:40px 0; display:flex; align-items:center; gap:32px; }
-    .brand-callout .brand-name { font-family:var(--font-serif); font-size:2rem; font-weight:600; color:var(--gold); letter-spacing:0.12em; text-transform:uppercase; line-height:1; white-space:nowrap; }
+    .brand-callout { background:#181e38; color:#fff; border-radius:8px; padding:36px 40px; margin:40px 0; display:flex; align-items:center; gap:32px; }
+    .brand-callout .brand-name { font-family:'EB Garamond', serif; font-size:2rem; font-weight:600; color:#c8ba9a; letter-spacing:0.12em; text-transform:uppercase; line-height:1; white-space:nowrap; }
     .brand-callout .brand-name small { display:block; font-size:0.6em; letter-spacing:0.2em; font-weight:400; margin-top:6px; opacity:0.7; }
     .brand-callout p { font-size:0.9rem; color:rgba(255,255,255,0.7); line-height:1.7; margin:0; }
-    .brand-callout a { color:var(--gold); text-decoration:none; font-weight:600; }
+    .brand-callout a { color:#c8ba9a; text-decoration:none; font-weight:600; }
     .brand-callout a:hover { text-decoration:underline; }
 
     /* Spec strip */
     .spec-strip { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:1px; background:var(--gold-pale); border:1px solid var(--gold-pale); border-radius:6px; overflow:hidden; margin:32px 0; }
     .spec-item { background:#fff; padding:20px 18px; text-align:center; }
-    .spec-item .spec-val { font-family:var(--font-serif); font-size:1.5rem; color:var(--navy); font-weight:600; }
-    .spec-item .spec-label { font-size:0.68rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--grey); margin-top:4px; }
+    .spec-item .spec-val { font-family:'EB Garamond', serif; font-size:1.5rem; color:#181e38; font-weight:600; }
+    .spec-item .spec-label { font-size:0.68rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#7d807e; margin-top:4px; }
 
     /* Quote block */
-    .pull-quote { border-left:3px solid var(--gold); padding:20px 28px; margin:36px 0; background:var(--warm); border-radius:0 6px 6px 0; }
-    .pull-quote p { font-family:var(--font-serif); font-size:1.2rem; font-style:italic; color:var(--navy); line-height:1.7; margin:0; }
+    .pull-quote { border-left:3px solid #c8ba9a; padding:20px 28px; margin:36px 0; background:var(--warm); border-radius:0 6px 6px 0; }
+    .pull-quote p { font-family:'EB Garamond', serif; font-size:1.2rem; font-style:italic; color:#181e38; line-height:1.7; margin:0; }
 
     /* === FOOTER === */
-    .site-footer { background:var(--navy); color:rgba(255,255,255,0.6); padding:56px 40px 32px; }
+    .site-footer { background:#181e38; color:rgba(255,255,255,0.6); padding:56px 40px 32px; }
     .footer-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:40px; margin-bottom:40px; }
-    .footer-col h4 { font-size:0.7rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+    .footer-col h4 { font-size:0.7rem; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#c8ba9a; margin-bottom:14px; }
     .footer-col ul { list-style:none; }
     .footer-col ul li { margin-bottom:8px; }
     .footer-col ul a { color:rgba(255,255,255,0.55); text-decoration:none; font-size:0.84rem; transition:color 0.2s; }
-    .footer-col ul a:hover { color:var(--gold); }
-    .footer-logo { font-family:var(--font-serif); font-size:1.3rem; color:#fff; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px; }
-    .footer-logo span { color:var(--gold); }
+    .footer-col ul a:hover { color:#c8ba9a; }
+    .footer-logo { font-family:'EB Garamond', serif; font-size:1.3rem; color:#fff; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px; }
+    .footer-logo span { color:#c8ba9a; }
     .footer-address { font-size:0.82rem; line-height:1.8; color:rgba(255,255,255,0.4); }
     .footer-bottom { border-top:1px solid rgba(255,255,255,0.08); padding-top:24px; text-align:center; font-size:0.78rem; color:rgba(255,255,255,0.3); }
-    .scroll-top { position:fixed; bottom:28px; right:28px; background:var(--navy); color:var(--gold); border:2px solid var(--gold); width:44px; height:44px; border-radius:50%; cursor:pointer; font-size:1.3rem; display:none; align-items:center; justify-content:center; z-index:99; transition:all 0.2s; }
-    .scroll-top:hover { background:var(--gold); color:var(--navy); }
+    .scroll-top { position:fixed; bottom:28px; right:28px; background:#181e38; color:#c8ba9a; border:2px solid #c8ba9a; width:44px; height:44px; border-radius:50%; cursor:pointer; font-size:1.3rem; display:none; align-items:center; justify-content:center; z-index:99; transition:all 0.2s; }
+    .scroll-top:hover { background:#c8ba9a; color:#181e38; }
   </style>
 </head>
 <body>

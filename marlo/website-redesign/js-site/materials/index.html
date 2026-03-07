@@ -21,24 +21,24 @@
       --shadow-md: 0 8px 40px rgba(0,0,0,0.11);
     }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--font-sans); color: var(--text); background: var(--cream); font-size: 16px; line-height: 1.7; }
+    body { font-family: 'Open Sans', sans-serif; color: var(--text); background: #f6f6f3; font-size: 16px; line-height: 1.7; }
     .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
     .wrap-narrow { max-width: 780px; margin: 0 auto; padding: 0 24px; }
-    .site-header { background: var(--navy); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); position: sticky; top: 0; z-index: 100; }
+    .site-header { background: #181e38; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid #c8ba9a; position: sticky; top: 0; z-index: 100; }
     .logo-wrap { padding: 14px 0; text-decoration: none; display: block; }
-    .logo { font-family: var(--font-serif); color: var(--white); font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
-    .logo em { color: var(--gold); font-style: normal; }
+    .logo { font-family: 'EB Garamond', serif; color: #fff; font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
+    .logo em { color: #c8ba9a; font-style: normal; }
     .logo-sub { font-size: 0.62rem; color: rgba(255,255,255,0.38); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 3px; }
     nav { display: flex; gap: 4px; align-items: center; }
     nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 22px 11px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; position: relative; }
-    nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold-light); }
-    nav a.cta { background: var(--navy); color: var(--gold); border: 2px solid var(--gold); padding: 9px 20px; border-radius: var(--radius); margin-left: 10px; border-bottom: 2px solid var(--gold); font-weight: 700; }
-    nav a.cta:hover { background: var(--gold); color: var(--navy); }
+    nav a:hover { color: #dbd6ca; border-bottom-color: #dbd6ca; }
+    nav a.cta { background: #181e38; color: #c8ba9a; border: 2px solid #c8ba9a; padding: 9px 20px; border-radius: 4px; margin-left: 10px; border-bottom: 2px solid #c8ba9a; font-weight: 700; }
+    nav a.cta:hover { background: #c8ba9a; color: #181e38; }
     .nav-dropdown { position: relative; display: inline-block; }
-    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--navy); border: 1px solid rgba(200,186,154,0.3); border-top: 2px solid var(--gold); min-width: 220px; z-index: 200; }
+    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #181e38; border: 1px solid rgba(200,186,154,0.3); border-top: 2px solid #c8ba9a; min-width: 220px; z-index: 200; }
     .nav-dropdown:hover .dropdown-menu { display: block; }
     .dropdown-menu a { display: block; padding: 12px 18px; font-size: 0.75rem; color: rgba(255,255,255,0.75); border-bottom: 1px solid rgba(255,255,255,0.06); white-space: nowrap; border-bottom-width: 1px; }
-    .dropdown-menu a:hover { background: rgba(200,186,154,0.1); color: var(--gold); }
+    .dropdown-menu a:hover { background: rgba(200,186,154,0.1); color: #c8ba9a; }
     .nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 200; }
     .nav-toggle span { display: block; width: 26px; height: 2px; background: #c8ba9a; border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
     .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
@@ -52,70 +52,70 @@
       #main-nav a:hover { border-left-color: #c8ba9a; color: #c8ba9a; background: rgba(255,255,255,0.04); }
       #main-nav a.cta { margin: 12px 28px 0; text-align: center; border: 2px solid #c8ba9a; border-left: 2px solid #c8ba9a; border-radius: 4px; padding: 13px 20px; font-size: 0.85rem; color: #c8ba9a; }
       #main-nav a.cta:hover { background: #c8ba9a; color: #181e38; }
-      .site-header { position: sticky; top: 0; z-index: 100; }
+      .site-header { background: #181e38; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid #c8ba9a; position: sticky; top: 0; z-index: 100; }
       .nav-dropdown { display: contents; }
       .dropdown-menu { display: contents; }
       #main-nav .dropdown-sub { padding-left: 44px !important; font-size: 0.82rem !important; color: rgba(255,255,255,0.55) !important; }
     }
-    .page-hero { background: var(--navy); color: var(--white); padding: 80px 24px 90px; text-align: center; }
-    .page-hero .eyebrow { font-size: 0.68rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 18px; }
-    .page-hero h1 { font-family: var(--font-serif); font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 400; line-height: 1.1; margin-bottom: 20px; }
-    .page-hero h1 em { color: var(--gold-light); font-style: italic; }
+    .page-hero { background: #181e38; color: #fff; padding: 80px 24px 90px; text-align: center; }
+    .page-hero .eyebrow { font-size: 0.68rem; letter-spacing: 0.26em; text-transform: uppercase; color: #c8ba9a; font-weight: 600; margin-bottom: 18px; }
+    .page-hero h1 { font-family: 'EB Garamond', serif; font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 400; line-height: 1.1; margin-bottom: 20px; }
+    .page-hero h1 em { color: #dbd6ca; font-style: italic; }
     .page-hero p { color: rgba(255,255,255,0.6); font-size: 1.05rem; max-width: 560px; margin: 0 auto; line-height: 1.85; }
-    .content-section { padding: 80px 0; background: var(--cream); }
-    .content-section.white { background: var(--white); }
+    .content-section { padding: 80px 0; background: #f6f6f3; }
+    .content-section.white { background: #fff; }
     .content-section.warm { background: var(--warm-bg); }
     .article-body { font-size: 1.02rem; line-height: 1.85; color: var(--text); }
-    .article-body h2 { font-family: var(--font-serif); font-size: 1.9rem; color: var(--navy); margin: 48px 0 16px; }
-    .article-body h3 { font-family: var(--font-serif); font-size: 1.4rem; color: var(--navy); margin: 36px 0 12px; }
+    .article-body h2 { font-family: 'EB Garamond', serif; font-size: 1.9rem; color: #181e38; margin: 48px 0 16px; }
+    .article-body h3 { font-family: 'EB Garamond', serif; font-size: 1.4rem; color: #181e38; margin: 36px 0 12px; }
     .article-body p { margin-bottom: 20px; color: #555; }
     .article-body ul, .article-body ol { margin: 0 0 20px 24px; color: #555; }
     .article-body li { margin-bottom: 8px; }
-    .article-body blockquote { border-left: 3px solid var(--gold); padding: 16px 24px; margin: 32px 0; font-family: var(--font-serif); font-size: 1.2rem; font-style: italic; color: var(--navy); background: var(--warm-bg); }
-    .section-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
-    .section-title { font-family: var(--font-serif); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 400; line-height: 1.15; margin-bottom: 18px; color: var(--navy); }
-    .section-sub { color: var(--grey); font-size: 1.02rem; line-height: 1.85; }
-    .divider { width: 44px; height: 1px; background: var(--gold); margin: 22px 0; }
+    .article-body blockquote { border-left: 3px solid #c8ba9a; padding: 16px 24px; margin: 32px 0; font-family: 'EB Garamond', serif; font-size: 1.2rem; font-style: italic; color: #181e38; background: var(--warm-bg); }
+    .section-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: #c8ba9a; margin-bottom: 12px; }
+    .section-title { font-family: 'EB Garamond', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 400; line-height: 1.15; margin-bottom: 18px; color: #181e38; }
+    .section-sub { color: #7d807e; font-size: 1.02rem; line-height: 1.85; }
+    .divider { width: 44px; height: 1px; background: #c8ba9a; margin: 22px 0; }
     .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; margin-top: 48px; }
-    .card { background: var(--white); border-radius: 8px; box-shadow: var(--shadow); overflow: hidden; text-decoration: none; transition: transform 0.22s, box-shadow 0.22s; display: flex; flex-direction: column; border: 1px solid var(--light-grey); }
-    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--gold); }
+    .card { background: #fff; border-radius: 8px; box-shadow: var(--shadow); overflow: hidden; text-decoration: none; transition: transform 0.22s, box-shadow 0.22s; display: flex; flex-direction: column; border: 1px solid var(--light-grey); }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: #c8ba9a; }
     .card-body { padding: 28px 26px 30px; flex: 1; display: flex; flex-direction: column; }
-    .card-body h3 { font-family: var(--font-serif); font-size: 1.3rem; color: var(--navy); margin-bottom: 10px; }
-    .card-body p { color: var(--grey); font-size: 0.9rem; line-height: 1.7; flex: 1; margin-bottom: 18px; }
-    .card-link { font-size: 0.77rem; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid var(--gold); padding-bottom: 2px; display: inline-block; }
+    .card-body h3 { font-family: 'EB Garamond', serif; font-size: 1.3rem; color: #181e38; margin-bottom: 10px; }
+    .card-body p { color: #7d807e; font-size: 0.9rem; line-height: 1.7; flex: 1; margin-bottom: 18px; }
+    .card-link { font-size: 0.77rem; font-weight: 700; color: #181e38; text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid #c8ba9a; padding-bottom: 2px; display: inline-block; }
     .card-link::after { content: ' →'; }
-    .card-img { height: 140px; background: var(--navy); display: flex; align-items: center; justify-content: center; }
-    .card-img .emblem { font-family: var(--font-serif); font-size: 1.6rem; color: var(--gold); letter-spacing: 0.1em; }
+    .card-img { height: 140px; background: #181e38; display: flex; align-items: center; justify-content: center; }
+    .card-img .emblem { font-family: 'EB Garamond', serif; font-size: 1.6rem; color: #c8ba9a; letter-spacing: 0.1em; }
     .timeline { position: relative; padding-left: 32px; margin: 48px 0; }
-    .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--gold-light); }
+    .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: #dbd6ca; }
     .timeline-item { position: relative; margin-bottom: 40px; }
-    .timeline-item::before { content: ''; position: absolute; left: -28px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); border: 2px solid var(--white); box-shadow: 0 0 0 2px var(--gold); }
-    .timeline-year { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
-    .timeline-item h3 { font-family: var(--font-serif); font-size: 1.2rem; color: var(--navy); margin-bottom: 8px; }
-    .timeline-item p { font-size: 0.92rem; color: var(--grey); line-height: 1.75; }
-    .btn { display: inline-block; padding: 14px 32px; border-radius: var(--radius); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.22s; cursor: pointer; }
-    .btn-primary { background: var(--navy); color: var(--white); border: 2px solid var(--navy); }
-    .btn-primary:hover { background: transparent; color: var(--navy); }
-    .btn-outline { border: 2px solid var(--navy); color: var(--navy); background: transparent; }
-    .btn-outline:hover { background: var(--navy); color: var(--white); }
+    .timeline-item::before { content: ''; position: absolute; left: -28px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: #c8ba9a; border: 2px solid #fff; box-shadow: 0 0 0 2px #c8ba9a; }
+    .timeline-year { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #c8ba9a; margin-bottom: 6px; }
+    .timeline-item h3 { font-family: 'EB Garamond', serif; font-size: 1.2rem; color: #181e38; margin-bottom: 8px; }
+    .timeline-item p { font-size: 0.92rem; color: #7d807e; line-height: 1.75; }
+    .btn { display: inline-block; padding: 14px 32px; border-radius: 4px; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.22s; cursor: pointer; }
+    .btn-primary { background: #181e38; color: #fff; border: 2px solid #181e38; }
+    .btn-primary:hover { background: transparent; color: #181e38; }
+    .btn-outline { border: 2px solid #181e38; color: #181e38; background: transparent; }
+    .btn-outline:hover { background: #181e38; color: #fff; }
     footer { background: #404041; color: rgba(255,255,255,0.42); padding: 52px 24px; text-align: center; font-size: 0.82rem; line-height: 2.1; border-top: 1px solid rgba(200,186,154,0.15); }
-    footer a { color: var(--gold); text-decoration: none; }
+    footer a { color: #c8ba9a; text-decoration: none; }
     footer strong { color: rgba(255,255,255,0.65); }
-    .scroll-top { position: fixed; bottom: 28px; right: 28px; width: 44px; height: 44px; background: var(--navy); border: 1px solid var(--gold); color: var(--gold); border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; z-index: 500; transition: background 0.2s; }
-    .scroll-top:hover { background: var(--gold); color: var(--navy); }
+    .scroll-top { position: fixed; bottom: 28px; right: 28px; width: 44px; height: 44px; background: #181e38; border: 1px solid #c8ba9a; color: #c8ba9a; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; z-index: 500; transition: background 0.2s; }
+    .scroll-top:hover { background: #c8ba9a; color: #181e38; }
     .scroll-top.visible { display: flex; }
-    .meta { font-size: 0.78rem; color: var(--grey); letter-spacing: 0.05em; margin-bottom: 32px; }
-    .meta .tag { background: var(--warm-bg); border: 1px solid var(--gold-light); border-radius: 20px; padding: 3px 12px; margin-right: 8px; font-weight: 600; text-transform: uppercase; font-size: 0.68rem; letter-spacing: 0.12em; }
-    .breadcrumb { font-size: 0.78rem; color: var(--grey); margin-bottom: 40px; }
+    .meta { font-size: 0.78rem; color: #7d807e; letter-spacing: 0.05em; margin-bottom: 32px; }
+    .meta .tag { background: var(--warm-bg); border: 1px solid #dbd6ca; border-radius: 20px; padding: 3px 12px; margin-right: 8px; font-weight: 600; text-transform: uppercase; font-size: 0.68rem; letter-spacing: 0.12em; }
+    .breadcrumb { font-size: 0.78rem; color: #7d807e; margin-bottom: 40px; }
     .breadcrumb a { color: var(--blue-vintage); text-decoration: none; }
     .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
     @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; gap: 40px; } .card-grid { grid-template-columns: 1fr; } }
-    .section-rule { border: none; border-top: 1px solid var(--gold); opacity: 0.4; margin: 0; }
+    .section-rule { border: none; border-top: 1px solid #c8ba9a; opacity: 0.4; margin: 0; }
     .swatch-grid { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0 32px; }
     .swatch { width: 48px; height: 48px; border-radius: 6px; border: 2px solid rgba(0,0,0,0.08); position: relative; cursor: default; }
     .filter-group { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
-    .filter-chip { background: var(--white); border: 1.5px solid var(--gold-light); color: var(--text); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; padding: 7px 16px; border-radius: 24px; cursor: pointer; transition: all 0.18s; font-family: var(--font-sans); }
-    .filter-chip:hover, .filter-chip.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+    .filter-chip { background: #fff; border: 1.5px solid #dbd6ca; color: var(--text); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; padding: 7px 16px; border-radius: 24px; cursor: pointer; transition: all 0.18s; font-family: 'Open Sans', sans-serif; }
+    .filter-chip:hover, .filter-chip.active { background: #181e38; color: #fff; border-color: #181e38; }
 
     /* Clickable swatch enhancements */
     .swatch[data-material] {
@@ -125,7 +125,7 @@
     }
     .swatch[data-material]:hover {
       transform: scale(1.18);
-      box-shadow: 0 0 0 3px var(--gold), 0 4px 16px rgba(0,0,0,0.18);
+      box-shadow: 0 0 0 3px #c8ba9a, 0 4px 16px rgba(0,0,0,0.18);
       z-index: 2;
     }
     .swatch[data-material]::after {
@@ -133,8 +133,8 @@
       position: absolute;
       bottom: -2px; right: -2px;
       width: 16px; height: 16px;
-      background: var(--gold);
-      color: var(--navy);
+      background: #c8ba9a;
+      color: #181e38;
       border-radius: 50%;
       font-size: 11px;
       line-height: 16px;
@@ -254,7 +254,7 @@
     }
     .swatch-group-label {
       font-size: 0.68rem; font-weight: 700; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--grey); margin-bottom: 8px; margin-top: 20px;
+      text-transform: uppercase; color: #7d807e; margin-bottom: 8px; margin-top: 20px;
     }
       #main-nav a.nav-account { color: rgba(255,255,255,0.5); font-size: 0.72rem; padding: 22px 8px; border-bottom: none; letter-spacing: 0.08em; }
     #main-nav a.nav-account:hover { color: #c8ba9a; border-bottom: none; }
@@ -336,8 +336,8 @@
           <p><a href="../handbook/what-is-leather-skiving.html" style="color:var(--blue-vintage);">Read about leather skiving →</a></p>
         </div>
       </div>
-      <h3 style="font-family:var(--font-serif); font-size:1.3rem; color:var(--navy); margin-bottom:8px;">Connolly Vaumol™ Colour Range</h3>
-      <p style="font-size:0.82rem; color:var(--grey); margin-bottom:12px;">Click any swatch to see the available shades and real fabric photos.</p>
+      <h3 style="font-family:'EB Garamond', serif; font-size:1.3rem; color:#181e38; margin-bottom:8px;">Connolly Vaumol™ Colour Range</h3>
+      <p style="font-size:0.82rem; color:#7d807e; margin-bottom:12px;">Click any swatch to see the available shades and real fabric photos.</p>
       <div class="swatch-grid"><div class="swatch" style="background:#cc2222; " title="Red" data-material="connolly" data-color="red"></div><div class="swatch" style="background:#1a3a6e; " title="Blue" data-material="connolly" data-color="blue"></div><div class="swatch" style="background:#1c382d; " title="Green" data-material="connolly" data-color="green"></div><div class="swatch" style="background:#d4c5a0; border: 2px solid #999;" title="Beige" data-material="connolly" data-color="beige"></div><div class="swatch" style="background:#888888; " title="Grey" data-material="connolly" data-color="grey"></div><div class="swatch" style="background:#6B2737; " title="Burgundy" data-material="connolly" data-color="burgundy"></div></div>
     </div>
   </section>
@@ -353,8 +353,8 @@
         <p>Our vinyl and leathercloth ranges replicate the original factory materials with accuracy. Available in the same colour range as our leathers, vinyl provides an excellent and durable choice where budget or authenticity considerations favour it. We can colour match closely between our vinyl and leather ranges, allowing a mixed-material interior to have a cohesive appearance.</p>
         <p>Leathercloth is a cloth-backed vinyl used in specific applications — particularly for hoods and covers — and is also available in a complementary colour range.</p>
       </div>
-      <h3 style="font-family:var(--font-serif); font-size:1.3rem; color:var(--navy); margin-bottom:8px;">Vinyl Colour Range</h3>
-      <p style="font-size:0.82rem; color:var(--grey); margin-bottom:12px;">Click any swatch to see the available shades and real fabric photos.</p>
+      <h3 style="font-family:'EB Garamond', serif; font-size:1.3rem; color:#181e38; margin-bottom:8px;">Vinyl Colour Range</h3>
+      <p style="font-size:0.82rem; color:#7d807e; margin-bottom:12px;">Click any swatch to see the available shades and real fabric photos.</p>
       <div class="swatch-grid"><div class="swatch" style="background:#cc2222; " title="Red" data-material="vinyl" data-color="red"></div><div class="swatch" style="background:#0f3460; " title="Blue" data-material="vinyl" data-color="blue"></div><div class="swatch" style="background:#1c382d; " title="Green" data-material="vinyl" data-color="green"></div><div class="swatch" style="background:#1a1a1a; " title="Black" data-material="vinyl" data-color="black"></div><div class="swatch" style="background:#c8ba9a; border: 2px solid #aaa;" title="Beige" data-material="vinyl" data-color="beige"></div><div class="swatch" style="background:#888888; " title="Grey" data-material="vinyl" data-color="grey"></div><div class="swatch" style="background:#4a2e1a; " title="Brown" data-material="vinyl" data-color="brown"></div></div>
     </div>
   </section>
@@ -367,21 +367,21 @@
       <h2 class="section-title">Carpet</h2>
       <div class="divider"></div>
       <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:32px; margin-bottom:48px;">
-        <div style="padding: 24px; background:var(--warm-bg); border-radius:6px; border-top: 3px solid var(--gold);">
-          <h4 style="font-family:var(--font-serif); font-size:1.15rem; color:var(--navy); margin-bottom:10px;">Wool Carpet</h4>
-          <p style="color:var(--grey); font-size:0.92rem; line-height:1.75;">Our premium wool carpet replicates the original factory specification most closely. Natural hand-feel, correct drape. Available in our full carpet colour range.</p>
+        <div style="padding: 24px; background:var(--warm-bg); border-radius:6px; border-top: 3px solid #c8ba9a;">
+          <h4 style="font-family:'EB Garamond', serif; font-size:1.15rem; color:#181e38; margin-bottom:10px;">Wool Carpet</h4>
+          <p style="color:#7d807e; font-size:0.92rem; line-height:1.75;">Our premium wool carpet replicates the original factory specification most closely. Natural hand-feel, correct drape. Available in our full carpet colour range.</p>
         </div>
-        <div style="padding: 24px; background:var(--warm-bg); border-radius:6px; border-top: 3px solid var(--gold);">
-          <h4 style="font-family:var(--font-serif); font-size:1.15rem; color:var(--navy); margin-bottom:10px;">Karvel Carpet</h4>
-          <p style="color:var(--grey); font-size:0.92rem; line-height:1.75;">A durable, close-pile carpet with a tighter weave than wool. Karvel wears extremely well and is a popular practical choice for cars in regular use. Colour-matched to our wool range.</p>
+        <div style="padding: 24px; background:var(--warm-bg); border-radius:6px; border-top: 3px solid #c8ba9a;">
+          <h4 style="font-family:'EB Garamond', serif; font-size:1.15rem; color:#181e38; margin-bottom:10px;">Karvel Carpet</h4>
+          <p style="color:#7d807e; font-size:0.92rem; line-height:1.75;">A durable, close-pile carpet with a tighter weave than wool. Karvel wears extremely well and is a popular practical choice for cars in regular use. Colour-matched to our wool range.</p>
         </div>
-        <div style="padding: 24px; background:var(--warm-bg); border-radius:6px; border-top: 3px solid var(--gold);">
-          <h4 style="font-family:var(--font-serif); font-size:1.15rem; color:var(--navy); margin-bottom:10px;">Nylon Carpet</h4>
-          <p style="color:var(--grey); font-size:0.92rem; line-height:1.75;">A budget-conscious option with good durability. Available in a core colour range to complement primary material choices.</p>
+        <div style="padding: 24px; background:var(--warm-bg); border-radius:6px; border-top: 3px solid #c8ba9a;">
+          <h4 style="font-family:'EB Garamond', serif; font-size:1.15rem; color:#181e38; margin-bottom:10px;">Nylon Carpet</h4>
+          <p style="color:#7d807e; font-size:0.92rem; line-height:1.75;">A budget-conscious option with good durability. Available in a core colour range to complement primary material choices.</p>
         </div>
       </div>
-      <h3 style="font-family:var(--font-serif); font-size:1.3rem; color:var(--navy); margin-bottom:8px;">Carpet Colours by Type</h3>
-      <p style="font-size:0.82rem; color:var(--grey); margin-bottom:20px;">Click any swatch to see the available shades and real fabric photos.</p>
+      <h3 style="font-family:'EB Garamond', serif; font-size:1.3rem; color:#181e38; margin-bottom:8px;">Carpet Colours by Type</h3>
+      <p style="font-size:0.82rem; color:#7d807e; margin-bottom:20px;">Click any swatch to see the available shades and real fabric photos.</p>
       <p class="swatch-group-label">Wool Carpet — 19 colours</p>
       <div class="swatch-grid"><div class="swatch" style="background:#cc2222; " title="Red" data-material="wool" data-color="red"></div><div class="swatch" style="background:#0f3460; " title="Blue" data-material="wool" data-color="blue"></div><div class="swatch" style="background:#1c382d; " title="Green" data-material="wool" data-color="green"></div><div class="swatch" style="background:#1a1a1a; " title="Black" data-material="wool" data-color="black"></div><div class="swatch" style="background:#c8ba9a; border: 2px solid #aaa;" title="Beige" data-material="wool" data-color="beige"></div><div class="swatch" style="background:#888888; " title="Grey" data-material="wool" data-color="grey"></div><div class="swatch" style="background:#5a3e2b; " title="Brown" data-material="wool" data-color="brown"></div></div>
       <p class="swatch-group-label">Karvel Carpet — 4 colours</p>
@@ -411,31 +411,31 @@
       <h2 class="section-title">Specialist Materials</h2>
       <div class="divider"></div>
       <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:28px;">
-        <div style="padding: 24px; background:var(--cream); border-radius:6px; border: 1px solid var(--gold-light);">
-          <h4 style="font-family:var(--font-serif); font-size:1.1rem; color:var(--navy); margin-bottom:8px;">Moquette</h4>
-          <p style="color:var(--grey); font-size:0.88rem; line-height:1.7;">Looped or cut pile fabric used on seat facings and panels in specific models. Factory-spec moquette in our heritage colour range.</p>
+        <div style="padding: 24px; background:#f6f6f3; border-radius:6px; border: 1px solid #dbd6ca;">
+          <h4 style="font-family:'EB Garamond', serif; font-size:1.1rem; color:#181e38; margin-bottom:8px;">Moquette</h4>
+          <p style="color:#7d807e; font-size:0.88rem; line-height:1.7;">Looped or cut pile fabric used on seat facings and panels in specific models. Factory-spec moquette in our heritage colour range.</p>
         </div>
-        <div style="padding: 24px; background:var(--cream); border-radius:6px; border: 1px solid var(--gold-light);">
-          <h4 style="font-family:var(--font-serif); font-size:1.1rem; color:var(--navy); margin-bottom:8px;">Hardura</h4>
-          <p style="color:var(--grey); font-size:0.88rem; line-height:1.7;">Durable rubber-backed material for footwells, transmission tunnels and other high-wear areas. Essential for an authentic period interior.</p>
+        <div style="padding: 24px; background:#f6f6f3; border-radius:6px; border: 1px solid #dbd6ca;">
+          <h4 style="font-family:'EB Garamond', serif; font-size:1.1rem; color:#181e38; margin-bottom:8px;">Hardura</h4>
+          <p style="color:#7d807e; font-size:0.88rem; line-height:1.7;">Durable rubber-backed material for footwells, transmission tunnels and other high-wear areas. Essential for an authentic period interior.</p>
         </div>
-        <div style="padding: 24px; background:var(--cream); border-radius:6px; border: 1px solid var(--gold-light);">
-          <h4 style="font-family:var(--font-serif); font-size:1.1rem; color:var(--navy); margin-bottom:8px;">Armacord</h4>
-          <p style="color:var(--grey); font-size:0.88rem; line-height:1.7;">Ribbed, flexible material used in hoods and tonneau covers. Characteristic texture factory-correct for many hood applications.</p>
-          <p style="font-size:0.75rem; color:var(--grey); margin: 10px 0 6px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;">Colours — click to expand</p>
+        <div style="padding: 24px; background:#f6f6f3; border-radius:6px; border: 1px solid #dbd6ca;">
+          <h4 style="font-family:'EB Garamond', serif; font-size:1.1rem; color:#181e38; margin-bottom:8px;">Armacord</h4>
+          <p style="color:#7d807e; font-size:0.88rem; line-height:1.7;">Ribbed, flexible material used in hoods and tonneau covers. Characteristic texture factory-correct for many hood applications.</p>
+          <p style="font-size:0.75rem; color:#7d807e; margin: 10px 0 6px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;">Colours — click to expand</p>
           <div class="swatch-grid"><div class="swatch" style="background:#cc2222; " title="Red" data-material="armacord" data-color="red"></div><div class="swatch" style="background:#0f3460; " title="Blue" data-material="armacord" data-color="blue"></div><div class="swatch" style="background:#1c382d; " title="Green" data-material="armacord" data-color="green"></div><div class="swatch" style="background:#1a1a1a; " title="Black" data-material="armacord" data-color="black"></div><div class="swatch" style="background:#c8ba9a; border: 2px solid #aaa;" title="Beige" data-material="armacord" data-color="beige"></div><div class="swatch" style="background:#888888; " title="Grey" data-material="armacord" data-color="grey"></div></div>
         </div>
-        <div style="padding: 24px; background:var(--cream); border-radius:6px; border: 1px solid var(--gold-light);">
-          <h4 style="font-family:var(--font-serif); font-size:1.1rem; color:var(--navy); margin-bottom:8px;">Furflex</h4>
-          <p style="color:var(--grey); font-size:0.88rem; line-height:1.7;">Channel-based draught excluding material for door and hood frames. A critical detail in any concours-quality restoration.</p>
+        <div style="padding: 24px; background:#f6f6f3; border-radius:6px; border: 1px solid #dbd6ca;">
+          <h4 style="font-family:'EB Garamond', serif; font-size:1.1rem; color:#181e38; margin-bottom:8px;">Furflex</h4>
+          <p style="color:#7d807e; font-size:0.88rem; line-height:1.7;">Channel-based draught excluding material for door and hood frames. A critical detail in any concours-quality restoration.</p>
         </div>
-        <div style="padding: 24px; background:var(--cream); border-radius:6px; border: 1px solid var(--gold-light);">
-          <h4 style="font-family:var(--font-serif); font-size:1.1rem; color:var(--navy); margin-bottom:8px;">Headlining</h4>
-          <p style="color:var(--grey); font-size:0.88rem; line-height:1.7;">Wool cloth headlining in factory-correct colours and weights. One of the most visible interior elements — we get it right.</p>
+        <div style="padding: 24px; background:#f6f6f3; border-radius:6px; border: 1px solid #dbd6ca;">
+          <h4 style="font-family:'EB Garamond', serif; font-size:1.1rem; color:#181e38; margin-bottom:8px;">Headlining</h4>
+          <p style="color:#7d807e; font-size:0.88rem; line-height:1.7;">Wool cloth headlining in factory-correct colours and weights. One of the most visible interior elements — we get it right.</p>
         </div>
-        <div style="padding: 24px; background:var(--cream); border-radius:6px; border: 1px solid var(--gold-light);">
-          <h4 style="font-family:var(--font-serif); font-size:1.1rem; color:var(--navy); margin-bottom:8px;">Underfelt</h4>
-          <p style="color:var(--grey); font-size:0.88rem; line-height:1.7;">High-quality underfelt for carpet kits. The difference between carpets that look and feel right, and carpets that don't.</p>
+        <div style="padding: 24px; background:#f6f6f3; border-radius:6px; border: 1px solid #dbd6ca;">
+          <h4 style="font-family:'EB Garamond', serif; font-size:1.1rem; color:#181e38; margin-bottom:8px;">Underfelt</h4>
+          <p style="color:#7d807e; font-size:0.88rem; line-height:1.7;">High-quality underfelt for carpet kits. The difference between carpets that look and feel right, and carpets that don't.</p>
         </div>
       </div>
     </div>

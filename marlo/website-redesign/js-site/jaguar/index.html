@@ -32,78 +32,78 @@
       --radius: 6px; --shadow: 0 2px 16px rgba(0,0,0,0.07); --shadow-md: 0 6px 32px rgba(0,0,0,0.13);
     }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--font-sans); color: #404041; background: var(--cream); font-size: 16px; line-height: 1.7; }
+    body { font-family: 'Open Sans', sans-serif; color: #404041; background: #f6f6f3; font-size: 16px; line-height: 1.7; }
     .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
     /* HEADER */
-    .site-header { background: var(--navy); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); }
+    .site-header { background: #181e38; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid #c8ba9a; position: sticky; top: 0; z-index: 100; }
     .logo-wrap { padding: 14px 0; text-decoration: none; display: block; }
-    .logo { font-family: var(--font-serif); color: var(--white); font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
-    .logo em { color: var(--gold); font-style: normal; }
+    .logo { font-family: 'EB Garamond', serif; color: #fff; font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
+    .logo em { color: #c8ba9a; font-style: normal; }
     .logo-sub { font-size: 0.62rem; color: rgba(255,255,255,0.38); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 3px; }
     nav { display: flex; gap: 4px; align-items: center; }
     nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 22px 11px; border-bottom: 2px solid transparent; transition: color 0.2s; }
-    nav a:hover { color: var(--gold-light); }
-    nav a.cta { background: var(--navy); color: var(--gold); border: 2px solid var(--gold); padding: 9px 20px; border-radius: var(--radius); margin-left: 10px; border-bottom: none; font-weight: 700; }
-    nav a.cta:hover { background: var(--gold-light); }
+    nav a:hover { color: #dbd6ca; }
+    nav a.cta { background: #181e38; color: #c8ba9a; border: 2px solid #c8ba9a; padding: 9px 20px; border-radius: 4px; margin-left: 10px; border-bottom: none; font-weight: 700; }
+    nav a.cta:hover { background: #dbd6ca; }
 
     /* BREADCRUMB */
     .breadcrumb { background: var(--navy-light); padding: 10px 32px; font-size: 0.78rem; color: rgba(255,255,255,0.5); }
     .breadcrumb a { color: rgba(255,255,255,0.6); text-decoration: none; }
-    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb a:hover { color: #c8ba9a; }
     .breadcrumb span { margin: 0 8px; }
 
     /* HERO */
-    .hero { background: var(--navy); color: var(--white); padding: 56px 24px 68px; position: relative; overflow: hidden; }
+    .hero { background: #181e38; color: #fff; padding: 56px 24px 68px; position: relative; overflow: hidden; }
     .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(200,186,154,0.1) 0%, transparent 60%); }
     .hero-inner { max-width: 700px; position: relative; }
-    .hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 14px; }
-    .hero h1 { font-family: var(--font-serif); font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 400; line-height: 1.15; margin-bottom: 16px; }
+    .hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.24em; text-transform: uppercase; color: #c8ba9a; font-weight: 600; margin-bottom: 14px; }
+    .hero h1 { font-family: 'EB Garamond', serif; font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 400; line-height: 1.15; margin-bottom: 16px; }
     .hero p { color: rgba(255,255,255,0.62); font-size: 1.05rem; line-height: 1.8; max-width: 560px; }
 
     /* MODEL FAMILIES */
     .models-section { padding: 72px 0; }
     .family-block { margin-bottom: 64px; }
-    .family-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 28px; padding-bottom: 16px; border-bottom: 2px solid var(--gold); }
-    .family-header h2 { font-family: var(--font-serif); font-size: 1.8rem; color: var(--navy); font-weight: 400; }
-    .family-header p { color: var(--grey); font-size: 0.88rem; }
+    .family-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 28px; padding-bottom: 16px; border-bottom: 2px solid #c8ba9a; }
+    .family-header h2 { font-family: 'EB Garamond', serif; font-size: 1.8rem; color: #181e38; font-weight: 400; }
+    .family-header p { color: #7d807e; font-size: 0.88rem; }
     .model-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
-    .model-card { background: var(--white); border-radius: 8px; box-shadow: var(--shadow); text-decoration: none; display: block; padding: 22px 20px; transition: transform 0.18s, box-shadow 0.18s; border-left: 4px solid transparent; }
-    .model-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-left-color: var(--gold); }
-    .model-card .model-name { font-family: var(--font-serif); font-size: 1.1rem; color: var(--navy); font-weight: 600; margin-bottom: 4px; }
-    .model-card .model-variants { font-size: 0.78rem; color: var(--grey); margin-bottom: 12px; }
+    .model-card { background: #fff; border-radius: 8px; box-shadow: var(--shadow); text-decoration: none; display: block; padding: 22px 20px; transition: transform 0.18s, box-shadow 0.18s; border-left: 4px solid transparent; }
+    .model-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-left-color: #c8ba9a; }
+    .model-card .model-name { font-family: 'EB Garamond', serif; font-size: 1.1rem; color: #181e38; font-weight: 600; margin-bottom: 4px; }
+    .model-card .model-variants { font-size: 0.78rem; color: #7d807e; margin-bottom: 12px; }
     .model-card .model-range { font-size: 0.72rem; color: rgba(0,0,0,0.35); margin-bottom: 14px; letter-spacing: 0.04em; }
-    .model-card .model-link { font-size: 0.76rem; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em; }
+    .model-card .model-link { font-size: 0.76rem; font-weight: 700; color: #c8ba9a; text-transform: uppercase; letter-spacing: 0.08em; }
     .model-card .model-link::after { content: ' →'; }
 
     /* BODY STYLE TABS (for E-Type) */
     .body-tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
-    .body-tab { background: var(--white); border: 2px solid var(--light-grey, #efede9); border-radius: var(--radius); padding: 8px 18px; font-size: 0.82rem; font-weight: 600; color: var(--grey); cursor: pointer; transition: all 0.18s; text-transform: uppercase; letter-spacing: 0.06em; }
-    .body-tab.active, .body-tab:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
+    .body-tab { background: #fff; border: 2px solid var(--light-grey, #efede9); border-radius: 4px; padding: 8px 18px; font-size: 0.82rem; font-weight: 600; color: #7d807e; cursor: pointer; transition: all 0.18s; text-transform: uppercase; letter-spacing: 0.06em; }
+    .body-tab.active, .body-tab:hover { background: #181e38; color: #fff; border-color: #181e38; }
 
-    .trust-strip { background: var(--gold); padding: 12px 24px; display: flex; justify-content: center; flex-wrap: wrap; }
-    .trust-item { color: var(--navy); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 18px; border-right: 1px solid rgba(26,37,53,0.2); }
+    .trust-strip { background: #c8ba9a; padding: 12px 24px; display: flex; justify-content: center; flex-wrap: wrap; }
+    .trust-item { color: #181e38; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 18px; border-right: 1px solid rgba(26,37,53,0.2); }
     .trust-item:last-child { border-right: none; }
 
-    .section-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
-    .btn { display: inline-block; padding: 13px 28px; border-radius: var(--radius); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
-    .btn-primary { background: var(--gold); color: var(--navy); }
-    .btn-primary:hover { background: var(--gold-light); }
+    .section-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #c8ba9a; margin-bottom: 8px; }
+    .btn { display: inline-block; padding: 13px 28px; border-radius: 4px; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
+    .btn-primary { background: #c8ba9a; color: #181e38; }
+    .btn-primary:hover { background: #dbd6ca; }
 
     /* INFO ASIDE */
     .marque-info { background: var(--warm-bg); border-top: 1px solid #efede9; padding: 56px 0; }
     .info-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 56px; align-items: start; }
     @media (max-width: 768px) { .info-grid { grid-template-columns: 1fr; gap: 32px; } }
-    .info-grid p { color: var(--grey); font-size: 0.95rem; line-height: 1.82; margin-bottom: 14px; }
-    .info-card { background: var(--white); border-radius: 8px; padding: 24px; box-shadow: var(--shadow); border-top: 3px solid var(--gold); }
-    .info-card h4 { font-family: var(--font-serif); font-size: 1.1rem; color: var(--navy); margin-bottom: 12px; }
+    .info-grid p { color: #7d807e; font-size: 0.95rem; line-height: 1.82; margin-bottom: 14px; }
+    .info-card { background: #fff; border-radius: 8px; padding: 24px; box-shadow: var(--shadow); border-top: 3px solid #c8ba9a; }
+    .info-card h4 { font-family: 'EB Garamond', serif; font-size: 1.1rem; color: #181e38; margin-bottom: 12px; }
     .info-card ul { list-style: none; }
-    .info-card li { font-size: 0.88rem; color: var(--grey); padding: 7px 0; border-bottom: 1px solid #efede9; display: flex; align-items: center; gap: 8px; }
+    .info-card li { font-size: 0.88rem; color: #7d807e; padding: 7px 0; border-bottom: 1px solid #efede9; display: flex; align-items: center; gap: 8px; }
     .info-card li:last-child { border-bottom: none; }
-    .info-card li::before { content: '✓'; color: var(--gold); font-weight: 700; }
+    .info-card li::before { content: '✓'; color: #c8ba9a; font-weight: 700; }
 
     footer { background: #404041; color: rgba(255,255,255,0.42); padding: 40px 24px; text-align: center; font-size: 0.82rem; line-height: 2; }
-    footer a { color: var(--gold); text-decoration: none; }
+    footer a { color: #c8ba9a; text-decoration: none; }
     footer strong { color: rgba(255,255,255,0.65); }
   
 /* ── Hamburger button ── */
@@ -170,7 +170,7 @@
     color: #c8ba9a;
   }
   #main-nav a.cta:hover { background: #c8ba9a; color: #181e38; }
-  .site-header { position: sticky; top: 0; z-index: 100; }
+  .site-header { background: #181e38; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid #c8ba9a; position: sticky; top: 0; z-index: 100; }
 }
 
       #main-nav a.nav-account { color: rgba(255,255,255,0.5); font-size: 0.72rem; padding: 22px 8px; border-bottom: none; letter-spacing: 0.08em; }
@@ -383,7 +383,7 @@
       <div class="info-grid">
         <div>
           <p class="section-label">About Our Jaguar Kits</p>
-          <p style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--navy); line-height: 1.45; margin-bottom: 20px;">We've been manufacturing Jaguar interior trim since 1980. In that time, we've developed a depth of knowledge about these cars that very few people in the world can match.</p>
+          <p style="font-family: 'EB Garamond', serif; font-size: 1.3rem; color: #181e38; line-height: 1.45; margin-bottom: 20px;">We've been manufacturing Jaguar interior trim since 1980. In that time, we've developed a depth of knowledge about these cars that very few people in the world can match.</p>
           <p>Every kit is made to original factory specification — not an approximation, not a generic fit. We hold original patterns for all the models listed above, refined over decades of production and customer feedback.</p>
           <p>Our materials are sourced from the same quality suppliers we've worked with for years. We don't substitute for cheaper alternatives. The result is a kit that fits correctly, looks correct, and lasts.</p>
           <p>Not sure which specification is right for your car? That's what we're here for. Tell us your chassis number and we'll identify exactly what you need.</p>
