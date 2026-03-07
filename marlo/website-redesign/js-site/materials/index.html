@@ -224,30 +224,14 @@
       line-height: 1.4;
     }
     /* Full-size image viewer */
-    #jsm-fullview {
-      display: none;
-      position: fixed; inset: 0;
-      background: rgba(5,7,16,0.96);
-      z-index: 9100;
-      align-items: center;
-      justify-content: center;
-      cursor: zoom-out;
-    }
-    #jsm-fullview.open { display: flex; }
+    
     #jsm-fullview img {
       max-width: 90vw;
       max-height: 90vh;
       border-radius: 4px;
       box-shadow: 0 8px 60px rgba(0,0,0,0.7);
     }
-    #jsm-fullview-close {
-      position: absolute; top: 20px; right: 20px;
-      background: rgba(200,186,154,0.15); border: none;
-      color: #c8ba9a; font-size: 1.5rem;
-      width: 44px; height: 44px;
-      border-radius: 50%; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-    }
+    
     @media (max-width: 600px) {
       #jsm-shade-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
       #jsm-lightbox-modal { border-radius: 8px; }
@@ -266,6 +250,18 @@
       .card { padding: 24px 20px; }
       footer a { padding: 4px 0; display: inline-block; }
     }
+
+    #jsm-fullview { position:fixed; inset:0; background:rgba(10,10,20,0.95); z-index:1000; display:none; align-items:center; justify-content:center; gap:16px; }
+    #jsm-fullview.open { display:flex; }
+    #jsm-fv-inner { max-width:90vw; max-height:85vh; display:flex; flex-direction:column; align-items:center; gap:12px; }
+    #jsm-fullview-img { max-width:min(500px,85vw); max-height:75vh; object-fit:contain; border-radius:4px; display:block; }
+    #jsm-fv-caption { color:rgba(255,255,255,0.7); font-size:0.85rem; letter-spacing:0.08em; text-align:center; }
+    #jsm-fv-prev, #jsm-fv-next { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); color:#fff; width:48px; height:48px; border-radius:50%; cursor:pointer; font-size:1.4rem; flex-shrink:0; transition:all 0.2s; display:flex; align-items:center; justify-content:center; }
+    #jsm-fv-prev:hover, #jsm-fv-next:hover { background:rgba(200,186,154,0.2); border-color:#c8ba9a; color:#c8ba9a; }
+    #jsm-fv-prev:disabled, #jsm-fv-next:disabled { opacity:0.2; cursor:default; }
+    #jsm-fullview-close { position:absolute; top:16px; right:16px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); color:#fff; width:40px; height:40px; border-radius:50%; cursor:pointer; font-size:1rem; transition:all 0.2s; display:flex; align-items:center; justify-content:center; }
+    #jsm-fullview-close:hover { background:rgba(200,186,154,0.2); color:#c8ba9a; }
+    @media(max-width:600px) { #jsm-fv-prev,#jsm-fv-next { width:40px; height:40px; font-size:1.1rem; } }
   </style>
 </head>
 <body>
@@ -496,207 +492,14 @@
   </div>
   <!-- Full-size image viewer -->
   <div id="jsm-fullview" role="dialog" aria-modal="true">
-    <button id="jsm-fullview-close" aria-label="Close full view">&#x2715;</button>
-    <img id="jsm-fullview-img" src="" alt="">
-  </div>
-
-  <button class="scroll-top" id="scrollTop" title="Back to top">↑</button>
-
-  <script>
-    const toggle = document.getElementById('nav-toggle');
-    const nav = document.getElementById('main-nav');
-    toggle.addEventListener('click', () => {
-      toggle.classList.toggle('open');
-      nav.classList.toggle('open');
-      // Show/hide dropdown sub items on mobile
-      nav.querySelectorAll('.dropdown-sub').forEach(el => {
-        el.style.display = nav.classList.contains('open') ? 'block' : 'none';
-      });
-    });
-    const st = document.getElementById('scrollTop');
-    window.addEventListener('scroll', () => { st.classList.toggle('visible', window.scrollY > 400); });
-    st.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-  </script>
-
-
-<script>
-const SHADES = {
-  vinyl: {
-    red: [
-      { name: 'Bright Red', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Bright-Red-450x450.jpg' },
-      { name: 'Cherry Red', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Cherry-Red-450x450.jpg' },
-      { name: 'Matador Red', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Matador-Red-450x450.jpg' },
-      { name: 'Maroon', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Maroon-450x450.jpg' }
-    ],
-    blue: [
-      { name: 'Dark Blue', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Dark-Blue-450x450.jpg' },
-      { name: 'AH Blue', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-AH-Blue-450x450.jpg' }
-    ],
-    green: [
-      { name: 'British Racing Green', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-British-Racing-Green-450x450.jpg' }
-    ],
-    black: [
-      { name: 'Black', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Black-450x450.jpg' }
-    ],
-    beige: [
-      { name: 'Barley Beige', url: 'https://john-skinner.co.uk/wp-content/uploads/2022/10/Vinyl-Barley-Beige-450x450.jpg' },
-      { name: 'Biscuit / Light Tan', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Biscuit-Light-Tan-450x450.jpg' },
-      { name: 'Cinnamon', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Antiqued-Cinnamon-450x450.jpg' }
-    ],
-    grey: [
-      { name: 'Grey', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Grey-450x450.jpg' },
-      { name: 'Saville Grey', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Saville-Grey-450x450.jpg' }
-    ],
-    brown: [
-      { name: 'Dark Brown', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Dark-Brown-450x450.jpg' }
-    ]
-  },
-  wool: {
-    red: [
-      { name: 'Bright Red', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Wool-Bright-Red-450x450.jpg' },
-      { name: 'Classic Red', url: 'https://john-skinner.co.uk/wp-content/uploads/2022/11/Wool-Classic-Red-1-450x450.jpg' },
-      { name: 'Red', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Wool-Red-450x450.jpg' },
-      { name: 'Maroon', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Wool-Maroon-450x450.jpg' }
-    ],
-    blue: [
-      { name: 'Dark Blue', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Wool-Dark-Blue-450x450.jpg' },
-      { name: 'Pale Shadow Blue', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Wool-Pale-Shadow-Blue-450x450.jpg' }
-    ],
-    green: [
-      { name: 'Dark Green', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Wool-Dark-Green-450x450.jpg' },
-      { name: 'Suede Green', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Wool-Suede-Green-450x450.jpg' }
-    ],
-    black: [
-      { name: 'Black', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Wool-Black-450x450.jpg' }
-    ],
-    beige: [
-      { name: 'Camel', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Wool-Camel-450x450.jpg' },
-      { name: 'Fawn', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Wool-Fawn-450x450.jpg' },
-      { name: 'New Tan', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Wool-New-Tan-450x450.jpg' },
-      { name: 'Palomino', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Wool-Palomino-450x450.jpg' },
-      { name: 'Honey', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Wool-Honey-450x450.jpg' }
-    ],
-    grey: [
-      { name: 'Grey', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Wool-Grey-450x450.jpg' },
-      { name: 'Saville Grey', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Wool-Saville-Grey-450x450.jpg' }
-    ],
-    brown: [
-      { name: 'Dark Brown', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Wool-Dark-Brown-450x450.jpg' },
-      { name: 'Cinnamon', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/02/Wool-Cinnamon-450x450.jpg' },
-      { name: 'Burnt Orange', url: 'https://john-skinner.co.uk/wp-content/uploads/2022/11/Wool-Burnt-Orange-450x450.jpg' }
-    ]
-  },
-  karvel: {
-    red: [{ name: 'Red', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/03/Karvel-Red-450x450.jpg' }],
-    blue: [{ name: 'Dark Blue', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/03/Karvel-Dark-Blue-450x450.jpg' }],
-    black: [{ name: 'Black', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/03/Karvel-Black-450x450.jpg' }],
-    grey: [{ name: 'Grey', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/03/Karvel-Grey-450x450.jpg' }]
-  },
-  nylon: {
-    red: [
-      { name: 'Bright Red', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/03/Nylon-Bright-Red-450x450.jpg' },
-      { name: 'Dark Red', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/03/Nylon-Dark-Red-450x450.jpg' }
-    ],
-    blue: [
-      { name: 'Dark Blue', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/03/Nylon-Dark-Blue-450x450.jpg' },
-      { name: 'Pale Shadow Blue', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/03/Nylon-Pale-Shadow-Blue-450x450.jpg' }
-    ],
-    green: [{ name: 'Dark Green', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/03/Nylon-Dark-Green-450x450.jpg' }],
-    black: [{ name: 'Black', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/03/Nylon-Black-450x450.jpg' }],
-    beige: [
-      { name: 'New Tan', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/03/Nylon-New-Tan-450x450.jpg' },
-      { name: 'Toffee', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/03/Nylon-Toffee-450x450.jpg' }
-    ],
-    grey: [{ name: 'Dark Grey', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/03/Nylon-Dark-Grey-450x450.jpg' }],
-    gold: [{ name: 'Light Gold', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/03/Nylon-Light-Gold-450x450.jpg' }]
-  },
-  connolly: {
-    red: [
-      { name: 'Toledo Red', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/04/Connolly-Vaumol-VM3108-Toledo-Red-450x450.jpg' },
-      { name: 'Red', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/04/Connolly-Vaumol-VM3171-Red-450x450.jpg' },
-      { name: 'House of Lords Red', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/04/Connolly-Vaumol-VM3195-House-of-Lords-Red-450x450.jpg' }
-    ],
-    blue: [
-      { name: 'Luxan Blue', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/04/Connolly-Vaumol-VM3015-Luxan-Blue-450x450.jpg' },
-      { name: 'Dark Blue', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/04/Connolly-Vaumol-VM3282-Dark-Blue-450x450.jpg' },
-      { name: 'Blue Grey (1960s)', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/04/Connolly-Vaumol-VM-3244-Luxan-Blue-Grey-1960s-450x450.jpg' },
-      { name: 'Blue Grey (1970s)', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/04/Connolly-Vaumol-VM-3244-Luxan-Blue-Grey-1970s-450x450.jpg' }
-    ],
-    green: [
-      { name: 'House of Commons Green', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/04/Connolly-Vaumol-VM3253-Luxan-House-of-Commons-Green-450x450.jpg' },
-      { name: 'Light Green', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/04/Connolly-Vaumol-VM3124-Luxan-Light-Green-450x450.jpg' }
-    ],
-    beige: [
-      { name: 'Champagne', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/04/Connolly-Vaumol-VM3099-Champagne-450x450.jpg' },
-      { name: 'Ochre', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/04/Connolly-Vaumol-VM3104-Ochre-450x450.jpg' },
-      { name: 'Luxan Fawn', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/04/Connolly-Vaumol-VM3218-Luxan-Fawn-450x450.jpg' },
-      { name: 'Luxan Beige', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/04/Connolly-Vaumol-VM3234-Luxan-Beige-450x450.jpg' },
-      { name: 'Luxan Biscuit', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/04/Connolly-Vaumol-VM3243-Luxan-Biscuit-450x450.jpg' },
-      { name: 'Light Tan', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/04/Connolly-Vaumol-VM3309-Luxan-Light-Tan-450x450.jpg' },
-      { name: 'Luxan Cream', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/04/Connolly-Vaumol-VM3323-Luxan-Cream-450x450.jpg' }
-    ],
-    grey: [
-      { name: 'VM-3230 Grey', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/04/Connolly-Vaumol-VM-3230-Grey-450x450.jpg' },
-      { name: 'Luxan Grey', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/04/Connolly-Vaumol-VM3393-Luxan-Grey-450x450.jpg' }
-    ],
-    burgundy: [
-      { name: 'Burgundy', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/04/Connolly-Vaumol-VM3086-Burgundy-450x450.jpg' }
-    ]
-  },
-  armacord: {
-    red: [{ name: 'Red', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/03/Armacord-Red-450x450.jpg' }],
-    blue: [
-      { name: 'Dark Blue', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/03/Armacord-Dark-Blue-450x450.jpg' },
-      { name: 'French Blue', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/03/Armacord-French-Blue-450x450.jpg' }
-    ],
-    green: [{ name: 'Suede Green', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/03/Armacord-Suede-Green-450x450.jpg' }],
-    black: [{ name: 'Black', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/03/Armacord-Black-450x450.jpg' }],
-    beige: [
-      { name: 'Beige', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/03/Armacord-Beige-450x450.jpg' },
-      { name: 'Biscuit', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/03/Armacord-Biscuit-450x450.jpg' },
-      { name: 'Cinnamon', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/03/Armacord-Cinnamon-450x450.jpg' },
-      { name: 'Tan', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/03/Armacord-Tan-450x450.jpg' }
-    ],
-    grey: [{ name: 'Grey', url: 'https://john-skinner.co.uk/wp-content/uploads/2020/03/Armacord-Grey-450x450.jpg' }]
-  }
-};
-
-const MATERIAL_LABELS = {
-  vinyl: 'Vinyl &amp; Leathercloth',
-  wool: 'Wool Carpet',
-  karvel: 'Karvel Carpet',
-  nylon: 'Nylon Carpet',
-  connolly: 'Connolly Vaumol™ Leather',
-  armacord: 'Armacord'
-};
-
-const COLOR_LABELS = {
-  red: 'Red', blue: 'Blue', green: 'Green', black: 'Black',
-  beige: 'Beige – Tan', grey: 'Grey', brown: 'Brown',
-  burgundy: 'Burgundy', gold: 'Gold'
-};
-
-// Lightbox logic
-const lb = document.getElementById('jsm-lightbox');
-const lbTitle = document.getElementById('jsm-lightbox-title');
-const lbGrid = document.getElementById('jsm-shade-grid');
-const lbClose = document.getElementById('jsm-lightbox-close');
-const fv = document.getElementById('jsm-fullview');
-const fvImg = document.getElementById('jsm-fullview-img');
-const fvClose = document.getElementById('jsm-fullview-close');
-
-function openLightbox(material, color) {
-  const shades = (SHADES[material] || {})[color];
-  if (!shades || !shades.length) return;
-  const matLabel = MATERIAL_LABELS[material] || material;
-  const colLabel = COLOR_LABELS[color] || color;
-  lbTitle.innerHTML = '<em>' + colLabel + '</em> — ' + matLabel;
-  lbGrid.innerHTML = shades.map(function(s) {
-    var safeName = s.name.replace(/"/g, '&quot;');
-    return '<div class="shade-card" onclick="openFullView(this)"' +
-           ' data-url="' + s.url + '" data-name="' + safeName + '">' +
-           '<img src="' + s.url + '" alt="' + s.name + '" loading="lazy">' +
-           '<div class="shade-card-name">' + s.name + '</div>' +
+    <button id="jsm-fv-prev" aria-label="Previous shade" title="Previous (← key)">&#8592;</button>
+    <div id="jsm-fv-inner">
+      <img id="jsm-fullview-img" src="" alt="">
+      <div id="jsm-fv-caption"></div>
+    </div>
+    <button id="jsm-fv-next" aria-label="Next shade" title="Next (→ key)">&#8594;</button>
+    <button id="jsm-fullview-close" aria-label="Close">&#x2715;</button>
+  </div>' +
            '</div>';
   }).join('');
   lb.classList.add('open');
@@ -708,25 +511,43 @@ function closeLightbox() {
   document.body.style.overflow = '';
 }
 
-function openFullView(el) {
-  var url = el.dataset.url;
-  var name = el.dataset.name;
-  fvImg.src = url; fvImg.alt = name;
+let fvShades = [];
+let currentShades = [];
+let fvIndex = 0;
+
+function openFullView(shades, index) {
+  fvShades = shades;
+  fvIndex = index;
+  showFvSlide();
   fv.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  document.addEventListener('keydown', fvKeyHandler);
+}
+
+function showFvSlide() {
+  var s = fvShades[fvIndex];
+  fvImg.src = s.url;
+  fvImg.alt = s.name;
+  document.getElementById('jsm-fv-caption').textContent = s.name;
+  document.getElementById('jsm-fv-prev').disabled = fvIndex === 0;
+  document.getElementById('jsm-fv-next').disabled = fvIndex === fvShades.length - 1;
+}
+
+function fvKeyHandler(e) {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { if (fvIndex < fvShades.length - 1) { fvIndex++; showFvSlide(); } }
+  else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { if (fvIndex > 0) { fvIndex--; showFvSlide(); } }
+  else if (e.key === 'Escape') { closeFullView(); }
 }
 
 function closeFullView() {
   fv.classList.remove('open');
-  fvImg.src = '';
+  document.body.style.overflow = '';
+  document.removeEventListener('keydown', fvKeyHandler);
 }
 
-lbClose.addEventListener('click', closeLightbox);
-lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
-fvClose.addEventListener('click', closeFullView);
-fv.addEventListener('click', e => { if (e.target === fv || e.target === fvImg) closeFullView(); });
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeFullView(); closeLightbox(); }
-});
+document.getElementById('jsm-fv-prev').addEventListener('click', function() { if (fvIndex > 0) { fvIndex--; showFvSlide(); } });
+document.getElementById('jsm-fv-next').addEventListener('click', function() { if (fvIndex < fvShades.length - 1) { fvIndex++; showFvSlide(); } });
+
 
 // Attach swatch clicks
 document.querySelectorAll('.swatch[data-material]').forEach(sw => {
