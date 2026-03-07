@@ -727,7 +727,7 @@ function openLightbox(material, color) {
   var colLabel  = COLOR_LABELS[color]     || color;
   lbTitle.innerHTML = '<em>' + colLabel + '</em> — ' + matLabel;
   lbGrid.innerHTML = shades.map(function(s, i) {
-    return '<div class="shade-card" onclick="openFullView(' + i + ')">' +
+    return '<div class="shade-card" data-idx="' + i + '">' +
            '<img src="' + s.url + '" alt="' + s.name + '" loading="lazy">' +
            '<div class="shade-card-name">' + s.name + '</div></div>';
   }).join('');
@@ -787,6 +787,12 @@ fv.addEventListener('click', function(e) { if (e.target === fv) closeFullView();
 lbClose.addEventListener('click', closeLightbox);
 lb.addEventListener('click', function(e) { if (e.target === lb) closeLightbox(); });
 document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { closeLightbox(); } });
+
+// Event delegation for shade cards (avoids inline onclick issues on mobile)
+lbGrid.addEventListener('click', function(e) {
+  var card = e.target.closest('.shade-card');
+  if (card) openFullView(parseInt(card.dataset.idx, 10));
+});
 
 // Swatch clicks
 document.querySelectorAll('.swatch[data-material]').forEach(function(sw) {
