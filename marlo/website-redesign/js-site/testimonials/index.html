@@ -7,9 +7,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css">
   <style>
-    .testimonials-hero {
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: #f6f6f3; color: #404041; font-family: 'Open Sans', sans-serif; }
+        .testimonials-hero {
       background: linear-gradient(135deg, #181e38 0%, #272e66 100%);
       color: #fff;
       padding: 80px 24px 72px;
@@ -17,9 +18,10 @@
     }
     .testimonials-hero h1 {
       font-family: 'EB Garamond', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      margin-bottom: 0.5rem;
-      color: #c8ba9a;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+      color: #fff;
     }
     .testimonials-hero p {
       font-size: 1.1rem;
@@ -97,9 +99,10 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 24px;
-      padding: 40px;
+      padding: 48px 40px;
       max-width: 1300px;
       margin: 0 auto;
+      background: #f6f6f3;
     }
     .testimonial-card {
       background: #fff;
@@ -311,7 +314,7 @@
   </section>
 
   <!-- GRID -->
-  <div class="testimonials-grid" id="testimonialsGrid"></div>
+  <div style="background:#f6f6f3;"><div class="testimonials-grid" id="testimonialsGrid"></div>
   <div class="no-results" id="noResults">No testimonials match your selection.</div>
 
   <!-- FOOTER -->
