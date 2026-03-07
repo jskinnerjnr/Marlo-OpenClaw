@@ -221,6 +221,37 @@
       #main-nav a.nav-account { color: rgba(255,255,255,0.5); font-size: 0.72rem; padding: 22px 8px; border-bottom: none; letter-spacing: 0.08em; }
     #main-nav a.nav-account:hover { color: #c8ba9a; border-bottom: none; }
     @media (max-width: 768px) { #main-nav a.nav-account { padding: 18px 28px !important; } }
+
+    .site-header { background: #181e38; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid #c8ba9a; position: sticky; top: 0; z-index: 100; min-height: 72px; }
+    .nav-logo { display: flex; flex-direction: column; text-decoration: none; padding: 16px 0; flex-shrink: 0; }
+    .nav-logo-name { font-family: 'EB Garamond', serif; font-size: 1.45rem; font-weight: 600; color: #fff; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; }
+    .nav-logo-sub { font-family: 'Open Sans', sans-serif; font-size: 0.6rem; font-weight: 300; color: rgba(200,186,154,0.75); letter-spacing: 0.18em; text-transform: uppercase; margin-top: 4px; }
+    #nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; color: #fff; }
+    #nav-toggle span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; transition: all 0.3s; }
+    #main-nav { display: flex; align-items: center; gap: 4px; }
+    #main-nav a { font-family: 'Open Sans', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.8); text-decoration: none; padding: 28px 12px; border-bottom: 3px solid transparent; transition: color 0.2s, border-color 0.2s; display: inline-block; }
+    #main-nav a:hover, #main-nav a.active { color: #c8ba9a; border-bottom-color: #c8ba9a; }
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #181e38; border: 1px solid rgba(200,186,154,0.3); border-top: 2px solid #c8ba9a; min-width: 220px; z-index: 200; }
+    .nav-dropdown:hover .dropdown-menu { display: block; }
+    .dropdown-menu a { display: block; padding: 12px 18px; font-size: 0.75rem; color: rgba(255,255,255,0.75); border-bottom: 1px solid rgba(255,255,255,0.06); white-space: nowrap; }
+    .dropdown-menu a:hover { background: rgba(200,186,154,0.1); color: #c8ba9a; }
+    #main-nav a.nav-account { color: rgba(255,255,255,0.5); font-size: 0.72rem; padding: 22px 8px; border-bottom: none; letter-spacing: 0.08em; }
+    #main-nav a.nav-account:hover { color: #c8ba9a; }
+    #main-nav a.cta { background: transparent; border: 2px solid #c8ba9a; border-radius: 4px; color: #c8ba9a; padding: 10px 20px; margin-left: 8px; font-size: 0.72rem; letter-spacing: 0.12em; transition: all 0.2s; }
+    #main-nav a.cta:hover { background: #c8ba9a; color: #181e38; }
+    @media (max-width: 768px) {
+      #nav-toggle { display: block; }
+      #main-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #181e38; border-top: 1px solid rgba(200,186,154,0.2); border-bottom: 3px solid #c8ba9a; flex-direction: column; padding: 12px 0 20px; z-index: 150; gap: 0; }
+      #main-nav.open { display: flex; }
+      #main-nav .nav-dropdown { display: contents; }
+      #main-nav .dropdown-menu { display: none !important; }
+      #main-nav a { padding: 18px 28px; font-size: 1rem; border-bottom: none; border-left: 3px solid transparent; color: rgba(255,255,255,0.8); display: block; }
+      #main-nav a:hover { border-left-color: #c8ba9a; color: #c8ba9a; background: rgba(255,255,255,0.04); }
+      #main-nav a.cta { margin: 12px 28px 0; text-align: center; border: 2px solid #c8ba9a; border-left: 2px solid #c8ba9a; border-radius: 4px; padding: 16px 20px; font-size: 1rem; color: #c8ba9a; }
+      #main-nav a.cta:hover { background: #c8ba9a; color: #181e38; }
+      #main-nav a.nav-account { padding: 18px 28px !important; }
+    }
   </style>
 </head>
 <body>
