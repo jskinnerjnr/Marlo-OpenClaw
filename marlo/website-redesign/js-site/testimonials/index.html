@@ -140,6 +140,12 @@
     .filter-btn[data-value="MGA"].active { background: #1e4a6b; border-color: #1e4a6b; color: #fff; }
 
     /* Year tag on card */
+
+    .meta-car.mc-jaguar  { border-color: #1c382d; color: #1c382d; background: rgba(28,56,45,0.06); }
+    .meta-car.mc-triumph { border-color: #8a7200; color: #8a7200; background: rgba(138,114,0,0.06); }
+    .meta-car.mc-healey  { border-color: #6d2024; color: #6d2024; background: rgba(109,32,36,0.06); }
+    .meta-car.mc-mga     { border-color: #1e4a6b; color: #1e4a6b; background: rgba(30,74,107,0.06); }
+
     .meta-year { font-size: 0.75rem; color: #c8ba9a; font-family: 'Open Sans',sans-serif; letter-spacing: 0.08em; margin-top: 6px; font-weight: 600; }
     .filter-btn.reset {
       background: #c8ba9a;
@@ -552,7 +558,7 @@
             <div class="meta">
               <div class="meta-name">${name || 'Valued Customer'}</div>
               <div class="meta-details">
-                ${t.car ? `<span class="meta-car">${t.car}</span>` : ''}
+                ${t.car ? `<span class="meta-car ${marqueClass(t.car)}">${t.car}</span>` : ''}
                 ${t.country ? `<span class="meta-country">${t.flag} ${t.country}</span>` : ''}
               </div>
               ${t.year ? `<div class="meta-year">${t.year}</div>` : ''}
