@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us — John Skinner</title>
+  <title>About John Skinner — Classic Car Interior Trim Specialists</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -14,116 +14,96 @@
       --cream: #f6f6f3; --white: #ffffff;
       --grey: #7d807e; --light-grey: #e3e3df;
       --text: #404041; --warm-bg: #efede9;
-      --blue-vintage: #658ba4;
       --font-serif: 'EB Garamond', Georgia, serif;
       --font-sans: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
       --radius: 6px; --shadow: 0 2px 20px rgba(0,0,0,0.06);
       --shadow-md: 0 8px 40px rgba(0,0,0,0.11);
     }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Open Sans', sans-serif; color: var(--text); background: #f6f6f3; font-size: 16px; line-height: 1.7; }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--cream); font-size: 16px; line-height: 1.7; }
     .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-    .wrap-narrow { max-width: 780px; margin: 0 auto; padding: 0 24px; }
-    .site-header { background: #181e38; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid #c8ba9a; position: sticky; top: 0; z-index: 100; }
+
+    /* HEADER */
+    .site-header { background: var(--navy); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); position: sticky; top: 0; z-index: 100; }
     .logo-wrap { padding: 14px 0; text-decoration: none; display: block; }
-    .logo { font-family: 'EB Garamond', serif; color: #fff; font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
-    .logo em { color: #c8ba9a; font-style: normal; }
+    .logo { font-family: var(--font-serif); color: #fff; font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
+    .logo em { color: var(--gold); font-style: normal; }
     .logo-sub { font-size: 0.62rem; color: rgba(255,255,255,0.38); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 3px; }
     nav { display: flex; gap: 4px; align-items: center; }
     nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 22px 11px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; position: relative; }
-    nav a:hover { color: #dbd6ca; border-bottom-color: #dbd6ca; }
-    nav a.cta { background: #181e38; color: #c8ba9a; border: 2px solid #c8ba9a; padding: 9px 20px; border-radius: 4px; margin-left: 10px; border-bottom: 2px solid #c8ba9a; font-weight: 700; }
-    nav a.cta:hover { background: #c8ba9a; color: #181e38; }
+    nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold-light); }
+    nav a.cta { background: var(--navy); color: var(--gold); border: 2px solid var(--gold); padding: 9px 20px; border-radius: 4px; margin-left: 10px; border-bottom: 2px solid var(--gold); font-weight: 700; }
+    nav a.cta:hover { background: var(--gold); color: var(--navy); }
     .nav-dropdown { position: relative; display: inline-block; }
-    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #181e38; border: 1px solid rgba(200,186,154,0.3); border-top: 2px solid #c8ba9a; min-width: 220px; z-index: 200; }
+    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--navy); border: 1px solid rgba(200,186,154,0.3); border-top: 2px solid var(--gold); min-width: 220px; z-index: 200; }
     .nav-dropdown:hover .dropdown-menu { display: block; }
-    .dropdown-menu a { display: block; padding: 12px 18px; font-size: 0.75rem; color: rgba(255,255,255,0.75); border-bottom: 1px solid rgba(255,255,255,0.06); white-space: nowrap; border-bottom-width: 1px; }
-    .dropdown-menu a:hover { background: rgba(200,186,154,0.1); color: #c8ba9a; }
+    .dropdown-menu a { display: block; padding: 12px 18px; font-size: 0.75rem; color: rgba(255,255,255,0.75); border-bottom: 1px solid rgba(255,255,255,0.06); white-space: nowrap; }
+    .dropdown-menu a:hover { background: rgba(200,186,154,0.1); color: var(--gold); }
     .nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 200; }
-    .nav-toggle span { display: block; width: 26px; height: 2px; background: #c8ba9a; border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+    .nav-toggle span { display: block; width: 26px; height: 2px; background: var(--gold); border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
     .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .nav-toggle.open span:nth-child(2) { opacity: 0; }
     .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav-account { color: rgba(255,255,255,0.5) !important; font-size: 0.72rem !important; padding: 22px 8px !important; border-bottom: none !important; letter-spacing: 0.08em !important; }
+    .nav-account:hover { color: var(--gold) !important; border-bottom: none !important; }
+
     @media (max-width: 768px) {
       .nav-toggle { display: flex; }
-      #main-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #181e38; border-top: 1px solid rgba(200,186,154,0.2); border-bottom: 3px solid #c8ba9a; flex-direction: column; padding: 12px 0 20px; z-index: 150; }
+      #main-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--navy); border-top: 1px solid rgba(200,186,154,0.2); border-bottom: 3px solid var(--gold); flex-direction: column; padding: 12px 0 20px; z-index: 150; }
       #main-nav.open { display: flex; }
-      #main-nav a { padding: 14px 28px; font-size: 0.9rem; border-bottom: none; border-left: 3px solid transparent; color: rgba(255,255,255,0.8); }
-      #main-nav a:hover { border-left-color: #c8ba9a; color: #c8ba9a; background: rgba(255,255,255,0.04); }
-      #main-nav a.cta { margin: 12px 28px 0; text-align: center; border: 2px solid #c8ba9a; border-left: 2px solid #c8ba9a; border-radius: 4px; padding: 13px 20px; font-size: 0.85rem; color: #c8ba9a; }
-      #main-nav a.cta:hover { background: #c8ba9a; color: #181e38; }
-      .site-header { background: #181e38; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid #c8ba9a; position: sticky; top: 0; z-index: 100; }
+      #main-nav a { padding: 18px 28px; font-size: 1rem; border-bottom: none; border-left: 3px solid transparent; color: rgba(255,255,255,0.8); }
+      #main-nav a:hover { border-left-color: var(--gold); color: var(--gold); background: rgba(255,255,255,0.04); }
+      #main-nav a.cta { margin: 12px 28px 0; text-align: center; border: 2px solid var(--gold); border-left: 2px solid var(--gold); border-radius: 4px; padding: 16px 20px; font-size: 1rem; color: var(--gold); }
+      #main-nav a.cta:hover { background: var(--gold); color: var(--navy); }
+      #main-nav a.nav-account { padding: 18px 28px !important; }
+      .dropdown-menu { display: none !important; }
       .nav-dropdown { display: contents; }
-      .dropdown-menu { display: contents; }
-      #main-nav .dropdown-sub { padding-left: 44px !important; font-size: 0.82rem !important; color: rgba(255,255,255,0.55) !important; }
     }
-    .page-hero { background: #181e38; color: #fff; padding: 80px 24px 90px; text-align: center; }
-    .page-hero .eyebrow { font-size: 0.68rem; letter-spacing: 0.26em; text-transform: uppercase; color: #c8ba9a; font-weight: 600; margin-bottom: 18px; }
-    .page-hero h1 { font-family: 'EB Garamond', serif; font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 400; line-height: 1.1; margin-bottom: 20px; }
-    .page-hero h1 em { color: #dbd6ca; font-style: italic; }
-    .page-hero p { color: rgba(255,255,255,0.6); font-size: 1.05rem; max-width: 560px; margin: 0 auto; line-height: 1.85; }
-    .content-section { padding: 80px 0; background: #f6f6f3; }
-    .content-section.white { background: #fff; }
-    .content-section.warm { background: var(--warm-bg); }
-    .article-body { font-size: 1.02rem; line-height: 1.85; color: var(--text); }
-    .article-body h2 { font-family: 'EB Garamond', serif; font-size: 1.9rem; color: #181e38; margin: 48px 0 16px; }
-    .article-body h3 { font-family: 'EB Garamond', serif; font-size: 1.4rem; color: #181e38; margin: 36px 0 12px; }
-    .article-body p { margin-bottom: 20px; color: #555; }
-    .article-body ul, .article-body ol { margin: 0 0 20px 24px; color: #555; }
-    .article-body li { margin-bottom: 8px; }
-    .article-body blockquote { border-left: 3px solid #c8ba9a; padding: 16px 24px; margin: 32px 0; font-family: 'EB Garamond', serif; font-size: 1.2rem; font-style: italic; color: #181e38; background: var(--warm-bg); }
-    .section-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: #c8ba9a; margin-bottom: 12px; }
-    .section-title { font-family: 'EB Garamond', serif; font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 400; line-height: 1.15; margin-bottom: 18px; color: #181e38; }
-    .section-sub { color: #7d807e; font-size: 1.02rem; line-height: 1.85; }
-    .divider { width: 44px; height: 1px; background: #c8ba9a; margin: 22px 0; }
-    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; margin-top: 48px; }
-    .card { background: #fff; border-radius: 8px; box-shadow: var(--shadow); overflow: hidden; text-decoration: none; transition: transform 0.22s, box-shadow 0.22s; display: flex; flex-direction: column; border: 1px solid var(--light-grey); }
-    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: #c8ba9a; }
-    .card-body { padding: 28px 26px 30px; flex: 1; display: flex; flex-direction: column; }
-    .card-body h3 { font-family: 'EB Garamond', serif; font-size: 1.3rem; color: #181e38; margin-bottom: 10px; }
-    .card-body p { color: #7d807e; font-size: 0.9rem; line-height: 1.7; flex: 1; margin-bottom: 18px; }
-    .card-link { font-size: 0.77rem; font-weight: 700; color: #181e38; text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid #c8ba9a; padding-bottom: 2px; display: inline-block; }
-    .card-link::after { content: ' →'; }
-    .card-img { height: 140px; background: #181e38; display: flex; align-items: center; justify-content: center; }
-    .card-img .emblem { font-family: 'EB Garamond', serif; font-size: 1.6rem; color: #c8ba9a; letter-spacing: 0.1em; }
-    .timeline { position: relative; padding-left: 32px; margin: 48px 0; }
-    .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: #dbd6ca; }
-    .timeline-item { position: relative; margin-bottom: 40px; }
-    .timeline-item::before { content: ''; position: absolute; left: -28px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: #c8ba9a; border: 2px solid #fff; box-shadow: 0 0 0 2px #c8ba9a; }
-    .timeline-year { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #c8ba9a; margin-bottom: 6px; }
-    .timeline-item h3 { font-family: 'EB Garamond', serif; font-size: 1.2rem; color: #181e38; margin-bottom: 8px; }
-    .timeline-item p { font-size: 0.92rem; color: #7d807e; line-height: 1.75; }
-    .btn { display: inline-block; padding: 14px 32px; border-radius: 4px; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.22s; cursor: pointer; }
-    .btn-primary { background: #181e38; color: #fff; border: 2px solid #181e38; }
-    .btn-primary:hover { background: transparent; color: #181e38; }
-    .btn-outline { border: 2px solid #181e38; color: #181e38; background: transparent; }
-    .btn-outline:hover { background: #181e38; color: #fff; }
+
+    /* HERO */
+    .page-hero { background: var(--navy); color: #fff; padding: 72px 24px 80px; text-align: center; }
+    .page-hero .eyebrow { font-size: 0.68rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 18px; }
+    .page-hero h1 { font-family: var(--font-serif); font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 400; line-height: 1.1; margin-bottom: 24px; }
+    .page-hero p { color: rgba(255,255,255,0.65); font-size: 1.05rem; max-width: 600px; margin: 0 auto; line-height: 1.85; }
+
+    /* INTRO */
+    .intro-section { background: var(--warm-bg); padding: 56px 24px; text-align: center; border-bottom: 1px solid var(--gold-light); }
+    .intro-section p { max-width: 680px; margin: 0 auto; font-size: 1rem; line-height: 1.85; color: #555; }
+
+    /* HUB CARDS */
+    .hub-section { padding: 64px 24px 80px; }
+    .hub-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 960px; margin: 0 auto; }
+    .hub-card { display: flex; align-items: center; background: #fff; border-radius: 8px; border: 1px solid var(--light-grey); box-shadow: var(--shadow); text-decoration: none; color: var(--text); padding: 28px 24px; gap: 20px; transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s; min-height: 100px; }
+    .hub-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--gold); }
+    .hub-card-icon { flex-shrink: 0; width: 52px; height: 52px; background: var(--navy); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: var(--font-serif); font-size: 1.1rem; color: var(--gold); letter-spacing: 0.05em; text-align: center; }
+    .hub-card-text { flex: 1; }
+    .hub-card-text h2 { font-family: var(--font-serif); font-size: 1.35rem; color: var(--navy); font-weight: 600; margin-bottom: 5px; line-height: 1.2; }
+    .hub-card-text p { font-size: 0.9rem; color: var(--grey); line-height: 1.6; margin: 0; }
+    .hub-card-arrow { flex-shrink: 0; color: var(--gold); font-size: 1.4rem; font-weight: 300; transition: transform 0.2s; }
+    .hub-card:hover .hub-card-arrow { transform: translateX(4px); }
+
+    /* FOOTER */
     footer { background: #404041; color: rgba(255,255,255,0.42); padding: 52px 24px; text-align: center; font-size: 0.82rem; line-height: 2.1; border-top: 1px solid rgba(200,186,154,0.15); }
-    footer a { color: #c8ba9a; text-decoration: none; }
+    footer a { color: var(--gold); text-decoration: none; padding: 4px 0; display: inline-block; }
     footer strong { color: rgba(255,255,255,0.65); }
-    .scroll-top { position: fixed; bottom: 28px; right: 28px; width: 44px; height: 44px; background: #181e38; border: 1px solid #c8ba9a; color: #c8ba9a; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; z-index: 500; transition: background 0.2s; }
-    .scroll-top:hover { background: #c8ba9a; color: #181e38; }
+
+    .scroll-top { position: fixed; bottom: 28px; right: 28px; width: 44px; height: 44px; background: var(--navy); border: 1px solid var(--gold); color: var(--gold); border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; z-index: 500; transition: background 0.2s; }
+    .scroll-top:hover { background: var(--gold); color: var(--navy); }
     .scroll-top.visible { display: flex; }
-    .meta { font-size: 0.78rem; color: #7d807e; letter-spacing: 0.05em; margin-bottom: 32px; }
-    .meta .tag { background: var(--warm-bg); border: 1px solid #dbd6ca; border-radius: 20px; padding: 3px 12px; margin-right: 8px; font-weight: 600; text-transform: uppercase; font-size: 0.68rem; letter-spacing: 0.12em; }
-    .breadcrumb { font-size: 0.78rem; color: #7d807e; margin-bottom: 40px; }
-    .breadcrumb a { color: var(--blue-vintage); text-decoration: none; }
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
-    @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; gap: 40px; } .card-grid { grid-template-columns: 1fr; } }
-    .section-rule { border: none; border-top: 1px solid #c8ba9a; opacity: 0.4; margin: 0; }
-    .swatch-grid { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0 32px; }
-    .swatch { width: 48px; height: 48px; border-radius: 6px; border: 2px solid rgba(0,0,0,0.08); position: relative; cursor: default; }
-    .filter-group { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
-    .filter-chip { background: #fff; border: 1.5px solid #dbd6ca; color: var(--text); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; padding: 7px 16px; border-radius: 24px; cursor: pointer; transition: all 0.18s; font-family: 'Open Sans', sans-serif; }
-    .filter-chip:hover, .filter-chip.active { background: #181e38; color: #fff; border-color: #181e38; }
-      #main-nav a.nav-account { color: rgba(255,255,255,0.5); font-size: 0.72rem; padding: 22px 8px; border-bottom: none; letter-spacing: 0.08em; }
-    #main-nav a.nav-account:hover { color: #c8ba9a; border-bottom: none; }
-    @media (max-width: 768px) { #main-nav a.nav-account { padding: 14px 28px !important; } }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .hub-grid { grid-template-columns: 1fr; gap: 16px; }
+      .hub-card { padding: 24px 20px; }
+      .page-hero { padding: 52px 20px 60px; }
+      a.btn, .btn, button.btn { min-height: 48px; padding: 14px 24px; font-size: 1rem; }
+      footer a { padding: 4px 0; display: inline-block; }
+    }
   </style>
 </head>
 <body>
 
-    <header class="site-header">
+  <header class="site-header">
     <a class="logo-wrap" href="../index.html">
       <div class="logo">John <em>Skinner</em></div>
       <div class="logo-sub">Est. 1980 · Cheltenham</div>
@@ -132,10 +112,10 @@
       <div class="nav-dropdown">
         <a href="../about/index.html">About &#9662;</a>
         <div class="dropdown-menu">
-          <a href="../about/company-history.html">Company History</a>
-          <a href="../about/our-philosophy.html">Our Philosophy</a>
-          <a href="../about/the-price-of-value.html">The Price of Value</a>
-          <a href="../about/workshop.html">Our Workshop</a>
+          <a href="company-history.html">Company History</a>
+          <a href="our-philosophy.html">Our Philosophy</a>
+          <a href="the-price-of-value.html">The Price of Value</a>
+          <a href="workshop.html">Our Workshop</a>
           <a href="../testimonials/index.html">Customer Testimonials</a>
         </div>
       </div>
@@ -153,76 +133,77 @@
   <section class="page-hero">
     <p class="eyebrow">Est. 1980 · Cheltenham · Made in Britain</p>
     <h1>About John Skinner</h1>
-    <p>Forty-five years of focus. One industry. One standard.</p>
+    <p>Forty-five years of craftsmanship. One workshop. One standard.</p>
   </section>
-  
-  <section class="content-section">
-    <div class="wrap">
-      <div style="max-width:660px; margin-bottom:64px;">
-        <p class="section-label">Our Story</p>
-        <h2 class="section-title">A family business built on passion, craft and an unwillingness to compromise.</h2>
-        <div class="divider"></div>
-        <p class="section-sub">Founded in 1980 by John Skinner in his Cheltenham garage, we have grown into one of the world's most respected manufacturers of classic British car interior trim — without ever losing sight of what matters: quality, accuracy and genuine expertise.</p>
-      </div>
-      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(230px,1fr));">
-        <a href="company-history.html" class="card">
-          <div class="card-img"><span class="emblem">1980</span></div>
-          <div class="card-body">
-            <h3>Company History</h3>
-            <p>From a garage in Cirencester to a world-renowned workshop in Cheltenham. The story of John Skinner (Manufacturing) Ltd.</p>
-            <span class="card-link">Read our story</span>
-          </div>
-        </a>
-        <a href="our-philosophy.html" class="card">
-          <div class="card-img"><span class="emblem">Why JSM</span></div>
-          <div class="card-body">
-            <h3>Our Philosophy</h3>
-            <p>Quality over compromise. Craft over commodity. Read what drives every decision we make and every kit we produce.</p>
-            <span class="card-link">Our philosophy</span>
-          </div>
-        </a>
-        <a href="the-price-of-value.html" class="card">
-          <div class="card-img"><span class="emblem">Value</span></div>
-          <div class="card-body">
-            <h3>The Price of Value</h3>
-            <p>We're not the cheapest. We never will be. Here's why our customers understand the difference — and why it matters.</p>
-            <span class="card-link">Read more</span>
-          </div>
-        </a>
-        <a href="workshop.html" class="card">
-          <div class="card-img"><span class="emblem">Workshop</span></div>
-          <div class="card-body">
-            <h3>Our Workshop</h3>
-            <p>Step inside the cutting room, the sewing benches and the trimming floor. Where precision meets traditional craft.</p>
-            <span class="card-link">Inside our workshop</span>
-          </div>
-        </a>
-        <a href="../testimonials/index.html" class="card">
-          <div class="card-img"><span class="emblem">285+</span></div>
-          <div class="card-body">
-            <h3>Customer Testimonials</h3>
-            <p>285 customers from 22 countries have shared their stories. Their Jaguars, Triumphs and Healeys — transformed.</p>
-            <span class="card-link">Read testimonials</span>
-          </div>
-        </a>
-      </div>
+
+  <section class="intro-section">
+    <p>John Skinner (Manufacturing) Ltd has been crafting interior trim kits for classic British cars since 1980. Everything we make is produced in our Cheltenham workshop by people who know these cars inside out.</p>
+  </section>
+
+  <section class="hub-section">
+    <div class="hub-grid">
+
+      <a href="company-history.html" class="hub-card">
+        <div class="hub-card-icon">1980</div>
+        <div class="hub-card-text">
+          <h2>Company History</h2>
+          <p>Forty-five years of making classic car interiors in Cheltenham. Our story.</p>
+        </div>
+        <span class="hub-card-arrow">→</span>
+      </a>
+
+      <a href="our-philosophy.html" class="hub-card">
+        <div class="hub-card-icon">Why<br>JSM</div>
+        <div class="hub-card-text">
+          <h2>Our Philosophy</h2>
+          <p>Why we do things the way we do — and what that means for your car.</p>
+        </div>
+        <span class="hub-card-arrow">→</span>
+      </a>
+
+      <a href="the-price-of-value.html" class="hub-card">
+        <div class="hub-card-icon">Value</div>
+        <div class="hub-card-text">
+          <h2>The Price of Value</h2>
+          <p>Understanding what you're paying for, and why it's worth it.</p>
+        </div>
+        <span class="hub-card-arrow">→</span>
+      </a>
+
+      <a href="workshop.html" class="hub-card">
+        <div class="hub-card-icon">Work<br>shop</div>
+        <div class="hub-card-text">
+          <h2>Our Workshop</h2>
+          <p>Where everything is made — our Cheltenham workshop and the people in it.</p>
+        </div>
+        <span class="hub-card-arrow">→</span>
+      </a>
+
+      <a href="../testimonials/index.html" class="hub-card" style="grid-column: 1 / -1;">
+        <div class="hub-card-icon">285+</div>
+        <div class="hub-card-text">
+          <h2>Customer Testimonials</h2>
+          <p>285 customers on why they chose John Skinner.</p>
+        </div>
+        <span class="hub-card-arrow">→</span>
+      </a>
+
     </div>
   </section>
 
-
-    <footer style="background:#404041;color:rgba(255,255,255,0.55);padding:48px 24px 32px;text-align:center;font-family:'Open Sans',sans-serif;">
+  <footer>
     <div style="max-width:700px;margin:0 auto;">
       <p style="font-size:0.95rem;font-weight:700;color:rgba(255,255,255,0.85);margin-bottom:8px;">John Skinner (Manufacturing) Ltd</p>
       <p style="font-size:0.82rem;margin-bottom:20px;line-height:1.7;">Classic Car Interior Trim Specialists &middot; Est. 1980 &middot; Cheltenham, England</p>
       <p style="font-size:0.85rem;margin-bottom:28px;">
-        <a href="mailto:sales@john-skinner.co.uk" style="color:rgba(255,255,255,0.6);text-decoration:none;">sales@john-skinner.co.uk</a>
+        <a href="mailto:sales@john-skinner.co.uk">sales@john-skinner.co.uk</a>
         &nbsp;&middot;&nbsp;
-        <a href="../quote/index.html" style="color:rgba(255,255,255,0.6);text-decoration:none;">Request a Quote</a>
+        <a href="../quote/index.html">Request a Quote</a>
       </p>
       <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;font-size:0.76rem;color:rgba(255,255,255,0.3);display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px;">
         <span>&copy; 2026 John Skinner (Manufacturing) Ltd. All rights reserved.</span>
-        <a href="https://john-skinner.co.uk/terms-and-conditions-of-sale/" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.35);text-decoration:none;">Terms &amp; Conditions</a>
-        <a href="https://john-skinner.co.uk/privacy-policy/" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.35);text-decoration:none;">Privacy Policy</a>
+        <a href="https://john-skinner.co.uk/terms-and-conditions-of-sale/" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.35);">Terms &amp; Conditions</a>
+        <a href="https://john-skinner.co.uk/privacy-policy/" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.35);">Privacy Policy</a>
       </div>
     </div>
   </footer>
@@ -235,10 +216,6 @@
     toggle.addEventListener('click', () => {
       toggle.classList.toggle('open');
       nav.classList.toggle('open');
-      // Show/hide dropdown sub items on mobile
-      nav.querySelectorAll('.dropdown-sub').forEach(el => {
-        el.style.display = nav.classList.contains('open') ? 'block' : 'none';
-      });
     });
     const st = document.getElementById('scrollTop');
     window.addEventListener('scroll', () => { st.classList.toggle('visible', window.scrollY > 400); });
