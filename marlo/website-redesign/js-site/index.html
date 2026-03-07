@@ -191,6 +191,10 @@
     z-index: 150;
   }
   #main-nav.open { display: flex; }
+  
+  #main-nav .nav-dropdown { display: contents; }
+  #main-nav .dropdown-menu { position: static; display: contents; background: none; border: none; }
+  #main-nav .dropdown-menu a { padding-left: 44px !important; font-size: 0.82rem !important; color: rgba(255,255,255,0.55) !important; }
   #main-nav a {
     padding: 14px 28px;
     font-size: 0.9rem;
@@ -217,6 +221,11 @@
   .site-header { position: sticky; top: 0; z-index: 100; }
 }
 
+      .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--navy); border: 1px solid rgba(200,186,154,0.3); border-top: 2px solid var(--gold); min-width: 220px; z-index: 200; }
+    .nav-dropdown:hover .dropdown-menu { display: block; }
+    .dropdown-menu a { display: block; padding: 12px 18px; font-size: 0.75rem; color: rgba(255,255,255,0.75); border-bottom: 1px solid rgba(255,255,255,0.06); white-space: nowrap; }
+    .dropdown-menu a:hover { background: rgba(200,186,154,0.1); color: var(--gold); }
   </style>
 </head>
 <body>
@@ -226,14 +235,20 @@
       <div class="logo">John <em>Skinner</em></div>
       <div class="logo-sub">Est. 1980 · Cheltenham</div>
     </a>
-    <nav id="main-nav">
-      <a href="jaguar/index.html">Our Cars</a>
-      <a href="materials/index.html">Materials</a>
-      <a href="workshop/index.html">Workshop</a>
-      <a href="why-us/index.html">Why Us</a>
-      <a href="gallery/index.html">Gallery</a>
+        <nav id="main-nav">
+      <div class="nav-dropdown">
+        <a href="about/index.html">About ▾</a>
+        <div class="dropdown-menu">
+          <a href="about/company-history.html">Company History</a>
+          <a href="about/our-philosophy.html">Our Philosophy</a>
+          <a href="about/the-price-of-value.html">The Price of Value</a>
+          <a href="about/workshop.html">Our Workshop</a>
+          <a href="testimonials/index.html">Customer Testimonials</a>
+        </div>
+      </div>
       <a href="handbook/index.html">Handbook</a>
-      <a href="about/index.html">About</a>
+      <a href="materials/index.html">Materials &amp; Colours</a>
+      <a href="testimonials/index.html">Testimonials</a>
       <a href="quote/index.html" class="cta">Request a Quote</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" aria-label="Open menu">
