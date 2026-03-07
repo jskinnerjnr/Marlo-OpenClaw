@@ -258,17 +258,19 @@
       footer a { padding: 4px 0; display: inline-block; }
     }
 
-    #jsm-fullview { position:fixed; inset:0; background:rgba(10,10,20,0.95); z-index:1000; display:none; align-items:center; justify-content:center; gap:16px; }
+    #jsm-fullview { position:fixed; inset:0; background:rgba(10,10,20,0.95); z-index:1000; display:none; align-items:center; justify-content:center; flex-direction:column; }
     #jsm-fullview.open { display:flex; }
-    #jsm-fv-inner { max-width:90vw; max-height:85vh; display:flex; flex-direction:column; align-items:center; gap:12px; }
-    #jsm-fullview-img { max-width:min(500px,85vw); max-height:75vh; object-fit:contain; border-radius:4px; display:block; }
-    #jsm-fv-caption { color:rgba(255,255,255,0.7); font-size:0.85rem; letter-spacing:0.08em; text-align:center; }
-    #jsm-fv-prev, #jsm-fv-next { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); color:#fff; width:48px; height:48px; border-radius:50%; cursor:pointer; font-size:1.4rem; flex-shrink:0; transition:all 0.2s; display:flex; align-items:center; justify-content:center; }
-    #jsm-fv-prev:hover, #jsm-fv-next:hover { background:rgba(200,186,154,0.2); border-color:#c8ba9a; color:#c8ba9a; }
+    #jsm-fv-inner { position:relative; display:flex; flex-direction:column; align-items:center; gap:12px; max-width:90vw; }
+    #jsm-fullview-img { max-width:min(500px,90vw); max-height:72vh; object-fit:contain; border-radius:4px; display:block; user-select:none; }
+    #jsm-fv-caption { color:rgba(255,255,255,0.75); font-size:0.85rem; letter-spacing:0.06em; text-align:center; }
+    #jsm-fv-prev, #jsm-fv-next { position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.45); border:1px solid rgba(255,255,255,0.25); color:#fff; width:44px; height:44px; border-radius:50%; cursor:pointer; font-size:1.3rem; display:flex; align-items:center; justify-content:center; transition:all 0.2s; z-index:2; -webkit-tap-highlight-color:transparent; }
+    #jsm-fv-prev { left:-22px; }
+    #jsm-fv-next { right:-22px; }
+    #jsm-fv-prev:hover, #jsm-fv-next:hover { background:rgba(200,186,154,0.3); border-color:#c8ba9a; color:#c8ba9a; }
     #jsm-fv-prev:disabled, #jsm-fv-next:disabled { opacity:0.2; cursor:default; }
-    #jsm-fullview-close { position:absolute; top:16px; right:16px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); color:#fff; width:40px; height:40px; border-radius:50%; cursor:pointer; font-size:1rem; transition:all 0.2s; display:flex; align-items:center; justify-content:center; }
+    #jsm-fullview-close { position:absolute; top:16px; right:16px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); color:#fff; width:44px; height:44px; border-radius:50%; cursor:pointer; font-size:1rem; display:flex; align-items:center; justify-content:center; transition:all 0.2s; }
     #jsm-fullview-close:hover { background:rgba(200,186,154,0.2); color:#c8ba9a; }
-    @media(max-width:600px) { #jsm-fv-prev,#jsm-fv-next { width:40px; height:40px; font-size:1.1rem; } }
+    @media(max-width:600px) { #jsm-fv-prev { left:-18px; } #jsm-fv-next { right:-18px; } #jsm-fv-prev, #jsm-fv-next { width:40px; height:40px; font-size:1.1rem; } } }
   </style>
 </head>
 <body>
@@ -764,6 +766,19 @@ function fvKeyHandler(e) {
   else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { if (fvIndex > 0) { fvIndex--; showFvSlide(); } }
   else if (e.key === 'Escape') { closeFullView(); }
 }
+
+
+// Touch swipe on full-view
+(function() {
+  var touchStartX = 0;
+  fv.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+  fv.addEventListener('touchend', function(e) {
+    var dx = e.changedTouches[0].screenX - touchStartX;
+    if (Math.abs(dx) < 40) return;
+    if (dx < 0 && fvIndex < currentShades.length - 1) { fvIndex++; showFvSlide(); }
+    else if (dx > 0 && fvIndex > 0) { fvIndex--; showFvSlide(); }
+  }, { passive: true });
+})();
 
 document.getElementById('jsm-fv-prev').addEventListener('click', function() { if (fvIndex > 0) { fvIndex--; showFvSlide(); } });
 document.getElementById('jsm-fv-next').addEventListener('click', function() { if (fvIndex < currentShades.length-1) { fvIndex++; showFvSlide(); } });
