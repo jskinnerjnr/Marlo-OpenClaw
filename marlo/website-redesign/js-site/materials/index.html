@@ -268,9 +268,16 @@
     #jsm-fv-next { right:-22px; }
     #jsm-fv-prev:hover, #jsm-fv-next:hover { background:rgba(200,186,154,0.3); border-color:#c8ba9a; color:#c8ba9a; }
     #jsm-fv-prev:disabled, #jsm-fv-next:disabled { opacity:0.2; cursor:default; }
-    #jsm-fullview-close { position:absolute; top:16px; right:16px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); color:#fff; width:44px; height:44px; border-radius:50%; cursor:pointer; font-size:1rem; display:flex; align-items:center; justify-content:center; transition:all 0.2s; }
+    #jsm-fullview-close { position:absolute; top:16px; right:16px; background:rgba(200,186,154,0.12); border:2px solid rgba(200,186,154,0.5); color:#c8ba9a; width:48px; height:48px; border-radius:50%; cursor:pointer; font-size:1.1rem; display:flex; align-items:center; justify-content:center; transition:all 0.2s; }
     #jsm-fullview-close:hover { background:rgba(200,186,154,0.2); color:#c8ba9a; }
-    @media(max-width:600px) { #jsm-fv-prev { left:-18px; } #jsm-fv-next { right:-18px; } #jsm-fv-prev, #jsm-fv-next { width:40px; height:40px; font-size:1.1rem; } } }
+    @media(max-width:600px) {
+      #jsm-fullview-img { max-width:72vw; max-height:62vh; }
+      #jsm-fv-inner { max-width:72vw; }
+      #jsm-fv-prev { left:-28px; }
+      #jsm-fv-next { right:-28px; }
+      #jsm-fv-prev, #jsm-fv-next { width:52px; height:52px; font-size:1.5rem; background:rgba(200,186,154,0.18); border-color:#c8ba9a; color:#c8ba9a; }
+      #jsm-fullview-close { width:52px; height:52px; font-size:1.2rem; top:12px; right:12px; background:rgba(200,186,154,0.15); border-color:#c8ba9a; color:#c8ba9a; }
+    } }
   </style>
 </head>
 <body>
