@@ -183,10 +183,10 @@
     .nav-logo-sub { font-family: 'Open Sans', sans-serif; font-size: 0.6rem; font-weight: 300; color: rgba(200,186,154,0.75); letter-spacing: 0.18em; text-transform: uppercase; margin-top: 4px; }
     #nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; color: #fff; }
     #nav-toggle span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; transition: all 0.3s; }
-    #main-nav { display: flex; align-items: center; gap: 4px; }
-    #main-nav a { font-family: 'Open Sans', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.8); text-decoration: none; padding: 28px 12px; border-bottom: 3px solid transparent; transition: color 0.2s, border-color 0.2s; display: inline-block; }
+    #main-nav { display: flex; align-items: center; gap: 4px; flex-wrap: nowrap; }
+    #main-nav a { font-family: 'Open Sans', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.8); text-decoration: none; padding: 28px 12px; border-bottom: 3px solid transparent; transition: color 0.2s, border-color 0.2s; display: inline-block; white-space: nowrap; }
     #main-nav a:hover, #main-nav a.active { color: #c8ba9a; border-bottom-color: #c8ba9a; }
-    .nav-dropdown { position: relative; display: inline-block; }
+    .nav-dropdown { position: relative; display: inline-block; white-space: nowrap; }
     .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #181e38; border: 1px solid rgba(200,186,154,0.3); border-top: 2px solid #c8ba9a; min-width: 220px; z-index: 200; }
     .nav-dropdown:hover .dropdown-menu { display: block; }
     .dropdown-menu a { display: block; padding: 12px 18px; font-size: 0.75rem; color: rgba(255,255,255,0.75); border-bottom: 1px solid rgba(255,255,255,0.06); white-space: nowrap; }
@@ -484,7 +484,7 @@
     @media (max-width: 768px) {
       a.btn, .btn, button.btn { min-height: 48px; padding: 14px 24px; font-size: 1rem; }
       .card { padding: 24px 20px; }
-      footer a { padding: 4px 0; display: inline-block; }
+      footer a { padding: 4px 0; display: inline-block; white-space: nowrap; }
     }
   </style>
   <button id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
