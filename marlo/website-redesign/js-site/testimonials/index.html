@@ -8,6 +8,38 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
+    /* ── Canonical Header & Nav ── */
+    .site-header { background: #181e38; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid #c8ba9a; position: sticky; top: 0; z-index: 100; min-height: 72px; }
+    .nav-logo { display: flex; flex-direction: column; text-decoration: none; padding: 16px 0; flex-shrink: 0; }
+    .nav-logo-name { font-family: 'EB Garamond', serif; font-size: 1.45rem; font-weight: 600; color: #fff; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; }
+    .nav-logo-sub { font-family: 'Open Sans', sans-serif; font-size: 0.6rem; font-weight: 300; color: rgba(200,186,154,0.75); letter-spacing: 0.18em; text-transform: uppercase; margin-top: 4px; }
+    #nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; color: #fff; }
+    #nav-toggle span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; transition: all 0.3s; }
+    #main-nav { display: flex; align-items: center; gap: 4px; }
+    #main-nav a { font-family: 'Open Sans', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.8); text-decoration: none; padding: 28px 12px; border-bottom: 3px solid transparent; transition: color 0.2s, border-color 0.2s; display: inline-block; }
+    #main-nav a:hover, #main-nav a.active { color: #c8ba9a; border-bottom-color: #c8ba9a; }
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #181e38; border: 1px solid rgba(200,186,154,0.3); border-top: 2px solid #c8ba9a; min-width: 220px; z-index: 200; }
+    .nav-dropdown:hover .dropdown-menu { display: block; }
+    .dropdown-menu a { display: block; padding: 12px 18px; font-size: 0.75rem; color: rgba(255,255,255,0.75) !important; border-bottom: 1px solid rgba(255,255,255,0.06) !important; white-space: nowrap; }
+    .dropdown-menu a:hover { background: rgba(200,186,154,0.1); color: #c8ba9a !important; }
+    #main-nav a.nav-account { color: rgba(255,255,255,0.5); font-size: 0.72rem; padding: 22px 8px; border-bottom: none; letter-spacing: 0.08em; }
+    #main-nav a.nav-account:hover { color: #c8ba9a; }
+    #main-nav a.cta { background: transparent; border: 2px solid #c8ba9a; border-bottom: 2px solid #c8ba9a; border-radius: 4px; color: #c8ba9a; padding: 10px 20px; margin-left: 8px; font-size: 0.72rem; letter-spacing: 0.12em; transition: all 0.2s; }
+    #main-nav a.cta:hover { background: #c8ba9a; color: #181e38; }
+    @media (max-width: 768px) {
+      #nav-toggle { display: block; }
+      #main-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #181e38; border-top: 1px solid rgba(200,186,154,0.2); border-bottom: 3px solid #c8ba9a; flex-direction: column; padding: 12px 0 20px; z-index: 150; gap: 0; }
+      #main-nav.open { display: flex; }
+      #main-nav .nav-dropdown { display: contents; }
+      #main-nav .dropdown-menu { display: none !important; }
+      #main-nav a { padding: 18px 28px; font-size: 1rem; border-bottom: none; border-left: 3px solid transparent; color: rgba(255,255,255,0.8); display: block; }
+      #main-nav a:hover { border-left-color: #c8ba9a; color: #c8ba9a; background: rgba(255,255,255,0.04); border-bottom: none; }
+      #main-nav a.cta { margin: 12px 28px 0; text-align: center; border: 2px solid #c8ba9a; border-left: 2px solid #c8ba9a; border-radius: 4px; padding: 16px 20px; font-size: 1rem; color: #c8ba9a; }
+      #main-nav a.cta:hover { background: #c8ba9a; color: #181e38; }
+      #main-nav a.nav-account { padding: 18px 28px !important; }
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { background: #f6f6f3; color: #404041; font-family: 'Open Sans', sans-serif; }
         .testimonials-hero {
@@ -168,16 +200,6 @@
       .filters-section { padding: 24px; }
       .testimonials-grid { padding: 24px; gap: 16px; }
     }
-    .site-header { background: #181e38; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid #c8ba9a; position: sticky; top: 0; z-index: 100; }
-    .logo-wrap { padding: 14px 0; text-decoration: none; display: block; }
-    .logo { font-family: 'EB Garamond', serif; color: #fff; font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
-    .logo em { color: #c8ba9a; font-style: normal; }
-    .logo-sub { font-size: 0.62rem; color: rgba(255,255,255,0.38); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 3px; }
-    nav { display: flex; gap: 4px; align-items: center; }
-    nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 22px 11px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
-    nav a:hover { color: #dbd6ca; border-bottom-color: #dbd6ca; }
-    nav a.cta { background: #181e38; color: #c8ba9a; border: 2px solid #c8ba9a; padding: 9px 20px; border-radius: 4px; margin-left: 10px; border-bottom: 2px solid #c8ba9a; font-weight: 700; }
-    nav a.cta:hover { background: #c8ba9a; color: #181e38; }
 
     /* HERO */
     .hero { background: #181e38; color: #fff; padding: 100px 24px 120px; text-align: center; position: relative; overflow: hidden; }
@@ -201,7 +223,6 @@
     .section-rule { border: none; border-top: 1px solid #c8ba9a; opacity: 0.45; margin: 0; }
 
     /* TRUST STRIP */
-    .trust-strip { background: #f6f6f3; padding: 20px 24px; display: flex; justify-content: center; flex-wrap: wrap; border-bottom: 1px solid #c8ba9a; opacity: 1; }
     .trust-item { color: #181e38; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; padding: 4px 22px; border-right: 1px solid rgba(200,186,154,0.5); }
     .trust-item:last-child { border-right: none; }
 
@@ -267,18 +288,11 @@
     footer a { color: #c8ba9a; text-decoration: none; }
     footer strong { color: rgba(255,255,255,0.65); }
 
-    /* MOBILE */
-    @media (max-width: 640px) {
-      .site-header { background: #181e38; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid #c8ba9a; position: sticky; top: 0; z-index: 100; }
-      nav { display: none; }
       .hero { padding: 70px 20px 80px; }
       section { padding: 72px 0; }
       .cta-banner { padding: 72px 20px; }
-      .trust-strip { display: none; }
     }
   
-/* ── Hamburger button ── */
-.nav-toggle {
   display: none;
   flex-direction: column;
   justify-content: center;
@@ -289,7 +303,6 @@
   padding: 8px;
   z-index: 200;
 }
-.nav-toggle span {
   display: block;
   width: 26px;
   height: 2px;
@@ -297,14 +310,8 @@
   border-radius: 2px;
   transition: transform 0.3s, opacity 0.3s;
 }
-.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-toggle.open span:nth-child(2) { opacity: 0; }
-.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* ── Mobile nav ── */
 @media (max-width: 768px) {
-  .nav-toggle { display: flex; }
-  #main-nav {
     display: none;
     position: absolute;
     top: 100%;
@@ -317,11 +324,6 @@
     padding: 12px 0 20px;
     z-index: 150;
   }
-    #main-nav a.nav-account { color: rgba(255,255,255,0.5); font-size: 0.72rem; padding: 22px 8px; border-bottom: none; letter-spacing: 0.08em; }
-    #main-nav a.nav-account:hover { color: #c8ba9a; border-bottom: none; }
-      #main-nav a.nav-account { color: rgba(255,255,255,0.5); font-size: 0.72rem; padding: 22px 8px; border-bottom: none; letter-spacing: 0.08em; }
-    #main-nav a.nav-account:hover { color: #c8ba9a; border-bottom: none; }
-    @media (max-width: 768px) { #main-nav a.nav-account { padding: 18px 28px !important; } }
   
     /* TASK 4: Mobile tap targets */
     @media (max-width: 768px) {
@@ -331,41 +333,12 @@
     }
   
     /* TASK 5: Testimonials filter chips mobile */
-    @media (max-width: 640px) {
       .filter-chip { padding: 10px 16px; font-size: 0.9rem; }
       .filters-section { padding: 24px 16px; }
       .testimonials-grid { padding: 24px 16px; gap: 16px; }
     }
 
-    .site-header { background: #181e38; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid #c8ba9a; position: sticky; top: 0; z-index: 100; min-height: 72px; }
-    .nav-logo { display: flex; flex-direction: column; text-decoration: none; padding: 16px 0; flex-shrink: 0; }
-    .nav-logo-name { font-family: 'EB Garamond', serif; font-size: 1.45rem; font-weight: 600; color: #fff; letter-spacing: 0.12em; text-transform: uppercase; line-height: 1; }
-    .nav-logo-sub { font-family: 'Open Sans', sans-serif; font-size: 0.6rem; font-weight: 300; color: rgba(200,186,154,0.75); letter-spacing: 0.18em; text-transform: uppercase; margin-top: 4px; }
-    #nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; color: #fff; }
-    #nav-toggle span { display: block; width: 24px; height: 2px; background: #fff; margin: 5px 0; transition: all 0.3s; }
-    #main-nav { display: flex; align-items: center; gap: 4px; }
-    #main-nav a { font-family: 'Open Sans', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.8); text-decoration: none; padding: 28px 12px; border-bottom: 3px solid transparent; transition: color 0.2s, border-color 0.2s; display: inline-block; }
-    #main-nav a:hover, #main-nav a.active { color: #c8ba9a; border-bottom-color: #c8ba9a; }
-    .nav-dropdown { position: relative; display: inline-block; }
-    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #181e38; border: 1px solid rgba(200,186,154,0.3); border-top: 2px solid #c8ba9a; min-width: 220px; z-index: 200; }
-    .nav-dropdown:hover .dropdown-menu { display: block; }
-    .dropdown-menu a { display: block; padding: 12px 18px; font-size: 0.75rem; color: rgba(255,255,255,0.75); border-bottom: 1px solid rgba(255,255,255,0.06); white-space: nowrap; padding-bottom: 3px solid transparent !important; border-bottom-color: transparent !important; }
-    .dropdown-menu a:hover { background: rgba(200,186,154,0.1); color: #c8ba9a; }
-    #main-nav a.nav-account { color: rgba(255,255,255,0.5); font-size: 0.72rem; padding: 22px 8px; border-bottom: none; letter-spacing: 0.08em; }
-    #main-nav a.nav-account:hover { color: #c8ba9a; }
-    #main-nav a.cta { background: transparent; border: 2px solid #c8ba9a; border-radius: 4px; color: #c8ba9a; padding: 10px 20px; margin-left: 8px; font-size: 0.72rem; letter-spacing: 0.12em; transition: all 0.2s; }
-    #main-nav a.cta:hover { background: #c8ba9a; color: #181e38; }
     @media (max-width: 768px) {
-      #nav-toggle { display: block; }
-      #main-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #181e38; border-top: 1px solid rgba(200,186,154,0.2); border-bottom: 3px solid #c8ba9a; flex-direction: column; padding: 12px 0 20px; z-index: 150; gap: 0; }
-      #main-nav.open { display: flex; }
-      #main-nav .nav-dropdown { display: contents; }
-      #main-nav .dropdown-menu { display: none !important; }
-      #main-nav a { padding: 18px 28px; font-size: 1rem; border-bottom: none; border-left: 3px solid transparent; color: rgba(255,255,255,0.8); display: block; }
-      #main-nav a:hover { border-left-color: #c8ba9a; color: #c8ba9a; background: rgba(255,255,255,0.04); }
-      #main-nav a.cta { margin: 12px 28px 0; text-align: center; border: 2px solid #c8ba9a; border-left: 2px solid #c8ba9a; border-radius: 4px; padding: 16px 20px; font-size: 1rem; color: #c8ba9a; }
-      #main-nav a.cta:hover { background: #c8ba9a; color: #181e38; }
-      #main-nav a.nav-account { padding: 18px 28px !important; }
     }
   </style>
 </head>
@@ -373,9 +346,9 @@
 
   <!-- HEADER -->
     <header class="site-header">
-    <a class="logo-wrap" href="../index.html">
-      <div class="logo">John <em>Skinner</em></div>
-      <div class="logo-sub">Est. 1980 · Cheltenham</div>
+    <a class="nav-logo" href="../index.html">
+      <span class="nav-logo-name">John <em style="color:#c8ba9a;font-style:normal;">Skinner</em></span>
+      <span class="nav-logo-sub">Est. 1980 &middot; Cheltenham</span>
     </a>
     <nav id="main-nav">
       <div class="nav-dropdown">
@@ -390,11 +363,11 @@
       </div>
       <a href="../handbook/index.html">Handbook</a>
       <a href="../materials/index.html">Materials &amp; Colours</a>
-      <a href="../testimonials/index.html">Testimonials</a>
+      <a href="../testimonials/index.html" class="active">Testimonials</a>
       <a href="../portal/index.html" class="nav-account">My Account</a>
       <a href="../quote/index.html" class="cta">Request a Quote</a>
     </nav>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu">
+    <button id="nav-toggle" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
   </header>
