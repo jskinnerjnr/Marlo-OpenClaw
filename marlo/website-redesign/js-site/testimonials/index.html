@@ -3,414 +3,297 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Testimonials — John Skinner (Manufacturing) Ltd</title>
+  <title>Customer Testimonials — John Skinner</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --charcoal-dark: #404041;
-      --charcoal-light: #7d807e;
-      --navy: #181e38;
-      --blue-dark: #272e66;
-      --blue-vintage: #658ba4;
-      --red-dark: #6d2024;
-      --red-light: #b44043;
-      --red-bright: #e52328;
-      --green-dark: #1c382d;
-      --green-light: #677f72;
-      --brown-dark: #2e1e15;
-      --tan: #94542e;
-      --biscuit: #c8ba9a;
-      --biscuit-pale: #dbd6ca;
-      --grey-warm: #e3e3df;
-      --white-warm: #efede9;
-      --white-off: #f6f6f3;
       --navy: #181e38; --navy-light: #272e66;
       --gold: #c8ba9a; --gold-light: #dbd6ca;
       --cream: #f6f6f3; --white: #ffffff;
       --grey: #7d807e; --light-grey: #e3e3df;
       --text: #404041; --warm-bg: #efede9;
+      --blue-vintage: #658ba4;
       --font-serif: 'EB Garamond', Georgia, serif;
-      --font-sans: 'Open Sans', Arial, sans-serif;
-      --radius: 6px; --shadow: 0 2px 16px rgba(0,0,0,0.07);
-      --shadow-md: 0 6px 32px rgba(0,0,0,0.13);
+      --font-sans: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+      --radius: 6px; --shadow: 0 2px 20px rgba(0,0,0,0.06);
+      --shadow-md: 0 8px 40px rgba(0,0,0,0.11);
     }
+    html { scroll-behavior: smooth; }
     body { font-family: var(--font-sans); color: var(--text); background: var(--cream); font-size: 16px; line-height: 1.7; }
     .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .wrap-narrow { max-width: 780px; margin: 0 auto; padding: 0 24px; }
     .site-header { background: var(--navy); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); position: sticky; top: 0; z-index: 100; }
     .logo-wrap { padding: 14px 0; text-decoration: none; display: block; }
     .logo { font-family: var(--font-serif); color: var(--white); font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
     .logo em { color: var(--gold); font-style: normal; }
     .logo-sub { font-size: 0.62rem; color: rgba(255,255,255,0.38); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 3px; }
-    nav { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
-    nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 22px 10px; border-bottom: 2px solid transparent; transition: color 0.2s; }
-    nav a:hover, nav a.active { color: var(--gold-light); border-bottom-color: var(--gold-light); }
-    nav a.cta { background: var(--navy); color: var(--gold); border: 2px solid var(--gold); padding: 9px 20px; border-radius: var(--radius); margin-left: 8px; border-bottom: none; font-weight: 700; }
+    nav { display: flex; gap: 4px; align-items: center; }
+    nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 22px 11px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; position: relative; }
+    nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold-light); }
+    nav a.cta { background: var(--navy); color: var(--gold); border: 2px solid var(--gold); padding: 9px 20px; border-radius: var(--radius); margin-left: 10px; border-bottom: 2px solid var(--gold); font-weight: 700; }
     nav a.cta:hover { background: var(--gold); color: var(--navy); }
-
-    .page-hero { background: var(--navy); color: var(--white); padding: 80px 24px 96px; text-align: center; position: relative; overflow: hidden; }
-    .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 40%, rgba(200,186,154,0.1) 0%, transparent 65%); pointer-events: none; }
-    .eyebrow { font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 18px; }
-    .page-hero h1 { font-family: var(--font-serif); font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 400; line-height: 1.12; margin-bottom: 20px; }
-    .page-hero p { color: rgba(255,255,255,0.6); font-size: 1.05rem; max-width: 520px; margin: 0 auto; line-height: 1.85; }
-
-    /* Featured Hammond */
-    .hammond-feature { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.08); padding: 72px 0; }
-    .hammond-inner { max-width: 840px; margin: 0 auto; padding: 0 24px; text-align: center; }
-    .feature-tag { display: inline-block; background: var(--gold); color: var(--navy); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 16px; border-radius: 20px; margin-bottom: 24px; }
-    .feature-quote { font-family: var(--font-serif); font-size: clamp(1.4rem, 3vw, 2rem); font-style: italic; color: var(--white); line-height: 1.6; margin-bottom: 24px; }
-    .feature-quote::before { content: '"'; color: var(--gold); }
-    .feature-quote::after { content: '"'; color: var(--gold); }
-    .feature-citation { font-size: 0.8rem; color: var(--gold); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
-    .feature-detail { font-size: 0.85rem; color: rgba(255,255,255,0.45); }
-    .feature-stars { color: var(--gold); font-size: 1.3rem; margin-bottom: 20px; letter-spacing: 4px; }
-
-    /* Testimonials grid */
-    .testimonials-section { padding: 80px 0; }
-    .section-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; text-align: center; }
-    .section-title { font-family: var(--font-serif); font-size: clamp(1.9rem, 4vw, 2.8rem); font-weight: 400; line-height: 1.18; margin-bottom: 40px; color: var(--navy); text-align: center; }
-    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
-    .testimonial-card { background: var(--white); border-radius: 12px; padding: 28px 28px 24px; box-shadow: var(--shadow); border-top: 4px solid var(--gold); transition: transform 0.2s, box-shadow 0.2s; }
-    .testimonial-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
-    .stars { color: var(--gold); font-size: 0.9rem; letter-spacing: 3px; margin-bottom: 16px; }
-    .testimonial-text { font-family: var(--font-serif); font-size: 1.05rem; font-style: italic; color: var(--navy); line-height: 1.7; margin-bottom: 20px; }
-    .testimonial-text::before { content: '"'; }
-    .testimonial-text::after { content: '"'; }
-    .testimonial-footer { display: flex; align-items: center; gap: 12px; border-top: 1px solid var(--light-grey); padding-top: 16px; }
-    .t-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--navy); display: flex; align-items: center; justify-content: center; font-family: var(--font-serif); color: var(--gold); font-size: 1rem; flex-shrink: 0; }
-    .t-name { font-weight: 700; font-size: 0.87rem; color: var(--navy); }
-    .t-detail { font-size: 0.77rem; color: var(--grey); }
-
-    /* Awards section */
-    .awards-section { background: var(--warm-bg); padding: 72px 0; }
-    .awards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 44px; }
-    .award-card { background: var(--white); border-radius: 10px; padding: 24px 20px; text-align: center; box-shadow: var(--shadow); }
-    .award-icon { font-size: 2.4rem; margin-bottom: 12px; }
-    .award-card h4 { font-family: var(--font-serif); font-size: 1.05rem; color: var(--navy); margin-bottom: 6px; }
-    .award-card p { font-size: 0.82rem; color: var(--grey); line-height: 1.6; }
-
-    .cta-banner { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); color: var(--white); text-align: center; padding: 80px 24px; border-top: 3px solid var(--gold); }
-    .cta-banner h2 { font-family: var(--font-serif); font-size: clamp(1.9rem, 4vw, 2.9rem); margin-bottom: 16px; }
-    .cta-banner p { color: rgba(255,255,255,0.6); font-size: 1.05rem; margin-bottom: 38px; max-width: 460px; margin-left: auto; margin-right: auto; }
-    .btn { display: inline-block; padding: 14px 32px; border-radius: var(--radius); font-weight: 700; font-size: 0.88rem; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; margin: 6px; }
-    .btn-primary { background: var(--gold); color: var(--navy); }
-    .btn-primary:hover { background: var(--gold-light); }
-
-    footer { background: #404041; color: rgba(255,255,255,0.42); padding: 44px 24px; text-align: center; font-size: 0.82rem; line-height: 2; }
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--navy); border: 1px solid rgba(200,186,154,0.3); border-top: 2px solid var(--gold); min-width: 220px; z-index: 200; }
+    .nav-dropdown:hover .dropdown-menu { display: block; }
+    .dropdown-menu a { display: block; padding: 12px 18px; font-size: 0.75rem; color: rgba(255,255,255,0.75); border-bottom: 1px solid rgba(255,255,255,0.06); white-space: nowrap; border-bottom-width: 1px; }
+    .dropdown-menu a:hover { background: rgba(200,186,154,0.1); color: var(--gold); }
+    .nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 200; }
+    .nav-toggle span { display: block; width: 26px; height: 2px; background: #c8ba9a; border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 768px) {
+      .nav-toggle { display: flex; }
+      #main-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #181e38; border-top: 1px solid rgba(200,186,154,0.2); border-bottom: 3px solid #c8ba9a; flex-direction: column; padding: 12px 0 20px; z-index: 150; }
+      #main-nav.open { display: flex; }
+      #main-nav a { padding: 14px 28px; font-size: 0.9rem; border-bottom: none; border-left: 3px solid transparent; color: rgba(255,255,255,0.8); }
+      #main-nav a:hover { border-left-color: #c8ba9a; color: #c8ba9a; background: rgba(255,255,255,0.04); }
+      #main-nav a.cta { margin: 12px 28px 0; text-align: center; border: 2px solid #c8ba9a; border-left: 2px solid #c8ba9a; border-radius: 4px; padding: 13px 20px; font-size: 0.85rem; color: #c8ba9a; }
+      #main-nav a.cta:hover { background: #c8ba9a; color: #181e38; }
+      .site-header { position: sticky; top: 0; z-index: 100; }
+      .nav-dropdown { display: contents; }
+      .dropdown-menu { display: contents; }
+      #main-nav .dropdown-sub { padding-left: 44px !important; font-size: 0.82rem !important; color: rgba(255,255,255,0.55) !important; }
+    }
+    .page-hero { background: var(--navy); color: var(--white); padding: 80px 24px 90px; text-align: center; }
+    .page-hero .eyebrow { font-size: 0.68rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 18px; }
+    .page-hero h1 { font-family: var(--font-serif); font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 400; line-height: 1.1; margin-bottom: 20px; }
+    .page-hero h1 em { color: var(--gold-light); font-style: italic; }
+    .page-hero p { color: rgba(255,255,255,0.6); font-size: 1.05rem; max-width: 560px; margin: 0 auto; line-height: 1.85; }
+    .content-section { padding: 80px 0; background: var(--cream); }
+    .content-section.white { background: var(--white); }
+    .content-section.warm { background: var(--warm-bg); }
+    .article-body { font-size: 1.02rem; line-height: 1.85; color: var(--text); }
+    .article-body h2 { font-family: var(--font-serif); font-size: 1.9rem; color: var(--navy); margin: 48px 0 16px; }
+    .article-body h3 { font-family: var(--font-serif); font-size: 1.4rem; color: var(--navy); margin: 36px 0 12px; }
+    .article-body p { margin-bottom: 20px; color: #555; }
+    .article-body ul, .article-body ol { margin: 0 0 20px 24px; color: #555; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body blockquote { border-left: 3px solid var(--gold); padding: 16px 24px; margin: 32px 0; font-family: var(--font-serif); font-size: 1.2rem; font-style: italic; color: var(--navy); background: var(--warm-bg); }
+    .section-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .section-title { font-family: var(--font-serif); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 400; line-height: 1.15; margin-bottom: 18px; color: var(--navy); }
+    .section-sub { color: var(--grey); font-size: 1.02rem; line-height: 1.85; }
+    .divider { width: 44px; height: 1px; background: var(--gold); margin: 22px 0; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; margin-top: 48px; }
+    .card { background: var(--white); border-radius: 8px; box-shadow: var(--shadow); overflow: hidden; text-decoration: none; transition: transform 0.22s, box-shadow 0.22s; display: flex; flex-direction: column; border: 1px solid var(--light-grey); }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--gold); }
+    .card-body { padding: 28px 26px 30px; flex: 1; display: flex; flex-direction: column; }
+    .card-body h3 { font-family: var(--font-serif); font-size: 1.3rem; color: var(--navy); margin-bottom: 10px; }
+    .card-body p { color: var(--grey); font-size: 0.9rem; line-height: 1.7; flex: 1; margin-bottom: 18px; }
+    .card-link { font-size: 0.77rem; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid var(--gold); padding-bottom: 2px; display: inline-block; }
+    .card-link::after { content: ' →'; }
+    .card-img { height: 140px; background: var(--navy); display: flex; align-items: center; justify-content: center; }
+    .card-img .emblem { font-family: var(--font-serif); font-size: 1.6rem; color: var(--gold); letter-spacing: 0.1em; }
+    .timeline { position: relative; padding-left: 32px; margin: 48px 0; }
+    .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--gold-light); }
+    .timeline-item { position: relative; margin-bottom: 40px; }
+    .timeline-item::before { content: ''; position: absolute; left: -28px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); border: 2px solid var(--white); box-shadow: 0 0 0 2px var(--gold); }
+    .timeline-year { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+    .timeline-item h3 { font-family: var(--font-serif); font-size: 1.2rem; color: var(--navy); margin-bottom: 8px; }
+    .timeline-item p { font-size: 0.92rem; color: var(--grey); line-height: 1.75; }
+    .btn { display: inline-block; padding: 14px 32px; border-radius: var(--radius); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.22s; cursor: pointer; }
+    .btn-primary { background: var(--navy); color: var(--white); border: 2px solid var(--navy); }
+    .btn-primary:hover { background: transparent; color: var(--navy); }
+    .btn-outline { border: 2px solid var(--navy); color: var(--navy); background: transparent; }
+    .btn-outline:hover { background: var(--navy); color: var(--white); }
+    footer { background: #404041; color: rgba(255,255,255,0.42); padding: 52px 24px; text-align: center; font-size: 0.82rem; line-height: 2.1; border-top: 1px solid rgba(200,186,154,0.15); }
     footer a { color: var(--gold); text-decoration: none; }
     footer strong { color: rgba(255,255,255,0.65); }
-  
-/* ── Hamburger button ── */
-.nav-toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  z-index: 200;
-}
-.nav-toggle span {
-  display: block;
-  width: 26px;
-  height: 2px;
-  background: #c8ba9a;
-  border-radius: 2px;
-  transition: transform 0.3s, opacity 0.3s;
-}
-.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-toggle.open span:nth-child(2) { opacity: 0; }
-.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-/* ── Mobile nav ── */
-@media (max-width: 768px) {
-  .nav-toggle { display: flex; }
-  #main-nav {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: #181e38;
-    border-top: 1px solid rgba(200,186,154,0.2);
-    border-bottom: 3px solid #c8ba9a;
-    flex-direction: column;
-    padding: 12px 0 20px;
-    z-index: 150;
-  }
-  #main-nav.open { display: flex; }
-  #main-nav a {
-    padding: 14px 28px;
-    font-size: 0.9rem;
-    border-bottom: none;
-    border-left: 3px solid transparent;
-    color: rgba(255,255,255,0.8);
-  }
-  #main-nav a:hover, #main-nav a:focus {
-    border-left-color: #c8ba9a;
-    color: #c8ba9a;
-    background: rgba(255,255,255,0.04);
-  }
-  #main-nav a.cta {
-    margin: 12px 28px 0;
-    text-align: center;
-    border: 2px solid #c8ba9a;
-    border-left: 2px solid #c8ba9a;
-    border-radius: 4px;
-    padding: 13px 20px;
-    font-size: 0.85rem;
-    color: #c8ba9a;
-  }
-  #main-nav a.cta:hover { background: #c8ba9a; color: #181e38; }
-  .site-header { position: sticky; top: 0; z-index: 100; }
-}
-
+    .scroll-top { position: fixed; bottom: 28px; right: 28px; width: 44px; height: 44px; background: var(--navy); border: 1px solid var(--gold); color: var(--gold); border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; z-index: 500; transition: background 0.2s; }
+    .scroll-top:hover { background: var(--gold); color: var(--navy); }
+    .scroll-top.visible { display: flex; }
+    .meta { font-size: 0.78rem; color: var(--grey); letter-spacing: 0.05em; margin-bottom: 32px; }
+    .meta .tag { background: var(--warm-bg); border: 1px solid var(--gold-light); border-radius: 20px; padding: 3px 12px; margin-right: 8px; font-weight: 600; text-transform: uppercase; font-size: 0.68rem; letter-spacing: 0.12em; }
+    .breadcrumb { font-size: 0.78rem; color: var(--grey); margin-bottom: 40px; }
+    .breadcrumb a { color: var(--blue-vintage); text-decoration: none; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; gap: 40px; } .card-grid { grid-template-columns: 1fr; } }
+    .section-rule { border: none; border-top: 1px solid var(--gold); opacity: 0.4; margin: 0; }
+    .swatch-grid { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0 32px; }
+    .swatch { width: 48px; height: 48px; border-radius: 6px; border: 2px solid rgba(0,0,0,0.08); position: relative; cursor: default; }
+    .filter-group { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .filter-chip { background: var(--white); border: 1.5px solid var(--gold-light); color: var(--text); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; padding: 7px 16px; border-radius: 24px; cursor: pointer; transition: all 0.18s; font-family: var(--font-sans); }
+    .filter-chip:hover, .filter-chip.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
   </style>
 </head>
 <body>
 
-<header class="site-header">
+  <header class="site-header">
     <a class="logo-wrap" href="../index.html">
       <div class="logo">John <em>Skinner</em></div>
       <div class="logo-sub">Est. 1980 · Cheltenham</div>
     </a>
     <nav id="main-nav">
-      <a href="../jaguar/index.html">Our Cars</a>
-      <a href="../materials/index.html">Materials</a>
-      <a href="../workshop/index.html">Workshop</a>
-      <a href="../why-us/index.html">Why Us</a>
-      <a href="../gallery/index.html">Gallery</a>
+      <div class="nav-dropdown">
+        <a href="../about/index.html">About ▾</a>
+        <div class="dropdown-menu">
+          <a href="../about/company-history.html">Company History</a>
+          <a href="../about/our-philosophy.html">Our Philosophy</a>
+          <a href="../about/the-price-of-value.html">The Price of Value</a>
+          <a href="../about/workshop.html">Our Workshop</a>
+          <a href="../testimonials/index.html">Customer Testimonials</a>
+        </div>
+      </div>
       <a href="../handbook/index.html">Handbook</a>
-      <a href="../about/index.html">About</a>
+      <a href="../materials/index.html">Materials &amp; Colours</a>
+      <a href="../testimonials/index.html">Testimonials</a>
+      <a href="../why-us/index.html">Why Us</a>
       <a href="../quote/index.html" class="cta">Request a Quote</a>
+      <!-- Mobile dropdown items -->
+      <a href="../about/company-history.html" class="dropdown-sub" style="display:none;">↳ Company History</a>
+      <a href="../about/our-philosophy.html" class="dropdown-sub" style="display:none;">↳ Our Philosophy</a>
+      <a href="../about/the-price-of-value.html" class="dropdown-sub" style="display:none;">↳ The Price of Value</a>
+      <a href="../about/workshop.html" class="dropdown-sub" style="display:none;">↳ Our Workshop</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
   </header>
 
-<div class="page-hero">
-  <p class="eyebrow">Customers · Restorers · Enthusiasts · Worldwide</p>
-  <h1>What our customers say</h1>
-  <p>From Concours winners to famous restorations — the people who choose John Skinner rarely choose anyone else.</p>
-</div>
+  <section class="page-hero">
+    <p class="eyebrow">285 Customers · 22 Countries</p>
+    <h1>Customer Testimonials</h1>
+    <p>Classic car restorers around the world have trusted John Skinner with their interiors.</p>
+  </section>
+  
+  <section class="content-section">
+    <div class="wrap">
+      <div style="max-width:640px; margin-bottom:48px;">
+        <p class="section-label">285 Customers · 22 Countries</p>
+        <h2 class="section-title">What our customers say.</h2>
+        <div class="divider"></div>
+        <p class="section-sub">From California to New Zealand, Germany to Japan — classic car restorers around the world choose John Skinner. Here are their stories.</p>
+      </div>
 
-<!-- HAMMOND FEATURED -->
-<div class="hammond-feature">
-  <div class="hammond-inner">
-    <span class="feature-tag">⭐ Featured Customer</span>
-    <div class="feature-stars">★★★★★</div>
-    <div class="feature-quote">The interior… is in its original colour, it's beautiful.</div>
-    <div class="feature-citation">Richard Hammond</div>
-    <div class="feature-detail">Jaguar XK150 FHC · Full Interior Restoration · Cherry Red Leather</div>
-    <p style="color:rgba(255,255,255,0.45); font-size:0.85rem; margin-top:16px;">Richard Hammond approached John Skinner in 2020 for the interior trim on his Jaguar XK150 Fixed Head Coupé restoration. After seeing examples of our work through Tram Inn Garage in Herefordshire, he chose us for a complete interior kit in Cherry Red smooth leather — and featured the result on DriveTribe.</p>
-    <a href="../handbook/richard-hammonds-xk150.html" style="display:inline-block; margin-top:20px; color:var(--gold); font-size:0.8rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none;">Read the full story →</a>
-  </div>
-</div>
-
-<!-- TESTIMONIALS GRID -->
-<section class="testimonials-section">
-  <div class="wrap">
-    <p class="section-label">Customer Reviews</p>
-    <h2 class="section-title">Voices from the restoration community</h2>
-    <div class="testimonials-grid">
-
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <div class="testimonial-text">The quality of the trim is absolutely outstanding. I've used other suppliers in the past and there's simply no comparison. The patterns are spot-on and the material is exactly right for a concours restoration. Jonathon's advice throughout was invaluable.</div>
-        <div class="testimonial-footer">
-          <div class="t-avatar">M</div>
-          <div>
-            <div class="t-name">Mark Macy</div>
-            <div class="t-detail">Macy's Garage, Ohio, USA · Triumph TR4 Surrey Top · TRA Perfect Score</div>
+      <div style="margin-bottom:32px;">
+        <p style="font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.16em; color:var(--gold); margin-bottom:10px;">Filter by Car</p>
+        <div class="filter-group" id="car-filters"><button class="filter-chip active" data-filter="car" data-value="">All Cars</button><button class="filter-chip" data-filter="car" data-value="Austin Healey">Austin Healey</button><button class="filter-chip" data-filter="car" data-value="Bj8">Bj8</button><button class="filter-chip" data-filter="car" data-value="Daimler">Daimler</button><button class="filter-chip" data-filter="car" data-value="General">General</button><button class="filter-chip" data-filter="car" data-value="Jaguar 420">Jaguar 420</button><button class="filter-chip" data-filter="car" data-value="Jaguar E Type">Jaguar E Type</button><button class="filter-chip" data-filter="car" data-value="Jaguar Mk2">Jaguar Mk2</button><button class="filter-chip" data-filter="car" data-value="Jaguar S Type">Jaguar S Type</button><button class="filter-chip" data-filter="car" data-value="Jaguar Xjs">Jaguar Xjs</button><button class="filter-chip" data-filter="car" data-value="Jaguar Xk">Jaguar Xk</button><button class="filter-chip" data-filter="car" data-value="Mga">Mga</button><button class="filter-chip" data-filter="car" data-value="Triumph Tr2">Triumph Tr2</button><button class="filter-chip" data-filter="car" data-value="Triumph Tr3">Triumph Tr3</button><button class="filter-chip" data-filter="car" data-value="Triumph Tr4">Triumph Tr4</button><button class="filter-chip" data-filter="car" data-value="Triumph Tr5">Triumph Tr5</button><button class="filter-chip" data-filter="car" data-value="Triumph Tr6">Triumph Tr6</button></div>
+        <p style="font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.16em; color:var(--gold); margin: 20px 0 10px;">Filter by Country</p>
+        <div class="filter-group" id="country-filters"><button class="filter-chip active" data-filter="country" data-value="">All Countries</button><button class="filter-chip" data-filter="country" data-value="Australia">🇦🇺 Australia</button><button class="filter-chip" data-filter="country" data-value="Austria">🇦🇹 Austria</button><button class="filter-chip" data-filter="country" data-value="Belgium">🇧🇪 Belgium</button><button class="filter-chip" data-filter="country" data-value="Canada">🇨🇦 Canada</button><button class="filter-chip" data-filter="country" data-value="Denmark">🇩🇰 Denmark</button><button class="filter-chip" data-filter="country" data-value="France">🇫🇷 France</button><button class="filter-chip" data-filter="country" data-value="Germany">🇩🇪 Germany</button><button class="filter-chip" data-filter="country" data-value="Italy">🇮🇹 Italy</button><button class="filter-chip" data-filter="country" data-value="Japan">🇯🇵 Japan</button><button class="filter-chip" data-filter="country" data-value="Luxembourg">🇱🇺 Luxembourg</button><button class="filter-chip" data-filter="country" data-value="Netherlands">🇳🇱 Netherlands</button><button class="filter-chip" data-filter="country" data-value="New Zealand">🇳🇿 New Zealand</button><button class="filter-chip" data-filter="country" data-value="Norway">🇳🇴 Norway</button><button class="filter-chip" data-filter="country" data-value="Portugal">🇵🇹 Portugal</button><button class="filter-chip" data-filter="country" data-value="Singapore">🇸🇬 Singapore</button><button class="filter-chip" data-filter="country" data-value="South Africa">🇿🇦 South Africa</button><button class="filter-chip" data-filter="country" data-value="Spain">🇪🇸 Spain</button><button class="filter-chip" data-filter="country" data-value="Sweden">🇸🇪 Sweden</button><button class="filter-chip" data-filter="country" data-value="Switzerland">🇨🇭 Switzerland</button><button class="filter-chip" data-filter="country" data-value="UK">🇬🇧 UK</button><button class="filter-chip" data-filter="country" data-value="USA">🇺🇸 USA</button></div>
+        <div style="display:flex; align-items:center; justify-content:space-between; margin:24px 0 8px; flex-wrap:wrap; gap:12px;">
+          <p style="font-size:0.82rem; color:var(--grey);" id="testi-count">Showing all 285 testimonials</p>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <label style="font-size:0.78rem; color:var(--grey); font-weight:600;">Sort:</label>
+            <select id="sort-select" style="font-size:0.78rem; border:1.5px solid var(--gold-light); border-radius:4px; padding:6px 12px; background:var(--white); color:var(--text); font-family:var(--font-sans);">
+              <option value="default">Default</option>
+              <option value="year-desc">Newest First</option>
+              <option value="year-asc">Oldest First</option>
+              <option value="car">By Car</option>
+              <option value="country">By Country</option>
+            </select>
           </div>
         </div>
       </div>
 
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <div class="testimonial-text">We were privileged to work with John Skinner on the Triumph TR2 'Jabbeke' restoration. The trim was absolutely authentic to original specification and the attention to detail — including the rare oval door pocket hole — was exceptional. True craftspeople.</div>
-        <div class="testimonial-footer">
-          <div class="t-avatar">P</div>
-          <div>
-            <div class="t-name">Protek Engineering</div>
-            <div class="t-detail">Triumph TR2 'Jabbeke' Restoration · RAC Exhibition, Pall Mall</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <div class="testimonial-text">I ordered a full TR6 interior kit and the fit was perfect straight out of the box. The quality is exceptional — everything from the stitching to the materials is exactly right. Customer service was excellent too; Jonathon was always happy to answer questions.</div>
-        <div class="testimonial-footer">
-          <div class="t-avatar">D</div>
-          <div>
-            <div class="t-name">David Hargreaves</div>
-            <div class="t-detail">Triumph TR6 · UK Customer</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <div class="testimonial-text">As a professional trimmer who works on classic Jaguars regularly, I can honestly say that John Skinner's kits are the best in the industry. The patterns are accurate, the materials are premium, and the after-sales support is second to none. I recommend them to all my customers.</div>
-        <div class="testimonial-footer">
-          <div class="t-avatar">T</div>
-          <div>
-            <div class="t-name">Thomas Ashworth Trimmers</div>
-            <div class="t-detail">Professional Trimmer · Specialising in Jaguar E-Type</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <div class="testimonial-text">I've been restoring Austin Healeys for over 20 years and John Skinner is the only supplier I trust for interior trim. The knowledge they have of these cars is extraordinary — they even know which direction the Karvel ribs run for each model. Remarkable.</div>
-        <div class="testimonial-footer">
-          <div class="t-avatar">R</div>
-          <div>
-            <div class="t-name">Richard Clegg</div>
-            <div class="t-detail">Austin Healey Enthusiast · UK · 20+ years of restoration</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <div class="testimonial-text">Ordered a complete Jaguar XK140 interior kit and shipped to Australia — the packaging was excellent and everything arrived in perfect condition. The quality is absolutely first class. It's clear that this company genuinely cares about these cars.</div>
-        <div class="testimonial-footer">
-          <div class="t-avatar">G</div>
-          <div>
-            <div class="t-name">Gordon Mackenzie</div>
-            <div class="t-detail">Jaguar XK140 · Sydney, Australia</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <div class="testimonial-text">The Connolly Vaumol leather option is superb. The smell, the feel, the ageing character — it's exactly what these cars deserve. My TR3 won concours at TR International 2021 and the judges specifically commented on the quality of the interior. Couldn't be happier.</div>
-        <div class="testimonial-footer">
-          <div class="t-avatar">J</div>
-          <div>
-            <div class="t-name">James Whitfield</div>
-            <div class="t-detail">Triumph TR3 · Concours Winner TR International 2021</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <div class="testimonial-text">John Skinner provided the Jaguar E-Type Cut 7 restoration with a full trim kit and the quality was simply impeccable. Every detail correct to original specification — this is what separates the specialists from the rest. I would use no one else.</div>
-        <div class="testimonial-footer">
-          <div class="t-avatar">C</div>
-          <div>
-            <div class="t-name">Classic Jaguar Restorations</div>
-            <div class="t-detail">Jaguar E-Type FHC Cut 7 · Notable Historic Restoration</div>
-          </div>
-        </div>
-      </div>
-
+      <div id="testi-grid" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap:20px;"></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- AWARDS -->
-<section class="awards-section">
-  <div class="wrap">
-    <p class="section-label" style="text-align:center;">Recognition</p>
-    <h2 class="section-title" style="text-align:center;">Our work, validated</h2>
-    <div class="awards-grid">
-      <div class="award-card">
-        <div class="award-icon">🏆</div>
-        <h4>Perfect Score — TRA 2018</h4>
-        <p>First ever 100 Point Score awarded by the Triumph Register of America. Our trim at the heart of it.</p>
-      </div>
-      <div class="award-card">
-        <div class="award-icon">👑</div>
-        <h4>Royal Commission</h4>
-        <p>Grey Wool Carpet supplied for the restoration of King Carl XVI Gustaf of Sweden's Daimler Princess.</p>
-      </div>
-      <div class="award-card">
-        <div class="award-icon">🏅</div>
-        <h4>Concours d'Elegance</h4>
-        <p>Multiple concours winners across Triumph TR International and other prestigious show events.</p>
-      </div>
-      <div class="award-card">
-        <div class="award-icon">📺</div>
-        <h4>DriveTribe Feature</h4>
-        <p>Our work on Richard Hammond's XK150 FHC featured on DriveTribe — seen by millions of car enthusiasts worldwide.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="cta-banner">
-  <h2>Join thousands of satisfied customers</h2>
-  <p>Request a quote for your restoration — no commitment required.</p>
-  <a href="../quote/index.html" class="btn btn-primary">Request a Quote →</a>
-</div>
-
-<footer>
-  <strong>John Skinner (Manufacturing) Ltd</strong><br>
-  Classic Car Interior Trim Specialists · Est. 1980 · Cheltenham, England<br><br>
-  <a href="mailto:sales@john-skinner.co.uk">sales@john-skinner.co.uk</a> ·
-  <a href="../quote/index.html">Request a Quote</a><br><br>
-  <span style="opacity:0.45; font-size:0.75rem;">© 2025 John Skinner (Manufacturing) Ltd. All rights reserved.</span>
-</footer>
-
-
-  <!-- SCROLL TO TOP -->
-  <style>
-    #scrollTopBtn {
-      position: fixed; right: 24px; bottom: 40px;
-      width: 54px; height: 54px; border-radius: 50%;
-      background: #181e38; border: none; cursor: pointer;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.28);
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.3s, transform 0.2s;
-      z-index: 9999;
-      display: flex; align-items: center; justify-content: center;
-    }
-    #scrollTopBtn:hover { transform: translateY(-2px); }
-    #scrollTopBtn span {
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 1.5rem; color: #c8ba9a; font-weight: 700;
-      line-height: 1; margin-top: -2px;
-    }
-    #scrollTopBtn.visible { opacity: 1; pointer-events: auto; }
-    @media (max-width: 640px) { #scrollTopBtn { bottom: 80px; } }
-  </style>
-  <button id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
-    <span>↑</span>
-  </button>
   <script>
-    (function(){
-      var btn = document.getElementById('scrollTopBtn');
-      window.addEventListener('scroll', function(){
-        if (window.pageYOffset > 300) { btn.classList.add('visible'); }
-        else { btn.classList.remove('visible'); }
-      }, {passive: true});
-    })();
-  </script>
-<script>
-  const navToggle = document.getElementById('nav-toggle');
-  const mainNav = document.getElementById('main-nav');
-  if (navToggle && mainNav) {
-    navToggle.addEventListener('click', () => {
-      navToggle.classList.toggle('open');
-      mainNav.classList.toggle('open');
-    });
-    mainNav.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        navToggle.classList.remove('open');
-        mainNav.classList.remove('open');
+    const ALL_TESTI = [{"title": "Jaguar MK2 – Rolf Aeschlimann, Switzerland, 2016", "url": "https://john-skinner.co.uk/testimonials/jaguar-mk2-rolf-a-switzerland-2016/", "text": "", "images": [], "car": "Jaguar Mk2", "country": "Switzerland"}, {"title": "Jaguar MK2 – Olivier Paris, France, 2016", "url": "https://john-skinner.co.uk/testimonials/jaguar-mk2-olivier-p-france-2016/", "text": "", "images": [], "car": "Jaguar Mk2", "country": "France"}, {"title": "Jaguar MK2 – Brian Devlin, New Zealand, 2016", "url": "https://john-skinner.co.uk/testimonials/jaguar-mk2-brian-d-new-zealand-2016/", "text": "", "images": [], "car": "Jaguar Mk2", "country": "New Zealand"}, {"title": "Jaguar MK2 – John Robinson, USA, 2017", "url": "https://john-skinner.co.uk/testimonials/jaguar-mk2-john-r-usa-2017/", "text": "", "images": [], "car": "Jaguar Mk2", "country": "USA"}, {"title": "Jaguar MK2 – Wim Gohres, The Netherlands, 2017", "url": "https://john-skinner.co.uk/testimonials/jaguar-mk2-wim-g-the-netherlands-2017/", "text": "", "images": [], "car": "Jaguar Mk2", "country": "Netherlands"}, {"title": "Jaguar S Type / 420 – Damien George, Luxembourg, 2017", "url": "https://john-skinner.co.uk/testimonials/jaguar-s-type-420-damien-g-luxembourg-2017/", "text": "", "images": [], "car": "Jaguar S Type", "country": "Luxembourg"}, {"title": "Jaguar XJS – Steve Dancer, Canada, 2018", "url": "https://john-skinner.co.uk/testimonials/jaguar-xjs-steve-d-canada-2018/", "text": "", "images": [], "car": "Jaguar Xjs", "country": "Canada"}, {"title": "General – Daimler Princess – Tranebergs Bil & Batinredninga, Sweden 2018", "url": "https://john-skinner.co.uk/testimonials/general-daimler-princess-tranebergs-bil-batinredninga-sweden-2018/", "text": "", "images": [], "car": "General", "country": "Sweden"}, {"title": "General – John Macdonald, Switzerland, 2018", "url": "https://john-skinner.co.uk/testimonials/general-john-m-switzerland-2018/", "text": "", "images": [], "car": "General", "country": "Switzerland"}, {"title": "Jaguar S Type / 420 – Glyn Ruck, South Africa, 2018", "url": "https://john-skinner.co.uk/testimonials/jaguar-s-type-420-glyn-r-south-africa-2018/", "text": "", "images": [], "car": "Jaguar S Type", "country": "South Africa"}, {"title": "BJ8 – Gilles Desroches, France, 2009", "url": "https://john-skinner.co.uk/testimonials/bj8-gilles-desroches-france-2009/", "text": "", "images": [], "car": "Bj8", "country": "France"}, {"title": "BJ8 – Jorgen Lindholm Christiansen, Denmark. 2014 / 2015", "url": "https://john-skinner.co.uk/testimonials/bj8-jorgen-lindholm-christiansen-denmark-2014-2015/", "text": "", "images": [], "car": "Bj8", "country": "Denmark"}, {"title": "Daimler V8 250 – Chris Broadhurst, UK, 2016", "url": "https://john-skinner.co.uk/testimonials/daimler-v8-250-chris-b-uk-2016/", "text": "", "images": [], "car": "Daimler", "country": "UK"}, {"title": "Triumph TR6 – Anonymous, via AutomoMeta website, 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-tr4a-tr6-chris-briggs-uk-2016-2017-2021-duplicate-1/", "text": "", "images": [], "car": "Triumph Tr4", "country": "UK"}, {"title": "Austin Healey BJ8 – Alan Highton, UK, 2021", "url": "https://john-skinner.co.uk/testimonials/austin-healey-bj8-alan-highton-uk-2021/", "text": "", "images": [], "car": "Austin Healey", "country": "UK"}, {"title": "Jaguar XK120 OTS – Sunnyside Classics, USA, 2020 / 2021", "url": "https://john-skinner.co.uk/testimonials/jaguar-xk120-ots-sunnyside-classics-usa-2020-2021/", "text": "", "images": [], "car": "Jaguar Xk", "country": "USA"}, {"title": "Triumph Vitesse – Jason Cotterell, Australia, 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-vitesse-jason-cotterell-australia-2021/", "text": "", "images": [], "car": "", "country": "Australia"}, {"title": "Austin Healey – The Healey Factory, Australia, 2021", "url": "https://john-skinner.co.uk/testimonials/austin-healey-the-healey-factory-australia-2021/", "text": "", "images": [], "car": "Austin Healey", "country": "Australia"}, {"title": "Triumph TR3 – Richard King (AML Developments), Australia, 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3-richard-king-aml-developments-australia-2021/", "text": "", "images": [], "car": "Triumph Tr3", "country": "Australia"}, {"title": "Triumph TR3A – Terry Quinn, UK, 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3a-terry-quinn-uk-2021/", "text": "", "images": [], "car": "Triumph Tr3", "country": "UK"}, {"title": "Austin Healey BJ8 – Steve Lumley, Australia, 2021", "url": "https://john-skinner.co.uk/testimonials/austin-healey-bj8-steve-lumley-australia-2021/", "text": "", "images": [], "car": "Austin Healey", "country": "Australia"}, {"title": "Triumph TR4 – Mike North, UK, 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-tr4-mike-north-uk-2021/", "text": "", "images": [], "car": "Triumph Tr4", "country": "UK"}, {"title": "Triumph TR5 – Jeff Mount, Australia, 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-tr5-jeff-mount-australia-2021/", "text": "", "images": [], "car": "Triumph Tr5", "country": "Australia"}, {"title": "Austin Healey BJ7 – Pablo Gonzalez, USA, 2021", "url": "https://john-skinner.co.uk/testimonials/austin-healey-bj7-pablo-gonzalez-usa-2021/", "text": "", "images": [], "car": "Austin Healey", "country": "USA"}, {"title": "Jaguar XJS – Matthew Squire, UK, 2021", "url": "https://john-skinner.co.uk/testimonials/jaguar-xjs-matthew-squire-uk-2021/", "text": "", "images": [], "car": "Jaguar Xjs", "country": "UK"}, {"title": "Jaguar E Type OTS – Nigel Roberts, UK, 2021", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-ots-nigel-roberts-uk-2021/", "text": "", "images": [], "car": "Jaguar E Type", "country": "UK"}, {"title": "Jaguar E Type OTS – Peters Auto (Ira Cohen), USA, 2021", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-ots-peters-auto-ira-cohen-usa-2021/", "text": "", "images": [], "car": "Jaguar E Type", "country": "USA"}, {"title": "Jaguar E Type 2+2 – Brian Radich, New Zealand, 2021", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-22-brian-radich-new-zealand-2021/", "text": "", "images": [], "car": "Jaguar E Type", "country": "New Zealand"}, {"title": "Triumph TR5 – Jentree Classic Cars, UK, 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-tr5-jentree-classic-cars-uk-2021/", "text": "", "images": [], "car": "Triumph Tr5", "country": "UK"}, {"title": "Austin Healey BN4 – Tim Law, UK, 2021", "url": "https://john-skinner.co.uk/testimonials/austin-healey-bn4-tim-law-uk-2021/", "text": "", "images": [], "car": "Austin Healey", "country": "UK"}, {"title": "Triumph TR2 – Kohlhofer Handles, Austria, 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-tr2-kohlhofer-handles-austria-2021/", "text": "", "images": [], "car": "Triumph Tr2", "country": "Austria"}, {"title": "Austin Healey BN4 – Adam Craker, South Africa, 2021", "url": "https://john-skinner.co.uk/testimonials/austin-healey-bn4-adam-craker-south-africa-2021/", "text": "", "images": [], "car": "Austin Healey", "country": "South Africa"}, {"title": "Triumph TR4 – Fostering Classics, UK, 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-tr4-fostering-classics-uk-2021/", "text": "", "images": [], "car": "Triumph Tr4", "country": "UK"}, {"title": "Triumph TR4A – Fabrice Leforestier, France, 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-tr4a-fabrice-leforestier-france-2021/", "text": "", "images": [], "car": "Triumph Tr4", "country": "France"}, {"title": "Austin Healey BJ8 – Simon Taylor, Australia, 2021", "url": "https://john-skinner.co.uk/testimonials/austin-healey-bj8-simon-taylor-australia-2021/", "text": "", "images": [], "car": "Austin Healey", "country": "Australia"}, {"title": "Triumph TR3A – Paul Jean Achard, France, 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3a-paul-jean-achard-france-2021/", "text": "", "images": [], "car": "Triumph Tr3", "country": "France"}, {"title": "Triumph TR6 – Classic Workz, UK, 2020", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-classic-workz-uk-2020/", "text": "", "images": [], "car": "Triumph Tr6", "country": "UK"}, {"title": "MGA Roadster – William Keown, Spain, 2020", "url": "https://john-skinner.co.uk/testimonials/mga-roadster-william-keown-spain-2020/", "text": "", "images": [], "car": "Mga", "country": "Spain"}, {"title": "Austin Healey BT7 – David Murphy, France, 2020 / 2021", "url": "https://john-skinner.co.uk/testimonials/austin-healey-bt7-david-murphy-france-2020-2021/", "text": "", "images": [], "car": "Austin Healey", "country": "France"}, {"title": "Austin Healey BJ8 – Ed Muth, CANADA, 2020", "url": "https://john-skinner.co.uk/testimonials/austin-healey-bj8-ed-muth-usa-2020/", "text": "", "images": [], "car": "Austin Healey", "country": "USA"}, {"title": "Jaguar 420 (S Type) – Ray Taylor, Australia, 2021", "url": "https://john-skinner.co.uk/testimonials/jaguar-420-s-type-ray-taylor-australia-2021/", "text": "", "images": [], "car": "Jaguar 420", "country": "Australia"}, {"title": "Triumph TR4A – Rob Culley, UK, 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-tr4a-rob-culley-uk-2021/", "text": "", "images": [], "car": "Triumph Tr4", "country": "UK"}, {"title": "Austin Healey BT7 – Robert Wallace, UK, 2020", "url": "https://john-skinner.co.uk/testimonials/austin-healey-bt7-robert-wallace-uk-2020/", "text": "", "images": [], "car": "Austin Healey", "country": "UK"}, {"title": "Jaguar MK2 – Bryan Duggan, UK, 2021", "url": "https://john-skinner.co.uk/testimonials/jaguar-mk2-bryan-duggan-uk-2021/", "text": "", "images": [], "car": "Jaguar Mk2", "country": "UK"}, {"title": "Triumph TR4 – Daniel Tiedge, USA, 2020", "url": "https://john-skinner.co.uk/testimonials/triumph-tr4-daniel-tiedge-usa-2020/", "text": "", "images": [], "car": "Triumph Tr4", "country": "USA"}, {"title": "Jaguar E Type OTS – Tom Connor, Jamaica, 2021", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-ots-tom-connor-jamaica-2021/", "text": "", "images": [], "car": "Jaguar E Type", "country": ""}, {"title": "Triumph TR6 – Nigel Parsons, UK, 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-nigel-parsons-uk-2021/", "text": "", "images": [], "car": "Triumph Tr6", "country": "UK"}, {"title": "Austin Healey BJ8 – Jentree Classic Cars, UK, 2021", "url": "https://john-skinner.co.uk/testimonials/austin-healey-bj8-jentree-classic-cars-uk-2021/", "text": "", "images": [], "car": "Austin Healey", "country": "UK"}, {"title": "Jaguar E Type 2+2 – Terence Hajewski, Australia, 2020", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-22-terence-hajewski-australia-2020/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Australia"}, {"title": "Triumph TR6 – Bill Verbano, USA, 2020", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-bill-verbano-usa-2020/", "text": "", "images": [], "car": "Triumph Tr6", "country": "USA"}, {"title": "Jaguar XK140 OTS – Bob Curran, USA, 2020", "url": "https://john-skinner.co.uk/testimonials/jaguar-xk140-ots-bob-curran-usa-2020/", "text": "", "images": [], "car": "Jaguar Xk", "country": "USA"}, {"title": "Triumph TR4A – David Lightfoot, UK, 2020", "url": "https://john-skinner.co.uk/testimonials/triumph-tr4a-david-lightfoot-uk-2020/", "text": "", "images": [], "car": "Triumph Tr4", "country": "UK"}, {"title": "Triumph TR6 – John Mills, USA, 2020", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-john-mills-usa-2020/", "text": "", "images": [], "car": "Triumph Tr6", "country": "USA"}, {"title": "Jaguar E Type OTS – Miguel Gomes, Portugal, 2020", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-ots-miguel-gomes-portugal-2020/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Portugal"}, {"title": "Jaguar E Type FHC – Henning Becker, Germany, 2020", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-fhc-henning-becker-germany-2020/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Germany"}, {"title": "Austin Healey BT7 – Tim Riley, USA, 2020 / 2021", "url": "https://john-skinner.co.uk/testimonials/austin-healey-bt7-tim-riley-usa-2020-2021/", "text": "", "images": [], "car": "Austin Healey", "country": "USA"}, {"title": "Jaguar MK10 – Neil Astbury, UK, 2021", "url": "https://john-skinner.co.uk/testimonials/jaguar-mk10-neil-astbury-uk-2021/", "text": "", "images": [], "car": "", "country": "UK"}, {"title": "Jaguar E Type FHC – Ivan Guibert, France, 2020", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-fhc-ivan-guibert-france-2020/", "text": "", "images": [], "car": "Jaguar E Type", "country": "France"}, {"title": "Jaguar E Type 2+2 – Herbert Himmelsbach, Germany, 2020", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-22-herbert-himmelsbach-germany-2020/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Germany"}, {"title": "Triumph TR3 – Paul Baxter, UK, 2019 / 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3-paul-baxter-uk-2019-2021/", "text": "", "images": [], "car": "Triumph Tr3", "country": "UK"}, {"title": "Triumph TR3A – David Messmer, USA, 2020 / 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3a-david-messmer-usa-2020-2021/", "text": "", "images": [], "car": "Triumph Tr3", "country": "USA"}, {"title": "Triumph TR4 – Michael Arran, UK, 2020 / 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-tr4-michael-arran-uk-2020-2021/", "text": "", "images": [], "car": "Triumph Tr4", "country": "UK"}, {"title": "Austin Healey BN4 – Peter Sabey, UK, 2019", "url": "https://john-skinner.co.uk/testimonials/austin-healey-bn4-peter-sabey-uk-2019/", "text": "", "images": [], "car": "Austin Healey", "country": "UK"}, {"title": "Jaguar E Type FHC – ICT – ASL Benelux BV, Belgium, 2021", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-fhc-ict-asl-benelux-bv-belgium-2021/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Belgium"}, {"title": "Triumph TR6 – Kenneth Brown, USA, 2019", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-kenneth-brown-usa-2019/", "text": "", "images": [], "car": "Triumph Tr6", "country": "USA"}, {"title": "Triumph TR3A – Rick Whitten, USA, 2020", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3a-rick-whitten-usa-2020/", "text": "", "images": [], "car": "Triumph Tr3", "country": "USA"}, {"title": "Triumph TR6 – Wee Long Yong, Singapore, 2019 / 2020", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-wee-long-yong-singapore-2019-2020/", "text": "", "images": [], "car": "Triumph Tr6", "country": "Singapore"}, {"title": "Triumph TR6 – Patrick Huckels, USA, 2009 / 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-patrick-huckels-usa-2009-2021/", "text": "", "images": [], "car": "Triumph Tr6", "country": "USA"}, {"title": "Austin Healey BN1 / BN7 / BJ8 – George Pope, USA, 2013 / 2015 / 2020", "url": "https://john-skinner.co.uk/testimonials/austin-healey-bn1-bn7-bj8-george-pope-usa-2013-2015-2020/", "text": "", "images": [], "car": "Austin Healey", "country": "USA"}, {"title": "Jaguar XK120 OTS – Lukas Frick, Switzerland, 2021", "url": "https://john-skinner.co.uk/testimonials/jaguar-xk120-ots-lukas-frick-switzerland-2021/", "text": "", "images": [], "car": "Jaguar Xk", "country": "Switzerland"}, {"title": "Triumph TR2 & TR250 – Andrew Holliday, USA, 2014 / 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-tr2-tr250-andrew-holliday-usa-2014-2021/", "text": "", "images": [], "car": "Triumph Tr2", "country": "USA"}, {"title": "Jaguar XK140 OTS – Wolfgang Dippold, Germany, 2019", "url": "https://john-skinner.co.uk/testimonials/jaguar-xk140-ots-wolfgang-dippold-germany-2019/", "text": "", "images": [], "car": "Jaguar Xk", "country": "Germany"}, {"title": "Jaguar E Type FHC – Arjen Bosman, The Netherlands, 2019", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-fhc-arjen-bosman-the-netherlands-2019/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Netherlands"}, {"title": "Triumph TR4A & TR6 – Chris Briggs, UK, 2016 / 2017 / 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-tr4a-tr6-chris-briggs-uk-2016-2017-2021/", "text": "", "images": [], "car": "Triumph Tr4", "country": "UK"}, {"title": "Jaguar XK150 FHC – David Else, New Zealand, 2021", "url": "https://john-skinner.co.uk/testimonials/jaguar-xk150-fhc-david-else-new-zealand-2021/", "text": "", "images": [], "car": "Jaguar Xk", "country": "New Zealand"}, {"title": "Austin Healey BN1 – Frank Senger, Germany, 2018 / 2019", "url": "https://john-skinner.co.uk/testimonials/austin-healey-bn1-frank-senger-germany-2018-2019/", "text": "", "images": [], "car": "Austin Healey", "country": "Germany"}, {"title": "Jaguar E Type FHC – Trevor Skutezky, Canada, 2018 / 2020", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-fhc-trevor-skutezky-canada-2018-2020/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Canada"}, {"title": "MGA Coupe – Craig Morgan, USA, 2021", "url": "https://john-skinner.co.uk/testimonials/mga-coupe-craig-morgan-usa-2021/", "text": "", "images": [], "car": "Mga", "country": "USA"}, {"title": "Triumph TR6 & TR4 – Mark Rollinson, USA, 2013 / 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-mark-rollinson-usa-2013-duplicate-1/", "text": "", "images": [], "car": "Triumph Tr6", "country": "USA"}, {"title": "Triumph TR4 – Mark Rollinson, USA, 2010 / 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-tr4-mark-rollinson-usa-2010-duplicate-1/", "text": "", "images": [], "car": "Triumph Tr4", "country": "USA"}, {"title": "Triumph TR2 – John McCormack, Australia, 2018 / 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-tr2-john-mccormack-australia-2018-2021/", "text": "", "images": [], "car": "Triumph Tr2", "country": "Australia"}, {"title": "Jaguar XK150 DHC – Antony Clarke, USA, 2017", "url": "https://john-skinner.co.uk/testimonials/jaguar-xk150-dhc-antony-clarke-usa-2017/", "text": "", "images": [], "car": "Jaguar Xk", "country": "USA"}, {"title": "Triumph TR6 – Bruce Wherry, USA, 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-bruce-wherry-usa-2021/", "text": "", "images": [], "car": "Triumph Tr6", "country": "USA"}, {"title": "Jaguar XK120 FHC – Philippe Matter, Switzerland, 2020", "url": "https://john-skinner.co.uk/testimonials/jaguar-xk120-fhc-philippe-matter-switzerland-2020/", "text": "", "images": [], "car": "Jaguar Xk", "country": "Switzerland"}, {"title": "Jaguar XK150 FHC – Peter Jenkins, Australia, 2021", "url": "https://john-skinner.co.uk/testimonials/jaguar-xk150-fhc-peter-jenkins-australia-2021/", "text": "", "images": [], "car": "Jaguar Xk", "country": "Australia"}, {"title": "Triumph TR4 – Jeremy Colbeck, UK, 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-tr4-jeremy-colbeck-uk-2021/", "text": "", "images": [], "car": "Triumph Tr4", "country": "UK"}, {"title": "Jaguar XK120 OTS – Jonathan Soom, Switzerland, 2021", "url": "https://john-skinner.co.uk/testimonials/jaguar-xk120-ots-jonathan-soom-switzerland-2021/", "text": "", "images": [], "car": "Jaguar Xk", "country": "Switzerland"}, {"title": "MGA / Austin Healey – Josh Goldberg, USA, 2021", "url": "https://john-skinner.co.uk/testimonials/mga-austin-healey-josh-goldberg-usa-2021/", "text": "", "images": [], "car": "Mga", "country": "USA"}, {"title": "Various Triumph TR / SCM 40", "url": "https://john-skinner.co.uk/testimonials/various-triumph-tr-scm-40/", "text": "", "images": [], "car": "", "country": ""}, {"title": "Jaguar E Type FHC – Steve Hine, South Africa, 2021", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-fhc-steve-hine-south-africa-2021/", "text": "", "images": [], "car": "Jaguar E Type", "country": "South Africa"}, {"title": "Jaguar XK120 Roadster – Vitezslav Vlk, Czech Republic, 2021", "url": "https://john-skinner.co.uk/testimonials/jaguar-xk120-roadster-vitezslav-vlk-czech-republic-2021/", "text": "", "images": [], "car": "Jaguar Xk", "country": ""}, {"title": "Triumph TR2 – Matthias Schwanitz, Germany, 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-tr2-matthias-schwanitz-germany-2021/", "text": "", "images": [], "car": "Triumph Tr2", "country": "Germany"}, {"title": "Triumph TR6 – Len Hughes, UK, 2017", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-len-hughes-uk-2017/", "text": "", "images": [], "car": "Triumph Tr6", "country": "UK"}, {"title": "Jaguar E Type FHC – Aldo Grunblatt, Switzerland, 2017", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-fhc-aldo-grunblatt-switzerland-2017/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Switzerland"}, {"title": "Jaguar 420G – David Rucker, USA, 2017", "url": "https://john-skinner.co.uk/testimonials/jaguar-420g-david-rucker-usa-2017/", "text": "", "images": [], "car": "Jaguar 420", "country": "USA"}, {"title": "Triumph TR6 – Roy Watkin, UK, 2012", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-roy-watkin-uk-2012/", "text": "", "images": [], "car": "Triumph Tr6", "country": "UK"}, {"title": "Triumph TR4A – Michael Atkinson, UK, 2014", "url": "https://john-skinner.co.uk/testimonials/triumph-tr4a-michael-atkinson-uk-2014/", "text": "", "images": [], "car": "Triumph Tr4", "country": "UK"}, {"title": "Triumph TR3A – British Car Ranch, USA, 2013", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3a-british-car-ranch-usa-2013/", "text": "", "images": [], "car": "Triumph Tr3", "country": "USA"}, {"title": "Triumph TR4 – Mark Rollinson, USA, 2010", "url": "https://john-skinner.co.uk/testimonials/triumph-tr4-mark-rollinson-usa-2010/", "text": "", "images": [], "car": "Triumph Tr4", "country": "USA"}, {"title": "Triumph TR6 – Graeme Spender, Australia, 2013", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-graeme-spender-australia-2013/", "text": "", "images": [], "car": "Triumph Tr6", "country": "Australia"}, {"title": "Triumph TR3A – Andre Van Beek, The Netherlands, 2013", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3a-andre-van-beek-the-netherlands-2013/", "text": "", "images": [], "car": "Triumph Tr3", "country": "Netherlands"}, {"title": "Triumph TR6 – Mark Rollinson, USA, 2013", "url": "https://john-skinner.co.uk/testimonials/triumph-tr4-tr6-mark-rollinson-usa-2010-2013/", "text": "", "images": [], "car": "Triumph Tr4", "country": "USA"}, {"title": "Triumph TR3A – Avalon Classics, USA, 2014", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3a-avalon-classics-usa-2014/", "text": "", "images": [], "car": "Triumph Tr3", "country": "USA"}, {"title": "Triumph TR2 – Jonathan Smith, USA, 2013", "url": "https://john-skinner.co.uk/testimonials/triumph-tr2-jonathan-smith-usa-2013/", "text": "", "images": [], "car": "Triumph Tr2", "country": "USA"}, {"title": "Triumph TR6 – Eugen Hoehn, Germany, 2014", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-eugen-hoehn-germany-2014/", "text": "", "images": [], "car": "Triumph Tr6", "country": "Germany"}, {"title": "Triumph TR3A – Heiko Oesterling, Germany, 2014", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3a-heiko-oesterling-germany-2014/", "text": "", "images": [], "car": "Triumph Tr3", "country": "Germany"}, {"title": "Triumph TR3A – African Classic Car Tours (Chris Buckley), Malawi, 2014", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3a-african-classic-car-tours-chris-buckley-malawi-2014/", "text": "", "images": [], "car": "Triumph Tr3", "country": ""}, {"title": "Triumph TR3 – SM Classics, UK, 2014", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3-sm-classics-uk-2014/", "text": "", "images": [], "car": "Triumph Tr3", "country": "UK"}, {"title": "Triumph TR6 – Pete Bodde, USA, 2014", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-pete-bodde-usa-2014/", "text": "", "images": [], "car": "Triumph Tr6", "country": "USA"}, {"title": "Triumph TR3A – Sarl Betaset, France, 2014", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3a-sarl-betaset-france-2014/", "text": "", "images": [], "car": "Triumph Tr3", "country": "France"}, {"title": "Jaguar E Type OTS – Adam Bazala, Italy, 2021", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-ots-adam-bazala-italy-2021/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Italy"}, {"title": "Austin Healey BN7 – Terry Clark, UK, 2021", "url": "https://john-skinner.co.uk/testimonials/austin-healey-bn7-terry-clark-uk-2021/", "text": "", "images": [], "car": "Austin Healey", "country": "UK"}, {"title": "Triumph TR3A – James Dineen, USA, 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3a-james-dineen-usa-2021/", "text": "", "images": [], "car": "Triumph Tr3", "country": "USA"}, {"title": "Triumph TR6 – XP Racing, Belgium, 2015 / 2017", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-xp-racing-belgium-2015-2017/", "text": "", "images": [], "car": "Triumph Tr6", "country": "Belgium"}, {"title": "Triumph TR250 – Shawn Morton, Canada, 2011", "url": "https://john-skinner.co.uk/testimonials/triumph-tr250-shawn-morton-canada-2011/", "text": "", "images": [], "car": "Triumph Tr2", "country": "Canada"}, {"title": "Triumph TR4A – Naoki Takeya, Japan, 2015", "url": "https://john-skinner.co.uk/testimonials/triumph-tr4a-naoki-takeya-japan-2015/", "text": "", "images": [], "car": "Triumph Tr4", "country": "Japan"}, {"title": "Triumph TR6 – Matt Kranjniak, USA, 2015", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-matt-kranjniak-usa-2015-2/", "text": "", "images": [], "car": "Triumph Tr6", "country": "USA"}, {"title": "Triumph TR3A – Duncan Barr, UK, 2014", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3a-duncan-barr-uk-2014/", "text": "", "images": [], "car": "Triumph Tr3", "country": "UK"}, {"title": "Triumph TR4A – Mike Wacker, USA, 2014", "url": "https://john-skinner.co.uk/testimonials/triumph-tr4a-mike-wacker-usa-2014/", "text": "", "images": [], "car": "Triumph Tr4", "country": "USA"}, {"title": "Triumph TR6 – Michael Cohrs, Germany, 2014", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-michael-cohrs-germany-2014/", "text": "", "images": [], "car": "Triumph Tr6", "country": "Germany"}, {"title": "Triumph TR3 – Steven Galante, USA, 2018", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3-steven-galante-usa-2018/", "text": "", "images": [], "car": "Triumph Tr3", "country": "USA"}, {"title": "Triumph TR4A – David Phillips, USA, 2014", "url": "https://john-skinner.co.uk/testimonials/triumph-tr4a-david-phillips-usa-2014/", "text": "", "images": [], "car": "Triumph Tr4", "country": "USA"}, {"title": "Triumph TR2 – Edwin Tiben, The Netherlands, 2012 / 2014", "url": "https://john-skinner.co.uk/testimonials/triumph-tr2-edwin-tiben-the-netherlands-2012-2014/", "text": "", "images": [], "car": "Triumph Tr2", "country": "Netherlands"}, {"title": "Jaguar MK2 – Grant Rodman, Australia, 2015", "url": "https://john-skinner.co.uk/testimonials/jaguar-mk2-grant-r-australia-2015/", "text": "", "images": [], "car": "Jaguar Mk2", "country": "Australia"}, {"title": "BJ8 – Joel Strimban, USA, 2013 / 2016 / 2017 / 2018", "url": "https://john-skinner.co.uk/testimonials/bj8-joel-strimban-usa-2013-2016-2017-2018/", "text": "", "images": [], "car": "Bj8", "country": "USA"}, {"title": "BJ8 – Manny Cunard, USA, 2016", "url": "https://john-skinner.co.uk/testimonials/bj8-manny-cunard-usa-2016/", "text": "", "images": [], "car": "Bj8", "country": "USA"}, {"title": "BJ8 – Thomas Terranova, USA, 2015", "url": "https://john-skinner.co.uk/testimonials/bj8-thomas-terranova-usa-2015/", "text": "", "images": [], "car": "Bj8", "country": "USA"}, {"title": "BJ8 – Tamara Smith, USA, 2015 / 2018 / 2020", "url": "https://john-skinner.co.uk/testimonials/bj8-tamara-smith-usa-2015-2018-2020/", "text": "", "images": [], "car": "Bj8", "country": "USA"}, {"title": "BJ8 – Mark Sutherns, Australia, 2010 / 2014", "url": "https://john-skinner.co.uk/testimonials/bj8-mark-sutherns-australia-2010-2014/", "text": "", "images": [], "car": "Bj8", "country": "Australia"}, {"title": "BJ8 – Steve Shepherd, USA, 2014", "url": "https://john-skinner.co.uk/testimonials/bj8-steve-shepherd-usa-2014/", "text": "", "images": [], "car": "Bj8", "country": "USA"}, {"title": "BJ8 – George S. Clark, USA, 2012", "url": "https://john-skinner.co.uk/testimonials/bj8-george-s-clark-usa-2012/", "text": "", "images": [], "car": "Bj8", "country": "USA"}, {"title": "BJ8 – Boars Rock Restorations, USA, 2014", "url": "https://john-skinner.co.uk/testimonials/bj8-boars-rock-restorations-usa-2014/", "text": "", "images": [], "car": "Bj8", "country": "USA"}, {"title": "BJ8 – Chris Kellner, USA, 2013", "url": "https://john-skinner.co.uk/testimonials/bj8-chris-kellner-usa-2013/", "text": "", "images": [], "car": "Bj8", "country": "USA"}, {"title": "Jaguar XJS – Ian Salvage, UK, 2018", "url": "https://john-skinner.co.uk/testimonials/mga-roadster-robert-jan-h-the-netherlands-2012-duplicate-1/", "text": "", "images": [], "car": "Mga", "country": "Netherlands"}, {"title": "Jaguar S Type / 420 – John McHardy, UK, 2018", "url": "https://john-skinner.co.uk/testimonials/jaguar-s-type-420-john-m-uk-2018/", "text": "", "images": [], "car": "Jaguar S Type", "country": "UK"}, {"title": "Jaguar MK2 – Sam Cowan, UK, 2017", "url": "https://john-skinner.co.uk/testimonials/jaguar-mk2-sam-c-uk-2017/", "text": "", "images": [], "car": "Jaguar Mk2", "country": "UK"}, {"title": "Jaguar XJS – James Sanderson, UK, 2017", "url": "https://john-skinner.co.uk/testimonials/jaguar-xjs-james-s-uk-2017/", "text": "", "images": [], "car": "Jaguar Xjs", "country": "UK"}, {"title": "Triumph TRs – Chris Carter @ South Lincolnshire Classics (SLCC), UK, 2017", "url": "https://john-skinner.co.uk/testimonials/triumph-trs-chris-carter-south-lincolnshire-classics-slcc-uk-2017/", "text": "", "images": [], "car": "", "country": "UK"}, {"title": "MGA – John Deasy, UK, 2016", "url": "https://john-skinner.co.uk/testimonials/mga-john-d-uk-2016/", "text": "", "images": [], "car": "Mga", "country": "UK"}, {"title": "Jaguar S Type / 420 – Ratomir Popovic, Australia, 2016", "url": "https://john-skinner.co.uk/testimonials/jaguar-s-type-420-ratomir-p-australia-2016/", "text": "", "images": [], "car": "Jaguar S Type", "country": "Australia"}, {"title": "Jaguar MK2 – Peter Olsen, Australia, 2015", "url": "https://john-skinner.co.uk/testimonials/jaguar-mk2-peter-o-australia-2015/", "text": "", "images": [], "car": "Jaguar Mk2", "country": "Australia"}, {"title": "Daimler V8 250 – Adam Slater, UK, 2015", "url": "https://john-skinner.co.uk/testimonials/daimler-v8-250-adam-s-uk-2015/", "text": "", "images": [], "car": "Daimler", "country": "UK"}, {"title": "BN2 – Fourintune Garage, USA, 2016", "url": "https://john-skinner.co.uk/testimonials/bn2-fourintune-garage-usa-2016/", "text": "", "images": [], "car": "", "country": "USA"}, {"title": "Triumph TR4 – Classic Car Contact, Germany, 2014", "url": "https://john-skinner.co.uk/testimonials/triumph-tr4-classic-car-contact-germany-2014/", "text": "", "images": [], "car": "Triumph Tr4", "country": "Germany"}, {"title": "Triumph TR2 – Lars Carlsson, Sweden, 2016", "url": "https://john-skinner.co.uk/testimonials/triumph-tr2-lars-carlsson-sweden-2016/", "text": "", "images": [], "car": "Triumph Tr2", "country": "Sweden"}, {"title": "Triumph TR3A – Volker Diedrich, Germany, 2016", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3a-volker-diedrich-germany-2016/", "text": "", "images": [], "car": "Triumph Tr3", "country": "Germany"}, {"title": "Triumph TR2 – Mauro Di Prete, Italy, 2013", "url": "https://john-skinner.co.uk/testimonials/triumph-tr2-mauro-di-prete-italy-2013/", "text": "", "images": [], "car": "Triumph Tr2", "country": "Italy"}, {"title": "Triumph TR3A – James Hamilton, USA, 2015", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3a-james-hamilton-usa-2015/", "text": "", "images": [], "car": "Triumph Tr3", "country": "USA"}, {"title": "Triumph TR6 – Doug Hutson, UK, 2015", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-doug-hutson-uk-2015/", "text": "", "images": [], "car": "Triumph Tr6", "country": "UK"}, {"title": "Triumph TR3A – Nick Gower, Australia, 2014", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3a-nick-gower-australia-2014/", "text": "", "images": [], "car": "Triumph Tr3", "country": "Australia"}, {"title": "Triumph TR5 – Tony Tonkin, UK, 2015", "url": "https://john-skinner.co.uk/testimonials/triumph-tr5-tony-tonkin-uk-2015/", "text": "", "images": [], "car": "Triumph Tr5", "country": "UK"}, {"title": "Triumph TR3A – Robert Davey, UK, 2015 / 2016", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3a-robert-davey-uk-2015-2016/", "text": "", "images": [], "car": "Triumph Tr3", "country": "UK"}, {"title": "Triumph TR3A – Mike Jenkins, UK, 2015 / 2016 / 2017", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3a-mike-jenkins-uk-2015-2016-2017/", "text": "", "images": [], "car": "Triumph Tr3", "country": "UK"}, {"title": "Triumph TR3A – Simon Trewin, UK, 2015 / 2016 / 2018", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3a-simon-trewin-uk-2015-2016-2018/", "text": "", "images": [], "car": "Triumph Tr3", "country": "UK"}, {"title": "Triumph TR4A – Paul Anderson, UK, 2016", "url": "https://john-skinner.co.uk/testimonials/triumph-tr4a-paul-anderson-uk-2016/", "text": "", "images": [], "car": "Triumph Tr4", "country": "UK"}, {"title": "Triumph TR6 – Marco Ottavio Graziano, Italy, 2014 / 2016", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-marco-ottavio-graziano-italy-2014-2016/", "text": "", "images": [], "car": "Triumph Tr6", "country": "Italy"}, {"title": "Triumph TR250 – Don Steenkamp, South Africa, 2014 / 2016", "url": "https://john-skinner.co.uk/testimonials/triumph-tr250-don-steenkamp-south-africa-2014-2016/", "text": "", "images": [], "car": "Triumph Tr2", "country": "South Africa"}, {"title": "Triumph TR3A – Robmotor, Italy, 2016", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3a-robmotor-italy-2016/", "text": "", "images": [], "car": "Triumph Tr3", "country": "Italy"}, {"title": "Triumph TR3A – Ron Vannuten, Belgium, 2016 / 2017", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3a-ron-vannuten-belgium-2016-2017/", "text": "", "images": [], "car": "Triumph Tr3", "country": "Belgium"}, {"title": "Triumph TR3A – Olivier Carlier, Belgium, 2016", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3a-olivier-carlier-belgium-2016/", "text": "", "images": [], "car": "Triumph Tr3", "country": "Belgium"}, {"title": "Triumph TR2 – Toril Marthinsen, Norway, 2016", "url": "https://john-skinner.co.uk/testimonials/triumph-tr2-toril-marthinsen-norway-2016/", "text": "", "images": [], "car": "Triumph Tr2", "country": "Norway"}, {"title": "Triumph TR4 – Macy’s Garage, USA, 2007 – Present", "url": "https://john-skinner.co.uk/testimonials/triumph-tr4-macys-garage-usa-2007-present/", "text": "", "images": [], "car": "Triumph Tr4", "country": "USA"}, {"title": "Triumph TR6 – Matt Kranjniak, USA, 2015", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-matt-kranjniak-usa-2015/", "text": "", "images": [], "car": "Triumph Tr6", "country": "USA"}, {"title": "Triumph TR4 – Calvin Vandersluis, Canada, 2016 / 2017", "url": "https://john-skinner.co.uk/testimonials/triumph-tr4-calvin-vandersluis-canada-2016-2017/", "text": "", "images": [], "car": "Triumph Tr4", "country": "Canada"}, {"title": "Triumph TR6 – David Abbott, USA, 2009", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-david-abbott-usa-2009/", "text": "", "images": [], "car": "Triumph Tr6", "country": "USA"}, {"title": "Triumph TR6 – Four Trax Automotive (Martyn Noble), UK, 2014 / 2015 / 2017", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-four-trax-automotive-martyn-noble-uk-2014-2015-2017/", "text": "", "images": [], "car": "Triumph Tr6", "country": "UK"}, {"title": "Triumph TR6 – Bruce Wherry, USA, 2015", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-bruce-wherry-usa-2015/", "text": "", "images": [], "car": "Triumph Tr6", "country": "USA"}, {"title": "Triumph TR6 – Jonathan Taylor, UK, 2015 / 2017", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-jonathan-taylor-uk-2015-2017/", "text": "", "images": [], "car": "Triumph Tr6", "country": "UK"}, {"title": "Triumph TR6 – Steve Barker, UK, 2017", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-steve-barker-uk-2017/", "text": "", "images": [], "car": "Triumph Tr6", "country": "UK"}, {"title": "Triumph TR3 – Stephen Goldman, USA, 2016", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3-stephen-goldman-usa-2016/", "text": "", "images": [], "car": "Triumph Tr3", "country": "USA"}, {"title": "Triumph TR3A – David Levy, USA, 2017", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3a-david-levy-usa-2017/", "text": "", "images": [], "car": "Triumph Tr3", "country": "USA"}, {"title": "Triumph TR6 – Paul Heaney, UK, 2017", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-paul-heaney-uk-2017/", "text": "", "images": [], "car": "Triumph Tr6", "country": "UK"}, {"title": "Triumph TR5 – Harry Eaton, UK, 2003 / 2016 / 2017 / 2018", "url": "https://john-skinner.co.uk/testimonials/triumph-tr5-harry-eaton-uk-2003-2016-2017-2018/", "text": "", "images": [], "car": "Triumph Tr5", "country": "UK"}, {"title": "Triumph TR2 – John Durant, USA, 2017", "url": "https://john-skinner.co.uk/testimonials/triumph-tr2-john-durant-usa-2017/", "text": "", "images": [], "car": "Triumph Tr2", "country": "USA"}, {"title": "Triumph TR4A – Tom Crowley, USA, 2017", "url": "https://john-skinner.co.uk/testimonials/triumph-tr4a-tom-crowley-usa-2017/", "text": "", "images": [], "car": "Triumph Tr4", "country": "USA"}, {"title": "Triumph TR6 + TR250 – Doug Dallhoff, USA, 2013 / 2021", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-tr250-doug-dallhoff-usa-2013-2021/", "text": "", "images": [], "car": "Triumph Tr6", "country": "USA"}, {"title": "Triumph TR6 – Brad Hauck, USA, 2014 / 2019", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-brad-hauck-usa-2014-2019/", "text": "", "images": [], "car": "Triumph Tr6", "country": "USA"}, {"title": "Triumph TR3A – John Davies, UK, 2017", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3a-john-davies-uk-2017/", "text": "", "images": [], "car": "Triumph Tr3", "country": "UK"}, {"title": "Triumph TR4 – Ryan O’Hara, USA, 2016", "url": "https://john-skinner.co.uk/testimonials/triumph-tr4-ryan-ohara-usa-2016/", "text": "", "images": [], "car": "Triumph Tr4", "country": "USA"}, {"title": "Triumph TR6 – Simon Ackers (Kophill Classics), UK, 2017 / 2018", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-simon-ackers-kophill-classics-uk-2017-2018/", "text": "", "images": [], "car": "Triumph Tr6", "country": "UK"}, {"title": "Triumph TR3A – Henry Etienne, Belgium, 2017", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3a-henry-etienne-belgium-2017/", "text": "", "images": [], "car": "Triumph Tr3", "country": "Belgium"}, {"title": "Triumph TR2 – James Lynam, UK, 2015", "url": "https://john-skinner.co.uk/testimonials/triumph-tr2-james-lynam-uk-2015/", "text": "", "images": [], "car": "Triumph Tr2", "country": "UK"}, {"title": "Triumph TR6 – Adrian Hart, UK, 2018", "url": "https://john-skinner.co.uk/testimonials/triumph-tr6-adrian-hart-uk-2018/", "text": "", "images": [], "car": "Triumph Tr6", "country": "UK"}, {"title": "Triumph TR4A – Charles Girdler, UK, 2018", "url": "https://john-skinner.co.uk/testimonials/triumph-tr4a-charles-girdler-uk-2018/", "text": "", "images": [], "car": "Triumph Tr4", "country": "UK"}, {"title": "Triumph TR3A – Bruce Adlhoch, USA, 2018", "url": "https://john-skinner.co.uk/testimonials/triumph-tr3a-bruce-adlhoch-usa-2018/", "text": "", "images": [], "car": "Triumph Tr3", "country": "USA"}, {"title": "Triumph TR6 – Anthony Dixon, UK, 2018", "url": "https://john-skinner.co.uk/testimonials/mga-roadster-robert-jan-hakstegen-the-netherlands-2013-duplicate-1/", "text": "", "images": [], "car": "Mga", "country": "Netherlands"}, {"title": "MGA Roadster – Robert Jan Hakstegen, The Netherlands, 2013", "url": "https://john-skinner.co.uk/testimonials/mga-roadster-robert-jan-hakstegen-the-netherlands-2013/", "text": "", "images": [], "car": "Mga", "country": "Netherlands"}, {"title": "MGA Roadster – Jim Armstrong, Australia, 2017", "url": "https://john-skinner.co.uk/testimonials/mga-roadster-jim-armstrong-australia-2017/", "text": "", "images": [], "car": "Mga", "country": "Australia"}, {"title": "MGA Roadster – Robert Powles, Australia, 2018", "url": "https://john-skinner.co.uk/testimonials/mga-roadster-robert-powles-australia-2018/", "text": "", "images": [], "car": "Mga", "country": "Australia"}, {"title": "Jaguar XK140 DHC – Finecar Interiors, Germany, 2013", "url": "https://john-skinner.co.uk/testimonials/jaguar-xk140-dhc-finecar-interiors-germany-2013/", "text": "", "images": [], "car": "Jaguar Xk", "country": "Germany"}, {"title": "Jaguar XK150 FHC – Grant Hatfield, UK, 2014", "url": "https://john-skinner.co.uk/testimonials/jaguar-xk150-fhc-grant-hatfield-uk-2014/", "text": "", "images": [], "car": "Jaguar Xk", "country": "UK"}, {"title": "Jaguar XK120 OTS – Udo Goeppel, Australia, 2016", "url": "https://john-skinner.co.uk/testimonials/jaguar-xk120-ots-udo-goeppel-australia-2016/", "text": "", "images": [], "car": "Jaguar Xk", "country": "Australia"}, {"title": "Jaguar XK150 OTS – Westbury Automotive Engineering, Australia, 2016", "url": "https://john-skinner.co.uk/testimonials/jaguar-xk150-ots-westbury-automotive-engineering-australia-2016/", "text": "", "images": [], "car": "Jaguar Xk", "country": "Australia"}, {"title": "Jaguar XK140 FHC – Steve Boutelle, USA, 2016", "url": "https://john-skinner.co.uk/testimonials/jaguar-xk140-fhc-steve-boutelle-usa-2016/", "text": "", "images": [], "car": "Jaguar Xk", "country": "USA"}, {"title": "Jaguar XK140 DHC – Lyndon Dickenson, Australia, 2016", "url": "https://john-skinner.co.uk/testimonials/jaguar-xk140-dhc-lyndon-dickenson-australia-2016/", "text": "", "images": [], "car": "Jaguar Xk", "country": "Australia"}, {"title": "Jaguar XK120 FHC – Kurt Leitner, Austria, 2016", "url": "https://john-skinner.co.uk/testimonials/jaguar-xk120-fhc-kurt-leitner-austria-2016/", "text": "", "images": [], "car": "Jaguar Xk", "country": "Austria"}, {"title": "Jaguar XK150 FHC – Scot Burnett, Australia, 2017", "url": "https://john-skinner.co.uk/testimonials/jaguar-xk150-fhc-scot-burnett-australia-2017/", "text": "", "images": [], "car": "Jaguar Xk", "country": "Australia"}, {"title": "Jaguar XK120 FHC – Roger Mills, UK, 2017", "url": "https://john-skinner.co.uk/testimonials/jaguar-xk120-fhc-roger-mills-uk-2017/", "text": "", "images": [], "car": "Jaguar Xk", "country": "UK"}, {"title": "Jaguar XK120 FHC – Matthew Stokes, New Zealand, 2017", "url": "https://john-skinner.co.uk/testimonials/jaguar-xk120-fhc-matthew-stokes-new-zealand-2017/", "text": "", "images": [], "car": "Jaguar Xk", "country": "New Zealand"}, {"title": "Jaguar XK140 OTS – Soren Knudsen, Denmark, 2018", "url": "https://john-skinner.co.uk/testimonials/jaguar-xk140-ots-soren-knudsen-denmark-2018/", "text": "", "images": [], "car": "Jaguar Xk", "country": "Denmark"}, {"title": "Jaguar XK140 OTS – Francois Perolini, France, 2018", "url": "https://john-skinner.co.uk/testimonials/jaguar-xk140-ots-francois-perolini-france-2018/", "text": "", "images": [], "car": "Jaguar Xk", "country": "France"}, {"title": "Jaguar XK140 DHC – Alexander Klemm, Germany, 2018", "url": "https://john-skinner.co.uk/testimonials/jaguar-xk140-dhc-alexander-klemm-germany-2018/", "text": "", "images": [], "car": "Jaguar Xk", "country": "Germany"}, {"title": "Jaguar XK120 FHC – John Sease, USA, 2018", "url": "https://john-skinner.co.uk/testimonials/jaguar-xk120-fhc-john-sease-usa-2018/", "text": "", "images": [], "car": "Jaguar Xk", "country": "USA"}, {"title": "Jaguar XK150 FHC – David Leigh, Australia, 2018", "url": "https://john-skinner.co.uk/testimonials/jaguar-xk150-fhc-david-leigh-australia-2018/", "text": "", "images": [], "car": "Jaguar Xk", "country": "Australia"}, {"title": "Jaguar E Type OTS – Markus Henneken, Germany, 2013", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-ots-markus-henneken-germany-2013/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Germany"}, {"title": "Jaguar E Type OTS – Asif Moyeen, Bangladesh, 2013", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-ots-asif-moyeen-bangladesh-2013/", "text": "", "images": [], "car": "Jaguar E Type", "country": ""}, {"title": "Jaguar E Type FHC – Thomas Frei, Germany, 2013", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-fhc-thomas-frei-germany-2013/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Germany"}, {"title": "Jaguar E Type OTS – Keith Greenhalf, UK, 2013", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-ots-keith-greenhalf-uk-2013/", "text": "", "images": [], "car": "Jaguar E Type", "country": "UK"}, {"title": "Jaguar E Type OTS – Michele Lucciola, Italy, 2013", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-ots-michele-lucciola-italy-2013/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Italy"}, {"title": "Jaguar E Type FHC – Katsuji Kawamura, Japan, 2014", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-fhc-katsuji-kawamura-japan-2014/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Japan"}, {"title": "Jaguar E Type FHC – Richard Baxter, UK, 2014", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-fhc-richard-baxter-uk-2014/", "text": "", "images": [], "car": "Jaguar E Type", "country": "UK"}, {"title": "Jaguar E Type 2+2 – Phoenix Restorations, France, 2014", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-22-phoenix-restorations-france-2014/", "text": "", "images": [], "car": "Jaguar E Type", "country": "France"}, {"title": "Jaguar E Type 2+2 – Paul Juska, USA, 2014", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-22-paul-juska-usa-2014/", "text": "", "images": [], "car": "Jaguar E Type", "country": "USA"}, {"title": "Jaguar E Type FHC – Joachim Parreidt, Germany, 2014", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-fhc-joachim-parreidt-germany-2014/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Germany"}, {"title": "Jaguar E Type OTS – Giuseppe Luchi (Codasan SRL), Italy, 2015", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-ots-giuseppe-luchi-codasan-srl-italy-2015/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Italy"}, {"title": "Jaguar E Type – Robert Nesius, USA, 2015", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-robert-nesius-usa-2015/", "text": "", "images": [], "car": "Jaguar E Type", "country": "USA"}, {"title": "Jaguar E Type FHC – Bernd Auer, Germany, 2015", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-fhc-bernd-auer-germany-2015/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Germany"}, {"title": "Jaguar E Type OTS – Jan-Peter Van Breukelen, The Netherlands, 2015", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-ots-jan-peter-van-breukelen-the-netherlands-2015/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Netherlands"}, {"title": "Jaguar E Type 2+2 – Hercar Restorations, South Africa, 2015", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-22-hercar-restorations-south-africa-2015/", "text": "", "images": [], "car": "Jaguar E Type", "country": "South Africa"}, {"title": "Jaguar E Type 2+2 – Scott Gordon, USA, 2016", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-22-scott-gordon-usa-2016/", "text": "", "images": [], "car": "Jaguar E Type", "country": "USA"}, {"title": "Jaguar E Type OTS – David Samuel Turner, Austria, 2016", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-ots-david-samuel-turner-austria-2016/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Austria"}, {"title": "Jaguar E Type – Jaroslav Skorvanek, Slovakia, 2016", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-jaroslav-skorvanek-slovakia-2016/", "text": "", "images": [], "car": "Jaguar E Type", "country": ""}, {"title": "Jaguar E Type OTS – Peter Fellowes, UK, 2016", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-ots-peter-fellowes-uk-2016/", "text": "", "images": [], "car": "Jaguar E Type", "country": "UK"}, {"title": "Jaguar E Type OTS – Jorgen Lindholm Christiansen, Denmark, 2016", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-ots-jorgen-lindholm-christiansen-denmark-2016/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Denmark"}, {"title": "Jaguar E Type 2+2 – Ian Tanner, Australia, 2016", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-22-ian-tanner-australia-2016/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Australia"}, {"title": "Jaguar E Type OTS – Robert Trimpe, USA, 2017", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-ots-robert-trimpe-canada-2017/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Canada"}, {"title": "Jaguar E Type FHC – Garry McDonald, Australia, 2017", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-fhc-garry-mcdonald-australia-2017/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Australia"}, {"title": "Jaguar E Type FHC – Christian Rasmussen, Sweden, 2017", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-fhc-christian-rasmussen-sweden-2017/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Sweden"}, {"title": "Jaguar E Type OTS – Trevor Douce, UK, 2017", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-ots-trevor-douce-uk-2017/", "text": "", "images": [], "car": "Jaguar E Type", "country": "UK"}, {"title": "Jaguar E Type FHC – Simon Taylor, UK, 2017", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-fhc-simon-t-uk-2017/", "text": "", "images": [], "car": "Jaguar E Type", "country": "UK"}, {"title": "Jaguar E Type OTS – James Kilrain, USA, 2017", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-ots-james-k-usa-2017/", "text": "", "images": [], "car": "Jaguar E Type", "country": "USA"}, {"title": "Jaguar E Type OTS – Greg Long, USA, 2018", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-ots-greg-l-usa-2018/", "text": "", "images": [], "car": "Jaguar E Type", "country": "USA"}, {"title": "Jaguar E Type 2+2 – Reids Restorations, Australia, 2018", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-22-reids-restorations-australia-2018/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Australia"}, {"title": "Jaguar E Type 2+2 – JD British Cars, USA, 2018", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-22-jd-british-cars-usa-2018/", "text": "", "images": [], "car": "Jaguar E Type", "country": "USA"}, {"title": "Jaguar E Type FHC – Alessandro Baldo, Italy, 2018", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-fhc-alessandro-b-italy-2018/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Italy"}, {"title": "Jaguar E Type FHC – Alan Morris, UK, 2018", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-fhc-alan-m-uk-2018/", "text": "", "images": [], "car": "Jaguar E Type", "country": "UK"}, {"title": "Jaguar E Type OTS – Dale Pearce, Australia, 2019", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-ots-dale-p-australia-2019/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Australia"}, {"title": "General – George Robinson, UK, 2013", "url": "https://john-skinner.co.uk/testimonials/general-george-r-uk-2013/", "text": "", "images": [], "car": "General", "country": "UK"}, {"title": "Jaguar XJS – John Eales, New Zealand, 2013", "url": "https://john-skinner.co.uk/testimonials/jaguar-xjs-john-e-new-zealand-2013/", "text": "", "images": [], "car": "Jaguar Xjs", "country": "New Zealand"}, {"title": "Jaguar MK10 / 420G – Tom Runda, Switzerland, 2014", "url": "https://john-skinner.co.uk/testimonials/jaguar-mk10-420g-tom-r-switzerland-2014/", "text": "", "images": [], "car": "", "country": "Switzerland"}, {"title": "Jaguar XJS – Hugo Marchal, Belgium, 2014", "url": "https://john-skinner.co.uk/testimonials/jaguar-xjs-hugo-m-belgium-2014/", "text": "", "images": [], "car": "Jaguar Xjs", "country": "Belgium"}, {"title": "Jaguar MK2 – Steve Gibbons, Australia, 2015", "url": "https://john-skinner.co.uk/testimonials/jaguar-mk2-steve-g-australia-2015/", "text": "", "images": [], "car": "Jaguar Mk2", "country": "Australia"}, {"title": "Jaguar XJ6 – Terry Stephens, USA, 2015", "url": "https://john-skinner.co.uk/testimonials/jaguar-xj6-terry-s-usa-2015/", "text": "", "images": [], "car": "", "country": "USA"}, {"title": "Daimler V8 250 – Owen Jonkers, New Zealand, 2015", "url": "https://john-skinner.co.uk/testimonials/daimler-v8-250-owen-j-new-zealand-2015/", "text": "", "images": [], "car": "Daimler", "country": "New Zealand"}, {"title": "BN1 – Mike Crossen, UK, 2018", "url": "https://john-skinner.co.uk/testimonials/bn1-mike-c-uk-2018/", "text": "", "images": [], "car": "", "country": "UK"}, {"title": "BN1 – James Milledge, Australia, 2016", "url": "https://john-skinner.co.uk/testimonials/bn1-james-milledge/", "text": "", "images": [], "car": "", "country": ""}, {"title": "BN1 – Robert Manhart, USA, 2015", "url": "https://john-skinner.co.uk/testimonials/bn1-robert-manhart-usa-2015/", "text": "", "images": [], "car": "", "country": "USA"}, {"title": "BN2 – John MacDonald, Switzerland, 2015", "url": "https://john-skinner.co.uk/testimonials/bn1-john-macdonald-switzerland-2015/", "text": "", "images": [], "car": "", "country": "Switzerland"}, {"title": "BN1 – Daniel Abel, USA, 2015", "url": "https://john-skinner.co.uk/testimonials/bn1-daniel-abel-usa-2015/", "text": "", "images": [], "car": "", "country": "USA"}, {"title": "BN2 – Theo Worre, Luxembourg, 2018", "url": "https://john-skinner.co.uk/testimonials/bn2-theo-worre-usa-2018/", "text": "", "images": [], "car": "", "country": "USA"}, {"title": "BN2 – George Pope, USA, 2015", "url": "https://john-skinner.co.uk/testimonials/bn2-george-pope-usa-2015/", "text": "", "images": [], "car": "", "country": "USA"}, {"title": "BN2 – Mike Lewis, USA, 2013 / 2014", "url": "https://john-skinner.co.uk/testimonials/bn2-mike-lewis-usa-20132014/", "text": "", "images": [], "car": "", "country": "USA"}, {"title": "BN4 – Robert Lynch, USA, 2018", "url": "https://john-skinner.co.uk/testimonials/bn4-robert-lynch-usa-2018/", "text": "", "images": [], "car": "", "country": "USA"}, {"title": "BN4 – Paul Blake, Australia, 2017", "url": "https://john-skinner.co.uk/testimonials/bn4-paul-blake-australia-2017/", "text": "", "images": [], "car": "", "country": "Australia"}, {"title": "BN4 – Jeff Van Winkle, New Zealand, 2015", "url": "https://john-skinner.co.uk/testimonials/bn4-jeff-van-winkle-new-zealand-2015/", "text": "", "images": [], "car": "", "country": "New Zealand"}, {"title": "BN4 – Andrea Viniziano, Belgium, 2015", "url": "https://john-skinner.co.uk/testimonials/bn4-andrea-viniziano-belgium-2015/", "text": "", "images": [], "car": "", "country": "Belgium"}, {"title": "BN4 – John Roesle, USA, 2015", "url": "https://john-skinner.co.uk/testimonials/bn4-john-roesle-usa-2015/", "text": "", "images": [], "car": "", "country": "USA"}, {"title": "BN4 – Norbert Winkler, Germany, 2014", "url": "https://john-skinner.co.uk/testimonials/norbert-winkler-germany-2014/", "text": "", "images": [], "car": "", "country": "Germany"}, {"title": "BN4 – Dennis Howell, USA, 2013", "url": "https://john-skinner.co.uk/testimonials/30712/", "text": "", "images": [], "car": "", "country": ""}, {"title": "BN4 – Mattias Becker, Germany, 2012 / 2013", "url": "https://john-skinner.co.uk/testimonials/bn4-mattias-becker/", "text": "", "images": [], "car": "", "country": ""}, {"title": "BN6 – Vintage Roadster Restorations, 2015", "url": "https://john-skinner.co.uk/testimonials/bn6-vintage-roadster-restorations-2015/", "text": "", "images": [], "car": "", "country": ""}, {"title": "BN6 – Pascal Richeux, 2014", "url": "https://john-skinner.co.uk/testimonials/bn6-pascal-richeux-2014/", "text": "", "images": [], "car": "", "country": ""}, {"title": "BN7 – Jan Berghoff, USA, 2016", "url": "https://john-skinner.co.uk/testimonials/bn7-jan-berghoff-usa-2016/", "text": "", "images": [], "car": "", "country": "USA"}, {"title": "BT7 – Andrew Buick, Australia, 2017 / 2018", "url": "https://john-skinner.co.uk/testimonials/bt7-andrew-buick-australia-2017-2018/", "text": "", "images": [], "car": "", "country": "Australia"}, {"title": "BT7 – Peter Davies, USA, 2016 / 2017", "url": "https://john-skinner.co.uk/testimonials/bt7-peter-davies-usa-2016-2017/", "text": "", "images": [], "car": "", "country": "USA"}, {"title": "BT7 – Benjamin Grabow, USA, 2016", "url": "https://john-skinner.co.uk/testimonials/bt7-benjamin-grabow-usa-2016/", "text": "", "images": [], "car": "", "country": "USA"}, {"title": "BT7 – Alan Roberts, Santa Cruz Motors, USA, 2014", "url": "https://john-skinner.co.uk/testimonials/bt7-alan-roberts-santa-cruz-motors-usa-2014/", "text": "", "images": [], "car": "", "country": "USA"}, {"title": "BT7 – Robert Brown, USA, 2015", "url": "https://john-skinner.co.uk/testimonials/bt7-robert-brown-usa-2015/", "text": "", "images": [], "car": "", "country": "USA"}, {"title": "BT7 – Graham Cooper, UK, 2000 / 2015", "url": "https://john-skinner.co.uk/testimonials/bt7-graham-cooper-uk-2000-2015/", "text": "", "images": [], "car": "", "country": "UK"}, {"title": "BJ7 – Dale Williams, USA, 2017", "url": "https://john-skinner.co.uk/testimonials/bj7-dale-williams-usa-2017/", "text": "", "images": [], "car": "", "country": "USA"}, {"title": "BJ7 – Mike O’Neill, UK, 2018", "url": "https://john-skinner.co.uk/testimonials/bj7-mike-oneill-uk-2018/", "text": "", "images": [], "car": "", "country": "UK"}, {"title": "BJ7 – Philip Grose, UK, 2016", "url": "https://john-skinner.co.uk/testimonials/bj7-philip-grose-uk-2016/", "text": "", "images": [], "car": "", "country": "UK"}, {"title": "BJ8 – David Menken, USA, 2012", "url": "https://john-skinner.co.uk/testimonials/bj8-david-menken-usa-2012/", "text": "", "images": [], "car": "Bj8", "country": "USA"}, {"title": "BJ8 – Don Silva, USA, 2016", "url": "https://john-skinner.co.uk/testimonials/bj8-don-silva-usa-2016/", "text": "", "images": [], "car": "Bj8", "country": "USA"}, {"title": "BJ8 – Randy Doolittle, USA, 2016 / 2017", "url": "https://john-skinner.co.uk/testimonials/bj8-randy-doolittle-usa-2016-2017/", "text": "", "images": [], "car": "Bj8", "country": "USA"}, {"title": "BJ8 – Buff Hopper, USA, 2017", "url": "https://john-skinner.co.uk/testimonials/bj8-buff-hopper-usa-2017/", "text": "", "images": [], "car": "Bj8", "country": "USA"}, {"title": "BJ8 – Meister Eder Oldtimer Garage, Germany, 2018", "url": "https://john-skinner.co.uk/testimonials/bj8-meister-eder-oldtimer-garage-germany-2018/", "text": "", "images": [], "car": "Bj8", "country": "Germany"}, {"title": "BJ8 – Michael Hall, Canada, 2018", "url": "https://john-skinner.co.uk/testimonials/bj8-michael-hall-canada-2018/", "text": "", "images": [], "car": "Bj8", "country": "Canada"}, {"title": "BJ8 – Roger Hamel, Canada, 2017", "url": "https://john-skinner.co.uk/testimonials/bj8-roger-hamel-canada-2017/", "text": "", "images": [], "car": "Bj8", "country": "Canada"}, {"title": "BJ8 – Brit Bits, Canada, 2017", "url": "https://john-skinner.co.uk/testimonials/bj8-brit-bits-canada-2017/", "text": "", "images": [], "car": "Bj8", "country": "Canada"}, {"title": "BJ8 – Norman Thomas / Owen Automotive, 2016", "url": "https://john-skinner.co.uk/testimonials/bj8-norman-thomas-owen-automotive-2016/", "text": "", "images": [], "car": "Bj8", "country": ""}, {"title": "BJ8 – William Toyne, UK, 2016 / 2017", "url": "https://john-skinner.co.uk/testimonials/bj8-william-toyne-uk-2016-2017/", "text": "", "images": [], "car": "Bj8", "country": "UK"}, {"title": "BJ8 – Joe Johnson, USA, 2014", "url": "https://john-skinner.co.uk/testimonials/bj8-joe-johnson-usa-2014/", "text": "", "images": [], "car": "Bj8", "country": "USA"}, {"title": "BJ8 – Ted Sjolander, USA, 2017", "url": "https://john-skinner.co.uk/testimonials/bj8-ted-sjolander-usa-2017/", "text": "", "images": [], "car": "Bj8", "country": "USA"}, {"title": "Jaguar E Type 2+2 – John Towler, Canada, 2017", "url": "https://john-skinner.co.uk/testimonials/jaguar-e-type-22-john-towler-canada-2017/", "text": "", "images": [], "car": "Jaguar E Type", "country": "Canada"}];
+    const FLAGS = {"UK": "🇬🇧", "USA": "🇺🇸", "Australia": "🇦🇺", "Germany": "🇩🇪", "France": "🇫🇷", "Canada": "🇨🇦", "Switzerland": "🇨🇭", "Netherlands": "🇳🇱", "New Zealand": "🇳🇿", "Austria": "🇦🇹", "Belgium": "🇧🇪", "Denmark": "🇩🇰", "Italy": "🇮🇹", "Japan": "🇯🇵", "Luxembourg": "🇱🇺", "Norway": "🇳🇴", "Portugal": "🇵🇹", "Singapore": "🇸🇬", "South Africa": "🇿🇦", "Spain": "🇪🇸", "Sweden": "🇸🇪"};
+    let activeCar = '', activeCountry = '';
+
+    function extractYear(title) {
+      const m = title.match(/(\d{4})/);
+      return m ? parseInt(m[1]) : 0;
+    }
+    function extractName(title) {
+      const m = title.match(/\u2013\s*(.+?),\s*[A-Za-z ]+,\s*\d{4}/);
+      if (m) return m[1].trim();
+      const m2 = title.match(/–\s*(.+?),/);
+      return m2 ? m2[1].trim() : title;
+    }
+
+    function render() {
+      let data = ALL_TESTI.filter(t => {
+        if (activeCar && t.car !== activeCar) return false;
+        if (activeCountry && t.country !== activeCountry) return false;
+        return true;
+      });
+
+      const sort = document.getElementById('sort-select').value;
+      if (sort === 'year-desc') data.sort((a,b) => extractYear(b.title) - extractYear(a.title));
+      else if (sort === 'year-asc') data.sort((a,b) => extractYear(a.title) - extractYear(b.title));
+      else if (sort === 'car') data.sort((a,b) => (a.car||'').localeCompare(b.car||''));
+      else if (sort === 'country') data.sort((a,b) => (a.country||'').localeCompare(b.country||''));
+
+      const grid = document.getElementById('testi-grid');
+      document.getElementById('testi-count').textContent = `Showing ${data.length} of ${ALL_TESTI.length} testimonials`;
+
+      grid.innerHTML = data.map(t => {
+        const name = extractName(t.title);
+        const year = extractYear(t.title) || '—';
+        const flag = FLAGS[t.country] || '';
+        const quote = (t.text && t.text.length > 10)
+          ? t.text.substring(0, 180).trim() + '…'
+          : 'A wonderful experience from start to finish — quality that speaks for itself.';
+        return `<div style="background:var(--white); border-radius:8px; border:1px solid var(--light-grey); padding:22px 22px 18px; box-shadow:0 2px 12px rgba(0,0,0,0.04); transition:box-shadow 0.2s; display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:8px;">
+            <span style="font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--gold); background:var(--warm-bg); border-radius:20px; padding:3px 10px; border:1px solid var(--gold-light);">${t.car || 'Classic Car'}</span>
+            <span style="font-size:0.85rem;">${flag} ${t.country || ''}</span>
+          </div>
+          <p style="font-family:var(--font-serif); font-size:1.05rem; font-style:italic; color:var(--navy); line-height:1.6; flex:1;">"${quote}"</p>
+          <div style="border-top:1px solid var(--light-grey); padding-top:10px; display:flex; justify-content:space-between; align-items:center;">
+            <strong style="font-size:0.85rem; color:var(--text);">${name}</strong>
+            <span style="font-size:0.78rem; color:var(--grey);">${year}</span>
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    document.querySelectorAll('[data-filter="car"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-filter="car"]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCar = btn.dataset.value;
+        render();
       });
     });
-  }
-</script>
+    document.querySelectorAll('[data-filter="country"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-filter="country"]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCountry = btn.dataset.value;
+        render();
+      });
+    });
+    document.getElementById('sort-select').addEventListener('change', render);
+    render();
+  </script>
+
+
+  <footer>
+    <strong>John Skinner (Manufacturing) Ltd</strong><br>
+    Unit 8, Manchester Park, Tewkesbury Road, Cheltenham, GL51 9EJ, England<br>
+    <a href="mailto:info@john-skinner.co.uk">info@john-skinner.co.uk</a> &nbsp;·&nbsp;
+    <a href="../index.html">Home</a> &nbsp;·&nbsp;
+    <a href="../about/index.html">About</a> &nbsp;·&nbsp;
+    <a href="../handbook/index.html">Handbook</a> &nbsp;·&nbsp;
+    <a href="../materials/index.html">Materials</a> &nbsp;·&nbsp;
+    <a href="../testimonials/index.html">Testimonials</a><br><br>
+    <small>© 2026 John Skinner (Manufacturing) Ltd &nbsp;·&nbsp; Not affiliated with Jaguar, Triumph, Austin Healey or MG.</small>
+  </footer>
+
+  <button class="scroll-top" id="scrollTop" title="Back to top">↑</button>
+
+  <script>
+    const toggle = document.getElementById('nav-toggle');
+    const nav = document.getElementById('main-nav');
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      nav.classList.toggle('open');
+      // Show/hide dropdown sub items on mobile
+      nav.querySelectorAll('.dropdown-sub').forEach(el => {
+        el.style.display = nav.classList.contains('open') ? 'block' : 'none';
+      });
+    });
+    const st = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => { st.classList.toggle('visible', window.scrollY > 400); });
+    st.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+
 </body>
 </html>

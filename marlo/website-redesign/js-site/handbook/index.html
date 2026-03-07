@@ -3,381 +3,357 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Handbook — John Skinner Classic Car Interior Trim</title>
+  <title>The Handbook — John Skinner</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --charcoal-dark: #404041;
-      --charcoal-light: #7d807e;
-      --navy: #181e38;
-      --blue-dark: #272e66;
-      --blue-vintage: #658ba4;
-      --red-dark: #6d2024;
-      --red-light: #b44043;
-      --red-bright: #e52328;
-      --green-dark: #1c382d;
-      --green-light: #677f72;
-      --brown-dark: #2e1e15;
-      --tan: #94542e;
-      --biscuit: #c8ba9a;
-      --biscuit-pale: #dbd6ca;
-      --grey-warm: #e3e3df;
-      --white-warm: #efede9;
-      --white-off: #f6f6f3;
       --navy: #181e38; --navy-light: #272e66;
       --gold: #c8ba9a; --gold-light: #dbd6ca;
       --cream: #f6f6f3; --white: #ffffff;
       --grey: #7d807e; --light-grey: #e3e3df;
       --text: #404041; --warm-bg: #efede9;
+      --blue-vintage: #658ba4;
       --font-serif: 'EB Garamond', Georgia, serif;
       --font-sans: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
-      --radius: 6px; --shadow: 0 2px 16px rgba(0,0,0,0.07);
-      --shadow-md: 0 6px 32px rgba(0,0,0,0.13);
+      --radius: 6px; --shadow: 0 2px 20px rgba(0,0,0,0.06);
+      --shadow-md: 0 8px 40px rgba(0,0,0,0.11);
     }
     html { scroll-behavior: smooth; }
     body { font-family: var(--font-sans); color: var(--text); background: var(--cream); font-size: 16px; line-height: 1.7; }
     .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .wrap-narrow { max-width: 780px; margin: 0 auto; padding: 0 24px; }
     .site-header { background: var(--navy); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); position: sticky; top: 0; z-index: 100; }
     .logo-wrap { padding: 14px 0; text-decoration: none; display: block; }
     .logo { font-family: var(--font-serif); color: var(--white); font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
     .logo em { color: var(--gold); font-style: normal; }
     .logo-sub { font-size: 0.62rem; color: rgba(255,255,255,0.38); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 3px; }
-    nav { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
-    nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 22px 10px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
-    nav a:hover, nav a.active { color: var(--gold-light); border-bottom-color: var(--gold-light); }
-    nav a.cta { background: var(--navy); color: var(--gold); border: 2px solid var(--gold); padding: 9px 20px; border-radius: var(--radius); margin-left: 8px; border-bottom: none; font-weight: 700; }
-    nav a.cta:hover { background: var(--gold-light); }
-    .page-hero { background: var(--navy); color: var(--white); padding: 72px 24px 80px; text-align: center; }
-    .page-hero .eyebrow { font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 18px; }
-    .page-hero h1 { font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 400; line-height: 1.15; margin-bottom: 18px; }
-    .page-hero p { color: rgba(255,255,255,0.6); font-size: 1.05rem; max-width: 520px; margin: 0 auto; line-height: 1.8; }
-    .filter-bar { background: var(--warm-bg); border-bottom: 1px solid var(--light-grey); padding: 18px 24px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-    .filter-btn { background: transparent; border: 1.5px solid var(--light-grey); color: var(--grey); font-family: var(--font-sans); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 7px 18px; border-radius: 20px; cursor: pointer; transition: all 0.2s; }
-    .filter-btn:hover, .filter-btn.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
-    .articles-section { padding: 60px 0 80px; }
-    .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px; margin-top: 48px; }
-    .article-card { background: var(--white); border-radius: 10px; box-shadow: var(--shadow); overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.22s, box-shadow 0.22s; display: flex; flex-direction: column; border-top: 4px solid var(--gold); }
-    .article-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
-    .article-card-img { height: 160px; background: var(--navy); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-    .article-card-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
-    .article-card-img .img-placeholder { font-family: var(--font-serif); font-size: 2.4rem; color: var(--gold); opacity: 0.5; }
-    .article-tag { position: absolute; top: 12px; left: 12px; background: var(--gold); color: var(--navy); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; }
-    .article-body { padding: 22px 24px 26px; flex: 1; display: flex; flex-direction: column; }
-    .article-body h3 { font-family: var(--font-serif); font-size: 1.28rem; font-weight: 600; color: var(--navy); margin-bottom: 10px; line-height: 1.3; }
-    .article-body p { color: var(--grey); font-size: 0.88rem; line-height: 1.7; flex: 1; margin-bottom: 18px; }
-    .article-meta { font-size: 0.72rem; color: var(--gold); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
-    .article-meta::after { content: ' →'; }
-    footer { background: #404041; color: rgba(255,255,255,0.42); padding: 44px 24px; text-align: center; font-size: 0.82rem; line-height: 2; }
+    nav { display: flex; gap: 4px; align-items: center; }
+    nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 22px 11px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; position: relative; }
+    nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold-light); }
+    nav a.cta { background: var(--navy); color: var(--gold); border: 2px solid var(--gold); padding: 9px 20px; border-radius: var(--radius); margin-left: 10px; border-bottom: 2px solid var(--gold); font-weight: 700; }
+    nav a.cta:hover { background: var(--gold); color: var(--navy); }
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--navy); border: 1px solid rgba(200,186,154,0.3); border-top: 2px solid var(--gold); min-width: 220px; z-index: 200; }
+    .nav-dropdown:hover .dropdown-menu { display: block; }
+    .dropdown-menu a { display: block; padding: 12px 18px; font-size: 0.75rem; color: rgba(255,255,255,0.75); border-bottom: 1px solid rgba(255,255,255,0.06); white-space: nowrap; border-bottom-width: 1px; }
+    .dropdown-menu a:hover { background: rgba(200,186,154,0.1); color: var(--gold); }
+    .nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 200; }
+    .nav-toggle span { display: block; width: 26px; height: 2px; background: #c8ba9a; border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 768px) {
+      .nav-toggle { display: flex; }
+      #main-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #181e38; border-top: 1px solid rgba(200,186,154,0.2); border-bottom: 3px solid #c8ba9a; flex-direction: column; padding: 12px 0 20px; z-index: 150; }
+      #main-nav.open { display: flex; }
+      #main-nav a { padding: 14px 28px; font-size: 0.9rem; border-bottom: none; border-left: 3px solid transparent; color: rgba(255,255,255,0.8); }
+      #main-nav a:hover { border-left-color: #c8ba9a; color: #c8ba9a; background: rgba(255,255,255,0.04); }
+      #main-nav a.cta { margin: 12px 28px 0; text-align: center; border: 2px solid #c8ba9a; border-left: 2px solid #c8ba9a; border-radius: 4px; padding: 13px 20px; font-size: 0.85rem; color: #c8ba9a; }
+      #main-nav a.cta:hover { background: #c8ba9a; color: #181e38; }
+      .site-header { position: sticky; top: 0; z-index: 100; }
+      .nav-dropdown { display: contents; }
+      .dropdown-menu { display: contents; }
+      #main-nav .dropdown-sub { padding-left: 44px !important; font-size: 0.82rem !important; color: rgba(255,255,255,0.55) !important; }
+    }
+    .page-hero { background: var(--navy); color: var(--white); padding: 80px 24px 90px; text-align: center; }
+    .page-hero .eyebrow { font-size: 0.68rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 18px; }
+    .page-hero h1 { font-family: var(--font-serif); font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 400; line-height: 1.1; margin-bottom: 20px; }
+    .page-hero h1 em { color: var(--gold-light); font-style: italic; }
+    .page-hero p { color: rgba(255,255,255,0.6); font-size: 1.05rem; max-width: 560px; margin: 0 auto; line-height: 1.85; }
+    .content-section { padding: 80px 0; background: var(--cream); }
+    .content-section.white { background: var(--white); }
+    .content-section.warm { background: var(--warm-bg); }
+    .article-body { font-size: 1.02rem; line-height: 1.85; color: var(--text); }
+    .article-body h2 { font-family: var(--font-serif); font-size: 1.9rem; color: var(--navy); margin: 48px 0 16px; }
+    .article-body h3 { font-family: var(--font-serif); font-size: 1.4rem; color: var(--navy); margin: 36px 0 12px; }
+    .article-body p { margin-bottom: 20px; color: #555; }
+    .article-body ul, .article-body ol { margin: 0 0 20px 24px; color: #555; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body blockquote { border-left: 3px solid var(--gold); padding: 16px 24px; margin: 32px 0; font-family: var(--font-serif); font-size: 1.2rem; font-style: italic; color: var(--navy); background: var(--warm-bg); }
+    .section-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .section-title { font-family: var(--font-serif); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 400; line-height: 1.15; margin-bottom: 18px; color: var(--navy); }
+    .section-sub { color: var(--grey); font-size: 1.02rem; line-height: 1.85; }
+    .divider { width: 44px; height: 1px; background: var(--gold); margin: 22px 0; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; margin-top: 48px; }
+    .card { background: var(--white); border-radius: 8px; box-shadow: var(--shadow); overflow: hidden; text-decoration: none; transition: transform 0.22s, box-shadow 0.22s; display: flex; flex-direction: column; border: 1px solid var(--light-grey); }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--gold); }
+    .card-body { padding: 28px 26px 30px; flex: 1; display: flex; flex-direction: column; }
+    .card-body h3 { font-family: var(--font-serif); font-size: 1.3rem; color: var(--navy); margin-bottom: 10px; }
+    .card-body p { color: var(--grey); font-size: 0.9rem; line-height: 1.7; flex: 1; margin-bottom: 18px; }
+    .card-link { font-size: 0.77rem; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid var(--gold); padding-bottom: 2px; display: inline-block; }
+    .card-link::after { content: ' →'; }
+    .card-img { height: 140px; background: var(--navy); display: flex; align-items: center; justify-content: center; }
+    .card-img .emblem { font-family: var(--font-serif); font-size: 1.6rem; color: var(--gold); letter-spacing: 0.1em; }
+    .timeline { position: relative; padding-left: 32px; margin: 48px 0; }
+    .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--gold-light); }
+    .timeline-item { position: relative; margin-bottom: 40px; }
+    .timeline-item::before { content: ''; position: absolute; left: -28px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); border: 2px solid var(--white); box-shadow: 0 0 0 2px var(--gold); }
+    .timeline-year { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+    .timeline-item h3 { font-family: var(--font-serif); font-size: 1.2rem; color: var(--navy); margin-bottom: 8px; }
+    .timeline-item p { font-size: 0.92rem; color: var(--grey); line-height: 1.75; }
+    .btn { display: inline-block; padding: 14px 32px; border-radius: var(--radius); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.22s; cursor: pointer; }
+    .btn-primary { background: var(--navy); color: var(--white); border: 2px solid var(--navy); }
+    .btn-primary:hover { background: transparent; color: var(--navy); }
+    .btn-outline { border: 2px solid var(--navy); color: var(--navy); background: transparent; }
+    .btn-outline:hover { background: var(--navy); color: var(--white); }
+    footer { background: #404041; color: rgba(255,255,255,0.42); padding: 52px 24px; text-align: center; font-size: 0.82rem; line-height: 2.1; border-top: 1px solid rgba(200,186,154,0.15); }
     footer a { color: var(--gold); text-decoration: none; }
     footer strong { color: rgba(255,255,255,0.65); }
-  
-/* ── Hamburger button ── */
-.nav-toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  z-index: 200;
-}
-.nav-toggle span {
-  display: block;
-  width: 26px;
-  height: 2px;
-  background: #c8ba9a;
-  border-radius: 2px;
-  transition: transform 0.3s, opacity 0.3s;
-}
-.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-toggle.open span:nth-child(2) { opacity: 0; }
-.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-/* ── Mobile nav ── */
-@media (max-width: 768px) {
-  .nav-toggle { display: flex; }
-  #main-nav {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: #181e38;
-    border-top: 1px solid rgba(200,186,154,0.2);
-    border-bottom: 3px solid #c8ba9a;
-    flex-direction: column;
-    padding: 12px 0 20px;
-    z-index: 150;
-  }
-  #main-nav.open { display: flex; }
-  #main-nav a {
-    padding: 14px 28px;
-    font-size: 0.9rem;
-    border-bottom: none;
-    border-left: 3px solid transparent;
-    color: rgba(255,255,255,0.8);
-  }
-  #main-nav a:hover, #main-nav a:focus {
-    border-left-color: #c8ba9a;
-    color: #c8ba9a;
-    background: rgba(255,255,255,0.04);
-  }
-  #main-nav a.cta {
-    margin: 12px 28px 0;
-    text-align: center;
-    border: 2px solid #c8ba9a;
-    border-left: 2px solid #c8ba9a;
-    border-radius: 4px;
-    padding: 13px 20px;
-    font-size: 0.85rem;
-    color: #c8ba9a;
-  }
-  #main-nav a.cta:hover { background: #c8ba9a; color: #181e38; }
-  .site-header { position: sticky; top: 0; z-index: 100; }
-}
-
+    .scroll-top { position: fixed; bottom: 28px; right: 28px; width: 44px; height: 44px; background: var(--navy); border: 1px solid var(--gold); color: var(--gold); border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; z-index: 500; transition: background 0.2s; }
+    .scroll-top:hover { background: var(--gold); color: var(--navy); }
+    .scroll-top.visible { display: flex; }
+    .meta { font-size: 0.78rem; color: var(--grey); letter-spacing: 0.05em; margin-bottom: 32px; }
+    .meta .tag { background: var(--warm-bg); border: 1px solid var(--gold-light); border-radius: 20px; padding: 3px 12px; margin-right: 8px; font-weight: 600; text-transform: uppercase; font-size: 0.68rem; letter-spacing: 0.12em; }
+    .breadcrumb { font-size: 0.78rem; color: var(--grey); margin-bottom: 40px; }
+    .breadcrumb a { color: var(--blue-vintage); text-decoration: none; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; gap: 40px; } .card-grid { grid-template-columns: 1fr; } }
+    .section-rule { border: none; border-top: 1px solid var(--gold); opacity: 0.4; margin: 0; }
+    .swatch-grid { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0 32px; }
+    .swatch { width: 48px; height: 48px; border-radius: 6px; border: 2px solid rgba(0,0,0,0.08); position: relative; cursor: default; }
+    .filter-group { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .filter-chip { background: var(--white); border: 1.5px solid var(--gold-light); color: var(--text); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; padding: 7px 16px; border-radius: 24px; cursor: pointer; transition: all 0.18s; font-family: var(--font-sans); }
+    .filter-chip:hover, .filter-chip.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
   </style>
 </head>
 <body>
 
-<header class="site-header">
+  <header class="site-header">
     <a class="logo-wrap" href="../index.html">
       <div class="logo">John <em>Skinner</em></div>
       <div class="logo-sub">Est. 1980 · Cheltenham</div>
     </a>
     <nav id="main-nav">
-      <a href="../jaguar/index.html">Our Cars</a>
-      <a href="../materials/index.html">Materials</a>
-      <a href="../workshop/index.html">Workshop</a>
-      <a href="../why-us/index.html">Why Us</a>
-      <a href="../gallery/index.html">Gallery</a>
+      <div class="nav-dropdown">
+        <a href="../about/index.html">About ▾</a>
+        <div class="dropdown-menu">
+          <a href="../about/company-history.html">Company History</a>
+          <a href="../about/our-philosophy.html">Our Philosophy</a>
+          <a href="../about/the-price-of-value.html">The Price of Value</a>
+          <a href="../about/workshop.html">Our Workshop</a>
+          <a href="../testimonials/index.html">Customer Testimonials</a>
+        </div>
+      </div>
       <a href="../handbook/index.html">Handbook</a>
-      <a href="../about/index.html">About</a>
+      <a href="../materials/index.html">Materials &amp; Colours</a>
+      <a href="../testimonials/index.html">Testimonials</a>
+      <a href="../why-us/index.html">Why Us</a>
       <a href="../quote/index.html" class="cta">Request a Quote</a>
+      <!-- Mobile dropdown items -->
+      <a href="../about/company-history.html" class="dropdown-sub" style="display:none;">↳ Company History</a>
+      <a href="../about/our-philosophy.html" class="dropdown-sub" style="display:none;">↳ Our Philosophy</a>
+      <a href="../about/the-price-of-value.html" class="dropdown-sub" style="display:none;">↳ The Price of Value</a>
+      <a href="../about/workshop.html" class="dropdown-sub" style="display:none;">↳ Our Workshop</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" aria-label="Open menu">
       <span></span><span></span><span></span>
     </button>
   </header>
 
-<div class="page-hero">
-  <p class="eyebrow">Knowledge · Craft · Detail</p>
-  <h1>The Handbook</h1>
-  <p>Everything you need to know about classic car interior trim — materials, methods, colour, and craft — from our team in Cheltenham.</p>
-</div>
-
-<div class="filter-bar">
-  <button class="filter-btn active" onclick="filterArticles('all')">All Articles</button>
-  <button class="filter-btn" onclick="filterArticles('materials')">Materials</button>
-  <button class="filter-btn" onclick="filterArticles('colours')">Colours</button>
-  <button class="filter-btn" onclick="filterArticles('in-detail')">In Detail</button>
-  <button class="filter-btn" onclick="filterArticles('workshop')">Workshop</button>
-  <button class="filter-btn" onclick="filterArticles('notable')">Notable Restorations</button>
-</div>
-
-<section class="articles-section">
-  <div class="wrap">
-    <div class="articles-grid" id="articles-grid">
-
-      <a href="richard-hammonds-xk150.html" class="article-card" data-cat="notable">
-        <div class="article-card-img">
-          <div class="img-placeholder">✦</div>
-          <span class="article-tag">Notable</span>
-        </div>
-        <div class="article-body">
-          <h3>Richard Hammond's XK150 FHC</h3>
-          <p>John Skinner was Richard Hammond's interior trim choice for a sympathetic and meticulous restoration of his Jaguar XK150 FHC — a Cherry Red interior to complement Dove Grey paintwork.</p>
-          <span class="article-meta">Read Article</span>
-        </div>
-      </a>
-
-      <a href="our-notable-restorations.html" class="article-card" data-cat="notable">
-        <div class="article-card-img">
-          <div class="img-placeholder">🏆</div>
-          <span class="article-tag">Notable</span>
-        </div>
-        <div class="article-body">
-          <h3>Our Notable Restorations</h3>
-          <p>From the Jaguar E-Type Cut 7 to the first production Triumph TR TS01, we have been the choice for many historic and high-profile restorations — including a royal commission.</p>
-          <span class="article-meta">Read Article</span>
-        </div>
-      </a>
-
-      <a href="in-detail-seat-kits.html" class="article-card" data-cat="in-detail">
-        <div class="article-card-img">
-          <div class="img-placeholder">◈</div>
-          <span class="article-tag">In Detail</span>
-        </div>
-        <div class="article-body">
-          <h3>In Detail: Our Seat Kits</h3>
-          <p>Our seat kits are the best in the industry. Made to original specification with quality materials — from accurate pattern making to digital cutting technology.</p>
-          <span class="article-meta">Read Article</span>
-        </div>
-      </a>
-
-      <a href="in-detail-carpet-kits.html" class="article-card" data-cat="in-detail">
-        <div class="article-card-img">
-          <div class="img-placeholder">◈</div>
-          <span class="article-tag">In Detail</span>
-        </div>
-        <div class="article-body">
-          <h3>In Detail: Our Carpet Kits</h3>
-          <p>Our carpet kits are renowned worldwide for their excellent fit and finish. Crafted from highest quality materials, cut with precision on our CNC machine and assembled by skilled machinists.</p>
-          <span class="article-meta">Read Article</span>
-        </div>
-      </a>
-
-      <a href="leather-connolly-vaumol.html" class="article-card" data-cat="materials">
-        <div class="article-card-img">
-          <div class="img-placeholder">◉</div>
-          <span class="article-tag">Materials</span>
-        </div>
-        <div class="article-body">
-          <h3>Leather: Connolly Vaumol™</h3>
-          <p>Connolly is a recognised and admired name amongst classic car restorers. With a steeped history in automotive upholstery, here we take a closer look at the leather behind the brand.</p>
-          <span class="article-meta">Read Article</span>
-        </div>
-      </a>
-
-      <a href="colour-schemes.html" class="article-card" data-cat="colours">
-        <div class="article-card-img">
-          <div class="img-placeholder">◐</div>
-          <span class="article-tag">Colours</span>
-        </div>
-        <div class="article-body">
-          <h3>Colour Focus: Colour Schemes</h3>
-          <p>Complement, Contrast or Connect — these are the three approaches to building the colour scheme for your restoration interior. Here we share inspiration for every approach.</p>
-          <span class="article-meta">Read Article</span>
-        </div>
-      </a>
-
-      <a href="our-bespoke-service.html" class="article-card" data-cat="in-detail">
-        <div class="article-card-img">
-          <div class="img-placeholder">✦</div>
-          <span class="article-tag">Bespoke</span>
-        </div>
-        <div class="article-body">
-          <h3>Our Bespoke Service</h3>
-          <p>We are not limited by 'as original' interiors. Our bespoke service works with you to create the interior you've always wanted, using highest quality materials across any combination.</p>
-          <span class="article-meta">Read Article</span>
-        </div>
-      </a>
-
-      <a href="do-our-kits-fit.html" class="article-card" data-cat="in-detail">
-        <div class="article-card-img">
-          <div class="img-placeholder">◻</div>
-          <span class="article-tag">In Detail</span>
-        </div>
-        <div class="article-body">
-          <h3>Do Our Kits Fit?</h3>
-          <p>We are often asked this question and the simple answer is… yes, they do. With our meticulous pattern making and precision CNC cutting, our kits are among the best fitting in the industry.</p>
-          <span class="article-meta">Read Article</span>
-        </div>
-      </a>
-
-      <a href="working-with-a-trimmer.html" class="article-card" data-cat="workshop">
-        <div class="article-card-img">
-          <div class="img-placeholder">✂</div>
-          <span class="article-tag">Workshop</span>
-        </div>
-        <div class="article-body">
-          <h3>Working with a Trimmer</h3>
-          <p>The combination of our kits in the hands of a skilled, capable and competent trimmer — who is familiar with the marques and models we manufacture for — reaps rewards for any restoration.</p>
-          <span class="article-meta">Read Article</span>
-        </div>
-      </a>
-
-      <a href="tr4-perfect-score.html" class="article-card" data-cat="notable">
-        <div class="article-card-img">
-          <div class="img-placeholder">🏅</div>
-          <span class="article-tag">Notable</span>
-        </div>
-        <div class="article-body">
-          <h3>TR4 Wins Perfect 100 Point Score</h3>
-          <p>John Skinner proudly supplied Mark Macy of Macy's Garage with interior trim for his 1961 Triumph TR4 restoration — achieving the first ever 100 Point Score awarded by the Triumph Register of America.</p>
-          <span class="article-meta">Read Article</span>
-        </div>
-      </a>
-
+  <section class="page-hero">
+    <p class="eyebrow">Est. 1980 · Cheltenham</p>
+    <h1>The Handbook</h1>
+    <p>Expert guides on classic car interior trim restoration.</p>
+  </section>
+  
+  <section class="content-section">
+    <div class="wrap">
+      <div style="max-width:640px; margin-bottom: 48px;">
+        <p class="section-label">The John Skinner Handbook</p>
+        <h2 class="section-title">Expert guides on classic car interior trim.</h2>
+        <div class="divider"></div>
+        <p class="section-sub">Everything we've learned over 45 years — about materials, methods, marques and more — distilled into articles for the discerning restorer.</p>
+      </div>
+      <div class="filter-group" id="category-filters">
+        <button class="filter-chip  active" data-filter="All">All</button><button class="filter-chip" data-filter="Quality &amp; Workmanship">Quality &amp; Workmanship</button><button class="filter-chip" data-filter="Trimming and Fitting">Trimming and Fitting</button><button class="filter-chip" data-filter="Colours and Materials">Colours and Materials</button><button class="filter-chip" data-filter="Press, Media &amp; Awards">Press, Media &amp; Awards</button><button class="filter-chip" data-filter="Your Restorations">Your Restorations</button><button class="filter-chip" data-filter="Misc">Misc</button>
+      </div>
+      <p style="font-size:0.82rem; color:var(--grey); margin-bottom:32px;" id="article-count">Showing all 16 articles</p>
+      <div class="card-grid" id="article-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px,1fr));">
+        
+        <a href="richard-hammonds-xk150.html" class="card" data-category="Press, Media & Awards">
+          <div class="card-img"><span class="emblem" style="font-size:0.8rem; padding:0 16px; text-align:center; line-height:1.3;">Press, Media & Awards</span></div>
+          <div class="card-body">
+            <h3>Richard Hammond's XK150 FHC</h3>
+            <p>How Richard Hammond chose John Skinner for the interior of his celebrated XK150 FHC restoration.</p>
+            <span class="card-link">Read article</span>
+          </div>
+        </a>
+        <a href="notable-restorations.html" class="card" data-category="Your Restorations">
+          <div class="card-img"><span class="emblem" style="font-size:0.8rem; padding:0 16px; text-align:center; line-height:1.3;">Your Restorations</span></div>
+          <div class="card-body">
+            <h3>Our Notable Restorations</h3>
+            <p>A curated selection of exceptional restoration projects featuring John Skinner interior trim.</p>
+            <span class="card-link">Read article</span>
+          </div>
+        </a>
+        <a href="in-detail-seat-kits.html" class="card" data-category="Quality &amp; Workmanship">
+          <div class="card-img"><span class="emblem" style="font-size:0.8rem; padding:0 16px; text-align:center; line-height:1.3;">Quality &amp; Workmanship</span></div>
+          <div class="card-body">
+            <h3>In Detail: Our Seat Kits</h3>
+            <p>Everything you need to know about our seat kits — materials, construction, and what to expect.</p>
+            <span class="card-link">Read article</span>
+          </div>
+        </a>
+        <a href="in-detail-carpet-kits.html" class="card" data-category="Quality &amp; Workmanship">
+          <div class="card-img"><span class="emblem" style="font-size:0.8rem; padding:0 16px; text-align:center; line-height:1.3;">Quality &amp; Workmanship</span></div>
+          <div class="card-body">
+            <h3>In Detail: Our Carpet Kits</h3>
+            <p>A detailed look at our carpet kits — materials, pile options, and fitting advice.</p>
+            <span class="card-link">Read article</span>
+          </div>
+        </a>
+        <a href="in-detail-panel-kits.html" class="card" data-category="Quality &amp; Workmanship">
+          <div class="card-img"><span class="emblem" style="font-size:0.8rem; padding:0 16px; text-align:center; line-height:1.3;">Quality &amp; Workmanship</span></div>
+          <div class="card-body">
+            <h3>In Detail: Our Panel Kits</h3>
+            <p>How we manufacture our door and interior panel kits to original factory specification.</p>
+            <span class="card-link">Read article</span>
+          </div>
+        </a>
+        <a href="in-detail-boot-kits.html" class="card" data-category="Quality &amp; Workmanship">
+          <div class="card-img"><span class="emblem" style="font-size:0.8rem; padding:0 16px; text-align:center; line-height:1.3;">Quality &amp; Workmanship</span></div>
+          <div class="card-body">
+            <h3>In Detail: Our Boot/Trunk Kits</h3>
+            <p>Our boot and trunk trim kits — covering materials, construction and fitting.</p>
+            <span class="card-link">Read article</span>
+          </div>
+        </a>
+        <a href="in-detail-headlining-kits.html" class="card" data-category="Quality &amp; Workmanship">
+          <div class="card-img"><span class="emblem" style="font-size:0.8rem; padding:0 16px; text-align:center; line-height:1.3;">Quality &amp; Workmanship</span></div>
+          <div class="card-body">
+            <h3>In Detail: Our Headlining Kits</h3>
+            <p>Headlining materials, options and construction explained in detail.</p>
+            <span class="card-link">Read article</span>
+          </div>
+        </a>
+        <a href="working-with-a-trimmer.html" class="card" data-category="Trimming and Fitting">
+          <div class="card-img"><span class="emblem" style="font-size:0.8rem; padding:0 16px; text-align:center; line-height:1.3;">Trimming and Fitting</span></div>
+          <div class="card-body">
+            <h3>Working with a Trimmer</h3>
+            <p>Top tips for choosing and working with a professional trimmer on your restoration.</p>
+            <span class="card-link">Read article</span>
+          </div>
+        </a>
+        <a href="our-bespoke-service.html" class="card" data-category="Quality &amp; Workmanship">
+          <div class="card-img"><span class="emblem" style="font-size:0.8rem; padding:0 16px; text-align:center; line-height:1.3;">Quality &amp; Workmanship</span></div>
+          <div class="card-body">
+            <h3>Our Bespoke Service</h3>
+            <p>How to elevate your restoration beyond original specification with our full bespoke service.</p>
+            <span class="card-link">Read article</span>
+          </div>
+        </a>
+        <a href="do-our-kits-fit.html" class="card" data-category="Trimming and Fitting">
+          <div class="card-img"><span class="emblem" style="font-size:0.8rem; padding:0 16px; text-align:center; line-height:1.3;">Trimming and Fitting</span></div>
+          <div class="card-body">
+            <h3>Do Our Kits Fit?</h3>
+            <p>The honest answer — and why our kits are among the best-fitting in the industry.</p>
+            <span class="card-link">Read article</span>
+          </div>
+        </a>
+        <a href="skinner-the-trimmer.html" class="card" data-category="Press, Media &amp; Awards">
+          <div class="card-img"><span class="emblem" style="font-size:0.8rem; padding:0 16px; text-align:center; line-height:1.3;">Press, Media &amp; Awards</span></div>
+          <div class="card-body">
+            <h3>Skinner the Trimmer</h3>
+            <p>John Skinner's story featured in the classic car press.</p>
+            <span class="card-link">Read article</span>
+          </div>
+        </a>
+        <a href="skinners-trim.html" class="card" data-category="Your Restorations">
+          <div class="card-img"><span class="emblem" style="font-size:0.8rem; padding:0 16px; text-align:center; line-height:1.3;">Your Restorations</span></div>
+          <div class="card-body">
+            <h3>Skinner's Trim</h3>
+            <p>Customer restoration stories featuring John Skinner interior trim.</p>
+            <span class="card-link">Read article</span>
+          </div>
+        </a>
+        <a href="how-to-photograph-your-car.html" class="card" data-category="Trimming and Fitting">
+          <div class="card-img"><span class="emblem" style="font-size:0.8rem; padding:0 16px; text-align:center; line-height:1.3;">Trimming and Fitting</span></div>
+          <div class="card-body">
+            <h3>How to Photograph Your Car Interior</h3>
+            <p>Essential guidance for photographing your classic car interior for assessment and ordering.</p>
+            <span class="card-link">Read article</span>
+          </div>
+        </a>
+        <a href="what-is-leather-skiving.html" class="card" data-category="Colours and Materials">
+          <div class="card-img"><span class="emblem" style="font-size:0.8rem; padding:0 16px; text-align:center; line-height:1.3;">Colours and Materials</span></div>
+          <div class="card-body">
+            <h3>What is Leather Skiving?</h3>
+            <p>Why we skive leather — and what it means for the quality and fit of your trim kit.</p>
+            <span class="card-link">Read article</span>
+          </div>
+        </a>
+        <a href="tr4-perfect-score.html" class="card" data-category="Press, Media &amp; Awards">
+          <div class="card-img"><span class="emblem" style="font-size:0.8rem; padding:0 16px; text-align:center; line-height:1.3;">Press, Media &amp; Awards</span></div>
+          <div class="card-body">
+            <h3>TR4 Wins Perfect 100 Point Score</h3>
+            <p>A Triumph TR4 trimmed with John Skinner kits achieves a perfect score in concours competition.</p>
+            <span class="card-link">Read article</span>
+          </div>
+        </a>
+        <a href="a-guide-to-brexit.html" class="card" data-category="Misc">
+          <div class="card-img"><span class="emblem" style="font-size:0.8rem; padding:0 16px; text-align:center; line-height:1.3;">Misc</span></div>
+          <div class="card-body">
+            <h3>A Guide to Brexit</h3>
+            <p>Everything you need to know about ordering from John Skinner post-Brexit, including tariffs and duties.</p>
+            <span class="card-link">Read article</span>
+          </div>
+        </a>
+      </div>
     </div>
-  </div>
-</section>
-
-<footer>
-  <strong>John Skinner (Manufacturing) Ltd</strong><br>
-  Classic Car Interior Trim Specialists · Est. 1980 · Cheltenham, England<br><br>
-  <a href="mailto:sales@john-skinner.co.uk">sales@john-skinner.co.uk</a> ·
-  <a href="../quote/index.html">Request a Quote</a> ·
-  <a href="../why-us/index.html">Why John Skinner</a><br><br>
-  <span style="opacity:0.45; font-size:0.75rem;">© 2025 John Skinner (Manufacturing) Ltd. All rights reserved.</span>
-</footer>
-
-<script>
-function filterArticles(cat) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  event.target.classList.add('active');
-  document.querySelectorAll('.article-card').forEach(card => {
-    if (cat === 'all' || card.dataset.cat === cat) {
-      card.style.display = 'flex';
-    } else {
-      card.style.display = 'none';
-    }
-  });
-}
-</script>
-
-  <!-- SCROLL TO TOP -->
-  <style>
-    #scrollTopBtn {
-      position: fixed; right: 24px; bottom: 40px;
-      width: 54px; height: 54px; border-radius: 50%;
-      background: #181e38; border: none; cursor: pointer;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.28);
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.3s, transform 0.2s;
-      z-index: 9999;
-      display: flex; align-items: center; justify-content: center;
-    }
-    #scrollTopBtn:hover { transform: translateY(-2px); }
-    #scrollTopBtn span {
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 1.5rem; color: #c8ba9a; font-weight: 700;
-      line-height: 1; margin-top: -2px;
-    }
-    #scrollTopBtn.visible { opacity: 1; pointer-events: auto; }
-    @media (max-width: 640px) { #scrollTopBtn { bottom: 80px; } }
-  </style>
-  <button id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
-    <span>↑</span>
-  </button>
+  </section>
   <script>
-    (function(){
-      var btn = document.getElementById('scrollTopBtn');
-      window.addEventListener('scroll', function(){
-        if (window.pageYOffset > 300) { btn.classList.add('visible'); }
-        else { btn.classList.remove('visible'); }
-      }, {passive: true});
-    })();
-  </script>
-<script>
-  const navToggle = document.getElementById('nav-toggle');
-  const mainNav = document.getElementById('main-nav');
-  if (navToggle && mainNav) {
-    navToggle.addEventListener('click', () => {
-      navToggle.classList.toggle('open');
-      mainNav.classList.toggle('open');
-    });
-    mainNav.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        navToggle.classList.remove('open');
-        mainNav.classList.remove('open');
+    const chips = document.querySelectorAll('.filter-chip');
+    const cards = document.querySelectorAll('#article-grid .card');
+    const countEl = document.getElementById('article-count');
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chips.forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        const filter = chip.dataset.filter;
+        let visible = 0;
+        cards.forEach(card => {
+          const show = filter === 'All' || card.dataset.category === filter;
+          card.style.display = show ? '' : 'none';
+          if (show) visible++;
+        });
+        const label = filter === 'All' ? `Showing all ${visible} articles` : `Showing ${visible} articles in "${filter}"`;
+        countEl.textContent = label;
       });
     });
-  }
-</script>
+  </script>
+
+
+  <footer>
+    <strong>John Skinner (Manufacturing) Ltd</strong><br>
+    Unit 8, Manchester Park, Tewkesbury Road, Cheltenham, GL51 9EJ, England<br>
+    <a href="mailto:info@john-skinner.co.uk">info@john-skinner.co.uk</a> &nbsp;·&nbsp;
+    <a href="../index.html">Home</a> &nbsp;·&nbsp;
+    <a href="../about/index.html">About</a> &nbsp;·&nbsp;
+    <a href="../handbook/index.html">Handbook</a> &nbsp;·&nbsp;
+    <a href="../materials/index.html">Materials</a> &nbsp;·&nbsp;
+    <a href="../testimonials/index.html">Testimonials</a><br><br>
+    <small>© 2026 John Skinner (Manufacturing) Ltd &nbsp;·&nbsp; Not affiliated with Jaguar, Triumph, Austin Healey or MG.</small>
+  </footer>
+
+  <button class="scroll-top" id="scrollTop" title="Back to top">↑</button>
+
+  <script>
+    const toggle = document.getElementById('nav-toggle');
+    const nav = document.getElementById('main-nav');
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      nav.classList.toggle('open');
+      // Show/hide dropdown sub items on mobile
+      nav.querySelectorAll('.dropdown-sub').forEach(el => {
+        el.style.display = nav.classList.contains('open') ? 'block' : 'none';
+      });
+    });
+    const st = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => { st.classList.toggle('visible', window.scrollY > 400); });
+    st.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+
 </body>
 </html>

@@ -3,874 +3,342 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Materials &amp; Colours — John Skinner</title>
+  <title>Materials & Colours — John Skinner</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --charcoal-dark: #404041;
-      --charcoal-light: #7d807e;
-      --navy: #181e38;
-      --blue-dark: #272e66;
+      --navy: #181e38; --navy-light: #272e66;
+      --gold: #c8ba9a; --gold-light: #dbd6ca;
+      --cream: #f6f6f3; --white: #ffffff;
+      --grey: #7d807e; --light-grey: #e3e3df;
+      --text: #404041; --warm-bg: #efede9;
       --blue-vintage: #658ba4;
-      --red-dark: #6d2024;
-      --red-light: #b44043;
-      --red-bright: #e52328;
-      --green-dark: #1c382d;
-      --green-light: #677f72;
-      --brown-dark: #2e1e15;
-      --tan: #94542e;
-      --biscuit: #c8ba9a;
-      --biscuit-pale: #dbd6ca;
-      --grey-warm: #e3e3df;
-      --white-warm: #efede9;
-      --white-off: #f6f6f3;
-      --navy: #181e38;
-      --navy-light: #272e66;
-      --gold: #c8ba9a;
-      --gold-light: #dbd6ca;
-      --cream: #f6f6f3;
-      --warm-bg: #efede9;
-      --text: #404041;
-      --text-muted: #7d807e;
       --font-serif: 'EB Garamond', Georgia, serif;
-      --font-sans: 'Open Sans', Arial, sans-serif;
+      --font-sans: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+      --radius: 6px; --shadow: 0 2px 20px rgba(0,0,0,0.06);
+      --shadow-md: 0 8px 40px rgba(0,0,0,0.11);
     }
-
-    body {
-      font-family: var(--font-sans);
-      color: var(--text);
-      background: var(--cream);
-      line-height: 1.6;
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--cream); font-size: 16px; line-height: 1.7; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .wrap-narrow { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+    .site-header { background: var(--navy); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); position: sticky; top: 0; z-index: 100; }
+    .logo-wrap { padding: 14px 0; text-decoration: none; display: block; }
+    .logo { font-family: var(--font-serif); color: var(--white); font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
+    .logo em { color: var(--gold); font-style: normal; }
+    .logo-sub { font-size: 0.62rem; color: rgba(255,255,255,0.38); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 3px; }
+    nav { display: flex; gap: 4px; align-items: center; }
+    nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 22px 11px; border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; position: relative; }
+    nav a:hover { color: var(--gold-light); border-bottom-color: var(--gold-light); }
+    nav a.cta { background: var(--navy); color: var(--gold); border: 2px solid var(--gold); padding: 9px 20px; border-radius: var(--radius); margin-left: 10px; border-bottom: 2px solid var(--gold); font-weight: 700; }
+    nav a.cta:hover { background: var(--gold); color: var(--navy); }
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: var(--navy); border: 1px solid rgba(200,186,154,0.3); border-top: 2px solid var(--gold); min-width: 220px; z-index: 200; }
+    .nav-dropdown:hover .dropdown-menu { display: block; }
+    .dropdown-menu a { display: block; padding: 12px 18px; font-size: 0.75rem; color: rgba(255,255,255,0.75); border-bottom: 1px solid rgba(255,255,255,0.06); white-space: nowrap; border-bottom-width: 1px; }
+    .dropdown-menu a:hover { background: rgba(200,186,154,0.1); color: var(--gold); }
+    .nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 200; }
+    .nav-toggle span { display: block; width: 26px; height: 2px; background: #c8ba9a; border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 768px) {
+      .nav-toggle { display: flex; }
+      #main-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #181e38; border-top: 1px solid rgba(200,186,154,0.2); border-bottom: 3px solid #c8ba9a; flex-direction: column; padding: 12px 0 20px; z-index: 150; }
+      #main-nav.open { display: flex; }
+      #main-nav a { padding: 14px 28px; font-size: 0.9rem; border-bottom: none; border-left: 3px solid transparent; color: rgba(255,255,255,0.8); }
+      #main-nav a:hover { border-left-color: #c8ba9a; color: #c8ba9a; background: rgba(255,255,255,0.04); }
+      #main-nav a.cta { margin: 12px 28px 0; text-align: center; border: 2px solid #c8ba9a; border-left: 2px solid #c8ba9a; border-radius: 4px; padding: 13px 20px; font-size: 0.85rem; color: #c8ba9a; }
+      #main-nav a.cta:hover { background: #c8ba9a; color: #181e38; }
+      .site-header { position: sticky; top: 0; z-index: 100; }
+      .nav-dropdown { display: contents; }
+      .dropdown-menu { display: contents; }
+      #main-nav .dropdown-sub { padding-left: 44px !important; font-size: 0.82rem !important; color: rgba(255,255,255,0.55) !important; }
     }
-
-    /* ── NAV ── */
-    nav {
-      background: var(--navy);
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .nav-brand {
-      font-family: var(--font-serif);
-      font-size: 1.2rem;
-      color: white;
-      text-decoration: none;
-      letter-spacing: 0.03em;
-    }
-
-    .nav-brand span { color: var(--gold); }
-
-    .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: rgba(255,255,255,0.8);
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--gold); }
-
-    /* ── BREADCRUMB ── */
-    .breadcrumb {
-      background: var(--warm-bg);
-      border-bottom: 1px solid var(--gold-light);
-      padding: 0.6rem 2rem;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .breadcrumb a { color: var(--navy-light); text-decoration: none; }
-    .breadcrumb a:hover { text-decoration: underline; }
-    .breadcrumb span { margin: 0 0.4rem; color: var(--gold); }
-
-    /* ── HERO ── */
-    .hero {
-      background: var(--navy);
-      color: white;
-      padding: 4rem 2rem 3rem;
-      text-align: center;
-    }
-
-    .hero-eyebrow {
-      font-family: var(--font-sans);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-
-    .hero h1 {
-      font-family: var(--font-serif);
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 400;
-      line-height: 1.15;
-      margin-bottom: 1.2rem;
-    }
-
-    .hero p {
-      font-size: 1.05rem;
-      color: rgba(255,255,255,0.75);
-      max-width: 640px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-
-    /* ── EXPLAINER BAND ── */
-    .explainer {
-      background: var(--gold-light);
-      border-top: 3px solid var(--gold);
-      padding: 1.5rem 2rem;
-      text-align: center;
-    }
-
-    .explainer p {
-      max-width: 720px;
-      margin: 0 auto;
-      font-size: 0.95rem;
-      color: var(--navy);
-      line-height: 1.7;
-    }
-
-    /* ── PAGE CONTENT ── */
-    .page-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 3rem 2rem 5rem;
-    }
-
-    /* ── SECTION HEADERS ── */
-    .section-label {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.4rem;
-    }
-
-    .section-title {
-      font-family: var(--font-serif);
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
-      font-weight: 400;
-      color: var(--navy);
-      margin-bottom: 0.6rem;
-      padding-bottom: 0.6rem;
-      border-bottom: 3px solid var(--gold);
-      display: inline-block;
-    }
-
-    .section-desc {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      max-width: 640px;
-      margin-bottom: 2rem;
-      line-height: 1.7;
-    }
-
-    .primary-section { margin-bottom: 3.5rem; }
-
-    .material-type-header {
-      font-family: var(--font-serif);
-      font-size: 1.4rem;
-      color: var(--navy);
-      margin: 2rem 0 0.5rem;
-      padding-bottom: 0.3rem;
-      border-bottom: 2px solid var(--gold-light);
-    }
-
-    .material-type-desc {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 1.2rem;
-      max-width: 560px;
-      line-height: 1.6;
-    }
-
-    /* ── SWATCH GRID ── */
-    .swatch-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .swatch-card {
-      background: white;
-      border: 1.5px solid var(--gold-light);
-      border-radius: 6px;
-      overflow: hidden;
-      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-      cursor: default;
-    }
-
-    .swatch-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--gold);
-      box-shadow: 0 6px 18px rgba(200,186,154,0.35);
-    }
-
-    .swatch-img {
-      width: 100%;
-      aspect-ratio: 1;
-      object-fit: cover;
-      display: block;
-      background: var(--warm-bg);
-    }
-
-    .swatch-info {
-      padding: 0.5rem 0.6rem 0.6rem;
-    }
-
-    .swatch-name {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--navy);
-      line-height: 1.3;
-      margin-bottom: 0.3rem;
-    }
-
-    .swatch-tag {
-      display: inline-block;
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      background: var(--warm-bg);
-      color: var(--text-muted);
-      border: 1px solid var(--gold-light);
-      border-radius: 3px;
-      padding: 0.1rem 0.4rem;
-    }
-
-    /* ── SECONDARY SECTION ── */
-    .secondary-section { margin-bottom: 3.5rem; }
-
-    .secondary-divider {
-      border: none;
-      border-top: 1px solid var(--gold-light);
-      margin: 2rem 0 1.5rem;
-    }
-
-    /* ── SAMPLES CTA ── */
-    .samples-section {
-      background: var(--navy);
-      border-radius: 10px;
-      padding: 3rem 2rem;
-      text-align: center;
-      color: white;
-      margin-top: 2rem;
-    }
-
-    .samples-section h2 {
-      font-family: var(--font-serif);
-      font-size: 2rem;
-      font-weight: 400;
-      margin-bottom: 1rem;
-    }
-
-    .samples-section p {
-      color: rgba(255,255,255,0.75);
-      font-size: 1rem;
-      max-width: 520px;
-      margin: 0 auto 1.8rem;
-      line-height: 1.7;
-    }
-
-    .btn-primary {
-      display: inline-block;
-      background: var(--gold);
-      color: var(--navy);
-      font-family: var(--font-sans);
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      padding: 0.85rem 2.2rem;
-      border-radius: 4px;
-      transition: background 0.2s, transform 0.2s;
-    }
-
-    .btn-primary:hover {
-      background: var(--gold-light);
-      transform: translateY(-1px);
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--navy);
-      color: rgba(255,255,255,0.55);
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.8rem;
-      line-height: 1.8;
-    }
-
+    .page-hero { background: var(--navy); color: var(--white); padding: 80px 24px 90px; text-align: center; }
+    .page-hero .eyebrow { font-size: 0.68rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 18px; }
+    .page-hero h1 { font-family: var(--font-serif); font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 400; line-height: 1.1; margin-bottom: 20px; }
+    .page-hero h1 em { color: var(--gold-light); font-style: italic; }
+    .page-hero p { color: rgba(255,255,255,0.6); font-size: 1.05rem; max-width: 560px; margin: 0 auto; line-height: 1.85; }
+    .content-section { padding: 80px 0; background: var(--cream); }
+    .content-section.white { background: var(--white); }
+    .content-section.warm { background: var(--warm-bg); }
+    .article-body { font-size: 1.02rem; line-height: 1.85; color: var(--text); }
+    .article-body h2 { font-family: var(--font-serif); font-size: 1.9rem; color: var(--navy); margin: 48px 0 16px; }
+    .article-body h3 { font-family: var(--font-serif); font-size: 1.4rem; color: var(--navy); margin: 36px 0 12px; }
+    .article-body p { margin-bottom: 20px; color: #555; }
+    .article-body ul, .article-body ol { margin: 0 0 20px 24px; color: #555; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body blockquote { border-left: 3px solid var(--gold); padding: 16px 24px; margin: 32px 0; font-family: var(--font-serif); font-size: 1.2rem; font-style: italic; color: var(--navy); background: var(--warm-bg); }
+    .section-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .section-title { font-family: var(--font-serif); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 400; line-height: 1.15; margin-bottom: 18px; color: var(--navy); }
+    .section-sub { color: var(--grey); font-size: 1.02rem; line-height: 1.85; }
+    .divider { width: 44px; height: 1px; background: var(--gold); margin: 22px 0; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px; margin-top: 48px; }
+    .card { background: var(--white); border-radius: 8px; box-shadow: var(--shadow); overflow: hidden; text-decoration: none; transition: transform 0.22s, box-shadow 0.22s; display: flex; flex-direction: column; border: 1px solid var(--light-grey); }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--gold); }
+    .card-body { padding: 28px 26px 30px; flex: 1; display: flex; flex-direction: column; }
+    .card-body h3 { font-family: var(--font-serif); font-size: 1.3rem; color: var(--navy); margin-bottom: 10px; }
+    .card-body p { color: var(--grey); font-size: 0.9rem; line-height: 1.7; flex: 1; margin-bottom: 18px; }
+    .card-link { font-size: 0.77rem; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid var(--gold); padding-bottom: 2px; display: inline-block; }
+    .card-link::after { content: ' →'; }
+    .card-img { height: 140px; background: var(--navy); display: flex; align-items: center; justify-content: center; }
+    .card-img .emblem { font-family: var(--font-serif); font-size: 1.6rem; color: var(--gold); letter-spacing: 0.1em; }
+    .timeline { position: relative; padding-left: 32px; margin: 48px 0; }
+    .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--gold-light); }
+    .timeline-item { position: relative; margin-bottom: 40px; }
+    .timeline-item::before { content: ''; position: absolute; left: -28px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); border: 2px solid var(--white); box-shadow: 0 0 0 2px var(--gold); }
+    .timeline-year { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+    .timeline-item h3 { font-family: var(--font-serif); font-size: 1.2rem; color: var(--navy); margin-bottom: 8px; }
+    .timeline-item p { font-size: 0.92rem; color: var(--grey); line-height: 1.75; }
+    .btn { display: inline-block; padding: 14px 32px; border-radius: var(--radius); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.22s; cursor: pointer; }
+    .btn-primary { background: var(--navy); color: var(--white); border: 2px solid var(--navy); }
+    .btn-primary:hover { background: transparent; color: var(--navy); }
+    .btn-outline { border: 2px solid var(--navy); color: var(--navy); background: transparent; }
+    .btn-outline:hover { background: var(--navy); color: var(--white); }
+    footer { background: #404041; color: rgba(255,255,255,0.42); padding: 52px 24px; text-align: center; font-size: 0.82rem; line-height: 2.1; border-top: 1px solid rgba(200,186,154,0.15); }
     footer a { color: var(--gold); text-decoration: none; }
-
-    @media (max-width: 600px) {
-      nav { padding: 0 1rem; }
-      .nav-links { display: none; }
-      .page-content { padding: 2rem 1rem 3rem; }
-      .swatch-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
-    }
-  
-/* ── Hamburger button ── */
-.nav-toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  z-index: 200;
-}
-.nav-toggle span {
-  display: block;
-  width: 26px;
-  height: 2px;
-  background: #c8ba9a;
-  border-radius: 2px;
-  transition: transform 0.3s, opacity 0.3s;
-}
-.nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.nav-toggle.open span:nth-child(2) { opacity: 0; }
-.nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-/* ── Mobile nav ── */
-@media (max-width: 768px) {
-  .nav-toggle { display: flex; }
-  #main-nav {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: #181e38;
-    border-top: 1px solid rgba(200,186,154,0.2);
-    border-bottom: 3px solid #c8ba9a;
-    flex-direction: column;
-    padding: 12px 0 20px;
-    z-index: 150;
-  }
-  #main-nav.open { display: flex; }
-  #main-nav a {
-    padding: 14px 28px;
-    font-size: 0.9rem;
-    border-bottom: none;
-    border-left: 3px solid transparent;
-    color: rgba(255,255,255,0.8);
-  }
-  #main-nav a:hover, #main-nav a:focus {
-    border-left-color: #c8ba9a;
-    color: #c8ba9a;
-    background: rgba(255,255,255,0.04);
-  }
-  #main-nav a.cta {
-    margin: 12px 28px 0;
-    text-align: center;
-    border: 2px solid #c8ba9a;
-    border-left: 2px solid #c8ba9a;
-    border-radius: 4px;
-    padding: 13px 20px;
-    font-size: 0.85rem;
-    color: #c8ba9a;
-  }
-  #main-nav a.cta:hover { background: #c8ba9a; color: #181e38; }
-  .site-header { position: sticky; top: 0; z-index: 100; }
-}
-
+    footer strong { color: rgba(255,255,255,0.65); }
+    .scroll-top { position: fixed; bottom: 28px; right: 28px; width: 44px; height: 44px; background: var(--navy); border: 1px solid var(--gold); color: var(--gold); border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; z-index: 500; transition: background 0.2s; }
+    .scroll-top:hover { background: var(--gold); color: var(--navy); }
+    .scroll-top.visible { display: flex; }
+    .meta { font-size: 0.78rem; color: var(--grey); letter-spacing: 0.05em; margin-bottom: 32px; }
+    .meta .tag { background: var(--warm-bg); border: 1px solid var(--gold-light); border-radius: 20px; padding: 3px 12px; margin-right: 8px; font-weight: 600; text-transform: uppercase; font-size: 0.68rem; letter-spacing: 0.12em; }
+    .breadcrumb { font-size: 0.78rem; color: var(--grey); margin-bottom: 40px; }
+    .breadcrumb a { color: var(--blue-vintage); text-decoration: none; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; gap: 40px; } .card-grid { grid-template-columns: 1fr; } }
+    .section-rule { border: none; border-top: 1px solid var(--gold); opacity: 0.4; margin: 0; }
+    .swatch-grid { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0 32px; }
+    .swatch { width: 48px; height: 48px; border-radius: 6px; border: 2px solid rgba(0,0,0,0.08); position: relative; cursor: default; }
+    .filter-group { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .filter-chip { background: var(--white); border: 1.5px solid var(--gold-light); color: var(--text); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; padding: 7px 16px; border-radius: 24px; cursor: pointer; transition: all 0.18s; font-family: var(--font-sans); }
+    .filter-chip:hover, .filter-chip.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a class="nav-brand" href="../index.html">John <span>Skinner</span></a>
-  <ul class="nav-links">
-    <li><a href="../index.html">Home</a></li>
-    <li><a href="../jaguar/index.html">Our Cars</a></li>
-    <li><a href="index.html" style="color:var(--gold)">Materials</a></li>
-    <li><a href="../workshop/index.html">Workshop</a></li>
-    <li><a href="../why-us/index.html">Why Us</a></li>
-    <li><a href="../gallery/index.html">Gallery</a></li>
-    <li><a href="../handbook/index.html">Handbook</a></li>
-    <li><a href="../about/index.html">About</a></li>
-    <li><a href="../quote/index.html">Get a Quote</a></li>
-  </ul>
-</nav>
-
-<!-- BREADCRUMB -->
-<div class="breadcrumb">
-  <a href="../index.html">Home</a>
-  <span>›</span>
-  Materials &amp; Colours
-</div>
-
-<!-- HERO -->
-<div class="hero">
-  <p class="hero-eyebrow">Colour &amp; Material Guide</p>
-  <h1>Materials &amp; Colours</h1>
-  <p>Your material and colour choices are the starting point for a beautiful interior. We break our range into Primary and Secondary materials — here's everything we offer.</p>
-</div>
-
-<!-- EXPLAINER BAND -->
-<div class="explainer">
-  <p>Primary Materials (Leather, Vinyl, Leathercloth) are used across panels and seats and determine the dominant interior colour. Secondary Materials (Carpet, Moquette, Furflex etc.) are used across flooring and other areas, with a colour range designed to complement your Primary Material choice.</p>
-</div>
-
-<!-- PAGE CONTENT -->
-<div class="page-content">
-
-  <!-- PRIMARY MATERIALS -->
-  <div class="primary-section">
-    <p class="section-label">Primary Materials</p>
-    <h2 class="section-title">Seats &amp; Panels</h2>
-    <p class="section-desc">These materials cover the seats, door cards, and main panels — they define the look and feel of your interior. Choose your primary material and colour first.</p>
-
-    <!-- VINYL -->
-    <h3 class="material-type-header">Vinyl</h3>
-    <p class="material-type-desc">Our most popular primary material. Highly durable, easy to clean, and available in the widest colour range — including original factory correct shades for most British classics.</p>
-    <div class="swatch-grid">
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Black.jpg" alt="Vinyl Black" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Black</div><span class="swatch-tag">Vinyl</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Bright-Red.jpg" alt="Vinyl Bright Red" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Bright Red</div><span class="swatch-tag">Vinyl</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Cherry-Red.jpg" alt="Vinyl Cherry Red" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Cherry Red</div><span class="swatch-tag">Vinyl</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Dark-Brown.jpg" alt="Vinyl Dark Brown" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Dark Brown</div><span class="swatch-tag">Vinyl</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Dark-Blue.jpg" alt="Vinyl Dark Blue" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Dark Blue</div><span class="swatch-tag">Vinyl</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-White.jpg" alt="Vinyl White" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">White</div><span class="swatch-tag">Vinyl</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-British-Racing-Green.jpg" alt="Vinyl British Racing Green" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">British Racing Green</div><span class="swatch-tag">Vinyl</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Biscuit-Light-Tan.jpg" alt="Vinyl Biscuit Light Tan" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Biscuit Light Tan</div><span class="swatch-tag">Vinyl</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Ferrari-Beige.jpg" alt="Vinyl Ferrari Beige" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Ferrari Beige</div><span class="swatch-tag">Vinyl</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-AH-Blue.jpg" alt="Vinyl AH Blue" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">AH Blue</div><span class="swatch-tag">Vinyl</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Matador-Red.jpg" alt="Vinyl Matador Red" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Matador Red</div><span class="swatch-tag">Vinyl</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Vinyl-French-Blue.jpg" alt="Vinyl French Blue" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">French Blue</div><span class="swatch-tag">Vinyl</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Chestnut-Brown-RG-1290.jpg" alt="Vinyl Chestnut Brown RG-1290" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Chestnut Brown RG-1290</div><span class="swatch-tag">Vinyl</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Black-RG-1290.jpg" alt="Vinyl Black RG-1290" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Black RG-1290</div><span class="swatch-tag">Vinyl</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Antiqued-Old-Beige.jpg" alt="Vinyl Antiqued Old Beige" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Antiqued Old Beige</div><span class="swatch-tag">Vinyl</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Antiqued-Old-Grey.jpg" alt="Vinyl Antiqued Old Grey" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Antiqued Old Grey</div><span class="swatch-tag">Vinyl</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Vinyl-Antiqued-Cinnamon.jpg" alt="Vinyl Antiqued Cinnamon" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Antiqued Cinnamon</div><span class="swatch-tag">Vinyl</span></div>
-      </div>
-    </div>
-
-    <!-- LEATHER -->
-    <h3 class="material-type-header">Leather</h3>
-    <p class="material-type-desc">Genuine leather for a premium finish. Available in grained, smooth, and antiqued finishes — each with a different texture and depth of colour that only improves with age.</p>
-    <div class="swatch-grid">
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Leather-Grained-AH-Blue.jpg" alt="Leather Grained AH Blue" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">AH Blue Grained</div><span class="swatch-tag">Leather</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Leather-Grained-Dark-Brown.jpg" alt="Leather Grained Dark Brown" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Dark Brown Grained</div><span class="swatch-tag">Leather</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Leather-Grained-Dark-Jaguar-Green.jpg" alt="Leather Grained Dark Jaguar Green" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Dark Jaguar Green Grained</div><span class="swatch-tag">Leather</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Leather-Grained-White.jpg" alt="Leather Grained White" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">White Grained</div><span class="swatch-tag">Leather</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Leather-Grained-Porcelain-Green.jpg" alt="Leather Grained Porcelain Green" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Porcelain Green Grained</div><span class="swatch-tag">Leather</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Leather-Smooth-Pale-Shadow-Blue.jpg" alt="Leather Smooth Pale Shadow Blue" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Pale Shadow Blue Smooth</div><span class="swatch-tag">Leather</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Leather-Antiqued-Chestnut-Brown.jpg" alt="Leather Antiqued Chestnut Brown" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Chestnut Brown Antiqued</div><span class="swatch-tag">Leather</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Leather-Antiqued-Cinnamon.jpg" alt="Leather Antiqued Cinnamon" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Cinnamon Antiqued</div><span class="swatch-tag">Leather</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Leather-Antiqued-Old-Beige.jpg" alt="Leather Antiqued Old Beige" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Old Beige Antiqued</div><span class="swatch-tag">Leather</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Leather-Antiqued-Old-Grey.jpg" alt="Leather Antiqued Old Grey" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Old Grey Antiqued</div><span class="swatch-tag">Leather</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Leather-Antiqued-Russet-Red.jpg" alt="Leather Antiqued Russet Red" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Russet Red Antiqued</div><span class="swatch-tag">Leather</span></div>
-      </div>
-    </div>
-
-    <!-- LEATHERCLOTH -->
-    <h3 class="material-type-header">Leathercloth</h3>
-    <p class="material-type-desc">A period-correct alternative to vinyl — leathercloth has a softer, more supple feel and was widely used in British cars of the 1950s and 60s. Ideal for correct restoration work.</p>
-    <div class="swatch-grid">
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Leathercloth-AH-Blue.jpg" alt="Leathercloth AH Blue" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">AH Blue</div><span class="swatch-tag">Leathercloth</span></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SECONDARY MATERIALS -->
-  <div class="secondary-section">
-    <p class="section-label">Secondary Materials</p>
-    <h2 class="section-title">Carpet, Lining &amp; Trim</h2>
-    <p class="section-desc">Secondary materials cover carpets, headlinings, hoods, piping, and binding. Colours are designed to complement the primary material range — you can mix and match across categories.</p>
-
-    <!-- Carpet -->
-    <h3 class="material-type-header">Carpet</h3>
-    <div class="swatch-grid">
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/02/Wool-Dark-Green.jpg" alt="Wool Dark Green" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Dark Green</div><span class="swatch-tag">Wool</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Nylon-Pale-Shadow-Blue.jpg" alt="Nylon Pale Shadow Blue" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Pale Shadow Blue</div><span class="swatch-tag">Nylon</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Karvel-Dark-Blue.jpg" alt="Karvel Dark Blue" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Dark Blue</div><span class="swatch-tag">Karvel</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Hardura-Suede-Green.jpg" alt="Hardura Suede Green" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Suede Green</div><span class="swatch-tag">Hardura</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Armacord-Biscuit.jpg" alt="Armacord Biscuit" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Biscuit</div><span class="swatch-tag">Armacord</span></div>
-      </div>
-    </div>
-
-    <!-- Moquette & Furflex -->
-    <h3 class="material-type-header">Moquette &amp; Furflex</h3>
-    <div class="swatch-grid">
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Moquette-Red.jpg" alt="Moquette Red" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Red</div><span class="swatch-tag">Moquette</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Furflex-Beige.jpg" alt="Furflex Beige" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Beige</div><span class="swatch-tag">Furflex</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Furflex-Snap-On-Thin-Tan.jpg" alt="Furflex Snap-On Thin Tan" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Snap-On Thin Tan</div><span class="swatch-tag">Furflex</span></div>
-      </div>
-    </div>
-
-    <!-- Binding -->
-    <h3 class="material-type-header">Binding</h3>
-    <div class="swatch-grid">
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Binding-French-Blue.jpg" alt="Binding French Blue" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">French Blue</div><span class="swatch-tag">Binding</span></div>
-      </div>
-    </div>
-
-    <!-- Headlining -->
-    <h3 class="material-type-header">Headlining</h3>
-    <div class="swatch-grid">
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Headlining-Brushed-Nylon-Biscuit.jpg" alt="Headlining Brushed Nylon Biscuit" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Brushed Nylon Biscuit</div><span class="swatch-tag">Headlining</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Headlining-PVC-White.jpg" alt="Headlining PVC White" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">PVC White</div><span class="swatch-tag">Headlining</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Headlining-Wool-Cloth-Grey.jpg" alt="Headlining Wool Cloth Grey" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Wool Cloth Grey</div><span class="swatch-tag">Headlining</span></div>
-      </div>
-    </div>
-
-    <!-- Hooding -->
-    <h3 class="material-type-header">Hooding</h3>
-    <div class="swatch-grid">
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Hooding-PVC-Off-White.jpg" alt="Hooding PVC Off White" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">PVC Off White</div><span class="swatch-tag">Hooding</span></div>
-      </div>
-      <div class="swatch-card">
-        <img class="swatch-img" src="https://john-skinner.co.uk/wp-content/uploads/2020/03/Hooding-Mohair-Dark-Red.jpg" alt="Hooding Mohair Dark Red" loading="lazy">
-        <div class="swatch-info"><div class="swatch-name">Mohair Dark Red</div><span class="swatch-tag">Hooding</span></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SAMPLES CTA -->
-  <div class="samples-section">
-    <h2>Order Free Samples</h2>
-    <p>Choosing the right colour from a screen is almost impossible. We strongly recommend ordering physical samples before committing to a colour. Samples are free and sent to your door.</p>
-    <a class="btn-primary" href="../quote/index.html">Request Samples</a>
-  </div>
-
-</div><!-- /page-content -->
-
-<!-- EXPANDED MATERIALS SECTION -->
-<div style="background:#efede9; padding:80px 0;">
-  <div style="max-width:1100px;margin:0 auto;padding:0 24px;">
-    <p style="font-size:.7rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#c8ba9a;margin-bottom:10px;">Complete Material Library</p>
-    <h2 style="font-family:'EB Garamond',Georgia,serif;font-size:clamp(1.9rem,4vw,2.8rem);font-weight:400;color:#181e38;margin-bottom:16px;">Every material. Every colour. Every option.</h2>
-    <p style="color:#7d807e;font-size:1rem;line-height:1.85;max-width:680px;margin-bottom:56px;">We offer the widest range of trim materials available for British classic cars — sourced to original specification and available in colours that no mass-market supplier can match. Here's a guide to everything we offer.</p>
-
-    <!-- LEATHER GRADES -->
-    <h3 style="font-family:'EB Garamond',Georgia,serif;font-size:1.6rem;color:#181e38;margin-bottom:28px;padding-bottom:12px;border-bottom:2px solid #efede9;">Leather Grades</h3>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-bottom:56px;">
-      <div style="background:#fff;border-radius:10px;padding:26px 22px;box-shadow:0 2px 16px rgba(0,0,0,.07);border-top:4px solid #c8ba9a;">
-        <div style="font-size:1.6rem;margin-bottom:12px;">🟤</div>
-        <h4 style="font-family:'EB Garamond',Georgia,serif;font-size:1.15rem;color:#181e38;margin-bottom:8px;">Grained Leather</h4>
-        <p style="font-size:.87rem;color:#7d807e;line-height:1.75;">A consistent, mechanically-grained surface. Durable, hard-wearing, and the most practical choice for everyday restorations. Looks authentic and ages gracefully. Available in a wide range of colours.</p>
-      </div>
-      <div style="background:#fff;border-radius:10px;padding:26px 22px;box-shadow:0 2px 16px rgba(0,0,0,.07);border-top:4px solid #c8ba9a;">
-        <div style="font-size:1.6rem;margin-bottom:12px;">⬜</div>
-        <h4 style="font-family:'EB Garamond',Georgia,serif;font-size:1.15rem;color:#181e38;margin-bottom:8px;">Smooth Leather</h4>
-        <p style="font-size:.87rem;color:#7d807e;line-height:1.75;">A natural, un-grained hide surface with a more supple and luxurious feel. Shows natural hide character and marks more readily — but ages with genuine character. Ideal for high-end restorations.</p>
-      </div>
-      <div style="background:#fff;border-radius:10px;padding:26px 22px;box-shadow:0 2px 16px rgba(0,0,0,.07);border-top:4px solid #c8ba9a;">
-        <div style="font-size:1.6rem;margin-bottom:12px;">🟫</div>
-        <h4 style="font-family:'EB Garamond',Georgia,serif;font-size:1.15rem;color:#181e38;margin-bottom:8px;">Antiqued Leather</h4>
-        <p style="font-size:.87rem;color:#7d807e;line-height:1.75;">A distressed, vintage-looking finish with tonal variation and character built in. Perfect for restorations that want a 'lived-in' period feel from day one. A distinctive and popular choice.</p>
-      </div>
-      <div style="background:#fff;border-radius:10px;padding:26px 22px;box-shadow:0 2px 16px rgba(0,0,0,.07);border-top:4px solid #c8ba9a;">
-        <div style="font-size:1.6rem;margin-bottom:12px;">✦</div>
-        <h4 style="font-family:'EB Garamond',Georgia,serif;font-size:1.15rem;color:#181e38;margin-bottom:8px;">Connolly Vaumol™</h4>
-        <p style="font-size:.87rem;color:#7d807e;line-height:1.75;">The original automotive leather supplier to Rolls Royce, Bentley, Jaguar and Aston Martin. A premium choice that celebrates natural hide character — patina, aroma and handfeel. Available in a curated range of authentic colours.</p>
-      </div>
-    </div>
-
-    <!-- VINYL OPTIONS -->
-    <h3 style="font-family:'EB Garamond',Georgia,serif;font-size:1.6rem;color:#181e38;margin-bottom:28px;padding-bottom:12px;border-bottom:2px solid #efede9;">Vinyl Options</h3>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-bottom:56px;">
-      <div style="background:#fff;border-radius:10px;padding:26px 22px;box-shadow:0 2px 16px rgba(0,0,0,.07);border-left:4px solid #c8ba9a;">
-        <h4 style="font-family:'EB Garamond',Georgia,serif;font-size:1.1rem;color:#181e38;margin-bottom:8px;">Standard Vinyl</h4>
-        <p style="font-size:.87rem;color:#7d807e;line-height:1.75;">Matched to original factory specification for each marque and model. Available in all original and extended colours — the authentic choice for correct period restorations. Can be welded with original weld patterns for TR and Healey models.</p>
-      </div>
-      <div style="background:#fff;border-radius:10px;padding:26px 22px;box-shadow:0 2px 16px rgba(0,0,0,.07);border-left:4px solid #c8ba9a;">
-        <h4 style="font-family:'EB Garamond',Georgia,serif;font-size:1.1rem;color:#181e38;margin-bottom:8px;">LeatherFaced</h4>
-        <p style="font-size:.87rem;color:#7d807e;line-height:1.75;">Our most popular upgrade — genuine leather panels with vinyl seat surrounds. Matched in colour to ensure seamless visual continuity. Available with our perforated embossed finish to replicate the character of original vinyl weld patterns.</p>
-      </div>
-      <div style="background:#fff;border-radius:10px;padding:26px 22px;box-shadow:0 2px 16px rgba(0,0,0,.07);border-left:4px solid #c8ba9a;">
-        <h4 style="font-family:'EB Garamond',Georgia,serif;font-size:1.1rem;color:#181e38;margin-bottom:8px;">Leathercloth</h4>
-        <p style="font-size:.87rem;color:#7d807e;line-height:1.75;">Used for carpet binding, boot/trunk lining and other secondary trim areas. Available in a matching range of colours to complement seat and panel materials. An affordable and practical material for non-primary areas.</p>
-      </div>
-    </div>
-
-    <!-- CARPET TYPES -->
-    <h3 style="font-family:'EB Garamond',Georgia,serif;font-size:1.6rem;color:#181e38;margin-bottom:28px;padding-bottom:12px;border-bottom:2px solid #efede9;">Carpet Types</h3>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-bottom:56px;">
-      <div style="background:#fff;border-radius:10px;padding:26px 22px;box-shadow:0 2px 16px rgba(0,0,0,.07);border-top:4px solid #181e38;">
-        <div style="width:40px;height:8px;background:#c8c090;border-radius:2px;margin-bottom:14px;"></div>
-        <h4 style="font-family:'EB Garamond',Georgia,serif;font-size:1.1rem;color:#181e38;margin-bottom:8px;">Wool Carpet</h4>
-        <p style="font-size:.87rem;color:#7d807e;line-height:1.75;">Our finest carpet option. A luxurious deep pile, rubber-backed for flexibility in fitting. Won't spread when shaped over bodywork curves. Available in approx. 20 colours including Black, Red, Blue, Beige, Fawn, Grey, Green and more.</p>
-        <div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;">
-          <span style="background:#111;color:#fff;font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:10px;">Black</span>
-          <span style="background:#8B0000;color:#fff;font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:10px;">Red</span>
-          <span style="background:#1a3a6e;color:#fff;font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:10px;">Blue</span>
-          <span style="background:#c8ba9a;color:#181e38;font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:10px;">Biscuit</span>
-          <span style="background:#8B7355;color:#fff;font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:10px;">Fawn</span>
-          <span style="background:#7d807e;color:#fff;font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:10px;">Grey</span>
-          <span style="background:#2d5a27;color:#fff;font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:10px;">Green</span>
-          <span style="background:#c8ba9a;color:#181e38;font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:10px;">+13 more</span>
+  <header class="site-header">
+    <a class="logo-wrap" href="../index.html">
+      <div class="logo">John <em>Skinner</em></div>
+      <div class="logo-sub">Est. 1980 · Cheltenham</div>
+    </a>
+    <nav id="main-nav">
+      <div class="nav-dropdown">
+        <a href="../about/index.html">About ▾</a>
+        <div class="dropdown-menu">
+          <a href="../about/company-history.html">Company History</a>
+          <a href="../about/our-philosophy.html">Our Philosophy</a>
+          <a href="../about/the-price-of-value.html">The Price of Value</a>
+          <a href="../about/workshop.html">Our Workshop</a>
+          <a href="../testimonials/index.html">Customer Testimonials</a>
         </div>
       </div>
-      <div style="background:#fff;border-radius:10px;padding:26px 22px;box-shadow:0 2px 16px rgba(0,0,0,.07);border-top:4px solid #181e38;">
-        <div style="width:40px;height:8px;background:#cc6060;border-radius:2px;margin-bottom:14px;background:repeating-linear-gradient(90deg,#888 0,#888 2px,#aaa 2px,#aaa 4px);"></div>
-        <h4 style="font-family:'EB Garamond',Georgia,serif;font-size:1.1rem;color:#181e38;margin-bottom:8px;">Karvel Carpet</h4>
-        <p style="font-size:.87rem;color:#7d807e;line-height:1.75;">A ribbed-effect carpet with hessian backing. The original carpet material for Austin Healey and MGA models. Robust and distinctive. We even know which direction the ribs run for each specific model. Available in 4 colours.</p>
-        <div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:6px;">
-          <span style="background:#111;color:#fff;font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:10px;">Black</span>
-          <span style="background:#8B0000;color:#fff;font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:10px;">Red</span>
-          <span style="background:#1a3a6e;color:#fff;font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:10px;">Blue</span>
-          <span style="background:#7d807e;color:#fff;font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:10px;">Grey</span>
+      <a href="../handbook/index.html">Handbook</a>
+      <a href="../materials/index.html">Materials &amp; Colours</a>
+      <a href="../testimonials/index.html">Testimonials</a>
+      <a href="../why-us/index.html">Why Us</a>
+      <a href="../quote/index.html" class="cta">Request a Quote</a>
+      <!-- Mobile dropdown items -->
+      <a href="../about/company-history.html" class="dropdown-sub" style="display:none;">↳ Company History</a>
+      <a href="../about/our-philosophy.html" class="dropdown-sub" style="display:none;">↳ Our Philosophy</a>
+      <a href="../about/the-price-of-value.html" class="dropdown-sub" style="display:none;">↳ The Price of Value</a>
+      <a href="../about/workshop.html" class="dropdown-sub" style="display:none;">↳ Our Workshop</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <section class="page-hero">
+    <p class="eyebrow">Est. 1980 · Cheltenham</p>
+    <h1>Materials &amp; Colours</h1>
+    <p>The most comprehensive material and colour library in classic British car interior trim.</p>
+  </section>
+  
+  <section class="content-section">
+    <div class="wrap">
+      <div style="max-width:640px; margin-bottom:64px;">
+        <p class="section-label">Materials &amp; Colours</p>
+        <h2 class="section-title">Your colour and material choices are the starting point for a beautiful interior.</h2>
+        <div class="divider"></div>
+        <p class="section-sub">We break our materials into Primary and Secondary. Primary materials — leather and vinyl — determine the dominant colour of your interior. Secondary materials — carpets, moquette, piping — complement your primary choice. Our range is the most comprehensive in the industry.</p>
+      </div>
+      <nav style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:64px;">
+        <a href="#leather" class="btn btn-outline" style="padding:9px 20px; font-size:0.8rem;">Leather</a>
+        <a href="#vinyl" class="btn btn-outline" style="padding:9px 20px; font-size:0.8rem;">Vinyl</a>
+        <a href="#carpet" class="btn btn-outline" style="padding:9px 20px; font-size:0.8rem;">Carpet</a>
+        <a href="#piping" class="btn btn-outline" style="padding:9px 20px; font-size:0.8rem;">Piping</a>
+        <a href="#secondary" class="btn btn-outline" style="padding:9px 20px; font-size:0.8rem;">Secondary Materials</a>
+        <a href="#colour-matching" class="btn btn-outline" style="padding:9px 20px; font-size:0.8rem;">Colour Matching</a>
+      </nav>
+    </div>
+  </section>
+
+  <hr class="section-rule">
+
+  <section class="content-section white" id="leather">
+    <div class="wrap">
+      <p class="section-label">Primary Material</p>
+      <h2 class="section-title">Leather</h2>
+      <div class="divider"></div>
+      <div class="two-col" style="margin-bottom:48px;">
+        <div class="article-body">
+          <h3>Connolly Vaumol™</h3>
+          <p>Connolly is a recognised and admired name amongst today's classic car restorers. Established in 1878, Connolly Leather supplied the leather to Rolls Royce, Bentley, Aston Martin and Jaguar from the earliest days of motoring through to the 1990s. Connolly heritage includes the seats of the House of Lords, Concorde, the QE2 and the Ritz hotels.</p>
+          <p>Connolly Vaumol™ celebrates the natural qualities of each hide — its unique grain, its patina, its aroma. A premium choice for those seeking the most authentic feel of history in their restoration.</p>
+        </div>
+        <div class="article-body">
+          <h3>Grained, Smooth and Antiqued</h3>
+          <p><strong>Grained Leather</strong> is our most popular choice — mechanically embossed with a consistent grain pattern, practical and available in our widest colour range.</p>
+          <p><strong>Smooth Leather</strong> is naturally soft and unpatterned with a high-quality surface finish — ideal where a refined, luxurious feel is required.</p>
+          <p><strong>Antiqued Leather</strong> has a hand-finished appearance giving an aged, lived-in character — perfect for period-correct restorations where brand new leather would seem out of place.</p>
+          <p><a href="../handbook/what-is-leather-skiving.html" style="color:var(--blue-vintage);">Read about leather skiving →</a></p>
         </div>
       </div>
-      <div style="background:#fff;border-radius:10px;padding:26px 22px;box-shadow:0 2px 16px rgba(0,0,0,.07);border-top:4px solid #181e38;">
-        <div style="width:40px;height:8px;background:#c8ba9a;border-radius:2px;margin-bottom:14px;"></div>
-        <h4 style="font-family:'EB Garamond',Georgia,serif;font-size:1.1rem;color:#181e38;margin-bottom:8px;">Nylon Carpet</h4>
-        <p style="font-size:.87rem;color:#7d807e;line-height:1.75;">100% polypropylene fibres with rubber backing. Flexible, durable and hard-wearing — ideal for restorations working to a budget. Deep pile with a good-quality feel. Available in a range of colours for boot/trunk and cockpit areas.</p>
+      <h3 style="font-family:var(--font-serif); font-size:1.3rem; color:var(--navy); margin-bottom:16px;">Leather Colour Range</h3>
+      <div class="swatch-grid"><div class="swatch" style="background:#f5ede0; border: 2px solid #ccc;" title="Beige"></div><div class="swatch" style="background:#d4a574; " title="Tan"></div><div class="swatch" style="background:#c8ba9a; " title="Biscuit"></div><div class="swatch" style="background:#a0522d; " title="Tan Brown"></div><div class="swatch" style="background:#8B4513; " title="Saddle Brown"></div><div class="swatch" style="background:#6B2737; " title="Burgundy"></div><div class="swatch" style="background:#722f37; " title="Cherry Red"></div><div class="swatch" style="background:#8B0000; " title="Dark Red"></div><div class="swatch" style="background:#cc2222; " title="Red"></div><div class="swatch" style="background:#1a1a2e; " title="Dark Navy"></div><div class="swatch" style="background:#0f3460; " title="Navy"></div><div class="swatch" style="background:#2c5f8a; " title="Airforce Blue"></div><div class="swatch" style="background:#658ba4; " title="Dove Blue"></div><div class="swatch" style="background:#2d5a27; " title="Dark Green"></div><div class="swatch" style="background:#4a7c59; " title="British Racing Green"></div><div class="swatch" style="background:#708238; " title="Olive"></div><div class="swatch" style="background:#8a9a5b; " title="Light Green"></div><div class="swatch" style="background:#c8a882; " title="Honey"></div><div class="swatch" style="background:#d4c5a0; " title="Cream"></div><div class="swatch" style="background:#f0ead6; border: 2px solid #ccc;" title="Off White"></div><div class="swatch" style="background:#ffffff; border: 2px solid #ccc;" title="White"></div><div class="swatch" style="background:#404041; " title="Black"></div><div class="swatch" style="background:#555555; " title="Dark Grey"></div><div class="swatch" style="background:#888888; " title="Grey"></div><div class="swatch" style="background:#b8b8b8; " title="Light Grey"></div></div>
+      <p style="font-size:0.82rem; color:var(--grey); margin-top:8px;">Hover over swatches to see colour names. Contact us to request a physical sample card.</p>
+    </div>
+  </section>
+
+  <hr class="section-rule">
+
+  <section class="content-section" id="vinyl">
+    <div class="wrap">
+      <p class="section-label">Primary Material</p>
+      <h2 class="section-title">Vinyl &amp; Leathercloth</h2>
+      <div class="divider"></div>
+      <div class="article-body" style="max-width:700px; margin-bottom:36px;">
+        <p>Our vinyl and leathercloth ranges replicate the original factory materials with accuracy. Available in the same colour range as our leathers, vinyl provides an excellent and durable choice where budget or authenticity considerations favour it. We can colour match closely between our vinyl and leather ranges, allowing a mixed-material interior to have a cohesive appearance.</p>
+        <p>Leathercloth is a cloth-backed vinyl used in specific applications — particularly for hoods and covers — and is also available in a complementary colour range.</p>
+      </div>
+      <h3 style="font-family:var(--font-serif); font-size:1.3rem; color:var(--navy); margin-bottom:16px;">Vinyl Colour Range</h3>
+      <div class="swatch-grid"><div class="swatch" style="background:#f5ede0; border: 2px solid #ccc;" title="Beige"></div><div class="swatch" style="background:#d4a574; " title="Tan"></div><div class="swatch" style="background:#c8ba9a; " title="Biscuit"></div><div class="swatch" style="background:#a0522d; " title="Tan Brown"></div><div class="swatch" style="background:#8B4513; " title="Saddle Brown"></div><div class="swatch" style="background:#6B2737; " title="Burgundy"></div><div class="swatch" style="background:#722f37; " title="Cherry Red"></div><div class="swatch" style="background:#8B0000; " title="Dark Red"></div><div class="swatch" style="background:#cc2222; " title="Red"></div><div class="swatch" style="background:#1a1a2e; " title="Dark Navy"></div><div class="swatch" style="background:#0f3460; " title="Navy"></div><div class="swatch" style="background:#2c5f8a; " title="Airforce Blue"></div><div class="swatch" style="background:#658ba4; " title="Dove Blue"></div><div class="swatch" style="background:#2d5a27; " title="Dark Green"></div><div class="swatch" style="background:#4a7c59; " title="British Racing Green"></div><div class="swatch" style="background:#708238; " title="Olive"></div><div class="swatch" style="background:#8a9a5b; " title="Light Green"></div><div class="swatch" style="background:#c8a882; " title="Honey"></div><div class="swatch" style="background:#d4c5a0; " title="Cream"></div><div class="swatch" style="background:#f0ead6; border: 2px solid #ccc;" title="Off White"></div><div class="swatch" style="background:#ffffff; border: 2px solid #ccc;" title="White"></div><div class="swatch" style="background:#404041; " title="Black"></div><div class="swatch" style="background:#555555; " title="Dark Grey"></div><div class="swatch" style="background:#888888; " title="Grey"></div><div class="swatch" style="background:#b8b8b8; " title="Light Grey"></div></div>
+    </div>
+  </section>
+
+  <hr class="section-rule">
+
+  <section class="content-section white" id="carpet">
+    <div class="wrap">
+      <p class="section-label">Secondary Material</p>
+      <h2 class="section-title">Carpet</h2>
+      <div class="divider"></div>
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:32px; margin-bottom:48px;">
+        <div style="padding: 24px; background:var(--warm-bg); border-radius:6px; border-top: 3px solid var(--gold);">
+          <h4 style="font-family:var(--font-serif); font-size:1.15rem; color:var(--navy); margin-bottom:10px;">Wool Carpet</h4>
+          <p style="color:var(--grey); font-size:0.92rem; line-height:1.75;">Our premium wool carpet replicates the original factory specification most closely. Natural hand-feel, correct drape. Available in our full carpet colour range.</p>
+        </div>
+        <div style="padding: 24px; background:var(--warm-bg); border-radius:6px; border-top: 3px solid var(--gold);">
+          <h4 style="font-family:var(--font-serif); font-size:1.15rem; color:var(--navy); margin-bottom:10px;">Karvel Carpet</h4>
+          <p style="color:var(--grey); font-size:0.92rem; line-height:1.75;">A durable, close-pile carpet with a tighter weave than wool. Karvel wears extremely well and is a popular practical choice for cars in regular use. Colour-matched to our wool range.</p>
+        </div>
+        <div style="padding: 24px; background:var(--warm-bg); border-radius:6px; border-top: 3px solid var(--gold);">
+          <h4 style="font-family:var(--font-serif); font-size:1.15rem; color:var(--navy); margin-bottom:10px;">Nylon Carpet</h4>
+          <p style="color:var(--grey); font-size:0.92rem; line-height:1.75;">A budget-conscious option with good durability. Available in a core colour range to complement primary material choices.</p>
+        </div>
+      </div>
+      <h3 style="font-family:var(--font-serif); font-size:1.3rem; color:var(--navy); margin-bottom:16px;">Carpet Colour Range</h3>
+      <div class="swatch-grid"><div class="swatch" style="background:#404041; " title="Black"></div><div class="swatch" style="background:#888888; " title="Grey"></div><div class="swatch" style="background:#c8ba9a; " title="Biscuit"></div><div class="swatch" style="background:#8B0000; " title="Red"></div><div class="swatch" style="background:#2d5a27; " title="Green"></div><div class="swatch" style="background:#0f3460; " title="Navy"></div><div class="swatch" style="background:#d4c5a0; " title="Fawn"></div><div class="swatch" style="background:#5a3e2b; " title="Brown"></div></div>
+    </div>
+  </section>
+
+  <hr class="section-rule">
+
+  <section class="content-section" id="piping">
+    <div class="wrap">
+      <p class="section-label">Secondary Material</p>
+      <h2 class="section-title">Piping &amp; Binding</h2>
+      <div class="divider"></div>
+      <p class="section-sub" style="max-width:600px; margin-bottom:36px;">Piping is the welt sewn into seat and carpet edges — a defining detail of the classic British interior. A comprehensive colour range to match or contrast your primary material. Binding finishes carpet edges in a matching palette.</p>
+      <div class="swatch-grid"><div class="swatch" style="background:#404041; " title="Black"></div><div class="swatch" style="background:#888888; " title="Grey"></div><div class="swatch" style="background:#c8ba9a; " title="Biscuit/Tan"></div><div class="swatch" style="background:#8B0000; " title="Dark Red"></div><div class="swatch" style="background:#cc2222; " title="Red"></div><div class="swatch" style="background:#2d5a27; " title="Dark Green"></div><div class="swatch" style="background:#0f3460; " title="Navy"></div><div class="swatch" style="background:#d4c5a0; " title="Cream"></div><div class="swatch" style="background:#ffffff; border: 2px solid #ccc;" title="White"></div><div class="swatch" style="background:#d4a574; " title="Tan"></div></div>
+    </div>
+  </section>
+
+  <hr class="section-rule">
+
+  <section class="content-section white" id="secondary">
+    <div class="wrap">
+      <p class="section-label">Secondary Materials</p>
+      <h2 class="section-title">Specialist Materials</h2>
+      <div class="divider"></div>
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:28px;">
+        <div style="padding: 24px; background:var(--cream); border-radius:6px; border: 1px solid var(--gold-light);">
+          <h4 style="font-family:var(--font-serif); font-size:1.1rem; color:var(--navy); margin-bottom:8px;">Moquette</h4>
+          <p style="color:var(--grey); font-size:0.88rem; line-height:1.7;">Looped or cut pile fabric used on seat facings and panels in specific models. Factory-spec moquette in our heritage colour range.</p>
+        </div>
+        <div style="padding: 24px; background:var(--cream); border-radius:6px; border: 1px solid var(--gold-light);">
+          <h4 style="font-family:var(--font-serif); font-size:1.1rem; color:var(--navy); margin-bottom:8px;">Hardura</h4>
+          <p style="color:var(--grey); font-size:0.88rem; line-height:1.7;">Durable rubber-backed material for footwells, transmission tunnels and other high-wear areas. Essential for an authentic period interior.</p>
+        </div>
+        <div style="padding: 24px; background:var(--cream); border-radius:6px; border: 1px solid var(--gold-light);">
+          <h4 style="font-family:var(--font-serif); font-size:1.1rem; color:var(--navy); margin-bottom:8px;">Armacord</h4>
+          <p style="color:var(--grey); font-size:0.88rem; line-height:1.7;">Ribbed, flexible material used in hoods and tonneau covers. Characteristic texture factory-correct for many hood applications.</p>
+        </div>
+        <div style="padding: 24px; background:var(--cream); border-radius:6px; border: 1px solid var(--gold-light);">
+          <h4 style="font-family:var(--font-serif); font-size:1.1rem; color:var(--navy); margin-bottom:8px;">Furflex</h4>
+          <p style="color:var(--grey); font-size:0.88rem; line-height:1.7;">Channel-based draught excluding material for door and hood frames. A critical detail in any concours-quality restoration.</p>
+        </div>
+        <div style="padding: 24px; background:var(--cream); border-radius:6px; border: 1px solid var(--gold-light);">
+          <h4 style="font-family:var(--font-serif); font-size:1.1rem; color:var(--navy); margin-bottom:8px;">Headlining</h4>
+          <p style="color:var(--grey); font-size:0.88rem; line-height:1.7;">Wool cloth headlining in factory-correct colours and weights. One of the most visible interior elements — we get it right.</p>
+        </div>
+        <div style="padding: 24px; background:var(--cream); border-radius:6px; border: 1px solid var(--gold-light);">
+          <h4 style="font-family:var(--font-serif); font-size:1.1rem; color:var(--navy); margin-bottom:8px;">Underfelt</h4>
+          <p style="color:var(--grey); font-size:0.88rem; line-height:1.7;">High-quality underfelt for carpet kits. The difference between carpets that look and feel right, and carpets that don't.</p>
+        </div>
       </div>
     </div>
+  </section>
 
-    <!-- PIPING COLOURS -->
-    <h3 style="font-family:'EB Garamond',Georgia,serif;font-size:1.6rem;color:#181e38;margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid #efede9;">Piping Colours</h3>
-    <p style="color:#7d807e;font-size:.9rem;line-height:1.8;margin-bottom:28px;">Piping is the finishing detail that defines a kit — whether matching your primary material or creating a deliberate contrast. We offer piping in a wide range of colours across both leather and vinyl. Piping colour is your opportunity to connect your interior to the bodywork colour, or to add a subtle accent that ties the whole scheme together.</p>
-    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;">
-      <span style="background:#111;color:#fff;font-size:.75rem;font-weight:700;padding:6px 14px;border-radius:20px;">Black</span>
-      <span style="background:#8B0000;color:#fff;font-size:.75rem;font-weight:700;padding:6px 14px;border-radius:20px;">Red / Cherry Red</span>
-      <span style="background:#c8ba9a;color:#181e38;font-size:.75rem;font-weight:700;padding:6px 14px;border-radius:20px;">Biscuit / Tan</span>
-      <span style="background:#1a3a6e;color:#fff;font-size:.75rem;font-weight:700;padding:6px 14px;border-radius:20px;">Midnight Blue</span>
-      <span style="background:#2d5a27;color:#fff;font-size:.75rem;font-weight:700;padding:6px 14px;border-radius:20px;">Suede Green</span>
-      <span style="background:#efede9;color:#181e38;font-size:.75rem;font-weight:700;padding:6px 14px;border-radius:20px;border:1px solid #efede9;">Cream / White</span>
-      <span style="background:#7d807e;color:#fff;font-size:.75rem;font-weight:700;padding:6px 14px;border-radius:20px;">Grey</span>
-      <span style="background:#8B7355;color:#fff;font-size:.75rem;font-weight:700;padding:6px 14px;border-radius:20px;">New Tan</span>
-      <span style="background:#8B4513;color:#fff;font-size:.75rem;font-weight:700;padding:6px 14px;border-radius:20px;">Chestnut</span>
-      <span style="background:#181e38;color:#c8ba9a;font-size:.75rem;font-weight:700;padding:6px 14px;border-radius:20px;">Navy</span>
+  <hr class="section-rule">
+
+  <section class="content-section" id="colour-matching">
+    <div class="wrap-narrow">
+      <p class="section-label">Colour Matching</p>
+      <h2 class="section-title">Can't find your exact colour?</h2>
+      <div class="divider"></div>
+      <div class="article-body">
+        <p>Our colour matching service allows us to supply materials in colours not part of our standard range. We can work from original trim samples, paint references, or photographs to match colours as closely as possible.</p>
+        <p>Particularly useful for two-tone interiors, non-standard factory options, and restorations where the car's history demands a specific colour combination. Contact us to discuss your colour matching requirement.</p>
+      </div>
+      <a href="../quote/index.html" class="btn btn-primary" style="margin-top:24px;">Discuss your requirements →</a>
     </div>
-    <p style="font-size:.82rem;color:#7d807e;margin-bottom:48px;">Many more colours available — ask us when requesting your quote.</p>
-
-    <!-- SECONDARY MATERIALS -->
-    <h3 style="font-family:'EB Garamond',Georgia,serif;font-size:1.6rem;color:#181e38;margin-bottom:28px;padding-bottom:12px;border-bottom:2px solid #efede9;">Other Materials</h3>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;margin-bottom:20px;">
-      <div style="background:#fff;border-radius:10px;padding:22px 20px;box-shadow:0 2px 16px rgba(0,0,0,.07);">
-        <h4 style="font-family:'EB Garamond',Georgia,serif;font-size:1.1rem;color:#181e38;margin-bottom:6px;">Hardura</h4>
-        <p style="font-size:.85rem;color:#7d807e;line-height:1.7;">A rubberised floor covering used in boot, trunk and cockpit floor areas of many Jaguar models. Available in the original colour specifications.</p>
-      </div>
-      <div style="background:#fff;border-radius:10px;padding:22px 20px;box-shadow:0 2px 16px rgba(0,0,0,.07);">
-        <h4 style="font-family:'EB Garamond',Georgia,serif;font-size:1.1rem;color:#181e38;margin-bottom:6px;">Moquette</h4>
-        <p style="font-size:.85rem;color:#7d807e;line-height:1.7;">A woven fabric used in seat pleating and panel work across many models. Provides a period-correct fabric finish that complements leather and vinyl areas beautifully.</p>
-      </div>
-      <div style="background:#fff;border-radius:10px;padding:22px 20px;box-shadow:0 2px 16px rgba(0,0,0,.07);">
-        <h4 style="font-family:'EB Garamond',Georgia,serif;font-size:1.1rem;color:#181e38;margin-bottom:6px;">Armacord</h4>
-        <p style="font-size:.85rem;color:#7d807e;line-height:1.7;">A ribbed flooring material unique to Austin Healey interiors. Paired with Karvel carpet, it creates the authentic floor finish that defines the Healey cockpit.</p>
-      </div>
-      <div style="background:#fff;border-radius:10px;padding:22px 20px;box-shadow:0 2px 16px rgba(0,0,0,.07);">
-        <h4 style="font-family:'EB Garamond',Georgia,serif;font-size:1.1rem;color:#181e38;margin-bottom:6px;">Hood & Topping Materials</h4>
-        <p style="font-size:.85rem;color:#7d807e;line-height:1.7;">Canvas, mohair and PVC hood materials in correct period specifications — for open-top models where hood colour is an important part of the overall colour scheme.</p>
-      </div>
-    </div>
-
-    <!-- COLOUR GUIDANCE CTA -->
-    <div style="background:#181e38;border-radius:12px;padding:40px 36px;margin-top:48px;text-align:center;">
-      <p style="font-size:.7rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#c8ba9a;margin-bottom:10px;">Need Help Choosing?</p>
-      <h3 style="font-family:'EB Garamond',Georgia,serif;font-size:1.9rem;font-weight:400;color:#fff;margin-bottom:14px;">We'll guide your choices</h3>
-      <p style="color:rgba(255,255,255,.6);font-size:.95rem;max-width:500px;margin:0 auto 28px;">Colour and material choice can feel overwhelming. We're happy to advise on originality, colour schemes and material upgrades — just get in touch when requesting your quote.</p>
-      <a href="../quote/index.html" style="display:inline-block;background:#c8ba9a;color:#181e38;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;padding:13px 30px;border-radius:6px;text-decoration:none;">Request a Quote →</a>
-      &nbsp;
-      <a href="../handbook/colour-schemes.html" style="display:inline-block;border:2px solid rgba(255,255,255,.28);color:#fff;font-weight:700;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;padding:11px 28px;border-radius:6px;text-decoration:none;margin-top:8px;">Colour Scheme Guide</a>
-    </div>
-  </div>
-</div>
-
-<footer>
-  <p>John Skinner (Manufacturing) Ltd · Classic Car Interior Trim Specialists · Est. 1980 · Cheltenham, England<br><br>
-  <a href="../index.html">Home</a> &nbsp;·&nbsp; <a href="../gallery/index.html">Gallery</a> &nbsp;·&nbsp; <a href="../handbook/index.html">Handbook</a> &nbsp;·&nbsp; <a href="../about/index.html">About</a> &nbsp;·&nbsp; <a href="../quote/index.html">Get a Quote</a></p>
-</footer>
+  </section>
 
 
-  <!-- SCROLL TO TOP -->
-  <style>
-    #scrollTopBtn {
-      position: fixed; right: 24px; bottom: 40px;
-      width: 54px; height: 54px; border-radius: 50%;
-      background: #181e38; border: none; cursor: pointer;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.28);
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.3s, transform 0.2s;
-      z-index: 9999;
-      display: flex; align-items: center; justify-content: center;
-    }
-    #scrollTopBtn:hover { transform: translateY(-2px); }
-    #scrollTopBtn span {
-      font-family: 'EB Garamond', Georgia, serif;
-      font-size: 1.5rem; color: #c8ba9a; font-weight: 700;
-      line-height: 1; margin-top: -2px;
-    }
-    #scrollTopBtn.visible { opacity: 1; pointer-events: auto; }
-    @media (max-width: 640px) { #scrollTopBtn { bottom: 80px; } }
-  </style>
-  <button id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
-    <span>↑</span>
-  </button>
+  <footer>
+    <strong>John Skinner (Manufacturing) Ltd</strong><br>
+    Unit 8, Manchester Park, Tewkesbury Road, Cheltenham, GL51 9EJ, England<br>
+    <a href="mailto:info@john-skinner.co.uk">info@john-skinner.co.uk</a> &nbsp;·&nbsp;
+    <a href="../index.html">Home</a> &nbsp;·&nbsp;
+    <a href="../about/index.html">About</a> &nbsp;·&nbsp;
+    <a href="../handbook/index.html">Handbook</a> &nbsp;·&nbsp;
+    <a href="../materials/index.html">Materials</a> &nbsp;·&nbsp;
+    <a href="../testimonials/index.html">Testimonials</a><br><br>
+    <small>© 2026 John Skinner (Manufacturing) Ltd &nbsp;·&nbsp; Not affiliated with Jaguar, Triumph, Austin Healey or MG.</small>
+  </footer>
+
+  <button class="scroll-top" id="scrollTop" title="Back to top">↑</button>
+
   <script>
-    (function(){
-      var btn = document.getElementById('scrollTopBtn');
-      window.addEventListener('scroll', function(){
-        if (window.pageYOffset > 300) { btn.classList.add('visible'); }
-        else { btn.classList.remove('visible'); }
-      }, {passive: true});
-    })();
-  </script>
-<script>
-  const navToggle = document.getElementById('nav-toggle');
-  const mainNav = document.getElementById('main-nav');
-  if (navToggle && mainNav) {
-    navToggle.addEventListener('click', () => {
-      navToggle.classList.toggle('open');
-      mainNav.classList.toggle('open');
-    });
-    mainNav.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        navToggle.classList.remove('open');
-        mainNav.classList.remove('open');
+    const toggle = document.getElementById('nav-toggle');
+    const nav = document.getElementById('main-nav');
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      nav.classList.toggle('open');
+      // Show/hide dropdown sub items on mobile
+      nav.querySelectorAll('.dropdown-sub').forEach(el => {
+        el.style.display = nav.classList.contains('open') ? 'block' : 'none';
       });
     });
-  }
-</script>
+    const st = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => { st.classList.toggle('visible', window.scrollY > 400); });
+    st.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+
 </body>
 </html>
