@@ -126,6 +126,23 @@
       .card { padding: 24px 20px; }
       footer a { padding: 4px 0; display: inline-block; }
     }
+    /* Article summary box */
+    .article-summary {
+      background: #181e38;
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+    }
+    .article-summary .sum-tags { display: flex; flex-wrap: wrap; gap: 8px; flex: 1; }
+    .article-summary .sum-tag { background: rgba(200,186,154,0.15); border: 1px solid rgba(200,186,154,0.35); color: #c8ba9a; border-radius: 20px; padding: 4px 14px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    .article-summary .sum-meta { display: flex; gap: 20px; flex-wrap: wrap; }
+    .article-summary .sum-item { font-size: 0.75rem; color: rgba(255,255,255,0.55); letter-spacing: 0.06em; display: flex; align-items: center; gap: 6px; }
+    .article-summary .sum-item strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+    @media(max-width:600px){ .article-summary { flex-direction: column; gap: 12px; } }
   </style>
 </head>
 <body>
@@ -166,17 +183,22 @@
   <section class="content-section">
     <div class="wrap-narrow">
       <div class="breadcrumb"><a href="index.html">Handbook</a> / Richard Hammond’s XK150 FHC</div>
-      <div class="meta">
-        <span class="tag">Press, Media & Awards</span>
-        5 May 2022 &nbsp;&middot;&nbsp; 4 min read
+      <div class="article-summary">
+        <div class="sum-tags">
+          <span class="sum-tag">Press, Media & Awards</span>
+        </div>
+        <div class="sum-meta">
+          <span class="sum-item"><strong>5 May 2022</strong></span>
+          <span class="sum-item">⏱ <strong>4 min read</strong></span>
+        </div>
       </div>
       <h2 class="section-title">Richard Hammond’s XK150 FHC</h2>
       <div class="divider"></div>
       <div class="article-body">
         <p>Materials<br> <br>Press, Media & Awards</p>
 <h3>Richard Hammond’s XK150 FHC</h3>
-<h3>5th MAY 2022</h3>
-<h3>Reading time: 4 minutes</h3>
+
+
 <p>John Skinner Manufacturing Ltd was the interior trim choice for Richard Hammond’s sympathetic and meticulous restoration of his Jaguar XK150 FHC.<br>Known for our attention to detail and passionate approach to our work, it seemed only fitting to be the interior trim supplier to such a complete and comprehensive project by a leading name in the automotive world.</p>
 <p>It was Lockdown 1.0 of summer 2020 and Jonathon Skinner was working from home when he answered his phone to Richard Hammond wanting to talk all things interior trim. After being shown an example of our trim by Neil & Anthony Greenhouse of Tram Inn Garage in Herefordshire who were undertaking the extensive restoration of the XK150 FHC, Richard was so impressed by the quality of our work that he needed to see more.  As always, Jonathon was happy to help offering extensive advice on originality, colours and specification, inspiring ideas and material options.</p>
 <p>And so began one of the most exciting projects we have taken on in our workshop – manufacturing the interior trim for Richard Hammond’s XK150 FHC.</p>
@@ -202,8 +224,7 @@
 <p>Rear Access Hatch in Red Moquette and Red Hardura with Cherry Red Smooth Leather strap.</p>
 <p>Rear Seat Unit in Cherry Red Smooth Leather with Red Moquette Surrounds. Diff Hump and Rear Access Hatch in Red Moquette. Rear Light Area Panel in Grey Wool Cloth. Lower Wheel Arch in Red Moquette. Main Wheel Arch and Upper Wheel Arch in Cherry Red Vinyl with Cherry Red Piping.<br>DRIVETRIBE on YouTube</p>
 <p>Richard Hammond documented the entire XK150 FHC restoration project on his DRIVETRIBE YouTube channel. Jonathon and the John Skinner workshop featured in Episode 5, where we demonstrated our CNC machine in action cutting the Cherry Red leather for we used for R</p>
-      </div>
-      <div style="margin-top: 56px; padding-top: 32px; border-top: 1px solid #dbd6ca;">
+      </div>: 56px; padding-top: 32px; border-top: 1px solid #dbd6ca;">
         <a href="index.html" class="btn btn-outline">← Back to Handbook</a>
       </div>
     </div>

@@ -126,6 +126,23 @@
       .card { padding: 24px 20px; }
       footer a { padding: 4px 0; display: inline-block; }
     }
+    /* Article summary box */
+    .article-summary {
+      background: #181e38;
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+    }
+    .article-summary .sum-tags { display: flex; flex-wrap: wrap; gap: 8px; flex: 1; }
+    .article-summary .sum-tag { background: rgba(200,186,154,0.15); border: 1px solid rgba(200,186,154,0.35); color: #c8ba9a; border-radius: 20px; padding: 4px 14px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    .article-summary .sum-meta { display: flex; gap: 20px; flex-wrap: wrap; }
+    .article-summary .sum-item { font-size: 0.75rem; color: rgba(255,255,255,0.55); letter-spacing: 0.06em; display: flex; align-items: center; gap: 6px; }
+    .article-summary .sum-item strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+    @media(max-width:600px){ .article-summary { flex-direction: column; gap: 12px; } }
   </style>
 </head>
 <body>
@@ -166,17 +183,22 @@
   <section class="content-section">
     <div class="wrap-narrow">
       <div class="breadcrumb"><a href="index.html">Handbook</a> / Our Bespoke Service</div>
-      <div class="meta">
-        <span class="tag">Quality &amp; Workmanship</span>
-        15 Sep 2022 &nbsp;&middot;&nbsp; 6 min read
+      <div class="article-summary">
+        <div class="sum-tags">
+          <span class="sum-tag">Quality &amp; Workmanship</span>
+        </div>
+        <div class="sum-meta">
+          <span class="sum-item"><strong>15 Sep 2022</strong></span>
+          <span class="sum-item">⏱ <strong>6 min read</strong></span>
+        </div>
       </div>
       <h2 class="section-title">Our Bespoke Service</h2>
       <div class="divider"></div>
       <div class="article-body">
         <p>Materials<br> <br>Quality & Workmanship</p>
 <h3>Our Bespoke Service</h3>
-<h3>15th SEP 2022</h3>
-<h3>Reading time: 6 minutes</h3>
+
+
 <p>We understand that an ‘as original’ restoration may not give you the interior you dreamed of for your classic car. And cheaper off-the-shelf kits can leave you feeling frustrated with limited choice and colour options.<br>With our bespoke service, we work with you to create the interior you have always wanted by combining highest quality materials with our in-depth knowledge of trim options and finishes. We can elevate your restoration trim kit by upgrading materials from original specification.</p>
 <p>Our comprehensive range of materials also means that you don’t need to feel limited by colour. Unlike other retailers, we offer multiple shade options across each of the our material categories which gives you a level of creativity and choice not possible with mass-manufactured off-the-shelf kits.</p>
 <h3>Full Leather Restoration Kits</h3>
@@ -200,8 +222,7 @@
 <p>Upgrading to wool carpet brings a feeling of excellence to all areas of your car – particularly to parts that were never designed to be on show and where such luxury is not normally expected.</p>
 <p>We can then trim any surrounding panels in complementary colour leather for a complete look.</p>
 <p>With our extensive material options, you can upgrade basic Black Grain Board panels – a commo</p>
-      </div>
-      <div style="margin-top: 56px; padding-top: 32px; border-top: 1px solid #dbd6ca;">
+      </div>: 56px; padding-top: 32px; border-top: 1px solid #dbd6ca;">
         <a href="index.html" class="btn btn-outline">← Back to Handbook</a>
       </div>
     </div>

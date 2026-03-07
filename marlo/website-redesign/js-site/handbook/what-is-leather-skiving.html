@@ -126,6 +126,23 @@
       .card { padding: 24px 20px; }
       footer a { padding: 4px 0; display: inline-block; }
     }
+    /* Article summary box */
+    .article-summary {
+      background: #181e38;
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+    }
+    .article-summary .sum-tags { display: flex; flex-wrap: wrap; gap: 8px; flex: 1; }
+    .article-summary .sum-tag { background: rgba(200,186,154,0.15); border: 1px solid rgba(200,186,154,0.35); color: #c8ba9a; border-radius: 20px; padding: 4px 14px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    .article-summary .sum-meta { display: flex; gap: 20px; flex-wrap: wrap; }
+    .article-summary .sum-item { font-size: 0.75rem; color: rgba(255,255,255,0.55); letter-spacing: 0.06em; display: flex; align-items: center; gap: 6px; }
+    .article-summary .sum-item strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+    @media(max-width:600px){ .article-summary { flex-direction: column; gap: 12px; } }
   </style>
 </head>
 <body>
@@ -166,17 +183,21 @@
   <section class="content-section">
     <div class="wrap-narrow">
       <div class="breadcrumb"><a href="index.html">Handbook</a> / What is Leather Skiving?</div>
-      <div class="meta">
-        <span class="tag">Colours and Materials</span>
-        2020 &nbsp;&middot;&nbsp; 3 min read
+      <div class="article-summary">
+        <div class="sum-tags">
+          <span class="sum-tag">Colours and Materials</span>
+        </div>
+        <div class="sum-meta">
+          <span class="sum-item"><strong>2020</strong></span>
+          <span class="sum-item">⏱ <strong>3 min read</strong></span>
+        </div>
       </div>
       <h2 class="section-title">What is Leather Skiving?</h2>
       <div class="divider"></div>
       <div class="article-body">
-        <p>Materials<br> <br>Colours and Materials</p>
 <h3>What is Leather Skiving?</h3>
-<h3>16th APR 2020</h3>
-<h3>Reading time: 2 minutes</h3>
+
+
 <p>We offer leather skiving as standard as part of our trim kits. But what does skiving really mean and what benefits does it bring to your classic car restoration?<br>Here, we take a closer look at why we offer this service on our leather trim kits.</p>
 <p>Some areas of classic car restoration are well-known to be difficult to trim. Centre Consoles, Dash Facias and Door Tops fall into this category. Given their location within the car, there’s little room for error and no place to ‘hide’ unsightly tucks and lumps.</p>
 <p>From our workshop, we wanted to do something that would help resolve this issue and enable our customers to achieve a smooth and precise trimmed finish in these areas. We knew that the problem largely came from working with leather that was too thick to trim round corners and curves, so we invested in a leather skiving machine.</p>
@@ -193,9 +214,7 @@
 <p>No. We offer leather skiving as standard across all our trim kits. There is no additional charge for this service.</p>
 <p>We are committed to serving our customers with the highest quality kits on the market, and by offering this service at no additional charge, we are ensuring that all our customers can enjoy and reap the benefits of working with skived leather.</p>
 <p>In addition to our Leather Skiving Machine, we have a variety of other machinery on-site in our workshop that helps us craft our interior trim restoration kits. Read more about these in Inside Our Workshop: Cutting</p>
-<p>Categories: Colours and Materials<br>Share this post<br>   <br>Related Posts<br>In Detail: Our Carpet Kits<br>In Detail: Our Panel Kits<br>Do our kits fit?</p>
-      </div>
-      <div style="margin-top: 56px; padding-top: 32px; border-top: 1px solid #dbd6ca;">
+</div>: 56px; padding-top: 32px; border-top: 1px solid #dbd6ca;">
         <a href="index.html" class="btn btn-outline">← Back to Handbook</a>
       </div>
     </div>

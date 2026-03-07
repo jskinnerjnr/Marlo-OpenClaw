@@ -126,6 +126,23 @@
       .card { padding: 24px 20px; }
       footer a { padding: 4px 0; display: inline-block; }
     }
+    /* Article summary box */
+    .article-summary {
+      background: #181e38;
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+    }
+    .article-summary .sum-tags { display: flex; flex-wrap: wrap; gap: 8px; flex: 1; }
+    .article-summary .sum-tag { background: rgba(200,186,154,0.15); border: 1px solid rgba(200,186,154,0.35); color: #c8ba9a; border-radius: 20px; padding: 4px 14px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    .article-summary .sum-meta { display: flex; gap: 20px; flex-wrap: wrap; }
+    .article-summary .sum-item { font-size: 0.75rem; color: rgba(255,255,255,0.55); letter-spacing: 0.06em; display: flex; align-items: center; gap: 6px; }
+    .article-summary .sum-item strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+    @media(max-width:600px){ .article-summary { flex-direction: column; gap: 12px; } }
   </style>
 </head>
 <body>
@@ -166,17 +183,22 @@
   <section class="content-section">
     <div class="wrap-narrow">
       <div class="breadcrumb"><a href="index.html">Handbook</a> / TR4 Wins Perfect 100 Point Score</div>
-      <div class="meta">
-        <span class="tag">Press, Media &amp; Awards</span>
-        2021 &nbsp;&middot;&nbsp; 3 min read
+      <div class="article-summary">
+        <div class="sum-tags">
+          <span class="sum-tag">Press, Media &amp; Awards</span>
+        </div>
+        <div class="sum-meta">
+          <span class="sum-item"><strong>2021</strong></span>
+          <span class="sum-item">⏱ <strong>3 min read</strong></span>
+        </div>
       </div>
       <h2 class="section-title">TR4 Wins Perfect 100 Point Score</h2>
       <div class="divider"></div>
       <div class="article-body">
         <p>Materials<br> <br>Press, Media & Awards</p>
 <h3>TR4 Wins Perfect 100 Point Score</h3>
-<h3>11th MAY 2022</h3>
-<h3>Reading time: 2 minutes</h3>
+
+
 <p>John Skinner’s proudly supplied Mark Macy of Macy’s Garage, (Ohio, USA) with a number of interior trim parts for his 1961 Triumph TR4 Surrey Top restoration, which went on to scoop Best of Show at the national meet of the Triumph Register of America (TRA) in 2018, achieving the first ever 100 Point Score awarded by the TRA.<br>With a Concours score that goes down in history, a John Skinner’s interior kit really does hit the mark when it comes to original specification trim restorations.</p>
 <p>When Tonda and Mark Macy bought an early TR4 (CT2882) – the 288th of 40,304 manufactured – they knew they were embarking on something special. Finally, after years of restoring cars for their customers, it was their turn to work on their own restoration project. But it wasn’t to be rushed, and it certainly had to stand up to the quality that Macy’s name has come to be known for in the industry. From the very start, this was a restoration with high expectations.</p>
 <p>Taking around seven years in total to restore the car to its former glory, Macy and his team extensively researched the car’s history, acquiring supporting documentation for the unique differences that set this early TR4 apart from the larger production runs of later styles. With many design overspills from the TR3, this was a unique restoration requiring plenty of detective work.</p>
@@ -191,9 +213,7 @@
 <h3>Mark Macy, Macy’s Garage USA</h3>
 <h3>Further Reading</h3>
 <p>Read the full article from the TRA National Newsletter, Issue 140 by clicking on the below image.</p>
-<p>Categories: Press, Media & Awards<br>Share this post<br>   <br>Related Posts<br>Skinner the Trimmer<br>Skinner’s Trim</p>
-      </div>
-      <div style="margin-top: 56px; padding-top: 32px; border-top: 1px solid #dbd6ca;">
+</div>: 56px; padding-top: 32px; border-top: 1px solid #dbd6ca;">
         <a href="index.html" class="btn btn-outline">← Back to Handbook</a>
       </div>
     </div>

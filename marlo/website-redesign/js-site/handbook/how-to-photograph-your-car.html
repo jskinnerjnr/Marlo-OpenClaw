@@ -126,6 +126,23 @@
       .card { padding: 24px 20px; }
       footer a { padding: 4px 0; display: inline-block; }
     }
+    /* Article summary box */
+    .article-summary {
+      background: #181e38;
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+    }
+    .article-summary .sum-tags { display: flex; flex-wrap: wrap; gap: 8px; flex: 1; }
+    .article-summary .sum-tag { background: rgba(200,186,154,0.15); border: 1px solid rgba(200,186,154,0.35); color: #c8ba9a; border-radius: 20px; padding: 4px 14px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    .article-summary .sum-meta { display: flex; gap: 20px; flex-wrap: wrap; }
+    .article-summary .sum-item { font-size: 0.75rem; color: rgba(255,255,255,0.55); letter-spacing: 0.06em; display: flex; align-items: center; gap: 6px; }
+    .article-summary .sum-item strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+    @media(max-width:600px){ .article-summary { flex-direction: column; gap: 12px; } }
   </style>
 </head>
 <body>
@@ -166,17 +183,22 @@
   <section class="content-section">
     <div class="wrap-narrow">
       <div class="breadcrumb"><a href="index.html">Handbook</a> / How to photograph your car interior</div>
-      <div class="meta">
-        <span class="tag">Trimming and Fitting</span>
-        2020 &nbsp;&middot;&nbsp; 3 min read
+      <div class="article-summary">
+        <div class="sum-tags">
+          <span class="sum-tag">Trimming and Fitting</span>
+        </div>
+        <div class="sum-meta">
+          <span class="sum-item"><strong>2020</strong></span>
+          <span class="sum-item">⏱ <strong>3 min read</strong></span>
+        </div>
       </div>
       <h2 class="section-title">How to photograph your car interior</h2>
       <div class="divider"></div>
       <div class="article-body">
         <p>Materials<br> <br>Your Restorations</p>
 <h3>How to photograph your car interior</h3>
-<h3>4th AUG 2022</h3>
-<h3>Reading time: 6 minutes</h3>
+
+
 <p>Our interior trim kits grace cars the world over, and we’re always thankful to our customers who take the time to send us photographs of their finished restorations.<br>From spectacular European mountain regions to sunny sunshine states of the USA, our interiors have been photographed in countless locations and these photographs have helped us build our website with a wealth of inspirational and informative imagery.</p>
 <p>We are always on the lookout for images of our car interiors. If your car features a John Skinner kit, please send us a photo! The below guide will help you take the best photographs of your interior – after all the hard work and dedication of the restoration, it deserves to be photographed in its best possible light!</p>
 <h3>Image Size & Quality</h3>
@@ -198,8 +220,7 @@
 <p>Seats, carpets & door panels can all be seen within this image taken of a XK120 FHC; a good angle that captures most interior elements.<br>This photograph of a XK150 OTS clearly shows seats, carpets and panel work, including a good view of the dash area.<br>Best Angles: Take it from above</p>
 <p>Elevate your camera position by standing on a ladder or step to raise the angle of the photo and shoot from above. This is a good technique to capture all of your interior within one shot. Shoot from the front of the car if you have rear seats to include within the photo.</p>
 <h3>The elevated camera position in this photo captures</h3>
-      </div>
-      <div style="margin-top: 56px; padding-top: 32px; border-top: 1px solid #dbd6ca;">
+      </div>: 56px; padding-top: 32px; border-top: 1px solid #dbd6ca;">
         <a href="index.html" class="btn btn-outline">← Back to Handbook</a>
       </div>
     </div>

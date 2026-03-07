@@ -126,6 +126,23 @@
       .card { padding: 24px 20px; }
       footer a { padding: 4px 0; display: inline-block; }
     }
+    /* Article summary box */
+    .article-summary {
+      background: #181e38;
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+    }
+    .article-summary .sum-tags { display: flex; flex-wrap: wrap; gap: 8px; flex: 1; }
+    .article-summary .sum-tag { background: rgba(200,186,154,0.15); border: 1px solid rgba(200,186,154,0.35); color: #c8ba9a; border-radius: 20px; padding: 4px 14px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    .article-summary .sum-meta { display: flex; gap: 20px; flex-wrap: wrap; }
+    .article-summary .sum-item { font-size: 0.75rem; color: rgba(255,255,255,0.55); letter-spacing: 0.06em; display: flex; align-items: center; gap: 6px; }
+    .article-summary .sum-item strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+    @media(max-width:600px){ .article-summary { flex-direction: column; gap: 12px; } }
   </style>
 </head>
 <body>
@@ -166,17 +183,22 @@
   <section class="content-section">
     <div class="wrap-narrow">
       <div class="breadcrumb"><a href="index.html">Handbook</a> / In Detail: Our Seat Kits</div>
-      <div class="meta">
-        <span class="tag">Quality &amp; Workmanship</span>
-        2020 &nbsp;&middot;&nbsp; 4 min read
+      <div class="article-summary">
+        <div class="sum-tags">
+          <span class="sum-tag">Quality &amp; Workmanship</span>
+        </div>
+        <div class="sum-meta">
+          <span class="sum-item"><strong>2020</strong></span>
+          <span class="sum-item">⏱ <strong>4 min read</strong></span>
+        </div>
       </div>
       <h2 class="section-title">In Detail: Our Seat Kits</h2>
       <div class="divider"></div>
       <div class="article-body">
         <p>Materials<br> <br>Trimming and Fitting</p>
 <h3>In Detail: Our Seat Kits</h3>
-<h3>24th APR 2020</h3>
-<h3>Reading time: 7 minutes</h3>
+
+
 <p>Our seat kits are the best in the industry. Made to original specification with quality materials.<br>The production of our seat kits takes time, knowledge and skill. We manufacture all our restoration seat kits from our Cheltenham workshop with dedication, precision and attention to detail.</p>
 <p>From accurate pattern making to digital cutting technology, our seat kits are made to fit. Our genuine pleating methods alongside our HF (high frequency) welding processes means we deliver exceptional seat kits sympathetic to all original detailing and finishes.</p>
 <p>Read more about the key details that help us craft exceptional seats and upholstery below.</p>
@@ -196,8 +218,7 @@
 <p>We check any materials arriving at our workshop against our standardised colour library to ensure they sit within our accepted colour tolerances and we work closely with our suppliers to help us maintain this consistency. It also gives us peace of mind to know that sewn items being stitched in our Sewing Department are going to match with panel items being worked on by other members of our team in our Trimming Department.</p>
 <p>This Triumph TR3A Front Seat shows a seamless match of colour between the Midnight Blue Leather Pleated Seat and the Vinyl covered Seat Back and Framework.</p>
 <p>This Austin Healey BN1 Front Seat in Biscuit Light Tan shows excellent consistency of colour across the three different materials used to make it – Leather to the Seat Cushion, Vinyl to the Seat Back and Framework, and Leathe</p>
-      </div>
-      <div style="margin-top: 56px; padding-top: 32px; border-top: 1px solid #dbd6ca;">
+      </div>: 56px; padding-top: 32px; border-top: 1px solid #dbd6ca;">
         <a href="index.html" class="btn btn-outline">← Back to Handbook</a>
       </div>
     </div>

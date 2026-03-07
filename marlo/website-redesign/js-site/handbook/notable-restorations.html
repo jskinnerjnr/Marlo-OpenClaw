@@ -126,6 +126,23 @@
       .card { padding: 24px 20px; }
       footer a { padding: 4px 0; display: inline-block; }
     }
+    /* Article summary box */
+    .article-summary {
+      background: #181e38;
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+    }
+    .article-summary .sum-tags { display: flex; flex-wrap: wrap; gap: 8px; flex: 1; }
+    .article-summary .sum-tag { background: rgba(200,186,154,0.15); border: 1px solid rgba(200,186,154,0.35); color: #c8ba9a; border-radius: 20px; padding: 4px 14px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    .article-summary .sum-meta { display: flex; gap: 20px; flex-wrap: wrap; }
+    .article-summary .sum-item { font-size: 0.75rem; color: rgba(255,255,255,0.55); letter-spacing: 0.06em; display: flex; align-items: center; gap: 6px; }
+    .article-summary .sum-item strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+    @media(max-width:600px){ .article-summary { flex-direction: column; gap: 12px; } }
   </style>
 </head>
 <body>
@@ -166,17 +183,22 @@
   <section class="content-section">
     <div class="wrap-narrow">
       <div class="breadcrumb"><a href="index.html">Handbook</a> / Our Notable Restorations</div>
-      <div class="meta">
-        <span class="tag">Your Restorations</span>
-        2021 &nbsp;&middot;&nbsp; 5 min read
+      <div class="article-summary">
+        <div class="sum-tags">
+          <span class="sum-tag">Your Restorations</span>
+        </div>
+        <div class="sum-meta">
+          <span class="sum-item"><strong>2021</strong></span>
+          <span class="sum-item">⏱ <strong>5 min read</strong></span>
+        </div>
       </div>
       <h2 class="section-title">Our Notable Restorations</h2>
       <div class="divider"></div>
       <div class="article-body">
         <p>Materials<br> <br>Press, Media & Awards</p>
 <h3>Our Notable Restorations</h3>
-<h3>26th OCT 2022</h3>
-<h3>Reading time: 4 minutes</h3>
+
+
 <p>From the Jaguar E-Type Cut 7 to the first production Triumph TR TS01, we have been the choice for many notable restorations.<br>Our interiors have been featured in ‘perfect score’ Concours d’Elegance award winners and appeared throughout F1 Grand Prix Drivers’ Parades.</p>
 <p>With our worldwide reputation, we are known throughout the industry to provide the expertise, in-depth knowledge and attention to detail that these historic and high-profile restorations demand. Here are some highlights of noteworthy restorations that John Skinner trim has been a part of.</p>
 <h3>King Carl XVI Gustaf's Daimler Princess</h3>
@@ -209,8 +231,7 @@
 
 <h4>2014 Singapore F1 Grand Prix with Pastor Maldonado</h4>
 <p>We supplied the interior for an MGA Roadster that appeared in the 2014 Singapore Grand Prix Drivers' Parade with Pastor Maldonado. The car was trimmed with Cherry Red Leather Panels, Leather Seats and Armrest with a Black Wool Carpet. We also supplied the Hood and Tonneau in Black Mohair, and the Sidescreen Storage Bag in Cherry Red Vinyl.</p>
-      </div>
-      <div style="margin-top: 56px; padding-top: 32px; border-top: 1px solid #dbd6ca;">
+      </div>: 56px; padding-top: 32px; border-top: 1px solid #dbd6ca;">
         <a href="index.html" class="btn btn-outline">← Back to Handbook</a>
       </div>
     </div>

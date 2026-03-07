@@ -126,6 +126,23 @@
       .card { padding: 24px 20px; }
       footer a { padding: 4px 0; display: inline-block; }
     }
+    /* Article summary box */
+    .article-summary {
+      background: #181e38;
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+    }
+    .article-summary .sum-tags { display: flex; flex-wrap: wrap; gap: 8px; flex: 1; }
+    .article-summary .sum-tag { background: rgba(200,186,154,0.15); border: 1px solid rgba(200,186,154,0.35); color: #c8ba9a; border-radius: 20px; padding: 4px 14px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    .article-summary .sum-meta { display: flex; gap: 20px; flex-wrap: wrap; }
+    .article-summary .sum-item { font-size: 0.75rem; color: rgba(255,255,255,0.55); letter-spacing: 0.06em; display: flex; align-items: center; gap: 6px; }
+    .article-summary .sum-item strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+    @media(max-width:600px){ .article-summary { flex-direction: column; gap: 12px; } }
   </style>
 </head>
 <body>
@@ -166,17 +183,22 @@
   <section class="content-section">
     <div class="wrap-narrow">
       <div class="breadcrumb"><a href="index.html">Handbook</a> / In Detail: Our Headlining Kits</div>
-      <div class="meta">
-        <span class="tag">Quality &amp; Workmanship</span>
-        2020 &nbsp;&middot;&nbsp; 3 min read
+      <div class="article-summary">
+        <div class="sum-tags">
+          <span class="sum-tag">Quality &amp; Workmanship</span>
+        </div>
+        <div class="sum-meta">
+          <span class="sum-item"><strong>2020</strong></span>
+          <span class="sum-item">⏱ <strong>3 min read</strong></span>
+        </div>
       </div>
       <h2 class="section-title">In Detail: Our Headlining Kits</h2>
       <div class="divider"></div>
       <div class="article-body">
         <p>Materials<br> <br>Trimming and Fitting</p>
 <h3>In Detail: Our Headlining Kits</h3>
-<h3>23rd APR 2020</h3>
-<h3>Reading time: 3 minutes</h3>
+
+
 <p>Our Headlining Kits are designed with ease of fitment in mind.<br>Working upwards to trim a headliner to the roof of a car can be quite the challenge – especially with gravity working against you!</p>
 <p>With our pre-bonded material options and extra wide patterns, we’ve done everything we we can with our Headlining Kits to make the process of re-trimming the roof area of your car as simple as possible.</p>
 <p>Here, we take a look at the key features of our Headlining Kits that assist you in trimming this troublesome area.</p>
@@ -210,9 +232,7 @@
 <p>We can upgrade any Headlining Kits and Hardtop Roof Linings originally manufactured in PVC to our luxury Wool Cloth.</p>
 <h3>Extra Material for Sunvisors</h3>
 <p>All our Headlining Kits come with extra material for trimming your sunvisors. For some models, we can also offer fully trimmed sunvisors.</p>
-<p>Categories: Trimming and Fitting<br>Share this post<br>   <br>Related Posts<br>Do our kits fit?<br>In Detail: Our Carpet Kits<br>In Detail: Our Panel Kits</p>
-      </div>
-      <div style="margin-top: 56px; padding-top: 32px; border-top: 1px solid #dbd6ca;">
+</div>: 56px; padding-top: 32px; border-top: 1px solid #dbd6ca;">
         <a href="index.html" class="btn btn-outline">← Back to Handbook</a>
       </div>
     </div>

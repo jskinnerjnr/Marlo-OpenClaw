@@ -126,6 +126,23 @@
       .card { padding: 24px 20px; }
       footer a { padding: 4px 0; display: inline-block; }
     }
+    /* Article summary box */
+    .article-summary {
+      background: #181e38;
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin-bottom: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+    }
+    .article-summary .sum-tags { display: flex; flex-wrap: wrap; gap: 8px; flex: 1; }
+    .article-summary .sum-tag { background: rgba(200,186,154,0.15); border: 1px solid rgba(200,186,154,0.35); color: #c8ba9a; border-radius: 20px; padding: 4px 14px; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    .article-summary .sum-meta { display: flex; gap: 20px; flex-wrap: wrap; }
+    .article-summary .sum-item { font-size: 0.75rem; color: rgba(255,255,255,0.55); letter-spacing: 0.06em; display: flex; align-items: center; gap: 6px; }
+    .article-summary .sum-item strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+    @media(max-width:600px){ .article-summary { flex-direction: column; gap: 12px; } }
   </style>
 </head>
 <body>
@@ -166,17 +183,22 @@
   <section class="content-section">
     <div class="wrap-narrow">
       <div class="breadcrumb"><a href="index.html">Handbook</a> / In Detail: Our Boot Trunk Kits</div>
-      <div class="meta">
-        <span class="tag">Quality &amp; Workmanship</span>
-        2020 &nbsp;&middot;&nbsp; 3 min read
+      <div class="article-summary">
+        <div class="sum-tags">
+          <span class="sum-tag">Quality &amp; Workmanship</span>
+        </div>
+        <div class="sum-meta">
+          <span class="sum-item"><strong>2020</strong></span>
+          <span class="sum-item">⏱ <strong>3 min read</strong></span>
+        </div>
       </div>
       <h2 class="section-title">In Detail: Our Boot Trunk Kits</h2>
       <div class="divider"></div>
       <div class="article-body">
         <p>Materials<br> <br>Trimming and Fitting</p>
 <h3>In Detail: Our Boot Trunk Kits</h3>
-<h3>16th NOV 2022</h3>
-<h3>Reading time: 9 minutes</h3>
+
+
 <p>Although closed and hidden from view for the most part, the Boot Trunk area of the car is still worthy of interior attention.<br>Our Boot Trunk Kits can be made to original or bespoke specification dependent on the look and feel of your restoration.</p>
 <p>Whether kitting it out with hardwearing black grain board panels, or opting for a luxurious wool carpet finish, our Boot Trunk Kits are crafted from quality materials to withstand the more utilitarian use of this area of a car. Whilst it might be out of sight, these details ensure your Boot Trunk area certainly isn’t out of mind!</p>
 <h3>Quality Original Specification Materials</h3>
@@ -200,8 +222,7 @@
 <p>We can supply all Boot Trunk and Rear Luggage Floor Area Kits for the Jaguar E-Types as per original specification, including the original Biscuit shade that was used across the OTS models.</p>
 <p>A Jaguar E-Type FHC 4.2ltr showing the Rear Luggage Floor area trimmed in Dark Blue Vinyl which is matched to the Dark Blue trim of the main car cockpit.<br>The Rear Luggage Floor Area of this E-Type FHC 4.2ltr is trimmed in Magnolia Vinyl. Note the trimmed Hinge & Lock Covers which hide unsightly door mechanisms and blend into the surrounding interior items.<br>Jaguar XK</p>
 <p>Jaguar XK models were originally fitted with Boot Mats made from Hardura material, with the exception of the XK120 OTS that were made in Wool. The Boot Mat was always matched the main trim colour. XK140 & XK150’s featured matching Hardura Side Panels and all XK’s used a Moquette material to cover the Petrol Filler, with the exception of some early XK 120’s that would have had a painted finish. All Boot Lids were trimmed with Vinyl covered Hardboard panels, in a colour to match the main</p>
-      </div>
-      <div style="margin-top: 56px; padding-top: 32px; border-top: 1px solid #dbd6ca;">
+      </div>: 56px; padding-top: 32px; border-top: 1px solid #dbd6ca;">
         <a href="index.html" class="btn btn-outline">← Back to Handbook</a>
       </div>
     </div>
