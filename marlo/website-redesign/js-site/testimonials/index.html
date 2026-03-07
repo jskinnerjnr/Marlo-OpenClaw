@@ -490,7 +490,9 @@
         noResults.style.display = 'none';
         grid.style.display = 'grid';
         data.forEach(t => {
-          const name = t.name || (t.title.includes('–') ? t.title.split('–')[1].trim() : '');
+          const namePart = t.name || (t.title.includes('–') ? t.title.split('–')[1] : t.title.includes(' - ') ? t.title.split(' - ')[1] : '').trim();
+          // Strip trailing country/year: "Joel Strimban, USA, 2018" → "Joel Strimban"
+          const name = namePart ? namePart.split(',')[0].trim() : '';
           const card = document.createElement('div');
           card.className = 'testimonial-card';
           card.innerHTML = `
