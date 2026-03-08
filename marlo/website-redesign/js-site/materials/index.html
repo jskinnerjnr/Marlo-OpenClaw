@@ -740,6 +740,16 @@ function showFvSlide() {
   var tabs = document.getElementById('jsm-fv-tabs');
   var finish = window._fvFinish || 'grained';
   var url = s.url;
+  // Binding-piping: hide Binding tab for piping-only shades
+  var tabBinding = document.getElementById('fv-tab-binding');
+  var tabPiping  = document.getElementById('fv-tab-piping');
+  if (tabBinding && tabPiping && tabPiping.style.display !== 'none') {
+    var hasBind = !!(s.urlBinding);
+    tabBinding.style.display = hasBind ? '' : 'none';
+    if (!hasBind && finish === 'binding') {
+      finish = 'piping'; window._fvFinish = 'piping'; fvSetTab('piping');
+    }
+  }
   if (finish === 'smooth'   && s.urlSmooth)  url = s.urlSmooth;
   if (finish === 'grained'  && s.urlGrained) url = s.urlGrained;
   if (finish === 'vinyl'    && s.urlVinyl)   url = s.urlVinyl;
