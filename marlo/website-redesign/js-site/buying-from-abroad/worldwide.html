@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worldwide Shipping — Australia, NZ, South Africa &amp; Beyond — John Skinner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy:#181e38; --gold:#c8ba9a; --gold-light:#dbd6ca; --cream:#f6f6f3; --grey:#7d807e; --light-grey:#e3e3df; --text:#404041; --warm-bg:#efede9; --font-serif:'EB Garamond',Georgia,serif; --font-sans:'Open Sans','Helvetica Neue',Arial,sans-serif; --shadow:0 2px 20px rgba(0,0,0,0.06); --shadow-md:0 8px 40px rgba(0,0,0,0.11); }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--cream); font-size: 16px; line-height: 1.7; }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+    .wrap-wide { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .site-header { background: #181e38; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid #c8ba9a; position: sticky; top: 0; z-index: 100; }
+    .logo-wrap { padding: 14px 0; text-decoration: none; display: block; }
+    .logo { font-family: var(--font-serif); color: #fff; font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
+    .logo em { color: #c8ba9a; font-style: normal; }
+    .logo-sub { font-size: 0.62rem; color: rgba(255,255,255,0.38); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 3px; }
+    nav { display: flex; gap: 4px; align-items: center; }
+    nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 22px 11px; border-bottom: 2px solid transparent; transition: color 0.2s; }
+    nav a:hover { color: #c8ba9a; }
+    nav a.cta { background: #181e38; color: #c8ba9a; border: 2px solid #c8ba9a; padding: 9px 20px; border-radius: 4px; margin-left: 10px; font-weight: 700; }
+    nav a.cta:hover { background: #c8ba9a; color: #181e38; }
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #181e38; border: 1px solid rgba(200,186,154,0.3); border-top: 2px solid #c8ba9a; min-width: 220px; z-index: 200; }
+    .nav-dropdown:hover .dropdown-menu { display: block; }
+    .dropdown-menu a { display: block; padding: 12px 18px; font-size: 0.75rem; color: rgba(255,255,255,0.75); border-bottom: 1px solid rgba(255,255,255,0.06); white-space: nowrap; }
+    .dropdown-menu a:hover { background: rgba(200,186,154,0.1); color: #c8ba9a; }
+    .nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 200; }
+    .nav-toggle span { display: block; width: 26px; height: 2px; background: #c8ba9a; border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 768px) {
+      .nav-toggle { display: flex; }
+      #main-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #181e38; border-top: 1px solid rgba(200,186,154,0.2); border-bottom: 3px solid #c8ba9a; flex-direction: column; padding: 12px 0 20px; z-index: 150; }
+      #main-nav.open { display: flex; }
+      #main-nav a { padding: 18px 28px; font-size: 1rem; border-bottom: none; border-left: 3px solid transparent; }
+      #main-nav a:hover { border-left-color: #c8ba9a; color: #c8ba9a; background: rgba(255,255,255,0.04); }
+      #main-nav a.cta { margin: 12px 28px 0; text-align: center; border: 2px solid #c8ba9a; border-left: 2px solid #c8ba9a; border-radius: 4px; padding: 16px 20px; font-size: 1rem; color: #c8ba9a; }
+      .dropdown-menu { display: none !important; }
+      .nav-dropdown { display: contents; }
+    }
+    .page-hero { background: #181e38; color: #fff; padding: 72px 24px 80px; text-align: center; }
+    .eyebrow { font-size: 0.68rem; letter-spacing: 0.26em; text-transform: uppercase; color: #c8ba9a; font-weight: 600; margin-bottom: 18px; }
+    .page-hero h1 { font-family: var(--font-serif); font-size: clamp(2.2rem,4.5vw,3.4rem); font-weight: 400; line-height: 1.1; margin-bottom: 24px; }
+    .page-hero p { color: rgba(255,255,255,0.65); font-size: 1.05rem; max-width: 600px; margin: 0 auto; line-height: 1.85; }
+    .breadcrumb { background: var(--warm-bg); padding: 14px 24px; font-size: 0.8rem; color: var(--grey); border-bottom: 1px solid var(--gold-light); }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    section { padding: 56px 24px; }
+    section.white { background: #fff; }
+    section.warm { background: var(--warm-bg); }
+    h2.section-title { font-family: var(--font-serif); font-size: clamp(1.7rem,3vw,2.4rem); color: var(--navy); font-weight: 400; margin-bottom: 12px; }
+    .section-label { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 10px; }
+    .divider { width: 48px; height: 2px; background: var(--gold); margin: 16px 0 28px; }
+    p.body { font-size: 1rem; line-height: 1.85; color: #555; margin-bottom: 18px; }
+    .country-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 20px; margin-top: 28px; }
+    .country-card { background: #fff; border: 1px solid var(--light-grey); border-radius: 8px; padding: 24px 20px; }
+    .country-card .flag { font-size: 2rem; margin-bottom: 10px; display: block; }
+    .country-card h3 { font-family: var(--font-serif); font-size: 1.2rem; color: var(--navy); margin-bottom: 8px; }
+    .country-card p { font-size: 0.88rem; color: var(--grey); line-height: 1.6; }
+    .country-card .note { font-size: 0.8rem; color: var(--gold); margin-top: 8px; font-style: italic; }
+    .info-box { background: rgba(200,186,154,0.1); border: 1px solid rgba(200,186,154,0.4); border-left: 4px solid var(--gold); border-radius: 0 6px 6px 0; padding: 20px 24px; margin: 24px 0; }
+    .info-box p { font-size: 0.95rem; line-height: 1.75; color: #444; margin: 0; }
+    .reassurance-list { margin-top: 24px; display: flex; flex-direction: column; gap: 12px; }
+    .reassurance-item { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: #fff; border: 1px solid var(--light-grey); border-radius: 6px; }
+    .reassurance-item .icon { flex-shrink: 0; font-size: 1.4rem; }
+    .reassurance-item div h4 { font-family: var(--font-serif); font-size: 1.05rem; color: var(--navy); margin-bottom: 4px; }
+    .reassurance-item div p { font-size: 0.88rem; color: var(--grey); line-height: 1.55; margin: 0; }
+    .btn { display: inline-block; padding: 14px 32px; border-radius: 4px; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, color 0.2s; }
+    .btn-gold { background: var(--gold); color: var(--navy); border: 2px solid var(--gold); }
+    .btn-gold:hover { background: #d4c8a8; }
+    .btn-outline-light { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.4); margin-left: 12px; }
+    .btn-outline-light:hover { border-color: var(--gold); color: var(--gold); }
+    .cta-band { background: var(--navy); padding: 56px 24px; text-align: center; }
+    .cta-band h2 { font-family: var(--font-serif); color: #fff; font-size: 1.9rem; margin-bottom: 12px; font-weight: 400; }
+    .cta-band p { color: rgba(255,255,255,0.6); margin-bottom: 28px; }
+    footer { background: #404041; color: rgba(255,255,255,0.42); padding: 52px 24px; text-align: center; font-size: 0.82rem; line-height: 2.1; }
+    footer a { color: var(--gold); text-decoration: none; }
+    .scroll-top { position: fixed; bottom: 28px; right: 28px; width: 44px; height: 44px; background: #181e38; border: 1px solid #c8ba9a; color: #c8ba9a; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; z-index: 500; transition: background 0.2s; }
+    .scroll-top:hover { background: #c8ba9a; color: #181e38; }
+    .scroll-top.visible { display: flex; }
+    @media(max-width:640px) { .btn-outline-light { margin-left:0; margin-top:12px; } }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="logo-wrap" href="../index.html">
+      <div class="logo">John <em>Skinner</em></div>
+      <div class="logo-sub">Est. 1980 · Cheltenham</div>
+    </a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav">
+      <div class="nav-dropdown"><a href="../about/index.html">About &#9662;</a>
+        <div class="dropdown-menu">
+          <a href="../about/company-history.html">Company History</a>
+          <a href="../about/our-philosophy.html">Our Philosophy</a>
+          <a href="../about/the-price-of-value.html">The Price of Value</a>
+          <a href="../about/workshop.html">Our Workshop</a>
+          <a href="../testimonials/index.html">Customer Testimonials</a>
+        </div>
+      </div>
+      <div class="nav-dropdown"><a href="../jaguar/index.html">Jaguar &#9662;</a>
+        <div class="dropdown-menu"><a href="../jaguar/e-type-ots-s1.html">E-Type OTS Series 1</a></div>
+      </div>
+      <div class="nav-dropdown"><a href="../triumph/index.html">Triumph &#9662;</a>
+        <div class="dropdown-menu"><a href="../triumph/tr6.html">TR6</a></div>
+      </div>
+      <a href="../materials/index.html">Materials</a>
+      <a href="../handbook/index.html">Handbook</a>
+      <a href="index.html" style="color:#c8ba9a;">International</a>
+      <a href="../quote/index.html" class="cta">Get a Quote</a>
+    </nav>
+  </header>
+
+  <div class="breadcrumb">
+    <div class="wrap-wide"><a href="index.html">International Orders</a> → Worldwide</div>
+  </div>
+
+  <section class="page-hero">
+    <p class="eyebrow">Worldwide Shipping</p>
+    <h1>🌏 Australia, NZ &amp; Rest of World</h1>
+    <p>We've shipped to over 40 countries. If you're restoring a classic British car, we'll get the right kit to you — wherever you are.</p>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="section-label">Where We Ship</p>
+      <h2 class="section-title">We've Shipped Everywhere a Classic Has Been Driven</h2>
+      <div class="divider"></div>
+      <p class="body">Classic British cars were exported in enormous numbers throughout the 1950s, 60s and 70s. Jaguar E-Types, Triumph TRs, Austin Healeys and MGBs went to Australia, New Zealand, South Africa, Japan, South America and the Middle East. Those cars are still there — still being restored — and we are still the right people to trim them.</p>
+      <p class="body">In recent years we have shipped to Australia, New Zealand, South Africa, Japan, Vietnam, Brazil, Israel, Lebanon, Jordan and many more. Every country has its own import rules and duties. We will always be straightforward with you about what applies to your order.</p>
+
+      <div class="country-grid">
+        <div class="country-card">
+          <span class="flag">🇦🇺</span>
+          <h3>Australia</h3>
+          <p>One of our most active markets outside of North America and Europe. Australian restorers have exceptional access to surviving British cars. GST applies on import. We are experienced at shipping to all Australian states.</p>
+          <p class="note">Typically 5–9 working days from dispatch.</p>
+        </div>
+        <div class="country-card">
+          <span class="flag">🇳🇿</span>
+          <h3>New Zealand</h3>
+          <p>A strong classic car culture with a healthy population of surviving British sports cars. GST applies on import. We regularly ship to NZ and the process is straightforward.</p>
+          <p class="note">Typically 7–10 working days from dispatch.</p>
+        </div>
+        <div class="country-card">
+          <span class="flag">🇿🇦</span>
+          <h3>South Africa</h3>
+          <p>South Africa has a well-established classic car community with strong British marque representation. We ship regularly to Johannesburg, Cape Town and surrounding areas.</p>
+          <p class="note">Typically 5–8 working days from dispatch.</p>
+        </div>
+        <div class="country-card">
+          <span class="flag">🇯🇵</span>
+          <h3>Japan</h3>
+          <p>Japan has a devoted community of British classic car owners with an exceptionally high standard of restoration. We have shipped multiple kits to Japanese customers and the process is well-established.</p>
+          <p class="note">Typically 3–5 working days from dispatch.</p>
+        </div>
+        <div class="country-card">
+          <span class="flag">🇧🇷🇮🇱🇯🇴🇱🇧</span>
+          <h3>Middle East, South America &amp; Beyond</h3>
+          <p>We have shipped to Brazil, Israel, Jordan, Lebanon, Vietnam and many other destinations. Wherever there is a classic British car in need of new trim, we will find a way to get a kit to you.</p>
+          <p class="note">Timeline and duties vary by country — contact us for specifics.</p>
+        </div>
+        <div class="country-card">
+          <span class="flag">🇬🇧</span>
+          <h3>United Kingdom</h3>
+          <p>We manufacture in Cheltenham and ship throughout the UK. No duties, no customs. Typically 2–3 working days via tracked courier. Collection from our workshop is also available by arrangement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="white">
+    <div class="wrap">
+      <p class="section-label">What to Expect</p>
+      <h2 class="section-title">How International Shipping Works</h2>
+      <div class="divider"></div>
+      <p class="body">The process is the same regardless of where you are in the world. We handle everything up to the point your shipment crosses your country's border — from there, local import rules apply.</p>
+
+      <div class="reassurance-list">
+        <div class="reassurance-item">
+          <div class="icon">📋</div>
+          <div><h4>Full Documentation</h4><p>Every international shipment leaves with a commercial invoice, packing list, and UK origin certificate. This is everything your customs authority needs. We email copies to you before dispatch.</p></div>
+        </div>
+        <div class="reassurance-item">
+          <div class="icon">📦</div>
+          <div><h4>Couriers We Use</h4><p>FedEx, DHL, UPS and DPD — all with full tracking and insurance to replacement value. We select the most reliable option for your destination based on our experience.</p></div>
+        </div>
+        <div class="reassurance-item">
+          <div class="icon">🏭</div>
+          <div><h4>Production Lead Time</h4><p>Most full interior kits take 8–12 weeks in production. We update you throughout. Part-shipments are available for larger orders so your restoration can begin before everything is complete.</p></div>
+        </div>
+        <div class="reassurance-item">
+          <div class="icon">💳</div>
+          <div><h4>Payment</h4><p>Card, UK bank transfer, or Wise. Wise is our preferred method for international customers — pay in your local currency at the real exchange rate with no hidden fees.</p></div>
+        </div>
+        <div class="reassurance-item">
+          <div class="icon">🛃</div>
+          <div><h4>Duties &amp; Taxes — How It Works</h4><p>We do not charge UK VAT on international orders — you are outside the UK VAT area. That doesn't mean the tax disappears. Your own country collects its equivalent tax (GST, import VAT, customs duty) when your shipment arrives at the border. What you owe depends on your country's rates and the declared value of the goods. We will always tell you what to expect at the time of quoting, and provide full documentation to ensure fast clearance.</p></div>
+        </div>
+      </div>
+
+      <div class="info-box" style="margin-top:32px;">
+        <p><strong>Not sure what applies to your country?</strong> Contact us with your location when requesting a quote and we'll give you a clear picture of what to expect on duties, taxes and delivery timeline before you commit to anything.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <h2>Wherever You Are, We'll Get There</h2>
+    <p>Tell us your car, your country, and what you need — we'll do the rest.</p>
+    <a class="btn btn-gold" href="../quote/index.html">Request a Quote</a>
+    <a class="btn btn-outline-light" href="index.html">Back to International Guide</a>
+  </div>
+
+  <footer>
+    <strong>John Skinner (Manufacturing) Ltd</strong><br>
+    Classic Car Interior Trim · Est. 1980 · Cheltenham, England<br><br>
+    <a href="../index.html">Home</a> · <a href="../about/index.html">About</a> · <a href="../materials/index.html">Materials</a> · <a href="index.html">International Orders</a> · <a href="../quote/index.html">Get a Quote</a><br>
+    <a href="../legal/terms.html">Terms &amp; Conditions</a> · <a href="../legal/privacy.html">Privacy Policy</a><br><br>
+    &copy; 2025 John Skinner (Manufacturing) Ltd. All rights reserved.
+  </footer>
+
+  <button class="scroll-top" id="scrollTop" title="Back to top" aria-label="Back to top">↑</button>
+
+  <script>
+    const toggle = document.getElementById('nav-toggle');
+    const nav = document.getElementById('main-nav');
+    if (toggle) toggle.addEventListener('click', () => { toggle.classList.toggle('open'); nav.classList.toggle('open'); });
+    const st = document.getElementById('scrollTop');
+    if (st) {
+      window.addEventListener('scroll', () => st.classList.toggle('visible', window.scrollY > 400));
+      st.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
+  </script>
+</body>
+</html>

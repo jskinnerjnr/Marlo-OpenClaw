@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buying from the EU — Post-Brexit Guide — John Skinner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy:#181e38; --gold:#c8ba9a; --gold-light:#dbd6ca; --cream:#f6f6f3; --grey:#7d807e; --light-grey:#e3e3df; --text:#404041; --warm-bg:#efede9; --font-serif:'EB Garamond',Georgia,serif; --font-sans:'Open Sans','Helvetica Neue',Arial,sans-serif; --shadow:0 2px 20px rgba(0,0,0,0.06); --shadow-md:0 8px 40px rgba(0,0,0,0.11); }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); color: var(--text); background: var(--cream); font-size: 16px; line-height: 1.7; }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+    .wrap-wide { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .site-header { background: #181e38; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid #c8ba9a; position: sticky; top: 0; z-index: 100; }
+    .logo-wrap { padding: 14px 0; text-decoration: none; display: block; }
+    .logo { font-family: var(--font-serif); color: #fff; font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.2; }
+    .logo em { color: #c8ba9a; font-style: normal; }
+    .logo-sub { font-size: 0.62rem; color: rgba(255,255,255,0.38); letter-spacing: 0.2em; text-transform: uppercase; margin-top: 3px; }
+    nav { display: flex; gap: 4px; align-items: center; }
+    nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; padding: 22px 11px; border-bottom: 2px solid transparent; transition: color 0.2s; }
+    nav a:hover { color: #c8ba9a; }
+    nav a.cta { background: #181e38; color: #c8ba9a; border: 2px solid #c8ba9a; padding: 9px 20px; border-radius: 4px; margin-left: 10px; font-weight: 700; }
+    nav a.cta:hover { background: #c8ba9a; color: #181e38; }
+    .nav-dropdown { position: relative; display: inline-block; }
+    .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #181e38; border: 1px solid rgba(200,186,154,0.3); border-top: 2px solid #c8ba9a; min-width: 220px; z-index: 200; }
+    .nav-dropdown:hover .dropdown-menu { display: block; }
+    .dropdown-menu a { display: block; padding: 12px 18px; font-size: 0.75rem; color: rgba(255,255,255,0.75); border-bottom: 1px solid rgba(255,255,255,0.06); white-space: nowrap; }
+    .dropdown-menu a:hover { background: rgba(200,186,154,0.1); color: #c8ba9a; }
+    .nav-toggle { display: none; flex-direction: column; justify-content: center; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; z-index: 200; }
+    .nav-toggle span { display: block; width: 26px; height: 2px; background: #c8ba9a; border-radius: 2px; transition: transform 0.3s, opacity 0.3s; }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 768px) {
+      .nav-toggle { display: flex; }
+      #main-nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #181e38; border-top: 1px solid rgba(200,186,154,0.2); border-bottom: 3px solid #c8ba9a; flex-direction: column; padding: 12px 0 20px; z-index: 150; }
+      #main-nav.open { display: flex; }
+      #main-nav a { padding: 18px 28px; font-size: 1rem; border-bottom: none; border-left: 3px solid transparent; }
+      #main-nav a:hover { border-left-color: #c8ba9a; color: #c8ba9a; background: rgba(255,255,255,0.04); }
+      #main-nav a.cta { margin: 12px 28px 0; text-align: center; border: 2px solid #c8ba9a; border-left: 2px solid #c8ba9a; border-radius: 4px; padding: 16px 20px; font-size: 1rem; color: #c8ba9a; }
+      .dropdown-menu { display: none !important; }
+      .nav-dropdown { display: contents; }
+    }
+    .page-hero { background: #181e38; color: #fff; padding: 72px 24px 80px; text-align: center; }
+    .eyebrow { font-size: 0.68rem; letter-spacing: 0.26em; text-transform: uppercase; color: #c8ba9a; font-weight: 600; margin-bottom: 18px; }
+    .page-hero h1 { font-family: var(--font-serif); font-size: clamp(2.2rem,4.5vw,3.4rem); font-weight: 400; line-height: 1.1; margin-bottom: 24px; }
+    .page-hero p { color: rgba(255,255,255,0.65); font-size: 1.05rem; max-width: 600px; margin: 0 auto; line-height: 1.85; }
+    .breadcrumb { background: var(--warm-bg); padding: 14px 24px; font-size: 0.8rem; color: var(--grey); border-bottom: 1px solid var(--gold-light); }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    section { padding: 56px 24px; }
+    section.white { background: #fff; }
+    section.warm { background: var(--warm-bg); }
+    section.navy { background: #181e38; color: #fff; }
+    h2.section-title { font-family: var(--font-serif); font-size: clamp(1.7rem,3vw,2.4rem); color: var(--navy); font-weight: 400; margin-bottom: 12px; }
+    section.navy h2.section-title { color: #fff; }
+    .section-label { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 10px; }
+    .divider { width: 48px; height: 2px; background: var(--gold); margin: 16px 0 28px; }
+    p.body { font-size: 1rem; line-height: 1.85; color: #555; margin-bottom: 18px; }
+    section.navy p.body { color: rgba(255,255,255,0.7); }
+    .info-box { background: rgba(200,186,154,0.1); border: 1px solid rgba(200,186,154,0.4); border-left: 4px solid var(--gold); border-radius: 0 6px 6px 0; padding: 20px 24px; margin: 24px 0; }
+    .info-box p { font-size: 0.95rem; line-height: 1.75; color: #444; margin: 0; }
+    .info-box.green { border-left-color: #1c6b3a; background: rgba(28,107,58,0.06); }
+    .comparison-table { width: 100%; border-collapse: collapse; margin: 28px 0; font-size: 0.92rem; }
+    .comparison-table th { background: var(--navy); color: #fff; padding: 14px 16px; text-align: left; font-family: var(--font-serif); font-size: 1rem; font-weight: 400; }
+    .comparison-table td { padding: 14px 16px; border-bottom: 1px solid var(--light-grey); vertical-align: top; }
+    .comparison-table tr:nth-child(even) td { background: rgba(200,186,154,0.05); }
+    .comparison-table .highlight { color: var(--navy); font-weight: 600; }
+    .step-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1px; background: var(--light-grey); margin-top: 28px; }
+    .step-item { background: #fff; padding: 24px 20px; }
+    .step-num { font-family: var(--font-serif); font-size: 2.2rem; color: rgba(200,186,154,0.5); font-weight: 600; margin-bottom: 6px; }
+    .step-item h4 { font-family: var(--font-serif); font-size: 1.05rem; color: var(--navy); margin-bottom: 8px; }
+    .step-item p { font-size: 0.85rem; color: var(--grey); line-height: 1.6; }
+    .faq-list { margin-top: 24px; display: flex; flex-direction: column; gap: 16px; }
+    .faq-item { border: 1px solid var(--light-grey); border-radius: 6px; overflow: hidden; }
+    .faq-q { padding: 18px 20px; font-family: var(--font-serif); font-size: 1.1rem; color: var(--navy); cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: #fff; }
+    .faq-q:after { content: '+'; color: var(--gold); font-size: 1.4rem; font-weight: 300; flex-shrink: 0; }
+    .faq-q.open:after { content: '−'; }
+    .faq-a { display: none; padding: 0 20px 18px; font-size: 0.92rem; line-height: 1.75; color: #555; background: #fff; }
+    .faq-a.open { display: block; }
+    .btn { display: inline-block; padding: 14px 32px; border-radius: 4px; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background 0.2s, color 0.2s; }
+    .btn-gold { background: var(--gold); color: var(--navy); border: 2px solid var(--gold); }
+    .btn-gold:hover { background: #d4c8a8; }
+    .btn-outline-light { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.4); margin-left: 12px; }
+    .btn-outline-light:hover { border-color: var(--gold); color: var(--gold); }
+    .cta-band { background: var(--navy); padding: 56px 24px; text-align: center; }
+    .cta-band h2 { font-family: var(--font-serif); color: #fff; font-size: 1.9rem; margin-bottom: 12px; font-weight: 400; }
+    .cta-band p { color: rgba(255,255,255,0.6); margin-bottom: 28px; }
+    footer { background: #404041; color: rgba(255,255,255,0.42); padding: 52px 24px; text-align: center; font-size: 0.82rem; line-height: 2.1; }
+    footer a { color: var(--gold); text-decoration: none; }
+    .scroll-top { position: fixed; bottom: 28px; right: 28px; width: 44px; height: 44px; background: #181e38; border: 1px solid #c8ba9a; color: #c8ba9a; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; font-size: 1.1rem; z-index: 500; transition: background 0.2s; }
+    .scroll-top:hover { background: #c8ba9a; color: #181e38; }
+    .scroll-top.visible { display: flex; }
+    @media(max-width:640px) { .comparison-table { font-size: 0.82rem; } .comparison-table th, .comparison-table td { padding: 10px 12px; } }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a class="logo-wrap" href="../index.html">
+      <div class="logo">John <em>Skinner</em></div>
+      <div class="logo-sub">Est. 1980 · Cheltenham</div>
+    </a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="main-nav">
+      <div class="nav-dropdown"><a href="../about/index.html">About &#9662;</a>
+        <div class="dropdown-menu">
+          <a href="../about/company-history.html">Company History</a>
+          <a href="../about/our-philosophy.html">Our Philosophy</a>
+          <a href="../about/the-price-of-value.html">The Price of Value</a>
+          <a href="../about/workshop.html">Our Workshop</a>
+          <a href="../testimonials/index.html">Customer Testimonials</a>
+        </div>
+      </div>
+      <div class="nav-dropdown"><a href="../jaguar/index.html">Jaguar &#9662;</a>
+        <div class="dropdown-menu"><a href="../jaguar/e-type-ots-s1.html">E-Type OTS Series 1</a></div>
+      </div>
+      <div class="nav-dropdown"><a href="../triumph/index.html">Triumph &#9662;</a>
+        <div class="dropdown-menu"><a href="../triumph/tr6.html">TR6</a></div>
+      </div>
+      <a href="../materials/index.html">Materials</a>
+      <a href="../handbook/index.html">Handbook</a>
+      <a href="index.html" style="color:#c8ba9a;">International</a>
+      <a href="../quote/index.html" class="cta">Get a Quote</a>
+    </nav>
+  </header>
+
+  <div class="breadcrumb">
+    <div class="wrap-wide"><a href="index.html">International Orders</a> → Continental Europe</div>
+  </div>
+
+  <section class="page-hero">
+    <p class="eyebrow">Continental Europe · Post-Brexit Guide</p>
+    <h1>🇪🇺 Buying from the EU</h1>
+    <p>Brexit changed the paperwork — not the quality, not the price. Our products are 100% UK-made and attract zero duties to the EU. Here's exactly how it works.</p>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="section-label">The Bottom Line</p>
+      <h2 class="section-title">Don't Let Brexit Put You Off</h2>
+      <div class="divider"></div>
+      <p class="body">We continue to supply restoration kits to customers across Germany, France, the Netherlands, Belgium, Spain, Italy, Scandinavia and beyond. Brexit has not changed what you pay in total — it has only changed the process slightly.</p>
+
+      <p class="section-label" style="margin-top:32px;">Understanding the Tax</p>
+      <h3 style="font-family:var(--font-serif);font-size:1.4rem;color:var(--navy);font-weight:400;margin-bottom:12px;">Where the Tax Goes — and Why It Moves</h3>
+      <div class="divider"></div>
+      <p class="body">In the UK, every purchase includes 20% VAT built into the price. When you buy from us as a UK customer, you're paying that 20% to us, and we pass it to HMRC.</p>
+      <p class="body"><strong>Because you're outside the UK VAT area, we do not charge you UK VAT.</strong> But that doesn't mean the tax disappears — it simply moves. Instead of paying tax to us at the point of sale, you pay the equivalent tax to your own government when the goods arrive at your border. The tax is owed; it just goes to your country, not ours.</p>
+      <p class="body">What you pay on arrival is your country's local import VAT rate — the same rate you'd pay on any domestic purchase. In Germany that's 19%, France 20%, the Netherlands 21%. For most customers, the total cost of the order is virtually identical to what it would have been before Brexit.</p>
+      <div class="info-box green">
+        <p><strong>Key fact:</strong> UK-manufactured goods exported to the EU attract <strong>0% import duty</strong> under the UK–EU Trade and Cooperation Agreement (TCA). You pay your local VAT only — no additional tariffs or duties on top. We supply full UK origin documentation with every shipment to confirm this at customs.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="white">
+    <div class="wrap">
+      <p class="section-label">Before &amp; After</p>
+      <h2 class="section-title">What Changed with Brexit</h2>
+      <div class="divider"></div>
+      <table class="comparison-table">
+        <thead>
+          <tr><th>What You Pay</th><th>Pre-Brexit (before Jan 2021)</th><th>Post-Brexit (now)</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>UK VAT (20%)</strong></td>
+            <td>Paid to us at point of sale</td>
+            <td class="highlight">Not charged — you are outside the UK VAT area</td>
+          </tr>
+          <tr>
+            <td><strong>Duty / Tariff</strong></td>
+            <td>None (within EU single market)</td>
+            <td class="highlight">None — 0% on UK-manufactured goods under TCA</td>
+          </tr>
+          <tr>
+            <td><strong>Local VAT</strong></td>
+            <td>Not charged separately</td>
+            <td>Paid at point of arrival in your country (collected by local customs)</td>
+          </tr>
+          <tr>
+            <td><strong>Admin fee</strong></td>
+            <td>None</td>
+            <td>Small customs handling fee (typically €10–€15) charged by the courier or customs authority</td>
+          </tr>
+          <tr>
+            <td><strong>Total cost difference</strong></td>
+            <td>—</td>
+            <td class="highlight">Minimal. Your local VAT rate replaces UK VAT. Overall cost very similar.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info-box">
+        <p><strong>In short:</strong> the tax doesn't disappear — it moves from our invoice to your country's border. German VAT is 19%, French 20%, Dutch 21%. For most EU customers the total cost is almost identical to pre-Brexit. The only addition is a small customs handling fee (typically €10–€15) charged by the courier or customs authority for processing the paperwork.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="warm">
+    <div class="wrap">
+      <p class="section-label">DDP Shipping</p>
+      <h2 class="section-title">We Handle the Complexity</h2>
+      <div class="divider"></div>
+      <p class="body">For most EU countries, we offer <strong>DDP (Delivered Duty Paid)</strong> shipping. This means all import charges are settled at the point of your order — you pay us once, and your kit arrives at your door without any additional payment required at the border.</p>
+      <p class="body">Where DDP is not available for your specific country, local customs will contact you on arrival to arrange your local VAT payment directly with them. This is a simple, standard process — our documentation ensures there are no delays and no unexpected charges.</p>
+      <p class="body">We email you a copy of your shipping invoice and all customs documentation the moment your kit leaves our factory. You have full visibility of everything reviewed at customs — no surprises.</p>
+
+      <p class="section-label" style="margin-top:40px;">The Process</p>
+      <div class="step-grid">
+        <div class="step-item"><div class="step-num">1</div><h4>Place Your Order</h4><p>Pay us for your kit. No UK VAT charged. We raise your invoice with full UK origin documentation.</p></div>
+        <div class="step-item"><div class="step-num">2</div><h4>Production</h4><p>Your kit is made in our Cheltenham workshop. We'll keep you updated throughout.</p></div>
+        <div class="step-item"><div class="step-num">3</div><h4>Dispatch</h4><p>We email you all shipping documents before dispatch. Fully tracked and insured via FedEx, DHL, UPS or DPD.</p></div>
+        <div class="step-item"><div class="step-num">4</div><h4>Customs</h4><p>Our documentation confirms UK origin — 0% duty. Your local VAT is the only charge at the border.</p></div>
+        <div class="step-item"><div class="step-num">5</div><h4>Delivered</h4><p>Your kit arrives. For DDP shipments, nothing further to pay. For non-DDP, you will have been contacted directly by local customs.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="section-label">Common Questions</p>
+      <h2 class="section-title">FAQ — EU Customers</h2>
+      <div class="divider"></div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-q">Will I have to pay import duties on my kit?</div>
+          <div class="faq-a">No. Our products are manufactured in the United Kingdom. Under the UK–EU Trade and Cooperation Agreement, UK-origin goods attract 0% tariff when imported into EU member states. We supply full UK origin documentation and commercial invoices with every shipment specifically to confirm this.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">Why is my order cheaper than before Brexit?</div>
+          <div class="faq-a">Because we no longer charge you UK VAT (20%) at the point of sale — you are outside the UK VAT area, so we are not permitted to collect it on the UK government's behalf. That doesn't mean the tax is waived. It means your own country's government collects their equivalent tax when the goods arrive at your border. If your local rate is lower than 20% (Germany is 19%), your total cost is slightly less. If it's the same (France is 20%), it's virtually identical. Either way, you're not being taxed twice — the tax simply moves.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What is DDP shipping and do you offer it?</div>
+          <div class="faq-a">DDP (Delivered Duty Paid) means all import charges are settled upfront at the time of your order — you pay once and your kit arrives without any further payment required at the border. We offer DDP to most EU countries. Contact us when requesting a quote and we will confirm availability for your country.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What happens at customs if DDP isn't available for my country?</div>
+          <div class="faq-a">Your local customs authority will contact you to arrange payment of your country's import VAT. This is a straightforward, standard process. Because our documentation confirms 0% duty, the only charge is your local VAT. The small admin fee (typically €10–€15) is charged by the customs authority or courier. We provide everything your customs office needs to process the shipment quickly.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">How long will delivery take?</div>
+          <div class="faq-a">Most full interior kits take 8–12 weeks in production. Once dispatched, European delivery is typically 2–5 working days via FedEx, DHL, UPS or DPD. We can arrange part-shipments on larger orders so your restoration can begin before the full kit is complete.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q">What currency can I pay in?</div>
+          <div class="faq-a">We accept payment by credit or debit card, UK bank transfer, or Wise (formerly TransferWise). Wise allows you to pay in your local currency with transparent exchange rates — it is often the most cost-effective option for our European customers and is our preferred method for international transfers.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-band">
+    <h2>Ready to Order from Europe?</h2>
+    <p>Get in touch and we'll put a quote together. We'll confirm DDP availability for your country and take care of everything from there.</p>
+    <a class="btn btn-gold" href="../quote/index.html">Request a Quote</a>
+    <a class="btn btn-outline-light" href="index.html">Back to International Guide</a>
+  </div>
+
+  <footer>
+    <strong>John Skinner (Manufacturing) Ltd</strong><br>
+    Classic Car Interior Trim · Est. 1980 · Cheltenham, England<br><br>
+    <a href="../index.html">Home</a> · <a href="../about/index.html">About</a> · <a href="../materials/index.html">Materials</a> · <a href="index.html">International Orders</a> · <a href="../quote/index.html">Get a Quote</a><br>
+    <a href="../legal/terms.html">Terms &amp; Conditions</a> · <a href="../legal/privacy.html">Privacy Policy</a><br><br>
+    &copy; 2025 John Skinner (Manufacturing) Ltd. All rights reserved.
+  </footer>
+
+  <button class="scroll-top" id="scrollTop" title="Back to top" aria-label="Back to top">↑</button>
+
+  <script>
+    const toggle = document.getElementById('nav-toggle');
+    const nav = document.getElementById('main-nav');
+    if (toggle) toggle.addEventListener('click', () => { toggle.classList.toggle('open'); nav.classList.toggle('open'); });
+    const st = document.getElementById('scrollTop');
+    if (st) {
+      window.addEventListener('scroll', () => st.classList.toggle('visible', window.scrollY > 400));
+      st.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
+    document.querySelectorAll('.faq-q').forEach(q => {
+      q.addEventListener('click', () => {
+        q.classList.toggle('open');
+        q.nextElementSibling.classList.toggle('open');
+      });
+    });
+  </script>
+</body>
+</html>
