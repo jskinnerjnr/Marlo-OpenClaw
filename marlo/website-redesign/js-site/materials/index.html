@@ -1396,9 +1396,12 @@ function showFvSlide() {
 
 function closeFullView() {
   fv.classList.remove('open');
+  document.body.style.overflow = '';
   document.removeEventListener('keydown', fvKeyHandler);
-  // Small delay so the transition feels intentional
-  setTimeout(function() { lb.classList.add('open'); }, 80);
+  if (fv._fromLightbox) {
+    setTimeout(function() { lb.classList.add('open'); }, 80);
+  }
+  fv._fromLightbox = false;
 }
 
 function fvKeyHandler(e) {
@@ -1434,6 +1437,24 @@ lbGrid.addEventListener('click', function(e) {
   if (card) openFullView(parseInt(card.dataset.idx, 10));
 });
 
+
+// Secondary material shade cards — same fullview lightbox with prev/next
+document.querySelectorAll('.shade-grid-sec').forEach(function(grid) {
+  grid.addEventListener('click', function(e) {
+    var card = e.target.closest('.sec-shade');
+    if (!card) return;
+    var idx = parseInt(card.dataset.idx);
+    currentShades = Array.from(grid.querySelectorAll('.sec-shade')).map(function(c) {
+      return { url: c.dataset.url, name: c.dataset.name };
+    });
+    fvIndex = idx;
+    fv._fromLightbox = false;
+    showFvSlide();
+    fv.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', fvKeyHandler);
+  });
+});
 // Swatch clicks
 document.querySelectorAll('.swatch[data-material]').forEach(function(sw) {
   sw.addEventListener('click', function() { openLightbox(sw.dataset.material, sw.dataset.color); });
