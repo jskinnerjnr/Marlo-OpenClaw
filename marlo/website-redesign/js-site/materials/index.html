@@ -284,6 +284,10 @@
 
     @media(max-width:640px) { .sec-intro-grid { grid-template-columns: 1fr !important; } }
     .sec-shade:hover img { transform: scale(1.04); transition: transform 0.2s; }
+
+    .scroll-top { position: fixed; bottom: 28px; right: 28px; width: 48px; height: 48px; background: #181e38; border: 1px solid #c8ba9a; color: #c8ba9a; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; font-size: 1.2rem; z-index: 500; transition: background 0.2s; box-shadow: 0 2px 12px rgba(0,0,0,0.25); }
+    .scroll-top:hover { background: #c8ba9a; color: #181e38; }
+    .scroll-top.visible { display: flex; }
   </style>
 </head>
 <body>
@@ -891,5 +895,6 @@ document.querySelectorAll('.swatch[data-material]').forEach(function(sw) {
 });
   </script>
 
+  <button class="scroll-top" id="scrollTop" title="Back to top" aria-label="Back to top">↑</button>
 </body>
 </html>
