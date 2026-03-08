@@ -871,7 +871,7 @@ document.querySelectorAll('.shade-grid-sec').forEach(function(grid) {
     var isHa = card.dataset.mat === 'hardura-armacord';
     var isMf = card.dataset.mat === 'moquette-furflex';
     currentShades = Array.from(grid.querySelectorAll('.sec-shade')).map(function(c) {
-      return { url: c.dataset.url, urlGrained: c.dataset.urlGrained || c.dataset.url, urlSmooth: c.dataset.urlSmooth || '', urlVinyl: c.dataset.urlVinyl || c.dataset.url, urlLc: c.dataset.urlLc || '', urlBinding: c.dataset.urlBinding || c.dataset.url, urlPiping: c.dataset.urlPiping || '', urlHardura: c.dataset.urlHardura || c.dataset.url, urlArmacord: c.dataset.urlArmacord || '', urlMoquette: c.dataset.urlMoquette || c.dataset.url, urlFurflex: c.dataset.urlFurflex || '', name: c.dataset.name };
+      return { url: c.dataset.url, urlGrained: c.dataset.urlGrained || c.dataset.url, urlSmooth: c.dataset.urlSmooth || '', urlVinyl: c.dataset.urlVinyl || c.dataset.url, urlLc: c.dataset.urlLc || '', urlBinding: c.dataset.urlBinding || '', urlPiping: c.dataset.urlPiping || '', urlHardura: c.dataset.urlHardura || c.dataset.url, urlArmacord: c.dataset.urlArmacord || '', urlMoquette: c.dataset.urlMoquette || c.dataset.url, urlFurflex: c.dataset.urlFurflex || '', name: c.dataset.name };
     });
     fvIndex = idx;
     fv._fromLightbox = false;
