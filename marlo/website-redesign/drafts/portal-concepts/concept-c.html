@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Concept C — Split Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #181e38; --gold: #c8ba9a; --cream: #f6f6f3;
+      --warm: #efede9; --grey: #7d807e; --light: #e3e3df;
+      --text: #404041; --green: #1c6b3a; --red: #6d2024;
+      --serif: 'EB Garamond', Georgia, serif;
+      --sans: 'Open Sans', Arial, sans-serif;
+    }
+    body { font-family: var(--sans); background: var(--cream); color: var(--text); font-size: 15px; height: 100dvh; display: flex; flex-direction: column; overflow: hidden; }
+    /* Header */
+    .portal-header { background: var(--navy); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); flex-shrink: 0; }
+    .portal-header .logo { font-family: var(--serif); color: #fff; font-size: 1.05rem; letter-spacing: 0.06em; }
+    .portal-header .logo em { color: var(--gold); font-style: normal; }
+    .portal-header .user-info { font-size: 0.75rem; color: rgba(255,255,255,0.5); text-align: right; }
+    .portal-header .user-info strong { color: var(--gold); display: block; }
+    .concept-label { background: #272e66; color: var(--gold); text-align: center; padding: 7px; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; flex-shrink: 0; }
+    /* Split layout */
+    .split { display: flex; flex: 1; overflow: hidden; }
+    /* LEFT PANE */
+    .left-pane { width: 320px; flex-shrink: 0; display: flex; flex-direction: column; border-right: 1px solid var(--light); background: #fff; }
+    .pane-header { padding: 16px 18px 12px; border-bottom: 1px solid var(--light); }
+    .pane-header h2 { font-family: var(--serif); font-size: 1.3rem; color: var(--navy); }
+    .pane-header p { font-size: 0.75rem; color: var(--grey); margin-top: 2px; }
+    .pane-summary { padding: 10px 18px; background: var(--warm); border-bottom: 1px solid var(--light); display: flex; gap: 16px; align-items: center; }
+    .psum { text-align: center; }
+    .psum .n { font-family: var(--serif); font-size: 1.4rem; color: var(--navy); }
+    .psum .l { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--grey); }
+    .psum + .psum { padding-left: 16px; border-left: 1px solid var(--light); }
+    .pane-total { font-family: var(--serif); margin-left: auto; font-size: 1.2rem; color: var(--navy); }
+    .pane-total small { font-size: 0.65rem; color: var(--grey); font-family: var(--sans); display: block; text-align: right; }
+    .item-list { flex: 1; overflow-y: auto; padding: 10px 12px; }
+    .list-item { display: flex; align-items: center; gap: 10px; padding: 11px 12px; border-radius: 8px; cursor: pointer; margin-bottom: 4px; transition: background 0.15s; border: 1.5px solid transparent; }
+    .list-item:hover { background: var(--cream); }
+    .list-item.active { background: rgba(200,186,154,0.12); border-color: var(--gold); }
+    .li-swatch { width: 40px; height: 40px; border-radius: 6px; flex-shrink: 0; }
+    .li-info { flex: 1; min-width: 0; }
+    .li-name { font-size: 0.88rem; font-weight: 600; color: var(--navy); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .li-meta { font-size: 0.72rem; color: var(--grey); margin-top: 1px; }
+    .li-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+    .li-price { font-family: var(--serif); font-size: 0.9rem; color: var(--navy); }
+    .badge { font-size: 0.6rem; padding: 2px 7px; border-radius: 8px; font-weight: 600; }
+    .b-ok { background: rgba(28,107,58,0.1); color: var(--green); border: 1px solid rgba(28,107,58,0.3); }
+    .b-rev { background: rgba(200,186,154,0.2); color: #7a6f52; border: 1px solid rgba(200,186,154,0.5); }
+    .b-act { background: rgba(109,32,36,0.08); color: var(--red); border: 1px solid rgba(109,32,36,0.25); }
+    .pane-approve { margin: 12px; }
+    .pane-approve button { width: 100%; padding: 13px; background: var(--navy); color: var(--gold); border: none; border-radius: 8px; font-weight: 700; font-size: 0.85rem; cursor: pointer; letter-spacing: 0.05em; }
+    /* RIGHT PANE */
+    .right-pane { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+    .right-empty { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--grey); text-align: center; padding: 40px; }
+    .right-empty .icon { font-size: 3rem; margin-bottom: 16px; opacity: 0.3; }
+    .right-empty p { font-size: 0.9rem; max-width: 260px; line-height: 1.6; }
+    .right-detail { flex: 1; display: none; flex-direction: column; overflow: hidden; }
+    .right-detail.active { display: flex; }
+    .detail-head { background: var(--navy); padding: 20px 24px; display: flex; gap: 16px; align-items: flex-start; flex-shrink: 0; }
+    .dh-swatch { width: 64px; height: 64px; border-radius: 10px; flex-shrink: 0; }
+    .dh-info h2 { font-family: var(--serif); font-size: 1.6rem; color: #fff; line-height: 1.1; margin-bottom: 4px; }
+    .dh-info p { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+    .dh-info .dh-price { font-family: var(--serif); font-size: 1.5rem; color: var(--gold); margin-top: 8px; }
+    .dh-badge { margin-left: auto; align-self: flex-start; padding: 6px 14px; border-radius: 20px; font-size: 0.72rem; font-weight: 600; }
+    /* Detail tabs */
+    .detail-tabs { display: flex; background: #fff; border-bottom: 2px solid var(--light); flex-shrink: 0; padding: 0 8px; }
+    .dtab { padding: 14px 20px; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--grey); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.2s; white-space: nowrap; }
+    .dtab.active { color: var(--navy); border-bottom-color: var(--gold); }
+    /* Detail body */
+    .detail-body { flex: 1; overflow-y: auto; padding: 24px; background: var(--cream); }
+    .about-text { font-size: 0.92rem; line-height: 1.8; color: #555; margin-bottom: 20px; }
+    .spec-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); gap: 10px; margin-bottom: 20px; }
+    .spec-item { background: #fff; border: 1px solid var(--light); border-radius: 8px; padding: 12px 14px; }
+    .spec-item .sl { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--grey); }
+    .spec-item .sv { font-size: 0.92rem; font-weight: 600; color: var(--navy); margin-top: 3px; }
+    /* Media */
+    .media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap: 10px; }
+    .media-card { border-radius: 8px; overflow: hidden; cursor: pointer; position: relative; aspect-ratio: 4/3; }
+    .media-card.video::after { content: '▶'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: #fff; background: rgba(0,0,0,0.3); }
+    .media-card-label { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent,rgba(0,0,0,0.6)); color: #fff; font-size: 0.7rem; padding: 8px 8px 6px; }
+    /* Questions */
+    .q-split { display: flex; flex-direction: column; height: 100%; }
+    .q-thread { flex: 1; display: flex; flex-direction: column; gap: 12px; overflow-y: auto; padding-bottom: 16px; }
+    .q-bubble { padding: 12px 16px; border-radius: 10px; font-size: 0.9rem; line-height: 1.6; max-width: 75%; }
+    .q-bubble.customer { background: rgba(200,186,154,0.2); border: 1px solid rgba(200,186,154,0.4); align-self: flex-end; }
+    .q-bubble.admin { background: var(--navy); color: rgba(255,255,255,0.9); align-self: flex-start; }
+    .qmeta { font-size: 0.7rem; color: var(--grey); margin-top: 5px; }
+    .q-bubble.admin .qmeta { color: rgba(255,255,255,0.4); }
+    .q-empty { color: var(--grey); font-size: 0.9rem; text-align: center; padding: 40px 20px; }
+    /* Detail footer / action bar */
+    .detail-footer { padding: 14px 24px; border-top: 1px solid var(--light); background: #fff; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px; }
+    .q-input-row { display: flex; gap: 8px; }
+    .q-input { flex: 1; padding: 10px 14px; border: 1px solid var(--light); border-radius: 8px; font-family: var(--sans); font-size: 0.88rem; resize: none; }
+    .q-input:focus { outline: none; border-color: var(--gold); }
+    .q-send { background: var(--navy); color: var(--gold); border: none; padding: 10px 18px; border-radius: 8px; font-weight: 600; font-size: 0.82rem; cursor: pointer; }
+    .action-row { display: flex; gap: 8px; }
+    .act-btn { flex: 1; padding: 11px; border-radius: 6px; border: none; font-size: 0.82rem; font-weight: 600; cursor: pointer; }
+    .act-keep { background: rgba(28,107,58,0.1); color: var(--green); border: 1px solid rgba(28,107,58,0.3); }
+    .act-add { background: rgba(28,107,58,0.1); color: var(--green); border: 1px solid rgba(28,107,58,0.3); }
+    .act-remove { background: rgba(109,32,36,0.08); color: var(--red); border: 1px solid rgba(109,32,36,0.2); }
+    /* Mobile back button */
+    .mobile-back { display: none; }
+    @media (max-width: 700px) {
+      body { overflow: auto; height: auto; }
+      .split { flex-direction: column; overflow: visible; height: auto; }
+      .left-pane { width: 100%; border-right: none; border-bottom: 1px solid var(--light); overflow: visible; }
+      .left-pane.hidden { display: none; }
+      .item-list { overflow: visible; max-height: none; }
+      .right-pane { display: none; }
+      .right-pane.mobile-open { display: flex; min-height: 100dvh; }
+      .right-detail.active { display: flex; }
+      .mobile-back { display: flex; align-items: center; gap: 8px; padding: 12px 20px; background: var(--warm); border-bottom: 1px solid var(--light); font-size: 0.82rem; color: var(--navy); font-weight: 600; cursor: pointer; flex-shrink: 0; }
+      .mobile-back::before { content: '←'; }
+      .pane-approve { display: none; }
+      .detail-body { overflow: visible; }
+      .q-split { height: auto; }
+      .q-thread { overflow: visible; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="portal-header">
+    <div class="logo">John <em>Skinner</em></div>
+    <div class="user-info"><strong>David Mitchell</strong>1972 Jaguar E-Type</div>
+  </header>
+
+  <div class="concept-label">Concept C — Split panel (list left, detail right; full-screen on mobile)</div>
+
+  <div class="split">
+    <!-- LEFT LIST -->
+    <div class="left-pane" id="left-pane">
+      <div class="pane-header">
+        <h2>Your Quote</h2>
+        <p>JSM-2847 · 6 March 2026</p>
+      </div>
+      <div class="pane-summary">
+        <div class="psum"><div class="n">7</div><div class="l">Items</div></div>
+        <div class="psum"><div class="n">5</div><div class="l">Confirmed</div></div>
+        <div class="psum"><div class="n">2</div><div class="l">Pending</div></div>
+        <div class="pane-total">£2,830<small>Current total</small></div>
+      </div>
+      <div class="item-list">
+        <div class="list-item" id="li-1" onclick="selectItem('item1')">
+          <div class="li-swatch" style="background:#1c3a1c;"></div>
+          <div class="li-info"><div class="li-name">Leather Seat Covers</div><div class="li-meta">Grained · BRG · Front & Rear</div></div>
+          <div class="li-right"><span class="badge b-ok">✓</span><span class="li-price">£1,240</span></div>
+        </div>
+        <div class="list-item" id="li-2" onclick="selectItem('item2')">
+          <div class="li-swatch" style="background:#2a3a20;"></div>
+          <div class="li-info"><div class="li-name">Wool Carpet Set</div><div class="li-meta">Dark Green</div></div>
+          <div class="li-right"><span class="badge b-ok">✓</span><span class="li-price">£380</span></div>
+        </div>
+        <div class="list-item" id="li-3" onclick="selectItem('item3')">
+          <div class="li-swatch" style="background:#222;"></div>
+          <div class="li-info"><div class="li-name">Mohair Hood</div><div class="li-meta">Black · Suggested</div></div>
+          <div class="li-right"><span class="badge b-rev">?</span><span class="li-price">£920</span></div>
+        </div>
+        <div class="list-item" id="li-4" onclick="selectItem('item4')">
+          <div class="li-swatch" style="background:#c8ba9a;"></div>
+          <div class="li-info"><div class="li-name">Door Card Panels</div><div class="li-meta">Grained leather · Pair</div></div>
+          <div class="li-right"><span class="badge b-ok">✓</span><span class="li-price">£290</span></div>
+        </div>
+        <div class="list-item" id="li-5" onclick="selectItem('item5')">
+          <div class="li-swatch" style="background:#f0eee9; border:1px solid #ccc;"></div>
+          <div class="li-info"><div class="li-name">Headlining</div><div class="li-meta">Colour TBC</div></div>
+          <div class="li-right"><span class="badge b-act">!</span><span class="li-price">TBC</span></div>
+        </div>
+        <div class="list-item" id="li-6" onclick="selectItem('item6')">
+          <div class="li-swatch" style="background:#1c3a1c;"></div>
+          <div class="li-info"><div class="li-name">Dashboard Leather</div><div class="li-meta">Grained · BRG</div></div>
+          <div class="li-right"><span class="badge b-ok">✓</span><span class="li-price">£180</span></div>
+        </div>
+        <div class="list-item" id="li-7" onclick="selectItem('item7')">
+          <div class="li-swatch" style="background:#2a3a20;"></div>
+          <div class="li-info"><div class="li-name">Boot Carpet</div><div class="li-meta">Wool · Dark Green</div></div>
+          <div class="li-right"><span class="badge b-ok">✓</span><span class="li-price">£120</span></div>
+        </div>
+      </div>
+      <div class="pane-approve"><button>Approve Full Quote  →</button></div>
+    </div>
+
+    <!-- RIGHT DETAIL -->
+    <div class="right-pane" id="right-pane">
+      <div class="right-empty" id="right-empty">
+        <div class="icon">←</div>
+        <p>Select an item from the list to view details, photos, videos and ask questions.</p>
+      </div>
+
+      <div class="right-detail" id="right-detail">
+        <div class="mobile-back" onclick="mobileBack()">Back to quote</div>
+        <div class="detail-head">
+          <div class="dh-swatch" id="dh-swatch"></div>
+          <div class="dh-info">
+            <h2 id="dh-name"></h2>
+            <p id="dh-meta"></p>
+            <div class="dh-price" id="dh-price"></div>
+          </div>
+          <div class="dh-badge badge" id="dh-badge"></div>
+        </div>
+        <div class="detail-tabs">
+          <div class="dtab active" onclick="dTab('about')">About this item</div>
+          <div class="dtab" onclick="dTab('media')">Photos &amp; Video</div>
+          <div class="dtab" onclick="dTab('questions')">Questions</div>
+        </div>
+        <div class="detail-body">
+          <!-- ABOUT -->
+          <div id="dp-about">
+            <p class="about-text" id="d-about"></p>
+            <div class="spec-grid" id="d-specs"></div>
+          </div>
+          <!-- MEDIA -->
+          <div id="dp-media" style="display:none;">
+            <p style="font-size:0.82rem;color:var(--grey);margin-bottom:14px;" id="d-media-note"></p>
+            <div class="media-grid" id="d-media-grid"></div>
+          </div>
+          <!-- QUESTIONS -->
+          <div id="dp-questions" style="display:none;">
+            <div class="q-split">
+              <div class="q-thread" id="d-q-thread"></div>
+            </div>
+          </div>
+        </div>
+        <div class="detail-footer">
+          <div class="q-input-row">
+            <textarea class="q-input" id="d-q-input" rows="2" placeholder="Ask a question about this item…"></textarea>
+            <button class="q-send">Send</button>
+          </div>
+          <div class="action-row" id="d-actions"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const items = {
+      item1: {
+        id:'item1', liId:'li-1',
+        name:'Leather Seat Covers — Grained', meta:'British Racing Green · Front & Rear', price:'£1,240',
+        swatch:'#1c3a1c', badgeClass:'b-ok', badgeText:'Confirmed',
+        about:'These seat covers are hand-cut and sewn in our Cheltenham workshop from our Grained leather range. Each cover is made to the original Jaguar pattern with correct piping, stitch detailing and heading alignment. The grained finish is the most popular choice for E-Type restorations and holds its appearance exceptionally well over time.',
+        specs:[['Material','Grained Leather'],['Colour','British Racing Green'],['Coverage','Front & Rear'],['Piping','Matching leather'],['Lead time','8–10 weeks'],['Pattern','Original Jaguar']],
+        media:[{c:'#2a4a2a',v:false,l:'Front seats — installed'},{c:'#1c3a1c',v:true,l:'Installation guide'},{c:'#3a5a3a',v:false,l:'Rear seats'},{c:'#2a4a2a',v:false,l:'Piping detail'}],
+        mediaNote:'Tap any image to view full size.',
+        thread:[{type:'customer',text:'Can you match this exactly to the original 1972 colour spec?',time:'You · 2 days ago'},{type:'admin',text:'Yes — British Racing Green is one of our most frequently matched E-Type colours. We have the original Jaguar colour card on file and will confirm before production begins.',time:'John Skinner · Yesterday'}],
+        actionType:'keep'
+      },
+      item2: {
+        id:'item2', liId:'li-2',
+        name:'Wool Carpet Set', meta:'Dark Green · Full cabin + boot', price:'£380',
+        swatch:'#2a3a20', badgeClass:'b-ok', badgeText:'Confirmed',
+        about:'Cut to the original E-Type floor pattern and bound in matching leather. Deep-pile wool with correct underfelt. Indistinguishable from the original specification.',
+        specs:[['Material','Wool carpet'],['Colour','Dark Green'],['Coverage','Cabin + boot'],['Binding','Leather']],
+        media:[{c:'#2a3a20',v:false,l:'Carpet installed'},{c:'#1c2a14',v:true,l:'Fitting guide'}],
+        mediaNote:'',
+        thread:[], actionType:'keep'
+      },
+      item3: {
+        id:'item3', liId:'li-3',
+        name:'Mohair Hood', meta:'Black · Suggested addition', price:'£920',
+        swatch:'#222', badgeClass:'b-rev', badgeText:'Awaiting decision',
+        about:'We noticed UV damage along the rear seam of your existing hood. We\'ve added a replacement Mohair hood to your quote — the correct original specification for this car. Let us know if you\'d like to include it. Mohair is longer-lasting than PVC and the finish is noticeably superior.',
+        specs:[['Material','Mohair'],['Colour','Black'],['Fitment','Full replacement'],['Suggested by','John Skinner']],
+        media:[{c:'#222',v:true,l:'Mohair vs PVC comparison'},{c:'#333',v:false,l:'Finished result'}],
+        mediaNote:'Watch the comparison video before deciding.',
+        thread:[], actionType:'decide'
+      },
+      item4: {
+        id:'item4', liId:'li-4',
+        name:'Door Card Panels', meta:'Grained leather · Pair', price:'£290',
+        swatch:'#c8ba9a', badgeClass:'b-ok', badgeText:'Confirmed',
+        about:'Full door card panels including arm rest covering, sewn to the original Jaguar pattern with correct stitch line and tuck detail.',
+        specs:[['Material','Grained leather'],['Items','Pair'],['Armrests','Included'],['Pattern','Original Jaguar']],
+        media:[{c:'#b0a488',v:false,l:'Fitted panels'},{c:'#c8ba9a',v:false,l:'Armrest detail'}],
+        mediaNote:'',
+        thread:[], actionType:'keep'
+      },
+      item5: {
+        id:'item5', liId:'li-5',
+        name:'Headlining', meta:'Colour TBC — awaiting your input', price:'TBC',
+        swatch:'#f0eee9', badgeClass:'b-act', badgeText:'Action needed',
+        about:'We need your preferred headlining colour before we can price this item. We\'ve added it as a placeholder. Use the questions tab to let us know, or we can recommend a colour based on the rest of your choices.',
+        specs:[['Status','Awaiting input'],['Material','Cloth'],['Fitment','Full headlining'],['Pattern','E-Type original']],
+        media:[{c:'#ddd',v:false,l:'Cream option'},{c:'#ccc',v:false,l:'Grey option'},{c:'#eee',v:false,l:'Off white'}],
+        mediaNote:'Sample colours — the actual colour will be confirmed with you.',
+        thread:[], actionType:'input'
+      },
+      item6: {
+        id:'item6', liId:'li-6',
+        name:'Dashboard Leather', meta:'Grained · BRG', price:'£180',
+        swatch:'#1c3a1c', badgeClass:'b-ok', badgeText:'Confirmed',
+        about:'Dashboard top covering in matching grained leather, cut to the original E-Type pattern for a seamless finish.',
+        specs:[['Material','Grained leather'],['Colour','BRG'],['Area','Dashboard top'],['Pattern','E-Type original']],
+        media:[{c:'#1c3a1c',v:false,l:'Fitted result'}],
+        mediaNote:'',
+        thread:[], actionType:'keep'
+      },
+      item7: {
+        id:'item7', liId:'li-7',
+        name:'Boot Carpet', meta:'Wool · Dark Green', price:'£120',
+        swatch:'#2a3a20', badgeClass:'b-ok', badgeText:'Confirmed',
+        about:'Boot carpet cut to the E-Type floor pattern, same wool as the main cabin carpet for a consistent finish throughout.',
+        specs:[['Material','Wool'],['Colour','Dark Green'],['Area','Boot'],['Binding','Leather']],
+        media:[{c:'#2a3a20',v:false,l:'Boot fitted'}],
+        mediaNote:'',
+        thread:[], actionType:'keep'
+      }
+    };
+
+    let currentItem = null;
+
+    function selectItem(id) {
+      if (currentItem) {
+        document.getElementById(items[currentItem].liId).classList.remove('active');
+      }
+      currentItem = id;
+      const item = items[id];
+      document.getElementById(item.liId).classList.add('active');
+
+      // Populate header
+      document.getElementById('dh-swatch').style.background = item.swatch;
+      document.getElementById('dh-name').textContent = item.name;
+      document.getElementById('dh-meta').textContent = item.meta;
+      document.getElementById('dh-price').textContent = item.price;
+      const badge = document.getElementById('dh-badge');
+      badge.className = 'dh-badge badge ' + item.badgeClass;
+      badge.textContent = item.badgeText;
+
+      // About
+      document.getElementById('d-about').textContent = item.about;
+      document.getElementById('d-specs').innerHTML = item.specs.map(([l,v]) =>
+        `<div class="spec-item"><div class="sl">${l}</div><div class="sv">${v}</div></div>`).join('');
+
+      // Media
+      document.getElementById('d-media-note').textContent = item.mediaNote;
+      document.getElementById('d-media-grid').innerHTML = item.media.map(m =>
+        `<div class="media-card${m.v?' video':''}" style="background:${m.c};"><div class="media-card-label">${m.l}</div></div>`).join('');
+
+      // Questions
+      const qt = document.getElementById('d-q-thread');
+      qt.innerHTML = item.thread.length
+        ? item.thread.map(m => `<div class="q-bubble ${m.type}">${m.text}<div class="qmeta">${m.time}</div></div>`).join('')
+        : '<p class="q-empty">No questions yet on this item. Ask anything below.</p>';
+
+      // Actions
+      const da = document.getElementById('d-actions');
+      if (item.actionType === 'decide') {
+        da.innerHTML = '<button class="act-btn act-add">✓ Add to my order</button><button class="act-btn act-remove">✕ Not needed</button>';
+      } else if (item.actionType === 'input') {
+        da.innerHTML = '<button class="act-btn act-add" style="flex:2" onclick="dTab(\'questions\')">✏️ Confirm your preference</button><button class="act-btn act-remove">✕ Remove</button>';
+      } else {
+        da.innerHTML = '<button class="act-btn act-keep">✓ Keep this item</button><button class="act-btn act-remove">✕ Remove from quote</button>';
+      }
+
+      dTab('about');
+      document.getElementById('right-empty').style.display = 'none';
+      document.getElementById('right-detail').classList.add('active');
+
+      // Mobile
+      if (window.innerWidth <= 700) {
+        document.getElementById('left-pane').classList.add('hidden');
+        document.getElementById('right-pane').classList.add('mobile-open');
+      }
+    }
+
+    function mobileBack() {
+      document.getElementById('left-pane').classList.remove('hidden');
+      document.getElementById('right-pane').classList.remove('mobile-open');
+      if (currentItem) document.getElementById(items[currentItem].liId).classList.remove('active');
+      currentItem = null;
+    }
+
+    function dTab(name) {
+      document.querySelectorAll('.detail-tabs .dtab').forEach(t => t.classList.remove('active'));
+      ['about','media','questions'].forEach(t => {
+        document.getElementById('dp-'+t).style.display = t === name ? 'block' : 'none';
+        if (t === name) document.querySelector('.detail-tabs .dtab:nth-child('+ (['about','media','questions'].indexOf(t)+1) +')').classList.add('active');
+      });
+      if (name === 'questions') {
+        document.getElementById('d-q-input').placeholder = 'Ask a question about this item…';
+        document.getElementById('d-q-input').focus();
+      }
+    }
+  </script>
+</body>
+</html>
