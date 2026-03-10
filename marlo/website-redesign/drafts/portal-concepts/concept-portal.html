@@ -449,6 +449,43 @@
     .sh-cost-confirmed .sh-carrier { font-size:0.76rem; color:rgba(255,255,255,0.5); margin-top:4px; }
     .sh-cost-confirmed .sh-note    { font-size:0.76rem; color:rgba(255,255,255,0.4); margin-top:8px; line-height:1.55; border-top:1px solid rgba(255,255,255,0.1); padding-top:10px; }
 
+    /* ══ LOGIN NOTIFICATION MODAL ══ */
+    .notif-overlay { position:fixed; inset:0; background:rgba(10,12,24,0.72); z-index:400; display:flex; align-items:flex-end; justify-content:center; padding:0; transition:opacity 0.3s; }
+    .notif-overlay.hidden { opacity:0; pointer-events:none; }
+    @media(min-width:560px){ .notif-overlay { align-items:center; padding:20px; } }
+    .notif-sheet { background:#fff; width:100%; max-width:480px; border-radius:18px 18px 0 0; max-height:90dvh; display:flex; flex-direction:column; overflow:hidden; transform:translateY(0); transition:transform 0.35s cubic-bezier(.4,0,.2,1); box-shadow:0 -8px 48px rgba(0,0,0,0.3); }
+    @media(min-width:560px){ .notif-sheet { border-radius:16px; max-height:85vh; } }
+    .notif-overlay.hidden .notif-sheet { transform:translateY(60px); }
+    .notif-handle { width:36px; height:3px; background:var(--light); border-radius:2px; margin:12px auto 0; flex-shrink:0; }
+    .notif-header { padding:16px 20px 12px; flex-shrink:0; border-bottom:1px solid var(--light); }
+    .notif-header .nh-greeting { font-family:var(--serif); font-size:1.3rem; color:var(--navy); }
+    .notif-header .nh-sub { font-size:0.79rem; color:var(--grey); margin-top:3px; }
+    .notif-body { overflow-y:auto; flex:1; padding:14px 16px; display:flex; flex-direction:column; gap:10px; }
+    /* Individual notification card */
+    .notif-card { border-radius:12px; overflow:hidden; border:1.5px solid var(--light); background:#fff; transition:border-color 0.15s; }
+    .notif-card.nc-msg     { border-left:4px solid var(--navy2); }
+    .notif-card.nc-review  { border-left:4px solid var(--gold); }
+    .notif-card.nc-sample  { border-left:4px solid var(--green); }
+    .notif-card.nc-doc     { border-left:4px solid var(--grey); }
+    .nc-top { display:flex; align-items:flex-start; gap:12px; padding:13px 14px 10px; }
+    .nc-icon { width:38px; height:38px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0; }
+    .nc-icon-msg    { background:rgba(39,46,102,0.1); }
+    .nc-icon-review { background:rgba(200,186,154,0.25); }
+    .nc-icon-sample { background:rgba(28,107,58,0.1); }
+    .nc-icon-doc    { background:rgba(64,64,65,0.08); }
+    .nc-content { flex:1; min-width:0; }
+    .nc-type  { font-size:0.63rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--grey); font-weight:700; margin-bottom:2px; }
+    .nc-title { font-size:0.92rem; font-weight:700; color:var(--navy); line-height:1.3; }
+    .nc-body  { font-size:0.8rem; color:#666; line-height:1.55; margin-top:4px; }
+    .nc-dismiss { background:none; border:none; color:var(--light); font-size:1.1rem; cursor:pointer; padding:0; flex-shrink:0; margin-top:-2px; line-height:1; }
+    .nc-dismiss:hover { color:var(--grey); }
+    .nc-actions { display:flex; gap:7px; padding:0 14px 12px; flex-wrap:wrap; }
+    .nc-btn-primary { background:var(--navy); color:var(--gold); border:none; padding:9px 16px; border-radius:7px; font-family:var(--sans); font-size:0.79rem; font-weight:700; cursor:pointer; white-space:nowrap; }
+    .nc-btn-secondary { background:none; color:var(--navy); border:1.5px solid var(--light); padding:8px 14px; border-radius:7px; font-family:var(--sans); font-size:0.79rem; font-weight:600; cursor:pointer; white-space:nowrap; }
+    .nc-btn-green { background:var(--green); color:#fff; border:none; padding:9px 16px; border-radius:7px; font-family:var(--sans); font-size:0.79rem; font-weight:700; cursor:pointer; white-space:nowrap; }
+    .notif-footer { padding:12px 16px; border-top:1px solid var(--light); flex-shrink:0; background:var(--warm); }
+    .notif-dismiss-all { width:100%; padding:13px; background:var(--navy); color:var(--gold); border:none; border-radius:9px; font-family:var(--sans); font-weight:700; font-size:0.9rem; cursor:pointer; letter-spacing:0.03em; }
+
     /* ══ VIEW / EDIT MODE ══ */
     .section-toolbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:4px; }
     .section-toolbar h2 { font-family:var(--serif); font-size:1.35rem; color:var(--navy); }
@@ -560,6 +597,23 @@
     <span></span><span></span><span></span>
   </button>
 </header>
+
+<!-- ══ LOGIN NOTIFICATIONS ══ -->
+<div class="notif-overlay hidden" id="notif-overlay">
+  <div class="notif-sheet">
+    <div class="notif-handle"></div>
+    <div class="notif-header">
+      <div class="nh-greeting">Welcome back, David 👋</div>
+      <div class="nh-sub">A few things need your attention on Quote JSM-2847</div>
+    </div>
+    <div class="notif-body" id="notif-body">
+      <!-- Cards injected by JS -->
+    </div>
+    <div class="notif-footer">
+      <button class="notif-dismiss-all" onclick="dismissAllNotifs()">Continue to portal →</button>
+    </div>
+  </div>
+</div>
 
 <!-- ══ HAMBURGER DROPDOWN ══ -->
 <div class="ham-overlay" id="ham-overlay" onclick="closeHamMenu()"></div>
@@ -1835,6 +1889,85 @@ function renderNotes(){
 // Pre-populate with one admin note
 ORDER_NOTES.push({text:'Lovely car — confirmed BRG with customer on initial call. He\'s flexible on timeline, quality is the priority. Awaiting hood decision before finalising.',who:'John Skinner',type:'admin',time:'4 Mar, 9:00 AM'});
 
+/* ═══ LOGIN NOTIFICATIONS ═══ */
+const LOGIN_NOTIFS = [
+  {
+    id:'n-messages', type:'msg', typeLabel:'New Messages',
+    icon:'💬', iconCls:'nc-icon-msg', cardCls:'nc-msg',
+    title:'2 new messages from John Skinner',
+    body:'Replies on your BRG seat colour question, and a note about the headlining options.',
+    actions:[
+      {label:'View Messages', cls:'nc-btn-primary', fn:"dismissNotif('n-messages');switchTab('messages')"},
+      {label:'Later', cls:'nc-btn-secondary', fn:"dismissNotif('n-messages')"},
+    ]
+  },
+  {
+    id:'n-review', type:'review', typeLabel:'Items to Review',
+    icon:'📋', iconCls:'nc-icon-review', cardCls:'nc-review',
+    title:'2 items are waiting for your decision',
+    body:'Your Hood and Headlining are marked as pending — tap to review your choices and confirm.',
+    actions:[
+      {label:'Review Quote', cls:'nc-btn-primary', fn:"dismissNotif('n-review');switchTab('quote');setItemFilter('pending')"},
+      {label:'Later', cls:'nc-btn-secondary', fn:"dismissNotif('n-review')"},
+    ]
+  },
+  {
+    id:'n-samples', type:'sample', typeLabel:'Sample Pack',
+    icon:'📬', iconCls:'nc-icon-sample', cardCls:'nc-sample',
+    title:'Pack 2 — Hood Mohair dispatched',
+    body:'Your hood mohair samples were sent on 9 Mar via Royal Mail Tracked. Have they arrived?',
+    actions:[
+      {label:'Yes, received ✓', cls:'nc-btn-green', fn:"dismissNotif('n-samples');markPackReceived('sp2',true);switchTab('samples')"},
+      {label:'Still waiting', cls:'nc-btn-secondary', fn:"dismissNotif('n-samples')"},
+    ]
+  },
+  {
+    id:'n-doc', type:'doc', typeLabel:'New Document',
+    icon:'📄', iconCls:'nc-icon-doc', cardCls:'nc-doc',
+    title:'Sales Order Confirmation ready',
+    body:'Your SOC-2847 has been prepared and is available to download in the Documents tab.',
+    actions:[
+      {label:'View Documents', cls:'nc-btn-primary', fn:"dismissNotif('n-doc');switchTab('documents')"},
+      {label:'Dismiss', cls:'nc-btn-secondary', fn:"dismissNotif('n-doc')"},
+    ]
+  },
+];
+
+let activeNotifs=[...LOGIN_NOTIFS.map(n=>n.id)];
+
+function renderNotifs(){
+  const body=document.getElementById('notif-body');
+  const visible=LOGIN_NOTIFS.filter(n=>activeNotifs.includes(n.id));
+  if(!visible.length){dismissAllNotifs();return;}
+  body.innerHTML=visible.map(n=>`
+    <div class="notif-card ${n.cardCls}" id="${n.id}">
+      <div class="nc-top">
+        <div class="nc-icon ${n.iconCls}">${n.icon}</div>
+        <div class="nc-content">
+          <div class="nc-type">${n.typeLabel}</div>
+          <div class="nc-title">${n.title}</div>
+          <div class="nc-body">${n.body}</div>
+        </div>
+        <button class="nc-dismiss" onclick="dismissNotif('${n.id}')" title="Dismiss">✕</button>
+      </div>
+      <div class="nc-actions">
+        ${n.actions.map(a=>`<button class="${a.cls}" onclick="${a.fn}">${a.label}</button>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+function dismissNotif(id){
+  activeNotifs=activeNotifs.filter(x=>x!==id);
+  const card=document.getElementById(id);
+  if(card){card.style.opacity='0';card.style.transform='scale(0.96)';card.style.transition='all 0.2s';setTimeout(()=>{card.remove();if(!activeNotifs.length)dismissAllNotifs();},200);}
+}
+
+function dismissAllNotifs(){
+  const overlay=document.getElementById('notif-overlay');
+  overlay.classList.add('hidden');
+  setTimeout(()=>overlay.style.display='none',350);
+}
+
 /* ═══ HAMBURGER NAV ═══ */
 function toggleHamMenu(){
   const menu=document.getElementById('ham-menu');
@@ -1864,6 +1997,9 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('dq-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendDrawerMsg();}});
   document.getElementById('lb-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendLBReply();}});
   renderItemList();updateTotals();renderMessages();renderDocs();renderOfficialDocs();renderSamples();renderNotes();
+  // Show login notifications after brief delay
+  renderNotifs();
+  setTimeout(()=>document.getElementById('notif-overlay').classList.remove('hidden'),400);
 });
 </script>
 </body>
