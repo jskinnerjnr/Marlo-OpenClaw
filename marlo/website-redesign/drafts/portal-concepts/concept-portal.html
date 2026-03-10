@@ -343,6 +343,40 @@
     .a-remove { background:rgba(109,32,36,0.08); color:var(--red);   border:1px solid rgba(109,32,36,0.2); }
     .a-edit   { background:rgba(24,30,56,0.07);  color:var(--navy);  border:1px solid rgba(24,30,56,0.16); }
     .sec-div  { border:none; border-top:1px solid var(--light); margin:16px 0; }
+
+    /* ══ SHIPPING SECTION ══ */
+    .shipping-section { margin-top:28px; border-top:2px solid var(--light); padding-top:24px; }
+    .sh-heading { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px; gap:12px; }
+    .sh-cost-badge { text-align:right; flex-shrink:0; }
+    .scb-label { font-size:0.62rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--grey); }
+    .scb-val   { font-family:var(--serif); font-size:1.5rem; color:var(--navy); }
+    .scb-val.confirmed { color:var(--green); }
+
+    /* TBC notice */
+    .sh-tbc-notice { display:flex; gap:13px; align-items:flex-start; background:rgba(200,186,154,0.1); border:1px solid var(--gold-light); border-radius:10px; padding:14px 16px; margin-bottom:20px; }
+    .sh-tbc-icon  { font-size:1.5rem; flex-shrink:0; line-height:1; margin-top:1px; }
+    .sh-tbc-title { font-size:0.86rem; font-weight:700; color:var(--navy); margin-bottom:5px; }
+    .sh-tbc-body  { font-size:0.8rem; color:#666; line-height:1.65; }
+
+    /* Process steps */
+    .sh-steps { display:flex; flex-direction:column; gap:0; margin-bottom:20px; }
+    .sh-step  { display:flex; gap:14px; padding:14px 0; border-bottom:1px solid var(--light); }
+    .sh-step:last-child { border-bottom:none; }
+    .sh-step-icon  { font-size:1.35rem; flex-shrink:0; width:32px; text-align:center; margin-top:1px; }
+    .sh-step-title { font-size:0.88rem; font-weight:700; color:var(--navy); margin-bottom:4px; }
+    .sh-step-body  { font-size:0.8rem; color:#666; line-height:1.65; }
+
+    /* Cost card */
+    .sh-cost-card { background:var(--navy); border-radius:10px; padding:16px 18px; }
+    .sh-cost-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+    .sh-cost-title { font-family:var(--serif); font-size:1rem; color:#fff; }
+    .sh-lock-badge { font-size:0.65rem; background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.5); padding:4px 10px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); white-space:nowrap; }
+    .sh-cost-tbc-amount { font-family:var(--serif); font-size:1.6rem; color:rgba(255,255,255,0.3); margin-bottom:6px; }
+    .sh-cost-tbc-note   { font-size:0.76rem; color:rgba(255,255,255,0.45); line-height:1.6; }
+    .sh-cost-confirmed  { display:none; }
+    .sh-cost-confirmed .sh-amount { font-family:var(--serif); font-size:2rem; color:var(--gold); }
+    .sh-cost-confirmed .sh-carrier { font-size:0.76rem; color:rgba(255,255,255,0.5); margin-top:4px; }
+    .sh-cost-confirmed .sh-note    { font-size:0.76rem; color:rgba(255,255,255,0.4); margin-top:8px; line-height:1.55; border-top:1px solid rgba(255,255,255,0.1); padding-top:10px; }
   </style>
 </head>
 <body>
@@ -391,6 +425,81 @@
       </div>
       <div class="items-header"><h3>Kit Items</h3><span>Tap to review &amp; customise</span></div>
       <div id="item-list"></div>
+
+      <!-- SHIPPING -->
+      <div class="shipping-section">
+        <div class="sh-heading">
+          <div>
+            <div class="section-heading" style="font-size:1.2rem;">Shipping</div>
+            <div class="section-sub" style="margin-bottom:0">How your order will be delivered</div>
+          </div>
+          <div class="sh-cost-badge" id="sh-cost-badge">
+            <div class="scb-label">Shipping</div>
+            <div class="scb-val">TBC</div>
+          </div>
+        </div>
+
+        <!-- TBC notice -->
+        <div class="sh-tbc-notice">
+          <div class="sh-tbc-icon">⚖️</div>
+          <div>
+            <div class="sh-tbc-title">Shipping cost calculated after items are confirmed</div>
+            <div class="sh-tbc-body">Shipping is charged by weight — either the actual weight of the package or its volumetric weight (calculated from dimensions), whichever is greater. Until you've confirmed which items you need, we can't give you an accurate figure. We'll add it to this quote once you're ready for review.</div>
+          </div>
+        </div>
+
+        <!-- How it works -->
+        <div class="sh-steps">
+          <div class="sh-step">
+            <div class="sh-step-icon">📦</div>
+            <div class="sh-step-info">
+              <div class="sh-step-title">Carefully packed in Cheltenham</div>
+              <div class="sh-step-body">Every order is hand-packed by us. Full kits are heavy — leather seat covers for an E-Type run to around 8–12 kg. We use double-walled boxes, appropriate void fill and custom wrapping for leather items to avoid creasing in transit.</div>
+            </div>
+          </div>
+          <div class="sh-step">
+            <div class="sh-step-icon">🚚</div>
+            <div class="sh-step-info">
+              <div class="sh-step-title">Dispatched with a major carrier</div>
+              <div class="sh-step-body">We use FedEx, DHL, UPS or DPD depending on destination and parcel weight. All shipments are fully tracked, require a signature on delivery, and are insured for the full declared value of the goods.</div>
+            </div>
+          </div>
+          <div class="sh-step">
+            <div class="sh-step-icon">📍</div>
+            <div class="sh-step-info">
+              <div class="sh-step-title">Tracked end to end</div>
+              <div class="sh-step-body">You'll receive a tracking number by email as soon as the parcel is collected. Most UK deliveries arrive within 1–2 working days of dispatch. International delivery times vary by destination — typically 3–7 working days for Europe and 5–10 for the rest of the world.</div>
+            </div>
+          </div>
+          <div class="sh-step">
+            <div class="sh-step-icon">🌍</div>
+            <div class="sh-step-info">
+              <div class="sh-step-title">International orders &amp; customs</div>
+              <div class="sh-step-body">We export worldwide. For orders outside the UK, we complete all export documentation. Your parcel will pass through your country's customs — duties and local taxes (VAT/GST/sales tax) are calculated and collected at the border by your customs authority, not by us. Most carriers will contact you in advance with details. EU customers benefit from 0% import duty on UK-manufactured goods under the UK–EU Trade and Cooperation Agreement — you pay only your local VAT.</div>
+            </div>
+          </div>
+          <div class="sh-step">
+            <div class="sh-step-icon">📋</div>
+            <div class="sh-step-info">
+              <div class="sh-step-title">Partial shipments available</div>
+              <div class="sh-step-body">If your restoration is in progress and you want certain items sooner — seats first, carpets to follow, for example — we can split your order into separate shipments. This is simply a practical option for managing your project timeline, not a cost-reduction measure, and each shipment is priced and tracked separately.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin-editable cost area (shown as locked to customer) -->
+        <div class="sh-cost-card" id="sh-cost-card">
+          <div class="sh-cost-header">
+            <div class="sh-cost-title">Shipping Estimate</div>
+            <span class="sh-lock-badge">🔒 Set by John Skinner</span>
+          </div>
+          <div class="sh-cost-tbc">
+            <div class="sh-cost-tbc-amount">To be confirmed</div>
+            <div class="sh-cost-tbc-note">John Skinner will add a shipping estimate once your items are confirmed. It will appear here and be included in your final quote total.</div>
+          </div>
+        </div>
+
+      </div><!-- /shipping-section -->
     </div>
   </div>
 
