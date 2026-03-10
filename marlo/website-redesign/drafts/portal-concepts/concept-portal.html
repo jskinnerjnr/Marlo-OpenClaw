@@ -154,6 +154,8 @@
     /* ══ APPROVE BAR ══ */
     .approve-bar { position:fixed; bottom:0; left:0; right:0; background:var(--navy); padding:12px 20px; display:flex; align-items:center; justify-content:space-between; border-top:2px solid var(--gold); z-index:45; transition:transform 0.3s; }
     .approve-bar.hide { transform:translateY(100%); }
+    .ab-pdf { background:rgba(255,255,255,0.1); border:1.5px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.75); padding:9px 13px; border-radius:8px; font-family:var(--sans); font-size:0.78rem; font-weight:600; cursor:pointer; white-space:nowrap; }
+    .ab-pdf:hover { background:rgba(255,255,255,0.18); }
     .ab-total .lbl { font-size:0.65rem; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:0.1em; }
     .ab-total .amt { font-family:var(--serif); font-size:1.35rem; color:var(--gold); }
     .ab-cta { background:var(--gold); color:var(--navy); border:none; padding:11px 22px; border-radius:6px; font-weight:700; font-size:0.84rem; cursor:pointer; font-family:var(--sans); }
@@ -281,9 +283,9 @@
     /* ══ ITEM STATUS PICKER ══ */
     .i-status-pick { display:flex; gap:4px; margin-top:6px; }
     .isp-btn { flex:1; padding:5px 4px; font-size:0.62rem; font-weight:700; letter-spacing:0.03em; border-radius:6px; border:1.5px solid var(--light); background:#fff; color:var(--grey); cursor:pointer; text-align:center; white-space:nowrap; transition:all 0.15s; }
-    .isp-btn.active-required    { background:#1c6b3a; border-color:#1c6b3a; color:#fff; }
-    .isp-btn.active-considering { background:var(--gold); border-color:var(--gold); color:var(--navy); }
-    .isp-btn.active-not-required{ background:rgba(180,64,67,0.12); border-color:#b44043; color:#8a1f22; }
+    .isp-btn.active-required    { background:#1c6b3a; border-color:#1c6b3a; color:#fff; font-weight:800; }
+    .isp-btn.active-considering { background:#c8a84b; border-color:#c8a84b; color:#fff; font-weight:800; }
+    .isp-btn.active-not-required{ background:#b44043; border-color:#b44043; color:#fff; font-weight:800; }
     .i-badge.b-required    { background:rgba(28,107,58,0.12);   color:#1c6b3a; }
     .i-badge.b-considering { background:rgba(200,186,154,0.3); color:#7a6000; }
     .i-badge.b-not-required{ background:rgba(180,64,67,0.1); color:#8a1f22; }
@@ -1190,8 +1192,11 @@ No other modifications noted.</textarea></div>
 
 <!-- ══ APPROVE BAR ══ -->
 <div class="approve-bar" id="approve-bar">
-  <div class="ab-total"><div class="lbl">Estimated total</div><div class="amt" id="ab-amt">£3,150</div></div>
-  <button class="ab-cta">Approve Quote</button>
+  <div class="ab-total"><div class="lbl">Estimated total</div><div class="amt" id="ab-amt">£2,210</div></div>
+  <div style="display:flex;gap:10px;align-items:center;">
+    <button class="ab-pdf" onclick="downloadQuotePDF()" title="Download quote as PDF">📥 PDF</button>
+    <button class="ab-cta" id="ab-cta-btn" onclick="handleQuoteCTA()">Submit for Review →</button>
+  </div>
 </div>
 
 <!-- ══ COMPOSE (Messages) ══ -->
@@ -1544,6 +1549,7 @@ function updateTotals(){
   document.getElementById('ab-amt').textContent='£'+t.toLocaleString();
   document.getElementById('qs-price').textContent='£'+t.toLocaleString();
   PAYMENTS_META.quoteTotal=t;
+  updateApproveBar();
   const req  =Object.keys(ITEMS).filter(id=>ITEMS[id].action==='required').length;
   const con  =Object.keys(ITEMS).filter(id=>ITEMS[id].action==='considering').length;
   const nr   =Object.keys(ITEMS).filter(id=>ITEMS[id].action==='not-required').length;
@@ -1691,12 +1697,41 @@ function renderApprovalSection(){
 function submitForReview(){
   quoteStatus='submitted';
   renderApprovalSection();
-  // Demo: after 3s admin "reviews" and returns for approval
-  setTimeout(()=>{quoteStatus='ready';renderApprovalSection();},3000);
+  updateApproveBar();
+  // Demo: after 3s admin "reviews" and returns for final approval
+  setTimeout(()=>{quoteStatus='ready';renderApprovalSection();updateApproveBar();},3000);
 }
 function approveQuote(){
   quoteStatus='approved';
   renderApprovalSection();
+  updateApproveBar();
+}
+function handleQuoteCTA(){
+  if(quoteStatus==='draft') submitForReview();
+  else if(quoteStatus==='ready') approveQuote();
+}
+function updateApproveBar(){
+  const btn=document.getElementById('ab-cta-btn');
+  if(!btn)return;
+  const considering=Object.keys(ITEMS).filter(id=>ITEMS[id].action==='considering').length;
+  if(quoteStatus==='draft'){
+    btn.textContent='Submit for Review →';
+    btn.style.opacity=considering>0?'0.45':'1';
+    btn.disabled=considering>0;
+    btn.style.background='';btn.style.color='';btn.style.borderColor='';
+  } else if(quoteStatus==='submitted'){
+    btn.textContent='⏳ Awaiting Admin Review';
+    btn.style.opacity='0.6'; btn.disabled=true;
+    btn.style.background='rgba(255,255,255,0.1)';btn.style.color='rgba(255,255,255,0.6)';
+  } else if(quoteStatus==='ready'){
+    btn.textContent='✓ Approve Quote';
+    btn.style.opacity='1'; btn.disabled=false;
+    btn.style.background='#1c6b3a';btn.style.color='#fff';btn.style.borderColor='#1c6b3a';
+  } else if(quoteStatus==='approved'){
+    btn.textContent='✓ Approved';
+    btn.style.opacity='0.7'; btn.disabled=true;
+    btn.style.background='#1c6b3a';btn.style.color='#fff';
+  }
 }
 
 /* ═══ DRAWER ═══ */
@@ -2011,6 +2046,68 @@ function renderPayments(){
       <br><br>For international orders, please pay in GBP. Your bank will handle the currency conversion at their current rate. We do not add any surcharge for international payments.
     </div>`;
 }
+/* ═══ PDF DOWNLOAD ═══ */
+function downloadQuotePDF(){
+  const items=Object.keys(ITEMS);
+  const required=items.filter(id=>ITEMS[id].action==='required');
+  const considering=items.filter(id=>ITEMS[id].action==='considering');
+  const total=required.reduce((s,id)=>s+calcPrice(id),0);
+  const rows=id=>{const it=ITEMS[id];const s=S[id]||{};const mat=MATS[it.mt]?MATS[it.mt].find(m=>m.id===s.mat):null;return`<tr><td>${it.name}</td><td>${mat?mat.name:''}</td><td>${s.col||'TBC'}</td><td style="text-align:right">£${calcPrice(id).toLocaleString()}</td></tr>`;};
+  const html=`<!DOCTYPE html><html><head><meta charset="utf-8"><title>Quote JSM-2847</title>
+<style>
+  body{font-family:'Georgia',serif;color:#181e38;max-width:740px;margin:40px auto;padding:0 24px;font-size:13px;}
+  h1{font-size:26px;margin:0 0 4px;}
+  .sub{color:#666;font-size:12px;margin-bottom:32px;}
+  h2{font-size:14px;text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid #ccc;padding-bottom:5px;margin:24px 0 10px;}
+  table{width:100%;border-collapse:collapse;margin-bottom:16px;}
+  th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#666;padding:6px 0;border-bottom:2px solid #181e38;}
+  td{padding:7px 0;border-bottom:1px solid #eee;font-size:12px;vertical-align:top;}
+  .total-row td{font-weight:bold;border-top:2px solid #181e38;border-bottom:none;padding-top:10px;}
+  .status-req{color:#1c6b3a;font-weight:bold;} .status-con{color:#9a7c00;}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+  .field{margin-bottom:8px;} .field label{font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:#888;display:block;}
+  .field span{font-size:13px;}
+  .footer{margin-top:40px;padding-top:16px;border-top:1px solid #ccc;font-size:11px;color:#888;text-align:center;}
+  @media print{body{margin:20px auto;}}
+</style></head><body>
+<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+  <div><h1>John <em>Skinner</em></h1><div style="font-size:11px;color:#888;">Est. 1980 · Cheltenham</div></div>
+  <div style="text-align:right;font-size:12px;"><strong>Quote JSM-2847</strong><br>David Mitchell<br>${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}</div>
+</div>
+
+<h2>Customer Details</h2>
+<div class="two-col">
+  <div><div class="field"><label>Name</label><span>David Mitchell</span></div><div class="field"><label>Email</label><span>david.mitchell@gmail.com</span></div></div>
+  <div><div class="field"><label>Phone</label><span>+44 7700 900123</span></div><div class="field"><label>Quote Reference</label><span>JSM-2847</span></div></div>
+</div>
+
+<h2>Car Details</h2>
+<div class="two-col">
+  <div><div class="field"><label>Vehicle</label><span>1972 Jaguar E-Type OTS Series 1</span></div><div class="field"><label>Chassis</label><span>EJ 12345</span></div></div>
+  <div><div class="field"><label>Drive</label><span>RHD · Manual</span></div><div class="field"><label>Body</label><span>Open Two Seater</span></div></div>
+</div>
+
+<h2>Required Items <span class="status-req" style="font-size:11px;margin-left:8px;">${required.length} item${required.length!==1?'s':''} · £${total.toLocaleString()}</span></h2>
+<table><thead><tr><th>Item</th><th>Material</th><th>Colour</th><th style="text-align:right">Price</th></tr></thead><tbody>
+${required.map(rows).join('')}
+<tr class="total-row"><td colspan="3">Estimated Total (excl. shipping)</td><td style="text-align:right">£${total.toLocaleString()}</td></tr>
+</tbody></table>
+
+${considering.length?`<h2>Considering <span style="font-size:11px;color:#9a7c00;margin-left:8px;">${considering.length} item${considering.length!==1?'s':''} — not included in total</span></h2>
+<table><thead><tr><th>Item</th><th>Material</th><th>Colour</th><th style="text-align:right">Guide Price</th></tr></thead><tbody>
+${considering.map(rows).join('')}
+</tbody></table>`:''}
+
+<p style="font-size:11px;color:#888;margin-top:8px;">Prices are estimates only and subject to final confirmation. Shipping not included. All prices include UK VAT where applicable.</p>
+<div class="footer">John Skinner (Manufacturing) Ltd · Cheltenham · john-skinner.co.uk<br>This document was generated from your online quote portal.</div>
+</body></html>`;
+  const w=window.open('','_blank');
+  w.document.write(html);
+  w.document.close();
+  w.focus();
+  setTimeout(()=>w.print(),400);
+}
+
 function copyPay(text,btn){
   navigator.clipboard.writeText(text).then(()=>{
     const orig=btn.textContent; btn.textContent='✓';
@@ -2463,7 +2560,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('compose-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}});
   document.getElementById('dq-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendDrawerMsg();}});
   document.getElementById('lb-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendLBReply();}});
-  renderItemList();updateTotals();renderApprovalSection();renderMessages();renderDocs();renderOfficialDocs();renderMilestones();renderSamples();renderNotes();renderPayments();setCTag('general');
+  renderItemList();updateTotals();renderApprovalSection();updateApproveBar();renderMessages();renderDocs();renderOfficialDocs();renderMilestones();renderSamples();renderNotes();renderPayments();setCTag('general');
   // Click-outside on notification overlay
   document.getElementById('notif-overlay').addEventListener('click',function(e){
     if(e.target===this) closeNotifModal();
