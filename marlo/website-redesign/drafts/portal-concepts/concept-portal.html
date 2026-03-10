@@ -897,11 +897,17 @@
           </div>
           <!-- Collapsible blurb -->
           <div class="sh-info-panel" id="sh-info-panel">
-            <div class="sh-steps" style="margin-bottom:0;margin-top:14px;border-top:1px solid rgba(255,255,255,0.1);padding-top:14px;">
+            <div style="display:flex;justify-content:flex-end;margin-top:12px;border-top:1px solid rgba(255,255,255,0.1);padding-top:12px;">
+              <button onclick="toggleShippingInfo()" style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);border-radius:6px;padding:4px 12px;font-size:0.75rem;font-weight:700;cursor:pointer;">✕ Close</button>
+            </div>
+            <div class="sh-steps" style="margin-bottom:0;">
               <div class="sh-step"><div class="sh-step-icon">📦</div><div class="sh-step-info"><div class="sh-step-title">Carefully packed in Cheltenham</div><div class="sh-step-body">Full kits are heavy — leather seat covers for an E-Type run to 8–12 kg. Double-walled boxes, void fill and custom wrapping for leather items.</div></div></div>
               <div class="sh-step"><div class="sh-step-icon">🚚</div><div class="sh-step-info"><div class="sh-step-title">Major carrier, fully tracked &amp; insured</div><div class="sh-step-body">FedEx, DHL, UPS or DPD depending on destination. Signature required. Insured for full declared value.</div></div></div>
               <div class="sh-step"><div class="sh-step-icon">🌍</div><div class="sh-step-info"><div class="sh-step-title">International — 0% EU duty, customs handled</div><div class="sh-step-body">We complete all export documentation. EU customers pay 0% import duty under the UK–EU TCA. Local VAT collected at border.</div></div></div>
               <div class="sh-step" style="border-bottom:none;"><div class="sh-step-icon">⚖️</div><div class="sh-step-info"><div class="sh-step-title">Charged by actual or volumetric weight</div><div class="sh-step-body">Whichever is greater. We can't give an exact figure until your items are confirmed — it'll appear here once calculated.</div></div></div>
+            </div>
+            <div style="display:flex;justify-content:flex-end;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1);">
+              <button onclick="toggleShippingInfo()" style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);border-radius:6px;padding:4px 12px;font-size:0.75rem;font-weight:700;cursor:pointer;">✕ Close</button>
             </div>
           </div>
         </div>
@@ -1703,6 +1709,11 @@ function setItemFilter(f){
     document.getElementById('fb-text').textContent=`Showing ${counts[f]||0} ${labels[f]} item${(counts[f]||0)!==1?'s':''}`;
     banner.classList.add('show');
   }
+  // Shipping + approval only visible on Overview
+  const overviewOnly=f==='all';
+  document.querySelectorAll('.shipping-section,.approval-section,.notes-section').forEach(el=>{
+    el.style.display=overviewOnly?'':'none';
+  });
   renderItemList();
 }
 
@@ -1802,6 +1813,20 @@ function toggleShippingInfo(){
   const btn=document.getElementById('sh-info-btn');
   const open=panel.classList.toggle('open');
   btn.classList.toggle('open',open);
+  // click-outside dismissal
+  if(open){
+    setTimeout(()=>{
+      function outsideHandler(e){
+        const card=document.getElementById('sh-cost-card');
+        if(card&&!card.contains(e.target)){
+          panel.classList.remove('open');
+          btn.classList.remove('open');
+          document.removeEventListener('click',outsideHandler,true);
+        }
+      }
+      document.addEventListener('click',outsideHandler,true);
+    },10);
+  }
 }
 function submitForReview(){
   quoteStatus='submitted';
@@ -2725,7 +2750,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('compose-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}});
   document.getElementById('dq-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendDrawerMsg();}});
   document.getElementById('lb-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendLBReply();}});
-  renderItemList();updateTotals();renderApprovalSection();updateApproveBar();renderMessages();renderDocs();renderOfficialDocs();renderMilestones();renderSamples();renderNotes();renderPayments();setCTag('general');
+  setItemFilter('all');updateTotals();renderApprovalSection();updateApproveBar();renderMessages();renderDocs();renderOfficialDocs();renderMilestones();renderSamples();renderNotes();renderPayments();setCTag('general');
   // Click-outside on notification overlay
   document.getElementById('notif-overlay').addEventListener('click',function(e){
     if(e.target===this) closeNotifModal();
