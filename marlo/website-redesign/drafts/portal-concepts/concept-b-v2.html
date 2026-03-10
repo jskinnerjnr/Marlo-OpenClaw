@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Concept B v2 — Material & Colour Customiser</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #181e38; --navy2: #272e66;
+      --gold: #c8ba9a; --gold-light: #dbd6ca;
+      --cream: #f6f6f3; --warm: #efede9;
+      --grey: #7d807e; --light: #e3e3df;
+      --text: #404041; --green: #1c6b3a; --red: #6d2024;
+      --serif: 'EB Garamond', Georgia, serif;
+      --sans: 'Open Sans', Arial, sans-serif;
+    }
+    body { font-family: var(--sans); background: var(--cream); color: var(--text); font-size: 15px; overflow-x: hidden; }
+
+    /* ── HEADER ── */
+    .portal-header { background: var(--navy); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--gold); }
+    .logo { font-family: var(--serif); color: #fff; font-size: 1.1rem; letter-spacing: 0.06em; }
+    .logo em { color: var(--gold); font-style: normal; }
+    .user-tag { font-size: 0.75rem; color: rgba(255,255,255,0.5); text-align: right; }
+    .user-tag strong { color: var(--gold); display: block; font-size: 0.85rem; }
+    .concept-label { background: var(--navy2); color: var(--gold); text-align: center; padding: 8px; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; }
+
+    /* ── PAGE ── */
+    .page { max-width: 680px; margin: 0 auto; padding: 20px 16px 100px; }
+    .page-title { font-family: var(--serif); font-size: 1.6rem; color: var(--navy); margin-bottom: 4px; }
+    .page-sub { font-size: 0.82rem; color: var(--grey); margin-bottom: 20px; }
+
+    /* ── PROGRESS ── */
+    .progress-strip { background: #fff; border: 1px solid var(--light); border-radius: 8px; padding: 16px 18px; margin-bottom: 20px; }
+    .progress-strip h4 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--grey); margin-bottom: 10px; }
+    .progress-bar { height: 6px; background: var(--light); border-radius: 3px; overflow: hidden; }
+    .progress-fill { height: 100%; background: linear-gradient(90deg, var(--green), var(--gold)); border-radius: 3px; width: 71%; }
+    .progress-labels { display: flex; justify-content: space-between; margin-top: 6px; font-size: 0.72rem; color: var(--grey); }
+
+    /* ── ITEM ROWS ── */
+    .item-row { display: grid; grid-template-columns: auto 1fr auto auto; gap: 12px; align-items: center; padding: 13px 14px; background: #fff; border: 1.5px solid var(--light); border-radius: 9px; margin-bottom: 7px; cursor: pointer; transition: border-color 0.2s; }
+    .item-row:hover { border-color: var(--gold); }
+    .item-row.active { border-color: var(--gold); background: rgba(200,186,154,0.06); }
+    .swatch { width: 40px; height: 40px; border-radius: 6px; flex-shrink: 0; transition: background 0.3s; }
+    .iname { font-weight: 600; font-size: 0.92rem; color: var(--navy); }
+    .imeta { font-size: 0.76rem; color: var(--grey); margin-top: 2px; }
+    .iprice { font-family: var(--serif); font-size: 1rem; color: var(--navy); white-space: nowrap; }
+    .ibadge { font-size: 0.63rem; padding: 3px 8px; border-radius: 10px; font-weight: 600; white-space: nowrap; text-align: center; }
+    .b-ok { background: rgba(28,107,58,0.1); color: var(--green); border: 1px solid rgba(28,107,58,0.3); }
+    .b-rev { background: rgba(200,186,154,0.2); color: #7a6f52; border: 1px solid rgba(200,186,154,0.5); }
+    .b-act { background: rgba(109,32,36,0.08); color: var(--red); border: 1px solid rgba(109,32,36,0.25); }
+    .b-mod { background: rgba(39,46,102,0.08); color: var(--navy2); border: 1px solid rgba(39,46,102,0.3); }
+
+    /* ── OVERLAY ── */
+    .drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 100; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+    .drawer-overlay.open { opacity: 1; pointer-events: all; }
+
+    /* ── DRAWER ── */
+    .drawer { position: fixed; right: 0; top: 0; bottom: 0; width: min(500px, 100vw); background: #fff; z-index: 200; transform: translateX(110%); transition: transform 0.32s cubic-bezier(.4,0,.2,1); display: flex; flex-direction: column; box-shadow: -8px 0 48px rgba(0,0,0,0.18); }
+    .drawer.open { transform: translateX(0); }
+    @media (max-width: 540px) {
+      .drawer { top: auto; width: 100%; height: 92dvh; border-radius: 18px 18px 0 0; transform: translateY(110%); box-shadow: 0 -8px 40px rgba(0,0,0,0.22); }
+      .drawer.open { transform: translateY(0); }
+      .drag-handle { display: block !important; }
+    }
+    .drag-handle { display: none; width: 40px; height: 4px; background: var(--light); border-radius: 2px; margin: 12px auto 0; flex-shrink: 0; }
+
+    /* Drawer header */
+    .drawer-header { background: var(--navy); padding: 16px 20px 14px; display: flex; align-items: flex-start; gap: 14px; flex-shrink: 0; }
+    .dh-swatch { width: 56px; height: 56px; border-radius: 9px; flex-shrink: 0; transition: background 0.4s; border: 2px solid rgba(255,255,255,0.15); }
+    .dh-info { flex: 1; }
+    .dh-info h3 { font-family: var(--serif); font-size: 1.25rem; color: #fff; line-height: 1.15; }
+    .dh-info .dh-meta { font-size: 0.78rem; color: rgba(255,255,255,0.5); margin-top: 3px; }
+    .dh-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; }
+    .dh-price { font-family: var(--serif); font-size: 1.4rem; color: var(--gold); white-space: nowrap; transition: color 0.3s; }
+    .dh-price.updated { color: #fff; }
+    .price-changed { font-size: 0.68rem; color: rgba(255,255,255,0.4); text-decoration: line-through; }
+    .drawer-close { background: none; border: none; color: rgba(255,255,255,0.35); font-size: 1.3rem; cursor: pointer; padding: 0; line-height: 1; }
+
+    /* Drawer tabs */
+    .drawer-tabs { display: flex; border-bottom: 2px solid var(--light); background: #fff; flex-shrink: 0; overflow-x: auto; }
+    .drawer-tabs::-webkit-scrollbar { display: none; }
+    .dtab { flex: 1; text-align: center; padding: 12px 6px; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--grey); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: color 0.2s; white-space: nowrap; min-width: 70px; }
+    .dtab.active { color: var(--navy); border-bottom-color: var(--gold); }
+
+    /* Drawer body — scrollable */
+    .drawer-body { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+    .dpanel { display: none; padding: 20px; }
+    .dpanel.active { display: block; }
+
+    /* ── ABOUT PANEL ── */
+    .about-text { font-size: 0.9rem; line-height: 1.78; color: #555; margin-bottom: 18px; }
+    .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .spec-item { background: var(--warm); border-radius: 6px; padding: 10px 12px; }
+    .spec-item .sl { font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--grey); }
+    .spec-item .sv { font-size: 0.88rem; font-weight: 600; color: var(--navy); margin-top: 2px; }
+
+    /* ── MEDIA PANEL ── */
+    .media-scroll { display: flex; gap: 10px; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 8px; }
+    .media-scroll::-webkit-scrollbar { height: 3px; }
+    .media-scroll::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+    .media-thumb { flex-shrink: 0; width: 150px; height: 110px; border-radius: 8px; cursor: pointer; position: relative; overflow: hidden; }
+    .media-thumb.video::after { content: '▶'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #fff; background: rgba(0,0,0,0.32); }
+    .media-caption { font-size: 0.72rem; color: var(--grey); }
+
+    /* ── CUSTOMISE PANEL ── */
+    .cust-section { margin-bottom: 24px; }
+    .cust-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--gold); font-weight: 600; margin-bottom: 10px; }
+    .cust-note { font-size: 0.8rem; color: var(--grey); margin-bottom: 12px; line-height: 1.5; }
+
+    /* Material buttons */
+    .mat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px,1fr)); gap: 8px; }
+    .mat-btn { padding: 12px 10px; border-radius: 8px; border: 1.5px solid var(--light); background: #fff; cursor: pointer; text-align: left; transition: border-color 0.2s, background 0.2s; }
+    .mat-btn:hover { border-color: var(--gold-light); }
+    .mat-btn.selected { border-color: var(--gold); background: rgba(200,186,154,0.1); }
+    .mat-btn .mn { font-weight: 700; font-size: 0.85rem; color: var(--navy); }
+    .mat-btn .mp { font-size: 0.75rem; color: var(--grey); margin-top: 2px; }
+    .mat-btn .mt { font-size: 0.65rem; color: var(--grey); margin-top: 1px; }
+    .mat-btn.selected .mn { color: var(--navy); }
+    .mat-btn.selected .mp { color: var(--green); font-weight: 600; }
+
+    /* Leather finish toggle */
+    .finish-row { display: flex; gap: 8px; }
+    .finish-btn { flex: 1; padding: 11px 10px; border-radius: 8px; border: 1.5px solid var(--light); background: #fff; cursor: pointer; text-align: center; transition: border-color 0.2s, background 0.2s; }
+    .finish-btn.selected { border-color: var(--gold); background: rgba(200,186,154,0.1); }
+    .finish-btn .fn { font-weight: 700; font-size: 0.85rem; color: var(--navy); }
+    .finish-btn .fd { font-size: 0.73rem; color: var(--grey); margin-top: 3px; }
+    .finish-btn .fp { font-size: 0.73rem; color: var(--grey); margin-top: 1px; }
+    .finish-btn.selected .fp { color: var(--green); font-weight: 600; }
+
+    /* Colour section */
+    .colour-section-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .colour-section-head h4 { font-family: var(--serif); font-size: 1.05rem; color: var(--navy); }
+    .colour-section-head .badge { font-size: 0.63rem; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+    .badge-oem { background: rgba(28,107,58,0.1); color: var(--green); border: 1px solid rgba(28,107,58,0.3); }
+    .badge-bespoke { background: rgba(39,46,102,0.08); color: var(--navy2); border: 1px solid rgba(39,46,102,0.3); }
+    .colour-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(68px,1fr)); gap: 8px; margin-bottom: 6px; }
+    .colour-swatch { border-radius: 8px; cursor: pointer; overflow: hidden; border: 2px solid transparent; transition: border-color 0.2s, transform 0.15s; }
+    .colour-swatch:hover { transform: scale(1.05); }
+    .colour-swatch.selected { border-color: var(--gold); box-shadow: 0 0 0 2px rgba(200,186,154,0.5); }
+    .colour-swatch .cs-colour { height: 44px; width: 100%; }
+    .colour-swatch .cs-name { font-size: 0.62rem; font-weight: 600; color: var(--text); padding: 4px 4px 5px; text-align: center; line-height: 1.2; background: #fff; }
+    .colour-swatch.selected .cs-name { background: rgba(200,186,154,0.15); }
+    .bespoke-note { background: rgba(39,46,102,0.05); border: 1px solid rgba(39,46,102,0.15); border-radius: 8px; padding: 12px 14px; font-size: 0.82rem; color: #555; line-height: 1.6; margin-top: 10px; }
+    .bespoke-note strong { color: var(--navy); }
+
+    /* Price update toast */
+    .price-toast { display: none; background: var(--green); color: #fff; font-size: 0.78rem; font-weight: 600; padding: 8px 16px; text-align: center; }
+    .price-toast.show { display: block; }
+
+    /* ── QUESTIONS PANEL ── */
+    .q-thread { display: flex; flex-direction: column; gap: 10px; padding-bottom: 8px; }
+    .q-bubble { padding: 11px 14px; border-radius: 10px; font-size: 0.87rem; line-height: 1.55; max-width: 88%; }
+    .q-bubble.customer { background: rgba(200,186,154,0.18); border: 1px solid rgba(200,186,154,0.4); align-self: flex-end; }
+    .q-bubble.admin { background: var(--navy); color: rgba(255,255,255,0.9); align-self: flex-start; }
+    .qmeta { font-size: 0.68rem; color: var(--grey); margin-top: 4px; }
+    .q-bubble.admin .qmeta { color: rgba(255,255,255,0.4); }
+    .q-empty { font-size: 0.85rem; color: var(--grey); text-align: center; padding: 32px 0 16px; }
+
+    /* ── DRAWER FOOTER ── */
+    .drawer-footer { padding: 14px 20px; border-top: 1px solid var(--light); background: #fff; flex-shrink: 0; display: flex; flex-direction: column; gap: 9px; }
+    .q-input-row { display: flex; gap: 8px; }
+    .q-input { flex: 1; padding: 10px 14px; border: 1px solid var(--light); border-radius: 8px; font-family: var(--sans); font-size: 0.88rem; resize: none; color: var(--text); background: #fff; }
+    .q-input:focus { outline: none; border-color: var(--gold); }
+    .q-send { background: var(--navy); color: var(--gold); border: none; padding: 10px 16px; border-radius: 8px; font-weight: 600; font-size: 0.82rem; cursor: pointer; white-space: nowrap; }
+    .action-row { display: flex; gap: 8px; }
+    .act-btn { flex: 1; padding: 11px 8px; border-radius: 6px; border: none; font-size: 0.8rem; font-weight: 600; cursor: pointer; font-family: var(--sans); }
+    .act-keep { background: rgba(28,107,58,0.1); color: var(--green); border: 1px solid rgba(28,107,58,0.3); }
+    .act-remove { background: rgba(109,32,36,0.08); color: var(--red); border: 1px solid rgba(109,32,36,0.2); }
+    .act-save { background: var(--navy); color: var(--gold); border: 1px solid var(--navy); }
+
+    /* ── BOTTOM BAR ── */
+    .bottom-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--navy); padding: 13px 20px; display: flex; align-items: center; justify-content: space-between; border-top: 2px solid var(--gold); z-index: 50; }
+    .bt-total .label { font-size: 0.68rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.1em; }
+    .bt-total .amount { font-family: var(--serif); font-size: 1.45rem; color: var(--gold); }
+    .bottom-bar .cta { background: var(--gold); color: var(--navy); border: none; padding: 12px 22px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; cursor: pointer; }
+
+    /* Divider */
+    .cust-divider { border: none; border-top: 1px solid var(--light); margin: 20px 0; }
+  </style>
+</head>
+<body>
+
+<header class="portal-header">
+  <div class="logo">John <em>Skinner</em></div>
+  <div class="user-tag"><strong>David Mitchell</strong>1972 Jaguar E-Type OTS</div>
+</header>
+<div class="concept-label">Concept B v2 — with Material &amp; Colour Customiser</div>
+
+<div class="page">
+  <h1 class="page-title">Your Quote</h1>
+  <p class="page-sub">JSM-2847 · Compiled 6 March 2026</p>
+
+  <div class="progress-strip">
+    <h4>5 of 7 items confirmed — 2 awaiting your review</h4>
+    <div class="progress-bar"><div class="progress-fill"></div></div>
+    <div class="progress-labels"><span>Items reviewed</span><span>71%</span></div>
+  </div>
+
+  <!-- ITEM LIST -->
+  <div id="item-list">
+    <div class="item-row" id="row-item1" onclick="openDrawer('item1')">
+      <div class="swatch" id="sw-item1" style="background:#1c3a1c;"></div>
+      <div><div class="iname">Leather Seat Covers</div><div class="imeta" id="meta-item1">Grained · British Racing Green · Front &amp; Rear</div></div>
+      <span class="ibadge b-ok" id="badge-item1">Confirmed</span>
+      <span class="iprice" id="price-item1">£1,240</span>
+    </div>
+    <div class="item-row" id="row-item2" onclick="openDrawer('item2')">
+      <div class="swatch" id="sw-item2" style="background:#2a3a20;"></div>
+      <div><div class="iname">Wool Carpet Set</div><div class="imeta" id="meta-item2">Dark Green · Cabin + Boot</div></div>
+      <span class="ibadge b-ok" id="badge-item2">Confirmed</span>
+      <span class="iprice" id="price-item2">£380</span>
+    </div>
+    <div class="item-row" id="row-item3" onclick="openDrawer('item3')">
+      <div class="swatch" id="sw-item3" style="background:#222;"></div>
+      <div><div class="iname">Mohair Hood</div><div class="imeta" id="meta-item3">Black · Suggested addition</div></div>
+      <span class="ibadge b-rev" id="badge-item3">Decide</span>
+      <span class="iprice" id="price-item3">£920</span>
+    </div>
+    <div class="item-row" id="row-item4" onclick="openDrawer('item4')">
+      <div class="swatch" id="sw-item4" style="background:#c8ba9a;"></div>
+      <div><div class="iname">Door Card Panels</div><div class="imeta" id="meta-item4">Grained Leather · Pair</div></div>
+      <span class="ibadge b-ok" id="badge-item4">Confirmed</span>
+      <span class="iprice" id="price-item4">£290</span>
+    </div>
+    <div class="item-row" id="row-item5" onclick="openDrawer('item5')">
+      <div class="swatch" id="sw-item5" style="background:#f0eee9;border:1px solid #ccc;"></div>
+      <div><div class="iname">Headlining</div><div class="imeta" id="meta-item5">Colour TBC</div></div>
+      <span class="ibadge b-act" id="badge-item5">Action needed</span>
+      <span class="iprice" id="price-item5">TBC</span>
+    </div>
+    <div class="item-row" id="row-item6" onclick="openDrawer('item6')">
+      <div class="swatch" id="sw-item6" style="background:#1c3a1c;"></div>
+      <div><div class="iname">Dashboard Leather</div><div class="imeta" id="meta-item6">Grained · British Racing Green</div></div>
+      <span class="ibadge b-ok" id="badge-item6">Confirmed</span>
+      <span class="iprice" id="price-item6">£180</span>
+    </div>
+    <div class="item-row" id="row-item7" onclick="openDrawer('item7')">
+      <div class="swatch" id="sw-item7" style="background:#2a3a20;"></div>
+      <div><div class="iname">Boot Carpet</div><div class="imeta" id="meta-item7">Dark Green · Wool</div></div>
+      <span class="ibadge b-ok" id="badge-item7">Confirmed</span>
+      <span class="iprice" id="price-item7">£120</span>
+    </div>
+  </div>
+</div>
+
+<!-- OVERLAY -->
+<div class="drawer-overlay" id="overlay" onclick="closeDrawer()"></div>
+
+<!-- DRAWER -->
+<div class="drawer" id="drawer">
+  <div class="drag-handle"></div>
+
+  <div class="drawer-header">
+    <div class="dh-swatch" id="dh-swatch"></div>
+    <div class="dh-info">
+      <h3 id="dh-name"></h3>
+      <div class="dh-meta" id="dh-meta"></div>
+    </div>
+    <div class="dh-right">
+      <button class="drawer-close" onclick="closeDrawer()">✕</button>
+      <div class="price-changed" id="dh-price-orig" style="display:none;"></div>
+      <div class="dh-price" id="dh-price"></div>
+    </div>
+  </div>
+
+  <div class="price-toast" id="price-toast">Price updated ✓</div>
+
+  <div class="drawer-tabs">
+    <div class="dtab active" id="tab-about" onclick="dTab('about')">About</div>
+    <div class="dtab" id="tab-customise" onclick="dTab('customise')">Material &amp; Colour</div>
+    <div class="dtab" id="tab-media" onclick="dTab('media')">Photos &amp; Video</div>
+    <div class="dtab" id="tab-questions" onclick="dTab('questions')">Questions</div>
+  </div>
+
+  <div class="drawer-body">
+    <!-- ABOUT -->
+    <div class="dpanel active" id="dp-about">
+      <p class="about-text" id="d-about-text"></p>
+      <div class="spec-grid" id="d-specs"></div>
+    </div>
+
+    <!-- CUSTOMISE -->
+    <div class="dpanel" id="dp-customise">
+      <!-- Material section -->
+      <div class="cust-section" id="cust-material-section">
+        <div class="cust-label">Material</div>
+        <div class="cust-note" id="cust-material-note"></div>
+        <div class="mat-grid" id="cust-mat-grid"></div>
+      </div>
+
+      <!-- Leather finish (only shown for leather items) -->
+      <div class="cust-section" id="cust-finish-section" style="display:none;">
+        <hr class="cust-divider">
+        <div class="cust-label">Leather Finish</div>
+        <div class="cust-note">Grained leather has a textured surface — the traditional look. Smooth leather has a flat, polished surface — a more continental feel. Both are correct for this car and available in all colours.</div>
+        <div class="finish-row">
+          <button class="finish-btn selected" id="finish-grained" onclick="selectFinish('grained')">
+            <div class="fn">Grained</div>
+            <div class="fd">Traditional texture</div>
+            <div class="fp" id="fp-grained"></div>
+          </button>
+          <button class="finish-btn" id="finish-smooth" onclick="selectFinish('smooth')">
+            <div class="fn">Smooth</div>
+            <div class="fd">Flat polished surface</div>
+            <div class="fp" id="fp-smooth"></div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Colour section -->
+      <div class="cust-section" id="cust-colour-section">
+        <hr class="cust-divider">
+        <div class="cust-label">Colour</div>
+
+        <!-- OEM colours -->
+        <div class="colour-section-head">
+          <h4>OEM Factory Colours</h4>
+          <span class="badge badge-oem">Original spec</span>
+        </div>
+        <div class="colour-grid" id="cust-oem-grid"></div>
+
+        <hr class="cust-divider">
+
+        <!-- Bespoke colours -->
+        <div class="colour-section-head">
+          <h4>Bespoke &amp; Custom Colours</h4>
+          <span class="badge badge-bespoke">Custom order</span>
+        </div>
+        <div class="colour-grid" id="cust-bespoke-grid"></div>
+        <div class="bespoke-note" id="bespoke-note"></div>
+      </div>
+    </div>
+
+    <!-- MEDIA -->
+    <div class="dpanel" id="dp-media">
+      <p style="font-size:0.82rem;color:var(--grey);margin-bottom:12px;" id="d-media-note"></p>
+      <div class="media-scroll" id="d-media-scroll"></div>
+    </div>
+
+    <!-- QUESTIONS -->
+    <div class="dpanel" id="dp-questions">
+      <div class="q-thread" id="d-q-thread"></div>
+    </div>
+  </div><!-- /drawer-body -->
+
+  <div class="drawer-footer">
+    <div class="q-input-row">
+      <textarea class="q-input" id="d-q-input" rows="2" placeholder="Ask a question about this item…"></textarea>
+      <button class="q-send">Send</button>
+    </div>
+    <div class="action-row" id="d-actions"></div>
+  </div>
+</div>
+
+<div class="bottom-bar">
+  <div class="bt-total">
+    <div class="label">Quote total</div>
+    <div class="amount" id="total-display">£3,130 <span style="font-size:0.75rem;color:rgba(255,255,255,0.4)">+ TBC</span></div>
+  </div>
+  <button class="cta">Approve Quote</button>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════
+   DATA
+═══════════════════════════════════════════════ */
+
+// Colour palettes
+const OEM_COLOURS = [
+  { name:'British Racing Green', hex:'#1c3a1c' },
+  { name:'Old English White',    hex:'#f5f0e2' },
+  { name:'Carmen Red',           hex:'#8B1A1A' },
+  { name:'Signal Red',           hex:'#c0302a' },
+  { name:'Cotswold Blue',        hex:'#4a6a8a' },
+  { name:'Silver Blue',          hex:'#7a9ab0' },
+  { name:'Gunmetal',             hex:'#3a3d42' },
+  { name:'Sherwood Green',       hex:'#2a4a2a' },
+  { name:'Willow Green',         hex:'#7a9a4a' },
+  { name:'Primrose',             hex:'#d4c84a' },
+  { name:'Black',                hex:'#1a1a1a' },
+  { name:'Sand Beige',           hex:'#c8b87a' },
+];
+const BESPOKE_COLOURS = [
+  { name:'Midnight Navy',  hex:'#1a2048', premium:true },
+  { name:'Burgundy',       hex:'#5a1020', premium:true },
+  { name:'Pale Cream',     hex:'#ece8d8', premium:false },
+  { name:'Tobacco Brown',  hex:'#5a3820', premium:true },
+  { name:'Slate Grey',     hex:'#606870', premium:false },
+  { name:'Ivory',          hex:'#f0e8d0', premium:false },
+  { name:'Chestnut',       hex:'#7a3820', premium:true },
+  { name:'Dove Grey',      hex:'#a0a0a0', premium:false },
+];
+
+// Material options per item type
+const MATERIALS = {
+  leather: [
+    { id:'leather',  name:'Leather',  desc:'Hand-sewn, full leather', base:0,    note:'Included' },
+    { id:'vinyl',    name:'Vinyl',    desc:'Durable & weather resistant', base:-280, note:'' },
+    { id:'cloth',    name:'Cloth',    desc:'Period-correct fabric', base:-360, note:'' },
+  ],
+  carpet: [
+    { id:'wool',    name:'Wool',    desc:'Deep pile, original spec', base:0,   note:'Included' },
+    { id:'karvel',  name:'Karvel',  desc:'Short loop, hard-wearing', base:-60, note:'' },
+    { id:'nylon',   name:'Nylon',   desc:'Budget option, full colour range', base:-120, note:'' },
+  ],
+  hood: [
+    { id:'mohair', name:'Mohair', desc:'Finest quality, original spec', base:0,    note:'Included' },
+    { id:'pvc',    name:'PVC',    desc:'Waterproof & durable', base:-320, note:'' },
+  ],
+  headlining: [
+    { id:'cloth', name:'Cloth', desc:'Correct original material', base:0, note:'Included' },
+    { id:'vinyl', name:'Vinyl', desc:'Wipe-clean surface', base:-40, note:'' },
+  ],
+  leather_trim: [
+    { id:'leather', name:'Leather', desc:'Hand-cut, sewn to pattern', base:0,    note:'Included' },
+    { id:'vinyl',   name:'Vinyl',   desc:'Cost-effective alternative', base:-80, note:'' },
+  ],
+};
+
+// Finish price deltas (applied on top of material price)
+const FINISH_PRICES = {
+  grained: 0,    // base
+  smooth:  140,  // premium
+};
+
+// Item definitions
+const ITEMS = {
+  item1: {
+    name: 'Leather Seat Covers', metaBase: 'Front & Rear',
+    about: 'Hand-cut and sewn in our Cheltenham workshop. Each cover is made to the original Jaguar E-Type pattern with correct piping, stitch detailing and heading alignment. The most significant interior component — and the one that makes the biggest visual impact.',
+    specs: [['Coverage','Front & Rear'],['Piping','Matching leather'],['Lead time','8–10 weeks'],['Pattern','Original Jaguar']],
+    materialType: 'leather', hasFinish: true, basePrice: 1240,
+    defaultMat: 'leather', defaultFinish: 'grained', defaultColour: 'British Racing Green', defaultColourHex: '#1c3a1c',
+    media: [{c:'#1c3a1c',v:false},{c:'#2a4a2a',v:true},{c:'#1a3020',v:false}],
+    mediaNote: 'Video shows full installation guide for E-Type seat covers.',
+    thread: [
+      {type:'customer', text:'Can you match this exactly to the original 1972 colour spec?', time:'You · 2 days ago'},
+      {type:'admin', text:'Yes — British Racing Green on the E-Type is one of our most frequently matched colours. We have the original Jaguar colour card on file and will confirm before production.', time:'John Skinner · Yesterday'},
+    ],
+    actionType: 'keep',
+  },
+  item2: {
+    name: 'Carpet Set', metaBase: 'Cabin + Boot',
+    about: 'Cut to the original E-Type floor pattern and bound in matching leather. Deep-pile wool with correct underfelt gives the finished car the same feel underfoot as it had on delivery day.',
+    specs: [['Coverage','Cabin + boot'],['Binding','Matching leather'],['Underfelt','Included'],['Pattern','E-Type original']],
+    materialType: 'carpet', hasFinish: false, basePrice: 380,
+    defaultMat: 'wool', defaultFinish: null, defaultColour: 'Sherwood Green', defaultColourHex: '#2a4a2a',
+    media: [{c:'#2a3a20',v:false},{c:'#1c2a14',v:true}],
+    mediaNote: 'Video shows carpet fitting guide.',
+    thread: [],
+    actionType: 'keep',
+  },
+  item3: {
+    name: 'Hood', metaBase: 'Convertible top',
+    about: 'We noticed UV damage along the rear seam of your existing hood and have suggested a replacement. Mohair is the original specification and delivers a far superior result to PVC — cleaner lines, better drape, and lasts significantly longer when properly maintained.',
+    specs: [['Fitment','Full replacement'],['Suggested by','John Skinner'],['Windows','Rear quarter lights incl.'],['Fitting guide','Supplied']],
+    materialType: 'hood', hasFinish: false, basePrice: 920,
+    defaultMat: 'mohair', defaultFinish: null, defaultColour: 'Black', defaultColourHex: '#1a1a1a',
+    media: [{c:'#222',v:true},{c:'#333',v:false},{c:'#1a1a1a',v:false}],
+    mediaNote: 'Watch the comparison video before making your decision.',
+    thread: [],
+    actionType: 'decide',
+  },
+  item4: {
+    name: 'Door Card Panels', metaBase: 'Pair',
+    about: 'Full door card panels including arm rest covering, sewn to the original Jaguar E-Type pattern with correct stitch line and tuck detail. Supplied as a matched pair.',
+    specs: [['Items','Pair'],['Armrests','Included'],['Piping','Matching'],['Pattern','Original Jaguar']],
+    materialType: 'leather_trim', hasFinish: true, basePrice: 290,
+    defaultMat: 'leather', defaultFinish: 'grained', defaultColour: 'British Racing Green', defaultColourHex: '#1c3a1c',
+    media: [{c:'#c8ba9a',v:false},{c:'#b0a488',v:false}],
+    mediaNote: '',
+    thread: [],
+    actionType: 'keep',
+  },
+  item5: {
+    name: 'Headlining', metaBase: 'Full interior',
+    about: 'We need your preferred colour before we can finalise pricing. We\'ve included this as a placeholder. Use the Material & Colour tab to make your selection, or ask us in the questions tab and we\'ll recommend a colour based on the rest of your choices.',
+    specs: [['Status','Awaiting colour choice'],['Fitment','Full headlining'],['Material','Cloth'],['Pattern','E-Type original']],
+    materialType: 'headlining', hasFinish: false, basePrice: 220,
+    defaultMat: 'cloth', defaultFinish: null, defaultColour: null, defaultColourHex: '#f0eee9',
+    media: [{c:'#ddd',v:false},{c:'#ccc',v:false},{c:'#eee',v:false}],
+    mediaNote: 'Example colours — your choice will be confirmed before production.',
+    thread: [],
+    actionType: 'input',
+  },
+  item6: {
+    name: 'Dashboard Leather', metaBase: 'Dashboard top',
+    about: 'Dashboard top covering in matching grained leather, cut to the original E-Type pattern for a seamless colour match with the seat covers and door cards.',
+    specs: [['Area','Dashboard top'],['Piping','None'],['Pattern','E-Type original'],['Lead time','Included in main kit']],
+    materialType: 'leather_trim', hasFinish: true, basePrice: 180,
+    defaultMat: 'leather', defaultFinish: 'grained', defaultColour: 'British Racing Green', defaultColourHex: '#1c3a1c',
+    media: [{c:'#1c3a1c',v:false}],
+    mediaNote: '',
+    thread: [],
+    actionType: 'keep',
+  },
+  item7: {
+    name: 'Boot Carpet', metaBase: 'Boot area',
+    about: 'Boot carpet cut to the E-Type floor pattern — the same wool as the main cabin carpet for a consistent finish throughout. Bound in matching leather.',
+    specs: [['Area','Boot'],['Binding','Leather'],['Underfelt','Included'],['Match','Main carpet']],
+    materialType: 'carpet', hasFinish: false, basePrice: 120,
+    defaultMat: 'wool', defaultFinish: null, defaultColour: 'Sherwood Green', defaultColourHex: '#2a4a2a',
+    media: [{c:'#2a3a20',v:false}],
+    mediaNote: '',
+    thread: [],
+    actionType: 'keep',
+  },
+};
+
+/* ═══════════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════════ */
+const state = {};
+Object.keys(ITEMS).forEach(id => {
+  const item = ITEMS[id];
+  state[id] = {
+    mat: item.defaultMat,
+    finish: item.defaultFinish || 'grained',
+    colour: item.defaultColour,
+    colourHex: item.defaultColourHex,
+    price: item.basePrice,
+  };
+});
+
+let activeItem = null;
+
+/* ═══════════════════════════════════════════════
+   PRICE CALC
+═══════════════════════════════════════════════ */
+function calcPrice(itemId) {
+  const item = ITEMS[itemId];
+  const s = state[itemId];
+  const mats = MATERIALS[item.materialType];
+  const matDef = mats.find(m => m.id === s.mat);
+  let price = item.basePrice + (matDef ? matDef.base : 0);
+  if (item.hasFinish && s.mat === 'leather') {
+    price += FINISH_PRICES[s.finish] || 0;
+  }
+  // Bespoke colour premium
+  const bc = BESPOKE_COLOURS.find(c => c.name === s.colour);
+  if (bc && bc.premium) price += 80;
+  return price;
+}
+
+function formatPrice(p) {
+  return p === 0 ? 'TBC' : '£' + p.toLocaleString();
+}
+
+function updateTotals() {
+  let total = 0;
+  let hasTBC = false;
+  Object.keys(state).forEach(id => {
+    const p = calcPrice(id);
+    if (p === 0) hasTBC = true;
+    else total += p;
+  });
+  document.getElementById('total-display').innerHTML =
+    '£' + total.toLocaleString() + (hasTBC ? ' <span style="font-size:0.75rem;color:rgba(255,255,255,0.4)">+ TBC</span>' : '');
+}
+
+/* ═══════════════════════════════════════════════
+   DRAWER OPEN / CLOSE
+═══════════════════════════════════════════════ */
+function openDrawer(itemId) {
+  if (activeItem) document.getElementById('row-' + activeItem).classList.remove('active');
+  activeItem = itemId;
+  document.getElementById('row-' + itemId).classList.add('active');
+  renderDrawer(itemId);
+  dTab('about');
+  document.getElementById('drawer').classList.add('open');
+  document.getElementById('overlay').classList.add('open');
+}
+
+function closeDrawer() {
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('overlay').classList.remove('open');
+  if (activeItem) document.getElementById('row-' + activeItem).classList.remove('active');
+  activeItem = null;
+}
+
+/* ═══════════════════════════════════════════════
+   RENDER DRAWER
+═══════════════════════════════════════════════ */
+function renderDrawer(itemId) {
+  const item = ITEMS[itemId];
+  const s = state[itemId];
+  const price = calcPrice(itemId);
+
+  // Header
+  document.getElementById('dh-swatch').style.background = s.colourHex || '#ccc';
+  document.getElementById('dh-name').textContent = item.name;
+  document.getElementById('dh-meta').textContent = buildMeta(itemId);
+  document.getElementById('dh-price').textContent = formatPrice(price);
+  document.getElementById('dh-price-orig').style.display = 'none';
+
+  // About
+  document.getElementById('d-about-text').textContent = item.about;
+  document.getElementById('d-specs').innerHTML = item.specs.map(([l,v]) =>
+    `<div class="spec-item"><div class="sl">${l}</div><div class="sv">${v}</div></div>`).join('');
+
+  // Customise panel
+  renderCustomise(itemId);
+
+  // Media
+  document.getElementById('d-media-note').textContent = item.mediaNote;
+  document.getElementById('d-media-scroll').innerHTML = item.media.map(m =>
+    `<div class="media-thumb${m.v?' video':''}" style="background:${m.c};"></div>`).join('');
+
+  // Questions
+  const qt = document.getElementById('d-q-thread');
+  qt.innerHTML = item.thread.length
+    ? item.thread.map(m => `<div class="q-bubble ${m.type}">${m.text}<div class="qmeta">${m.time}</div></div>`).join('')
+    : '<p class="q-empty">No questions yet. Ask us anything below.</p>';
+
+  // Actions
+  renderActions(itemId);
+}
+
+function buildMeta(itemId) {
+  const item = ITEMS[itemId];
+  const s = state[itemId];
+  const mats = MATERIALS[item.materialType];
+  const matDef = mats.find(m => m.id === s.mat);
+  let parts = [];
+  if (matDef) parts.push(matDef.name);
+  if (item.hasFinish && s.mat === 'leather') parts.push(cap(s.finish));
+  if (s.colour) parts.push(s.colour);
+  parts.push(item.metaBase);
+  return parts.join(' · ');
+}
+
+function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+function renderActions(itemId) {
+  const item = ITEMS[itemId];
+  const da = document.getElementById('d-actions');
+  if (item.actionType === 'decide') {
+    da.innerHTML = `<button class="act-btn act-keep">✓ Add to my order</button><button class="act-btn act-remove">✕ Not needed</button>`;
+  } else if (item.actionType === 'input') {
+    da.innerHTML = `<button class="act-btn act-save" style="flex:2" onclick="dTab('customise')">Choose colour & material</button><button class="act-btn act-remove">✕ Remove</button>`;
+  } else {
+    da.innerHTML = `<button class="act-btn act-keep">✓ Confirmed</button><button class="act-btn act-save" onclick="dTab('customise')">✏️ Change options</button><button class="act-btn act-remove">✕ Remove</button>`;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   CUSTOMISE PANEL
+═══════════════════════════════════════════════ */
+function renderCustomise(itemId) {
+  const item = ITEMS[itemId];
+  const s = state[itemId];
+  const mats = MATERIALS[item.materialType];
+
+  // Material note
+  document.getElementById('cust-material-note').textContent =
+    'Select the material for this item. Prices update automatically.';
+
+  // Material grid
+  const mg = document.getElementById('cust-mat-grid');
+  mg.innerHTML = mats.map(m => {
+    const price = item.basePrice + m.base;
+    const priceStr = m.base === 0 ? formatPrice(price) : (m.base > 0 ? '+£'+m.base : '−£'+Math.abs(m.base)+' · ' + formatPrice(price));
+    return `<button class="mat-btn${s.mat === m.id ? ' selected':''}" onclick="selectMat('${itemId}','${m.id}')">
+      <div class="mn">${m.name}</div>
+      <div class="mp">${m.base === 0 ? formatPrice(price) : formatPrice(price)}</div>
+      <div class="mt">${m.desc}</div>
+    </button>`;
+  }).join('');
+
+  // Leather finish
+  const fs = document.getElementById('cust-finish-section');
+  if (item.hasFinish && s.mat === 'leather') {
+    fs.style.display = 'block';
+    const baseLeather = item.basePrice;
+    document.getElementById('fp-grained').textContent = formatPrice(baseLeather + FINISH_PRICES.grained);
+    document.getElementById('fp-smooth').textContent = formatPrice(baseLeather + FINISH_PRICES.smooth) + ' (+£140)';
+    document.getElementById('finish-grained').className = 'finish-btn' + (s.finish === 'grained' ? ' selected':'');
+    document.getElementById('finish-smooth').className = 'finish-btn' + (s.finish === 'smooth' ? ' selected':'');
+  } else {
+    fs.style.display = 'none';
+  }
+
+  // OEM colours
+  const oemGrid = document.getElementById('cust-oem-grid');
+  oemGrid.innerHTML = OEM_COLOURS.map(c =>
+    `<div class="colour-swatch${s.colour === c.name ? ' selected':''}" onclick="selectColour('${itemId}','${c.name}','${c.hex}',false)">
+      <div class="cs-colour" style="background:${c.hex};"></div>
+      <div class="cs-name">${c.name}</div>
+    </div>`).join('');
+
+  // Bespoke colours
+  const bGrid = document.getElementById('cust-bespoke-grid');
+  bGrid.innerHTML = BESPOKE_COLOURS.map(c =>
+    `<div class="colour-swatch${s.colour === c.name ? ' selected':''}" onclick="selectColour('${itemId}','${c.name}','${c.hex}',${c.premium})">
+      <div class="cs-colour" style="background:${c.hex};"></div>
+      <div class="cs-name">${c.name}${c.premium ? ' +£80':''}  </div>
+    </div>`).join('');
+
+  // Bespoke note
+  document.getElementById('bespoke-note').innerHTML =
+    `<strong>Custom colour orders</strong> — a colour-matching surcharge of £80 applies for bespoke colours not in our standard OEM range. If you have a specific RAL code, paint code or colour sample in mind, use the questions tab and we\'ll advise on availability before confirming.`;
+}
+
+/* ═══════════════════════════════════════════════
+   SELECTION HANDLERS
+═══════════════════════════════════════════════ */
+function selectMat(itemId, matId) {
+  state[itemId].mat = matId;
+  // Reset finish if not leather
+  if (matId !== 'leather') state[itemId].finish = 'grained';
+  updatePriceDisplay(itemId);
+  renderCustomise(itemId);
+  updateListRow(itemId);
+  updateTotals();
+}
+
+function selectFinish(finish) {
+  if (!activeItem) return;
+  state[activeItem].finish = finish;
+  updatePriceDisplay(activeItem);
+  renderCustomise(activeItem);
+  updateListRow(activeItem);
+  updateTotals();
+}
+
+function selectColour(itemId, name, hex, premium) {
+  state[itemId].colour = name;
+  state[itemId].colourHex = hex;
+  updatePriceDisplay(itemId);
+  renderCustomise(itemId);
+  updateListRow(itemId);
+  updateTotals();
+  // Update header swatch
+  document.getElementById('dh-swatch').style.background = hex;
+}
+
+function updatePriceDisplay(itemId) {
+  const item = ITEMS[itemId];
+  const newPrice = calcPrice(itemId);
+  const origPrice = item.basePrice;
+  const el = document.getElementById('dh-price');
+  const origEl = document.getElementById('dh-price-orig');
+  el.textContent = formatPrice(newPrice);
+  if (newPrice !== origPrice) {
+    origEl.style.display = 'block';
+    origEl.textContent = '£' + origPrice.toLocaleString();
+  } else {
+    origEl.style.display = 'none';
+  }
+  // Toast
+  const toast = document.getElementById('price-toast');
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 1800);
+  // Meta
+  document.getElementById('dh-meta').textContent = buildMeta(itemId);
+}
+
+function updateListRow(itemId) {
+  const newPrice = calcPrice(itemId);
+  const s = state[itemId];
+  document.getElementById('price-' + itemId).textContent = newPrice === 0 ? 'TBC' : '£' + newPrice.toLocaleString();
+  document.getElementById('meta-' + itemId).textContent = buildMeta(itemId);
+  document.getElementById('sw-' + itemId).style.background = s.colourHex || '#ccc';
+}
+
+/* ═══════════════════════════════════════════════
+   TABS
+═══════════════════════════════════════════════ */
+function dTab(name) {
+  ['about','customise','media','questions'].forEach(t => {
+    document.getElementById('dp-' + t).classList.toggle('active', t === name);
+    document.getElementById('tab-' + t).classList.toggle('active', t === name);
+  });
+  if (name === 'questions') document.getElementById('d-q-input').focus();
+}
+
+/* Init totals */
+updateTotals();
+</script>
+</body>
+</html>
