@@ -219,6 +219,38 @@
     .drop-zone:hover { background:rgba(200,186,154,0.12); }
     .drop-zone strong { display:block; font-size:1rem; color:var(--navy); margin-bottom:4px; }
 
+    /* ── Official Documents ── */
+    .official-docs { display:flex; flex-direction:column; gap:8px; margin-bottom:6px; }
+    .od-row { background:#fff; border:1.5px solid var(--light); border-radius:10px; padding:13px 15px; display:flex; align-items:center; gap:13px; cursor:pointer; transition:border-color 0.18s; }
+    .od-row:hover { border-color:var(--gold); }
+    .od-row.od-highlight { border-color:var(--gold); background:rgba(200,186,154,0.07); }
+    .od-icon  { width:40px; height:40px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1.35rem; flex-shrink:0; }
+    .od-icon.oi-order   { background:rgba(24,30,56,0.07); }
+    .od-icon.oi-payment { background:rgba(28,107,58,0.1); }
+    .od-icon.oi-invoice { background:rgba(109,32,36,0.07); }
+    .od-icon.oi-ship    { background:rgba(200,186,154,0.2); }
+    .od-body { flex:1; min-width:0; }
+    .od-type { font-size:0.62rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--grey); font-weight:600; margin-bottom:2px; }
+    .od-name { font-size:0.9rem; font-weight:700; color:var(--navy); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .od-meta { font-size:0.72rem; color:var(--grey); margin-top:2px; }
+    .od-right { display:flex; flex-direction:column; align-items:flex-end; gap:4px; flex-shrink:0; }
+    .od-amount { font-family:var(--serif); font-size:1.05rem; color:var(--navy); white-space:nowrap; }
+    .od-amount.credit { color:var(--green); }
+    .od-status { font-size:0.62rem; font-weight:700; padding:3px 8px; border-radius:8px; white-space:nowrap; letter-spacing:0.04em; text-transform:uppercase; }
+    .os-pending  { background:rgba(200,186,154,0.2); color:#7a6f52;      border:1px solid rgba(200,186,154,0.5); }
+    .os-paid     { background:rgba(28,107,58,0.1);   color:var(--green); border:1px solid rgba(28,107,58,0.3); }
+    .os-issued   { background:rgba(24,30,56,0.08);   color:var(--navy);  border:1px solid rgba(24,30,56,0.2); }
+    .os-shipped  { background:rgba(24,30,56,0.08);   color:var(--navy);  border:1px solid rgba(24,30,56,0.2); }
+    .od-download { background:none; border:1px solid var(--light); color:var(--grey); padding:5px 10px; border-radius:6px; font-size:0.7rem; cursor:pointer; font-family:var(--sans); white-space:nowrap; }
+    .od-download:hover { border-color:var(--gold); color:var(--navy); }
+    .od-empty { text-align:center; padding:24px 16px; color:var(--grey); font-size:0.84rem; border:1.5px dashed var(--light); border-radius:10px; line-height:1.6; }
+    .od-empty strong { display:block; color:var(--navy); margin-bottom:4px; }
+
+    /* Docs divider */
+    .docs-divider { display:flex; align-items:center; gap:12px; margin:26px 0 16px; }
+    .docs-divider::before,.docs-divider::after { content:''; flex:1; height:1px; background:var(--light); }
+    .docs-divider span { font-family:var(--serif); font-size:1.1rem; color:var(--navy); white-space:nowrap; }
+
     /* ══ CUSTOMER PANEL ══ */
     .field-group { display:flex; flex-direction:column; gap:3px; }
     .edit-input { padding:9px 12px; border:1.5px solid var(--light); border-radius:7px; font-family:var(--sans); font-size:0.88rem; color:var(--text); background:#fff; width:100%; }
@@ -524,11 +556,22 @@
   <!-- ─ DOCUMENTS ─ -->
   <div class="panel" id="panel-documents">
     <div class="inner">
-      <div class="section-heading">Documents &amp; Photos</div>
-      <p class="section-sub">Files attached to messages, or uploaded directly to this quote</p>
+
+      <!-- ── OFFICIAL DOCUMENTS ── -->
+      <div class="section-heading">Official Documents</div>
+      <p class="section-sub">Order confirmations, payment records, invoices and shipping paperwork</p>
+      <div class="official-docs" id="official-docs"></div>
+
+      <!-- ── DIVIDER ── -->
+      <div class="docs-divider">
+        <span>Photos, Files &amp; References</span>
+      </div>
+
+      <!-- ── FILES / PHOTOS ── -->
+      <p class="section-sub" style="margin-top:0;margin-bottom:14px;">Images, PDFs and reference files attached to messages or uploaded directly</p>
       <div class="drop-zone" onclick="fakeUpload()">
         <strong>📎 Drop files here or tap to upload</strong>
-        Photos, PDFs, reference images, invoices — anything relevant to your order
+        Photos, PDFs, reference images — anything relevant to your order
       </div>
       <div class="docs-toolbar">
         <input class="flt" type="text" placeholder="Search files…" oninput="filterDocs(this.value)" id="doc-search">
@@ -894,6 +937,15 @@ let DOCS=[
   {id:'d9',name:'Headlining options.pdf',type:'pdf',icon:'📄',cat:'reference',src:'admin',tag:'general',date:'6 Mar',size:'1.1 MB',bg:'#f6f6f3'},
 ];
 
+/* ─ OFFICIAL DOCS ─ */
+const OFFICIAL_DOCS=[
+  {id:'od1', type:'order',   iconCls:'oi-order',   icon:'📋', label:'Sales Order Confirmation', name:'SOC-2847 — David Mitchell',       date:'4 Mar 2026', ref:'SOC-2847',    amount:null,   amountNote:'Items pending confirmation', status:'pending',  statusCls:'os-pending',  highlight:false},
+  {id:'od2', type:'payment', iconCls:'oi-payment', icon:'💳', label:'Deposit Received',          name:'50% Deposit — JSM-2847',          date:'—',          ref:'DEP-2847',    amount:'£1,575', amountNote:'50% of order total',       status:'pending',  statusCls:'os-pending',  highlight:false},
+  {id:'od3', type:'invoice', iconCls:'oi-invoice', icon:'🧾', label:'Pro Forma Invoice',         name:'Pro Forma Invoice — JSM-2847',    date:'—',          ref:'PFI-2847',    amount:null,   amountNote:'Issued when order confirmed', status:'pending', statusCls:'os-pending',  highlight:false},
+  {id:'od4', type:'invoice', iconCls:'oi-invoice', icon:'🧾', label:'Final Invoice',             name:'Final Invoice — JSM-2847',        date:'—',          ref:'INV-2847',    amount:null,   amountNote:'Issued on dispatch',          status:'pending', statusCls:'os-pending',  highlight:false},
+  {id:'od5', type:'ship',    iconCls:'oi-ship',    icon:'🚚', label:'Shipping Documentation',    name:'Dispatch &amp; Tracking — JSM-2847', date:'—',       ref:'SHP-2847',    amount:null,   amountNote:'Tracking details + export docs', status:'pending',statusCls:'os-pending', highlight:false},
+];
+
 /* ─ SAMPLES ─ */
 const SAMPLES=[
   {mat:'Leather',shade:'British Racing Green',colour:'#1c3a1c',finish:'Grained',sentDate:'5 Mar',status:'received',trackingRef:'JX2847-S01',notes:'Confirmed as correct shade on 7 Mar'},
@@ -1225,8 +1277,39 @@ function sendLBReply(){
   if(activeTab!=='messages')document.getElementById('msg-badge').classList.add('show');
 }
 
+/* ═══ OFFICIAL DOCS ═══ */
+function renderOfficialDocs(){
+  const el=document.getElementById('official-docs');
+  if(!el)return;
+  if(!OFFICIAL_DOCS.length){
+    el.innerHTML='<div class="od-empty"><strong>No official documents yet</strong>Order confirmation, invoices and shipping documents will appear here as your order progresses.</div>';
+    return;
+  }
+  el.innerHTML=OFFICIAL_DOCS.map(d=>{
+    const isPending=d.status==='pending';
+    const amountHTML=d.amount
+      ?`<div class="od-amount${d.type==='payment'?' credit':''}">${d.amount}</div>`
+      :`<div class="od-amount" style="color:var(--grey);font-size:0.78rem;font-family:var(--sans)">${d.amountNote}</div>`;
+    const dlBtn=!isPending?`<button class="od-download" onclick="event.stopPropagation()">⬇ Download</button>`:'';
+    return`<div class="od-row${d.highlight?' od-highlight':''}">
+      <div class="od-icon ${d.iconCls}">${d.icon}</div>
+      <div class="od-body">
+        <div class="od-type">${d.label}</div>
+        <div class="od-name">${d.name}</div>
+        <div class="od-meta">${d.ref}${d.date&&d.date!=='—'?' · '+d.date:''}</div>
+      </div>
+      <div class="od-right">
+        ${amountHTML}
+        <span class="od-status ${d.statusCls}">${d.status==='pending'?'Pending':d.status==='paid'?'Paid ✓':d.status==='issued'?'Issued':d.status==='shipped'?'Shipped':'—'}</span>
+        ${dlBtn}
+      </div>
+    </div>`;
+  }).join('');
+}
+
 /* ═══ DOCUMENTS ═══ */
 function renderDocs(){
+  renderOfficialDocs();
   const cats=['all','quote','reference','swatches','condition','uploaded'];
   const docCounts={all:DOCS.length};DOCS.forEach(d=>{docCounts[d.cat]=(docCounts[d.cat]||0)+1;});
   const catLabels={all:'All',quote:'Quote',reference:'Reference',swatches:'Swatches',condition:'Condition',uploaded:'My Uploads'};
@@ -1292,7 +1375,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('compose-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}});
   document.getElementById('dq-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendDrawerMsg();}});
   document.getElementById('lb-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendLBReply();}});
-  renderItemList();updateTotals();renderMessages();renderDocs();renderSamples();
+  renderItemList();updateTotals();renderMessages();renderDocs();renderOfficialDocs();renderSamples();
 });
 </script>
 </body>
