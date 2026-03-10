@@ -112,12 +112,19 @@
     .qstat .n { font-family:var(--serif); font-size:1.6rem; color:var(--navy); line-height:1; }
     .qstat .l { font-size:0.63rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--grey); margin-top:3px; }
     .qstat .n.gold { color:#7a6f52; }
-    .qstat.filterable { cursor:pointer; }
+    .qstat.filterable { cursor:pointer; -webkit-tap-highlight-color:transparent; }
     .qstat.filterable:hover { background:var(--warm); }
+    .qstat.filterable:active,
     .qstat.filter-active { background:var(--navy); border-radius:6px; }
+    .qstat.filterable:active .n,
     .qstat.filter-active .n { color:#fff; }
     .qstat.filter-active .n.gold { color:var(--gold); }
+    .qstat.filterable:active .l,
     .qstat.filter-active .l { color:rgba(255,255,255,0.55); }
+    /* Item status change flash */
+    @keyframes status-flash { 0%{opacity:1} 40%{opacity:0.5;transform:scale(0.98)} 100%{opacity:1;transform:scale(1)} }
+    .item-row.status-changing { animation:status-flash 0.5s ease; pointer-events:none; }
+    .item-row.status-changing .isp-btn { opacity:0.5; }
     /* Active filter banner */
     .filter-banner { display:none; align-items:center; justify-content:space-between; background:var(--navy); color:#fff; padding:9px 14px; border-radius:8px; margin-bottom:12px; font-size:0.82rem; font-weight:600; }
     .filter-banner.show { display:flex; }
@@ -1552,7 +1559,37 @@ function setItemStatus(id,status,e){
   if(e){e.stopPropagation();}
   ITEMS[id].action=status;
   updateTotals();
-  renderItemList();
+  if(itemFilter==='all'){
+    // On overview — item stays, just re-render the pills
+    renderItemList();
+  } else {
+    // On a filtered view — flash the row with new colour, then slide it out
+    const row=document.getElementById('row-'+id);
+    if(row){
+      // Update just the status pills immediately so the colour change is visible
+      row.querySelectorAll('.isp-btn').forEach(btn=>{
+        btn.classList.remove('active-required','active-considering','active-not-required');
+        if(btn.textContent.toLowerCase().replace(' ','-')===status||
+           (status==='not-required'&&btn.textContent==='Not Required')||
+           (status==='required'&&btn.textContent==='Required')||
+           (status==='considering'&&btn.textContent==='Considering')){
+          btn.classList.add('active-'+status);
+        }
+      });
+      row.classList.add('status-changing');
+      row.style.transition='opacity 0.4s, transform 0.4s, max-height 0.4s';
+      setTimeout(()=>{
+        row.style.opacity='0';
+        row.style.transform='translateX(12px)';
+        row.style.maxHeight='0';
+        row.style.overflow='hidden';
+        row.style.marginBottom='0';
+        setTimeout(()=>renderItemList(),300);
+      },500);
+    } else {
+      renderItemList();
+    }
+  }
 }
 
 /* ═══ ITEM FILTER ═══ */
