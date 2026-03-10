@@ -643,7 +643,7 @@
 </header>
 
 <!-- ══ LOGIN NOTIFICATIONS ══ -->
-<div class="notif-overlay hidden" id="notif-overlay">
+<div class="notif-overlay hidden" id="notif-overlay" onclick="if(event.target===this)closeNotifModal()">
   <div class="notif-sheet">
     <div class="notif-handle"></div>
     <div class="notif-header">
@@ -654,7 +654,7 @@
       <!-- Cards injected by JS -->
     </div>
     <div class="notif-footer">
-      <button class="notif-dismiss-all" onclick="dismissAllNotifs()">Continue to portal →</button>
+      <button class="notif-dismiss-all" onclick="closeNotifModal()">Continue to portal →</button>
     </div>
   </div>
 </div>
@@ -2004,8 +2004,8 @@ const LOGIN_NOTIFS = [
     title:'2 new messages from John Skinner',
     body:'Replies on your BRG seat colour question, and a note about the headlining options.',
     actions:[
-      {label:'View Messages', cls:'nc-btn-primary', fn:"goNotif('n-messages');switchTab('messages')"},
-      {label:'Later', cls:'nc-btn-secondary', fn:"dismissNotif('n-messages')"},
+      {label:'View Messages',    cls:'nc-btn-primary',   fn:"goNotif('n-messages');switchTab('messages')"},
+      {label:'Later — close',    cls:'nc-btn-secondary', fn:"closeNotifModal()"},
     ]
   },
   {
@@ -2014,8 +2014,8 @@ const LOGIN_NOTIFS = [
     title:'2 items are waiting for your decision',
     body:'Your Hood and Headlining options are still pending — confirm your choices to keep production on schedule.',
     actions:[
-      {label:'Review Items', cls:'nc-btn-primary', fn:"goNotif('n-review');switchTab('quote');setItemFilter('pending')"},
-      {label:'Later', cls:'nc-btn-secondary', fn:"dismissNotif('n-review')"},
+      {label:'Review Items',     cls:'nc-btn-primary',   fn:"goNotif('n-review');switchTab('quote');setItemFilter('pending')"},
+      {label:'Later — close',    cls:'nc-btn-secondary', fn:"closeNotifModal()"},
     ]
   },
   {
@@ -2024,8 +2024,8 @@ const LOGIN_NOTIFS = [
     title:'Pack 2 — Hood Mohair dispatched',
     body:'Your hood mohair samples were sent on 9 Mar via Royal Mail Tracked. Have they arrived yet?',
     actions:[
-      {label:'Yes, received ✓', cls:'nc-btn-green', fn:"goNotif('n-samples');markPackReceived('sp2',true);switchTab('samples')"},
-      {label:'Not yet — still waiting', cls:'nc-btn-secondary', fn:"dismissNotif('n-samples')"},
+      {label:'Yes, received ✓',  cls:'nc-btn-green',     fn:"goNotif('n-samples');markPackReceived('sp2',true);switchTab('samples')"},
+      {label:'Not yet — close',  cls:'nc-btn-secondary', fn:"closeNotifModal()"},
     ]
   },
 ];
@@ -2045,7 +2045,7 @@ function renderNotifs(){
           <div class="nc-title">${n.title}</div>
           <div class="nc-body">${n.body}</div>
         </div>
-        <button class="nc-dismiss" onclick="dismissNotif('${n.id}')" title="Dismiss">✕</button>
+        <button class="nc-dismiss" onclick="permDismissNotif('${n.id}')" title="Dismiss permanently">✕</button>
       </div>
       <div class="nc-actions">
         ${n.actions.map(a=>`<button class="${a.cls}" onclick="${a.fn}">${a.label}</button>`).join('')}
@@ -2053,10 +2053,11 @@ function renderNotifs(){
     </div>`).join('');
 }
 
-function dismissNotif(id){
+/* Permanently remove one notification (✕ button) */
+function permDismissNotif(id){
   activeNotifs=activeNotifs.filter(x=>x!==id);
   const card=document.getElementById(id);
-  if(card){card.style.opacity='0';card.style.transform='scale(0.96) translateY(-4px)';card.style.transition='all 0.22s';setTimeout(()=>{card.remove();if(!activeNotifs.length)dismissAllNotifs();},220);}
+  if(card){card.style.opacity='0';card.style.transform='scale(0.96) translateY(-4px)';card.style.transition='all 0.22s';setTimeout(()=>{card.remove();},220);}
   updateNotifBell();
 }
 
