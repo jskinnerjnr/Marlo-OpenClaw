@@ -56,11 +56,24 @@
 
     /* ══ QUOTE PANEL ══ */
     .quote-card { background:#fff; border:1px solid var(--light); border-radius:10px; padding:16px 18px; margin-bottom:16px; display:flex; gap:0; }
-    .qstat { flex:1; text-align:center; border-right:1px solid var(--light); padding:0 10px; }
+    .qstat { flex:1; text-align:center; border-right:1px solid var(--light); padding:0 10px; cursor:default; transition:background 0.15s; border-radius:6px; }
     .qstat:first-child{padding-left:0;} .qstat:last-child{border-right:none;padding-right:0;}
     .qstat .n { font-family:var(--serif); font-size:1.6rem; color:var(--navy); line-height:1; }
     .qstat .l { font-size:0.63rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--grey); margin-top:3px; }
     .qstat .n.gold { color:#7a6f52; }
+    .qstat.filterable { cursor:pointer; }
+    .qstat.filterable:hover { background:var(--warm); }
+    .qstat.filter-active { background:var(--navy); border-radius:6px; }
+    .qstat.filter-active .n { color:#fff; }
+    .qstat.filter-active .n.gold { color:var(--gold); }
+    .qstat.filter-active .l { color:rgba(255,255,255,0.55); }
+    /* Active filter banner */
+    .filter-banner { display:none; align-items:center; justify-content:space-between; background:var(--navy); color:#fff; padding:9px 14px; border-radius:8px; margin-bottom:12px; font-size:0.82rem; font-weight:600; }
+    .filter-banner.show { display:flex; }
+    .filter-banner .fb-label { display:flex; align-items:center; gap:8px; }
+    .filter-banner .fb-dot  { width:8px; height:8px; border-radius:50%; background:var(--gold); }
+    .filter-banner .fb-clear { background:rgba(255,255,255,0.15); border:none; color:#fff; width:26px; height:26px; border-radius:50%; font-size:0.95rem; cursor:pointer; display:flex; align-items:center; justify-content:center; font-family:var(--sans); flex-shrink:0; transition:background 0.15s; }
+    .filter-banner .fb-clear:hover { background:rgba(255,255,255,0.28); }
     .prog-wrap { margin-bottom:16px; }
     .prog-label { display:flex; justify-content:space-between; font-size:0.73rem; color:var(--grey); margin-bottom:5px; }
     .prog-bar  { height:4px; background:var(--light); border-radius:3px; overflow:hidden; }
@@ -363,10 +376,14 @@
   <div class="panel active" id="panel-quote">
     <div class="inner">
       <div class="quote-card">
-        <div class="qstat"><div class="n" id="qs-total">7</div><div class="l">Items</div></div>
-        <div class="qstat"><div class="n" id="qs-confirmed">5</div><div class="l">Confirmed</div></div>
-        <div class="qstat"><div class="n" id="qs-pending" style="color:var(--red)">2</div><div class="l">Pending</div></div>
+        <div class="qstat" id="qstat-all"       onclick="setItemFilter('all')">       <div class="n" id="qs-total">7</div><div class="l">Items</div></div>
+        <div class="qstat filterable" id="qstat-confirmed" onclick="setItemFilter('confirmed')"><div class="n" id="qs-confirmed">5</div><div class="l">Confirmed</div></div>
+        <div class="qstat filterable" id="qstat-pending"   onclick="setItemFilter('pending')">  <div class="n" id="qs-pending" style="color:var(--red)">2</div><div class="l">Pending</div></div>
         <div class="qstat"><div class="n gold" id="qs-price">£3,150</div><div class="l">Est. Total</div></div>
+      </div>
+      <div class="filter-banner" id="filter-banner">
+        <span class="fb-label"><span class="fb-dot"></span><span id="fb-text">Showing confirmed items</span></span>
+        <button class="fb-clear" onclick="setItemFilter('all')" title="Show all items">✕</button>
       </div>
       <div class="prog-wrap">
         <div class="prog-label"><span>Items reviewed</span><span id="prog-pct">71%</span></div>
@@ -781,6 +798,7 @@ const SAMPLES=[
 let activeItem=null,hasUnsaved=false,activeTab='quote';
 let msgFilter='all',msgSearch='',composeTag='general',docFilter='all',docSearch='';
 let lbMsgId=null;
+let itemFilter='all'; // 'all' | 'confirmed' | 'pending'
 
 /* ═══ TAB SWITCHING ═══ */
 function switchTab(tab){
@@ -822,10 +840,37 @@ function updateTotals(){
   document.getElementById('qs-pending').textContent=Object.keys(ITEMS).length-confirmed;
 }
 
+/* ═══ ITEM FILTER ═══ */
+function setItemFilter(f){
+  itemFilter=f;
+  // Update stat card active states
+  ['all','confirmed','pending'].forEach(k=>{
+    const el=document.getElementById('qstat-'+k);
+    if(el) el.classList.toggle('filter-active',k===f&&f!=='all');
+  });
+  // Banner
+  const banner=document.getElementById('filter-banner');
+  const counts={confirmed:Object.keys(ITEMS).filter(id=>ITEMS[id].action==='keep').length,pending:Object.keys(ITEMS).filter(id=>ITEMS[id].action!=='keep').length};
+  if(f==='all'){
+    banner.classList.remove('show');
+  } else {
+    document.getElementById('fb-text').textContent=f==='confirmed'
+      ?`Showing ${counts.confirmed} confirmed item${counts.confirmed!==1?'s':''}`
+      :`Showing ${counts.pending} pending item${counts.pending!==1?'s':''}`;
+    banner.classList.add('show');
+  }
+  renderItemList();
+}
+
 /* ═══ ITEM LIST ═══ */
 function renderItemList(){
   const el=document.getElementById('item-list');
-  el.innerHTML=Object.keys(ITEMS).map(id=>{
+  const visibleIds=Object.keys(ITEMS).filter(id=>{
+    if(itemFilter==='confirmed') return ITEMS[id].action==='keep';
+    if(itemFilter==='pending')   return ITEMS[id].action!=='keep';
+    return true;
+  });
+  el.innerHTML=visibleIds.map(id=>{
     const it=ITEMS[id];const s=S[id];
     const mat=MATS[it.mt].find(m=>m.id===s.mat);
     let meta=[mat?mat.name:''];
@@ -838,6 +883,7 @@ function renderItemList(){
       <div style="min-width:0"><div class="i-name">${it.name}</div><div class="i-meta" id="imeta-${id}">${meta.join(' · ')}</div></div>
       ${badge}<span class="i-price" id="iprice-${id}">${fmt(calcPrice(id))}</span></div>`;
   }).join('');
+  if(visibleIds.length===0) el.innerHTML='<div style="text-align:center;padding:32px 20px;color:var(--grey);font-size:0.88rem;">No items match this filter.</div>';
 }
 
 /* ═══ DRAWER ═══ */
