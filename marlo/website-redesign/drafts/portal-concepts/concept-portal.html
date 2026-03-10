@@ -2005,7 +2005,7 @@ const LOGIN_NOTIFS = [
     body:'Replies on your BRG seat colour question, and a note about the headlining options.',
     actions:[
       {label:'View Messages',    cls:'nc-btn-primary',   fn:"goNotif('n-messages');switchTab('messages')"},
-      {label:'Later — close',    cls:'nc-btn-secondary', fn:"closeNotifModal()"},
+      {label:'Later',    cls:'nc-btn-secondary', fn:"permDismissNotif('n-messages')"},
     ]
   },
   {
@@ -2014,8 +2014,8 @@ const LOGIN_NOTIFS = [
     title:'2 items are waiting for your decision',
     body:'Your Hood and Headlining options are still pending — confirm your choices to keep production on schedule.',
     actions:[
-      {label:'Review Items',     cls:'nc-btn-primary',   fn:"goNotif('n-review');switchTab('quote');setItemFilter('pending')"},
-      {label:'Later — close',    cls:'nc-btn-secondary', fn:"closeNotifModal()"},
+      {label:'Review Items',  cls:'nc-btn-primary',   fn:"goNotif('n-review');switchTab('quote');setItemFilter('pending')"},
+      {label:'Later',         cls:'nc-btn-secondary', fn:"permDismissNotif('n-review')"},
     ]
   },
   {
@@ -2025,7 +2025,7 @@ const LOGIN_NOTIFS = [
     body:'Your hood mohair samples were sent on 9 Mar via Royal Mail Tracked. Have they arrived yet?',
     actions:[
       {label:'Yes, received ✓',  cls:'nc-btn-green',     fn:"goNotif('n-samples');markPackReceived('sp2',true);switchTab('samples')"},
-      {label:'Not yet — close',  cls:'nc-btn-secondary', fn:"closeNotifModal()"},
+      {label:'Not yet',          cls:'nc-btn-secondary', fn:"permDismissNotif('n-samples')"},
     ]
   },
 ];
@@ -2057,7 +2057,13 @@ function renderNotifs(){
 function permDismissNotif(id){
   activeNotifs=activeNotifs.filter(x=>x!==id);
   const card=document.getElementById(id);
-  if(card){card.style.opacity='0';card.style.transform='scale(0.96) translateY(-4px)';card.style.transition='all 0.22s';setTimeout(()=>{card.remove();},220);}
+  if(card){
+    card.style.opacity='0';card.style.transform='scale(0.96) translateY(-4px)';card.style.transition='all 0.22s';
+    setTimeout(()=>{
+      card.remove();
+      if(!activeNotifs.length) closeNotifModal();
+    },220);
+  }
   updateNotifBell();
 }
 
