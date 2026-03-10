@@ -31,8 +31,10 @@
     /* ══ PORTAL TABS — desktop ══ */
     .portal-tabs { background:#fff; display:flex; border-bottom:2px solid var(--light); flex-shrink:0; z-index:55; overflow-x:auto; scrollbar-width:none; }
     .portal-tabs::-webkit-scrollbar { display:none; }
-    .ptab { flex-shrink:0; padding:12px 16px; font-size:0.72rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; color:var(--grey); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; white-space:nowrap; transition:color 0.2s; position:relative; }
+    .ptab { flex-shrink:0; padding:11px 16px 10px; font-size:0.72rem; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:var(--grey); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; white-space:nowrap; transition:color 0.2s; position:relative; display:flex; flex-direction:column; align-items:center; gap:4px; }
+    .ptab .ptab-icon { font-size:1.1rem; line-height:1; }
     .ptab.active { color:var(--navy); border-bottom-color:var(--gold); }
+    .ptab.active .ptab-icon { filter:none; }
     .ptab .badge { position:absolute; top:8px; right:8px; width:7px; height:7px; background:var(--red); border-radius:50%; border:1.5px solid #fff; display:none; }
     .ptab .badge.show { display:block; }
 
@@ -190,15 +192,15 @@
     mark.hl { background:rgba(200,186,154,0.55); border-radius:2px; padding:0 1px; }
 
     /* ══ COMPOSE ══ */
-    .compose-wrap { position:fixed; bottom:0; left:0; right:0; background:var(--navy); border-top:3px solid var(--gold); z-index:45; padding:11px 16px 14px; transition:transform 0.3s; box-shadow:0 -4px 20px rgba(0,0,0,0.18); }
+    .compose-wrap { position:fixed; bottom:0; left:0; right:0; background:#404041; border-top:3px solid var(--gold); z-index:45; padding:11px 16px 14px; transition:transform 0.3s; box-shadow:0 -4px 20px rgba(0,0,0,0.18); }
     .compose-wrap.hide { transform:translateY(100%); }
     .compose-inner { max-width:720px; margin:0 auto; display:flex; flex-direction:column; gap:7px; }
     .compose-tags { display:flex; align-items:center; gap:6px; overflow-x:auto; scrollbar-width:none; }
     .compose-tags::-webkit-scrollbar { display:none; }
-    .ctag-lbl { font-size:0.63rem; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.45); flex-shrink:0; }
-    .ctag { flex-shrink:0; padding:4px 10px; border-radius:12px; font-size:0.69rem; font-weight:600; cursor:pointer; border:1.5px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.6); white-space:nowrap; transition:all 0.15s; font-family:var(--sans); }
-    .ctag.active { background:var(--gold); color:var(--navy); border-color:var(--gold); }
-    .c-hint { font-size:0.7rem; color:rgba(255,255,255,0.45); line-height:1.4; }
+    .ctag-lbl { font-size:0.63rem; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.4); flex-shrink:0; }
+    .ctag { flex-shrink:0; padding:4px 10px; border-radius:12px; font-size:0.69rem; font-weight:600; cursor:pointer; border:1.5px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.65); white-space:nowrap; transition:all 0.15s; font-family:var(--sans); }
+    .ctag.active { background:var(--gold); color:#404041; border-color:var(--gold); }
+    .c-hint { font-size:0.7rem; color:rgba(255,255,255,0.42); line-height:1.4; }
     .c-hint strong { color:var(--gold); }
     .compose-row { display:flex; gap:7px; align-items:flex-end; }
     .compose-input { flex:1; padding:10px 13px; border:2px solid rgba(255,255,255,0.15); border-radius:9px; font-family:var(--sans); font-size:0.9rem; resize:none; color:var(--text); background:#fff; transition:border-color 0.2s; }
@@ -631,12 +633,12 @@
 
 <!-- ══ PORTAL TABS ══ -->
 <div class="portal-tabs" id="portal-tabs">
-  <div class="ptab active" id="pt-customer" onclick="switchTab('customer')">Customer</div>
-  <div class="ptab"        id="pt-car"      onclick="switchTab('car')">Car Details</div>
-  <div class="ptab"        id="pt-quote"    onclick="switchTab('quote')">Your Quote</div>
-  <div class="ptab"        id="pt-messages" onclick="switchTab('messages')">Messages<div class="badge" id="msg-badge"></div></div>
-  <div class="ptab"        id="pt-documents"onclick="switchTab('documents')">Documents</div>
-  <div class="ptab"        id="pt-samples"  onclick="switchTab('samples')">Samples</div>
+  <div class="ptab active" id="pt-customer" onclick="switchTab('customer')"><span class="ptab-icon">👤</span>Customer</div>
+  <div class="ptab"        id="pt-car"      onclick="switchTab('car')"><span class="ptab-icon">🚗</span>Car Details</div>
+  <div class="ptab"        id="pt-quote"    onclick="switchTab('quote')"><span class="ptab-icon">📋</span>Your Quote</div>
+  <div class="ptab"        id="pt-messages" onclick="switchTab('messages')"><span class="ptab-icon">💬</span>Messages<div class="badge" id="msg-badge"></div></div>
+  <div class="ptab"        id="pt-documents"onclick="switchTab('documents')"><span class="ptab-icon">📁</span>Documents</div>
+  <div class="ptab"        id="pt-samples"  onclick="switchTab('samples')"><span class="ptab-icon">🎨</span>Samples</div>
 </div>
 
 <!-- ══ CONTENT ══ -->
