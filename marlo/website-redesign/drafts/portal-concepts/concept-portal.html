@@ -2369,8 +2369,10 @@ function updateNotifBell(){
 
 function reopenNotifs(){
   if(!activeNotifs.length)return;
+  const overlay=document.getElementById('notif-overlay');
+  if(!overlay.classList.contains('hidden')){closeNotifModal();return;}
   renderNotifs();
-  requestAnimationFrame(()=>document.getElementById('notif-overlay').classList.remove('hidden'));
+  requestAnimationFrame(()=>overlay.classList.remove('hidden'));
 }
 
 /* ═══ HAMBURGER NAV ═══ */
