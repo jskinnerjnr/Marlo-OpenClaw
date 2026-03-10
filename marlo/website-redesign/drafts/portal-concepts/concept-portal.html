@@ -37,18 +37,35 @@
     .ptab .badge.show { display:block; }
 
     /* ══ PORTAL TABS — mobile grid ══ */
+    /* ══ MOBILE — bottom nav ══ */
     @media (max-width: 600px) {
-      .portal-tabs { display:grid; grid-template-columns:repeat(3,1fr); border-bottom:none; overflow:visible; background:var(--warm); padding:8px 12px 10px; gap:7px; }
-      .ptab { flex-shrink:unset; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; padding:10px 6px 9px; border-bottom:none; margin-bottom:0; border-radius:9px; background:#fff; border:1.5px solid var(--light); font-size:0.62rem; letter-spacing:0.04em; min-height:54px; transition:border-color 0.18s, background 0.18s, color 0.18s; position:relative; }
-      .ptab::before { font-size:1.2rem; line-height:1; }
-      .ptab:nth-child(1)::before { content:'👤'; }
-      .ptab:nth-child(2)::before { content:'🚗'; }
-      .ptab:nth-child(3)::before { content:'📋'; }
-      .ptab:nth-child(4)::before { content:'💬'; }
-      .ptab:nth-child(5)::before { content:'📁'; }
-      .ptab:nth-child(6)::before { content:'🎨'; }
-      .ptab.active { background:var(--navy); color:var(--gold) !important; border-color:var(--navy); }
-      .ptab .badge { top:5px; right:5px; }
+      /* Hide the top tab bar entirely */
+      .portal-tabs { display:none; }
+
+      /* Bottom nav bar */
+      .bottom-nav { display:flex; position:fixed; bottom:0; left:0; right:0; z-index:60; background:#fff; border-top:1px solid var(--light); padding-bottom:env(safe-area-inset-bottom); box-shadow:0 -2px 12px rgba(0,0,0,0.08); }
+      .bnav-item { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:8px 4px 7px; cursor:pointer; position:relative; gap:3px; -webkit-tap-highlight-color:transparent; }
+      .bnav-item::before { font-size:1.25rem; line-height:1; }
+      .bnav-item:nth-child(1)::before { content:'👤'; }
+      .bnav-item:nth-child(2)::before { content:'🚗'; }
+      .bnav-item:nth-child(3)::before { content:'📋'; }
+      .bnav-item:nth-child(4)::before { content:'💬'; }
+      .bnav-item:nth-child(5)::before { content:'📁'; }
+      .bnav-item:nth-child(6)::before { content:'🎨'; }
+      .bnav-label { font-size:0.58rem; font-weight:600; letter-spacing:0.03em; color:var(--grey); white-space:nowrap; }
+      .bnav-item.active .bnav-label { color:var(--navy); }
+      .bnav-item.active::after { content:''; position:absolute; top:0; left:20%; right:20%; height:2px; background:var(--gold); border-radius:0 0 2px 2px; }
+      .bnav-badge { position:absolute; top:6px; right:calc(50% - 14px); width:7px; height:7px; background:var(--red); border-radius:50%; border:1.5px solid #fff; display:none; }
+      .bnav-badge.show { display:block; }
+
+      /* Push content and fixed bars up above the bottom nav */
+      .content-area        { margin-bottom:56px; }
+      .approve-bar         { bottom:56px !important; }
+      .compose-wrap        { bottom:56px !important; }
+      /* Hide compose when its panel isn't active (handled by existing .hide class) */
+    }
+    @media (min-width:601px) {
+      .bottom-nav { display:none; }
     }
 
     /* ══ PANELS ══ */
@@ -970,6 +987,16 @@ No other modifications noted.</textarea></div>
   </div>
 </div>
 
+<!-- ══ MOBILE BOTTOM NAV ══ -->
+<nav class="bottom-nav" id="bottom-nav">
+  <div class="bnav-item active" id="bn-customer" onclick="switchTab('customer')"><span class="bnav-label">Customer</span></div>
+  <div class="bnav-item"        id="bn-car"      onclick="switchTab('car')">     <span class="bnav-label">Car</span></div>
+  <div class="bnav-item"        id="bn-quote"    onclick="switchTab('quote')">   <span class="bnav-label">Quote</span></div>
+  <div class="bnav-item"        id="bn-messages" onclick="switchTab('messages')"><span class="bnav-label">Messages</span><span class="bnav-badge" id="bn-msg-badge"></span></div>
+  <div class="bnav-item"        id="bn-documents"onclick="switchTab('documents')"><span class="bnav-label">Docs</span></div>
+  <div class="bnav-item"        id="bn-samples"  onclick="switchTab('samples')"> <span class="bnav-label">Samples</span></div>
+</nav>
+
 <!-- ══ MESSAGE LIGHTBOX ══ -->
 <div class="lb-overlay" id="lb-overlay" onclick="closeLB(event)">
   <div class="lb-box" id="lb-box">
@@ -1188,17 +1215,20 @@ let itemFilter='all'; // 'all' | 'confirmed' | 'pending'
 /* ═══ TAB SWITCHING ═══ */
 function switchTab(tab){
   activeTab=tab;
-  Object.keys(ITEM_META).concat(['quote','messages','documents','customer','samples','car']).forEach(t=>{
-    const el=document.getElementById('pt-'+t);
-    if(el) el.classList.toggle('active',t===tab);
-  });
+  // Top tabs (desktop)
   ['quote','messages','documents','customer','samples','car'].forEach(t=>{
-    const el=document.getElementById('panel-'+t);
-    if(el){el.classList.toggle('active',t===tab);}
+    const pt=document.getElementById('pt-'+t);
+    if(pt) pt.classList.toggle('active',t===tab);
+    // Bottom nav (mobile)
+    const bn=document.getElementById('bn-'+t);
+    if(bn) bn.classList.toggle('active',t===tab);
+    // Panels
+    const panel=document.getElementById('panel-'+t);
+    if(panel) panel.classList.toggle('active',t===tab);
   });
   document.getElementById('approve-bar').classList.toggle('hide',tab!=='quote');
   document.getElementById('compose-wrap').classList.toggle('hide',tab!=='messages');
-  if(tab==='messages'){document.getElementById('msg-badge').classList.remove('show');renderMessages();requestAnimationFrame(scrollMsgsToBottom);}
+  if(tab==='messages'){document.getElementById('msg-badge').classList.remove('show');const bnb2=document.getElementById('bn-msg-badge');if(bnb2)bnb2.classList.remove('show');renderMessages();requestAnimationFrame(scrollMsgsToBottom);}
   if(tab==='documents') renderDocs();
   if(tab==='samples') renderSamples();
 }
@@ -1394,7 +1424,7 @@ function sendDrawerMsg(){
   if(!txt&&!att.length)return;
   MSGS.push({id:'m'+(MSGS.length+1),type:'customer',tag:activeItem,text:txt||'(attached)',time:nowStr(),attachments:att});
   inp.value='';renderDQThread(activeItem);
-  if(activeTab!=='messages')document.getElementById('msg-badge').classList.add('show');
+  if(activeTab!=='messages'){document.getElementById('msg-badge').classList.add('show');const bnb=document.getElementById('bn-msg-badge');if(bnb)bnb.classList.add('show');}
 }
 
 /* ═══ MESSAGES ═══ */
@@ -1507,7 +1537,7 @@ function sendLBReply(){
   const existing=lb.querySelector('.lb-thread');
   if(existing){existing.querySelector('h5').textContent=`Other messages in this thread (${thread.length})`;existing.innerHTML=`<h5>Other messages in this thread (${thread.length})</h5>`+thread.map(x=>renderMsgBubble(x,true)).join('');}
   else lb.insertAdjacentHTML('beforeend',`<div class="lb-thread"><h5>Other messages in this thread (${thread.length})</h5>${thread.map(x=>renderMsgBubble(x,true)).join('')}</div>`);
-  if(activeTab!=='messages')document.getElementById('msg-badge').classList.add('show');
+  if(activeTab!=='messages'){document.getElementById('msg-badge').classList.add('show');const bnb=document.getElementById('bn-msg-badge');if(bnb)bnb.classList.add('show');}
 }
 
 /* ═══ OFFICIAL DOCS ═══ */
