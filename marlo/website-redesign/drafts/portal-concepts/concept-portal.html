@@ -43,6 +43,11 @@
 
     /* ══ PORTAL TABS — mobile grid ══ */
     /* ══ MOBILE — hamburger nav ══ */
+    .bell-btn { position:relative; background:rgba(255,255,255,0.12); border:1.5px solid rgba(255,255,255,0.2); border-radius:8px; color:#fff; font-size:1.1rem; width:36px; height:36px; display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0; transition:background 0.15s; }
+    .bell-btn:hover { background:rgba(255,255,255,0.2); }
+    .bell-btn:not(.has-notifs) { opacity:0.35; pointer-events:none; }
+    .bell-badge { position:absolute; top:-5px; right:-5px; background:#e52328; color:#fff; border-radius:10px; font-size:0.6rem; font-weight:800; min-width:16px; height:16px; display:flex; align-items:center; justify-content:center; padding:0 3px; border:2px solid var(--navy); line-height:1; font-family:var(--sans); }
+    .bell-btn:not(.has-notifs) .bell-badge { display:none; }
     .hamburger-btn { display:none; }
     @media (max-width:600px) {
       .portal-tabs { display:none; }
@@ -621,9 +626,14 @@
     <div class="name">David Mitchell</div>
     <div class="ref">Quote JSM-2847</div>
   </div>
-  <button class="hamburger-btn" id="ham-btn" onclick="toggleHamMenu()" aria-label="Navigation menu">
-    <span></span><span></span><span></span>
-  </button>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <button class="bell-btn" id="notif-bell" onclick="reopenNotifs()" aria-label="Notifications" title="Notifications">
+      🔔<span class="bell-badge" id="bell-badge"></span>
+    </button>
+    <button class="hamburger-btn" id="ham-btn" onclick="toggleHamMenu()" aria-label="Navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </header>
 
 <!-- ══ LOGIN NOTIFICATIONS ══ -->
@@ -1988,38 +1998,18 @@ const LOGIN_NOTIFS = [
     title:'2 new messages from John Skinner',
     body:'Replies on your BRG seat colour question, and a note about the headlining options.',
     actions:[
-      {label:'View Messages', cls:'nc-btn-primary', fn:"dismissNotif('n-messages');switchTab('messages')"},
+      {label:'View Messages', cls:'nc-btn-primary', fn:"goNotif('n-messages');switchTab('messages')"},
       {label:'Later', cls:'nc-btn-secondary', fn:"dismissNotif('n-messages')"},
-    ]
-  },
-  {
-    id:'n-review', type:'review', typeLabel:'Items to Review',
-    icon:'📋', iconCls:'nc-icon-review', cardCls:'nc-review',
-    title:'2 items are waiting for your decision',
-    body:'Your Hood and Headlining are marked as pending — tap to review your choices and confirm.',
-    actions:[
-      {label:'Review Quote', cls:'nc-btn-primary', fn:"dismissNotif('n-review');switchTab('quote');setItemFilter('pending')"},
-      {label:'Later', cls:'nc-btn-secondary', fn:"dismissNotif('n-review')"},
     ]
   },
   {
     id:'n-samples', type:'sample', typeLabel:'Sample Pack',
     icon:'📬', iconCls:'nc-icon-sample', cardCls:'nc-sample',
     title:'Pack 2 — Hood Mohair dispatched',
-    body:'Your hood mohair samples were sent on 9 Mar via Royal Mail Tracked. Have they arrived?',
+    body:'Your hood mohair samples were sent on 9 Mar via Royal Mail Tracked. Have they arrived yet?',
     actions:[
-      {label:'Yes, received ✓', cls:'nc-btn-green', fn:"dismissNotif('n-samples');markPackReceived('sp2',true);switchTab('samples')"},
-      {label:'Still waiting', cls:'nc-btn-secondary', fn:"dismissNotif('n-samples')"},
-    ]
-  },
-  {
-    id:'n-doc', type:'doc', typeLabel:'New Document',
-    icon:'📄', iconCls:'nc-icon-doc', cardCls:'nc-doc',
-    title:'Sales Order Confirmation ready',
-    body:'Your SOC-2847 has been prepared and is available to download in the Documents tab.',
-    actions:[
-      {label:'View Documents', cls:'nc-btn-primary', fn:"dismissNotif('n-doc');switchTab('documents')"},
-      {label:'Dismiss', cls:'nc-btn-secondary', fn:"dismissNotif('n-doc')"},
+      {label:'Yes, received ✓', cls:'nc-btn-green', fn:"goNotif('n-samples');markPackReceived('sp2',true);switchTab('samples')"},
+      {label:'Not yet — still waiting', cls:'nc-btn-secondary', fn:"dismissNotif('n-samples')"},
     ]
   },
 ];
@@ -2050,13 +2040,39 @@ function renderNotifs(){
 function dismissNotif(id){
   activeNotifs=activeNotifs.filter(x=>x!==id);
   const card=document.getElementById(id);
-  if(card){card.style.opacity='0';card.style.transform='scale(0.96)';card.style.transition='all 0.2s';setTimeout(()=>{card.remove();if(!activeNotifs.length)dismissAllNotifs();},200);}
+  if(card){card.style.opacity='0';card.style.transform='scale(0.96) translateY(-4px)';card.style.transition='all 0.22s';setTimeout(()=>{card.remove();if(!activeNotifs.length)dismissAllNotifs();},220);}
+  updateNotifBell();
+}
+
+/* Navigate away — close modal, keep any remaining notifications in the bell */
+function goNotif(id){
+  activeNotifs=activeNotifs.filter(x=>x!==id);
+  dismissAllNotifs();
+  updateNotifBell();
 }
 
 function dismissAllNotifs(){
+  activeNotifs=[];
   const overlay=document.getElementById('notif-overlay');
   overlay.classList.add('hidden');
   setTimeout(()=>overlay.style.display='none',350);
+  updateNotifBell();
+}
+
+function updateNotifBell(){
+  const bell=document.getElementById('notif-bell');
+  if(!bell)return;
+  bell.classList.toggle('has-notifs', activeNotifs.length>0);
+  const badge=document.getElementById('bell-badge');
+  if(badge) badge.textContent=activeNotifs.length||'';
+}
+
+function reopenNotifs(){
+  if(!activeNotifs.length)return;
+  renderNotifs();
+  const overlay=document.getElementById('notif-overlay');
+  overlay.style.display='';
+  requestAnimationFrame(()=>overlay.classList.remove('hidden'));
 }
 
 /* ═══ HAMBURGER NAV ═══ */
@@ -2090,6 +2106,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   renderItemList();updateTotals();renderMessages();renderDocs();renderOfficialDocs();renderMilestones();renderSamples();renderNotes();
   // Show login notifications after brief delay
   renderNotifs();
+  updateNotifBell();
   setTimeout(()=>document.getElementById('notif-overlay').classList.remove('hidden'),400);
 });
 </script>
