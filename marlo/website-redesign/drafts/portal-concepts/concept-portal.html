@@ -34,9 +34,10 @@
     .tab-group { display:flex; align-items:stretch; }
     .tab-group.center { flex:1; justify-content:center; }
     .tab-group.right { }
-    .ptab { flex-shrink:0; padding:11px 16px 10px; font-size:0.72rem; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; color:var(--grey); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; white-space:nowrap; transition:color 0.2s; position:relative; display:flex; flex-direction:column; align-items:center; gap:4px; }
+    .ptab { flex-shrink:0; padding:10px 18px 9px; font-size:0.7rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; color:var(--grey); cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-2px; white-space:nowrap; transition:color 0.15s, background 0.15s; position:relative; display:flex; flex-direction:column; align-items:center; gap:4px; }
     .ptab .ptab-icon { font-size:1.1rem; line-height:1; }
-    .ptab.active { color:var(--navy); border-bottom-color:var(--gold); }
+    .ptab:hover:not(.active) { color:var(--navy); background:rgba(24,30,56,0.04); }
+    .ptab.active { color:var(--navy); border-bottom-color:var(--gold); background:var(--warm); font-weight:800; }
     .ptab.active .ptab-icon { filter:none; }
     .ptab .badge { position:absolute; top:8px; right:8px; width:7px; height:7px; background:var(--red); border-radius:50%; border:1.5px solid #fff; display:none; }
     .ptab .badge.show { display:block; }
@@ -264,6 +265,12 @@
     .pay-admin-note { background:rgba(39,46,102,0.05); border:1.5px solid var(--light); border-left:4px solid var(--navy); border-radius:0 9px 9px 0; padding:12px 14px; font-size:0.8rem; color:var(--text); line-height:1.6; }
     .pay-admin-note .pan-lbl { font-size:0.62rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--gold); font-weight:700; margin-bottom:5px; }
 
+    /* ══ ITEM GROUP HEADINGS ══ */
+    .item-group-heading { display:flex; align-items:center; gap:10px; margin:18px 0 8px; }
+    .item-group-heading span { font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.12em; color:var(--grey); white-space:nowrap; }
+    .item-group-heading::before, .item-group-heading::after { content:''; flex:1; height:1px; background:var(--light); }
+    .item-group-heading::before { max-width:16px; }
+
     /* ══ ITEM STATUS PICKER ══ */
     .i-status-pick { display:flex; gap:4px; margin-top:6px; }
     .isp-btn { flex:1; padding:5px 4px; font-size:0.62rem; font-weight:700; letter-spacing:0.03em; border-radius:6px; border:1.5px solid var(--light); background:#fff; color:var(--grey); cursor:pointer; text-align:center; white-space:nowrap; transition:all 0.15s; }
@@ -344,7 +351,7 @@
 
     /* ── Official Documents ── */
     /* Tab group dividers */
-    .tab-group.center { border-left:1px solid var(--light); border-right:1px solid var(--light); }
+    .tab-group.center { border-left:2px solid #d8d5cf; border-right:2px solid #d8d5cf; }
 
     /* ══ MILESTONE TIMELINE ══ */
     .milestone-list { display:flex; flex-direction:column; position:relative; margin:4px 0 24px; }
@@ -1330,17 +1337,17 @@ const FIN_D={grained:0,smooth:140};
 
 /* ─ ITEMS ─ */
 const ITEMS={
-  item1:{name:'Leather Seat Covers',mb:'Front & Rear',about:'Hand-cut and sewn in our Cheltenham workshop to the original Jaguar E-Type pattern, with correct piping, stitch detailing and heading alignment.',specs:[['Coverage','Front & Rear'],['Piping','Matching leather'],['Lead time','8–10 weeks'],['Pattern','Original Jaguar']],mt:'leather',hf:true,base:1240,action:'required'},
-  item2:{name:'Carpet Set',mb:'Cabin + Boot',about:'Cut to the original E-Type floor pattern and bound in matching leather. Deep-pile wool with correct underfelt.',specs:[['Coverage','Cabin + boot'],['Binding','Leather'],['Underfelt','Included'],['Pattern','E-Type']],mt:'carpet',hf:false,base:380,action:'required'},
-  item3:{name:'Hood',mb:'Convertible top',about:'UV damage noted along the rear seam. Mohair is the original specification — cleaner lines, better drape, 15+ year lifespan with proper maintenance.',specs:[['Fitment','Full replacement'],['Suggested by','John Skinner'],['Windows','Quarter lights incl.'],['Guide','Supplied']],mt:'hood',hf:false,base:920,action:'considering'},
-  item4:{name:'Door Card Panels',mb:'Pair',about:'Full door card panels including arm rest covering, sewn to the original E-Type pattern with matching piping.',specs:[['Items','Pair'],['Armrests','Included'],['Piping','Matching'],['Pattern','Original']],mt:'leather_trim',hf:true,base:290,action:'required'},
-  item5:{name:'Headlining',mb:'Full interior',about:'Colour to be chosen. Use OEM Colours or Bespoke tab to select, or ask us for a recommendation based on your other choices.',specs:[['Status','Awaiting colour'],['Fitment','Full'],['Material','Cloth'],['Pattern','E-Type original']],mt:'headlining',hf:false,base:220,action:'considering'},
-  item6:{name:'Dashboard Leather',mb:'Dashboard top',about:'Dashboard top covering in matching grained leather, cut to the original E-Type pattern.',specs:[['Area','Dashboard top'],['Piping','None'],['Pattern','E-Type']],mt:'leather_trim',hf:true,base:180,action:'required'},
-  item7:{name:'Boot Carpet',mb:'Boot area',about:'Boot carpet in the same wool as the main cabin carpet for a consistent finish throughout the car.',specs:[['Area','Boot'],['Binding','Leather'],['Underfelt','Included'],['Match','Main carpet']],mt:'carpet',hf:false,base:120,action:'required'},
-  item8:{name:'Tonneau Cover',mb:'Hood recess',about:'Half-tonneau and full-tonneau cover in matching vinyl or mohair to cover the hood recess when the roof is down.',specs:[['Options','Half or full'],['Material','Vinyl / Mohair'],['Poppers','Included']],mt:'hood',hf:false,base:195,action:'not-required'},
-  item9:{name:'Gear & Handbrake Gaiters',mb:'Pair',about:'Matching leather gaiters for the gear lever and handbrake in the same hide as the seats for a consistent interior.',specs:[['Items','Pair'],['Stitching','Matching'],['Fitment','OE pattern']],mt:'leather_trim',hf:false,base:85,action:'not-required'},
-  item10:{name:'Sun Visors',mb:'Pair',about:'Retrimmed sun visor boards in matching leather or vinyl to complement the interior.',specs:[['Items','Pair'],['Material','Leather / Vinyl'],['Pattern','OE']],mt:'leather_trim',hf:false,base:110,action:'not-required'},
-  item11:{name:'Rear Shelf / Bulkhead Panel',mb:'Rear',about:'Rear bulkhead trim panel in matching materials — often overlooked but visible when the hood is down.',specs:[['Location','Rear bulkhead'],['Material','Vinyl / leather']],mt:'leather_trim',hf:false,base:145,action:'not-required'},
+  item1:{name:'Leather Seat Covers',mb:'Front & Rear',grp:'Front Seats',about:'Hand-cut and sewn in our Cheltenham workshop to the original Jaguar E-Type pattern, with correct piping, stitch detailing and heading alignment.',specs:[['Coverage','Front & Rear'],['Piping','Matching leather'],['Lead time','8–10 weeks'],['Pattern','Original Jaguar']],mt:'leather',hf:true,base:1240,action:'required'},
+  item2:{name:'Carpet Set',mb:'Cabin + Boot',grp:'Carpets & Flooring',about:'Cut to the original E-Type floor pattern and bound in matching leather. Deep-pile wool with correct underfelt.',specs:[['Coverage','Cabin + boot'],['Binding','Leather'],['Underfelt','Included'],['Pattern','E-Type']],mt:'carpet',hf:false,base:380,action:'required'},
+  item3:{name:'Hood',mb:'Convertible top',grp:'Roof / Weather Equipment',about:'UV damage noted along the rear seam. Mohair is the original specification — cleaner lines, better drape, 15+ year lifespan with proper maintenance.',specs:[['Fitment','Full replacement'],['Suggested by','John Skinner'],['Windows','Quarter lights incl.'],['Guide','Supplied']],mt:'hood',hf:false,base:920,action:'considering'},
+  item4:{name:'Door Card Panels',mb:'Pair',grp:'Trim Panels',about:'Full door card panels including arm rest covering, sewn to the original E-Type pattern with matching piping.',specs:[['Items','Pair'],['Armrests','Included'],['Piping','Matching'],['Pattern','Original']],mt:'leather_trim',hf:true,base:290,action:'required'},
+  item5:{name:'Headlining',mb:'Full interior',grp:'Roof / Weather Equipment',about:'Colour to be chosen. Use OEM Colours or Bespoke tab to select, or ask us for a recommendation based on your other choices.',specs:[['Status','Awaiting colour'],['Fitment','Full'],['Material','Cloth'],['Pattern','E-Type original']],mt:'headlining',hf:false,base:220,action:'considering'},
+  item6:{name:'Dashboard Leather',mb:'Dashboard top',grp:'Dash Area',about:'Dashboard top covering in matching grained leather, cut to the original E-Type pattern.',specs:[['Area','Dashboard top'],['Piping','None'],['Pattern','E-Type']],mt:'leather_trim',hf:true,base:180,action:'required'},
+  item7:{name:'Boot Carpet',mb:'Boot area',grp:'Boot / Trunk',about:'Boot carpet in the same wool as the main cabin carpet for a consistent finish throughout the car.',specs:[['Area','Boot'],['Binding','Leather'],['Underfelt','Included'],['Match','Main carpet']],mt:'carpet',hf:false,base:120,action:'required'},
+  item8:{name:'Tonneau Cover',mb:'Hood recess',grp:'Roof / Weather Equipment',about:'Half-tonneau and full-tonneau cover in matching vinyl or mohair to cover the hood recess when the roof is down.',specs:[['Options','Half or full'],['Material','Vinyl / Mohair'],['Poppers','Included']],mt:'hood',hf:false,base:195,action:'not-required'},
+  item9:{name:'Gear & Handbrake Gaiters',mb:'Pair',grp:'Centre Console',about:'Matching leather gaiters for the gear lever and handbrake in the same hide as the seats for a consistent interior.',specs:[['Items','Pair'],['Stitching','Matching'],['Fitment','OE pattern']],mt:'leather_trim',hf:false,base:85,action:'not-required'},
+  item10:{name:'Sun Visors',mb:'Pair',grp:'Dash Area',about:'Retrimmed sun visor boards in matching leather or vinyl to complement the interior.',specs:[['Items','Pair'],['Material','Leather / Vinyl'],['Pattern','OE']],mt:'leather_trim',hf:false,base:110,action:'not-required'},
+  item11:{name:'Rear Shelf / Bulkhead Panel',mb:'Rear',grp:'Rear Deck',about:'Rear bulkhead trim panel in matching materials — often overlooked but visible when the hood is down.',specs:[['Location','Rear bulkhead'],['Material','Vinyl / leather']],mt:'leather_trim',hf:false,base:145,action:'not-required'},
 };
 
 const OEM_C=[
@@ -1570,6 +1577,7 @@ function setItemFilter(f){
 }
 
 /* ═══ ITEM LIST ═══ */
+const GROUP_ORDER=['Trim Panels','Dash Area','Front Seats','Rear Seats','Centre Console','Carpets & Flooring','Rear Deck','Boot / Trunk','Roof / Weather Equipment','Fixings'];
 function renderItemList(){
   const el=document.getElementById('item-list');
   const visibleIds=Object.keys(ITEMS).filter(id=>{
@@ -1578,7 +1586,18 @@ function renderItemList(){
     if(itemFilter==='not-required') return ITEMS[id].action==='not-required';
     return true;
   });
-  el.innerHTML=visibleIds.map(id=>{
+  // Group by department
+  const grouped={};
+  visibleIds.forEach(id=>{
+    const g=ITEMS[id].grp||'Other';
+    if(!grouped[g]) grouped[g]=[];
+    grouped[g].push(id);
+  });
+  const orderedGroups=[...GROUP_ORDER.filter(g=>grouped[g]),...Object.keys(grouped).filter(g=>!GROUP_ORDER.includes(g))];
+  const rows=[];
+  orderedGroups.forEach(grp=>{
+    rows.push(`<div class="item-group-heading"><span>${grp}</span></div>`);
+    rows.push(...grouped[grp].map(id=>{
     const it=ITEMS[id];const s=S[id]||{mat:'',fin:'grained',col:null,chx:null,ctype:null};
     const mat=MATS[it.mt]?MATS[it.mt].find(m=>m.id===s.mat):null;
     let meta=[mat?mat.name:''];
@@ -1598,7 +1617,9 @@ function renderItemList(){
         <button class="isp-btn${it.action==='not-required'?' active-not-required':''}" onclick="setItemStatus('${id}','not-required',event)">Not Required</button>
       </div>
     </div>`;
-  }).join('');
+    }));
+  });
+  el.innerHTML=rows.join('');
   if(visibleIds.length===0) el.innerHTML='<div style="text-align:center;padding:32px 20px;color:var(--grey);font-size:0.88rem;">No items match this filter.</div>';
 }
 
