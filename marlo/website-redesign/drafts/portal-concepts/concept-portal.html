@@ -209,11 +209,23 @@
     .compose-wrap { position:fixed; bottom:0; left:0; right:0; background:#404041; border-top:3px solid var(--gold); z-index:45; padding:11px 16px 14px; transition:transform 0.3s; box-shadow:0 -4px 20px rgba(0,0,0,0.18); }
     .compose-wrap.hide { transform:translateY(100%); }
     .compose-inner { max-width:720px; margin:0 auto; display:flex; flex-direction:column; gap:7px; }
-    .compose-tags { display:flex; align-items:center; gap:6px; overflow-x:auto; scrollbar-width:none; }
+    .compose-tags-wrap { display:flex; align-items:center; gap:6px; }
+    .compose-tags { display:flex; align-items:center; gap:5px; overflow-x:auto; scrollbar-width:none; flex:1; }
     .compose-tags::-webkit-scrollbar { display:none; }
     .ctag-lbl { font-size:0.63rem; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.4); flex-shrink:0; }
     .ctag { flex-shrink:0; padding:4px 10px; border-radius:12px; font-size:0.69rem; font-weight:600; cursor:pointer; border:1.5px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.65); white-space:nowrap; transition:all 0.15s; font-family:var(--sans); }
     .ctag.active { background:var(--gold); color:#404041; border-color:var(--gold); }
+    /* Admin tag manager */
+    .tag-mgr-btn { flex-shrink:0; background:rgba(255,255,255,0.08); border:1.5px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.45); width:28px; height:28px; border-radius:7px; font-size:0.85rem; cursor:pointer; display:none; align-items:center; justify-content:center; }
+    .tag-mgr-btn.admin-visible { display:flex; }
+    .tag-mgr-btn:hover { background:rgba(255,255,255,0.16); color:rgba(255,255,255,0.8); }
+    .tag-mgr-panel { display:none; position:absolute; bottom:calc(100% + 8px); right:0; background:#fff; border-radius:10px; box-shadow:0 4px 24px rgba(0,0,0,0.2); padding:12px 14px; min-width:200px; z-index:60; }
+    .tag-mgr-panel.open { display:block; }
+    .tag-mgr-title { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--grey); font-weight:700; margin-bottom:10px; }
+    .tag-mgr-row { display:flex; align-items:center; gap:9px; padding:5px 0; border-bottom:1px solid var(--light); }
+    .tag-mgr-row:last-child { border-bottom:none; }
+    .tag-mgr-row label { font-size:0.8rem; color:var(--text); flex:1; cursor:pointer; }
+    .tag-mgr-row input[type=checkbox] { width:15px; height:15px; accent-color:var(--navy); cursor:pointer; }
     .c-hint { font-size:0.7rem; color:rgba(255,255,255,0.42); line-height:1.4; }
     .c-hint strong { color:var(--gold); }
     .compose-row { display:flex; gap:7px; align-items:flex-end; }
@@ -1091,18 +1103,16 @@ No other modifications noted.</textarea></div>
 <!-- ══ COMPOSE (Messages) ══ -->
 <div class="compose-wrap hide" id="compose-wrap">
   <div class="compose-inner">
-    <div class="compose-tags">
+    <div class="compose-tags-wrap" style="position:relative;">
       <span class="ctag-lbl">About:</span>
-      <div class="ctag active" data-ct="general" onclick="setCTag('general')">General</div>
-      <div class="ctag" data-ct="item1" onclick="setCTag('item1')">Seats</div>
-      <div class="ctag" data-ct="item2" onclick="setCTag('item2')">Carpet</div>
-      <div class="ctag" data-ct="item3" onclick="setCTag('item3')">Hood</div>
-      <div class="ctag" data-ct="item4" onclick="setCTag('item4')">Doors</div>
-      <div class="ctag" data-ct="item5" onclick="setCTag('item5')">Headlining</div>
-      <div class="ctag" data-ct="item6" onclick="setCTag('item6')">Dashboard</div>
-      <div class="ctag" data-ct="item7" onclick="setCTag('item7')">Boot</div>
+      <div class="compose-tags" id="compose-tags-list"></div>
+      <button class="tag-mgr-btn admin-visible" id="tag-mgr-btn" onclick="toggleTagMgr()" title="Admin: manage tags">⚙</button>
+      <div class="tag-mgr-panel" id="tag-mgr-panel">
+        <div class="tag-mgr-title">Visible tags for this order</div>
+        <div id="tag-mgr-rows"></div>
+      </div>
     </div>
-    <div class="c-hint" id="c-hint">Sending a <strong>General</strong> message — not linked to a specific item.</div>
+    <div class="c-hint" id="c-hint"></div>
     <div class="attach-preview-wrap" id="main-attach-preview"></div>
     <div class="compose-row">
       <textarea class="compose-input" id="compose-input" rows="2" placeholder="Type your message…"></textarea>
@@ -1365,7 +1375,9 @@ const SAMPLE_PACKS=[
 
 /* ──────────────────────────────── */
 let activeItem=null,hasUnsaved=false,activeTab='quote';
-let msgFilter='all',msgSearch='',composeTag='general',docFilter='all',docSearch='';
+let msgFilter='all',msgSearch='',composeTags=['general'],docFilter='all',docSearch='';
+// Admin-controlled: which tags are enabled for this order
+let enabledTags=new Set(['general',...Object.keys(ITEMS)]);
 let lbMsgId=null;
 let itemFilter='all'; // 'all' | 'confirmed' | 'pending'
 
@@ -1632,18 +1644,76 @@ function hl(text,q){if(!q)return text;return text.replace(new RegExp('('+q.repla
 function setFilter(f){msgFilter=f;buildPills();renderThread();}
 function handleSearch(v){msgSearch=v.trim();document.getElementById('s-clear').classList.toggle('show',!!v);document.getElementById('s-icon').style.display=v?'none':'';renderThread();}
 function clearSearch(){document.getElementById('s-input').value='';msgSearch='';document.getElementById('s-clear').classList.remove('show');document.getElementById('s-icon').style.display='';renderThread();}
-function setCTag(tag){
-  composeTag=tag;
-  document.querySelectorAll('.ctag').forEach(c=>c.classList.toggle('active',c.dataset.ct===tag));
-  const meta=ITEM_META[tag]||ITEM_META.general;
-  document.getElementById('c-hint').innerHTML=tag==='general'?'Sending a <strong>General</strong> message — not linked to a specific item.':`Linking this message to <strong>${meta.label}</strong>.`;
-  document.getElementById('compose-input').placeholder=tag==='general'?'Type your message…':`Ask about ${meta.label}…`;
+/* Build the tag row from ITEMS + admin enabledTags */
+function renderComposeTags(){
+  const list=document.getElementById('compose-tags-list');
+  if(!list)return;
+  const allTags=[{id:'general',label:'General'},...Object.keys(ITEMS).map(k=>({id:k,label:ITEMS[k].label}))];
+  list.innerHTML=allTags
+    .filter(t=>enabledTags.has(t.id))
+    .map(t=>`<div class="ctag${composeTags.includes(t.id)?' active':''}" data-ct="${t.id}" onclick="toggleCTag('${t.id}')">${t.label}</div>`)
+    .join('');
+  updateCHint();
 }
+function toggleCTag(tag){
+  if(tag==='general'){
+    composeTags=['general'];
+  } else {
+    composeTags=composeTags.filter(x=>x!=='general');
+    const idx=composeTags.indexOf(tag);
+    if(idx>=0) composeTags.splice(idx,1); else composeTags.push(tag);
+    if(!composeTags.length) composeTags=['general'];
+  }
+  renderComposeTags();
+}
+function updateCHint(){
+  const hint=document.getElementById('c-hint');
+  if(!hint)return;
+  if(composeTags.includes('general')||composeTags.length===0){
+    hint.innerHTML='Sending a <strong>General</strong> message — not linked to a specific item.';
+    document.getElementById('compose-input').placeholder='Type your message…';
+  } else {
+    const labels=composeTags.map(t=>`<strong>${(ITEMS[t]||{label:t}).label}</strong>`).join(', ');
+    hint.innerHTML=`Tagging this message: ${labels}.`;
+    document.getElementById('compose-input').placeholder='Type your message…';
+  }
+}
+/* Admin tag manager */
+function toggleTagMgr(){
+  const panel=document.getElementById('tag-mgr-panel');
+  const isOpen=panel.classList.contains('open');
+  if(!isOpen) renderTagMgr();
+  panel.classList.toggle('open',!isOpen);
+}
+function renderTagMgr(){
+  const allTags=[{id:'general',label:'General'},...Object.keys(ITEMS).map(k=>({id:k,label:ITEMS[k].label}))];
+  document.getElementById('tag-mgr-rows').innerHTML=allTags.map(t=>`
+    <div class="tag-mgr-row">
+      <input type="checkbox" id="tmr-${t.id}" ${enabledTags.has(t.id)?'checked':''} onchange="toggleEnabledTag('${t.id}',this.checked)">
+      <label for="tmr-${t.id}">${t.label}</label>
+    </div>`).join('');
+}
+function toggleEnabledTag(id,on){
+  if(id==='general') return; // General always on
+  if(on) enabledTags.add(id); else {
+    enabledTags.delete(id);
+    composeTags=composeTags.filter(x=>x!==id);
+    if(!composeTags.length) composeTags=['general'];
+  }
+  renderComposeTags();
+}
+// Close tag manager when clicking outside
+document.addEventListener('click',function(e){
+  const panel=document.getElementById('tag-mgr-panel');
+  const btn=document.getElementById('tag-mgr-btn');
+  if(panel&&panel.classList.contains('open')&&!panel.contains(e.target)&&e.target!==btn) panel.classList.remove('open');
+});
 function sendMsg(){
   const inp=document.getElementById('compose-input');const txt=inp.value.trim();
   const att=buildAttachmentsFromPending('main');
   if(!txt&&!att.length)return;
-  MSGS.push({id:'m'+(MSGS.length+1),type:'customer',tag:composeTag,text:txt||'(attached)',time:nowStr(),attachments:att});
+  const primaryTag=composeTags[0]||'general';
+  MSGS.push({id:'m'+(MSGS.length+1),type:'customer',tag:primaryTag,tags:[...composeTags],text:txt||'(attached)',time:nowStr(),attachments:att});
   inp.value='';renderMessages();
 }
 
@@ -2135,7 +2205,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('compose-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}});
   document.getElementById('dq-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendDrawerMsg();}});
   document.getElementById('lb-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendLBReply();}});
-  renderItemList();updateTotals();renderMessages();renderDocs();renderOfficialDocs();renderMilestones();renderSamples();renderNotes();
+  renderItemList();updateTotals();renderMessages();renderDocs();renderOfficialDocs();renderMilestones();renderSamples();renderNotes();renderComposeTags();
   // Click-outside on notification overlay
   document.getElementById('notif-overlay').addEventListener('click',function(e){
     if(e.target===this) closeNotifModal();
