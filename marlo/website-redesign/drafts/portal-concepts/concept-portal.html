@@ -117,17 +117,19 @@
     .ab-cta { background:var(--gold); color:var(--navy); border:none; padding:11px 22px; border-radius:6px; font-weight:700; font-size:0.84rem; cursor:pointer; font-family:var(--sans); }
 
     /* ══ MESSAGES PANEL ══ */
-    .mp-head { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:14px; gap:10px; }
+    .mp-head { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:12px; gap:10px; }
     .mp-head h2 { font-family:var(--serif); font-size:1.35rem; color:var(--navy); }
     .mp-head p  { font-size:0.76rem; color:var(--grey); margin-top:2px; }
     .msg-cnt { background:rgba(200,186,154,0.2); border:1px solid var(--gold); color:#7a6f52; padding:4px 11px; border-radius:12px; font-size:0.71rem; font-weight:600; white-space:nowrap; flex-shrink:0; }
-    .search-wrap { position:relative; margin-bottom:11px; }
-    .search-input { width:100%; padding:10px 36px 10px 13px; border:1.5px solid var(--light); border-radius:8px; font-family:var(--sans); font-size:0.87rem; color:var(--text); background:#fff; transition:border-color 0.2s; }
+    /* Sticky search + filter bar */
+    .msg-sticky { position:sticky; top:0; z-index:20; background:var(--cream); padding:10px 0 4px; margin:0 0 10px; }
+    .search-wrap { position:relative; margin-bottom:8px; }
+    .search-input { width:100%; padding:10px 36px 10px 13px; border:1.5px solid var(--light); border-radius:8px; font-family:var(--sans); font-size:0.87rem; color:var(--text); background:#fff; transition:border-color 0.2s; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
     .search-input:focus { outline:none; border-color:var(--gold); }
     .s-icon  { position:absolute; right:11px; top:50%; transform:translateY(-50%); color:var(--grey); pointer-events:none; font-size:0.9rem; }
     .s-clear { position:absolute; right:10px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--grey); font-size:1.1rem; cursor:pointer; display:none; }
     .s-clear.show { display:block; }
-    .filter-row { display:flex; gap:6px; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; margin-bottom:15px; }
+    .filter-row { display:flex; gap:6px; overflow-x:auto; padding-bottom:2px; scrollbar-width:none; }
     .filter-row::-webkit-scrollbar { display:none; }
     .pill { flex-shrink:0; padding:5px 12px; border-radius:20px; font-size:0.7rem; font-weight:600; cursor:pointer; border:1.5px solid var(--light); background:#fff; color:var(--grey); white-space:nowrap; transition:all 0.15s; }
     .pill:hover { border-color:var(--gold-light); color:var(--navy); }
@@ -664,12 +666,14 @@
         <div><h2>Correspondence</h2><p>All messages · tagged by item</p></div>
         <span class="msg-cnt" id="msg-cnt-badge">—</span>
       </div>
-      <div class="search-wrap">
-        <input class="search-input" id="s-input" type="text" placeholder="Search messages…" oninput="handleSearch(this.value)">
-        <span class="s-icon" id="s-icon">🔍</span>
-        <button class="s-clear" id="s-clear" onclick="clearSearch()">✕</button>
+      <div class="msg-sticky">
+        <div class="search-wrap">
+          <input class="search-input" id="s-input" type="text" placeholder="Search messages…" oninput="handleSearch(this.value)">
+          <span class="s-icon" id="s-icon">🔍</span>
+          <button class="s-clear" id="s-clear" onclick="clearSearch()">✕</button>
+        </div>
+        <div class="filter-row" id="filter-row"></div>
       </div>
-      <div class="filter-row" id="filter-row"></div>
       <div class="no-results" id="no-results">No messages match your search.</div>
       <div class="thread" id="msg-thread"></div>
     </div>
@@ -1195,7 +1199,7 @@ function switchTab(tab){
   });
   document.getElementById('approve-bar').classList.toggle('hide',tab!=='quote');
   document.getElementById('compose-wrap').classList.toggle('hide',tab!=='messages');
-  if(tab==='messages'){document.getElementById('msg-badge').classList.remove('show');renderMessages();}
+  if(tab==='messages'){document.getElementById('msg-badge').classList.remove('show');renderMessages();requestAnimationFrame(scrollMsgsToBottom);}
   if(tab==='documents') renderDocs();
   if(tab==='samples') renderSamples();
 }
@@ -1417,10 +1421,17 @@ function renderThread(){
   const nr=document.getElementById('no-results');
   if(!filtered.length){nr.classList.add('show');document.getElementById('msg-thread').innerHTML='';return;}
   nr.classList.remove('show');
+  // Oldest first — newest appears at the bottom (WhatsApp/Telegram order)
   const byDay={};filtered.forEach(m=>{const d=m.time.split(',')[0];if(!byDay[d])byDay[d]=[];byDay[d].push(m);});
   document.getElementById('msg-thread').innerHTML=Object.entries(byDay).map(([d,msgs])=>
     `<div class="date-sep"><span>${d}</span></div>${msgs.map(m=>renderMsgBubble(m)).join('')}`
   ).join('');
+  // Scroll to latest after render
+  scrollMsgsToBottom();
+}
+function scrollMsgsToBottom(){
+  const panel=document.getElementById('panel-messages');
+  if(panel) panel.scrollTop=panel.scrollHeight;
 }
 function renderMsgBubble(m,inLB){
   const meta=ITEM_META[m.tag]||ITEM_META.general;
@@ -1454,7 +1465,6 @@ function sendMsg(){
   if(!txt&&!att.length)return;
   MSGS.push({id:'m'+(MSGS.length+1),type:'customer',tag:composeTag,text:txt||'(attached)',time:nowStr(),attachments:att});
   inp.value='';renderMessages();
-  setTimeout(()=>document.getElementById('panel-messages').scrollTo({top:999999,behavior:'smooth'}),80);
 }
 
 /* ═══ LIGHTBOX ═══ */
