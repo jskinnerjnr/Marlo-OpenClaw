@@ -37,35 +37,37 @@
     .ptab .badge.show { display:block; }
 
     /* ══ PORTAL TABS — mobile grid ══ */
-    /* ══ MOBILE — bottom nav ══ */
-    @media (max-width: 600px) {
-      /* Hide the top tab bar entirely */
+    /* ══ MOBILE — hamburger nav ══ */
+    .hamburger-btn { display:none; }
+    @media (max-width:600px) {
       .portal-tabs { display:none; }
-
-      /* Bottom nav bar */
-      .bottom-nav { display:flex; position:fixed; bottom:0; left:0; right:0; z-index:60; background:#fff; border-top:1px solid var(--light); padding-bottom:env(safe-area-inset-bottom); box-shadow:0 -2px 12px rgba(0,0,0,0.08); }
-      .bnav-item { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:8px 4px 7px; cursor:pointer; position:relative; gap:3px; -webkit-tap-highlight-color:transparent; }
-      .bnav-item::before { font-size:1.25rem; line-height:1; }
-      .bnav-item:nth-child(1)::before { content:'👤'; }
-      .bnav-item:nth-child(2)::before { content:'🚗'; }
-      .bnav-item:nth-child(3)::before { content:'📋'; }
-      .bnav-item:nth-child(4)::before { content:'💬'; }
-      .bnav-item:nth-child(5)::before { content:'📁'; }
-      .bnav-item:nth-child(6)::before { content:'🎨'; }
-      .bnav-label { font-size:0.58rem; font-weight:600; letter-spacing:0.03em; color:var(--grey); white-space:nowrap; }
-      .bnav-item.active .bnav-label { color:var(--navy); }
-      .bnav-item.active::after { content:''; position:absolute; top:0; left:20%; right:20%; height:2px; background:var(--gold); border-radius:0 0 2px 2px; }
-      .bnav-badge { position:absolute; top:6px; right:calc(50% - 14px); width:7px; height:7px; background:var(--red); border-radius:50%; border:1.5px solid #fff; display:none; }
-      .bnav-badge.show { display:block; }
-
-      /* Push content and fixed bars up above the bottom nav */
-      .content-area        { margin-bottom:56px; }
-      .approve-bar         { bottom:56px !important; }
-      .compose-wrap        { bottom:56px !important; }
-      /* Hide compose when its panel isn't active (handled by existing .hide class) */
+      /* Hamburger button in header */
+      .hamburger-btn { display:flex; flex-direction:column; justify-content:center; gap:5px; background:none; border:none; cursor:pointer; padding:6px; border-radius:6px; flex-shrink:0; }
+      .hamburger-btn span { display:block; width:22px; height:2px; background:rgba(255,255,255,0.75); border-radius:2px; transition:transform 0.25s, opacity 0.25s; }
+      .hamburger-btn.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+      .hamburger-btn.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+      .hamburger-btn.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+      /* Dropdown menu */
+      .ham-menu { display:none; position:fixed; top:0; left:0; right:0; z-index:58; background:#fff; box-shadow:0 6px 24px rgba(0,0,0,0.14); transform:translateY(-8px); opacity:0; transition:transform 0.22s cubic-bezier(.4,0,.2,1), opacity 0.2s; border-radius:0 0 14px 14px; overflow:hidden; }
+      .ham-menu.open { display:block; transform:translateY(0); opacity:1; }
+      /* spacer so menu clears the header */
+      .ham-spacer { height:60px; background:var(--navy); border-bottom:3px solid var(--gold); }
+      .ham-items { display:grid; grid-template-columns:1fr 1fr 1fr; padding:10px 12px 14px; gap:8px; }
+      .ham-item { display:flex; flex-direction:column; align-items:center; gap:5px; padding:12px 6px 10px; border-radius:10px; border:1.5px solid var(--light); background:var(--cream); cursor:pointer; -webkit-tap-highlight-color:transparent; transition:background 0.15s, border-color 0.15s; }
+      .ham-item:active { background:var(--warm); }
+      .ham-item.active { background:var(--navy); border-color:var(--navy); }
+      .ham-item .hi-icon { font-size:1.4rem; line-height:1; }
+      .ham-item .hi-label { font-size:0.67rem; font-weight:700; letter-spacing:0.03em; color:var(--text); text-align:center; text-transform:uppercase; }
+      .ham-item.active .hi-label { color:var(--gold); }
+      .ham-item .hi-badge { width:7px; height:7px; background:var(--red); border-radius:50%; border:1.5px solid #fff; position:absolute; top:8px; right:8px; display:none; }
+      .ham-item { position:relative; }
+      .ham-item .hi-badge.show { display:block; }
+      /* Dim overlay behind menu */
+      .ham-overlay { display:none; position:fixed; inset:0; z-index:57; background:rgba(0,0,0,0.35); }
+      .ham-overlay.open { display:block; }
     }
     @media (min-width:601px) {
-      .bottom-nav { display:none; }
+      .ham-menu, .ham-overlay { display:none !important; }
     }
 
     /* ══ PANELS ══ */
@@ -551,7 +553,24 @@
     <div class="name">David Mitchell</div>
     <div class="ref">Quote JSM-2847</div>
   </div>
+  <button class="hamburger-btn" id="ham-btn" onclick="toggleHamMenu()" aria-label="Navigation menu">
+    <span></span><span></span><span></span>
+  </button>
 </header>
+
+<!-- ══ HAMBURGER DROPDOWN ══ -->
+<div class="ham-overlay" id="ham-overlay" onclick="closeHamMenu()"></div>
+<div class="ham-menu" id="ham-menu">
+  <div class="ham-spacer"></div>
+  <div class="ham-items">
+    <div class="ham-item active" id="hm-customer" onclick="hamNav('customer')"><div class="hi-icon">👤</div><div class="hi-label">Customer</div></div>
+    <div class="ham-item"        id="hm-car"      onclick="hamNav('car')">      <div class="hi-icon">🚗</div><div class="hi-label">Car Details</div></div>
+    <div class="ham-item"        id="hm-quote"    onclick="hamNav('quote')">    <div class="hi-icon">📋</div><div class="hi-label">Your Quote</div></div>
+    <div class="ham-item"        id="hm-messages" onclick="hamNav('messages')"> <div class="hi-icon">💬</div><div class="hi-label">Messages</div><div class="hi-badge" id="hm-msg-badge"></div></div>
+    <div class="ham-item"        id="hm-documents"onclick="hamNav('documents')" ><div class="hi-icon">📁</div><div class="hi-label">Documents</div></div>
+    <div class="ham-item"        id="hm-samples"  onclick="hamNav('samples')">  <div class="hi-icon">🎨</div><div class="hi-label">Samples</div></div>
+  </div>
+</div>
 
 <!-- ══ PORTAL TABS ══ -->
 <div class="portal-tabs" id="portal-tabs">
@@ -987,16 +1006,6 @@ No other modifications noted.</textarea></div>
   </div>
 </div>
 
-<!-- ══ MOBILE BOTTOM NAV ══ -->
-<nav class="bottom-nav" id="bottom-nav">
-  <div class="bnav-item active" id="bn-customer" onclick="switchTab('customer')"><span class="bnav-label">Customer</span></div>
-  <div class="bnav-item"        id="bn-car"      onclick="switchTab('car')">     <span class="bnav-label">Car</span></div>
-  <div class="bnav-item"        id="bn-quote"    onclick="switchTab('quote')">   <span class="bnav-label">Quote</span></div>
-  <div class="bnav-item"        id="bn-messages" onclick="switchTab('messages')"><span class="bnav-label">Messages</span><span class="bnav-badge" id="bn-msg-badge"></span></div>
-  <div class="bnav-item"        id="bn-documents"onclick="switchTab('documents')"><span class="bnav-label">Docs</span></div>
-  <div class="bnav-item"        id="bn-samples"  onclick="switchTab('samples')"> <span class="bnav-label">Samples</span></div>
-</nav>
-
 <!-- ══ MESSAGE LIGHTBOX ══ -->
 <div class="lb-overlay" id="lb-overlay" onclick="closeLB(event)">
   <div class="lb-box" id="lb-box">
@@ -1215,20 +1224,14 @@ let itemFilter='all'; // 'all' | 'confirmed' | 'pending'
 /* ═══ TAB SWITCHING ═══ */
 function switchTab(tab){
   activeTab=tab;
-  // Top tabs (desktop)
   ['quote','messages','documents','customer','samples','car'].forEach(t=>{
-    const pt=document.getElementById('pt-'+t);
-    if(pt) pt.classList.toggle('active',t===tab);
-    // Bottom nav (mobile)
-    const bn=document.getElementById('bn-'+t);
-    if(bn) bn.classList.toggle('active',t===tab);
-    // Panels
-    const panel=document.getElementById('panel-'+t);
-    if(panel) panel.classList.toggle('active',t===tab);
+    const pt=document.getElementById('pt-'+t);    if(pt) pt.classList.toggle('active',t===tab);
+    const hm=document.getElementById('hm-'+t);    if(hm) hm.classList.toggle('active',t===tab);
+    const panel=document.getElementById('panel-'+t); if(panel) panel.classList.toggle('active',t===tab);
   });
   document.getElementById('approve-bar').classList.toggle('hide',tab!=='quote');
   document.getElementById('compose-wrap').classList.toggle('hide',tab!=='messages');
-  if(tab==='messages'){document.getElementById('msg-badge').classList.remove('show');const bnb2=document.getElementById('bn-msg-badge');if(bnb2)bnb2.classList.remove('show');renderMessages();requestAnimationFrame(scrollMsgsToBottom);}
+  if(tab==='messages'){document.getElementById('msg-badge').classList.remove('show');const bnb2=document.getElementById('bn-msg-badge');if(bnb2)bnb2.classList.remove('show');const hmb2=document.getElementById('hm-msg-badge');if(hmb2)hmb2.classList.remove('show');renderMessages();requestAnimationFrame(scrollMsgsToBottom);}
   if(tab==='documents') renderDocs();
   if(tab==='samples') renderSamples();
 }
@@ -1424,7 +1427,7 @@ function sendDrawerMsg(){
   if(!txt&&!att.length)return;
   MSGS.push({id:'m'+(MSGS.length+1),type:'customer',tag:activeItem,text:txt||'(attached)',time:nowStr(),attachments:att});
   inp.value='';renderDQThread(activeItem);
-  if(activeTab!=='messages'){document.getElementById('msg-badge').classList.add('show');const bnb=document.getElementById('bn-msg-badge');if(bnb)bnb.classList.add('show');}
+  if(activeTab!=='messages'){document.getElementById('msg-badge').classList.add('show');const bnb=document.getElementById('bn-msg-badge');if(bnb)bnb.classList.add('show');const hmb=document.getElementById('hm-msg-badge');if(hmb)hmb.classList.add('show');}
 }
 
 /* ═══ MESSAGES ═══ */
@@ -1537,7 +1540,7 @@ function sendLBReply(){
   const existing=lb.querySelector('.lb-thread');
   if(existing){existing.querySelector('h5').textContent=`Other messages in this thread (${thread.length})`;existing.innerHTML=`<h5>Other messages in this thread (${thread.length})</h5>`+thread.map(x=>renderMsgBubble(x,true)).join('');}
   else lb.insertAdjacentHTML('beforeend',`<div class="lb-thread"><h5>Other messages in this thread (${thread.length})</h5>${thread.map(x=>renderMsgBubble(x,true)).join('')}</div>`);
-  if(activeTab!=='messages'){document.getElementById('msg-badge').classList.add('show');const bnb=document.getElementById('bn-msg-badge');if(bnb)bnb.classList.add('show');}
+  if(activeTab!=='messages'){document.getElementById('msg-badge').classList.add('show');const bnb=document.getElementById('bn-msg-badge');if(bnb)bnb.classList.add('show');const hmb=document.getElementById('hm-msg-badge');if(hmb)hmb.classList.add('show');}
 }
 
 /* ═══ OFFICIAL DOCS ═══ */
@@ -1828,6 +1831,26 @@ function renderNotes(){
 }
 // Pre-populate with one admin note
 ORDER_NOTES.push({text:'Lovely car — confirmed BRG with customer on initial call. He\'s flexible on timeline, quality is the priority. Awaiting hood decision before finalising.',who:'John Skinner',type:'admin',time:'4 Mar, 9:00 AM'});
+
+/* ═══ HAMBURGER NAV ═══ */
+function toggleHamMenu(){
+  const menu=document.getElementById('ham-menu');
+  const overlay=document.getElementById('ham-overlay');
+  const btn=document.getElementById('ham-btn');
+  const isOpen=menu.classList.contains('open');
+  menu.classList.toggle('open',!isOpen);
+  overlay.classList.toggle('open',!isOpen);
+  btn.classList.toggle('open',!isOpen);
+}
+function closeHamMenu(){
+  document.getElementById('ham-menu').classList.remove('open');
+  document.getElementById('ham-overlay').classList.remove('open');
+  document.getElementById('ham-btn').classList.remove('open');
+}
+function hamNav(tab){
+  closeHamMenu();
+  switchTab(tab);
+}
 
 /* ═══ HELPERS ═══ */
 function nowStr(){const n=new Date();return n.toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).replace(',','');}
