@@ -221,6 +221,49 @@
     .compose-input:focus { outline:none; border-color:var(--gold); }
     .compose-send { background:var(--gold); color:var(--navy); border:none; padding:10px 16px; border-radius:9px; font-weight:800; font-size:0.84rem; cursor:pointer; font-family:var(--sans); white-space:nowrap; letter-spacing:0.02em; }
 
+    /* ══ PAYMENTS ══ */
+    .pay-summary-card { background:var(--navy); border-radius:14px; padding:20px; margin-bottom:20px; display:grid; grid-template-columns:repeat(3,1fr); gap:0; }
+    .pay-stat { text-align:center; padding:0 10px; }
+    .pay-stat+.pay-stat { border-left:1px solid rgba(255,255,255,0.15); }
+    .pay-stat .ps-n { font-family:var(--serif); font-size:1.4rem; font-weight:700; color:#fff; }
+    .pay-stat .ps-n.gold { color:var(--gold); }
+    .pay-stat .ps-n.green { color:#5ecb8a; }
+    .pay-stat .ps-n.red { color:#ff8a8a; }
+    .pay-stat .ps-l { font-size:0.65rem; text-transform:uppercase; letter-spacing:0.1em; color:rgba(255,255,255,0.45); margin-top:4px; }
+    /* Outstanding payment card */
+    .pay-due-card { border:2px solid var(--gold); border-radius:12px; padding:16px 18px; background:rgba(200,186,154,0.08); margin-bottom:6px; }
+    .pay-due-card.paid { border-color:#1c6b3a; background:rgba(28,107,58,0.06); }
+    .pay-due-top { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:10px; }
+    .pay-due-label { font-weight:700; font-size:0.95rem; color:var(--navy); }
+    .pay-due-amount { font-family:var(--serif); font-size:1.4rem; font-weight:700; color:var(--navy); white-space:nowrap; }
+    .pay-due-note { font-size:0.78rem; color:var(--grey); line-height:1.55; margin-bottom:14px; }
+    .pay-due-actions { display:flex; flex-direction:column; gap:8px; }
+    .pay-link-btn { width:100%; padding:13px; background:var(--navy); color:var(--gold); border:none; border-radius:9px; font-family:var(--sans); font-weight:700; font-size:0.88rem; cursor:pointer; text-align:center; letter-spacing:0.03em; }
+    .pay-transfer-box { background:var(--warm); border:1.5px solid var(--light); border-radius:9px; padding:12px 14px; }
+    .pay-transfer-title { font-size:0.65rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--grey); font-weight:700; margin-bottom:10px; }
+    .pay-tf-row { display:flex; justify-content:space-between; align-items:center; padding:5px 0; border-bottom:1px solid var(--light); }
+    .pay-tf-row:last-child { border-bottom:none; }
+    .pay-tf-label { font-size:0.75rem; color:var(--grey); }
+    .pay-tf-val { font-size:0.82rem; font-weight:700; color:var(--navy); font-family:var(--sans); letter-spacing:0.05em; }
+    .pay-tf-copy { background:none; border:1px solid var(--light); border-radius:5px; padding:3px 8px; font-size:0.65rem; font-weight:700; color:var(--grey); cursor:pointer; }
+    .pay-tf-copy:hover { border-color:var(--navy); color:var(--navy); }
+    /* History */
+    .pay-hist-empty { text-align:center; padding:24px 0; color:var(--grey); font-size:0.85rem; }
+    .pay-hist-row { display:flex; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid var(--light); }
+    .pay-hist-row:last-child { border-bottom:none; }
+    .pay-hist-icon { width:36px; height:36px; border-radius:9px; background:var(--warm); display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+    .pay-hist-info { flex:1; min-width:0; }
+    .pay-hist-label { font-weight:700; font-size:0.85rem; color:var(--navy); }
+    .pay-hist-date { font-size:0.72rem; color:var(--grey); margin-top:2px; }
+    .pay-hist-amount { font-weight:800; font-size:0.95rem; color:var(--navy); white-space:nowrap; }
+    .pay-hist-badge { font-size:0.65rem; font-weight:700; padding:3px 8px; border-radius:10px; }
+    .pay-hist-badge.paid { background:rgba(28,107,58,0.1); color:#1c6b3a; }
+    .pay-hist-badge.pending { background:rgba(200,186,154,0.25); color:#7a6000; }
+    .pay-hist-badge.refunded { background:rgba(109,32,36,0.1); color:#6d2024; }
+    /* Admin instructions note */
+    .pay-admin-note { background:rgba(39,46,102,0.05); border:1.5px solid var(--light); border-left:4px solid var(--navy); border-radius:0 9px 9px 0; padding:12px 14px; font-size:0.8rem; color:var(--text); line-height:1.6; }
+    .pay-admin-note .pan-lbl { font-size:0.62rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--gold); font-weight:700; margin-bottom:5px; }
+
     /* ══ ITEM STATUS PICKER ══ */
     .i-status-pick { display:flex; gap:4px; margin-top:6px; }
     .isp-btn { flex:1; padding:5px 4px; font-size:0.62rem; font-weight:700; letter-spacing:0.03em; border-radius:6px; border:1.5px solid var(--light); background:#fff; color:var(--grey); cursor:pointer; text-align:center; white-space:nowrap; transition:all 0.15s; }
@@ -695,6 +738,7 @@
     <div class="ham-item"        id="hm-messages" onclick="hamNav('messages')"> <div class="hi-icon">💬</div><div class="hi-label">Messages</div><div class="hi-badge" id="hm-msg-badge"></div></div>
     <div class="ham-item"        id="hm-documents"onclick="hamNav('documents')" ><div class="hi-icon">📊</div><div class="hi-label">Progress</div></div>
     <div class="ham-item"        id="hm-samples"  onclick="hamNav('samples')">  <div class="hi-icon">🎨</div><div class="hi-label">Samples</div></div>
+    <div class="ham-item"        id="hm-payments" onclick="hamNav('payments')"><div class="hi-icon">💳</div><div class="hi-label">Payments</div></div>
   </div>
 </div>
 
@@ -710,7 +754,8 @@
     <div class="ptab"        id="pt-samples"  onclick="switchTab('samples')"><span class="ptab-icon">🎨</span>Samples</div>
   </div>
   <div class="tab-group right">
-    <div class="ptab"        id="pt-documents"onclick="switchTab('documents')"><span class="ptab-icon">📊</span>Docs &amp; Progress</div>
+    <div class="ptab"        id="pt-documents" onclick="switchTab('documents')"><span class="ptab-icon">📊</span>Docs &amp; Progress</div>
+    <div class="ptab"        id="pt-payments"  onclick="switchTab('payments')"><span class="ptab-icon">💳</span>Payments</div>
   </div>
 </div>
 
@@ -880,6 +925,19 @@
       </div>
       <div class="docs-filter" id="docs-filter-row"></div>
       <div class="doc-grid" id="doc-grid"></div>
+    </div>
+  </div>
+
+  <!-- ─ PAYMENTS ─ -->
+  <div class="panel" id="panel-payments">
+    <div class="inner">
+      <div class="pay-summary-card" id="pay-summary-card"></div>
+      <div class="section-heading" style="margin-top:4px;">Outstanding</div>
+      <div id="pay-outstanding"></div>
+      <div class="section-heading" style="margin-top:22px;">Payment History</div>
+      <div id="pay-history"></div>
+      <div class="section-heading" style="margin-top:22px;">How to Pay</div>
+      <div id="pay-instructions"></div>
     </div>
   </div>
 
@@ -1335,6 +1393,35 @@ let DOCS=[
 ];
 
 /* ─ OFFICIAL DOCS ─ */
+/* ═══ PAYMENTS DATA ═══ */
+const PAYMENTS_META = {
+  quoteTotal: 3150,  // updated by updateTotals
+  paid: 0,
+  currency: '£',
+};
+const PAYMENT_HISTORY = [
+  // empty for demo — no payments yet
+];
+const OUTSTANDING_PAYMENTS = [
+  {
+    id:'dep1',
+    label:'50% Deposit',
+    amount: null, // calculated from quoteTotal
+    isPct: 0.5,
+    note:'A 50% deposit is required before production begins. Once received, your order enters our production queue. The balance is due upon completion, before despatch.',
+    status:'due',
+    payLink: null, // admin can set a payment link
+    bankTransfer: {
+      name: 'John Skinner (Manufacturing) Ltd',
+      sortCode: '30-98-97',
+      accountNo: '12345678',
+      ref: 'JSM-2847',
+      bank: 'Lloyds Bank',
+    },
+    adminNote: 'Please use your quote reference JSM-2847 as the payment reference so we can match your payment immediately.',
+  },
+];
+
 const MILESTONES=[
   {
     id:'m-confirm', status:'done', dot:'✓',
@@ -1410,7 +1497,7 @@ let quoteStatus='draft'; // 'draft' | 'submitted' | 'ready' | 'approved'
 /* ═══ TAB SWITCHING ═══ */
 function switchTab(tab){
   activeTab=tab;
-  ['quote','messages','documents','customer','samples','car'].forEach(t=>{
+  ['quote','messages','documents','payments','customer','samples','car'].forEach(t=>{
     const pt=document.getElementById('pt-'+t);    if(pt) pt.classList.toggle('active',t===tab);
     const hm=document.getElementById('hm-'+t);    if(hm) hm.classList.toggle('active',t===tab);
     const panel=document.getElementById('panel-'+t); if(panel) panel.classList.toggle('active',t===tab);
@@ -1419,6 +1506,7 @@ function switchTab(tab){
   document.getElementById('compose-wrap').classList.toggle('hide',tab!=='messages');
   if(tab==='messages'){document.getElementById('msg-badge').classList.remove('show');const bnb2=document.getElementById('bn-msg-badge');if(bnb2)bnb2.classList.remove('show');const hmb2=document.getElementById('hm-msg-badge');if(hmb2)hmb2.classList.remove('show');renderMessages();requestAnimationFrame(scrollMsgsToBottom);}
   if(tab==='documents') renderDocs();
+  if(tab==='payments')  renderPayments();
   if(tab==='samples') renderSamples();
 }
 
@@ -1440,6 +1528,7 @@ function updateTotals(){
   Object.keys(ITEMS).forEach(id=>{ if(ITEMS[id].action==='required') t+=calcPrice(id); });
   document.getElementById('ab-amt').textContent='£'+t.toLocaleString();
   document.getElementById('qs-price').textContent='£'+t.toLocaleString();
+  PAYMENTS_META.quoteTotal=t;
   const req  =Object.keys(ITEMS).filter(id=>ITEMS[id].action==='required').length;
   const con  =Object.keys(ITEMS).filter(id=>ITEMS[id].action==='considering').length;
   const nr   =Object.keys(ITEMS).filter(id=>ITEMS[id].action==='not-required').length;
@@ -1791,6 +1880,84 @@ function sendLBReply(){
 }
 
 /* ═══ OFFICIAL DOCS ═══ */
+/* ═══ PAYMENTS ═══ */
+function renderPayments(){
+  const total=PAYMENTS_META.quoteTotal;
+  const paid=PAYMENT_HISTORY.filter(p=>p.status==='paid').reduce((s,p)=>s+p.amount,0);
+  const outstanding=OUTSTANDING_PAYMENTS.filter(p=>p.status==='due').reduce((s,p)=>s+(p.isPct?Math.round(total*p.isPct):p.amount),0);
+  // Summary card
+  const sumEl=document.getElementById('pay-summary-card');
+  if(sumEl) sumEl.innerHTML=`
+    <div class="pay-stat"><div class="ps-n gold">${PAYMENTS_META.currency}${total.toLocaleString()}</div><div class="ps-l">Quote Total</div></div>
+    <div class="pay-stat"><div class="ps-n green">${PAYMENTS_META.currency}${paid.toLocaleString()}</div><div class="ps-l">Paid</div></div>
+    <div class="pay-stat"><div class="ps-n red">${PAYMENTS_META.currency}${outstanding.toLocaleString()}</div><div class="ps-l">Outstanding</div></div>`;
+  // Outstanding
+  const outEl=document.getElementById('pay-outstanding');
+  if(outEl){
+    if(!OUTSTANDING_PAYMENTS.length){
+      outEl.innerHTML='<div class="pay-hist-empty">✓ No outstanding payments.</div>';
+    } else {
+      outEl.innerHTML=OUTSTANDING_PAYMENTS.map(p=>{
+        const amt=p.isPct?Math.round(total*p.isPct):p.amount;
+        const bt=p.bankTransfer;
+        return`<div class="pay-due-card">
+          <div class="pay-due-top">
+            <div><div class="pay-due-label">${p.label}</div>${p.status==='due'?'<div style="font-size:0.72rem;color:#9a7c00;font-weight:600;margin-top:2px;">Due now</div>':''}</div>
+            <div class="pay-due-amount">${PAYMENTS_META.currency}${amt.toLocaleString()}</div>
+          </div>
+          <div class="pay-due-note">${p.note}</div>
+          ${p.adminNote?`<div class="pay-admin-note"><div class="pan-lbl">Note from John Skinner</div>${p.adminNote}</div><br>`:'' }
+          <div class="pay-due-actions">
+            ${p.payLink?`<button class="pay-link-btn" onclick="window.open('${p.payLink}')">💳 Pay Online — ${PAYMENTS_META.currency}${amt.toLocaleString()}</button>`:''}
+            ${bt?`<div class="pay-transfer-box">
+              <div class="pay-transfer-title">Bank Transfer Details</div>
+              <div class="pay-tf-row"><span class="pay-tf-label">Bank</span><span class="pay-tf-val">${bt.bank}</span></div>
+              <div class="pay-tf-row"><span class="pay-tf-label">Account Name</span><span class="pay-tf-val">${bt.name}</span><button class="pay-tf-copy" onclick="copyPay('${bt.name}',this)">Copy</button></div>
+              <div class="pay-tf-row"><span class="pay-tf-label">Sort Code</span><span class="pay-tf-val">${bt.sortCode}</span><button class="pay-tf-copy" onclick="copyPay('${bt.sortCode}',this)">Copy</button></div>
+              <div class="pay-tf-row"><span class="pay-tf-label">Account Number</span><span class="pay-tf-val">${bt.accountNo}</span><button class="pay-tf-copy" onclick="copyPay('${bt.accountNo}',this)">Copy</button></div>
+              <div class="pay-tf-row"><span class="pay-tf-label">Reference</span><span class="pay-tf-val" style="color:var(--red)">${bt.ref}</span><button class="pay-tf-copy" onclick="copyPay('${bt.ref}',this)">Copy</button></div>
+            </div>`:''}
+          </div>
+        </div>`;
+      }).join('');
+    }
+  }
+  // History
+  const histEl=document.getElementById('pay-history');
+  if(histEl){
+    if(!PAYMENT_HISTORY.length){
+      histEl.innerHTML='<div class="pay-hist-empty">No payments recorded yet.</div>';
+    } else {
+      histEl.innerHTML=PAYMENT_HISTORY.map(p=>`
+        <div class="pay-hist-row">
+          <div class="pay-hist-icon">${p.status==='paid'?'✅':p.status==='refunded'?'↩️':'⏳'}</div>
+          <div class="pay-hist-info">
+            <div class="pay-hist-label">${p.label}</div>
+            <div class="pay-hist-date">${p.date} · ${p.method||'Bank Transfer'}</div>
+          </div>
+          <div style="text-align:right">
+            <div class="pay-hist-amount">${PAYMENTS_META.currency}${p.amount.toLocaleString()}</div>
+            <span class="pay-hist-badge ${p.status}">${p.status.charAt(0).toUpperCase()+p.status.slice(1)}</span>
+          </div>
+        </div>`).join('');
+    }
+  }
+  // Instructions
+  const instrEl=document.getElementById('pay-instructions');
+  if(instrEl) instrEl.innerHTML=`
+    <div class="pay-admin-note" style="margin-bottom:6px;">
+      <div class="pan-lbl">From John Skinner</div>
+      We accept payment by bank transfer (preferred) or by card via our secure payment link. Bank transfer details are shown above. If you'd prefer to pay by card, please contact us and we'll send you a secure payment link by email.
+      <br><br>For international orders, please pay in GBP. Your bank will handle the currency conversion at their current rate. We do not add any surcharge for international payments.
+    </div>`;
+}
+function copyPay(text,btn){
+  navigator.clipboard.writeText(text).then(()=>{
+    const orig=btn.textContent; btn.textContent='✓';
+    setTimeout(()=>btn.textContent=orig,1500);
+  });
+}
+
 function renderMilestones(){
   const el=document.getElementById('milestone-list');
   if(!el)return;
@@ -2234,7 +2401,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('compose-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}});
   document.getElementById('dq-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendDrawerMsg();}});
   document.getElementById('lb-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendLBReply();}});
-  renderItemList();updateTotals();renderApprovalSection();renderMessages();renderDocs();renderOfficialDocs();renderMilestones();renderSamples();renderNotes();setCTag('general');
+  renderItemList();updateTotals();renderApprovalSection();renderMessages();renderDocs();renderOfficialDocs();renderMilestones();renderSamples();renderNotes();renderPayments();setCTag('general');
   // Click-outside on notification overlay
   document.getElementById('notif-overlay').addEventListener('click',function(e){
     if(e.target===this) closeNotifModal();
