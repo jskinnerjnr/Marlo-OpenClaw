@@ -115,12 +115,17 @@
     .qstat.filterable { cursor:pointer; -webkit-tap-highlight-color:transparent; }
     .qstat.filterable:hover { background:var(--warm); }
     .qstat.filterable:active,
-    .qstat.filter-active { background:var(--navy); border-radius:6px; }
+    .qstat.filter-active { border-radius:6px; }
     .qstat.filterable:active .n,
     .qstat.filter-active .n { color:#fff; }
-    .qstat.filter-active .n.gold { color:var(--gold); }
     .qstat.filterable:active .l,
-    .qstat.filter-active .l { color:rgba(255,255,255,0.55); }
+    .qstat.filter-active .l { color:rgba(255,255,255,0.7); }
+    #qstat-all.filter-active, #qstat-all.filterable:active          { background:var(--navy); }
+    #qstat-required.filter-active, #qstat-required.filterable:active     { background:#1c6b3a; }
+    #qstat-considering.filter-active, #qstat-considering.filterable:active  { background:#c8a84b; }
+    #qstat-not-required.filter-active, #qstat-not-required.filterable:active { background:#b44043; }
+    .n.green { color:#1c6b3a; font-weight:800; }
+    .n.gold  { color:#c8a84b; font-weight:800; }
     /* Item status change flash */
     @keyframes status-flash { 0%{opacity:1} 40%{opacity:0.5;transform:scale(0.98)} 100%{opacity:1;transform:scale(1)} }
     .item-row.status-changing { animation:status-flash 0.5s ease; pointer-events:none; }
@@ -561,6 +566,12 @@
 
     /* Cost card */
     .sh-cost-card { background:var(--navy); border-radius:10px; padding:16px 18px; }
+    .sh-info-btn { background:rgba(255,255,255,0.12); border:1.5px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.7); width:26px; height:26px; border-radius:50%; font-size:0.75rem; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:background 0.15s; }
+    .sh-info-btn:hover,.sh-info-btn.open { background:rgba(255,255,255,0.22); color:#fff; }
+    .sh-info-panel { display:none; }
+    .sh-info-panel.open { display:block; }
+    .sh-steps .sh-step-title { color:rgba(255,255,255,0.9); }
+    .sh-steps .sh-step-body  { color:rgba(255,255,255,0.55); font-size:0.77rem; }
     .sh-cost-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
     .sh-cost-title { font-family:var(--serif); font-size:1rem; color:#fff; }
     .sh-lock-badge { font-size:0.65rem; background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.5); padding:4px 10px; border-radius:10px; border:1px solid rgba(255,255,255,0.12); white-space:nowrap; }
@@ -801,77 +812,29 @@
 
       <!-- SHIPPING -->
       <div class="shipping-section">
-        <div class="sh-heading">
-          <div>
-            <div class="section-heading" style="font-size:1.2rem;">Shipping</div>
-            <div class="section-sub" style="margin-bottom:0">How your order will be delivered</div>
-          </div>
-          <div class="sh-cost-badge" id="sh-cost-badge">
-            <div class="scb-label">Shipping</div>
-            <div class="scb-val">TBC</div>
-          </div>
-        </div>
-
-        <!-- TBC notice -->
-        <div class="sh-tbc-notice">
-          <div class="sh-tbc-icon">⚖️</div>
-          <div>
-            <div class="sh-tbc-title">Shipping cost calculated after items are confirmed</div>
-            <div class="sh-tbc-body">Shipping is charged by weight — either the actual weight of the package or its volumetric weight (calculated from dimensions), whichever is greater. Until you've confirmed which items you need, we can't give you an accurate figure. We'll add it to this quote once you're ready for review.</div>
-          </div>
-        </div>
-
-        <!-- How it works -->
-        <div class="sh-steps">
-          <div class="sh-step">
-            <div class="sh-step-icon">📦</div>
-            <div class="sh-step-info">
-              <div class="sh-step-title">Carefully packed in Cheltenham</div>
-              <div class="sh-step-body">Every order is hand-packed by us. Full kits are heavy — leather seat covers for an E-Type run to around 8–12 kg. We use double-walled boxes, appropriate void fill and custom wrapping for leather items to avoid creasing in transit.</div>
-            </div>
-          </div>
-          <div class="sh-step">
-            <div class="sh-step-icon">🚚</div>
-            <div class="sh-step-info">
-              <div class="sh-step-title">Dispatched with a major carrier</div>
-              <div class="sh-step-body">We use FedEx, DHL, UPS or DPD depending on destination and parcel weight. All shipments are fully tracked, require a signature on delivery, and are insured for the full declared value of the goods.</div>
-            </div>
-          </div>
-          <div class="sh-step">
-            <div class="sh-step-icon">📍</div>
-            <div class="sh-step-info">
-              <div class="sh-step-title">Tracked end to end</div>
-              <div class="sh-step-body">You'll receive a tracking number by email as soon as the parcel is collected. Most UK deliveries arrive within 1–2 working days of dispatch. International delivery times vary by destination — typically 3–7 working days for Europe and 5–10 for the rest of the world.</div>
-            </div>
-          </div>
-          <div class="sh-step">
-            <div class="sh-step-icon">🌍</div>
-            <div class="sh-step-info">
-              <div class="sh-step-title">International orders &amp; customs</div>
-              <div class="sh-step-body">We export worldwide. For orders outside the UK, we complete all export documentation. Your parcel will pass through your country's customs — duties and local taxes (VAT/GST/sales tax) are calculated and collected at the border by your customs authority, not by us. Most carriers will contact you in advance with details. EU customers benefit from 0% import duty on UK-manufactured goods under the UK–EU Trade and Cooperation Agreement — you pay only your local VAT.</div>
-            </div>
-          </div>
-          <div class="sh-step">
-            <div class="sh-step-icon">📋</div>
-            <div class="sh-step-info">
-              <div class="sh-step-title">Partial shipments available</div>
-              <div class="sh-step-body">If your restoration is in progress and you want certain items sooner — seats first, carpets to follow, for example — we can split your order into separate shipments. This is simply a practical option for managing your project timeline, not a cost-reduction measure, and each shipment is priced and tracked separately.</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Admin-editable cost area (shown as locked to customer) -->
+        <!-- Compact estimate card with ℹ button -->
         <div class="sh-cost-card" id="sh-cost-card">
           <div class="sh-cost-header">
             <div class="sh-cost-title">Shipping Estimate</div>
-            <span class="sh-lock-badge">🔒 Set by John Skinner</span>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <button class="sh-info-btn" id="sh-info-btn" onclick="toggleShippingInfo()" title="How shipping works">ℹ</button>
+              <span class="sh-lock-badge">🔒 Set by John Skinner</span>
+            </div>
           </div>
           <div class="sh-cost-tbc">
             <div class="sh-cost-tbc-amount">To be confirmed</div>
-            <div class="sh-cost-tbc-note">John Skinner will add a shipping estimate once your items are confirmed. It will appear here and be included in your final quote total.</div>
+            <div class="sh-cost-tbc-note">John Skinner will calculate your shipping cost once you submit for review.</div>
+          </div>
+          <!-- Collapsible blurb -->
+          <div class="sh-info-panel" id="sh-info-panel">
+            <div class="sh-steps" style="margin-bottom:0;margin-top:14px;border-top:1px solid rgba(255,255,255,0.1);padding-top:14px;">
+              <div class="sh-step"><div class="sh-step-icon">📦</div><div class="sh-step-info"><div class="sh-step-title">Carefully packed in Cheltenham</div><div class="sh-step-body">Full kits are heavy — leather seat covers for an E-Type run to 8–12 kg. Double-walled boxes, void fill and custom wrapping for leather items.</div></div></div>
+              <div class="sh-step"><div class="sh-step-icon">🚚</div><div class="sh-step-info"><div class="sh-step-title">Major carrier, fully tracked &amp; insured</div><div class="sh-step-body">FedEx, DHL, UPS or DPD depending on destination. Signature required. Insured for full declared value.</div></div></div>
+              <div class="sh-step"><div class="sh-step-icon">🌍</div><div class="sh-step-info"><div class="sh-step-title">International — 0% EU duty, customs handled</div><div class="sh-step-body">We complete all export documentation. EU customers pay 0% import duty under the UK–EU TCA. Local VAT collected at border.</div></div></div>
+              <div class="sh-step" style="border-bottom:none;"><div class="sh-step-icon">⚖️</div><div class="sh-step-info"><div class="sh-step-title">Charged by actual or volumetric weight</div><div class="sh-step-body">Whichever is greater. We can't give an exact figure until your items are confirmed — it'll appear here once calculated.</div></div></div>
+            </div>
           </div>
         </div>
-
       </div><!-- /shipping-section -->
 
       <!-- QUOTE APPROVAL -->
@@ -1693,6 +1656,12 @@ function renderApprovalSection(){
       <div class="appr-status-pill approved">✓ Quote Approved — proceeding to production</div>
     </div>`;
   }
+}
+function toggleShippingInfo(){
+  const panel=document.getElementById('sh-info-panel');
+  const btn=document.getElementById('sh-info-btn');
+  const open=panel.classList.toggle('open');
+  btn.classList.toggle('open',open);
 }
 function submitForReview(){
   quoteStatus='submitted';
