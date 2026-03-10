@@ -16,7 +16,7 @@
       --serif:'EB Garamond',Georgia,serif;
       --sans:'Open Sans',Arial,sans-serif;
     }
-    html,body { height:100%; }
+    html,body { height:100%; overflow-x:hidden; max-width:100vw; }
     body { font-family:var(--sans); background:var(--cream); color:var(--text); font-size:15px; overflow:hidden; display:flex; flex-direction:column; }
 
     /* ══ HEADER ══ */
@@ -91,7 +91,7 @@
     .content-area { flex:1; overflow:hidden; min-height:0; position:relative; }
     .panel { position:absolute; inset:0; overflow-y:auto; -webkit-overflow-scrolling:touch; display:none; }
     .panel.active { display:block; }
-    .inner { max-width:720px; margin:0 auto; padding:20px 16px 130px; }
+    .inner { max-width:720px; margin:0 auto; padding:20px 16px 130px; overflow-x:hidden; }
 
     /* ══ CARDS / SHARED ══ */
     .section-heading { font-family:var(--serif); font-size:1.35rem; color:var(--navy); margin-bottom:4px; }
@@ -106,7 +106,10 @@
     hr.divider { border:none; border-top:1px solid var(--light); margin:18px 0; }
 
     /* ══ QUOTE PANEL ══ */
-    .quote-card { background:#fff; border:1px solid var(--light); border-radius:10px; padding:16px 18px; margin-bottom:16px; display:flex; gap:0; }
+    .quote-card { background:#fff; border:1px solid var(--light); border-radius:10px; padding:12px 10px; margin-bottom:16px; display:flex; gap:0; overflow:hidden; }
+    .qstat { flex:1; min-width:0; }
+    .qstat .n { font-size:1.35rem; }
+    .qstat .l { font-size:0.56rem; }
     .qstat { flex:1; text-align:center; border-right:1px solid var(--light); padding:0 10px; cursor:default; transition:background 0.15s; border-radius:6px; }
     .qstat:first-child{padding-left:0;} .qstat:last-child{border-right:none;padding-right:0;}
     .qstat .n { font-family:var(--serif); font-size:1.6rem; color:var(--navy); line-height:1; }
@@ -144,10 +147,10 @@
     .items-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
     .items-header h3 { font-family:var(--serif); font-size:1.1rem; color:var(--navy); }
     .items-header span { font-size:0.73rem; color:var(--grey); }
-    .item-row { display:grid; grid-template-columns:38px 1fr auto auto; gap:9px; align-items:center; padding:11px 13px; background:#fff; border:1.5px solid var(--light); border-radius:9px; margin-bottom:6px; cursor:pointer; transition:border-color 0.18s; }
+    .item-row { display:grid; grid-template-columns:38px 1fr auto; gap:9px; align-items:center; padding:11px 13px; background:#fff; border:1.5px solid var(--light); border-radius:9px; margin-bottom:6px; cursor:pointer; transition:border-color 0.18s; min-width:0; }
     .item-row:hover { border-color:var(--gold-light); }
     .item-row.active { border-color:var(--gold); background:rgba(200,186,154,0.06); }
-    .i-swatch { width:38px; height:38px; border-radius:6px; }
+    .i-swatch { width:38px; height:38px; border-radius:6px; flex-shrink:0; }
     .i-name  { font-weight:600; font-size:0.88rem; color:var(--navy); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .i-meta  { font-size:0.71rem; color:var(--grey); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .i-badge { font-size:0.6rem; padding:3px 7px; border-radius:10px; font-weight:600; white-space:nowrap; text-align:center; }
@@ -287,6 +290,36 @@
 
     /* ══ ITEM STATUS PICKER ══ */
     .i-status-pick { display:flex; gap:4px; margin-top:6px; }
+    /* ── Single status badge (replaces 3-pill row) ── */
+    .i-status-badge { display:inline-flex; align-items:center; gap:5px; padding:5px 10px; border-radius:20px; font-size:0.68rem; font-weight:800; text-transform:uppercase; letter-spacing:0.06em; cursor:pointer; white-space:nowrap; border:2px solid transparent; transition:opacity 0.15s; }
+    .i-status-badge:active { opacity:0.75; }
+    .isb-required     { background:#1c6b3a; color:#fff; }
+    .isb-considering  { background:#c8a84b; color:#fff; }
+    .isb-not-required { background:#b44043; color:#fff; }
+    .isb-arrow { font-size:0.6rem; opacity:0.7; }
+    /* Right cell — stacks badge + price */
+    .i-right { display:flex; flex-direction:column; align-items:flex-end; gap:4px; flex-shrink:0; }
+    .i-price { font-family:var(--serif); font-size:0.9rem; color:var(--navy); white-space:nowrap; }
+    /* Status picker bottom-sheet */
+    .sp-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:460; display:flex; align-items:flex-end; justify-content:center; }
+    .sp-overlay.hidden { display:none; }
+    .sp-sheet { background:#fff; border-radius:18px 18px 0 0; width:100%; max-width:500px; padding:0 0 env(safe-area-inset-bottom,12px); }
+    .sp-handle { width:36px; height:4px; background:#ddd; border-radius:2px; margin:12px auto 0; }
+    .sp-title  { font-family:var(--serif); font-size:1rem; color:var(--navy); padding:14px 20px 4px; }
+    .sp-item-name { font-size:0.78rem; color:var(--grey); padding:0 20px 12px; border-bottom:1px solid var(--light); }
+    .sp-options { padding:10px 16px 16px; display:flex; flex-direction:column; gap:9px; }
+    .sp-opt { display:flex; align-items:center; gap:14px; padding:13px 16px; border-radius:10px; border:2px solid transparent; cursor:pointer; transition:all 0.15s; background:var(--warm); }
+    .sp-opt.sp-active { border-color:currentColor; }
+    .sp-opt-req  { color:#1c6b3a; }
+    .sp-opt-con  { color:#c8a84b; }
+    .sp-opt-nr   { color:#b44043; }
+    .sp-opt-dot  { width:16px; height:16px; border-radius:50%; background:currentColor; flex-shrink:0; }
+    .sp-opt-body { flex:1; }
+    .sp-opt-label { font-weight:800; font-size:0.9rem; }
+    .sp-opt-desc  { font-size:0.74rem; color:var(--grey); margin-top:1px; }
+    .sp-opt-tick  { font-size:1rem; }
+    .sp-cancel { width:calc(100% - 32px); margin:0 16px 10px; padding:13px; border:1.5px solid var(--light); border-radius:10px; background:none; font-family:var(--sans); font-size:0.9rem; color:var(--grey); cursor:pointer; }
+    /* Legacy isp-btn kept for desktop drawer only */
     .isp-btn { flex:1; padding:5px 4px; font-size:0.62rem; font-weight:700; letter-spacing:0.03em; border-radius:6px; border:1.5px solid var(--light); background:#fff; color:var(--grey); cursor:pointer; text-align:center; white-space:nowrap; transition:all 0.15s; }
     .isp-btn.active-required    { background:#1c6b3a; border-color:#1c6b3a; color:#fff; font-weight:800; }
     .isp-btn.active-considering { background:#c8a84b; border-color:#c8a84b; color:#fff; font-weight:800; }
@@ -1223,6 +1256,33 @@ No other modifications noted.</textarea></div>
   </div>
 </div>
 
+<!-- ══ STATUS PICKER BOTTOM SHEET ══ -->
+<div class="sp-overlay hidden" id="sp-overlay" onclick="if(event.target===this)closeSP()">
+  <div class="sp-sheet">
+    <div class="sp-handle"></div>
+    <div class="sp-title">Set status</div>
+    <div class="sp-item-name" id="sp-item-name"></div>
+    <div class="sp-options">
+      <div class="sp-opt sp-opt-req" id="sp-opt-required" onclick="pickStatus('required')">
+        <div class="sp-opt-dot"></div>
+        <div class="sp-opt-body"><div class="sp-opt-label">Required</div><div class="sp-opt-desc">Include in my quote &amp; total</div></div>
+        <span class="sp-opt-tick">✓</span>
+      </div>
+      <div class="sp-opt sp-opt-con" id="sp-opt-considering" onclick="pickStatus('considering')">
+        <div class="sp-opt-dot"></div>
+        <div class="sp-opt-body"><div class="sp-opt-label">Considering</div><div class="sp-opt-desc">Not sure yet — hold for now</div></div>
+        <span class="sp-opt-tick">✓</span>
+      </div>
+      <div class="sp-opt sp-opt-nr" id="sp-opt-not-required" onclick="pickStatus('not-required')">
+        <div class="sp-opt-dot"></div>
+        <div class="sp-opt-body"><div class="sp-opt-label">Not Required</div><div class="sp-opt-desc">Exclude from my order</div></div>
+        <span class="sp-opt-tick">✓</span>
+      </div>
+    </div>
+    <button class="sp-cancel" onclick="closeSP()">Cancel</button>
+  </div>
+</div>
+
 <!-- ══ SAVE AS NOTE PICKER ══ -->
 <div class="sns-overlay hidden" id="sns-overlay" onclick="if(event.target===this)closeSNS()">
   <div class="sns-sheet">
@@ -1677,15 +1737,13 @@ function renderItemList(){
     const badgeCls={'required':'b-required','considering':'b-considering','not-required':'b-not-required'}[it.action]||'b-not-required';
     const badgeLbl={'required':'Required','considering':'Considering','not-required':'Not Required'}[it.action]||'Not Required';
     const priceStr=it.action==='not-required'?`<span class="i-price" style="color:#bbb">from ${fmt(it.base)}</span>`:`<span class="i-price" id="iprice-${id}">${fmt(calcPrice(id))}</span>`;
+    const statusCfg={required:{cls:'isb-required',label:'Required'},considering:{cls:'isb-considering',label:'Considering'},'not-required':{cls:'isb-not-required',label:'Not Required'}};
+    const sc=statusCfg[it.action]||statusCfg.required;
+    const badge=`<span class="i-status-badge ${sc.cls}" onclick="event.stopPropagation();openStatusPicker('${id}')">${sc.label} <span class="isb-arrow">▾</span></span>`;
     return`<div class="item-row${activeItem===id?' active':''}" id="row-${id}">
       <div class="i-swatch" id="sw-${id}" style="background:${s.chx||'#ccc'};cursor:pointer" onclick="openDrawer('${id}')"></div>
-      <div style="min-width:0;flex:1;cursor:pointer" onclick="openDrawer('${id}')"><div class="i-name">${it.name}</div><div class="i-meta" id="imeta-${id}">${meta.filter(Boolean).join(' · ')}</div></div>
-      ${priceStr}
-      <div class="i-status-pick" onclick="event.stopPropagation()">
-        <button class="isp-btn${it.action==='required'?' active-required':''}"     onclick="setItemStatus('${id}','required',event)">Required</button>
-        <button class="isp-btn${it.action==='considering'?' active-considering':''}" onclick="setItemStatus('${id}','considering',event)">Considering</button>
-        <button class="isp-btn${it.action==='not-required'?' active-not-required':''}" onclick="setItemStatus('${id}','not-required',event)">Not Required</button>
-      </div>
+      <div style="min-width:0;overflow:hidden;cursor:pointer" onclick="openDrawer('${id}')"><div class="i-name">${it.name}</div><div class="i-meta" id="imeta-${id}">${meta.filter(Boolean).join(' · ')}</div></div>
+      <div class="i-right" onclick="event.stopPropagation()">${badge}${priceStr}</div>
     </div>`;
     }));
   });
@@ -1719,6 +1777,26 @@ function renderApprovalSection(){
     </div>`;
   }
 }
+/* ── STATUS PICKER BOTTOM SHEET ── */
+let _spId='';
+function openStatusPicker(id){
+  _spId=id;
+  const it=ITEMS[id];
+  document.getElementById('sp-item-name').textContent=it.name;
+  ['required','considering','not-required'].forEach(s=>{
+    const el=document.getElementById('sp-opt-'+s);
+    if(!el)return;
+    el.classList.toggle('sp-active',it.action===s);
+    el.querySelector('.sp-opt-tick').style.opacity=it.action===s?'1':'0';
+  });
+  document.getElementById('sp-overlay').classList.remove('hidden');
+}
+function closeSP(){document.getElementById('sp-overlay').classList.add('hidden');}
+function pickStatus(status){
+  setItemStatus(_spId,status,{stopPropagation:()=>{}});
+  closeSP();
+}
+
 function toggleShippingInfo(){
   const panel=document.getElementById('sh-info-panel');
   const btn=document.getElementById('sh-info-btn');
