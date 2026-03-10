@@ -773,10 +773,11 @@
   <div class="panel active" id="panel-quote">
     <div class="inner">
       <div class="quote-card">
-        <div class="qstat filterable" id="qstat-required"     onclick="setItemFilter('required')">    <div class="n green" id="qs-required">5</div><div class="l">Required</div></div>
-        <div class="qstat filterable" id="qstat-considering"  onclick="setItemFilter('considering')"> <div class="n gold"  id="qs-considering">2</div><div class="l">Considering</div></div>
-        <div class="qstat filterable" id="qstat-not-required" onclick="setItemFilter('not-required')"><div class="n grey"  id="qs-not-required">4</div><div class="l">Not Required</div></div>
-        <div class="qstat"><div class="n gold" id="qs-price">£3,150</div><div class="l">Est. Total</div></div>
+        <div class="qstat filterable filter-active" id="qstat-all"          onclick="setItemFilter('all')">          <div class="n" id="qs-total">11</div><div class="l">Overview</div></div>
+        <div class="qstat filterable"               id="qstat-required"     onclick="setItemFilter('required')">    <div class="n green" id="qs-required">5</div><div class="l">Required</div></div>
+        <div class="qstat filterable"               id="qstat-considering"  onclick="setItemFilter('considering')"> <div class="n gold"  id="qs-considering">2</div><div class="l">Considering</div></div>
+        <div class="qstat filterable"               id="qstat-not-required" onclick="setItemFilter('not-required')"><div class="n grey"  id="qs-not-required">4</div><div class="l">Not Required</div></div>
+        <div class="qstat"><div class="n gold" id="qs-price">£2,210</div><div class="l">Est. Total</div></div>
       </div>
       <div class="filter-banner" id="filter-banner">
         <span class="fb-label"><span class="fb-dot"></span><span id="fb-text">Showing confirmed items</span></span>
@@ -1498,7 +1499,7 @@ const SAMPLE_PACKS=[
 let activeItem=null,hasUnsaved=false,activeTab='quote';
 let msgFilter='all',msgSearch='',composeTag='general',docFilter='all',docSearch='';
 let lbMsgId=null;
-let itemFilter='all'; // 'all' | 'required' | 'considering' | 'not-required'
+let itemFilter='all'; // 'all'(overview) | 'required' | 'considering' | 'not-required'
 let quoteStatus='draft'; // 'draft' | 'submitted' | 'ready' | 'approved'
 
 /* ═══ TAB SWITCHING ═══ */
@@ -1539,6 +1540,7 @@ function updateTotals(){
   const req  =Object.keys(ITEMS).filter(id=>ITEMS[id].action==='required').length;
   const con  =Object.keys(ITEMS).filter(id=>ITEMS[id].action==='considering').length;
   const nr   =Object.keys(ITEMS).filter(id=>ITEMS[id].action==='not-required').length;
+  document.getElementById('qs-total').textContent=Object.keys(ITEMS).length;
   document.getElementById('qs-required').textContent=req;
   document.getElementById('qs-considering').textContent=con;
   document.getElementById('qs-not-required').textContent=nr;
@@ -1556,7 +1558,7 @@ function setItemStatus(id,status,e){
 /* ═══ ITEM FILTER ═══ */
 function setItemFilter(f){
   itemFilter=f;
-  ['required','considering','not-required'].forEach(k=>{
+  ['all','required','considering','not-required'].forEach(k=>{
     const el=document.getElementById('qstat-'+k);
     if(el) el.classList.toggle('filter-active',k===f);
   });
