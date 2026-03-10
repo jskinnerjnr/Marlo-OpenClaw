@@ -654,14 +654,51 @@
     .cl-empty { padding:14px; text-align:center; font-size:0.8rem; color:var(--grey); }
 
     /* ══ ORDER NOTES ══ */
-    .notes-section { margin-top:28px; border-top:2px solid var(--light); padding-top:24px; }
-    .notes-section h3 { font-family:var(--serif); font-size:1.2rem; color:var(--navy); margin-bottom:4px; }
-    .notes-section p  { font-size:0.76rem; color:var(--grey); margin-bottom:14px; }
-    .note-compose { display:flex; gap:8px; margin-bottom:14px; }
-    .note-input { flex:1; padding:10px 13px; border:1.5px solid var(--light); border-radius:8px; font-family:var(--sans); font-size:0.86rem; color:var(--text); resize:none; transition:border-color 0.2s; }
+    /* ══ ORDER NOTES (admin only) ══ */
+    .notes-section { margin-top:28px; border-top:2px solid var(--light); padding-top:20px; }
+    .notes-section-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:4px; }
+    .notes-section-head h3 { font-family:var(--serif); font-size:1.2rem; color:var(--navy); margin:0; }
+    .notes-admin-badge { font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; background:rgba(39,46,102,0.08); color:var(--navy); padding:3px 9px; border-radius:10px; border:1px solid rgba(39,46,102,0.15); }
+    .notes-section > p  { font-size:0.76rem; color:var(--grey); margin:4px 0 14px; }
+    .note-group { margin-bottom:16px; }
+    .note-group-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:7px; padding-bottom:5px; border-bottom:1px solid var(--light); }
+    .note-group-label { font-size:0.65rem; font-weight:800; text-transform:uppercase; letter-spacing:0.12em; color:var(--grey); }
+    .note-add-btn { background:none; border:1.5px solid var(--light); color:var(--grey); padding:2px 9px; border-radius:6px; font-size:0.66rem; font-weight:700; cursor:pointer; }
+    .note-add-btn:hover { border-color:var(--navy); color:var(--navy); }
+    .note-composer { display:none; flex-direction:column; gap:6px; margin-bottom:8px; }
+    .note-composer.open { display:flex; }
+    .note-compose-row { display:flex; gap:6px; }
+    .note-input { flex:1; padding:9px 12px; border:1.5px solid var(--light); border-radius:8px; font-family:var(--sans); font-size:0.84rem; color:var(--text); resize:none; transition:border-color 0.2s; }
     .note-input:focus { outline:none; border-color:var(--gold); }
-    .note-send { background:var(--navy); color:var(--gold); border:none; padding:10px 15px; border-radius:8px; font-weight:700; font-size:0.82rem; cursor:pointer; font-family:var(--sans); white-space:nowrap; align-self:flex-end; }
-    .note-list { display:flex; flex-direction:column; gap:8px; }
+    .note-send { background:var(--navy); color:var(--gold); border:none; padding:9px 14px; border-radius:8px; font-weight:700; font-size:0.8rem; cursor:pointer; font-family:var(--sans); white-space:nowrap; }
+    .note-cancel { background:none; border:1.5px solid var(--light); color:var(--grey); padding:9px 12px; border-radius:8px; font-size:0.8rem; cursor:pointer; }
+    .note-list { display:flex; flex-direction:column; gap:6px; }
+    .note-item { background:var(--warm); border-radius:8px; padding:10px 12px; border-left:3px solid var(--navy); display:flex; flex-direction:column; gap:4px; }
+    .note-item.from-msg { border-left-color:var(--gold); }
+    .ni-header { display:flex; align-items:center; gap:7px; }
+    .ni-src  { font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--grey); }
+    .ni-src.msg-src { color:#7a6000; }
+    .ni-time { font-size:0.67rem; color:#bbb; margin-left:auto; }
+    .ni-del  { background:none; border:none; color:#ccc; font-size:0.85rem; cursor:pointer; padding:0; }
+    .ni-del:hover { color:var(--red); }
+    .ni-text { font-size:0.81rem; color:var(--text); line-height:1.55; }
+    .note-empty { font-size:0.77rem; color:#bbb; font-style:italic; }
+    /* Save-as-note on message bubbles */
+    .msg-save-note { background:none; border:1px solid rgba(0,0,0,0.1); color:#aaa; border-radius:5px; padding:2px 8px; font-size:0.62rem; font-weight:700; cursor:pointer; margin-top:4px; align-self:flex-start; }
+    .msg-save-note:hover { background:rgba(39,46,102,0.07); color:var(--navy); border-color:var(--navy); }
+    .admin .msg-bubble .msg-save-note { border-color:rgba(255,255,255,0.25); color:rgba(255,255,255,0.6); }
+    .admin .msg-bubble .msg-save-note:hover { background:rgba(255,255,255,0.15); color:#fff; }
+    /* Section picker modal */
+    .sns-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:450; display:flex; align-items:center; justify-content:center; padding:20px; }
+    .sns-overlay.hidden { display:none; }
+    .sns-sheet { background:#fff; border-radius:14px; width:100%; max-width:360px; padding:20px; }
+    .sns-title { font-family:var(--serif); font-size:1.1rem; color:var(--navy); margin-bottom:4px; }
+    .sns-sub   { font-size:0.77rem; color:var(--grey); margin-bottom:12px; }
+    .sns-preview { background:var(--warm); border-radius:7px; padding:9px 12px; font-size:0.79rem; color:var(--text); line-height:1.5; margin-bottom:12px; border-left:3px solid var(--gold); max-height:70px; overflow:hidden; }
+    .sns-select { width:100%; padding:10px 12px; border:1.5px solid var(--light); border-radius:8px; font-family:var(--sans); font-size:0.85rem; color:var(--text); margin-bottom:12px; }
+    .sns-btns { display:flex; gap:8px; }
+    .sns-save { flex:1; padding:11px; background:var(--navy); color:var(--gold); border:none; border-radius:8px; font-family:var(--sans); font-weight:700; font-size:0.84rem; cursor:pointer; }
+    .sns-cancel { padding:11px 14px; background:none; border:1.5px solid var(--light); border-radius:8px; font-family:var(--sans); font-size:0.84rem; cursor:pointer; color:var(--grey); }
     .note-item { background:#fff; border:1px solid var(--light); border-radius:9px; padding:12px 14px; }
     .note-item .ni-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
     .note-item .ni-who  { font-size:0.7rem; font-weight:700; color:var(--navy); }
@@ -845,15 +882,14 @@
         </div>
       </div>
 
-      <!-- ORDER NOTES -->
+      <!-- ORDER NOTES (admin only) -->
       <div class="notes-section">
-        <h3>Order Notes</h3>
-        <p>Notes visible to both you and John Skinner — use for reminders, preferences or anything useful about this order.</p>
-        <div class="note-compose">
-          <textarea class="note-input" id="note-input" rows="2" placeholder="Add a note about this order…"></textarea>
-          <button class="note-send" onclick="addNote()">Add</button>
+        <div class="notes-section-head">
+          <h3>Order Notes</h3>
+          <span class="notes-admin-badge">🔒 Admin only</span>
         </div>
-        <div class="note-list" id="note-list"></div>
+        <p>Internal notes for John Skinner — not visible to the customer. Pin any message as a note, or add manually per section.</p>
+        <div id="notes-grouped"></div>
       </div>
 
     </div>
@@ -1184,6 +1220,32 @@ No other modifications noted.</textarea></div>
       <button class="compose-send" onclick="sendMsg()">Send</button>
     </div>
     <input type="file" id="main-file-input" multiple accept="image/*,.pdf" style="display:none" onchange="handleFileSelect('main',this.files)">
+  </div>
+</div>
+
+<!-- ══ SAVE AS NOTE PICKER ══ -->
+<div class="sns-overlay hidden" id="sns-overlay" onclick="if(event.target===this)closeSNS()">
+  <div class="sns-sheet">
+    <div class="sns-title">Save as Order Note</div>
+    <div class="sns-sub">Choose which section this note belongs to:</div>
+    <div class="sns-preview" id="sns-preview"></div>
+    <select class="sns-select" id="sns-section">
+      <option value="General">General</option>
+      <option value="Trim Panels">Trim Panels</option>
+      <option value="Dash Area">Dash Area</option>
+      <option value="Front Seats">Front Seats</option>
+      <option value="Rear Seats">Rear Seats</option>
+      <option value="Centre Console">Centre Console</option>
+      <option value="Carpets & Flooring">Carpets &amp; Flooring</option>
+      <option value="Rear Deck">Rear Deck</option>
+      <option value="Boot / Trunk">Boot / Trunk</option>
+      <option value="Roof / Weather Equipment">Roof / Weather Equipment</option>
+      <option value="Fixings">Fixings</option>
+    </select>
+    <div class="sns-btns">
+      <button class="sns-cancel" onclick="closeSNS()">Cancel</button>
+      <button class="sns-save" onclick="confirmSaveNote()">📌 Save Note</button>
+    </div>
   </div>
 </div>
 
@@ -1874,9 +1936,10 @@ function renderMsgBubble(m,inLB){
   const attHTML=m.attachments.length?`<div class="attach-strip">${m.attachments.map(a=>`<span class="attach-chip">${a.icon} ${a.name}</span>`).join('')}</div>`:'';
   const t=m.time.split(', ')[1]||m.time;
   const clickHandler=inLB?'':`onclick="openLB('${m.id}')"`;
+  const saveBtn=!inLB?`<button class="msg-save-note" onclick="event.stopPropagation();saveAsNote('${m.id}','${m.text.replace(/'/g,"\\'")}')">📌 Save as note</button>`:'';
   return`<div class="msg-group ${m.type}">
     <div class="msg-sender">${m.type==='admin'?'John Skinner':'You'}</div>
-    <div class="msg-bubble" ${clickHandler}>${txt}${tagHTML}${attHTML}<div class="msg-time">${t}</div></div>
+    <div class="msg-bubble" ${clickHandler}>${txt}${tagHTML}${attHTML}<div class="msg-time">${t}</div>${saveBtn}</div>
   </div>`;
 }
 function hl(text,q){if(!q)return text;return text.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<mark class="hl">$1</mark>');}
@@ -2373,17 +2436,72 @@ document.addEventListener('DOMContentLoaded',()=>{
 });
 
 /* ═══ ORDER NOTES ═══ */
-const ORDER_NOTES=[];
-function addNote(){
-  const inp=document.getElementById('note-input');
-  const txt=inp.value.trim();if(!txt)return;
-  ORDER_NOTES.unshift({text:txt,who:'You',type:'customer',time:nowStr()});
-  inp.value='';renderNotes();
+const NOTE_SECTIONS=['General','Trim Panels','Dash Area','Front Seats','Rear Seats','Centre Console','Carpets & Flooring','Rear Deck','Boot / Trunk','Roof / Weather Equipment','Fixings'];
+const ORDER_NOTES={};
+NOTE_SECTIONS.forEach(s=>ORDER_NOTES[s]=[]);
+ORDER_NOTES['Front Seats'].push({text:'Customer confirmed preference for grained leather over smooth — ref message 4 Mar.',who:'John Skinner',src:'admin',time:'4 Mar, 09:15',fromMsg:false});
+
+function addNoteToSection(section,text){
+  ORDER_NOTES[section].unshift({text,who:'John Skinner',src:'admin',time:nowStr(),fromMsg:false});
+  renderNotes();
 }
+function deleteNote(section,idx){
+  ORDER_NOTES[section].splice(idx,1);renderNotes();
+}
+function toggleNoteComposer(section){
+  const id='nc-'+section.replace(/[^a-z0-9]/gi,'-');
+  const el=document.getElementById(id);if(el)el.classList.toggle('open');
+}
+function submitNote(section){
+  const id='ni-'+section.replace(/[^a-z0-9]/gi,'-');
+  const inp=document.getElementById(id);
+  if(!inp||!inp.value.trim())return;
+  addNoteToSection(section,inp.value.trim());
+  inp.value='';toggleNoteComposer(section);
+}
+let _snsText='',_snsMsgId='';
+function saveAsNote(msgId,text){
+  _snsText=text;_snsMsgId=msgId;
+  document.getElementById('sns-preview').textContent=text.length>120?text.slice(0,120)+'…':text;
+  document.getElementById('sns-overlay').classList.remove('hidden');
+}
+function closeSNS(){document.getElementById('sns-overlay').classList.add('hidden');}
+function confirmSaveNote(){
+  const section=document.getElementById('sns-section').value;
+  ORDER_NOTES[section].unshift({text:_snsText,who:'Saved from message',src:'msg',time:nowStr(),fromMsg:true});
+  closeSNS();renderNotes();
+}
+function addNote(){} // legacy stub
+
 function renderNotes(){
-  const el=document.getElementById('note-list');if(!el)return;
-  if(!ORDER_NOTES.length){el.innerHTML='<div style="font-size:0.82rem;color:var(--grey);text-align:center;padding:16px 0">No notes yet.</div>';return;}
-  el.innerHTML=ORDER_NOTES.map(n=>`<div class="note-item ${n.type}-note"><div class="ni-header"><span class="ni-who">${n.who}</span><span class="ni-time">${n.time}</span></div><div class="ni-text">${n.text}</div></div>`).join('');
+  const el=document.getElementById('notes-grouped');if(!el)return;
+  el.innerHTML=NOTE_SECTIONS.map(section=>{
+    const notes=ORDER_NOTES[section]||[];
+    const sid=section.replace(/[^a-z0-9]/gi,'-');
+    return`<div class="note-group">
+      <div class="note-group-head">
+        <span class="note-group-label">${section}</span>
+        <button class="note-add-btn" onclick="toggleNoteComposer('${section}')">+ Add</button>
+      </div>
+      <div class="note-composer" id="nc-${sid}">
+        <textarea class="note-input" id="ni-${sid}" rows="2" placeholder="Note for ${section}…"></textarea>
+        <div class="note-compose-row">
+          <button class="note-send" onclick="submitNote('${section}')">Save</button>
+          <button class="note-cancel" onclick="toggleNoteComposer('${section}')">Cancel</button>
+        </div>
+      </div>
+      <div class="note-list">${notes.length?notes.map((n,i)=>`
+        <div class="note-item${n.fromMsg?' from-msg':''}">
+          <div class="ni-header">
+            <span class="ni-src${n.src==='msg'?' msg-src':''}">${n.src==='msg'?'📌 From message':'✏ Admin note'}</span>
+            <span class="ni-time">${n.time}</span>
+            <button class="ni-del" onclick="deleteNote('${section.replace(/'/g,"\\'")}',${i})">✕</button>
+          </div>
+          <div class="ni-text">${n.text}</div>
+        </div>`).join(''):'<div class="note-empty">No notes in this section.</div>'}
+      </div>
+    </div>`;
+  }).join('');
 }
 // Pre-populate with one admin note
 ORDER_NOTES.push({text:'Lovely car — confirmed BRG with customer on initial call. He\'s flexible on timeline, quality is the priority. Awaiting hood decision before finalising.',who:'John Skinner',type:'admin',time:'4 Mar, 9:00 AM'});
