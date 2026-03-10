@@ -6,7 +6,7 @@
   <title>JSM Customer Portal — JSM-2847</title>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
     :root {
       --navy:#181e38; --navy2:#272e66;
       --gold:#c8ba9a; --gold-light:#dbd6ca;
@@ -16,249 +16,325 @@
       --serif:'EB Garamond',Georgia,serif;
       --sans:'Open Sans',Arial,sans-serif;
     }
-
-    html, body { height: 100%; }
+    html,body { height:100%; }
     body { font-family:var(--sans); background:var(--cream); color:var(--text); font-size:15px; overflow:hidden; display:flex; flex-direction:column; }
 
-    /* ════ HEADER ════ */
-    .site-header { background:var(--navy); padding:13px 20px; display:flex; align-items:center; justify-content:space-between; border-bottom:3px solid var(--gold); flex-shrink:0; z-index:60; }
+    /* ══ HEADER ══ */
+    .site-header { background:var(--navy); padding:12px 20px; display:flex; align-items:center; justify-content:space-between; border-bottom:3px solid var(--gold); flex-shrink:0; z-index:60; }
     .logo { font-family:var(--serif); color:#fff; font-size:1.1rem; letter-spacing:0.06em; line-height:1.1; }
     .logo em { color:var(--gold); font-style:normal; }
-    .logo-sub { font-size:0.58rem; color:rgba(255,255,255,0.3); letter-spacing:0.18em; text-transform:uppercase; margin-top:2px; }
+    .logo-sub { font-size:0.58rem; color:rgba(255,255,255,0.3); letter-spacing:0.18em; text-transform:uppercase; margin-top:1px; }
     .user-tag { text-align:right; }
     .user-tag .name { font-size:0.85rem; color:var(--gold); font-weight:600; }
     .user-tag .ref  { font-size:0.68rem; color:rgba(255,255,255,0.4); margin-top:1px; }
 
-    /* ════ PORTAL TABS ════ */
-    .portal-tabs { background:#fff; display:flex; border-bottom:2px solid var(--light); flex-shrink:0; z-index:55; }
-    .ptab { flex:1; text-align:center; padding:13px 10px; font-size:0.76rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; color:var(--grey); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; transition:color 0.2s; position:relative; white-space:nowrap; }
+    /* ══ PORTAL TABS ══ */
+    .portal-tabs { background:#fff; display:flex; border-bottom:2px solid var(--light); flex-shrink:0; z-index:55; overflow-x:auto; scrollbar-width:none; }
+    .portal-tabs::-webkit-scrollbar { display:none; }
+    .ptab { flex-shrink:0; padding:12px 16px; font-size:0.72rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; color:var(--grey); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; white-space:nowrap; transition:color 0.2s; position:relative; }
     .ptab.active { color:var(--navy); border-bottom-color:var(--gold); }
-    .ptab .unread { position:absolute; top:9px; right:calc(50% - 24px); width:7px; height:7px; background:var(--red); border-radius:50%; border:1.5px solid #fff; }
+    .ptab .badge { position:absolute; top:8px; right:8px; width:7px; height:7px; background:var(--red); border-radius:50%; border:1.5px solid #fff; display:none; }
+    .ptab .badge.show { display:block; }
 
-    /* ════ CONTENT AREA (two panels, slide) ════ */
-    .content-slider { flex:1; display:flex; overflow:hidden; min-height:0; }
-    .panel { flex-shrink:0; width:100%; overflow-y:auto; -webkit-overflow-scrolling:touch; transition:transform 0.35s cubic-bezier(.4,0,.2,1); }
-    /* Default: both at natural position, JS controls transform */
+    /* ══ PANELS ══ */
+    .content-area { flex:1; overflow:hidden; min-height:0; position:relative; }
+    .panel { position:absolute; inset:0; overflow-y:auto; -webkit-overflow-scrolling:touch; display:none; }
+    .panel.active { display:block; }
+    .inner { max-width:720px; margin:0 auto; padding:20px 16px 130px; }
 
-    /* ════ QUOTE PANEL ════ */
-    .qp { padding:20px 16px 120px; max-width:720px; margin:0 auto; }
+    /* ══ CARDS / SHARED ══ */
+    .section-heading { font-family:var(--serif); font-size:1.35rem; color:var(--navy); margin-bottom:4px; }
+    .section-sub { font-size:0.78rem; color:var(--grey); margin-bottom:18px; }
+    .card { background:#fff; border:1px solid var(--light); border-radius:10px; padding:18px; margin-bottom:12px; }
+    .field-label { font-size:0.65rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--grey); margin-bottom:4px; }
+    .field-val { font-size:0.92rem; color:var(--navy); font-weight:600; }
+    .field-val.light { font-weight:400; color:var(--text); }
+    .row2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+    .row3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px; margin-bottom:14px; }
+    @media(max-width:480px){ .row3{grid-template-columns:1fr 1fr;} }
+    hr.divider { border:none; border-top:1px solid var(--light); margin:18px 0; }
 
-    /* Quote summary card */
-    .quote-card { background:#fff; border:1px solid var(--light); border-radius:10px; padding:18px 20px; margin-bottom:18px; display:flex; gap:0; }
-    .qstat { flex:1; text-align:center; border-right:1px solid var(--light); padding:0 12px; }
-    .qstat:first-child { padding-left:0; }
-    .qstat:last-child  { border-right:none; padding-right:0; }
-    .qstat .n { font-family:var(--serif); font-size:1.7rem; color:var(--navy); line-height:1; }
-    .qstat .l { font-size:0.65rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--grey); margin-top:3px; }
+    /* ══ QUOTE PANEL ══ */
+    .quote-card { background:#fff; border:1px solid var(--light); border-radius:10px; padding:16px 18px; margin-bottom:16px; display:flex; gap:0; }
+    .qstat { flex:1; text-align:center; border-right:1px solid var(--light); padding:0 10px; }
+    .qstat:first-child{padding-left:0;} .qstat:last-child{border-right:none;padding-right:0;}
+    .qstat .n { font-family:var(--serif); font-size:1.6rem; color:var(--navy); line-height:1; }
+    .qstat .l { font-size:0.63rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--grey); margin-top:3px; }
     .qstat .n.gold { color:#7a6f52; }
-
-    /* Progress */
-    .prog-wrap { margin-bottom:18px; }
-    .prog-label { display:flex; justify-content:space-between; font-size:0.75rem; color:var(--grey); margin-bottom:6px; }
-    .prog-bar  { height:5px; background:var(--light); border-radius:3px; overflow:hidden; }
-    .prog-fill { height:100%; background:linear-gradient(90deg,var(--green),var(--gold)); border-radius:3px; transition:width 0.4s; }
-
-    /* Item rows */
+    .prog-wrap { margin-bottom:16px; }
+    .prog-label { display:flex; justify-content:space-between; font-size:0.73rem; color:var(--grey); margin-bottom:5px; }
+    .prog-bar  { height:4px; background:var(--light); border-radius:3px; overflow:hidden; }
+    .prog-fill { height:100%; background:linear-gradient(90deg,var(--green),var(--gold)); border-radius:3px; }
     .items-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
     .items-header h3 { font-family:var(--serif); font-size:1.1rem; color:var(--navy); }
-    .items-header span { font-size:0.75rem; color:var(--grey); }
-    .item-row { display:grid; grid-template-columns:40px 1fr auto auto; gap:10px; align-items:center; padding:12px 14px; background:#fff; border:1.5px solid var(--light); border-radius:9px; margin-bottom:7px; cursor:pointer; transition:border-color 0.18s; }
+    .items-header span { font-size:0.73rem; color:var(--grey); }
+    .item-row { display:grid; grid-template-columns:38px 1fr auto auto; gap:9px; align-items:center; padding:11px 13px; background:#fff; border:1.5px solid var(--light); border-radius:9px; margin-bottom:6px; cursor:pointer; transition:border-color 0.18s; }
     .item-row:hover { border-color:var(--gold-light); }
     .item-row.active { border-color:var(--gold); background:rgba(200,186,154,0.06); }
-    .item-row.unsaved { border-color:var(--navy2); }
-    .i-swatch { width:40px; height:40px; border-radius:6px; transition:background 0.3s; }
-    .i-name  { font-weight:600; font-size:0.9rem; color:var(--navy); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    .i-meta  { font-size:0.73rem; color:var(--grey); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    .i-badge { font-size:0.62rem; padding:3px 8px; border-radius:10px; font-weight:600; white-space:nowrap; text-align:center; line-height:1.4; }
+    .i-swatch { width:38px; height:38px; border-radius:6px; }
+    .i-name  { font-weight:600; font-size:0.88rem; color:var(--navy); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .i-meta  { font-size:0.71rem; color:var(--grey); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .i-badge { font-size:0.6rem; padding:3px 7px; border-radius:10px; font-weight:600; white-space:nowrap; text-align:center; }
     .b-ok  { background:rgba(28,107,58,0.1);  color:var(--green); border:1px solid rgba(28,107,58,0.3); }
     .b-rev { background:rgba(200,186,154,0.2); color:#7a6f52;      border:1px solid rgba(200,186,154,0.5); }
     .b-act { background:rgba(109,32,36,0.08);  color:var(--red);   border:1px solid rgba(109,32,36,0.25); }
-    .i-price { font-family:var(--serif); font-size:1rem; color:var(--navy); white-space:nowrap; }
+    .i-price { font-family:var(--serif); font-size:0.98rem; color:var(--navy); white-space:nowrap; }
 
-    /* Approve bar */
-    .approve-bar { position:fixed; bottom:0; left:0; right:0; background:var(--navy); padding:13px 20px; display:flex; align-items:center; justify-content:space-between; border-top:2px solid var(--gold); z-index:50; transition:transform 0.3s; }
-    .approve-bar.hidden { transform:translateY(100%); }
-    .ab-total .label { font-size:0.67rem; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:0.1em; }
-    .ab-total .amount { font-family:var(--serif); font-size:1.4rem; color:var(--gold); }
-    .ab-cta { background:var(--gold); color:var(--navy); border:none; padding:12px 22px; border-radius:6px; font-weight:700; font-size:0.85rem; cursor:pointer; font-family:var(--sans); }
+    /* ══ APPROVE BAR ══ */
+    .approve-bar { position:fixed; bottom:0; left:0; right:0; background:var(--navy); padding:12px 20px; display:flex; align-items:center; justify-content:space-between; border-top:2px solid var(--gold); z-index:45; transition:transform 0.3s; }
+    .approve-bar.hide { transform:translateY(100%); }
+    .ab-total .lbl { font-size:0.65rem; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:0.1em; }
+    .ab-total .amt { font-family:var(--serif); font-size:1.35rem; color:var(--gold); }
+    .ab-cta { background:var(--gold); color:var(--navy); border:none; padding:11px 22px; border-radius:6px; font-weight:700; font-size:0.84rem; cursor:pointer; font-family:var(--sans); }
 
-    /* ════ MESSAGES PANEL ════ */
-    .mp { padding:20px 16px 130px; max-width:720px; margin:0 auto; }
-    .mp-head { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:16px; gap:10px; }
-    .mp-head h2 { font-family:var(--serif); font-size:1.4rem; color:var(--navy); }
-    .mp-head p  { font-size:0.78rem; color:var(--grey); margin-top:2px; }
-    .msg-count-badge { background:rgba(200,186,154,0.2); border:1px solid var(--gold); color:#7a6f52; padding:4px 12px; border-radius:12px; font-size:0.72rem; font-weight:600; white-space:nowrap; flex-shrink:0; }
-
-    /* Search */
-    .search-wrap { position:relative; margin-bottom:12px; }
-    .search-input { width:100%; padding:11px 38px 11px 14px; border:1.5px solid var(--light); border-radius:8px; font-family:var(--sans); font-size:0.88rem; color:var(--text); background:#fff; transition:border-color 0.2s; }
+    /* ══ MESSAGES PANEL ══ */
+    .mp-head { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:14px; gap:10px; }
+    .mp-head h2 { font-family:var(--serif); font-size:1.35rem; color:var(--navy); }
+    .mp-head p  { font-size:0.76rem; color:var(--grey); margin-top:2px; }
+    .msg-cnt { background:rgba(200,186,154,0.2); border:1px solid var(--gold); color:#7a6f52; padding:4px 11px; border-radius:12px; font-size:0.71rem; font-weight:600; white-space:nowrap; flex-shrink:0; }
+    .search-wrap { position:relative; margin-bottom:11px; }
+    .search-input { width:100%; padding:10px 36px 10px 13px; border:1.5px solid var(--light); border-radius:8px; font-family:var(--sans); font-size:0.87rem; color:var(--text); background:#fff; transition:border-color 0.2s; }
     .search-input:focus { outline:none; border-color:var(--gold); }
-    .search-icon { position:absolute; right:12px; top:50%; transform:translateY(-50%); color:var(--grey); pointer-events:none; font-size:0.95rem; }
-    .search-clear { position:absolute; right:11px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--grey); font-size:1.1rem; cursor:pointer; display:none; }
-    .search-clear.show { display:block; }
-
-    /* Filter pills */
-    .filter-row { display:flex; gap:7px; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; margin-bottom:16px; }
+    .s-icon  { position:absolute; right:11px; top:50%; transform:translateY(-50%); color:var(--grey); pointer-events:none; font-size:0.9rem; }
+    .s-clear { position:absolute; right:10px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--grey); font-size:1.1rem; cursor:pointer; display:none; }
+    .s-clear.show { display:block; }
+    .filter-row { display:flex; gap:6px; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; margin-bottom:15px; }
     .filter-row::-webkit-scrollbar { display:none; }
-    .pill { flex-shrink:0; padding:6px 13px; border-radius:20px; font-size:0.71rem; font-weight:600; cursor:pointer; border:1.5px solid var(--light); background:#fff; color:var(--grey); white-space:nowrap; transition:all 0.15s; }
+    .pill { flex-shrink:0; padding:5px 12px; border-radius:20px; font-size:0.7rem; font-weight:600; cursor:pointer; border:1.5px solid var(--light); background:#fff; color:var(--grey); white-space:nowrap; transition:all 0.15s; }
     .pill:hover { border-color:var(--gold-light); color:var(--navy); }
     .pill.active { background:var(--navy); color:#fff; border-color:var(--navy); }
-    .pill-dot { display:inline-block; width:7px; height:7px; border-radius:50%; margin-right:4px; vertical-align:middle; }
-    .pill-n { display:inline-block; background:var(--light); color:var(--grey); border-radius:8px; padding:0 5px; margin-left:4px; font-size:0.64rem; }
+    .pill-dot { display:inline-block; width:6px; height:6px; border-radius:50%; margin-right:4px; vertical-align:middle; }
+    .pill-n { display:inline-block; background:var(--light); color:var(--grey); border-radius:8px; padding:0 5px; margin-left:3px; font-size:0.63rem; }
     .pill.active .pill-n { background:rgba(255,255,255,0.2); color:#fff; }
-
-    /* Thread */
     .thread { display:flex; flex-direction:column; }
-    .date-sep { text-align:center; margin:16px 0 12px; position:relative; }
+    .date-sep { text-align:center; margin:14px 0 10px; position:relative; }
     .date-sep::before { content:''; position:absolute; left:0; right:0; top:50%; height:1px; background:var(--light); }
-    .date-sep span { position:relative; background:var(--cream); padding:0 12px; font-size:0.68rem; color:var(--grey); letter-spacing:0.1em; text-transform:uppercase; }
-    .msg-group { display:flex; flex-direction:column; margin-bottom:12px; }
+    .date-sep span { position:relative; background:var(--cream); padding:0 11px; font-size:0.67rem; color:var(--grey); letter-spacing:0.1em; text-transform:uppercase; }
+    .msg-group { display:flex; flex-direction:column; margin-bottom:11px; }
     .msg-group.customer { align-items:flex-end; }
     .msg-group.admin    { align-items:flex-start; }
-    .msg-sender { font-size:0.68rem; color:var(--grey); font-weight:600; margin-bottom:4px; padding:0 2px; letter-spacing:0.03em; }
+    .msg-sender { font-size:0.67rem; color:var(--grey); font-weight:600; margin-bottom:3px; padding:0 2px; }
     .msg-group.customer .msg-sender { text-align:right; }
-    .msg-bubble { max-width:84%; padding:11px 14px 10px; border-radius:12px; font-size:0.87rem; line-height:1.62; }
+    .msg-bubble { max-width:84%; padding:11px 13px 9px; border-radius:12px; font-size:0.86rem; line-height:1.62; cursor:pointer; transition:opacity 0.15s; }
+    .msg-bubble:hover { opacity:0.88; }
     .msg-group.customer .msg-bubble { background:rgba(200,186,154,0.18); border:1px solid rgba(200,186,154,0.45); border-bottom-right-radius:3px; }
     .msg-group.admin    .msg-bubble { background:var(--navy); color:rgba(255,255,255,0.9); border-bottom-left-radius:3px; }
-    .item-tag { display:inline-flex; align-items:center; gap:4px; margin-top:7px; padding:3px 9px; border-radius:10px; font-size:0.64rem; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; cursor:pointer; transition:opacity 0.15s; }
+    .item-tag { display:inline-flex; align-items:center; gap:4px; margin-top:7px; padding:3px 8px; border-radius:10px; font-size:0.63rem; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; cursor:pointer; }
     .item-tag:hover { opacity:0.75; }
     .msg-group.customer .item-tag { background:rgba(24,30,56,0.07); color:var(--navy); border:1px solid rgba(24,30,56,0.15); }
     .msg-group.admin    .item-tag { background:rgba(255,255,255,0.12); color:rgba(255,255,255,0.7); border:1px solid rgba(255,255,255,0.15); }
-    .general-tag.customer { background:rgba(200,186,154,0.18); color:#7a6f52; border-color:rgba(200,186,154,0.5); }
-    .general-tag.admin    { background:rgba(200,186,154,0.1); color:var(--gold); border-color:rgba(200,186,154,0.25); }
+    .gen-tag-c { background:rgba(200,186,154,0.18); color:#7a6f52; border-color:rgba(200,186,154,0.5); }
+    .gen-tag-a { background:rgba(200,186,154,0.1);  color:var(--gold); border-color:rgba(200,186,154,0.25); }
     .tag-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
-    .msg-time { font-size:0.63rem; color:var(--grey); margin-top:4px; }
+    .attach-strip { display:flex; gap:6px; margin-top:8px; flex-wrap:wrap; }
+    .attach-chip { display:inline-flex; align-items:center; gap:5px; padding:4px 9px; border-radius:8px; font-size:0.67rem; font-weight:600; cursor:pointer; }
+    .msg-group.customer .attach-chip { background:rgba(24,30,56,0.07); color:var(--navy); border:1px solid rgba(24,30,56,0.12); }
+    .msg-group.admin    .attach-chip { background:rgba(255,255,255,0.12); color:rgba(255,255,255,0.7); border:1px solid rgba(255,255,255,0.18); }
+    .msg-time { font-size:0.62rem; color:var(--grey); margin-top:4px; }
     .msg-group.customer .msg-time { text-align:right; }
     .msg-group.admin    .msg-time { color:rgba(255,255,255,0.35); }
     .no-results { text-align:center; padding:40px 20px; color:var(--grey); font-size:0.88rem; display:none; }
     .no-results.show { display:block; }
     mark.hl { background:rgba(200,186,154,0.55); border-radius:2px; padding:0 1px; }
 
-    /* Compose */
-    .compose-wrap { position:fixed; bottom:0; left:0; right:0; background:#fff; border-top:1px solid var(--light); z-index:50; padding:11px 16px 14px; transition:transform 0.3s; }
-    .compose-wrap.hidden { transform:translateY(100%); }
-    .compose-inner { max-width:720px; margin:0 auto; display:flex; flex-direction:column; gap:8px; }
-    .compose-tags { display:flex; align-items:center; gap:7px; overflow-x:auto; scrollbar-width:none; }
+    /* ══ COMPOSE ══ */
+    .compose-wrap { position:fixed; bottom:0; left:0; right:0; background:#fff; border-top:1px solid var(--light); z-index:45; padding:10px 16px 13px; transition:transform 0.3s; }
+    .compose-wrap.hide { transform:translateY(100%); }
+    .compose-inner { max-width:720px; margin:0 auto; display:flex; flex-direction:column; gap:7px; }
+    .compose-tags { display:flex; align-items:center; gap:6px; overflow-x:auto; scrollbar-width:none; }
     .compose-tags::-webkit-scrollbar { display:none; }
-    .ctag-label { font-size:0.65rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--grey); flex-shrink:0; }
-    .ctag { flex-shrink:0; padding:5px 11px; border-radius:12px; font-size:0.7rem; font-weight:600; cursor:pointer; border:1.5px solid var(--light); background:#fff; color:var(--grey); white-space:nowrap; transition:all 0.15s; font-family:var(--sans); }
+    .ctag-lbl { font-size:0.63rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--grey); flex-shrink:0; }
+    .ctag { flex-shrink:0; padding:4px 10px; border-radius:12px; font-size:0.69rem; font-weight:600; cursor:pointer; border:1.5px solid var(--light); background:#fff; color:var(--grey); white-space:nowrap; transition:all 0.15s; font-family:var(--sans); }
     .ctag.active { background:var(--navy); color:#fff; border-color:var(--navy); }
-    .compose-hint { font-size:0.71rem; color:var(--grey); padding:0 1px; line-height:1.4; }
-    .compose-hint strong { color:var(--navy); }
-    .compose-row { display:flex; gap:8px; }
-    .compose-input { flex:1; padding:10px 13px; border:1.5px solid var(--light); border-radius:9px; font-family:var(--sans); font-size:0.88rem; resize:none; color:var(--text); transition:border-color 0.2s; }
+    .c-hint { font-size:0.7rem; color:var(--grey); line-height:1.4; }
+    .c-hint strong { color:var(--navy); }
+    .compose-row { display:flex; gap:7px; }
+    .compose-input { flex:1; padding:9px 12px; border:1.5px solid var(--light); border-radius:8px; font-family:var(--sans); font-size:0.87rem; resize:none; color:var(--text); transition:border-color 0.2s; }
     .compose-input:focus { outline:none; border-color:var(--gold); }
-    .compose-send { background:var(--navy); color:var(--gold); border:none; padding:10px 16px; border-radius:9px; font-weight:700; font-size:0.83rem; cursor:pointer; font-family:var(--sans); white-space:nowrap; }
+    .compose-send { background:var(--navy); color:var(--gold); border:none; padding:9px 15px; border-radius:8px; font-weight:700; font-size:0.82rem; cursor:pointer; font-family:var(--sans); white-space:nowrap; }
 
-    /* ════ DRAWER ════ */
-    .drawer-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:100; opacity:0; pointer-events:none; transition:opacity 0.3s; }
-    .drawer-overlay.open { opacity:1; pointer-events:all; }
+    /* ══ MESSAGE LIGHTBOX ══ */
+    .lb-overlay { position:fixed; inset:0; background:rgba(10,12,22,0.78); z-index:300; display:flex; align-items:flex-end; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.25s; }
+    .lb-overlay.open { opacity:1; pointer-events:all; }
+    .lb-box { background:#fff; width:100%; max-width:680px; max-height:88dvh; border-radius:18px 18px 0 0; display:flex; flex-direction:column; transform:translateY(40px); transition:transform 0.3s; overflow:hidden; }
+    .lb-overlay.open .lb-box { transform:translateY(0); }
+    @media(min-width:720px){ .lb-overlay{ align-items:center; } .lb-box{ border-radius:14px; max-height:82vh; } }
+    .lb-handle { width:36px; height:3px; background:var(--light); border-radius:2px; margin:10px auto 0; flex-shrink:0; }
+    .lb-head { padding:14px 18px 10px; border-bottom:1px solid var(--light); flex-shrink:0; display:flex; justify-content:space-between; align-items:flex-start; }
+    .lb-head-left h4 { font-family:var(--serif); font-size:1.1rem; color:var(--navy); }
+    .lb-head-left p  { font-size:0.73rem; color:var(--grey); margin-top:2px; }
+    .lb-close { background:none; border:none; font-size:1.3rem; cursor:pointer; color:var(--grey); padding:2px; }
+    .lb-body { flex:1; overflow-y:auto; padding:18px; display:flex; flex-direction:column; gap:16px; }
+    .lb-main-msg { padding:14px 16px; border-radius:10px; border:1px solid var(--light); background:var(--warm); }
+    .lb-main-msg .lmm-sender { font-size:0.7rem; font-weight:700; color:var(--grey); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:6px; }
+    .lb-main-msg .lmm-text { font-size:0.94rem; line-height:1.7; color:var(--text); }
+    .lb-main-msg .lmm-tag  { margin-top:8px; }
+    .lb-main-msg .lmm-time { font-size:0.68rem; color:var(--grey); margin-top:6px; }
+    .lb-attachments h5 { font-size:0.68rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--grey); font-weight:700; margin-bottom:10px; }
+    .att-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:9px; }
+    .att-card { background:var(--warm); border:1px solid var(--light); border-radius:8px; overflow:hidden; cursor:pointer; transition:border-color 0.15s; }
+    .att-card:hover { border-color:var(--gold); }
+    .att-thumb { height:80px; display:flex; align-items:center; justify-content:center; font-size:2rem; }
+    .att-info { padding:7px 9px; font-size:0.72rem; color:var(--text); font-weight:600; border-top:1px solid var(--light); line-height:1.3; }
+    .att-info span { display:block; font-size:0.63rem; color:var(--grey); font-weight:400; margin-top:1px; }
+    .lb-thread h5 { font-size:0.68rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--grey); font-weight:700; margin-bottom:12px; }
+    .lb-thread .msg-group { margin-bottom:9px; }
+    .lb-footer { padding:12px 16px; border-top:1px solid var(--light); flex-shrink:0; display:flex; gap:8px; background:#fff; }
+    .lb-input { flex:1; padding:9px 12px; border:1.5px solid var(--light); border-radius:8px; font-family:var(--sans); font-size:0.86rem; resize:none; color:var(--text); }
+    .lb-input:focus { outline:none; border-color:var(--gold); }
+    .lb-send { background:var(--navy); color:var(--gold); border:none; padding:9px 14px; border-radius:8px; font-weight:700; font-size:0.81rem; cursor:pointer; font-family:var(--sans); }
+
+    /* ══ DOCUMENTS PANEL ══ */
+    .docs-toolbar { display:flex; gap:9px; align-items:center; margin-bottom:16px; flex-wrap:wrap; }
+    .docs-toolbar .flt { flex:1; min-width:140px; padding:9px 13px; border:1.5px solid var(--light); border-radius:7px; font-family:var(--sans); font-size:0.84rem; color:var(--text); background:#fff; }
+    .docs-toolbar .flt:focus { outline:none; border-color:var(--gold); }
+    .upload-btn { background:var(--navy); color:var(--gold); border:none; padding:9px 16px; border-radius:7px; font-family:var(--sans); font-weight:700; font-size:0.8rem; cursor:pointer; white-space:nowrap; }
+    .docs-filter { display:flex; gap:6px; margin-bottom:14px; flex-wrap:wrap; }
+    .doc-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(148px,1fr)); gap:10px; }
+    .doc-card { background:#fff; border:1.5px solid var(--light); border-radius:10px; overflow:hidden; cursor:pointer; transition:border-color 0.18s; }
+    .doc-card:hover { border-color:var(--gold); }
+    .doc-thumb { height:100px; display:flex; align-items:center; justify-content:center; font-size:2.4rem; position:relative; }
+    .doc-thumb .doc-src { position:absolute; top:7px; right:7px; font-size:0.58rem; font-weight:700; padding:2px 6px; border-radius:6px; letter-spacing:0.07em; text-transform:uppercase; }
+    .src-admin { background:var(--navy); color:#fff; }
+    .src-you   { background:var(--gold); color:var(--navy); }
+    .src-system{ background:var(--grey); color:#fff; }
+    .doc-info { padding:9px 10px 10px; border-top:1px solid var(--light); }
+    .doc-name { font-size:0.8rem; font-weight:700; color:var(--navy); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .doc-meta { font-size:0.67rem; color:var(--grey); margin-top:2px; }
+    .doc-tag  { display:inline-block; margin-top:5px; padding:2px 7px; border-radius:6px; font-size:0.6rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; }
+    .drop-zone { border:2px dashed var(--gold); border-radius:12px; padding:32px 20px; text-align:center; color:var(--grey); font-size:0.84rem; line-height:1.7; margin-bottom:16px; cursor:pointer; background:rgba(200,186,154,0.06); }
+    .drop-zone:hover { background:rgba(200,186,154,0.12); }
+    .drop-zone strong { display:block; font-size:1rem; color:var(--navy); margin-bottom:4px; }
+
+    /* ══ CUSTOMER PANEL ══ */
+    .field-group { display:flex; flex-direction:column; gap:3px; }
+    .edit-input { padding:9px 12px; border:1.5px solid var(--light); border-radius:7px; font-family:var(--sans); font-size:0.88rem; color:var(--text); background:#fff; width:100%; }
+    .edit-input:focus { outline:none; border-color:var(--gold); }
+    .same-addr { display:flex; align-items:center; gap:9px; padding:11px 14px; background:rgba(200,186,154,0.1); border:1px solid var(--gold-light); border-radius:8px; cursor:pointer; }
+    .same-addr input[type=checkbox] { width:16px; height:16px; accent-color:var(--navy); }
+    .same-addr label { font-size:0.83rem; color:var(--navy); cursor:pointer; font-weight:600; }
+    .addr-section { margin-top:14px; }
+    .addr-section.hidden { display:none; }
+
+    /* ══ SAMPLES PANEL ══ */
+    .sample-card { background:#fff; border:1.5px solid var(--light); border-radius:10px; overflow:hidden; display:flex; gap:0; }
+    .sc-swatch { width:72px; flex-shrink:0; }
+    .sc-info { padding:13px 15px; flex:1; }
+    .sc-name { font-weight:700; font-size:0.9rem; color:var(--navy); }
+    .sc-meta { font-size:0.75rem; color:var(--grey); margin-top:3px; }
+    .sc-status { margin-top:8px; }
+    .ss-pill { display:inline-block; padding:3px 10px; border-radius:10px; font-size:0.64rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; }
+    .ss-sent    { background:rgba(28,107,58,0.1);  color:var(--green); border:1px solid rgba(28,107,58,0.3); }
+    .ss-pending { background:rgba(200,186,154,0.2); color:#7a6f52;      border:1px solid rgba(200,186,154,0.5); }
+    .ss-received{ background:rgba(39,46,102,0.1);   color:var(--navy2); border:1px solid rgba(39,46,102,0.25); }
+    .samples-intro { background:rgba(200,186,154,0.12); border:1px solid var(--gold-light); border-radius:9px; padding:14px 16px; font-size:0.83rem; color:#555; line-height:1.6; margin-bottom:18px; }
+    .request-sample-btn { width:100%; padding:12px; border:1.5px dashed var(--gold); background:rgba(200,186,154,0.06); border-radius:9px; font-family:var(--sans); font-size:0.85rem; color:var(--navy); cursor:pointer; font-weight:600; margin-top:12px; }
+    .request-sample-btn:hover { background:rgba(200,186,154,0.14); }
+
+    /* ══ CAR DETAILS PANEL ══ */
+    .paint-swatch { width:40px; height:40px; border-radius:8px; border:2px solid var(--light); flex-shrink:0; }
+    .tag-pill { display:inline-block; padding:4px 11px; border-radius:12px; font-size:0.73rem; font-weight:600; border:1px solid var(--light); margin-right:6px; margin-bottom:6px; cursor:default; }
+    .tag-pill.sel { background:var(--navy); color:#fff; border-color:var(--navy); }
+    .mods-box { background:var(--warm); border:1px solid var(--light); border-radius:8px; padding:13px 14px; font-size:0.86rem; line-height:1.7; color:var(--text); white-space:pre-wrap; }
+    .comments-box { background:var(--warm); border:1px solid var(--light); border-radius:8px; padding:13px 14px; font-size:0.86rem; line-height:1.7; color:var(--text); white-space:pre-wrap; }
+
+    /* ══ DRAWER ══ */
+    .d-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:100; opacity:0; pointer-events:none; transition:opacity 0.3s; }
+    .d-overlay.open { opacity:1; pointer-events:all; }
     .drawer { position:fixed; right:0; top:0; bottom:0; width:min(520px,100vw); background:#fff; z-index:200; transform:translateX(110%); transition:transform 0.32s cubic-bezier(.4,0,.2,1); display:flex; flex-direction:column; box-shadow:-8px 0 48px rgba(0,0,0,0.18); }
     .drawer.open { transform:translateX(0); }
-    @media(max-width:560px) {
+    @media(max-width:560px){
       .drawer { top:auto; width:100%; height:93dvh; border-radius:18px 18px 0 0; transform:translateY(110%); box-shadow:0 -8px 40px rgba(0,0,0,0.22); }
       .drawer.open { transform:translateY(0); }
-      .drag-handle { display:block !important; }
+      .d-handle { display:block !important; }
     }
-    .drag-handle { display:none; width:40px; height:4px; background:var(--light); border-radius:2px; margin:12px auto 0; flex-shrink:0; }
-    .dh { background:var(--navy); padding:15px 18px 13px; display:flex; align-items:flex-start; gap:13px; flex-shrink:0; }
-    .dh-swatch { width:56px; height:56px; border-radius:9px; flex-shrink:0; transition:background 0.35s; border:2px solid rgba(255,255,255,0.15); }
+    .d-handle { display:none; width:38px; height:3px; background:var(--light); border-radius:2px; margin:11px auto 0; flex-shrink:0; }
+    .dh { background:var(--navy); padding:14px 17px 12px; display:flex; align-items:flex-start; gap:12px; flex-shrink:0; }
+    .dh-swatch { width:54px; height:54px; border-radius:8px; flex-shrink:0; border:2px solid rgba(255,255,255,0.12); transition:background 0.3s; }
     .dh-info { flex:1; min-width:0; }
-    .dh-info h3 { font-family:var(--serif); font-size:1.2rem; color:#fff; line-height:1.15; }
-    .dh-meta { font-size:0.74rem; color:rgba(255,255,255,0.5); margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    .dh-right { display:flex; flex-direction:column; align-items:flex-end; gap:4px; flex-shrink:0; }
-    .dh-price { font-family:var(--serif); font-size:1.35rem; color:var(--gold); white-space:nowrap; }
-    .price-was { font-size:0.66rem; color:rgba(255,255,255,0.35); text-decoration:line-through; display:none; }
-    .d-close { background:none; border:none; color:rgba(255,255,255,0.35); font-size:1.3rem; cursor:pointer; padding:0; line-height:1; font-family:var(--sans); }
-    .unsaved-bar { display:none; background:var(--navy2); color:var(--gold); font-size:0.76rem; font-weight:600; padding:8px 18px; text-align:center; flex-shrink:0; border-bottom:1px solid rgba(200,186,154,0.2); }
+    .dh-info h3 { font-family:var(--serif); font-size:1.15rem; color:#fff; line-height:1.15; }
+    .dh-meta { font-size:0.72rem; color:rgba(255,255,255,0.5); margin-top:3px; }
+    .dh-right { display:flex; flex-direction:column; align-items:flex-end; gap:3px; flex-shrink:0; }
+    .dh-price { font-family:var(--serif); font-size:1.3rem; color:var(--gold); white-space:nowrap; }
+    .price-was { font-size:0.63rem; color:rgba(255,255,255,0.3); text-decoration:line-through; display:none; }
+    .d-close { background:none; border:none; color:rgba(255,255,255,0.35); font-size:1.2rem; cursor:pointer; }
+    .unsaved-bar { display:none; background:var(--navy2); color:var(--gold); font-size:0.74rem; font-weight:600; padding:7px 17px; text-align:center; flex-shrink:0; }
     .unsaved-bar.show { display:block; }
-    .price-toast { display:none; background:var(--green); color:#fff; font-size:0.74rem; font-weight:600; padding:7px 16px; text-align:center; flex-shrink:0; }
+    .price-toast { display:none; background:var(--green); color:#fff; font-size:0.72rem; font-weight:600; padding:6px 15px; text-align:center; flex-shrink:0; }
     .price-toast.show { display:block; }
-    /* Drawer tabs */
-    .dtab-wrap { position:relative; flex-shrink:0; }
-    .dtab-wrap::after { content:''; position:absolute; top:0; right:0; bottom:2px; width:24px; background:linear-gradient(to right,transparent,#fff); pointer-events:none; z-index:1; }
+    .dtab-wrap { flex-shrink:0; position:relative; }
+    .dtab-wrap::after { content:''; position:absolute; top:0; right:0; bottom:2px; width:22px; background:linear-gradient(to right,transparent,#fff); pointer-events:none; z-index:1; }
     .dtabs { display:flex; border-bottom:2px solid var(--light); background:#fff; overflow-x:auto; scrollbar-width:none; }
     .dtabs::-webkit-scrollbar { display:none; }
-    .dtab { flex-shrink:0; padding:12px 15px; font-size:0.72rem; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; color:var(--grey); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; white-space:nowrap; transition:color 0.18s; }
+    .dtab { flex-shrink:0; padding:11px 14px; font-size:0.7rem; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; color:var(--grey); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; white-space:nowrap; transition:color 0.18s; }
     .dtab.active { color:var(--navy); border-bottom-color:var(--gold); }
-    .dtab .dn { display:inline-block; background:var(--red); color:#fff; border-radius:8px; padding:0 5px; font-size:0.6rem; margin-left:4px; }
-    /* Drawer body */
-    .d-body { flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch; }
-    .dpanel { display:none; padding:18px; }
+    .dtab .dn { display:inline-block; background:var(--red); color:#fff; border-radius:8px; padding:0 5px; font-size:0.58rem; margin-left:3px; }
+    .d-body { flex:1; overflow-y:auto; }
+    .dpanel { display:none; padding:17px; }
     .dpanel.active { display:block; }
-    /* About */
-    .about-txt { font-size:0.88rem; line-height:1.78; color:#555; margin-bottom:16px; }
+    .about-txt { font-size:0.86rem; line-height:1.78; color:#555; margin-bottom:14px; }
     .spec-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-    .spec-item { background:var(--warm); border-radius:6px; padding:9px 11px; }
-    .spec-item .sl { font-size:0.64rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--grey); }
-    .spec-item .sv { font-size:0.86rem; font-weight:600; color:var(--navy); margin-top:2px; }
-    /* Material panel */
-    .cust-label { font-size:0.67rem; text-transform:uppercase; letter-spacing:0.13em; color:var(--gold); font-weight:600; margin-bottom:8px; }
-    .cust-note  { font-size:0.8rem; color:var(--grey); margin-bottom:12px; line-height:1.55; }
-    .mat-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:7px; margin-bottom:18px; }
-    .mat-btn { padding:12px 10px; border-radius:8px; border:1.5px solid var(--light); background:#fff; cursor:pointer; text-align:left; font-family:var(--sans); transition:border-color 0.18s,background 0.18s; }
+    .spec-item { background:var(--warm); border-radius:6px; padding:8px 10px; }
+    .spec-item .sl { font-size:0.62rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--grey); }
+    .spec-item .sv { font-size:0.84rem; font-weight:600; color:var(--navy); margin-top:2px; }
+    .cust-lbl { font-size:0.65rem; text-transform:uppercase; letter-spacing:0.12em; color:var(--gold); font-weight:600; margin-bottom:7px; }
+    .cust-note { font-size:0.78rem; color:var(--grey); margin-bottom:11px; line-height:1.55; }
+    .mat-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(116px,1fr)); gap:6px; margin-bottom:16px; }
+    .mat-btn { padding:11px 9px; border-radius:7px; border:1.5px solid var(--light); background:#fff; cursor:pointer; text-align:left; font-family:var(--sans); transition:border-color 0.18s; }
     .mat-btn:hover { border-color:var(--gold-light); }
     .mat-btn.sel { border-color:var(--gold); background:rgba(200,186,154,0.1); }
-    .mat-btn .mn { font-weight:700; font-size:0.84rem; color:var(--navy); }
-    .mat-btn .mp { font-size:0.74rem; color:var(--grey); margin-top:2px; }
+    .mat-btn .mn { font-weight:700; font-size:0.82rem; color:var(--navy); }
+    .mat-btn .mp { font-size:0.72rem; color:var(--grey); margin-top:2px; }
     .mat-btn.sel .mp { color:var(--green); font-weight:600; }
-    .mat-btn .mt { font-size:0.64rem; color:var(--grey); margin-top:1px; }
-    .fin-row { display:flex; gap:8px; }
-    .fin-btn { flex:1; padding:11px 9px; border-radius:8px; border:1.5px solid var(--light); background:#fff; cursor:pointer; text-align:center; font-family:var(--sans); transition:border-color 0.18s,background 0.18s; }
+    .mat-btn .mt { font-size:0.62rem; color:var(--grey); margin-top:1px; }
+    .fin-row { display:flex; gap:7px; }
+    .fin-btn { flex:1; padding:10px 8px; border-radius:7px; border:1.5px solid var(--light); background:#fff; cursor:pointer; text-align:center; font-family:var(--sans); transition:border-color 0.18s; }
     .fin-btn.sel { border-color:var(--gold); background:rgba(200,186,154,0.1); }
-    .fin-btn .fn { font-weight:700; font-size:0.84rem; color:var(--navy); }
-    .fin-btn .fd { font-size:0.7rem; color:var(--grey); margin-top:3px; }
-    .fin-btn .fp { font-size:0.7rem; color:var(--grey); margin-top:1px; }
+    .fin-btn .fn { font-weight:700; font-size:0.82rem; color:var(--navy); }
+    .fin-btn .fd { font-size:0.68rem; color:var(--grey); margin-top:2px; }
+    .fin-btn .fp { font-size:0.68rem; color:var(--grey); margin-top:1px; }
     .fin-btn.sel .fp { color:var(--green); font-weight:600; }
-    .sec-div { border:none; border-top:1px solid var(--light); margin:18px 0; }
-    /* Colour panels */
-    .colour-intro { font-size:0.84rem; color:#555; line-height:1.65; margin-bottom:14px; }
-    .tbc-card { display:flex; align-items:center; gap:13px; padding:13px 15px; background:rgba(200,186,154,0.08); border:1.5px dashed var(--gold); border-radius:10px; margin-bottom:14px; cursor:pointer; transition:background 0.18s; }
+    .colour-intro { font-size:0.82rem; color:#555; line-height:1.65; margin-bottom:12px; }
+    .tbc-card { display:flex; align-items:center; gap:12px; padding:12px 14px; background:rgba(200,186,154,0.08); border:1.5px dashed var(--gold); border-radius:9px; margin-bottom:12px; cursor:pointer; }
     .tbc-card:hover { background:rgba(200,186,154,0.14); }
     .tbc-card.sel { background:rgba(200,186,154,0.18); border-style:solid; }
-    .tbc-dot { width:42px; height:42px; border-radius:7px; flex-shrink:0; border:1px solid var(--light); }
-    .tbc-info .ti { font-weight:700; font-size:0.86rem; color:var(--navy); }
-    .tbc-info .td { font-size:0.73rem; color:var(--grey); margin-top:2px; line-height:1.4; }
-    .c-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(68px,1fr)); gap:7px; }
-    .cs { border-radius:8px; cursor:pointer; overflow:hidden; border:2px solid transparent; transition:border-color 0.18s,transform 0.13s; }
+    .tbc-dot { width:40px; height:40px; border-radius:6px; flex-shrink:0; border:1px solid var(--light); }
+    .tbc-info .ti { font-weight:700; font-size:0.84rem; color:var(--navy); }
+    .tbc-info .td { font-size:0.71rem; color:var(--grey); margin-top:2px; line-height:1.4; }
+    .c-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(64px,1fr)); gap:6px; }
+    .cs { border-radius:7px; cursor:pointer; overflow:hidden; border:2px solid transparent; transition:border-color 0.18s,transform 0.12s; }
     .cs:hover { transform:scale(1.04); }
     .cs.sel { border-color:var(--gold); box-shadow:0 0 0 2px rgba(200,186,154,0.4); }
-    .cs .cc { height:44px; width:100%; }
-    .cs .cn { font-size:0.59rem; font-weight:600; color:var(--text); padding:4px 3px 4px; text-align:center; line-height:1.2; background:#fff; }
+    .cs .cc { height:40px; width:100%; }
+    .cs .cn { font-size:0.57rem; font-weight:600; color:var(--text); padding:3px 2px; text-align:center; line-height:1.2; background:#fff; }
     .cs.sel .cn { background:rgba(200,186,154,0.14); }
-    .cs .cp { font-size:0.57rem; color:var(--navy2); display:block; text-align:center; padding-bottom:4px; background:#fff; }
+    .cs .cp { font-size:0.55rem; color:var(--navy2); display:block; text-align:center; padding-bottom:3px; background:#fff; }
     .cs.sel .cp { background:rgba(200,186,154,0.14); }
-    .bespoke-box { background:rgba(39,46,102,0.05); border:1px solid rgba(39,46,102,0.15); border-radius:8px; padding:12px 14px; font-size:0.8rem; color:#555; line-height:1.6; margin-top:14px; }
-    .bespoke-box strong { color:var(--navy); }
-    /* Media */
-    .media-scroll { display:flex; gap:9px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
-    .media-scroll::-webkit-scrollbar { height:3px; }
-    .media-scroll::-webkit-scrollbar-thumb { background:var(--gold); border-radius:2px; }
-    .mthumb { flex-shrink:0; width:140px; height:105px; border-radius:8px; cursor:pointer; position:relative; overflow:hidden; }
-    .mthumb.v::after { content:'▶'; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:1.8rem; color:#fff; background:rgba(0,0,0,0.3); }
-    /* Drawer Questions */
-    .dq-thread { display:flex; flex-direction:column; gap:9px; padding-bottom:8px; }
-    .dq-empty { font-size:0.84rem; color:var(--grey); text-align:center; padding:28px 0 12px; }
-    /* Save bar */
-    .save-bar { display:none; padding:11px 18px; background:var(--warm); border-top:1px solid var(--light); flex-shrink:0; }
+    .bespoke-box { background:rgba(39,46,102,0.05); border:1px solid rgba(39,46,102,0.15); border-radius:7px; padding:11px 13px; font-size:0.78rem; color:#555; line-height:1.6; margin-top:12px; }
+    .media-scroll { display:flex; gap:8px; overflow-x:auto; }
+    .mthumb { flex-shrink:0; width:130px; height:98px; border-radius:7px; cursor:pointer; position:relative; overflow:hidden; }
+    .mthumb.v::after { content:'▶'; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:1.7rem; color:#fff; background:rgba(0,0,0,0.3); }
+    .dq-thread { display:flex; flex-direction:column; gap:8px; padding-bottom:6px; }
+    .dq-empty { font-size:0.82rem; color:var(--grey); text-align:center; padding:24px 0 10px; }
+    .save-bar { display:none; padding:10px 17px; background:var(--warm); border-top:1px solid var(--light); flex-shrink:0; }
     .save-bar.show { display:block; }
-    .save-btn { width:100%; padding:12px; background:var(--navy); color:var(--gold); border:none; border-radius:8px; font-weight:700; font-size:0.88rem; cursor:pointer; font-family:var(--sans); letter-spacing:0.04em; }
-    /* Drawer footer */
-    .d-footer { padding:12px 18px; border-top:1px solid var(--light); background:#fff; flex-shrink:0; display:flex; flex-direction:column; gap:8px; }
-    .dq-row { display:flex; gap:8px; }
-    .dq-input { flex:1; padding:10px 13px; border:1.5px solid var(--light); border-radius:8px; font-family:var(--sans); font-size:0.86rem; resize:none; color:var(--text); transition:border-color 0.2s; }
+    .save-btn { width:100%; padding:11px; background:var(--navy); color:var(--gold); border:none; border-radius:7px; font-weight:700; font-size:0.86rem; cursor:pointer; font-family:var(--sans); }
+    .d-footer { padding:11px 17px; border-top:1px solid var(--light); background:#fff; flex-shrink:0; display:flex; flex-direction:column; gap:7px; }
+    .dq-row { display:flex; gap:7px; }
+    .dq-input { flex:1; padding:9px 12px; border:1.5px solid var(--light); border-radius:7px; font-family:var(--sans); font-size:0.84rem; resize:none; color:var(--text); }
     .dq-input:focus { outline:none; border-color:var(--gold); }
-    .dq-send { background:var(--navy); color:var(--gold); border:none; padding:10px 15px; border-radius:8px; font-weight:600; font-size:0.82rem; cursor:pointer; font-family:var(--sans); white-space:nowrap; }
-    .act-row { display:flex; gap:7px; }
-    .act { flex:1; padding:10px 7px; border-radius:6px; border:none; font-size:0.78rem; font-weight:600; cursor:pointer; font-family:var(--sans); }
+    .dq-send { background:var(--navy); color:var(--gold); border:none; padding:9px 14px; border-radius:7px; font-weight:600; font-size:0.8rem; cursor:pointer; font-family:var(--sans); }
+    .act-row { display:flex; gap:6px; }
+    .act { flex:1; padding:9px 6px; border-radius:6px; border:none; font-size:0.76rem; font-weight:600; cursor:pointer; font-family:var(--sans); }
     .a-keep   { background:rgba(28,107,58,0.1);  color:var(--green); border:1px solid rgba(28,107,58,0.3); }
     .a-remove { background:rgba(109,32,36,0.08); color:var(--red);   border:1px solid rgba(109,32,36,0.2); }
     .a-edit   { background:rgba(24,30,56,0.07);  color:var(--navy);  border:1px solid rgba(24,30,56,0.16); }
+    .sec-div  { border:none; border-top:1px solid var(--light); margin:16px 0; }
   </style>
 </head>
 <body>
 
-<!-- ════ HEADER ════ -->
+<!-- ══ HEADER ══ -->
 <header class="site-header">
   <div>
     <div class="logo">John <em>Skinner</em></div>
@@ -270,53 +346,48 @@
   </div>
 </header>
 
-<!-- ════ PORTAL TABS ════ -->
-<div class="portal-tabs">
+<!-- ══ PORTAL TABS ══ -->
+<div class="portal-tabs" id="portal-tabs">
   <div class="ptab active" id="pt-quote"    onclick="switchTab('quote')">Your Quote</div>
-  <div class="ptab"        id="pt-messages" onclick="switchTab('messages')">Messages <div class="unread" id="unread-dot" style="display:none;"></div></div>
-  <div class="ptab"        id="pt-docs"     onclick="switchTab('docs')" style="color:var(--light);pointer-events:none;">Documents</div>
-  <div class="ptab"        id="pt-status"   onclick="switchTab('status')" style="color:var(--light);pointer-events:none;">Status</div>
+  <div class="ptab"        id="pt-messages" onclick="switchTab('messages')">Messages<div class="badge" id="msg-badge"></div></div>
+  <div class="ptab"        id="pt-documents"onclick="switchTab('documents')">Documents</div>
+  <div class="ptab"        id="pt-customer" onclick="switchTab('customer')">Customer</div>
+  <div class="ptab"        id="pt-samples"  onclick="switchTab('samples')">Samples</div>
+  <div class="ptab"        id="pt-car"      onclick="switchTab('car')">Car Details</div>
 </div>
 
-<!-- ════ CONTENT SLIDER ════ -->
-<div class="content-slider" id="slider">
+<!-- ══ CONTENT ══ -->
+<div class="content-area">
 
-  <!-- ─── QUOTE PANEL ─── -->
-  <div class="panel" id="panel-quote">
-    <div class="qp">
-
+  <!-- ─ QUOTE ─ -->
+  <div class="panel active" id="panel-quote">
+    <div class="inner">
       <div class="quote-card">
         <div class="qstat"><div class="n" id="qs-total">7</div><div class="l">Items</div></div>
         <div class="qstat"><div class="n" id="qs-confirmed">5</div><div class="l">Confirmed</div></div>
-        <div class="qstat"><div class="n" id="qs-pending" style="color:var(--red);">2</div><div class="l">Pending</div></div>
-        <div class="qstat"><div class="n gold" id="qs-price">£3,130</div><div class="l">Est. Total</div></div>
+        <div class="qstat"><div class="n" id="qs-pending" style="color:var(--red)">2</div><div class="l">Pending</div></div>
+        <div class="qstat"><div class="n gold" id="qs-price">£3,150</div><div class="l">Est. Total</div></div>
       </div>
-
       <div class="prog-wrap">
         <div class="prog-label"><span>Items reviewed</span><span id="prog-pct">71%</span></div>
-        <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:71%;"></div></div>
+        <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:71%"></div></div>
       </div>
-
-      <div class="items-header">
-        <h3>Kit Items</h3>
-        <span>Tap to review or customise</span>
-      </div>
-
+      <div class="items-header"><h3>Kit Items</h3><span>Tap to review &amp; customise</span></div>
       <div id="item-list"></div>
     </div>
   </div>
 
-  <!-- ─── MESSAGES PANEL ─── -->
-  <div class="panel" id="panel-messages" style="display:none;">
-    <div class="mp">
+  <!-- ─ MESSAGES ─ -->
+  <div class="panel" id="panel-messages">
+    <div class="inner">
       <div class="mp-head">
-        <div><h2>Quote Correspondence</h2><p>All messages in one place · tagged by item</p></div>
-        <span class="msg-count-badge" id="msg-count-badge">—</span>
+        <div><h2>Correspondence</h2><p>All messages · tagged by item</p></div>
+        <span class="msg-cnt" id="msg-cnt-badge">—</span>
       </div>
       <div class="search-wrap">
-        <input class="search-input" id="search-input" type="text" placeholder="Search messages…" oninput="handleSearch(this.value)">
-        <span class="search-icon" id="s-icon">🔍</span>
-        <button class="search-clear" id="s-clear" onclick="clearSearch()">✕</button>
+        <input class="search-input" id="s-input" type="text" placeholder="Search messages…" oninput="handleSearch(this.value)">
+        <span class="s-icon" id="s-icon">🔍</span>
+        <button class="s-clear" id="s-clear" onclick="clearSearch()">✕</button>
       </div>
       <div class="filter-row" id="filter-row"></div>
       <div class="no-results" id="no-results">No messages match your search.</div>
@@ -324,20 +395,223 @@
     </div>
   </div>
 
-</div><!-- /slider -->
+  <!-- ─ DOCUMENTS ─ -->
+  <div class="panel" id="panel-documents">
+    <div class="inner">
+      <div class="section-heading">Documents &amp; Photos</div>
+      <p class="section-sub">Files attached to messages, or uploaded directly to this quote</p>
+      <div class="drop-zone" onclick="fakeUpload()">
+        <strong>📎 Drop files here or tap to upload</strong>
+        Photos, PDFs, reference images, invoices — anything relevant to your order
+      </div>
+      <div class="docs-toolbar">
+        <input class="flt" type="text" placeholder="Search files…" oninput="filterDocs(this.value)" id="doc-search">
+        <button class="upload-btn" onclick="fakeUpload()">+ Add File</button>
+      </div>
+      <div class="docs-filter" id="docs-filter-row"></div>
+      <div class="doc-grid" id="doc-grid"></div>
+    </div>
+  </div>
 
-<!-- ════ OVERLAY ════ -->
-<div class="drawer-overlay" id="d-overlay" onclick="closeDrawer()"></div>
+  <!-- ─ CUSTOMER ─ -->
+  <div class="panel" id="panel-customer">
+    <div class="inner">
+      <div class="section-heading">Your Details</div>
+      <p class="section-sub">Contact and delivery information for this order</p>
+      <div class="card">
+        <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:700;margin-bottom:14px;">Contact Information</div>
+        <div class="row2">
+          <div class="field-group"><div class="field-label">First Name</div><input class="edit-input" value="David"></div>
+          <div class="field-group"><div class="field-label">Last Name</div><input class="edit-input" value="Mitchell"></div>
+        </div>
+        <div class="field-group" style="margin-bottom:12px;"><div class="field-label">Email Address</div><input class="edit-input" type="email" value="david.mitchell@gmail.com"></div>
+        <div class="row2">
+          <div class="field-group"><div class="field-label">Phone</div><input class="edit-input" type="tel" value="+44 7700 900123"></div>
+          <div class="field-group"><div class="field-label">Preferred Contact</div>
+            <select class="edit-input"><option>Email</option><option>Phone</option><option>Either</option></select>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:700;margin-bottom:14px;">Billing Address</div>
+        <div class="field-group" style="margin-bottom:10px;"><div class="field-label">Address Line 1</div><input class="edit-input" value="14 Montague Road"></div>
+        <div class="field-group" style="margin-bottom:10px;"><div class="field-label">Address Line 2</div><input class="edit-input" placeholder="Flat, suite, etc."></div>
+        <div class="row3">
+          <div class="field-group"><div class="field-label">City</div><input class="edit-input" value="Cambridge"></div>
+          <div class="field-group"><div class="field-label">County</div><input class="edit-input" value="Cambridgeshire"></div>
+          <div class="field-group"><div class="field-label">Postcode</div><input class="edit-input" value="CB1 2AB"></div>
+        </div>
+        <div class="field-group" style="margin-top:10px;"><div class="field-label">Country</div>
+          <select class="edit-input"><option>United Kingdom</option><option>United States</option><option>Germany</option><option>France</option><option>Australia</option><option>Other</option></select>
+        </div>
+      </div>
+      <div class="same-addr" onclick="toggleShipping()">
+        <input type="checkbox" id="same-addr-chk" checked>
+        <label for="same-addr-chk">Shipping address same as billing</label>
+      </div>
+      <div class="addr-section hidden" id="shipping-section">
+        <div class="card" style="margin-top:12px;">
+          <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:700;margin-bottom:14px;">Shipping Address</div>
+          <div class="field-group" style="margin-bottom:10px;"><div class="field-label">Address Line 1</div><input class="edit-input" placeholder="Shipping address"></div>
+          <div class="field-group" style="margin-bottom:10px;"><div class="field-label">Address Line 2</div><input class="edit-input" placeholder=""></div>
+          <div class="row3">
+            <div class="field-group"><div class="field-label">City</div><input class="edit-input"></div>
+            <div class="field-group"><div class="field-label">County / State</div><input class="edit-input"></div>
+            <div class="field-group"><div class="field-label">Postcode / ZIP</div><input class="edit-input"></div>
+          </div>
+          <div class="field-group" style="margin-top:10px;"><div class="field-label">Country</div>
+            <select class="edit-input"><option>United Kingdom</option><option>United States</option><option>Germany</option><option>France</option><option>Australia</option><option>Other</option></select>
+          </div>
+          <div class="field-group" style="margin-top:10px;"><div class="field-label">Shipping Notes</div><textarea class="edit-input" rows="2" placeholder="Access instructions, preferred courier, etc."></textarea></div>
+        </div>
+      </div>
+      <div style="margin-top:14px;"><button style="background:var(--navy);color:var(--gold);border:none;padding:12px 24px;border-radius:7px;font-family:var(--sans);font-weight:700;font-size:0.85rem;cursor:pointer;width:100%;">Save Details</button></div>
+    </div>
+  </div>
 
-<!-- ════ DRAWER ════ -->
+  <!-- ─ SAMPLES ─ -->
+  <div class="panel" id="panel-samples">
+    <div class="inner">
+      <div class="section-heading">Sample Packs</div>
+      <p class="section-sub">Materials and shade samples sent as part of your quote process</p>
+      <div class="samples-intro">Sample packs are sent on request and usually arrive within 3–5 working days. Samples help you compare colours and textures in real life before committing. Use the button below to request additional samples at any time.</div>
+      <div id="samples-list"></div>
+      <button class="request-sample-btn" onclick="alert('Request sent — we'll be in touch to confirm which samples to send.')">+ Request Additional Samples</button>
+    </div>
+  </div>
+
+  <!-- ─ CAR DETAILS ─ -->
+  <div class="panel" id="panel-car">
+    <div class="inner">
+      <div class="section-heading">Car Details</div>
+      <p class="section-sub">Specification and history for JSM-2847</p>
+      <div class="card">
+        <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:700;margin-bottom:14px;">Vehicle Identification</div>
+        <div class="row3">
+          <div class="field-group"><div class="field-label">Make</div><input class="edit-input" value="Jaguar"></div>
+          <div class="field-group"><div class="field-label">Model</div><input class="edit-input" value="E-Type OTS"></div>
+          <div class="field-group"><div class="field-label">Series</div><input class="edit-input" value="Series 1"></div>
+        </div>
+        <div class="row2" style="margin-top:12px;">
+          <div class="field-group"><div class="field-label">Year</div><input class="edit-input" value="1972"></div>
+          <div class="field-group"><div class="field-label">Chassis Number</div><input class="edit-input" value="1E12847"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:700;margin-bottom:14px;">Configuration</div>
+        <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:14px;">
+          <div>
+            <div class="field-label" style="margin-bottom:6px;">Drive</div>
+            <span class="tag-pill sel" onclick="toggleTag(this,'drive')">RHD</span>
+            <span class="tag-pill"    onclick="toggleTag(this,'drive')">LHD</span>
+          </div>
+          <div>
+            <div class="field-label" style="margin-bottom:6px;">Transmission</div>
+            <span class="tag-pill sel" onclick="toggleTag(this,'trans')">Manual</span>
+            <span class="tag-pill"    onclick="toggleTag(this,'trans')">Automatic</span>
+          </div>
+          <div>
+            <div class="field-label" style="margin-bottom:6px;">Body</div>
+            <span class="tag-pill sel" onclick="toggleTag(this,'body')">Roadster</span>
+            <span class="tag-pill"    onclick="toggleTag(this,'body')">Coupe</span>
+            <span class="tag-pill"    onclick="toggleTag(this,'body')">2+2</span>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:700;margin-bottom:14px;">Bodywork &amp; Paint</div>
+        <div class="row2">
+          <div>
+            <div class="field-label">Original Paint Colour</div>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:6px;">
+              <div class="paint-swatch" style="background:#1c3a1c;"></div>
+              <input class="edit-input" style="flex:1;" value="British Racing Green (original)">
+            </div>
+          </div>
+          <div>
+            <div class="field-label">Current Paint Colour</div>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:6px;">
+              <div class="paint-swatch" id="new-paint-swatch" style="background:#1c3a1c;"></div>
+              <input class="edit-input" style="flex:1;" id="new-paint-input" placeholder="If resprayed / changed" value="">
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:12px;">
+          <div class="field-label" style="margin-bottom:6px;">Paint Status</div>
+          <span class="tag-pill sel" id="ps-original" onclick="setPaintStatus('original')">Keeping Original</span>
+          <span class="tag-pill"    id="ps-new"       onclick="setPaintStatus('new')">Being Resprayed</span>
+          <span class="tag-pill"    id="ps-unknown"   onclick="setPaintStatus('unknown')">Not Yet Decided</span>
+        </div>
+      </div>
+      <div class="card">
+        <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:700;margin-bottom:10px;">Modifications Affecting Interior</div>
+        <div class="mods-box" contenteditable="true" id="mods-field">Roll cage fitted (full harness required on rear bench).
+Aftermarket Moto-Lita steering wheel — boss retained.
+No other modifications noted.</div>
+      </div>
+      <div class="card">
+        <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:700;margin-bottom:10px;">Additional Notes &amp; Instructions</div>
+        <div class="comments-box" contenteditable="true">Car is not currently driveable — will be transported to workshop on a trailer. Please confirm collection address. Restoration timeline flexible — quality more important than speed.</div>
+      </div>
+      <div style="margin-top:4px;"><button style="background:var(--navy);color:var(--gold);border:none;padding:12px 24px;border-radius:7px;font-family:var(--sans);font-weight:700;font-size:0.85rem;cursor:pointer;width:100%;">Save Car Details</button></div>
+    </div>
+  </div>
+
+</div><!-- /content-area -->
+
+<!-- ══ APPROVE BAR ══ -->
+<div class="approve-bar" id="approve-bar">
+  <div class="ab-total"><div class="lbl">Estimated total</div><div class="amt" id="ab-amt">£3,150</div></div>
+  <button class="ab-cta">Approve Quote</button>
+</div>
+
+<!-- ══ COMPOSE (Messages) ══ -->
+<div class="compose-wrap hide" id="compose-wrap">
+  <div class="compose-inner">
+    <div class="compose-tags">
+      <span class="ctag-lbl">About:</span>
+      <div class="ctag active" data-ct="general" onclick="setCTag('general')">General</div>
+      <div class="ctag" data-ct="item1" onclick="setCTag('item1')">Seats</div>
+      <div class="ctag" data-ct="item2" onclick="setCTag('item2')">Carpet</div>
+      <div class="ctag" data-ct="item3" onclick="setCTag('item3')">Hood</div>
+      <div class="ctag" data-ct="item4" onclick="setCTag('item4')">Doors</div>
+      <div class="ctag" data-ct="item5" onclick="setCTag('item5')">Headlining</div>
+      <div class="ctag" data-ct="item6" onclick="setCTag('item6')">Dashboard</div>
+      <div class="ctag" data-ct="item7" onclick="setCTag('item7')">Boot</div>
+    </div>
+    <div class="c-hint" id="c-hint">Sending a <strong>General</strong> message — not linked to a specific item.</div>
+    <div class="compose-row">
+      <textarea class="compose-input" id="compose-input" rows="2" placeholder="Type your message…"></textarea>
+      <button class="compose-send" onclick="sendMsg()">Send</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MESSAGE LIGHTBOX ══ -->
+<div class="lb-overlay" id="lb-overlay" onclick="closeLB(event)">
+  <div class="lb-box" id="lb-box">
+    <div class="lb-handle"></div>
+    <div class="lb-head">
+      <div class="lb-head-left"><h4 id="lb-title">Message</h4><p id="lb-subtitle"></p></div>
+      <button class="lb-close" onclick="closeLB()">✕</button>
+    </div>
+    <div class="lb-body" id="lb-body"></div>
+    <div class="lb-footer">
+      <textarea class="lb-input" id="lb-input" rows="2" placeholder="Reply to this thread…"></textarea>
+      <button class="lb-send" onclick="sendLBReply()">Send</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DRAWER OVERLAY ══ -->
+<div class="d-overlay" id="d-overlay" onclick="closeDrawer()"></div>
+
+<!-- ══ ITEM DRAWER ══ -->
 <div class="drawer" id="drawer">
-  <div class="drag-handle"></div>
+  <div class="d-handle"></div>
   <div class="dh">
     <div class="dh-swatch" id="dh-swatch"></div>
-    <div class="dh-info">
-      <h3 id="dh-name"></h3>
-      <div class="dh-meta" id="dh-meta"></div>
-    </div>
+    <div class="dh-info"><h3 id="dh-name"></h3><div class="dh-meta" id="dh-meta"></div></div>
     <div class="dh-right">
       <button class="d-close" onclick="closeDrawer()">✕</button>
       <div class="price-was" id="dh-was"></div>
@@ -353,7 +627,7 @@
       <div class="dtab"        id="dt-oem"      onclick="dTab('oem')">OEM Colours</div>
       <div class="dtab"        id="dt-bespoke"  onclick="dTab('bespoke')">Bespoke</div>
       <div class="dtab"        id="dt-media"    onclick="dTab('media')">Media</div>
-      <div class="dtab"        id="dt-dq"       onclick="dTab('dq')">Questions <span class="dn" id="dt-dq-count" style="display:none;"></span></div>
+      <div class="dtab"        id="dt-dq"       onclick="dTab('dq')">Questions <span class="dn" id="dt-dq-n" style="display:none"></span></div>
     </div>
   </div>
   <div class="d-body">
@@ -362,38 +636,38 @@
       <div class="spec-grid" id="d-specs"></div>
     </div>
     <div class="dpanel" id="dp-material">
-      <div class="cust-label">Choose Material</div>
+      <div class="cust-lbl">Choose Material</div>
       <div class="cust-note">Select the material for this item. Prices update automatically.</div>
       <div class="mat-grid" id="mat-grid"></div>
-      <div id="fin-section" style="display:none;">
+      <div id="fin-section" style="display:none">
         <hr class="sec-div">
-        <div class="cust-label">Leather Finish</div>
-        <div class="cust-note">Grained is the traditional textured finish. Smooth is flat and polished — a more continental look. Both available in all colours.</div>
+        <div class="cust-lbl">Leather Finish</div>
+        <div class="cust-note">Grained is the traditional textured finish. Smooth is flat and polished — a more continental look.</div>
         <div class="fin-row">
-          <button class="fin-btn sel" id="fin-grained" onclick="selFinish('grained')"><div class="fn">Grained</div><div class="fd">Traditional texture</div><div class="fp" id="fp-g"></div></button>
-          <button class="fin-btn"     id="fin-smooth"  onclick="selFinish('smooth')"><div class="fn">Smooth</div><div class="fd">Flat, polished</div><div class="fp" id="fp-s"></div></button>
+          <button class="fin-btn sel" id="fin-grained" onclick="selFinish('grained')"><div class="fn">Grained</div><div class="fd">Traditional</div><div class="fp" id="fp-g"></div></button>
+          <button class="fin-btn"     id="fin-smooth"  onclick="selFinish('smooth')"><div class="fn">Smooth</div><div class="fd">Continental</div><div class="fp" id="fp-s"></div></button>
         </div>
       </div>
     </div>
     <div class="dpanel" id="dp-oem">
       <p class="colour-intro">Factory-original colour options for this marque. Prices include your current material and finish selection.</p>
       <div class="tbc-card" id="tbc-oem" onclick="selTBC('oem')">
-        <div class="tbc-dot" style="background:repeating-linear-gradient(45deg,#e3e3df,#e3e3df 4px,#f6f6f3 4px,#f6f6f3 8px);"></div>
-        <div class="tbc-info"><div class="ti">Original Colour — Exact Shade To Be Confirmed</div><div class="td">I want a factory original colour but haven't chosen the exact shade yet. Gets an indicative price without committing to a colour.</div></div>
+        <div class="tbc-dot" style="background:repeating-linear-gradient(45deg,#e3e3df,#e3e3df 4px,#f6f6f3 4px,#f6f6f3 8px)"></div>
+        <div class="tbc-info"><div class="ti">Exact Shade To Be Confirmed</div><div class="td">I want an OEM colour but haven't decided which shade yet.</div></div>
       </div>
       <div class="c-grid" id="oem-grid"></div>
     </div>
     <div class="dpanel" id="dp-bespoke">
-      <p class="colour-intro">Custom colours outside the original factory range. A £80 colour-matching surcharge applies on all bespoke shades.</p>
-      <div class="tbc-card" id="tbc-bespoke" onclick="selTBC('bespoke')" style="border-color:var(--navy2);">
-        <div class="tbc-dot" style="background:repeating-linear-gradient(45deg,#dbd6ca,#dbd6ca 4px,#f6f6f3 4px,#f6f6f3 8px);"></div>
-        <div class="tbc-info"><div class="ti">Bespoke Colour — Exact Shade To Be Confirmed</div><div class="td">I want a bespoke colour but haven't chosen the shade. Adds the £80 surcharge to your indicative price.</div></div>
+      <p class="colour-intro">Custom colours outside the original factory range. A £80 colour-matching surcharge applies.</p>
+      <div class="tbc-card" id="tbc-bespoke" onclick="selTBC('bespoke')" style="border-color:var(--navy2)">
+        <div class="tbc-dot" style="background:repeating-linear-gradient(45deg,#dbd6ca,#dbd6ca 4px,#f6f6f3 4px,#f6f6f3 8px)"></div>
+        <div class="tbc-info"><div class="ti">Bespoke Colour To Be Confirmed</div><div class="td">I want a custom colour but haven't chosen the exact shade. Adds the £80 surcharge.</div></div>
       </div>
       <div class="c-grid" id="bespoke-grid"></div>
-      <div class="bespoke-box"><strong>Custom colour orders</strong> — the £80 surcharge covers our colour-matching process. If you have a RAL code, paint reference or sample, add a note in the Questions tab and we'll confirm feasibility before production.</div>
+      <div class="bespoke-box"><strong>Custom colour orders</strong> — the £80 surcharge covers our colour-matching process. If you have a RAL code or paint reference, add it in the Questions tab.</div>
     </div>
     <div class="dpanel" id="dp-media">
-      <p style="font-size:0.8rem;color:var(--grey);margin-bottom:12px;" id="d-media-note"></p>
+      <p style="font-size:0.78rem;color:var(--grey);margin-bottom:11px" id="d-media-note"></p>
       <div class="media-scroll" id="d-media-scroll"></div>
     </div>
     <div class="dpanel" id="dp-dq">
@@ -410,485 +684,460 @@
   </div>
 </div>
 
-<!-- ════ APPROVE BAR (Quote tab) ════ -->
-<div class="approve-bar" id="approve-bar">
-  <div class="ab-total">
-    <div class="label">Estimated total</div>
-    <div class="amount" id="ab-amount"></div>
-  </div>
-  <button class="ab-cta">Approve Quote</button>
-</div>
-
-<!-- ════ COMPOSE (Messages tab) ════ -->
-<div class="compose-wrap hidden" id="compose-wrap">
-  <div class="compose-inner">
-    <div class="compose-tags">
-      <span class="ctag-label">About:</span>
-      <div class="ctag active" data-ct="general" onclick="setCTag('general')">General</div>
-      <div class="ctag" data-ct="item1" onclick="setCTag('item1')">Seat Covers</div>
-      <div class="ctag" data-ct="item2" onclick="setCTag('item2')">Carpet</div>
-      <div class="ctag" data-ct="item3" onclick="setCTag('item3')">Hood</div>
-      <div class="ctag" data-ct="item4" onclick="setCTag('item4')">Door Cards</div>
-      <div class="ctag" data-ct="item5" onclick="setCTag('item5')">Headlining</div>
-      <div class="ctag" data-ct="item6" onclick="setCTag('item6')">Dashboard</div>
-      <div class="ctag" data-ct="item7" onclick="setCTag('item7')">Boot Carpet</div>
-    </div>
-    <div class="compose-hint" id="compose-hint">Sending a <strong>General</strong> message — not linked to a specific item.</div>
-    <div class="compose-row">
-      <textarea class="compose-input" id="compose-input" rows="2" placeholder="Type your message…"></textarea>
-      <button class="compose-send" onclick="sendMsg()">Send</button>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════════ SCRIPT ════════════════ -->
+<!-- ════════════ SCRIPT ════════════ -->
 <script>
-/* ─── ITEM META ─── */
+/* ─ META ─ */
 const ITEM_META = {
-  general:{label:'General',        colour:'#c8ba9a', short:'General'},
-  item1:  {label:'Leather Seat Covers', colour:'#1c3a1c', short:'Seat Covers'},
-  item2:  {label:'Carpet Set',     colour:'#2a4a2a', short:'Carpet'},
-  item3:  {label:'Mohair Hood',    colour:'#1a1a1a', short:'Hood'},
-  item4:  {label:'Door Card Panels', colour:'#c8ba9a', short:'Door Cards'},
-  item5:  {label:'Headlining',     colour:'#c8b87a', short:'Headlining'},
-  item6:  {label:'Dashboard Leather', colour:'#1c3a1c', short:'Dashboard'},
-  item7:  {label:'Boot Carpet',    colour:'#2a4a2a', short:'Boot Carpet'},
+  general:{label:'General',            colour:'#c8ba9a', short:'General'},
+  item1:  {label:'Leather Seat Covers',colour:'#1c3a1c', short:'Seats'},
+  item2:  {label:'Carpet Set',         colour:'#2a4a2a', short:'Carpet'},
+  item3:  {label:'Mohair Hood',        colour:'#1a1a1a', short:'Hood'},
+  item4:  {label:'Door Card Panels',   colour:'#c8ba9a', short:'Doors'},
+  item5:  {label:'Headlining',         colour:'#c8b87a', short:'Headlining'},
+  item6:  {label:'Dashboard Leather',  colour:'#1c3a1c', short:'Dashboard'},
+  item7:  {label:'Boot Carpet',        colour:'#2a4a2a', short:'Boot'},
 };
 
-/* ─── MATERIALS ─── */
+/* ─ MATERIALS ─ */
 const MATS = {
-  leather:      [{id:'leather',name:'Leather',  desc:'Hand-sewn',      d:0},   {id:'vinyl',name:'Vinyl',    desc:'Durable',           d:-280},{id:'cloth',name:'Cloth',    desc:'Period fabric',     d:-360}],
-  carpet:       [{id:'wool',  name:'Wool',      desc:'Deep pile',      d:0},   {id:'karvel',name:'Karvel', desc:'Short loop',         d:-60}, {id:'nylon',name:'Nylon',    desc:'Full colour range', d:-120}],
-  hood:         [{id:'mohair',name:'Mohair',    desc:'Original spec',  d:0},   {id:'pvc',  name:'PVC',     desc:'Waterproof',         d:-320}],
-  headlining:   [{id:'cloth', name:'Cloth',     desc:'Original',       d:0},   {id:'vinyl',name:'Vinyl',   desc:'Wipe-clean',         d:-40}],
-  leather_trim: [{id:'leather',name:'Leather',  desc:'To pattern',     d:0},   {id:'vinyl',name:'Vinyl',   desc:'Cost-effective',     d:-80}],
+  leather:     [{id:'leather',name:'Leather',desc:'Hand-sewn',d:0},{id:'vinyl',name:'Vinyl',desc:'Durable',d:-280},{id:'cloth',name:'Cloth',desc:'Period fabric',d:-360}],
+  carpet:      [{id:'wool',name:'Wool',desc:'Deep pile',d:0},{id:'karvel',name:'Karvel',desc:'Short loop',d:-60},{id:'nylon',name:'Nylon',desc:'Full colour range',d:-120}],
+  hood:        [{id:'mohair',name:'Mohair',desc:'Original spec',d:0},{id:'pvc',name:'PVC',desc:'Waterproof',d:-320}],
+  headlining:  [{id:'cloth',name:'Cloth',desc:'Original',d:0},{id:'vinyl',name:'Vinyl',desc:'Wipe-clean',d:-40}],
+  leather_trim:[{id:'leather',name:'Leather',desc:'To pattern',d:0},{id:'vinyl',name:'Vinyl',desc:'Cost-effective',d:-80}],
 };
-const FIN_D = {grained:0, smooth:140};
+const FIN_D={grained:0,smooth:140};
 
-/* ─── ITEMS ─── */
-const ITEMS = {
-  item1:{name:'Leather Seat Covers',metaBase:'Front & Rear',about:'Hand-cut and sewn in our Cheltenham workshop to the original Jaguar E-Type pattern with correct piping, stitch detailing and heading alignment.',specs:[['Coverage','Front & Rear'],['Piping','Matching leather'],['Lead time','8–10 weeks'],['Pattern','Original Jaguar']],mt:'leather',hf:true,base:1240,dm:'leather',df:'grained',dc:'British Racing Green',dhx:'#1c3a1c',dct:'oem',media:[{c:'#1c3a1c',v:0},{c:'#2a4a2a',v:1}],mn:'Video shows full installation guide.',action:'keep'},
-  item2:{name:'Carpet Set',metaBase:'Cabin + Boot',about:'Cut to the original E-Type floor pattern and bound in matching leather. Deep-pile wool with correct underfelt.',specs:[['Coverage','Cabin + boot'],['Binding','Leather'],['Underfelt','Included'],['Pattern','E-Type']],mt:'carpet',hf:false,base:380,dm:'wool',df:null,dc:'Sherwood Green',dhx:'#2a4a2a',dct:'oem',media:[{c:'#2a3a20',v:0},{c:'#1c2a14',v:1}],mn:'Fitting guide video.',action:'keep'},
-  item3:{name:'Hood',metaBase:'Convertible top',about:'UV damage noted along the rear seam. Mohair is the original specification — cleaner lines, better drape, 15+ year lifespan. PVC is the budget alternative.',specs:[['Fitment','Full replacement'],['Suggested by','John Skinner'],['Windows','Quarter lights incl.'],['Guide','Supplied']],mt:'hood',hf:false,base:920,dm:'mohair',df:null,dc:'Black',dhx:'#1a1a1a',dct:'oem',media:[{c:'#222',v:1},{c:'#333',v:0}],mn:'Comparison video: Mohair vs PVC.',action:'decide'},
-  item4:{name:'Door Card Panels',metaBase:'Pair',about:'Full door card panels including arm rest covering, sewn to the original E-Type pattern.',specs:[['Items','Pair'],['Armrests','Included'],['Piping','Matching'],['Pattern','Original']],mt:'leather_trim',hf:true,base:290,dm:'leather',df:'grained',dc:'British Racing Green',dhx:'#1c3a1c',dct:'oem',media:[{c:'#c8ba9a',v:0}],mn:'',action:'keep'},
-  item5:{name:'Headlining',metaBase:'Full interior',about:'Colour to be chosen. Added as a placeholder — use OEM Colours or Bespoke tab to select, or ask us and we\'ll recommend based on the rest of your choices.',specs:[['Status','Awaiting colour choice'],['Fitment','Full'],['Material','Cloth'],['Pattern','E-Type original']],mt:'headlining',hf:false,base:220,dm:'cloth',df:null,dc:null,dhx:'#f0eee9',dct:null,media:[{c:'#ddd',v:0},{c:'#ccc',v:0}],mn:'Sample colour options.',action:'input'},
-  item6:{name:'Dashboard Leather',metaBase:'Dashboard top',about:'Dashboard top covering in matching grained leather, cut to the original E-Type pattern.',specs:[['Area','Dashboard top'],['Piping','None'],['Pattern','E-Type']],mt:'leather_trim',hf:true,base:180,dm:'leather',df:'grained',dc:'British Racing Green',dhx:'#1c3a1c',dct:'oem',media:[{c:'#1c3a1c',v:0}],mn:'',action:'keep'},
-  item7:{name:'Boot Carpet',metaBase:'Boot area',about:'Boot carpet in the same wool as the main cabin carpet for a consistent finish throughout.',specs:[['Area','Boot'],['Binding','Leather'],['Underfelt','Included'],['Match','Main carpet']],mt:'carpet',hf:false,base:120,dm:'wool',df:null,dc:'Sherwood Green',dhx:'#2a4a2a',dct:'oem',media:[{c:'#2a3a20',v:0}],mn:'',action:'keep'},
+/* ─ ITEMS ─ */
+const ITEMS={
+  item1:{name:'Leather Seat Covers',mb:'Front & Rear',about:'Hand-cut and sewn in our Cheltenham workshop to the original Jaguar E-Type pattern, with correct piping, stitch detailing and heading alignment.',specs:[['Coverage','Front & Rear'],['Piping','Matching leather'],['Lead time','8–10 weeks'],['Pattern','Original Jaguar']],mt:'leather',hf:true,base:1240,action:'keep'},
+  item2:{name:'Carpet Set',mb:'Cabin + Boot',about:'Cut to the original E-Type floor pattern and bound in matching leather. Deep-pile wool with correct underfelt.',specs:[['Coverage','Cabin + boot'],['Binding','Leather'],['Underfelt','Included'],['Pattern','E-Type']],mt:'carpet',hf:false,base:380,action:'keep'},
+  item3:{name:'Hood',mb:'Convertible top',about:'UV damage noted along the rear seam. Mohair is the original specification — cleaner lines, better drape, 15+ year lifespan with proper maintenance.',specs:[['Fitment','Full replacement'],['Suggested by','John Skinner'],['Windows','Quarter lights incl.'],['Guide','Supplied']],mt:'hood',hf:false,base:920,action:'decide'},
+  item4:{name:'Door Card Panels',mb:'Pair',about:'Full door card panels including arm rest covering, sewn to the original E-Type pattern with matching piping.',specs:[['Items','Pair'],['Armrests','Included'],['Piping','Matching'],['Pattern','Original']],mt:'leather_trim',hf:true,base:290,action:'keep'},
+  item5:{name:'Headlining',mb:'Full interior',about:'Colour to be chosen. Added as a placeholder — use OEM Colours or Bespoke tab to select, or ask us for a recommendation based on your other choices.',specs:[['Status','Awaiting colour'],['Fitment','Full'],['Material','Cloth'],['Pattern','E-Type original']],mt:'headlining',hf:false,base:220,action:'input'},
+  item6:{name:'Dashboard Leather',mb:'Dashboard top',about:'Dashboard top covering in matching grained leather, cut to the original E-Type pattern.',specs:[['Area','Dashboard top'],['Piping','None'],['Pattern','E-Type']],mt:'leather_trim',hf:true,base:180,action:'keep'},
+  item7:{name:'Boot Carpet',mb:'Boot area',about:'Boot carpet in the same wool as the main cabin carpet for a consistent finish throughout the car.',specs:[['Area','Boot'],['Binding','Leather'],['Underfelt','Included'],['Match','Main carpet']],mt:'carpet',hf:false,base:120,action:'keep'},
 };
 
-const OEM_C = [
-  {name:'British Racing Green',hex:'#1c3a1c'},{name:'Old English White',hex:'#f5f0e2'},
-  {name:'Carmen Red',hex:'#8B1A1A'},{name:'Signal Red',hex:'#c0302a'},
-  {name:'Cotswold Blue',hex:'#4a6a8a'},{name:'Silver Blue',hex:'#7a9ab0'},
-  {name:'Gunmetal',hex:'#3a3d42'},{name:'Sherwood Green',hex:'#2a4a2a'},
-  {name:'Willow Green',hex:'#7a9a4a'},{name:'Primrose',hex:'#d4c84a'},
-  {name:'Black',hex:'#1a1a1a'},{name:'Sand Beige',hex:'#c8b87a'},
+const OEM_C=[
+  {n:'British Racing Green',h:'#1c3a1c'},{n:'Old English White',h:'#f5f0e2'},
+  {n:'Carmen Red',h:'#8B1A1A'},{n:'Signal Red',h:'#c0302a'},
+  {n:'Cotswold Blue',h:'#4a6a8a'},{n:'Silver Blue',h:'#7a9ab0'},
+  {n:'Gunmetal',h:'#3a3d42'},{n:'Sherwood Green',h:'#2a4a2a'},
+  {n:'Willow Green',h:'#7a9a4a'},{n:'Primrose',h:'#d4c84a'},
+  {n:'Black',h:'#1a1a1a'},{n:'Sand Beige',h:'#c8b87a'},
 ];
-const BSP_C = [
-  {name:'Midnight Navy',hex:'#1a2048'},{name:'Burgundy',hex:'#5a1020'},
-  {name:'Pale Cream',hex:'#ece8d8'},{name:'Tobacco Brown',hex:'#5a3820'},
-  {name:'Slate Grey',hex:'#606870'},{name:'Ivory',hex:'#f0e8d0'},
-  {name:'Chestnut',hex:'#7a3820'},{name:'Dove Grey',hex:'#a0a0a0'},
-];
-
-/* ─── STATE ─── */
-const S = {};
-Object.keys(ITEMS).forEach(id => {
-  const it = ITEMS[id];
-  S[id] = {mat:it.dm, fin:it.df||'grained', col:it.dc, chx:it.dhx, ctype:it.dct};
-});
-const SAVED = {};
-Object.keys(S).forEach(id => SAVED[id] = {...S[id]});
-
-/* ─── MESSAGES ─── */
-let MSGS = [
-  {id:'m1', type:'customer',tag:'general',text:'Hi — I\'ve just received the quote. Everything looks great. I have a few questions before I confirm.',time:'4 Mar, 9:14 AM'},
-  {id:'m2', type:'admin',   tag:'general',text:'Morning David — happy to go through everything. Fire away.',time:'4 Mar, 10:02 AM'},
-  {id:'m3', type:'customer',tag:'item1',  text:'Can you match the seat colour exactly to the original 1972 British Racing Green? I want the right shade, not a modern approximation.',time:'4 Mar, 10:15 AM'},
-  {id:'m4', type:'admin',   tag:'item1',  text:'Yes — BRG is one of our most frequently matched E-Type colours. We have the original Jaguar colour card and will confirm the match before production. You\'ll see a sample before we cut anything.',time:'4 Mar, 11:30 AM'},
-  {id:'m5', type:'customer',tag:'item2',  text:'On the carpet — is Sherwood Green a close match to the seat colour, or will there be a visible difference?',time:'4 Mar, 2:45 PM'},
-  {id:'m6', type:'admin',   tag:'item2',  text:'Leather and carpet are different materials so they won\'t be identical, but we\'ve matched these two across hundreds of E-Type restorations. We can send you swatches together if it helps.',time:'4 Mar, 3:20 PM'},
-  {id:'m7', type:'customer',tag:'item3',  text:'I didn\'t realise the existing hood had UV damage — can you show me what you spotted?',time:'5 Mar, 8:55 AM'},
-  {id:'m8', type:'admin',   tag:'item3',  text:'Of course — I\'ll send a photo of the rear seam area. It\'s early-stage, not catastrophic, but worth addressing now while everything else is being done. Mohair will last 15+ years maintained properly.',time:'5 Mar, 9:40 AM'},
-  {id:'m9', type:'customer',tag:'item1',  text:'Do you also offer smooth leather? I\'ve seen a few E-Types done in smooth and quite like it.',time:'5 Mar, 11:10 AM'},
-  {id:'m10',type:'admin',   tag:'item1',  text:'We do — smooth leather is available in all the same colours at £140 more. The look is more continental than traditional British, but it does suit the E-Type. I can add it as an option on your quote.',time:'5 Mar, 11:55 AM'},
-  {id:'m11',type:'customer',tag:'item5',  text:'The headlining is still TBC — would you recommend matching it to the seats or going slightly lighter?',time:'6 Mar, 10:20 AM'},
-  {id:'m12',type:'admin',   tag:'general',text:'On the headlining — most E-Type restorations use a lighter colour than the seats, often off-white or light grey. It keeps the interior feeling airy. Happy to send some reference photos.',time:'6 Mar, 10:55 AM'},
+const BSP_C=[
+  {n:'Midnight Navy',h:'#1a2048'},{n:'Burgundy',h:'#5a1020'},
+  {n:'Pale Cream',h:'#ece8d8'},{n:'Tobacco Brown',h:'#5a3820'},
+  {n:'Slate Grey',h:'#606870'},{n:'Ivory',h:'#f0e8d0'},
+  {n:'Chestnut',h:'#7a3820'},{n:'Dove Grey',h:'#a0a0a0'},
 ];
 
-let activeItem = null;
-let hasUnsaved = false;
-let activeTab = 'quote';
-let msgFilter = 'all';
-let msgSearch = '';
-let composeTag = 'general';
+/* ─ STATE ─ */
+const S={};
+const defaults={item1:{mat:'leather',fin:'grained',col:'British Racing Green',chx:'#1c3a1c',ctype:'oem'},item2:{mat:'wool',fin:'grained',col:'Sherwood Green',chx:'#2a4a2a',ctype:'oem'},item3:{mat:'mohair',fin:'grained',col:'Black',chx:'#1a1a1a',ctype:'oem'},item4:{mat:'leather',fin:'grained',col:'British Racing Green',chx:'#1c3a1c',ctype:'oem'},item5:{mat:'cloth',fin:'grained',col:null,chx:'#e8e4dc',ctype:null},item6:{mat:'leather',fin:'grained',col:'British Racing Green',chx:'#1c3a1c',ctype:'oem'},item7:{mat:'wool',fin:'grained',col:'Sherwood Green',chx:'#2a4a2a',ctype:'oem'}};
+Object.keys(defaults).forEach(id=>S[id]={...defaults[id]});
 
-/* ══════════════════════════════
-   PORTAL TAB SWITCHING
-══════════════════════════════ */
-function switchTab(tab) {
-  activeTab = tab;
-  ['quote','messages','docs','status'].forEach(t => {
-    document.getElementById('pt-'+t).classList.toggle('active', t===tab);
+/* ─ MESSAGES ─ */
+let MSGS=[
+  {id:'m1', type:'customer',tag:'general',text:'Hi — just received the quote. Everything looks great. A few questions before I confirm.',time:'4 Mar, 9:14 AM',attachments:[]},
+  {id:'m2', type:'admin',   tag:'general',text:'Morning David — happy to go through everything. Fire away.',time:'4 Mar, 10:02 AM',attachments:[]},
+  {id:'m3', type:'customer',tag:'item1',  text:'Can you match the seat colour exactly to the original 1972 British Racing Green? I want the right shade, not a modern approximation.',time:'4 Mar, 10:15 AM',attachments:[{name:'BRG reference.jpg',type:'image',icon:'🖼️',size:'1.2 MB',bg:'#1c3a1c'}]},
+  {id:'m4', type:'admin',   tag:'item1',  text:'Yes — BRG is one of our most frequently matched E-Type colours. We have the original Jaguar colour card and will confirm before production. You\'ll see a sample before we cut anything.',time:'4 Mar, 11:30 AM',attachments:[{name:'Jaguar colour card.pdf',type:'pdf',icon:'📄',size:'820 KB',bg:'#f6f6f3'},{name:'BRG swatch photo.jpg',type:'image',icon:'🖼️',size:'980 KB',bg:'#2a4a2a'}]},
+  {id:'m5', type:'customer',tag:'item2',  text:'On the carpet — is Sherwood Green a close match to the seat colour, or will there be a visible difference?',time:'4 Mar, 2:45 PM',attachments:[]},
+  {id:'m6', type:'admin',   tag:'item2',  text:'Leather and carpet are different materials so they won\'t be identical, but we\'ve matched these two across hundreds of E-Type restorations. I can send swatches together if that helps.',time:'4 Mar, 3:20 PM',attachments:[{name:'BRG leather + carpet swatches.jpg',type:'image',icon:'🖼️',size:'1.6 MB',bg:'#1a2a1a'}]},
+  {id:'m7', type:'customer',tag:'item3',  text:'I didn\'t realise the existing hood had UV damage — can you show me what you spotted?',time:'5 Mar, 8:55 AM',attachments:[]},
+  {id:'m8', type:'admin',   tag:'item3',  text:'Here\'s the rear seam area — early-stage UV degradation, not catastrophic yet, but worth addressing now. Mohair will last 15+ years maintained properly.',time:'5 Mar, 9:40 AM',attachments:[{name:'Hood seam damage.jpg',type:'image',icon:'🖼️',size:'2.1 MB',bg:'#2a2a2a'},{name:'Hood seam detail.jpg',type:'image',icon:'🖼️',size:'1.8 MB',bg:'#1a1a1a'}]},
+  {id:'m9', type:'customer',tag:'item1',  text:'Do you also offer smooth leather? I\'ve seen a few E-Types done in smooth and quite like it.',time:'5 Mar, 11:10 AM',attachments:[]},
+  {id:'m10',type:'admin',   tag:'item1',  text:'We do — smooth leather in all the same colours at £140 more. More continental than traditional British but it suits the E-Type. I can add it as an option on your quote.',time:'5 Mar, 11:55 AM',attachments:[{name:'Smooth vs grained comparison.jpg',type:'image',icon:'🖼️',size:'1.4 MB',bg:'#3a3a3a'}]},
+  {id:'m11',type:'customer',tag:'item5',  text:'The headlining is still TBC — would you recommend matching it to the seats or going slightly lighter?',time:'6 Mar, 10:20 AM',attachments:[]},
+  {id:'m12',type:'admin',   tag:'general',text:'On the headlining — most E-Type restorations use a lighter colour than the seats, often off-white or light grey. Happy to send reference photos.',time:'6 Mar, 10:55 AM',attachments:[{name:'E-Type headlining options.pdf',type:'pdf',icon:'📄',size:'1.1 MB',bg:'#f6f6f3'}]},
+];
+
+/* ─ DOCUMENTS ─ */
+let DOCS=[
+  {id:'d1',name:'JSM-2847 Quote v1.pdf',type:'pdf',icon:'📄',cat:'quote',src:'system',tag:'general',date:'4 Mar',size:'340 KB',bg:'#f0ede6'},
+  {id:'d2',name:'Jaguar colour card.pdf',type:'pdf',icon:'📄',cat:'reference',src:'admin',tag:'item1',date:'4 Mar',size:'820 KB',bg:'#f6f6f3'},
+  {id:'d3',name:'BRG reference.jpg',type:'image',icon:'🖼️',cat:'reference',src:'you',tag:'item1',date:'4 Mar',size:'1.2 MB',bg:'#1c3a1c'},
+  {id:'d4',name:'BRG swatch photo.jpg',type:'image',icon:'🖼️',cat:'swatches',src:'admin',tag:'item1',date:'4 Mar',size:'980 KB',bg:'#2a4a2a'},
+  {id:'d5',name:'BRG leather + carpet.jpg',type:'image',icon:'🖼️',cat:'swatches',src:'admin',tag:'item2',date:'4 Mar',size:'1.6 MB',bg:'#1a2a1a'},
+  {id:'d6',name:'Hood seam damage.jpg',type:'image',icon:'🖼️',cat:'condition',src:'admin',tag:'item3',date:'5 Mar',size:'2.1 MB',bg:'#2a2a2a'},
+  {id:'d7',name:'Hood seam detail.jpg',type:'image',icon:'🖼️',cat:'condition',src:'admin',tag:'item3',date:'5 Mar',size:'1.8 MB',bg:'#1a1a1a'},
+  {id:'d8',name:'Smooth vs grained.jpg',type:'image',icon:'🖼️',cat:'reference',src:'admin',tag:'item1',date:'5 Mar',size:'1.4 MB',bg:'#3a3a3a'},
+  {id:'d9',name:'Headlining options.pdf',type:'pdf',icon:'📄',cat:'reference',src:'admin',tag:'general',date:'6 Mar',size:'1.1 MB',bg:'#f6f6f3'},
+];
+
+/* ─ SAMPLES ─ */
+const SAMPLES=[
+  {mat:'Leather',shade:'British Racing Green',colour:'#1c3a1c',finish:'Grained',sentDate:'5 Mar',status:'received',trackingRef:'JX2847-S01',notes:'Confirmed as correct shade on 7 Mar'},
+  {mat:'Leather',shade:'British Racing Green',colour:'#1c3a1c',finish:'Smooth',sentDate:'5 Mar',status:'received',trackingRef:'JX2847-S01',notes:'Included in same pack as grained sample'},
+  {mat:'Carpet (Wool)',shade:'Sherwood Green',colour:'#2a4a2a',finish:'',sentDate:'5 Mar',status:'received',trackingRef:'JX2847-S01',notes:''},
+  {mat:'Hood (Mohair)',shade:'Black',colour:'#1a1a1a',finish:'',sentDate:'9 Mar',status:'sent',trackingRef:'JX2847-S02',notes:'Dispatched today via Royal Mail tracked'},
+  {mat:'Headlining',shade:'Off White / Light Grey',colour:'#e8e4dc',finish:'',sentDate:null,status:'pending',trackingRef:'',notes:'Awaiting customer decision on which options to send'},
+];
+
+/* ──────────────────────────────── */
+let activeItem=null,hasUnsaved=false,activeTab='quote';
+let msgFilter='all',msgSearch='',composeTag='general',docFilter='all',docSearch='';
+let lbMsgId=null;
+
+/* ═══ TAB SWITCHING ═══ */
+function switchTab(tab){
+  activeTab=tab;
+  Object.keys(ITEM_META).concat(['quote','messages','documents','customer','samples','car']).forEach(t=>{
+    const el=document.getElementById('pt-'+t);
+    if(el) el.classList.toggle('active',t===tab);
   });
-  document.getElementById('panel-quote').style.display    = tab==='quote'    ? 'block' : 'none';
-  document.getElementById('panel-messages').style.display = tab==='messages' ? 'block' : 'none';
-  document.getElementById('approve-bar').classList.toggle('hidden', tab!=='quote');
-  document.getElementById('compose-wrap').classList.toggle('hidden', tab!=='messages');
-  if (tab === 'messages') {
-    document.getElementById('unread-dot').style.display = 'none';
-    renderMessages();
-  }
+  ['quote','messages','documents','customer','samples','car'].forEach(t=>{
+    const el=document.getElementById('panel-'+t);
+    if(el){el.classList.toggle('active',t===tab);}
+  });
+  document.getElementById('approve-bar').classList.toggle('hide',tab!=='quote');
+  document.getElementById('compose-wrap').classList.toggle('hide',tab!=='messages');
+  if(tab==='messages'){document.getElementById('msg-badge').classList.remove('show');renderMessages();}
+  if(tab==='documents') renderDocs();
+  if(tab==='samples') renderSamples();
 }
 
-/* ══════════════════════════════
-   PRICE CALC
-══════════════════════════════ */
-function calcPrice(id) {
-  const it = ITEMS[id]; const s = S[id];
-  const mat = MATS[it.mt].find(m=>m.id===s.mat);
-  let p = it.base + (mat?mat.d:0);
-  if (it.hf && s.mat==='leather') p += FIN_D[s.fin]||0;
-  if (BSP_C.find(c=>c.name===s.col)) p += 80;
-  if (!s.col && s.ctype==='bespoke-tbc') p += 80;
+/* ═══ PRICE ═══ */
+function calcPrice(id){
+  const it=ITEMS[id];const s=S[id];
+  const mat=MATS[it.mt].find(m=>m.id===s.mat);
+  let p=it.base+(mat?mat.d:0);
+  if(it.hf&&s.mat==='leather') p+=FIN_D[s.fin]||0;
+  if(BSP_C.find(c=>c.n===s.col)) p+=80;
+  if(!s.col&&s.ctype==='bespoke-tbc') p+=80;
   return p;
 }
-function fmt(p) { return p>0?'£'+p.toLocaleString():'TBC'; }
-function updateTotals() {
-  let total=0;
-  Object.keys(S).forEach(id=>{ total+=calcPrice(id); });
-  document.getElementById('ab-amount').innerHTML = '£'+total.toLocaleString();
-  // Stats
-  const confirmed = Object.keys(ITEMS).filter(id=>ITEMS[id].action==='keep').length;
-  const pending   = Object.keys(ITEMS).length - confirmed;
-  document.getElementById('qs-price').textContent = '£'+total.toLocaleString();
-  document.getElementById('qs-confirmed').textContent = confirmed;
-  document.getElementById('qs-pending').textContent = pending;
+function fmt(p){return p>0?'£'+p.toLocaleString():'TBC';}
+function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+
+function updateTotals(){
+  let t=0; Object.keys(S).forEach(id=>t+=calcPrice(id));
+  document.getElementById('ab-amt').textContent='£'+t.toLocaleString();
+  document.getElementById('qs-price').textContent='£'+t.toLocaleString();
+  const confirmed=Object.keys(ITEMS).filter(id=>ITEMS[id].action==='keep').length;
+  document.getElementById('qs-confirmed').textContent=confirmed;
+  document.getElementById('qs-pending').textContent=Object.keys(ITEMS).length-confirmed;
 }
 
-/* ══════════════════════════════
-   RENDER ITEM LIST
-══════════════════════════════ */
-function renderItemList() {
-  const el = document.getElementById('item-list');
-  el.innerHTML = Object.keys(ITEMS).map(id => {
-    const it=ITEMS[id]; const s=S[id];
-    const price = calcPrice(id);
-    const mat = MATS[it.mt].find(m=>m.id===s.mat);
-    let meta = [mat?mat.name:''];
-    if (it.hf && s.mat==='leather') meta.push(cap(s.fin));
-    if (s.col) meta.push(s.col);
-    else if (s.ctype==='oem-tbc') meta.push('OEM Colour TBC');
-    else if (s.ctype==='bespoke-tbc') meta.push('Bespoke TBC');
-    else meta.push('Colour not chosen');
-    meta.push(it.metaBase);
-    const badge = it.action==='keep'  ? '<span class="i-badge b-ok">Confirmed</span>'
-                : it.action==='decide'? '<span class="i-badge b-rev">Decide</span>'
-                :                       '<span class="i-badge b-act">Action needed</span>';
-    return `<div class="item-row${activeItem===id?' active':''}" id="row-${id}" onclick="openDrawer('${id}')">
-      <div class="i-swatch" id="sw-${id}" style="background:${s.chx||'#ccc'};"></div>
+/* ═══ ITEM LIST ═══ */
+function renderItemList(){
+  const el=document.getElementById('item-list');
+  el.innerHTML=Object.keys(ITEMS).map(id=>{
+    const it=ITEMS[id];const s=S[id];
+    const mat=MATS[it.mt].find(m=>m.id===s.mat);
+    let meta=[mat?mat.name:''];
+    if(it.hf&&s.mat==='leather')meta.push(cap(s.fin));
+    if(s.col)meta.push(s.col);else if(s.ctype==='oem-tbc')meta.push('OEM Colour TBC');else if(s.ctype==='bespoke-tbc')meta.push('Bespoke TBC');else meta.push('Colour TBC');
+    meta.push(it.mb);
+    const badge=it.action==='keep'?'<span class="i-badge b-ok">Confirmed</span>':it.action==='decide'?'<span class="i-badge b-rev">Decide</span>':'<span class="i-badge b-act">Action needed</span>';
+    return`<div class="item-row${activeItem===id?' active':''}" id="row-${id}" onclick="openDrawer('${id}')">
+      <div class="i-swatch" id="sw-${id}" style="background:${s.chx||'#ccc'}"></div>
       <div style="min-width:0"><div class="i-name">${it.name}</div><div class="i-meta" id="imeta-${id}">${meta.join(' · ')}</div></div>
-      ${badge}
-      <span class="i-price" id="iprice-${id}">${fmt(price)}</span>
-    </div>`;
+      ${badge}<span class="i-price" id="iprice-${id}">${fmt(calcPrice(id))}</span></div>`;
   }).join('');
 }
 
-function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
-
-/* ══════════════════════════════
-   DRAWER
-══════════════════════════════ */
-function openDrawer(id, startTab) {
-  if (activeItem) document.getElementById('row-'+activeItem)?.classList.remove('active');
-  activeItem = id; hasUnsaved = false;
+/* ═══ DRAWER ═══ */
+function openDrawer(id,tab){
+  if(activeItem)document.getElementById('row-'+activeItem)?.classList.remove('active');
+  activeItem=id;hasUnsaved=false;
   document.getElementById('row-'+id)?.classList.add('active');
-  renderDrawer(id);
-  dTab(startTab||'about');
+  renderDrawer(id);dTab(tab||'about');
   document.getElementById('drawer').classList.add('open');
   document.getElementById('d-overlay').classList.add('open');
 }
-function closeDrawer() {
+function closeDrawer(){
   document.getElementById('drawer').classList.remove('open');
   document.getElementById('d-overlay').classList.remove('open');
-  if (activeItem) document.getElementById('row-'+activeItem)?.classList.remove('active');
-  activeItem = null; hasUnsaved = false;
+  if(activeItem)document.getElementById('row-'+activeItem)?.classList.remove('active');
+  activeItem=null;hasUnsaved=false;
 }
-
-function renderDrawer(id) {
-  const it=ITEMS[id]; const s=S[id];
-  const p = calcPrice(id);
-  document.getElementById('dh-swatch').style.background = s.chx||'#ccc';
-  document.getElementById('dh-name').textContent = it.name;
-  document.getElementById('dh-meta').textContent = buildMeta(id);
-  document.getElementById('dh-price').textContent = fmt(p);
-  document.getElementById('dh-was').style.display = 'none';
-  document.getElementById('d-about-txt').textContent = it.about;
-  document.getElementById('d-specs').innerHTML = it.specs.map(([l,v])=>`<div class="spec-item"><div class="sl">${l}</div><div class="sv">${v}</div></div>`).join('');
-  renderMatPanel(id); renderOEMPanel(id); renderBespokePanel(id);
-  document.getElementById('d-media-note').textContent = it.mn;
-  document.getElementById('d-media-scroll').innerHTML = it.media.map(m=>`<div class="mthumb${m.v?' v':''}" style="background:${m.c};"></div>`).join('');
-  renderDQThread(id);
-  renderActions(id);
-  setUnsaved(false);
+function renderDrawer(id){
+  const it=ITEMS[id];const s=S[id];
+  document.getElementById('dh-swatch').style.background=s.chx||'#ccc';
+  document.getElementById('dh-name').textContent=it.name;
+  document.getElementById('dh-meta').textContent=buildMeta(id);
+  document.getElementById('dh-price').textContent=fmt(calcPrice(id));
+  document.getElementById('dh-was').style.display='none';
+  document.getElementById('d-about-txt').textContent=it.about;
+  document.getElementById('d-specs').innerHTML=it.specs.map(([l,v])=>`<div class="spec-item"><div class="sl">${l}</div><div class="sv">${v}</div></div>`).join('');
+  renderMatPanel(id);renderOEMPanel(id);renderBespokePanel(id);
+  document.getElementById('d-media-note').textContent='Workshop photos and fitting guide videos for this item.';
+  document.getElementById('d-media-scroll').innerHTML=['#1c3a1c','#2a4a2a','#3a3a3a'].map((c,i)=>`<div class="mthumb${i>0?' v':''}" style="background:${c}"></div>`).join('');
+  renderDQThread(id);renderActions(id);setUnsaved(false);
 }
-
-function buildMeta(id) {
-  const it=ITEMS[id]; const s=S[id];
+function buildMeta(id){
+  const it=ITEMS[id];const s=S[id];
   const mat=MATS[it.mt].find(m=>m.id===s.mat);
   let p=[mat?mat.name:''];
-  if(it.hf && s.mat==='leather') p.push(cap(s.fin));
-  if(s.col) p.push(s.col);
-  else if(s.ctype==='oem-tbc') p.push('OEM Colour TBC');
-  else if(s.ctype==='bespoke-tbc') p.push('Bespoke TBC');
-  else p.push('Colour TBC');
-  p.push(it.metaBase);
-  return p.join(' · ');
+  if(it.hf&&s.mat==='leather')p.push(cap(s.fin));
+  if(s.col)p.push(s.col);else if(s.ctype==='oem-tbc')p.push('OEM Colour TBC');else if(s.ctype==='bespoke-tbc')p.push('Bespoke TBC');else p.push('Colour TBC');
+  p.push(it.mb);return p.join(' · ');
 }
-
-function renderMatPanel(id) {
-  const it=ITEMS[id]; const s=S[id];
-  document.getElementById('mat-grid').innerHTML = MATS[it.mt].map(m=>{
+function renderMatPanel(id){
+  const it=ITEMS[id];const s=S[id];
+  document.getElementById('mat-grid').innerHTML=MATS[it.mt].map(m=>{
     const p=it.base+m.d;
-    return `<button class="mat-btn${s.mat===m.id?' sel':''}" onclick="selMat('${id}','${m.id}')"><div class="mn">${m.name}</div><div class="mp">${m.d===0?fmt(p):fmt(p)+' (save £'+Math.abs(m.d)+')'}</div><div class="mt">${m.desc}</div></button>`;
+    return`<button class="mat-btn${s.mat===m.id?' sel':''}" onclick="selMat('${id}','${m.id}')"><div class="mn">${m.name}</div><div class="mp">${m.d===0?fmt(p):fmt(p)+' (save £'+Math.abs(m.d)+')'}</div><div class="mt">${m.desc}</div></button>`;
   }).join('');
   const fs=document.getElementById('fin-section');
-  if(it.hf && s.mat==='leather'){
+  if(it.hf&&s.mat==='leather'){
     fs.style.display='block';
     document.getElementById('fp-g').textContent=fmt(it.base);
     document.getElementById('fp-s').textContent=fmt(it.base+140)+' (+£140)';
     document.getElementById('fin-grained').className='fin-btn'+(s.fin==='grained'?' sel':'');
     document.getElementById('fin-smooth').className='fin-btn'+(s.fin==='smooth'?' sel':'');
-  } else fs.style.display='none';
+  }else fs.style.display='none';
 }
-
-function renderOEMPanel(id) {
+function renderOEMPanel(id){
   const s=S[id];
   document.getElementById('tbc-oem').classList.toggle('sel',s.ctype==='oem-tbc');
-  document.getElementById('oem-grid').innerHTML = OEM_C.map(c=>
-    `<div class="cs${s.col===c.name?' sel':''}" onclick="selCol('${id}','${c.name}','${c.hex}','oem')"><div class="cc" style="background:${c.hex};"></div><div class="cn">${c.name}</div></div>`).join('');
+  document.getElementById('oem-grid').innerHTML=OEM_C.map(c=>`<div class="cs${s.col===c.n?' sel':''}" onclick="selCol('${id}','${c.n}','${c.h}','oem')"><div class="cc" style="background:${c.h}"></div><div class="cn">${c.n}</div></div>`).join('');
 }
-
-function renderBespokePanel(id) {
+function renderBespokePanel(id){
   const s=S[id];
   document.getElementById('tbc-bespoke').classList.toggle('sel',s.ctype==='bespoke-tbc');
-  document.getElementById('bespoke-grid').innerHTML = BSP_C.map(c=>
-    `<div class="cs${s.col===c.name?' sel':''}" onclick="selCol('${id}','${c.name}','${c.hex}','bespoke')"><div class="cc" style="background:${c.hex};"></div><div class="cn">${c.name}</div><span class="cp">+£80</span></div>`).join('');
+  document.getElementById('bespoke-grid').innerHTML=BSP_C.map(c=>`<div class="cs${s.col===c.n?' sel':''}" onclick="selCol('${id}','${c.n}','${c.h}','bespoke')"><div class="cc" style="background:${c.h}"></div><div class="cn">${c.n}</div><span class="cp">+£80</span></div>`).join('');
 }
-
-function renderDQThread(id) {
-  const itemMsgs = MSGS.filter(m=>m.tag===id);
-  const el=document.getElementById('dq-thread');
-  const cnt=document.getElementById('dt-dq-count');
-  if(itemMsgs.length>0){cnt.style.display='inline';cnt.textContent=itemMsgs.length;}else{cnt.style.display='none';}
-  el.innerHTML = itemMsgs.length
-    ? itemMsgs.map(m=>`<div class="msg-group ${m.type}">
-        <div class="msg-sender">${m.type==='admin'?'John Skinner':'You'}</div>
-        <div class="msg-bubble">${m.text}<div class="msg-time">${m.time}</div></div>
-      </div>`).join('')
-    : '<p class="dq-empty">No questions yet on this item. Ask anything below.</p>';
+function renderDQThread(id){
+  const msgs=MSGS.filter(m=>m.tag===id);
+  const cnt=document.getElementById('dt-dq-n');
+  cnt.style.display=msgs.length?'inline':'none';cnt.textContent=msgs.length;
+  document.getElementById('dq-thread').innerHTML=msgs.length
+    ?msgs.map(m=>`<div class="msg-group ${m.type}"><div class="msg-sender">${m.type==='admin'?'John Skinner':'You'}</div><div class="msg-bubble" onclick="openLB('${m.id}')">${m.text}${m.attachments.length?`<div class="attach-strip">${m.attachments.map(a=>`<span class="attach-chip">${a.icon} ${a.name}</span>`).join('')}</div>`:''}<div class="msg-time">${m.time.split(', ')[1]||m.time}</div></div></div>`).join('')
+    :'<p class="dq-empty">No questions yet on this item. Ask anything below.</p>';
 }
-
-function renderActions(id) {
-  const it=ITEMS[id];
-  const da=document.getElementById('d-acts');
-  if(it.action==='decide') da.innerHTML=`<button class="act a-keep">✓ Add to order</button><button class="act a-remove">✕ Not needed</button>`;
-  else if(it.action==='input') da.innerHTML=`<button class="act a-keep" style="flex:2" onclick="dTab('oem')">Choose a colour →</button><button class="act a-remove">✕ Remove</button>`;
-  else da.innerHTML=`<button class="act a-keep">✓ Confirmed</button><button class="act a-edit" onclick="dTab('material')">✏️ Edit</button><button class="act a-remove">✕ Remove</button>`;
+function renderActions(id){
+  const it=ITEMS[id];const da=document.getElementById('d-acts');
+  if(it.action==='decide')da.innerHTML=`<button class="act a-keep">✓ Add to order</button><button class="act a-remove">✕ Not needed</button>`;
+  else if(it.action==='input')da.innerHTML=`<button class="act a-keep" style="flex:2" onclick="dTab('oem')">Choose a colour →</button><button class="act a-remove">✕ Remove</button>`;
+  else da.innerHTML=`<button class="act a-keep">✓ Confirmed</button><button class="act a-edit" onclick="dTab('material')">✏ Edit</button><button class="act a-remove">✕ Remove</button>`;
 }
-
-/* ─── Selection handlers ─── */
-function selMat(id,matId){ S[id].mat=matId; if(matId!=='leather')S[id].fin='grained'; markChanged(id); }
-function selFinish(fin){ if(!activeItem)return; S[activeItem].fin=fin; markChanged(activeItem); }
-function selCol(id,name,hex,type){ S[id].col=name; S[id].chx=hex; S[id].ctype=type; markChanged(id); }
+function selMat(id,matId){S[id].mat=matId;if(matId!=='leather')S[id].fin='grained';markChanged(id);}
+function selFinish(fin){if(!activeItem)return;S[activeItem].fin=fin;markChanged(activeItem);}
+function selCol(id,name,hex,type){S[id].col=name;S[id].chx=hex;S[id].ctype=type;markChanged(id);}
 function selTBC(type){
   if(!activeItem)return;
   const t=type==='oem'?'oem-tbc':'bespoke-tbc';
-  if(S[activeItem].ctype===t){S[activeItem].col=null;S[activeItem].chx='#f0eee9';S[activeItem].ctype=null;}
+  if(S[activeItem].ctype===t){S[activeItem].col=null;S[activeItem].chx='#e8e4dc';S[activeItem].ctype=null;}
   else{S[activeItem].col=null;S[activeItem].chx=type==='oem'?'#c8c0a8':'#b8b0a0';S[activeItem].ctype=t;}
   markChanged(activeItem);
 }
-
 function markChanged(id){
-  const p=calcPrice(id); const orig=ITEMS[id].base;
+  const p=calcPrice(id);
   document.getElementById('dh-price').textContent=fmt(p);
-  const wasEl=document.getElementById('dh-was');
-  if(p!==orig){wasEl.style.display='block';wasEl.textContent='£'+orig.toLocaleString();}else wasEl.style.display='none';
+  const w=document.getElementById('dh-was');
+  if(p!==ITEMS[id].base){w.style.display='block';w.textContent='£'+ITEMS[id].base.toLocaleString();}else w.style.display='none';
   document.getElementById('dh-swatch').style.background=S[id].chx||'#ccc';
   document.getElementById('dh-meta').textContent=buildMeta(id);
-  renderMatPanel(id); renderOEMPanel(id); renderBespokePanel(id);
-  const toast=document.getElementById('price-toast');
-  toast.classList.add('show'); clearTimeout(toast._t); toast._t=setTimeout(()=>toast.classList.remove('show'),1800);
-  setUnsaved(true);
-  updateTotals();
+  renderMatPanel(id);renderOEMPanel(id);renderBespokePanel(id);
+  const t=document.getElementById('price-toast');
+  t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),1800);
+  setUnsaved(true);updateTotals();
 }
-
-function setUnsaved(v){
-  hasUnsaved=v;
-  document.getElementById('unsaved-bar').classList.toggle('show',v);
-  document.getElementById('save-bar').classList.toggle('show',v);
-}
-
+function setUnsaved(v){hasUnsaved=v;document.getElementById('unsaved-bar').classList.toggle('show',v);document.getElementById('save-bar').classList.toggle('show',v);}
 function saveChanges(){
   if(!activeItem)return;
-  SAVED[activeItem]={...S[activeItem]};
-  // Update list row
-  updateListRow(activeItem);
-  setUnsaved(false);
-  const btn=document.querySelector('.save-btn');
-  btn.textContent='Saved ✓'; btn.style.background='var(--green)';
-  setTimeout(()=>{btn.textContent='Save Changes ✓';btn.style.background='';},2000);
+  updateListRow(activeItem);setUnsaved(false);
+  const b=document.querySelector('.save-btn');b.textContent='Saved ✓';b.style.background='var(--green)';
+  setTimeout(()=>{b.textContent='Save Changes ✓';b.style.background='';},2000);
 }
-
 function updateListRow(id){
-  const p=calcPrice(id);
-  document.getElementById('iprice-'+id).textContent=fmt(p);
+  document.getElementById('iprice-'+id).textContent=fmt(calcPrice(id));
   document.getElementById('imeta-'+id).textContent=buildMeta(id);
   document.getElementById('sw-'+id).style.background=S[id].chx||'#ccc';
 }
-
-/* ─── Drawer tabs ─── */
 function dTab(name){
   ['about','material','oem','bespoke','media','dq'].forEach(t=>{
     document.getElementById('dp-'+t).classList.toggle('active',t===name);
     document.getElementById('dt-'+t).classList.toggle('active',t===name);
   });
-  const el=document.getElementById('dt-'+name);
-  if(el) el.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
-  if(name==='dq') document.getElementById('dq-input').focus();
 }
-
-/* ─── Send from drawer Questions tab ─── */
 function sendDrawerMsg(){
-  if(!activeItem) return;
-  const input=document.getElementById('dq-input');
-  const text=input.value.trim(); if(!text) return;
-  const now=new Date();
-  const ts=now.toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).replace(',','');
-  MSGS.push({id:'m'+(MSGS.length+1),type:'customer',tag:activeItem,text,time:ts});
-  input.value='';
-  renderDQThread(activeItem);
-  // Show unread dot on Messages tab if not currently viewing it
-  if(activeTab!=='messages') document.getElementById('unread-dot').style.display='block';
-  // Scroll thread to bottom
-  const dq=document.getElementById('dq-thread');
-  dq.scrollTop=dq.scrollHeight;
+  if(!activeItem)return;
+  const inp=document.getElementById('dq-input');const txt=inp.value.trim();if(!txt)return;
+  const ts=nowStr();
+  MSGS.push({id:'m'+(MSGS.length+1),type:'customer',tag:activeItem,text:txt,time:ts,attachments:[]});
+  inp.value='';renderDQThread(activeItem);
+  if(activeTab!=='messages')document.getElementById('msg-badge').classList.add('show');
 }
 
-/* ══════════════════════════════
-   MESSAGES
-══════════════════════════════ */
+/* ═══ MESSAGES ═══ */
 function renderMessages(){
-  buildFilterPills();
-  renderThread();
+  buildPills();renderThread();
 }
-
-function buildFilterPills(){
-  const tags=['all','general',...Object.keys(ITEMS)];
-  const counts={all:MSGS.length};
-  MSGS.forEach(m=>{ counts[m.tag]=(counts[m.tag]||0)+1; });
-  // Only show pills for tags that have messages
-  const activeTags = tags.filter(t=>t==='all'||t==='general'||(counts[t]&&counts[t]>0));
-  const meta=ITEM_META;
-  document.getElementById('filter-row').innerHTML = activeTags.map(t=>{
-    const m=meta[t]||{label:'All Messages',colour:'#c8ba9a'};
-    const label=t==='all'?'All Messages':m.label;
-    const dot=t==='all'?'':`<span class="pill-dot" style="background:${m.colour};"></span>`;
-    return `<div class="pill${msgFilter===t?' active':''}" onclick="setFilter('${t}')">${dot}${m.short||label}<span class="pill-n">${counts[t]||0}</span></div>`;
+function buildPills(){
+  const counts={all:0};MSGS.forEach(m=>{counts[m.tag]=(counts[m.tag]||0)+1;counts.all++;});
+  const tags=['all','general',...Object.keys(ITEMS).filter(k=>counts[k])];
+  document.getElementById('filter-row').innerHTML=tags.map(t=>{
+    const meta=ITEM_META[t]||{label:'All Messages',colour:'#c8ba9a',short:'All Messages'};
+    const dot=t==='all'?'':`<span class="pill-dot" style="background:${meta.colour}"></span>`;
+    return`<div class="pill${msgFilter===t?' active':''}" onclick="setFilter('${t}')">${dot}${meta.short||'All'}<span class="pill-n">${counts[t]||0}</span></div>`;
   }).join('');
 }
-
 function renderThread(){
   const filtered=MSGS.filter(m=>{
     const mf=msgFilter==='all'||m.tag===msgFilter;
-    const ms=!msgSearch||m.text.toLowerCase().includes(msgSearch.toLowerCase())||(ITEM_META[m.tag]?.label||'').toLowerCase().includes(msgSearch.toLowerCase());
+    const ms=!msgSearch||m.text.toLowerCase().includes(msgSearch.toLowerCase());
     return mf&&ms;
   });
-  document.getElementById('msg-count-badge').textContent=filtered.length+' message'+(filtered.length!==1?'s':'')+(msgSearch?' matching':'');
+  document.getElementById('msg-cnt-badge').textContent=filtered.length+' msg'+(filtered.length!==1?'s':'');
   const nr=document.getElementById('no-results');
   if(!filtered.length){nr.classList.add('show');document.getElementById('msg-thread').innerHTML='';return;}
   nr.classList.remove('show');
-  // Group by day
-  const byDay={};
-  filtered.forEach(m=>{const d=m.time.split(',')[0];if(!byDay[d])byDay[d]=[];byDay[d].push(m);});
+  const byDay={};filtered.forEach(m=>{const d=m.time.split(',')[0];if(!byDay[d])byDay[d]=[];byDay[d].push(m);});
   document.getElementById('msg-thread').innerHTML=Object.entries(byDay).map(([d,msgs])=>
     `<div class="date-sep"><span>${d}</span></div>${msgs.map(m=>renderMsgBubble(m)).join('')}`
   ).join('');
 }
-
-function renderMsgBubble(m){
+function renderMsgBubble(m,inLB){
   const meta=ITEM_META[m.tag]||ITEM_META.general;
   const isGen=m.tag==='general';
-  const text=msgSearch?hl(m.text,msgSearch):m.text;
-  const tagClass=isGen?`general-tag ${m.type}`:'';
+  const txt=msgSearch&&!inLB?hl(m.text,msgSearch):m.text;
+  const tagCls=isGen?(m.type==='customer'?'gen-tag-c':'gen-tag-a'):'';
   const tagClick=!isGen?`onclick="openDrawer('${m.tag}','dq')"` :'';
-  const tagHTML=`<div><span class="item-tag ${tagClass}" ${tagClick}><span class="tag-dot" style="background:${meta.colour};"></span>${meta.label}</span></div>`;
-  const timeStr=m.time.split(', ')[1]||m.time;
-  return `<div class="msg-group ${m.type}">
+  const tagHTML=`<div><span class="item-tag ${tagCls}" ${tagClick}><span class="tag-dot" style="background:${meta.colour}"></span>${meta.label}</span></div>`;
+  const attHTML=m.attachments.length?`<div class="attach-strip">${m.attachments.map(a=>`<span class="attach-chip">${a.icon} ${a.name}</span>`).join('')}</div>`:'';
+  const t=m.time.split(', ')[1]||m.time;
+  const clickHandler=inLB?'':`onclick="openLB('${m.id}')"`;
+  return`<div class="msg-group ${m.type}">
     <div class="msg-sender">${m.type==='admin'?'John Skinner':'You'}</div>
-    <div class="msg-bubble">${text}${tagHTML}<div class="msg-time">${timeStr}</div></div>
+    <div class="msg-bubble" ${clickHandler}>${txt}${tagHTML}${attHTML}<div class="msg-time">${t}</div></div>
   </div>`;
 }
-
-function hl(text,q){
-  if(!q)return text;
-  return text.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<mark class="hl">$1</mark>');
-}
-
-function setFilter(f){
-  msgFilter=f;
-  buildFilterPills();
-  renderThread();
-}
-
-function handleSearch(v){
-  msgSearch=v.trim();
-  document.getElementById('s-clear').classList.toggle('show',!!msgSearch);
-  document.getElementById('s-icon').style.display=msgSearch?'none':'';
-  renderThread();
-}
-function clearSearch(){
-  document.getElementById('search-input').value='';
-  msgSearch='';
-  document.getElementById('s-clear').classList.remove('show');
-  document.getElementById('s-icon').style.display='';
-  renderThread();
-}
-
-/* ─── Compose (Messages tab) ─── */
+function hl(text,q){if(!q)return text;return text.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<mark class="hl">$1</mark>');}
+function setFilter(f){msgFilter=f;buildPills();renderThread();}
+function handleSearch(v){msgSearch=v.trim();document.getElementById('s-clear').classList.toggle('show',!!v);document.getElementById('s-icon').style.display=v?'none':'';renderThread();}
+function clearSearch(){document.getElementById('s-input').value='';msgSearch='';document.getElementById('s-clear').classList.remove('show');document.getElementById('s-icon').style.display='';renderThread();}
 function setCTag(tag){
   composeTag=tag;
   document.querySelectorAll('.ctag').forEach(c=>c.classList.toggle('active',c.dataset.ct===tag));
   const meta=ITEM_META[tag]||ITEM_META.general;
-  const hint=document.getElementById('compose-hint');
-  hint.innerHTML=tag==='general'
-    ?'Sending a <strong>General</strong> message — not linked to a specific item.'
-    :`Linking this message to <strong>${meta.label}</strong> — it will also appear in that item\'s Questions tab.`;
+  document.getElementById('c-hint').innerHTML=tag==='general'?'Sending a <strong>General</strong> message — not linked to a specific item.':`Linking this message to <strong>${meta.label}</strong>.`;
   document.getElementById('compose-input').placeholder=tag==='general'?'Type your message…':`Ask about ${meta.label}…`;
 }
-
 function sendMsg(){
-  const input=document.getElementById('compose-input');
-  const text=input.value.trim(); if(!text)return;
-  const now=new Date();
-  const ts=now.toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).replace(',','');
-  MSGS.push({id:'m'+(MSGS.length+1),type:'customer',tag:composeTag,text,time:ts});
-  input.value='';
-  renderMessages();
-  setTimeout(()=>window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'}),80);
+  const inp=document.getElementById('compose-input');const txt=inp.value.trim();if(!txt)return;
+  MSGS.push({id:'m'+(MSGS.length+1),type:'customer',tag:composeTag,text:txt,time:nowStr(),attachments:[]});
+  inp.value='';renderMessages();
+  setTimeout(()=>document.getElementById('panel-messages').scrollTo({top:999999,behavior:'smooth'}),80);
 }
 
-/* ─── Enter to send ─── */
+/* ═══ LIGHTBOX ═══ */
+function openLB(msgId){
+  lbMsgId=msgId;
+  const m=MSGS.find(x=>x.id===msgId);if(!m)return;
+  const meta=ITEM_META[m.tag]||ITEM_META.general;
+  document.getElementById('lb-title').textContent=m.type==='admin'?'John Skinner':'You wrote';
+  document.getElementById('lb-subtitle').textContent=meta.label+' · '+m.time;
+  const isGen=m.tag==='general';
+  const tagCls=isGen?(m.type==='customer'?'gen-tag-c':'gen-tag-a'):'';
+  const tagHTML=`<span class="item-tag ${tagCls}"><span class="tag-dot" style="background:${meta.colour}"></span>${meta.label}</span>`;
+  // Main message
+  let body=`<div class="lb-main-msg"><div class="lmm-sender">${m.type==='admin'?'John Skinner · John Skinner (Manufacturing)':'You · David Mitchell'}</div><div class="lmm-text">${m.text}</div><div class="lmm-tag">${tagHTML}</div><div class="lmm-time">${m.time}</div></div>`;
+  // Attachments
+  if(m.attachments.length){
+    body+=`<div class="lb-attachments"><h5>Attachments (${m.attachments.length})</h5><div class="att-grid">${m.attachments.map(a=>`<div class="att-card"><div class="att-thumb" style="background:${a.bg}">${a.type==='image'?`<span style="font-size:0.7rem;color:rgba(255,255,255,0.5)">[Photo]</span>`:a.icon}</div><div class="att-info">${a.name}<span>${a.size}</span></div></div>`).join('')}</div></div>`;
+  }
+  // Related thread (same tag, excluding this message)
+  const thread=MSGS.filter(x=>x.tag===m.tag&&x.id!==msgId);
+  if(thread.length){
+    body+=`<div class="lb-thread"><h5>Other messages in this thread (${thread.length})</h5>${thread.map(x=>renderMsgBubble(x,true)).join('')}</div>`;
+  }
+  document.getElementById('lb-body').innerHTML=body;
+  document.getElementById('lb-overlay').classList.add('open');
+  document.getElementById('lb-input').placeholder=`Reply about ${meta.label}…`;
+}
+function closeLB(e){
+  if(e&&e.target!==document.getElementById('lb-overlay'))return;
+  document.getElementById('lb-overlay').classList.remove('open');lbMsgId=null;
+}
+function sendLBReply(){
+  const inp=document.getElementById('lb-input');const txt=inp.value.trim();if(!txt)return;
+  const orig=MSGS.find(m=>m.id===lbMsgId);
+  const tag=orig?orig.tag:'general';
+  MSGS.push({id:'m'+(MSGS.length+1),type:'customer',tag,text:txt,time:nowStr(),attachments:[]});
+  inp.value='';
+  // Re-render thread in lightbox
+  const thread=MSGS.filter(x=>x.tag===tag&&x.id!==lbMsgId);
+  const lb=document.getElementById('lb-body');
+  const existing=lb.querySelector('.lb-thread');
+  if(existing){existing.querySelector('h5').textContent=`Other messages in this thread (${thread.length})`;existing.innerHTML=`<h5>Other messages in this thread (${thread.length})</h5>`+thread.map(x=>renderMsgBubble(x,true)).join('');}
+  else lb.insertAdjacentHTML('beforeend',`<div class="lb-thread"><h5>Other messages in this thread (${thread.length})</h5>${thread.map(x=>renderMsgBubble(x,true)).join('')}</div>`);
+  if(activeTab!=='messages')document.getElementById('msg-badge').classList.add('show');
+}
+
+/* ═══ DOCUMENTS ═══ */
+function renderDocs(){
+  const cats=['all','quote','reference','swatches','condition','uploaded'];
+  const docCounts={all:DOCS.length};DOCS.forEach(d=>{docCounts[d.cat]=(docCounts[d.cat]||0)+1;});
+  const catLabels={all:'All',quote:'Quote',reference:'Reference',swatches:'Swatches',condition:'Condition',uploaded:'My Uploads'};
+  document.getElementById('docs-filter-row').innerHTML=cats.filter(c=>c==='all'||docCounts[c]).map(c=>`<div class="pill${docFilter===c?' active':''}" onclick="setDocFilter('${c}')">${catLabels[c]||c}<span class="pill-n">${docCounts[c]||0}</span></div>`).join('');
+  const q=(document.getElementById('doc-search')||{}).value||'';
+  const filtered=DOCS.filter(d=>{
+    const mf=docFilter==='all'||(docFilter==='uploaded'&&d.src==='you')||d.cat===docFilter;
+    const ms=!docSearch||d.name.toLowerCase().includes(docSearch.toLowerCase());
+    return mf&&ms;
+  });
+  const srcLabel={admin:'JSM',you:'You',system:'System'};
+  const srcCls={admin:'src-admin',you:'src-you',system:'src-system'};
+  const meta=ITEM_META;
+  document.getElementById('doc-grid').innerHTML=filtered.map(d=>{
+    const itemMeta=meta[d.tag]||{label:'General',colour:'#c8ba9a'};
+    const dotStyle=`background:${itemMeta.colour}`;
+    const tagHTML=`<span class="doc-tag" style="background:rgba(0,0,0,0.06);color:var(--text);border:1px solid var(--light)"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:3px;vertical-align:middle;${dotStyle}"></span>${itemMeta.label}</span>`;
+    return`<div class="doc-card"><div class="doc-thumb" style="background:${d.bg}">${d.icon}<span class="doc-src ${srcCls[d.src]}">${srcLabel[d.src]}</span></div><div class="doc-info"><div class="doc-name">${d.name}</div><div class="doc-meta">${d.date} · ${d.size}</div>${tagHTML}</div></div>`;
+  }).join('');
+}
+function setDocFilter(c){docFilter=c;renderDocs();}
+function filterDocs(v){docSearch=v.trim();renderDocs();}
+function fakeUpload(){
+  const name=prompt('Enter filename (demo):','My photo.jpg');if(!name)return;
+  DOCS.push({id:'d'+(DOCS.length+1),name,type:name.match(/\.(jpg|jpeg|png|gif)$/i)?'image':'pdf',icon:name.match(/\.(jpg|jpeg|png|gif)$/i)?'🖼️':'📄',cat:'uploaded',src:'you',tag:'general',date:'Today',size:'—',bg:'#e3e3df'});
+  renderDocs();
+}
+
+/* ═══ SAMPLES ═══ */
+function renderSamples(){
+  const ss={received:'Received ✓',sent:'In Post',pending:'Not yet sent'};
+  const sc={received:'ss-received',sent:'ss-sent',pending:'ss-pending'};
+  document.getElementById('samples-list').innerHTML=SAMPLES.map(s=>`<div class="sample-card card" style="margin-bottom:10px"><div class="sc-swatch" style="background:${s.colour};min-height:${s.finish?'70':'70'}px"></div><div class="sc-info"><div class="sc-name">${s.mat} — ${s.shade}</div><div class="sc-meta">${[s.finish,s.trackingRef?'Ref: '+s.trackingRef:''].filter(Boolean).join(' · ')||'—'}</div>${s.notes?`<div class="sc-meta" style="margin-top:3px;font-style:italic">${s.notes}</div>`:''}<div class="sc-status"><span class="ss-pill ${sc[s.status]}">${ss[s.status]}</span>${s.sentDate?`<span style="font-size:0.67rem;color:var(--grey);margin-left:8px">${s.status==='pending'?'Awaiting dispatch':'Dispatched '+s.sentDate}</span>`:''}</div></div></div>`).join('');
+}
+
+/* ═══ CUSTOMER PAGE ═══ */
+function toggleShipping(){
+  const chk=document.getElementById('same-addr-chk');
+  chk.checked=!chk.checked;
+  document.getElementById('shipping-section').classList.toggle('hidden',chk.checked);
+}
+
+/* ═══ CAR DETAILS ═══ */
+function toggleTag(el,group){
+  el.closest('.card').querySelectorAll('.tag-pill').forEach(t=>{
+    if([...t.closest('div').querySelectorAll('.tag-pill')].includes(el)){
+      t.classList.remove('sel');
+    }
+  });
+  // Find sibling pills in same parent div
+  el.parentElement.querySelectorAll('.tag-pill').forEach(t=>t.classList.remove('sel'));
+  el.classList.add('sel');
+}
+function setPaintStatus(s){
+  ['original','new','unknown'].forEach(v=>document.getElementById('ps-'+v).classList.toggle('sel',v===s));
+}
+
+/* ═══ HELPERS ═══ */
+function nowStr(){const n=new Date();return n.toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).replace(',','');}
+
+/* ═══ INIT ═══ */
 document.addEventListener('DOMContentLoaded',()=>{
-  document.getElementById('compose-input').addEventListener('keydown',e=>{
-    if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}
-  });
-  document.getElementById('dq-input').addEventListener('keydown',e=>{
-    if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendDrawerMsg();}
-  });
-  renderItemList();
-  updateTotals();
-  renderMessages();
+  document.getElementById('compose-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}});
+  document.getElementById('dq-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendDrawerMsg();}});
+  document.getElementById('lb-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendLBReply();}});
+  renderItemList();updateTotals();renderMessages();renderDocs();renderSamples();
 });
 </script>
 </body>
