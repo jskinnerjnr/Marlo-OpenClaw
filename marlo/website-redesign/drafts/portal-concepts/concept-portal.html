@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSM Customer Portal — JSM-2847</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:#181e38; --navy2:#272e66;
+      --gold:#c8ba9a; --gold-light:#dbd6ca;
+      --cream:#f6f6f3; --warm:#efede9;
+      --grey:#7d807e; --light:#e3e3df;
+      --text:#404041; --green:#1c6b3a; --red:#6d2024;
+      --serif:'EB Garamond',Georgia,serif;
+      --sans:'Open Sans',Arial,sans-serif;
+    }
+
+    html, body { height: 100%; }
+    body { font-family:var(--sans); background:var(--cream); color:var(--text); font-size:15px; overflow:hidden; display:flex; flex-direction:column; }
+
+    /* ════ HEADER ════ */
+    .site-header { background:var(--navy); padding:13px 20px; display:flex; align-items:center; justify-content:space-between; border-bottom:3px solid var(--gold); flex-shrink:0; z-index:60; }
+    .logo { font-family:var(--serif); color:#fff; font-size:1.1rem; letter-spacing:0.06em; line-height:1.1; }
+    .logo em { color:var(--gold); font-style:normal; }
+    .logo-sub { font-size:0.58rem; color:rgba(255,255,255,0.3); letter-spacing:0.18em; text-transform:uppercase; margin-top:2px; }
+    .user-tag { text-align:right; }
+    .user-tag .name { font-size:0.85rem; color:var(--gold); font-weight:600; }
+    .user-tag .ref  { font-size:0.68rem; color:rgba(255,255,255,0.4); margin-top:1px; }
+
+    /* ════ PORTAL TABS ════ */
+    .portal-tabs { background:#fff; display:flex; border-bottom:2px solid var(--light); flex-shrink:0; z-index:55; }
+    .ptab { flex:1; text-align:center; padding:13px 10px; font-size:0.76rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; color:var(--grey); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; transition:color 0.2s; position:relative; white-space:nowrap; }
+    .ptab.active { color:var(--navy); border-bottom-color:var(--gold); }
+    .ptab .unread { position:absolute; top:9px; right:calc(50% - 24px); width:7px; height:7px; background:var(--red); border-radius:50%; border:1.5px solid #fff; }
+
+    /* ════ CONTENT AREA (two panels, slide) ════ */
+    .content-slider { flex:1; display:flex; overflow:hidden; min-height:0; }
+    .panel { flex-shrink:0; width:100%; overflow-y:auto; -webkit-overflow-scrolling:touch; transition:transform 0.35s cubic-bezier(.4,0,.2,1); }
+    /* Default: both at natural position, JS controls transform */
+
+    /* ════ QUOTE PANEL ════ */
+    .qp { padding:20px 16px 120px; max-width:720px; margin:0 auto; }
+
+    /* Quote summary card */
+    .quote-card { background:#fff; border:1px solid var(--light); border-radius:10px; padding:18px 20px; margin-bottom:18px; display:flex; gap:0; }
+    .qstat { flex:1; text-align:center; border-right:1px solid var(--light); padding:0 12px; }
+    .qstat:first-child { padding-left:0; }
+    .qstat:last-child  { border-right:none; padding-right:0; }
+    .qstat .n { font-family:var(--serif); font-size:1.7rem; color:var(--navy); line-height:1; }
+    .qstat .l { font-size:0.65rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--grey); margin-top:3px; }
+    .qstat .n.gold { color:#7a6f52; }
+
+    /* Progress */
+    .prog-wrap { margin-bottom:18px; }
+    .prog-label { display:flex; justify-content:space-between; font-size:0.75rem; color:var(--grey); margin-bottom:6px; }
+    .prog-bar  { height:5px; background:var(--light); border-radius:3px; overflow:hidden; }
+    .prog-fill { height:100%; background:linear-gradient(90deg,var(--green),var(--gold)); border-radius:3px; transition:width 0.4s; }
+
+    /* Item rows */
+    .items-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+    .items-header h3 { font-family:var(--serif); font-size:1.1rem; color:var(--navy); }
+    .items-header span { font-size:0.75rem; color:var(--grey); }
+    .item-row { display:grid; grid-template-columns:40px 1fr auto auto; gap:10px; align-items:center; padding:12px 14px; background:#fff; border:1.5px solid var(--light); border-radius:9px; margin-bottom:7px; cursor:pointer; transition:border-color 0.18s; }
+    .item-row:hover { border-color:var(--gold-light); }
+    .item-row.active { border-color:var(--gold); background:rgba(200,186,154,0.06); }
+    .item-row.unsaved { border-color:var(--navy2); }
+    .i-swatch { width:40px; height:40px; border-radius:6px; transition:background 0.3s; }
+    .i-name  { font-weight:600; font-size:0.9rem; color:var(--navy); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .i-meta  { font-size:0.73rem; color:var(--grey); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .i-badge { font-size:0.62rem; padding:3px 8px; border-radius:10px; font-weight:600; white-space:nowrap; text-align:center; line-height:1.4; }
+    .b-ok  { background:rgba(28,107,58,0.1);  color:var(--green); border:1px solid rgba(28,107,58,0.3); }
+    .b-rev { background:rgba(200,186,154,0.2); color:#7a6f52;      border:1px solid rgba(200,186,154,0.5); }
+    .b-act { background:rgba(109,32,36,0.08);  color:var(--red);   border:1px solid rgba(109,32,36,0.25); }
+    .i-price { font-family:var(--serif); font-size:1rem; color:var(--navy); white-space:nowrap; }
+
+    /* Approve bar */
+    .approve-bar { position:fixed; bottom:0; left:0; right:0; background:var(--navy); padding:13px 20px; display:flex; align-items:center; justify-content:space-between; border-top:2px solid var(--gold); z-index:50; transition:transform 0.3s; }
+    .approve-bar.hidden { transform:translateY(100%); }
+    .ab-total .label { font-size:0.67rem; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:0.1em; }
+    .ab-total .amount { font-family:var(--serif); font-size:1.4rem; color:var(--gold); }
+    .ab-cta { background:var(--gold); color:var(--navy); border:none; padding:12px 22px; border-radius:6px; font-weight:700; font-size:0.85rem; cursor:pointer; font-family:var(--sans); }
+
+    /* ════ MESSAGES PANEL ════ */
+    .mp { padding:20px 16px 130px; max-width:720px; margin:0 auto; }
+    .mp-head { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:16px; gap:10px; }
+    .mp-head h2 { font-family:var(--serif); font-size:1.4rem; color:var(--navy); }
+    .mp-head p  { font-size:0.78rem; color:var(--grey); margin-top:2px; }
+    .msg-count-badge { background:rgba(200,186,154,0.2); border:1px solid var(--gold); color:#7a6f52; padding:4px 12px; border-radius:12px; font-size:0.72rem; font-weight:600; white-space:nowrap; flex-shrink:0; }
+
+    /* Search */
+    .search-wrap { position:relative; margin-bottom:12px; }
+    .search-input { width:100%; padding:11px 38px 11px 14px; border:1.5px solid var(--light); border-radius:8px; font-family:var(--sans); font-size:0.88rem; color:var(--text); background:#fff; transition:border-color 0.2s; }
+    .search-input:focus { outline:none; border-color:var(--gold); }
+    .search-icon { position:absolute; right:12px; top:50%; transform:translateY(-50%); color:var(--grey); pointer-events:none; font-size:0.95rem; }
+    .search-clear { position:absolute; right:11px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--grey); font-size:1.1rem; cursor:pointer; display:none; }
+    .search-clear.show { display:block; }
+
+    /* Filter pills */
+    .filter-row { display:flex; gap:7px; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; margin-bottom:16px; }
+    .filter-row::-webkit-scrollbar { display:none; }
+    .pill { flex-shrink:0; padding:6px 13px; border-radius:20px; font-size:0.71rem; font-weight:600; cursor:pointer; border:1.5px solid var(--light); background:#fff; color:var(--grey); white-space:nowrap; transition:all 0.15s; }
+    .pill:hover { border-color:var(--gold-light); color:var(--navy); }
+    .pill.active { background:var(--navy); color:#fff; border-color:var(--navy); }
+    .pill-dot { display:inline-block; width:7px; height:7px; border-radius:50%; margin-right:4px; vertical-align:middle; }
+    .pill-n { display:inline-block; background:var(--light); color:var(--grey); border-radius:8px; padding:0 5px; margin-left:4px; font-size:0.64rem; }
+    .pill.active .pill-n { background:rgba(255,255,255,0.2); color:#fff; }
+
+    /* Thread */
+    .thread { display:flex; flex-direction:column; }
+    .date-sep { text-align:center; margin:16px 0 12px; position:relative; }
+    .date-sep::before { content:''; position:absolute; left:0; right:0; top:50%; height:1px; background:var(--light); }
+    .date-sep span { position:relative; background:var(--cream); padding:0 12px; font-size:0.68rem; color:var(--grey); letter-spacing:0.1em; text-transform:uppercase; }
+    .msg-group { display:flex; flex-direction:column; margin-bottom:12px; }
+    .msg-group.customer { align-items:flex-end; }
+    .msg-group.admin    { align-items:flex-start; }
+    .msg-sender { font-size:0.68rem; color:var(--grey); font-weight:600; margin-bottom:4px; padding:0 2px; letter-spacing:0.03em; }
+    .msg-group.customer .msg-sender { text-align:right; }
+    .msg-bubble { max-width:84%; padding:11px 14px 10px; border-radius:12px; font-size:0.87rem; line-height:1.62; }
+    .msg-group.customer .msg-bubble { background:rgba(200,186,154,0.18); border:1px solid rgba(200,186,154,0.45); border-bottom-right-radius:3px; }
+    .msg-group.admin    .msg-bubble { background:var(--navy); color:rgba(255,255,255,0.9); border-bottom-left-radius:3px; }
+    .item-tag { display:inline-flex; align-items:center; gap:4px; margin-top:7px; padding:3px 9px; border-radius:10px; font-size:0.64rem; font-weight:700; letter-spacing:0.04em; text-transform:uppercase; cursor:pointer; transition:opacity 0.15s; }
+    .item-tag:hover { opacity:0.75; }
+    .msg-group.customer .item-tag { background:rgba(24,30,56,0.07); color:var(--navy); border:1px solid rgba(24,30,56,0.15); }
+    .msg-group.admin    .item-tag { background:rgba(255,255,255,0.12); color:rgba(255,255,255,0.7); border:1px solid rgba(255,255,255,0.15); }
+    .general-tag.customer { background:rgba(200,186,154,0.18); color:#7a6f52; border-color:rgba(200,186,154,0.5); }
+    .general-tag.admin    { background:rgba(200,186,154,0.1); color:var(--gold); border-color:rgba(200,186,154,0.25); }
+    .tag-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+    .msg-time { font-size:0.63rem; color:var(--grey); margin-top:4px; }
+    .msg-group.customer .msg-time { text-align:right; }
+    .msg-group.admin    .msg-time { color:rgba(255,255,255,0.35); }
+    .no-results { text-align:center; padding:40px 20px; color:var(--grey); font-size:0.88rem; display:none; }
+    .no-results.show { display:block; }
+    mark.hl { background:rgba(200,186,154,0.55); border-radius:2px; padding:0 1px; }
+
+    /* Compose */
+    .compose-wrap { position:fixed; bottom:0; left:0; right:0; background:#fff; border-top:1px solid var(--light); z-index:50; padding:11px 16px 14px; transition:transform 0.3s; }
+    .compose-wrap.hidden { transform:translateY(100%); }
+    .compose-inner { max-width:720px; margin:0 auto; display:flex; flex-direction:column; gap:8px; }
+    .compose-tags { display:flex; align-items:center; gap:7px; overflow-x:auto; scrollbar-width:none; }
+    .compose-tags::-webkit-scrollbar { display:none; }
+    .ctag-label { font-size:0.65rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--grey); flex-shrink:0; }
+    .ctag { flex-shrink:0; padding:5px 11px; border-radius:12px; font-size:0.7rem; font-weight:600; cursor:pointer; border:1.5px solid var(--light); background:#fff; color:var(--grey); white-space:nowrap; transition:all 0.15s; font-family:var(--sans); }
+    .ctag.active { background:var(--navy); color:#fff; border-color:var(--navy); }
+    .compose-hint { font-size:0.71rem; color:var(--grey); padding:0 1px; line-height:1.4; }
+    .compose-hint strong { color:var(--navy); }
+    .compose-row { display:flex; gap:8px; }
+    .compose-input { flex:1; padding:10px 13px; border:1.5px solid var(--light); border-radius:9px; font-family:var(--sans); font-size:0.88rem; resize:none; color:var(--text); transition:border-color 0.2s; }
+    .compose-input:focus { outline:none; border-color:var(--gold); }
+    .compose-send { background:var(--navy); color:var(--gold); border:none; padding:10px 16px; border-radius:9px; font-weight:700; font-size:0.83rem; cursor:pointer; font-family:var(--sans); white-space:nowrap; }
+
+    /* ════ DRAWER ════ */
+    .drawer-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:100; opacity:0; pointer-events:none; transition:opacity 0.3s; }
+    .drawer-overlay.open { opacity:1; pointer-events:all; }
+    .drawer { position:fixed; right:0; top:0; bottom:0; width:min(520px,100vw); background:#fff; z-index:200; transform:translateX(110%); transition:transform 0.32s cubic-bezier(.4,0,.2,1); display:flex; flex-direction:column; box-shadow:-8px 0 48px rgba(0,0,0,0.18); }
+    .drawer.open { transform:translateX(0); }
+    @media(max-width:560px) {
+      .drawer { top:auto; width:100%; height:93dvh; border-radius:18px 18px 0 0; transform:translateY(110%); box-shadow:0 -8px 40px rgba(0,0,0,0.22); }
+      .drawer.open { transform:translateY(0); }
+      .drag-handle { display:block !important; }
+    }
+    .drag-handle { display:none; width:40px; height:4px; background:var(--light); border-radius:2px; margin:12px auto 0; flex-shrink:0; }
+    .dh { background:var(--navy); padding:15px 18px 13px; display:flex; align-items:flex-start; gap:13px; flex-shrink:0; }
+    .dh-swatch { width:56px; height:56px; border-radius:9px; flex-shrink:0; transition:background 0.35s; border:2px solid rgba(255,255,255,0.15); }
+    .dh-info { flex:1; min-width:0; }
+    .dh-info h3 { font-family:var(--serif); font-size:1.2rem; color:#fff; line-height:1.15; }
+    .dh-meta { font-size:0.74rem; color:rgba(255,255,255,0.5); margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .dh-right { display:flex; flex-direction:column; align-items:flex-end; gap:4px; flex-shrink:0; }
+    .dh-price { font-family:var(--serif); font-size:1.35rem; color:var(--gold); white-space:nowrap; }
+    .price-was { font-size:0.66rem; color:rgba(255,255,255,0.35); text-decoration:line-through; display:none; }
+    .d-close { background:none; border:none; color:rgba(255,255,255,0.35); font-size:1.3rem; cursor:pointer; padding:0; line-height:1; font-family:var(--sans); }
+    .unsaved-bar { display:none; background:var(--navy2); color:var(--gold); font-size:0.76rem; font-weight:600; padding:8px 18px; text-align:center; flex-shrink:0; border-bottom:1px solid rgba(200,186,154,0.2); }
+    .unsaved-bar.show { display:block; }
+    .price-toast { display:none; background:var(--green); color:#fff; font-size:0.74rem; font-weight:600; padding:7px 16px; text-align:center; flex-shrink:0; }
+    .price-toast.show { display:block; }
+    /* Drawer tabs */
+    .dtab-wrap { position:relative; flex-shrink:0; }
+    .dtab-wrap::after { content:''; position:absolute; top:0; right:0; bottom:2px; width:24px; background:linear-gradient(to right,transparent,#fff); pointer-events:none; z-index:1; }
+    .dtabs { display:flex; border-bottom:2px solid var(--light); background:#fff; overflow-x:auto; scrollbar-width:none; }
+    .dtabs::-webkit-scrollbar { display:none; }
+    .dtab { flex-shrink:0; padding:12px 15px; font-size:0.72rem; font-weight:600; letter-spacing:0.04em; text-transform:uppercase; color:var(--grey); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; white-space:nowrap; transition:color 0.18s; }
+    .dtab.active { color:var(--navy); border-bottom-color:var(--gold); }
+    .dtab .dn { display:inline-block; background:var(--red); color:#fff; border-radius:8px; padding:0 5px; font-size:0.6rem; margin-left:4px; }
+    /* Drawer body */
+    .d-body { flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch; }
+    .dpanel { display:none; padding:18px; }
+    .dpanel.active { display:block; }
+    /* About */
+    .about-txt { font-size:0.88rem; line-height:1.78; color:#555; margin-bottom:16px; }
+    .spec-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+    .spec-item { background:var(--warm); border-radius:6px; padding:9px 11px; }
+    .spec-item .sl { font-size:0.64rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--grey); }
+    .spec-item .sv { font-size:0.86rem; font-weight:600; color:var(--navy); margin-top:2px; }
+    /* Material panel */
+    .cust-label { font-size:0.67rem; text-transform:uppercase; letter-spacing:0.13em; color:var(--gold); font-weight:600; margin-bottom:8px; }
+    .cust-note  { font-size:0.8rem; color:var(--grey); margin-bottom:12px; line-height:1.55; }
+    .mat-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:7px; margin-bottom:18px; }
+    .mat-btn { padding:12px 10px; border-radius:8px; border:1.5px solid var(--light); background:#fff; cursor:pointer; text-align:left; font-family:var(--sans); transition:border-color 0.18s,background 0.18s; }
+    .mat-btn:hover { border-color:var(--gold-light); }
+    .mat-btn.sel { border-color:var(--gold); background:rgba(200,186,154,0.1); }
+    .mat-btn .mn { font-weight:700; font-size:0.84rem; color:var(--navy); }
+    .mat-btn .mp { font-size:0.74rem; color:var(--grey); margin-top:2px; }
+    .mat-btn.sel .mp { color:var(--green); font-weight:600; }
+    .mat-btn .mt { font-size:0.64rem; color:var(--grey); margin-top:1px; }
+    .fin-row { display:flex; gap:8px; }
+    .fin-btn { flex:1; padding:11px 9px; border-radius:8px; border:1.5px solid var(--light); background:#fff; cursor:pointer; text-align:center; font-family:var(--sans); transition:border-color 0.18s,background 0.18s; }
+    .fin-btn.sel { border-color:var(--gold); background:rgba(200,186,154,0.1); }
+    .fin-btn .fn { font-weight:700; font-size:0.84rem; color:var(--navy); }
+    .fin-btn .fd { font-size:0.7rem; color:var(--grey); margin-top:3px; }
+    .fin-btn .fp { font-size:0.7rem; color:var(--grey); margin-top:1px; }
+    .fin-btn.sel .fp { color:var(--green); font-weight:600; }
+    .sec-div { border:none; border-top:1px solid var(--light); margin:18px 0; }
+    /* Colour panels */
+    .colour-intro { font-size:0.84rem; color:#555; line-height:1.65; margin-bottom:14px; }
+    .tbc-card { display:flex; align-items:center; gap:13px; padding:13px 15px; background:rgba(200,186,154,0.08); border:1.5px dashed var(--gold); border-radius:10px; margin-bottom:14px; cursor:pointer; transition:background 0.18s; }
+    .tbc-card:hover { background:rgba(200,186,154,0.14); }
+    .tbc-card.sel { background:rgba(200,186,154,0.18); border-style:solid; }
+    .tbc-dot { width:42px; height:42px; border-radius:7px; flex-shrink:0; border:1px solid var(--light); }
+    .tbc-info .ti { font-weight:700; font-size:0.86rem; color:var(--navy); }
+    .tbc-info .td { font-size:0.73rem; color:var(--grey); margin-top:2px; line-height:1.4; }
+    .c-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(68px,1fr)); gap:7px; }
+    .cs { border-radius:8px; cursor:pointer; overflow:hidden; border:2px solid transparent; transition:border-color 0.18s,transform 0.13s; }
+    .cs:hover { transform:scale(1.04); }
+    .cs.sel { border-color:var(--gold); box-shadow:0 0 0 2px rgba(200,186,154,0.4); }
+    .cs .cc { height:44px; width:100%; }
+    .cs .cn { font-size:0.59rem; font-weight:600; color:var(--text); padding:4px 3px 4px; text-align:center; line-height:1.2; background:#fff; }
+    .cs.sel .cn { background:rgba(200,186,154,0.14); }
+    .cs .cp { font-size:0.57rem; color:var(--navy2); display:block; text-align:center; padding-bottom:4px; background:#fff; }
+    .cs.sel .cp { background:rgba(200,186,154,0.14); }
+    .bespoke-box { background:rgba(39,46,102,0.05); border:1px solid rgba(39,46,102,0.15); border-radius:8px; padding:12px 14px; font-size:0.8rem; color:#555; line-height:1.6; margin-top:14px; }
+    .bespoke-box strong { color:var(--navy); }
+    /* Media */
+    .media-scroll { display:flex; gap:9px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+    .media-scroll::-webkit-scrollbar { height:3px; }
+    .media-scroll::-webkit-scrollbar-thumb { background:var(--gold); border-radius:2px; }
+    .mthumb { flex-shrink:0; width:140px; height:105px; border-radius:8px; cursor:pointer; position:relative; overflow:hidden; }
+    .mthumb.v::after { content:'▶'; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:1.8rem; color:#fff; background:rgba(0,0,0,0.3); }
+    /* Drawer Questions */
+    .dq-thread { display:flex; flex-direction:column; gap:9px; padding-bottom:8px; }
+    .dq-empty { font-size:0.84rem; color:var(--grey); text-align:center; padding:28px 0 12px; }
+    /* Save bar */
+    .save-bar { display:none; padding:11px 18px; background:var(--warm); border-top:1px solid var(--light); flex-shrink:0; }
+    .save-bar.show { display:block; }
+    .save-btn { width:100%; padding:12px; background:var(--navy); color:var(--gold); border:none; border-radius:8px; font-weight:700; font-size:0.88rem; cursor:pointer; font-family:var(--sans); letter-spacing:0.04em; }
+    /* Drawer footer */
+    .d-footer { padding:12px 18px; border-top:1px solid var(--light); background:#fff; flex-shrink:0; display:flex; flex-direction:column; gap:8px; }
+    .dq-row { display:flex; gap:8px; }
+    .dq-input { flex:1; padding:10px 13px; border:1.5px solid var(--light); border-radius:8px; font-family:var(--sans); font-size:0.86rem; resize:none; color:var(--text); transition:border-color 0.2s; }
+    .dq-input:focus { outline:none; border-color:var(--gold); }
+    .dq-send { background:var(--navy); color:var(--gold); border:none; padding:10px 15px; border-radius:8px; font-weight:600; font-size:0.82rem; cursor:pointer; font-family:var(--sans); white-space:nowrap; }
+    .act-row { display:flex; gap:7px; }
+    .act { flex:1; padding:10px 7px; border-radius:6px; border:none; font-size:0.78rem; font-weight:600; cursor:pointer; font-family:var(--sans); }
+    .a-keep   { background:rgba(28,107,58,0.1);  color:var(--green); border:1px solid rgba(28,107,58,0.3); }
+    .a-remove { background:rgba(109,32,36,0.08); color:var(--red);   border:1px solid rgba(109,32,36,0.2); }
+    .a-edit   { background:rgba(24,30,56,0.07);  color:var(--navy);  border:1px solid rgba(24,30,56,0.16); }
+  </style>
+</head>
+<body>
+
+<!-- ════ HEADER ════ -->
+<header class="site-header">
+  <div>
+    <div class="logo">John <em>Skinner</em></div>
+    <div class="logo-sub">Est. 1980 · Cheltenham</div>
+  </div>
+  <div class="user-tag">
+    <div class="name">David Mitchell</div>
+    <div class="ref">Quote JSM-2847</div>
+  </div>
+</header>
+
+<!-- ════ PORTAL TABS ════ -->
+<div class="portal-tabs">
+  <div class="ptab active" id="pt-quote"    onclick="switchTab('quote')">Your Quote</div>
+  <div class="ptab"        id="pt-messages" onclick="switchTab('messages')">Messages <div class="unread" id="unread-dot" style="display:none;"></div></div>
+  <div class="ptab"        id="pt-docs"     onclick="switchTab('docs')" style="color:var(--light);pointer-events:none;">Documents</div>
+  <div class="ptab"        id="pt-status"   onclick="switchTab('status')" style="color:var(--light);pointer-events:none;">Status</div>
+</div>
+
+<!-- ════ CONTENT SLIDER ════ -->
+<div class="content-slider" id="slider">
+
+  <!-- ─── QUOTE PANEL ─── -->
+  <div class="panel" id="panel-quote">
+    <div class="qp">
+
+      <div class="quote-card">
+        <div class="qstat"><div class="n" id="qs-total">7</div><div class="l">Items</div></div>
+        <div class="qstat"><div class="n" id="qs-confirmed">5</div><div class="l">Confirmed</div></div>
+        <div class="qstat"><div class="n" id="qs-pending" style="color:var(--red);">2</div><div class="l">Pending</div></div>
+        <div class="qstat"><div class="n gold" id="qs-price">£3,130</div><div class="l">Est. Total</div></div>
+      </div>
+
+      <div class="prog-wrap">
+        <div class="prog-label"><span>Items reviewed</span><span id="prog-pct">71%</span></div>
+        <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:71%;"></div></div>
+      </div>
+
+      <div class="items-header">
+        <h3>Kit Items</h3>
+        <span>Tap to review or customise</span>
+      </div>
+
+      <div id="item-list"></div>
+    </div>
+  </div>
+
+  <!-- ─── MESSAGES PANEL ─── -->
+  <div class="panel" id="panel-messages" style="display:none;">
+    <div class="mp">
+      <div class="mp-head">
+        <div><h2>Quote Correspondence</h2><p>All messages in one place · tagged by item</p></div>
+        <span class="msg-count-badge" id="msg-count-badge">—</span>
+      </div>
+      <div class="search-wrap">
+        <input class="search-input" id="search-input" type="text" placeholder="Search messages…" oninput="handleSearch(this.value)">
+        <span class="search-icon" id="s-icon">🔍</span>
+        <button class="search-clear" id="s-clear" onclick="clearSearch()">✕</button>
+      </div>
+      <div class="filter-row" id="filter-row"></div>
+      <div class="no-results" id="no-results">No messages match your search.</div>
+      <div class="thread" id="msg-thread"></div>
+    </div>
+  </div>
+
+</div><!-- /slider -->
+
+<!-- ════ OVERLAY ════ -->
+<div class="drawer-overlay" id="d-overlay" onclick="closeDrawer()"></div>
+
+<!-- ════ DRAWER ════ -->
+<div class="drawer" id="drawer">
+  <div class="drag-handle"></div>
+  <div class="dh">
+    <div class="dh-swatch" id="dh-swatch"></div>
+    <div class="dh-info">
+      <h3 id="dh-name"></h3>
+      <div class="dh-meta" id="dh-meta"></div>
+    </div>
+    <div class="dh-right">
+      <button class="d-close" onclick="closeDrawer()">✕</button>
+      <div class="price-was" id="dh-was"></div>
+      <div class="dh-price" id="dh-price"></div>
+    </div>
+  </div>
+  <div class="unsaved-bar" id="unsaved-bar">⚠ Unsaved changes — save before closing</div>
+  <div class="price-toast" id="price-toast">Price updated ✓</div>
+  <div class="dtab-wrap">
+    <div class="dtabs">
+      <div class="dtab active" id="dt-about"    onclick="dTab('about')">About</div>
+      <div class="dtab"        id="dt-material" onclick="dTab('material')">Material</div>
+      <div class="dtab"        id="dt-oem"      onclick="dTab('oem')">OEM Colours</div>
+      <div class="dtab"        id="dt-bespoke"  onclick="dTab('bespoke')">Bespoke</div>
+      <div class="dtab"        id="dt-media"    onclick="dTab('media')">Media</div>
+      <div class="dtab"        id="dt-dq"       onclick="dTab('dq')">Questions <span class="dn" id="dt-dq-count" style="display:none;"></span></div>
+    </div>
+  </div>
+  <div class="d-body">
+    <div class="dpanel active" id="dp-about">
+      <p class="about-txt" id="d-about-txt"></p>
+      <div class="spec-grid" id="d-specs"></div>
+    </div>
+    <div class="dpanel" id="dp-material">
+      <div class="cust-label">Choose Material</div>
+      <div class="cust-note">Select the material for this item. Prices update automatically.</div>
+      <div class="mat-grid" id="mat-grid"></div>
+      <div id="fin-section" style="display:none;">
+        <hr class="sec-div">
+        <div class="cust-label">Leather Finish</div>
+        <div class="cust-note">Grained is the traditional textured finish. Smooth is flat and polished — a more continental look. Both available in all colours.</div>
+        <div class="fin-row">
+          <button class="fin-btn sel" id="fin-grained" onclick="selFinish('grained')"><div class="fn">Grained</div><div class="fd">Traditional texture</div><div class="fp" id="fp-g"></div></button>
+          <button class="fin-btn"     id="fin-smooth"  onclick="selFinish('smooth')"><div class="fn">Smooth</div><div class="fd">Flat, polished</div><div class="fp" id="fp-s"></div></button>
+        </div>
+      </div>
+    </div>
+    <div class="dpanel" id="dp-oem">
+      <p class="colour-intro">Factory-original colour options for this marque. Prices include your current material and finish selection.</p>
+      <div class="tbc-card" id="tbc-oem" onclick="selTBC('oem')">
+        <div class="tbc-dot" style="background:repeating-linear-gradient(45deg,#e3e3df,#e3e3df 4px,#f6f6f3 4px,#f6f6f3 8px);"></div>
+        <div class="tbc-info"><div class="ti">Original Colour — Exact Shade To Be Confirmed</div><div class="td">I want a factory original colour but haven't chosen the exact shade yet. Gets an indicative price without committing to a colour.</div></div>
+      </div>
+      <div class="c-grid" id="oem-grid"></div>
+    </div>
+    <div class="dpanel" id="dp-bespoke">
+      <p class="colour-intro">Custom colours outside the original factory range. A £80 colour-matching surcharge applies on all bespoke shades.</p>
+      <div class="tbc-card" id="tbc-bespoke" onclick="selTBC('bespoke')" style="border-color:var(--navy2);">
+        <div class="tbc-dot" style="background:repeating-linear-gradient(45deg,#dbd6ca,#dbd6ca 4px,#f6f6f3 4px,#f6f6f3 8px);"></div>
+        <div class="tbc-info"><div class="ti">Bespoke Colour — Exact Shade To Be Confirmed</div><div class="td">I want a bespoke colour but haven't chosen the shade. Adds the £80 surcharge to your indicative price.</div></div>
+      </div>
+      <div class="c-grid" id="bespoke-grid"></div>
+      <div class="bespoke-box"><strong>Custom colour orders</strong> — the £80 surcharge covers our colour-matching process. If you have a RAL code, paint reference or sample, add a note in the Questions tab and we'll confirm feasibility before production.</div>
+    </div>
+    <div class="dpanel" id="dp-media">
+      <p style="font-size:0.8rem;color:var(--grey);margin-bottom:12px;" id="d-media-note"></p>
+      <div class="media-scroll" id="d-media-scroll"></div>
+    </div>
+    <div class="dpanel" id="dp-dq">
+      <div class="dq-thread" id="dq-thread"></div>
+    </div>
+  </div>
+  <div class="save-bar" id="save-bar"><button class="save-btn" onclick="saveChanges()">Save Changes ✓</button></div>
+  <div class="d-footer">
+    <div class="dq-row">
+      <textarea class="dq-input" id="dq-input" rows="2" placeholder="Ask a question about this item…"></textarea>
+      <button class="dq-send" onclick="sendDrawerMsg()">Send</button>
+    </div>
+    <div class="act-row" id="d-acts"></div>
+  </div>
+</div>
+
+<!-- ════ APPROVE BAR (Quote tab) ════ -->
+<div class="approve-bar" id="approve-bar">
+  <div class="ab-total">
+    <div class="label">Estimated total</div>
+    <div class="amount" id="ab-amount"></div>
+  </div>
+  <button class="ab-cta">Approve Quote</button>
+</div>
+
+<!-- ════ COMPOSE (Messages tab) ════ -->
+<div class="compose-wrap hidden" id="compose-wrap">
+  <div class="compose-inner">
+    <div class="compose-tags">
+      <span class="ctag-label">About:</span>
+      <div class="ctag active" data-ct="general" onclick="setCTag('general')">General</div>
+      <div class="ctag" data-ct="item1" onclick="setCTag('item1')">Seat Covers</div>
+      <div class="ctag" data-ct="item2" onclick="setCTag('item2')">Carpet</div>
+      <div class="ctag" data-ct="item3" onclick="setCTag('item3')">Hood</div>
+      <div class="ctag" data-ct="item4" onclick="setCTag('item4')">Door Cards</div>
+      <div class="ctag" data-ct="item5" onclick="setCTag('item5')">Headlining</div>
+      <div class="ctag" data-ct="item6" onclick="setCTag('item6')">Dashboard</div>
+      <div class="ctag" data-ct="item7" onclick="setCTag('item7')">Boot Carpet</div>
+    </div>
+    <div class="compose-hint" id="compose-hint">Sending a <strong>General</strong> message — not linked to a specific item.</div>
+    <div class="compose-row">
+      <textarea class="compose-input" id="compose-input" rows="2" placeholder="Type your message…"></textarea>
+      <button class="compose-send" onclick="sendMsg()">Send</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ SCRIPT ════════════════ -->
+<script>
+/* ─── ITEM META ─── */
+const ITEM_META = {
+  general:{label:'General',        colour:'#c8ba9a', short:'General'},
+  item1:  {label:'Leather Seat Covers', colour:'#1c3a1c', short:'Seat Covers'},
+  item2:  {label:'Carpet Set',     colour:'#2a4a2a', short:'Carpet'},
+  item3:  {label:'Mohair Hood',    colour:'#1a1a1a', short:'Hood'},
+  item4:  {label:'Door Card Panels', colour:'#c8ba9a', short:'Door Cards'},
+  item5:  {label:'Headlining',     colour:'#c8b87a', short:'Headlining'},
+  item6:  {label:'Dashboard Leather', colour:'#1c3a1c', short:'Dashboard'},
+  item7:  {label:'Boot Carpet',    colour:'#2a4a2a', short:'Boot Carpet'},
+};
+
+/* ─── MATERIALS ─── */
+const MATS = {
+  leather:      [{id:'leather',name:'Leather',  desc:'Hand-sewn',      d:0},   {id:'vinyl',name:'Vinyl',    desc:'Durable',           d:-280},{id:'cloth',name:'Cloth',    desc:'Period fabric',     d:-360}],
+  carpet:       [{id:'wool',  name:'Wool',      desc:'Deep pile',      d:0},   {id:'karvel',name:'Karvel', desc:'Short loop',         d:-60}, {id:'nylon',name:'Nylon',    desc:'Full colour range', d:-120}],
+  hood:         [{id:'mohair',name:'Mohair',    desc:'Original spec',  d:0},   {id:'pvc',  name:'PVC',     desc:'Waterproof',         d:-320}],
+  headlining:   [{id:'cloth', name:'Cloth',     desc:'Original',       d:0},   {id:'vinyl',name:'Vinyl',   desc:'Wipe-clean',         d:-40}],
+  leather_trim: [{id:'leather',name:'Leather',  desc:'To pattern',     d:0},   {id:'vinyl',name:'Vinyl',   desc:'Cost-effective',     d:-80}],
+};
+const FIN_D = {grained:0, smooth:140};
+
+/* ─── ITEMS ─── */
+const ITEMS = {
+  item1:{name:'Leather Seat Covers',metaBase:'Front & Rear',about:'Hand-cut and sewn in our Cheltenham workshop to the original Jaguar E-Type pattern with correct piping, stitch detailing and heading alignment.',specs:[['Coverage','Front & Rear'],['Piping','Matching leather'],['Lead time','8–10 weeks'],['Pattern','Original Jaguar']],mt:'leather',hf:true,base:1240,dm:'leather',df:'grained',dc:'British Racing Green',dhx:'#1c3a1c',dct:'oem',media:[{c:'#1c3a1c',v:0},{c:'#2a4a2a',v:1}],mn:'Video shows full installation guide.',action:'keep'},
+  item2:{name:'Carpet Set',metaBase:'Cabin + Boot',about:'Cut to the original E-Type floor pattern and bound in matching leather. Deep-pile wool with correct underfelt.',specs:[['Coverage','Cabin + boot'],['Binding','Leather'],['Underfelt','Included'],['Pattern','E-Type']],mt:'carpet',hf:false,base:380,dm:'wool',df:null,dc:'Sherwood Green',dhx:'#2a4a2a',dct:'oem',media:[{c:'#2a3a20',v:0},{c:'#1c2a14',v:1}],mn:'Fitting guide video.',action:'keep'},
+  item3:{name:'Hood',metaBase:'Convertible top',about:'UV damage noted along the rear seam. Mohair is the original specification — cleaner lines, better drape, 15+ year lifespan. PVC is the budget alternative.',specs:[['Fitment','Full replacement'],['Suggested by','John Skinner'],['Windows','Quarter lights incl.'],['Guide','Supplied']],mt:'hood',hf:false,base:920,dm:'mohair',df:null,dc:'Black',dhx:'#1a1a1a',dct:'oem',media:[{c:'#222',v:1},{c:'#333',v:0}],mn:'Comparison video: Mohair vs PVC.',action:'decide'},
+  item4:{name:'Door Card Panels',metaBase:'Pair',about:'Full door card panels including arm rest covering, sewn to the original E-Type pattern.',specs:[['Items','Pair'],['Armrests','Included'],['Piping','Matching'],['Pattern','Original']],mt:'leather_trim',hf:true,base:290,dm:'leather',df:'grained',dc:'British Racing Green',dhx:'#1c3a1c',dct:'oem',media:[{c:'#c8ba9a',v:0}],mn:'',action:'keep'},
+  item5:{name:'Headlining',metaBase:'Full interior',about:'Colour to be chosen. Added as a placeholder — use OEM Colours or Bespoke tab to select, or ask us and we\'ll recommend based on the rest of your choices.',specs:[['Status','Awaiting colour choice'],['Fitment','Full'],['Material','Cloth'],['Pattern','E-Type original']],mt:'headlining',hf:false,base:220,dm:'cloth',df:null,dc:null,dhx:'#f0eee9',dct:null,media:[{c:'#ddd',v:0},{c:'#ccc',v:0}],mn:'Sample colour options.',action:'input'},
+  item6:{name:'Dashboard Leather',metaBase:'Dashboard top',about:'Dashboard top covering in matching grained leather, cut to the original E-Type pattern.',specs:[['Area','Dashboard top'],['Piping','None'],['Pattern','E-Type']],mt:'leather_trim',hf:true,base:180,dm:'leather',df:'grained',dc:'British Racing Green',dhx:'#1c3a1c',dct:'oem',media:[{c:'#1c3a1c',v:0}],mn:'',action:'keep'},
+  item7:{name:'Boot Carpet',metaBase:'Boot area',about:'Boot carpet in the same wool as the main cabin carpet for a consistent finish throughout.',specs:[['Area','Boot'],['Binding','Leather'],['Underfelt','Included'],['Match','Main carpet']],mt:'carpet',hf:false,base:120,dm:'wool',df:null,dc:'Sherwood Green',dhx:'#2a4a2a',dct:'oem',media:[{c:'#2a3a20',v:0}],mn:'',action:'keep'},
+};
+
+const OEM_C = [
+  {name:'British Racing Green',hex:'#1c3a1c'},{name:'Old English White',hex:'#f5f0e2'},
+  {name:'Carmen Red',hex:'#8B1A1A'},{name:'Signal Red',hex:'#c0302a'},
+  {name:'Cotswold Blue',hex:'#4a6a8a'},{name:'Silver Blue',hex:'#7a9ab0'},
+  {name:'Gunmetal',hex:'#3a3d42'},{name:'Sherwood Green',hex:'#2a4a2a'},
+  {name:'Willow Green',hex:'#7a9a4a'},{name:'Primrose',hex:'#d4c84a'},
+  {name:'Black',hex:'#1a1a1a'},{name:'Sand Beige',hex:'#c8b87a'},
+];
+const BSP_C = [
+  {name:'Midnight Navy',hex:'#1a2048'},{name:'Burgundy',hex:'#5a1020'},
+  {name:'Pale Cream',hex:'#ece8d8'},{name:'Tobacco Brown',hex:'#5a3820'},
+  {name:'Slate Grey',hex:'#606870'},{name:'Ivory',hex:'#f0e8d0'},
+  {name:'Chestnut',hex:'#7a3820'},{name:'Dove Grey',hex:'#a0a0a0'},
+];
+
+/* ─── STATE ─── */
+const S = {};
+Object.keys(ITEMS).forEach(id => {
+  const it = ITEMS[id];
+  S[id] = {mat:it.dm, fin:it.df||'grained', col:it.dc, chx:it.dhx, ctype:it.dct};
+});
+const SAVED = {};
+Object.keys(S).forEach(id => SAVED[id] = {...S[id]});
+
+/* ─── MESSAGES ─── */
+let MSGS = [
+  {id:'m1', type:'customer',tag:'general',text:'Hi — I\'ve just received the quote. Everything looks great. I have a few questions before I confirm.',time:'4 Mar, 9:14 AM'},
+  {id:'m2', type:'admin',   tag:'general',text:'Morning David — happy to go through everything. Fire away.',time:'4 Mar, 10:02 AM'},
+  {id:'m3', type:'customer',tag:'item1',  text:'Can you match the seat colour exactly to the original 1972 British Racing Green? I want the right shade, not a modern approximation.',time:'4 Mar, 10:15 AM'},
+  {id:'m4', type:'admin',   tag:'item1',  text:'Yes — BRG is one of our most frequently matched E-Type colours. We have the original Jaguar colour card and will confirm the match before production. You\'ll see a sample before we cut anything.',time:'4 Mar, 11:30 AM'},
+  {id:'m5', type:'customer',tag:'item2',  text:'On the carpet — is Sherwood Green a close match to the seat colour, or will there be a visible difference?',time:'4 Mar, 2:45 PM'},
+  {id:'m6', type:'admin',   tag:'item2',  text:'Leather and carpet are different materials so they won\'t be identical, but we\'ve matched these two across hundreds of E-Type restorations. We can send you swatches together if it helps.',time:'4 Mar, 3:20 PM'},
+  {id:'m7', type:'customer',tag:'item3',  text:'I didn\'t realise the existing hood had UV damage — can you show me what you spotted?',time:'5 Mar, 8:55 AM'},
+  {id:'m8', type:'admin',   tag:'item3',  text:'Of course — I\'ll send a photo of the rear seam area. It\'s early-stage, not catastrophic, but worth addressing now while everything else is being done. Mohair will last 15+ years maintained properly.',time:'5 Mar, 9:40 AM'},
+  {id:'m9', type:'customer',tag:'item1',  text:'Do you also offer smooth leather? I\'ve seen a few E-Types done in smooth and quite like it.',time:'5 Mar, 11:10 AM'},
+  {id:'m10',type:'admin',   tag:'item1',  text:'We do — smooth leather is available in all the same colours at £140 more. The look is more continental than traditional British, but it does suit the E-Type. I can add it as an option on your quote.',time:'5 Mar, 11:55 AM'},
+  {id:'m11',type:'customer',tag:'item5',  text:'The headlining is still TBC — would you recommend matching it to the seats or going slightly lighter?',time:'6 Mar, 10:20 AM'},
+  {id:'m12',type:'admin',   tag:'general',text:'On the headlining — most E-Type restorations use a lighter colour than the seats, often off-white or light grey. It keeps the interior feeling airy. Happy to send some reference photos.',time:'6 Mar, 10:55 AM'},
+];
+
+let activeItem = null;
+let hasUnsaved = false;
+let activeTab = 'quote';
+let msgFilter = 'all';
+let msgSearch = '';
+let composeTag = 'general';
+
+/* ══════════════════════════════
+   PORTAL TAB SWITCHING
+══════════════════════════════ */
+function switchTab(tab) {
+  activeTab = tab;
+  ['quote','messages','docs','status'].forEach(t => {
+    document.getElementById('pt-'+t).classList.toggle('active', t===tab);
+  });
+  document.getElementById('panel-quote').style.display    = tab==='quote'    ? 'block' : 'none';
+  document.getElementById('panel-messages').style.display = tab==='messages' ? 'block' : 'none';
+  document.getElementById('approve-bar').classList.toggle('hidden', tab!=='quote');
+  document.getElementById('compose-wrap').classList.toggle('hidden', tab!=='messages');
+  if (tab === 'messages') {
+    document.getElementById('unread-dot').style.display = 'none';
+    renderMessages();
+  }
+}
+
+/* ══════════════════════════════
+   PRICE CALC
+══════════════════════════════ */
+function calcPrice(id) {
+  const it = ITEMS[id]; const s = S[id];
+  const mat = MATS[it.mt].find(m=>m.id===s.mat);
+  let p = it.base + (mat?mat.d:0);
+  if (it.hf && s.mat==='leather') p += FIN_D[s.fin]||0;
+  if (BSP_C.find(c=>c.name===s.col)) p += 80;
+  if (!s.col && s.ctype==='bespoke-tbc') p += 80;
+  return p;
+}
+function fmt(p) { return p>0?'£'+p.toLocaleString():'TBC'; }
+function updateTotals() {
+  let total=0;
+  Object.keys(S).forEach(id=>{ total+=calcPrice(id); });
+  document.getElementById('ab-amount').innerHTML = '£'+total.toLocaleString();
+  // Stats
+  const confirmed = Object.keys(ITEMS).filter(id=>ITEMS[id].action==='keep').length;
+  const pending   = Object.keys(ITEMS).length - confirmed;
+  document.getElementById('qs-price').textContent = '£'+total.toLocaleString();
+  document.getElementById('qs-confirmed').textContent = confirmed;
+  document.getElementById('qs-pending').textContent = pending;
+}
+
+/* ══════════════════════════════
+   RENDER ITEM LIST
+══════════════════════════════ */
+function renderItemList() {
+  const el = document.getElementById('item-list');
+  el.innerHTML = Object.keys(ITEMS).map(id => {
+    const it=ITEMS[id]; const s=S[id];
+    const price = calcPrice(id);
+    const mat = MATS[it.mt].find(m=>m.id===s.mat);
+    let meta = [mat?mat.name:''];
+    if (it.hf && s.mat==='leather') meta.push(cap(s.fin));
+    if (s.col) meta.push(s.col);
+    else if (s.ctype==='oem-tbc') meta.push('OEM Colour TBC');
+    else if (s.ctype==='bespoke-tbc') meta.push('Bespoke TBC');
+    else meta.push('Colour not chosen');
+    meta.push(it.metaBase);
+    const badge = it.action==='keep'  ? '<span class="i-badge b-ok">Confirmed</span>'
+                : it.action==='decide'? '<span class="i-badge b-rev">Decide</span>'
+                :                       '<span class="i-badge b-act">Action needed</span>';
+    return `<div class="item-row${activeItem===id?' active':''}" id="row-${id}" onclick="openDrawer('${id}')">
+      <div class="i-swatch" id="sw-${id}" style="background:${s.chx||'#ccc'};"></div>
+      <div style="min-width:0"><div class="i-name">${it.name}</div><div class="i-meta" id="imeta-${id}">${meta.join(' · ')}</div></div>
+      ${badge}
+      <span class="i-price" id="iprice-${id}">${fmt(price)}</span>
+    </div>`;
+  }).join('');
+}
+
+function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+
+/* ══════════════════════════════
+   DRAWER
+══════════════════════════════ */
+function openDrawer(id, startTab) {
+  if (activeItem) document.getElementById('row-'+activeItem)?.classList.remove('active');
+  activeItem = id; hasUnsaved = false;
+  document.getElementById('row-'+id)?.classList.add('active');
+  renderDrawer(id);
+  dTab(startTab||'about');
+  document.getElementById('drawer').classList.add('open');
+  document.getElementById('d-overlay').classList.add('open');
+}
+function closeDrawer() {
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('d-overlay').classList.remove('open');
+  if (activeItem) document.getElementById('row-'+activeItem)?.classList.remove('active');
+  activeItem = null; hasUnsaved = false;
+}
+
+function renderDrawer(id) {
+  const it=ITEMS[id]; const s=S[id];
+  const p = calcPrice(id);
+  document.getElementById('dh-swatch').style.background = s.chx||'#ccc';
+  document.getElementById('dh-name').textContent = it.name;
+  document.getElementById('dh-meta').textContent = buildMeta(id);
+  document.getElementById('dh-price').textContent = fmt(p);
+  document.getElementById('dh-was').style.display = 'none';
+  document.getElementById('d-about-txt').textContent = it.about;
+  document.getElementById('d-specs').innerHTML = it.specs.map(([l,v])=>`<div class="spec-item"><div class="sl">${l}</div><div class="sv">${v}</div></div>`).join('');
+  renderMatPanel(id); renderOEMPanel(id); renderBespokePanel(id);
+  document.getElementById('d-media-note').textContent = it.mn;
+  document.getElementById('d-media-scroll').innerHTML = it.media.map(m=>`<div class="mthumb${m.v?' v':''}" style="background:${m.c};"></div>`).join('');
+  renderDQThread(id);
+  renderActions(id);
+  setUnsaved(false);
+}
+
+function buildMeta(id) {
+  const it=ITEMS[id]; const s=S[id];
+  const mat=MATS[it.mt].find(m=>m.id===s.mat);
+  let p=[mat?mat.name:''];
+  if(it.hf && s.mat==='leather') p.push(cap(s.fin));
+  if(s.col) p.push(s.col);
+  else if(s.ctype==='oem-tbc') p.push('OEM Colour TBC');
+  else if(s.ctype==='bespoke-tbc') p.push('Bespoke TBC');
+  else p.push('Colour TBC');
+  p.push(it.metaBase);
+  return p.join(' · ');
+}
+
+function renderMatPanel(id) {
+  const it=ITEMS[id]; const s=S[id];
+  document.getElementById('mat-grid').innerHTML = MATS[it.mt].map(m=>{
+    const p=it.base+m.d;
+    return `<button class="mat-btn${s.mat===m.id?' sel':''}" onclick="selMat('${id}','${m.id}')"><div class="mn">${m.name}</div><div class="mp">${m.d===0?fmt(p):fmt(p)+' (save £'+Math.abs(m.d)+')'}</div><div class="mt">${m.desc}</div></button>`;
+  }).join('');
+  const fs=document.getElementById('fin-section');
+  if(it.hf && s.mat==='leather'){
+    fs.style.display='block';
+    document.getElementById('fp-g').textContent=fmt(it.base);
+    document.getElementById('fp-s').textContent=fmt(it.base+140)+' (+£140)';
+    document.getElementById('fin-grained').className='fin-btn'+(s.fin==='grained'?' sel':'');
+    document.getElementById('fin-smooth').className='fin-btn'+(s.fin==='smooth'?' sel':'');
+  } else fs.style.display='none';
+}
+
+function renderOEMPanel(id) {
+  const s=S[id];
+  document.getElementById('tbc-oem').classList.toggle('sel',s.ctype==='oem-tbc');
+  document.getElementById('oem-grid').innerHTML = OEM_C.map(c=>
+    `<div class="cs${s.col===c.name?' sel':''}" onclick="selCol('${id}','${c.name}','${c.hex}','oem')"><div class="cc" style="background:${c.hex};"></div><div class="cn">${c.name}</div></div>`).join('');
+}
+
+function renderBespokePanel(id) {
+  const s=S[id];
+  document.getElementById('tbc-bespoke').classList.toggle('sel',s.ctype==='bespoke-tbc');
+  document.getElementById('bespoke-grid').innerHTML = BSP_C.map(c=>
+    `<div class="cs${s.col===c.name?' sel':''}" onclick="selCol('${id}','${c.name}','${c.hex}','bespoke')"><div class="cc" style="background:${c.hex};"></div><div class="cn">${c.name}</div><span class="cp">+£80</span></div>`).join('');
+}
+
+function renderDQThread(id) {
+  const itemMsgs = MSGS.filter(m=>m.tag===id);
+  const el=document.getElementById('dq-thread');
+  const cnt=document.getElementById('dt-dq-count');
+  if(itemMsgs.length>0){cnt.style.display='inline';cnt.textContent=itemMsgs.length;}else{cnt.style.display='none';}
+  el.innerHTML = itemMsgs.length
+    ? itemMsgs.map(m=>`<div class="msg-group ${m.type}">
+        <div class="msg-sender">${m.type==='admin'?'John Skinner':'You'}</div>
+        <div class="msg-bubble">${m.text}<div class="msg-time">${m.time}</div></div>
+      </div>`).join('')
+    : '<p class="dq-empty">No questions yet on this item. Ask anything below.</p>';
+}
+
+function renderActions(id) {
+  const it=ITEMS[id];
+  const da=document.getElementById('d-acts');
+  if(it.action==='decide') da.innerHTML=`<button class="act a-keep">✓ Add to order</button><button class="act a-remove">✕ Not needed</button>`;
+  else if(it.action==='input') da.innerHTML=`<button class="act a-keep" style="flex:2" onclick="dTab('oem')">Choose a colour →</button><button class="act a-remove">✕ Remove</button>`;
+  else da.innerHTML=`<button class="act a-keep">✓ Confirmed</button><button class="act a-edit" onclick="dTab('material')">✏️ Edit</button><button class="act a-remove">✕ Remove</button>`;
+}
+
+/* ─── Selection handlers ─── */
+function selMat(id,matId){ S[id].mat=matId; if(matId!=='leather')S[id].fin='grained'; markChanged(id); }
+function selFinish(fin){ if(!activeItem)return; S[activeItem].fin=fin; markChanged(activeItem); }
+function selCol(id,name,hex,type){ S[id].col=name; S[id].chx=hex; S[id].ctype=type; markChanged(id); }
+function selTBC(type){
+  if(!activeItem)return;
+  const t=type==='oem'?'oem-tbc':'bespoke-tbc';
+  if(S[activeItem].ctype===t){S[activeItem].col=null;S[activeItem].chx='#f0eee9';S[activeItem].ctype=null;}
+  else{S[activeItem].col=null;S[activeItem].chx=type==='oem'?'#c8c0a8':'#b8b0a0';S[activeItem].ctype=t;}
+  markChanged(activeItem);
+}
+
+function markChanged(id){
+  const p=calcPrice(id); const orig=ITEMS[id].base;
+  document.getElementById('dh-price').textContent=fmt(p);
+  const wasEl=document.getElementById('dh-was');
+  if(p!==orig){wasEl.style.display='block';wasEl.textContent='£'+orig.toLocaleString();}else wasEl.style.display='none';
+  document.getElementById('dh-swatch').style.background=S[id].chx||'#ccc';
+  document.getElementById('dh-meta').textContent=buildMeta(id);
+  renderMatPanel(id); renderOEMPanel(id); renderBespokePanel(id);
+  const toast=document.getElementById('price-toast');
+  toast.classList.add('show'); clearTimeout(toast._t); toast._t=setTimeout(()=>toast.classList.remove('show'),1800);
+  setUnsaved(true);
+  updateTotals();
+}
+
+function setUnsaved(v){
+  hasUnsaved=v;
+  document.getElementById('unsaved-bar').classList.toggle('show',v);
+  document.getElementById('save-bar').classList.toggle('show',v);
+}
+
+function saveChanges(){
+  if(!activeItem)return;
+  SAVED[activeItem]={...S[activeItem]};
+  // Update list row
+  updateListRow(activeItem);
+  setUnsaved(false);
+  const btn=document.querySelector('.save-btn');
+  btn.textContent='Saved ✓'; btn.style.background='var(--green)';
+  setTimeout(()=>{btn.textContent='Save Changes ✓';btn.style.background='';},2000);
+}
+
+function updateListRow(id){
+  const p=calcPrice(id);
+  document.getElementById('iprice-'+id).textContent=fmt(p);
+  document.getElementById('imeta-'+id).textContent=buildMeta(id);
+  document.getElementById('sw-'+id).style.background=S[id].chx||'#ccc';
+}
+
+/* ─── Drawer tabs ─── */
+function dTab(name){
+  ['about','material','oem','bespoke','media','dq'].forEach(t=>{
+    document.getElementById('dp-'+t).classList.toggle('active',t===name);
+    document.getElementById('dt-'+t).classList.toggle('active',t===name);
+  });
+  const el=document.getElementById('dt-'+name);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
+  if(name==='dq') document.getElementById('dq-input').focus();
+}
+
+/* ─── Send from drawer Questions tab ─── */
+function sendDrawerMsg(){
+  if(!activeItem) return;
+  const input=document.getElementById('dq-input');
+  const text=input.value.trim(); if(!text) return;
+  const now=new Date();
+  const ts=now.toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).replace(',','');
+  MSGS.push({id:'m'+(MSGS.length+1),type:'customer',tag:activeItem,text,time:ts});
+  input.value='';
+  renderDQThread(activeItem);
+  // Show unread dot on Messages tab if not currently viewing it
+  if(activeTab!=='messages') document.getElementById('unread-dot').style.display='block';
+  // Scroll thread to bottom
+  const dq=document.getElementById('dq-thread');
+  dq.scrollTop=dq.scrollHeight;
+}
+
+/* ══════════════════════════════
+   MESSAGES
+══════════════════════════════ */
+function renderMessages(){
+  buildFilterPills();
+  renderThread();
+}
+
+function buildFilterPills(){
+  const tags=['all','general',...Object.keys(ITEMS)];
+  const counts={all:MSGS.length};
+  MSGS.forEach(m=>{ counts[m.tag]=(counts[m.tag]||0)+1; });
+  // Only show pills for tags that have messages
+  const activeTags = tags.filter(t=>t==='all'||t==='general'||(counts[t]&&counts[t]>0));
+  const meta=ITEM_META;
+  document.getElementById('filter-row').innerHTML = activeTags.map(t=>{
+    const m=meta[t]||{label:'All Messages',colour:'#c8ba9a'};
+    const label=t==='all'?'All Messages':m.label;
+    const dot=t==='all'?'':`<span class="pill-dot" style="background:${m.colour};"></span>`;
+    return `<div class="pill${msgFilter===t?' active':''}" onclick="setFilter('${t}')">${dot}${m.short||label}<span class="pill-n">${counts[t]||0}</span></div>`;
+  }).join('');
+}
+
+function renderThread(){
+  const filtered=MSGS.filter(m=>{
+    const mf=msgFilter==='all'||m.tag===msgFilter;
+    const ms=!msgSearch||m.text.toLowerCase().includes(msgSearch.toLowerCase())||(ITEM_META[m.tag]?.label||'').toLowerCase().includes(msgSearch.toLowerCase());
+    return mf&&ms;
+  });
+  document.getElementById('msg-count-badge').textContent=filtered.length+' message'+(filtered.length!==1?'s':'')+(msgSearch?' matching':'');
+  const nr=document.getElementById('no-results');
+  if(!filtered.length){nr.classList.add('show');document.getElementById('msg-thread').innerHTML='';return;}
+  nr.classList.remove('show');
+  // Group by day
+  const byDay={};
+  filtered.forEach(m=>{const d=m.time.split(',')[0];if(!byDay[d])byDay[d]=[];byDay[d].push(m);});
+  document.getElementById('msg-thread').innerHTML=Object.entries(byDay).map(([d,msgs])=>
+    `<div class="date-sep"><span>${d}</span></div>${msgs.map(m=>renderMsgBubble(m)).join('')}`
+  ).join('');
+}
+
+function renderMsgBubble(m){
+  const meta=ITEM_META[m.tag]||ITEM_META.general;
+  const isGen=m.tag==='general';
+  const text=msgSearch?hl(m.text,msgSearch):m.text;
+  const tagClass=isGen?`general-tag ${m.type}`:'';
+  const tagClick=!isGen?`onclick="openDrawer('${m.tag}','dq')"` :'';
+  const tagHTML=`<div><span class="item-tag ${tagClass}" ${tagClick}><span class="tag-dot" style="background:${meta.colour};"></span>${meta.label}</span></div>`;
+  const timeStr=m.time.split(', ')[1]||m.time;
+  return `<div class="msg-group ${m.type}">
+    <div class="msg-sender">${m.type==='admin'?'John Skinner':'You'}</div>
+    <div class="msg-bubble">${text}${tagHTML}<div class="msg-time">${timeStr}</div></div>
+  </div>`;
+}
+
+function hl(text,q){
+  if(!q)return text;
+  return text.replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<mark class="hl">$1</mark>');
+}
+
+function setFilter(f){
+  msgFilter=f;
+  buildFilterPills();
+  renderThread();
+}
+
+function handleSearch(v){
+  msgSearch=v.trim();
+  document.getElementById('s-clear').classList.toggle('show',!!msgSearch);
+  document.getElementById('s-icon').style.display=msgSearch?'none':'';
+  renderThread();
+}
+function clearSearch(){
+  document.getElementById('search-input').value='';
+  msgSearch='';
+  document.getElementById('s-clear').classList.remove('show');
+  document.getElementById('s-icon').style.display='';
+  renderThread();
+}
+
+/* ─── Compose (Messages tab) ─── */
+function setCTag(tag){
+  composeTag=tag;
+  document.querySelectorAll('.ctag').forEach(c=>c.classList.toggle('active',c.dataset.ct===tag));
+  const meta=ITEM_META[tag]||ITEM_META.general;
+  const hint=document.getElementById('compose-hint');
+  hint.innerHTML=tag==='general'
+    ?'Sending a <strong>General</strong> message — not linked to a specific item.'
+    :`Linking this message to <strong>${meta.label}</strong> — it will also appear in that item\'s Questions tab.`;
+  document.getElementById('compose-input').placeholder=tag==='general'?'Type your message…':`Ask about ${meta.label}…`;
+}
+
+function sendMsg(){
+  const input=document.getElementById('compose-input');
+  const text=input.value.trim(); if(!text)return;
+  const now=new Date();
+  const ts=now.toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).replace(',','');
+  MSGS.push({id:'m'+(MSGS.length+1),type:'customer',tag:composeTag,text,time:ts});
+  input.value='';
+  renderMessages();
+  setTimeout(()=>window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'}),80);
+}
+
+/* ─── Enter to send ─── */
+document.addEventListener('DOMContentLoaded',()=>{
+  document.getElementById('compose-input').addEventListener('keydown',e=>{
+    if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}
+  });
+  document.getElementById('dq-input').addEventListener('keydown',e=>{
+    if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendDrawerMsg();}
+  });
+  renderItemList();
+  updateTotals();
+  renderMessages();
+});
+</script>
+</body>
+</html>
