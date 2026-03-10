@@ -38,9 +38,9 @@
 
     /* ══ PORTAL TABS — mobile grid ══ */
     @media (max-width: 600px) {
-      .portal-tabs { display:grid; grid-template-columns:1fr 1fr; border-bottom:none; overflow:visible; gap:0; background:var(--warm); padding:10px 12px; gap:8px; }
-      .ptab { flex-shrink:unset; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; padding:13px 8px 11px; border-bottom:none; margin-bottom:0; border-radius:10px; background:#fff; border:2px solid var(--light); font-size:0.69rem; letter-spacing:0.04em; min-height:64px; transition:border-color 0.18s, background 0.18s, color 0.18s; position:relative; }
-      .ptab::before { font-size:1.45rem; line-height:1; }
+      .portal-tabs { display:grid; grid-template-columns:repeat(3,1fr); border-bottom:none; overflow:visible; background:var(--warm); padding:8px 12px 10px; gap:7px; }
+      .ptab { flex-shrink:unset; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; padding:10px 6px 9px; border-bottom:none; margin-bottom:0; border-radius:9px; background:#fff; border:1.5px solid var(--light); font-size:0.62rem; letter-spacing:0.04em; min-height:54px; transition:border-color 0.18s, background 0.18s, color 0.18s; position:relative; }
+      .ptab::before { font-size:1.2rem; line-height:1; }
       .ptab:nth-child(1)::before { content:'👤'; }
       .ptab:nth-child(2)::before { content:'🚗'; }
       .ptab:nth-child(3)::before { content:'📋'; }
@@ -48,8 +48,7 @@
       .ptab:nth-child(5)::before { content:'📁'; }
       .ptab:nth-child(6)::before { content:'🎨'; }
       .ptab.active { background:var(--navy); color:var(--gold) !important; border-color:var(--navy); }
-      .ptab .badge { top:6px; right:6px; border-color:var(--navy); }
-      .ptab.active .badge { border-color:var(--navy); }
+      .ptab .badge { top:5px; right:5px; }
     }
 
     /* ══ PANELS ══ */
