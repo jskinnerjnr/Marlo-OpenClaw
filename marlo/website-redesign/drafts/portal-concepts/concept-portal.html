@@ -140,12 +140,15 @@
     .mp-head p  { font-size:0.76rem; color:var(--grey); margin-top:2px; }
     .msg-cnt { background:rgba(200,186,154,0.2); border:1px solid var(--gold); color:#7a6f52; padding:4px 11px; border-radius:12px; font-size:0.71rem; font-weight:600; white-space:nowrap; flex-shrink:0; }
     /* Sticky search + filter bar */
-    .msg-sticky { position:sticky; top:0; z-index:20; background:var(--cream); padding:10px 0 4px; margin:0 0 10px; }
-    .search-wrap { position:relative; margin-bottom:8px; }
-    .search-input { width:100%; padding:10px 36px 10px 13px; border:1.5px solid var(--light); border-radius:8px; font-family:var(--sans); font-size:0.87rem; color:var(--text); background:#fff; transition:border-color 0.2s; box-shadow:0 1px 4px rgba(0,0,0,0.05); }
+    .msg-sticky { position:sticky; top:0; z-index:20; background:var(--cream); padding:10px 0 6px; margin:0 0 10px; }
+    .search-wrap { position:relative; margin-bottom:9px; display:flex; gap:0; }
+    .search-input { flex:1; padding:12px 16px 12px 16px; border:2px solid var(--navy); border-right:none; border-radius:9px 0 0 9px; font-family:var(--sans); font-size:0.9rem; color:var(--text); background:#fff; transition:border-color 0.2s; box-shadow:0 2px 6px rgba(0,0,0,0.07); }
     .search-input:focus { outline:none; border-color:var(--gold); }
-    .s-icon  { position:absolute; right:11px; top:50%; transform:translateY(-50%); color:var(--grey); pointer-events:none; font-size:0.9rem; }
-    .s-clear { position:absolute; right:10px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--grey); font-size:1.1rem; cursor:pointer; display:none; }
+    .search-input::placeholder { color:#aaa; }
+    .search-btn { background:var(--navy); border:2px solid var(--navy); border-left:none; border-radius:0 9px 9px 0; padding:0 15px; color:var(--gold); font-size:1rem; cursor:pointer; display:flex; align-items:center; flex-shrink:0; transition:background 0.15s; }
+    .search-btn:hover { background:var(--navy2); }
+    .s-icon  { display:none; }
+    .s-clear { position:absolute; right:52px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--grey); font-size:1.1rem; cursor:pointer; display:none; z-index:1; }
     .s-clear.show { display:block; }
     .filter-row { display:flex; gap:6px; overflow-x:auto; padding-bottom:2px; scrollbar-width:none; }
     .filter-row::-webkit-scrollbar { display:none; }
@@ -187,20 +190,20 @@
     mark.hl { background:rgba(200,186,154,0.55); border-radius:2px; padding:0 1px; }
 
     /* ══ COMPOSE ══ */
-    .compose-wrap { position:fixed; bottom:0; left:0; right:0; background:#fff; border-top:1px solid var(--light); z-index:45; padding:10px 16px 13px; transition:transform 0.3s; }
+    .compose-wrap { position:fixed; bottom:0; left:0; right:0; background:var(--navy); border-top:3px solid var(--gold); z-index:45; padding:11px 16px 14px; transition:transform 0.3s; box-shadow:0 -4px 20px rgba(0,0,0,0.18); }
     .compose-wrap.hide { transform:translateY(100%); }
     .compose-inner { max-width:720px; margin:0 auto; display:flex; flex-direction:column; gap:7px; }
     .compose-tags { display:flex; align-items:center; gap:6px; overflow-x:auto; scrollbar-width:none; }
     .compose-tags::-webkit-scrollbar { display:none; }
-    .ctag-lbl { font-size:0.63rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--grey); flex-shrink:0; }
-    .ctag { flex-shrink:0; padding:4px 10px; border-radius:12px; font-size:0.69rem; font-weight:600; cursor:pointer; border:1.5px solid var(--light); background:#fff; color:var(--grey); white-space:nowrap; transition:all 0.15s; font-family:var(--sans); }
-    .ctag.active { background:var(--navy); color:#fff; border-color:var(--navy); }
-    .c-hint { font-size:0.7rem; color:var(--grey); line-height:1.4; }
-    .c-hint strong { color:var(--navy); }
-    .compose-row { display:flex; gap:7px; }
-    .compose-input { flex:1; padding:9px 12px; border:1.5px solid var(--light); border-radius:8px; font-family:var(--sans); font-size:0.87rem; resize:none; color:var(--text); transition:border-color 0.2s; }
+    .ctag-lbl { font-size:0.63rem; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.45); flex-shrink:0; }
+    .ctag { flex-shrink:0; padding:4px 10px; border-radius:12px; font-size:0.69rem; font-weight:600; cursor:pointer; border:1.5px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.6); white-space:nowrap; transition:all 0.15s; font-family:var(--sans); }
+    .ctag.active { background:var(--gold); color:var(--navy); border-color:var(--gold); }
+    .c-hint { font-size:0.7rem; color:rgba(255,255,255,0.45); line-height:1.4; }
+    .c-hint strong { color:var(--gold); }
+    .compose-row { display:flex; gap:7px; align-items:flex-end; }
+    .compose-input { flex:1; padding:10px 13px; border:2px solid rgba(255,255,255,0.15); border-radius:9px; font-family:var(--sans); font-size:0.9rem; resize:none; color:var(--text); background:#fff; transition:border-color 0.2s; }
     .compose-input:focus { outline:none; border-color:var(--gold); }
-    .compose-send { background:var(--navy); color:var(--gold); border:none; padding:9px 15px; border-radius:8px; font-weight:700; font-size:0.82rem; cursor:pointer; font-family:var(--sans); white-space:nowrap; }
+    .compose-send { background:var(--gold); color:var(--navy); border:none; padding:10px 16px; border-radius:9px; font-weight:800; font-size:0.84rem; cursor:pointer; font-family:var(--sans); white-space:nowrap; letter-spacing:0.02em; }
 
     /* ══ MESSAGE LIGHTBOX ══ */
     .lb-overlay { position:fixed; inset:0; background:rgba(10,12,22,0.78); z-index:300; display:flex; align-items:flex-end; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.25s; }
@@ -501,8 +504,8 @@
     .attach-preview-wrap.has-files { display:flex; }
     .attach-file-chip { display:inline-flex; align-items:center; gap:5px; padding:5px 9px; background:var(--warm); border:1px solid var(--light); border-radius:8px; font-size:0.72rem; color:var(--text); font-weight:600; }
     .attach-file-chip .rm { background:none; border:none; color:var(--grey); cursor:pointer; font-size:0.85rem; padding:0 0 0 2px; font-family:var(--sans); line-height:1; }
-    .attach-btn { background:none; border:1.5px solid var(--light); color:var(--grey); width:36px; height:36px; border-radius:8px; font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:border-color 0.15s,color 0.15s; align-self:flex-end; }
-    .attach-btn:hover { border-color:var(--gold); color:var(--navy); }
+    .attach-btn { background:rgba(255,255,255,0.1); border:1.5px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.7); width:40px; height:40px; border-radius:9px; font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:border-color 0.15s,background 0.15s; align-self:flex-end; }
+    .attach-btn:hover { border-color:var(--gold); background:rgba(255,255,255,0.16); }
     .compose-row { display:flex; gap:7px; align-items:flex-end; }
     .compose-wrap.drag-over { outline:2px dashed var(--gold); outline-offset:-4px; background:rgba(200,186,154,0.07); }
 
@@ -704,8 +707,8 @@
       <div class="msg-sticky">
         <div class="search-wrap">
           <input class="search-input" id="s-input" type="text" placeholder="Search messages…" oninput="handleSearch(this.value)">
-          <span class="s-icon" id="s-icon">🔍</span>
           <button class="s-clear" id="s-clear" onclick="clearSearch()">✕</button>
+          <button class="search-btn" onclick="document.getElementById('s-input').focus()">🔍</button>
         </div>
         <div class="filter-row" id="filter-row"></div>
       </div>
