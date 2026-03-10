@@ -488,8 +488,8 @@
     .sh-cost-confirmed .sh-note    { font-size:0.76rem; color:rgba(255,255,255,0.4); margin-top:8px; line-height:1.55; border-top:1px solid rgba(255,255,255,0.1); padding-top:10px; }
 
     /* ══ LOGIN NOTIFICATION MODAL ══ */
-    .notif-overlay { position:fixed; inset:0; background:rgba(10,12,24,0.72); z-index:400; display:flex; align-items:flex-end; justify-content:center; padding:0; transition:opacity 0.3s; }
-    .notif-overlay.hidden { opacity:0; pointer-events:none; }
+    .notif-overlay { position:fixed; inset:0; background:rgba(10,12,24,0.72); z-index:400; display:flex; align-items:flex-end; justify-content:center; padding:0; transition:opacity 0.3s, visibility 0.3s; }
+    .notif-overlay.hidden { opacity:0; pointer-events:none; visibility:hidden; }
     @media(min-width:560px){ .notif-overlay { align-items:center; padding:20px; } }
     .notif-sheet { background:#fff; width:100%; max-width:480px; border-radius:18px 18px 0 0; max-height:90dvh; display:flex; flex-direction:column; overflow:hidden; transform:translateY(0); transition:transform 0.35s cubic-bezier(.4,0,.2,1); box-shadow:0 -8px 48px rgba(0,0,0,0.3); }
     @media(min-width:560px){ .notif-sheet { border-radius:16px; max-height:85vh; } }
@@ -2068,9 +2068,7 @@ function goNotif(id){
 }
 
 function closeNotifModal(){
-  const overlay=document.getElementById('notif-overlay');
-  overlay.classList.add('hidden');
-  setTimeout(()=>overlay.style.display='none',350);
+  document.getElementById('notif-overlay').classList.add('hidden');
 }
 
 function dismissAllNotifs(){
@@ -2090,9 +2088,7 @@ function updateNotifBell(){
 function reopenNotifs(){
   if(!activeNotifs.length)return;
   renderNotifs();
-  const overlay=document.getElementById('notif-overlay');
-  overlay.style.display='';
-  requestAnimationFrame(()=>overlay.classList.remove('hidden'));
+  requestAnimationFrame(()=>document.getElementById('notif-overlay').classList.remove('hidden'));
 }
 
 /* ═══ HAMBURGER NAV ═══ */
@@ -2127,7 +2123,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   // Show login notifications after brief delay
   renderNotifs();
   updateNotifBell();
-  setTimeout(()=>document.getElementById('notif-overlay').classList.remove('hidden'),400);
+  setTimeout(()=>requestAnimationFrame(()=>document.getElementById('notif-overlay').classList.remove('hidden')),400);
 });
 </script>
 </body>
