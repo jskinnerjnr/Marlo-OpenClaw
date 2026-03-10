@@ -409,6 +409,100 @@
     .sh-cost-confirmed .sh-amount { font-family:var(--serif); font-size:2rem; color:var(--gold); }
     .sh-cost-confirmed .sh-carrier { font-size:0.76rem; color:rgba(255,255,255,0.5); margin-top:4px; }
     .sh-cost-confirmed .sh-note    { font-size:0.76rem; color:rgba(255,255,255,0.4); margin-top:8px; line-height:1.55; border-top:1px solid rgba(255,255,255,0.1); padding-top:10px; }
+
+    /* ══ VIEW / EDIT MODE ══ */
+    .section-toolbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:4px; }
+    .section-toolbar h2 { font-family:var(--serif); font-size:1.35rem; color:var(--navy); }
+    .edit-btn  { background:none; border:1.5px solid var(--light); color:var(--navy); padding:7px 16px; border-radius:7px; font-family:var(--sans); font-size:0.78rem; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:6px; transition:border-color 0.15s; }
+    .edit-btn:hover { border-color:var(--gold); }
+    .edit-btn.editing { background:var(--navy); color:var(--gold); border-color:var(--navy); }
+    .view-field { margin-bottom:13px; }
+    .view-field .vf-label { font-size:0.63rem; text-transform:uppercase; letter-spacing:0.11em; color:var(--grey); margin-bottom:3px; }
+    .view-field .vf-val   { font-size:0.92rem; color:var(--navy); font-weight:600; padding:8px 0 8px 2px; border-bottom:1px solid var(--light); line-height:1.4; min-height:36px; }
+    .view-field .vf-val.empty { color:var(--grey); font-weight:400; font-style:italic; }
+    .edit-fields { display:none; }
+    .view-fields { display:block; }
+    .is-editing .edit-fields { display:block; }
+    .is-editing .view-fields { display:none; }
+    .edit-actions { display:none; gap:8px; margin-top:16px; padding-top:14px; border-top:1px solid var(--light); }
+    .is-editing .edit-actions { display:flex; }
+    .save-details-btn   { flex:2; background:var(--navy); color:var(--gold); border:none; padding:11px; border-radius:7px; font-weight:700; font-size:0.85rem; cursor:pointer; font-family:var(--sans); }
+    .cancel-details-btn { flex:1; background:#fff; color:var(--grey); border:1.5px solid var(--light); padding:11px; border-radius:7px; font-weight:600; font-size:0.85rem; cursor:pointer; font-family:var(--sans); }
+    /* Change log (admin only) */
+    .change-log-toggle { display:flex; align-items:center; gap:8px; margin-top:20px; padding:10px 14px; background:rgba(39,46,102,0.05); border:1px solid rgba(39,46,102,0.12); border-radius:8px; cursor:pointer; font-size:0.76rem; color:var(--navy2); font-weight:600; }
+    .change-log-toggle::after { content:'▾'; margin-left:auto; }
+    .change-log-toggle.open::after { content:'▴'; }
+    .change-log-list { display:none; margin-top:6px; border:1px solid rgba(39,46,102,0.12); border-radius:8px; overflow:hidden; }
+    .change-log-list.open { display:block; }
+    .cl-row { display:flex; gap:10px; align-items:flex-start; padding:10px 14px; border-bottom:1px solid rgba(39,46,102,0.07); font-size:0.78rem; }
+    .cl-row:last-child { border-bottom:none; }
+    .cl-time  { color:var(--grey); white-space:nowrap; flex-shrink:0; font-size:0.7rem; padding-top:1px; }
+    .cl-body  { flex:1; }
+    .cl-field { font-weight:700; color:var(--navy); }
+    .cl-change{ color:#555; margin-top:2px; }
+    .cl-from  { text-decoration:line-through; color:var(--grey); }
+    .cl-empty { padding:14px; text-align:center; font-size:0.8rem; color:var(--grey); }
+
+    /* ══ ORDER NOTES ══ */
+    .notes-section { margin-top:28px; border-top:2px solid var(--light); padding-top:24px; }
+    .notes-section h3 { font-family:var(--serif); font-size:1.2rem; color:var(--navy); margin-bottom:4px; }
+    .notes-section p  { font-size:0.76rem; color:var(--grey); margin-bottom:14px; }
+    .note-compose { display:flex; gap:8px; margin-bottom:14px; }
+    .note-input { flex:1; padding:10px 13px; border:1.5px solid var(--light); border-radius:8px; font-family:var(--sans); font-size:0.86rem; color:var(--text); resize:none; transition:border-color 0.2s; }
+    .note-input:focus { outline:none; border-color:var(--gold); }
+    .note-send { background:var(--navy); color:var(--gold); border:none; padding:10px 15px; border-radius:8px; font-weight:700; font-size:0.82rem; cursor:pointer; font-family:var(--sans); white-space:nowrap; align-self:flex-end; }
+    .note-list { display:flex; flex-direction:column; gap:8px; }
+    .note-item { background:#fff; border:1px solid var(--light); border-radius:9px; padding:12px 14px; }
+    .note-item .ni-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
+    .note-item .ni-who  { font-size:0.7rem; font-weight:700; color:var(--navy); }
+    .note-item .ni-time { font-size:0.67rem; color:var(--grey); }
+    .note-item .ni-text { font-size:0.86rem; color:var(--text); line-height:1.65; }
+    .note-item.admin-note { border-left:3px solid var(--navy2); }
+    .note-item.customer-note { border-left:3px solid var(--gold); }
+
+    /* ══ FILE ATTACHMENTS IN COMPOSE ══ */
+    .attach-preview-wrap { display:none; flex-wrap:wrap; gap:6px; margin-bottom:8px; }
+    .attach-preview-wrap.has-files { display:flex; }
+    .attach-file-chip { display:inline-flex; align-items:center; gap:5px; padding:5px 9px; background:var(--warm); border:1px solid var(--light); border-radius:8px; font-size:0.72rem; color:var(--text); font-weight:600; }
+    .attach-file-chip .rm { background:none; border:none; color:var(--grey); cursor:pointer; font-size:0.85rem; padding:0 0 0 2px; font-family:var(--sans); line-height:1; }
+    .attach-btn { background:none; border:1.5px solid var(--light); color:var(--grey); width:36px; height:36px; border-radius:8px; font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:border-color 0.15s,color 0.15s; align-self:flex-end; }
+    .attach-btn:hover { border-color:var(--gold); color:var(--navy); }
+    .compose-row { display:flex; gap:7px; align-items:flex-end; }
+    .compose-wrap.drag-over { outline:2px dashed var(--gold); outline-offset:-4px; background:rgba(200,186,154,0.07); }
+
+    /* ══ SAMPLES PACKS ══ */
+    .pack-card { background:#fff; border:1.5px solid var(--light); border-radius:12px; overflow:hidden; margin-bottom:12px; }
+    .pack-card.st-received { border-color:rgba(28,107,58,0.3); }
+    .pack-card.st-dispatched { border-color:rgba(200,186,154,0.6); }
+    .pack-header { display:flex; align-items:center; gap:12px; padding:13px 15px; border-bottom:1px solid var(--light); }
+    .pack-icon  { font-size:1.4rem; flex-shrink:0; }
+    .pack-title { flex:1; }
+    .pack-name  { font-weight:700; font-size:0.9rem; color:var(--navy); }
+    .pack-meta  { font-size:0.72rem; color:var(--grey); margin-top:2px; }
+    .pack-status-pill { font-size:0.62rem; font-weight:700; padding:4px 10px; border-radius:10px; letter-spacing:0.05em; text-transform:uppercase; white-space:nowrap; }
+    .psp-pending    { background:rgba(200,186,154,0.2); color:#7a6f52;      border:1px solid rgba(200,186,154,0.5); }
+    .psp-dispatched { background:rgba(39,46,102,0.09);  color:var(--navy2); border:1px solid rgba(39,46,102,0.2); }
+    .psp-received   { background:rgba(28,107,58,0.1);   color:var(--green); border:1px solid rgba(28,107,58,0.3); }
+    .pack-items { display:flex; gap:6px; padding:12px 15px; flex-wrap:wrap; border-bottom:1px solid var(--light); }
+    .pack-swatch { width:44px; text-align:center; cursor:default; }
+    .pack-swatch .ps-dot  { width:40px; height:40px; border-radius:8px; border:1px solid rgba(0,0,0,0.1); margin:0 auto 4px; }
+    .pack-swatch .ps-name { font-size:0.58rem; color:var(--text); line-height:1.3; }
+    .pack-footer { padding:11px 15px; display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; background:var(--warm); }
+    .pack-dispatch-info { font-size:0.74rem; color:var(--grey); line-height:1.5; }
+    .pack-dispatch-info strong { color:var(--navy); }
+    .pack-tracking { font-size:0.72rem; font-family:monospace; background:rgba(24,30,56,0.07); color:var(--navy); padding:3px 8px; border-radius:5px; display:inline-block; margin-top:2px; cursor:pointer; }
+    .received-btn { background:var(--green); color:#fff; border:none; padding:9px 16px; border-radius:7px; font-family:var(--sans); font-size:0.78rem; font-weight:700; cursor:pointer; white-space:nowrap; }
+    .received-btn.done { background:rgba(28,107,58,0.1); color:var(--green); border:1px solid rgba(28,107,58,0.3); cursor:default; }
+    .samples-eta { background:rgba(200,186,154,0.1); border:1px solid var(--gold-light); border-radius:9px; padding:14px 16px; font-size:0.82rem; color:#555; line-height:1.65; margin-bottom:18px; }
+    .samples-eta strong { color:var(--navy); display:block; margin-bottom:4px; }
+    /* Login prompt banner */
+    .received-prompt { background:var(--navy); border-radius:10px; padding:15px 16px; margin-bottom:16px; display:flex; align-items:center; gap:13px; }
+    .rp-icon { font-size:1.5rem; flex-shrink:0; }
+    .rp-text { flex:1; color:rgba(255,255,255,0.85); font-size:0.84rem; line-height:1.5; }
+    .rp-text strong { color:#fff; display:block; margin-bottom:3px; }
+    .rp-actions { display:flex; gap:7px; margin-top:10px; }
+    .rp-yes  { background:var(--green); color:#fff; border:none; padding:8px 14px; border-radius:6px; font-family:var(--sans); font-size:0.78rem; font-weight:700; cursor:pointer; }
+    .rp-wait { background:rgba(255,255,255,0.12); color:rgba(255,255,255,0.7); border:none; padding:8px 14px; border-radius:6px; font-family:var(--sans); font-size:0.78rem; font-weight:600; cursor:pointer; }
   </style>
 </head>
 <body>
@@ -427,19 +521,19 @@
 
 <!-- ══ PORTAL TABS ══ -->
 <div class="portal-tabs" id="portal-tabs">
-  <div class="ptab active" id="pt-quote"    onclick="switchTab('quote')">Your Quote</div>
+  <div class="ptab active" id="pt-customer" onclick="switchTab('customer')">Customer</div>
+  <div class="ptab"        id="pt-car"      onclick="switchTab('car')">Car Details</div>
+  <div class="ptab"        id="pt-quote"    onclick="switchTab('quote')">Your Quote</div>
   <div class="ptab"        id="pt-messages" onclick="switchTab('messages')">Messages<div class="badge" id="msg-badge"></div></div>
   <div class="ptab"        id="pt-documents"onclick="switchTab('documents')">Documents</div>
-  <div class="ptab"        id="pt-customer" onclick="switchTab('customer')">Customer</div>
   <div class="ptab"        id="pt-samples"  onclick="switchTab('samples')">Samples</div>
-  <div class="ptab"        id="pt-car"      onclick="switchTab('car')">Car Details</div>
 </div>
 
 <!-- ══ CONTENT ══ -->
 <div class="content-area">
 
   <!-- ─ QUOTE ─ -->
-  <div class="panel active" id="panel-quote">
+  <div class="panel" id="panel-quote">
     <div class="inner">
       <div class="quote-card">
         <div class="qstat" id="qstat-all"       onclick="setItemFilter('all')">       <div class="n" id="qs-total">7</div><div class="l">Items</div></div>
@@ -532,6 +626,18 @@
         </div>
 
       </div><!-- /shipping-section -->
+
+      <!-- ORDER NOTES -->
+      <div class="notes-section">
+        <h3>Order Notes</h3>
+        <p>Notes visible to both you and John Skinner — use for reminders, preferences or anything useful about this order.</p>
+        <div class="note-compose">
+          <textarea class="note-input" id="note-input" rows="2" placeholder="Add a note about this order…"></textarea>
+          <button class="note-send" onclick="addNote()">Add</button>
+        </div>
+        <div class="note-list" id="note-list"></div>
+      </div>
+
     </div>
   </div>
 
@@ -583,58 +689,95 @@
   </div>
 
   <!-- ─ CUSTOMER ─ -->
-  <div class="panel" id="panel-customer">
+  <div class="panel active" id="panel-customer">
     <div class="inner">
-      <div class="section-heading">Your Details</div>
-      <p class="section-sub">Contact and delivery information for this order</p>
-      <div class="card">
-        <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:700;margin-bottom:14px;">Contact Information</div>
-        <div class="row2">
-          <div class="field-group"><div class="field-label">First Name</div><input class="edit-input" value="David"></div>
-          <div class="field-group"><div class="field-label">Last Name</div><input class="edit-input" value="Mitchell"></div>
-        </div>
-        <div class="field-group" style="margin-bottom:12px;"><div class="field-label">Email Address</div><input class="edit-input" type="email" value="david.mitchell@gmail.com"></div>
-        <div class="row2">
-          <div class="field-group"><div class="field-label">Phone</div><input class="edit-input" type="tel" value="+44 7700 900123"></div>
-          <div class="field-group"><div class="field-label">Preferred Contact</div>
-            <select class="edit-input"><option>Email</option><option>Phone</option><option>Either</option></select>
+      <div class="section-toolbar">
+        <div><h2 style="font-family:var(--serif);font-size:1.35rem;color:var(--navy);">Your Details</h2><p class="section-sub" style="margin-bottom:0">Contact and delivery information for this order</p></div>
+        <button class="edit-btn" id="cust-edit-btn" onclick="toggleEdit('customer')">✏ Edit</button>
+      </div>
+      <div id="customer-form" style="margin-top:16px;">
+
+        <!-- Contact info card -->
+        <div class="card" style="margin-bottom:12px;">
+          <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:700;margin-bottom:12px;">Contact Information</div>
+          <div class="view-fields">
+            <div class="row2">
+              <div class="view-field"><div class="vf-label">First Name</div><div class="vf-val" id="v-fname">David</div></div>
+              <div class="view-field"><div class="vf-label">Last Name</div><div class="vf-val" id="v-lname">Mitchell</div></div>
+            </div>
+            <div class="view-field"><div class="vf-label">Email Address</div><div class="vf-val" id="v-email">david.mitchell@gmail.com</div></div>
+            <div class="row2">
+              <div class="view-field"><div class="vf-label">Phone</div><div class="vf-val" id="v-phone">+44 7700 900123</div></div>
+              <div class="view-field"><div class="vf-label">Preferred Contact</div><div class="vf-val" id="v-contact">Email</div></div>
+            </div>
+          </div>
+          <div class="edit-fields">
+            <div class="row2" style="margin-bottom:10px;">
+              <div class="field-group"><div class="field-label">First Name</div><input class="edit-input" id="e-fname" value="David"></div>
+              <div class="field-group"><div class="field-label">Last Name</div><input class="edit-input" id="e-lname" value="Mitchell"></div>
+            </div>
+            <div class="field-group" style="margin-bottom:10px;"><div class="field-label">Email Address</div><input class="edit-input" id="e-email" type="email" value="david.mitchell@gmail.com"></div>
+            <div class="row2">
+              <div class="field-group"><div class="field-label">Phone</div><input class="edit-input" id="e-phone" type="tel" value="+44 7700 900123"></div>
+              <div class="field-group"><div class="field-label">Preferred Contact</div><select class="edit-input" id="e-contact"><option>Email</option><option>Phone</option><option>Either</option></select></div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="card">
-        <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:700;margin-bottom:14px;">Billing Address</div>
-        <div class="field-group" style="margin-bottom:10px;"><div class="field-label">Address Line 1</div><input class="edit-input" value="14 Montague Road"></div>
-        <div class="field-group" style="margin-bottom:10px;"><div class="field-label">Address Line 2</div><input class="edit-input" placeholder="Flat, suite, etc."></div>
-        <div class="row3">
-          <div class="field-group"><div class="field-label">City</div><input class="edit-input" value="Cambridge"></div>
-          <div class="field-group"><div class="field-label">County</div><input class="edit-input" value="Cambridgeshire"></div>
-          <div class="field-group"><div class="field-label">Postcode</div><input class="edit-input" value="CB1 2AB"></div>
-        </div>
-        <div class="field-group" style="margin-top:10px;"><div class="field-label">Country</div>
-          <select class="edit-input"><option>United Kingdom</option><option>United States</option><option>Germany</option><option>France</option><option>Australia</option><option>Other</option></select>
-        </div>
-      </div>
-      <div class="same-addr" onclick="toggleShipping()">
-        <input type="checkbox" id="same-addr-chk" checked>
-        <label for="same-addr-chk">Shipping address same as billing</label>
-      </div>
-      <div class="addr-section hidden" id="shipping-section">
-        <div class="card" style="margin-top:12px;">
-          <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:700;margin-bottom:14px;">Shipping Address</div>
-          <div class="field-group" style="margin-bottom:10px;"><div class="field-label">Address Line 1</div><input class="edit-input" placeholder="Shipping address"></div>
-          <div class="field-group" style="margin-bottom:10px;"><div class="field-label">Address Line 2</div><input class="edit-input" placeholder=""></div>
-          <div class="row3">
-            <div class="field-group"><div class="field-label">City</div><input class="edit-input"></div>
-            <div class="field-group"><div class="field-label">County / State</div><input class="edit-input"></div>
-            <div class="field-group"><div class="field-label">Postcode / ZIP</div><input class="edit-input"></div>
+
+        <!-- Billing address card -->
+        <div class="card" style="margin-bottom:12px;">
+          <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:700;margin-bottom:12px;">Billing Address</div>
+          <div class="view-fields">
+            <div class="view-field"><div class="vf-label">Address</div><div class="vf-val" id="v-addr">14 Montague Road<br>Cambridge, Cambridgeshire CB1 2AB<br>United Kingdom</div></div>
           </div>
-          <div class="field-group" style="margin-top:10px;"><div class="field-label">Country</div>
-            <select class="edit-input"><option>United Kingdom</option><option>United States</option><option>Germany</option><option>France</option><option>Australia</option><option>Other</option></select>
+          <div class="edit-fields">
+            <div class="field-group" style="margin-bottom:9px;"><div class="field-label">Address Line 1</div><input class="edit-input" id="e-addr1" value="14 Montague Road"></div>
+            <div class="field-group" style="margin-bottom:9px;"><div class="field-label">Address Line 2</div><input class="edit-input" id="e-addr2" placeholder="Flat, suite, etc."></div>
+            <div class="row3">
+              <div class="field-group"><div class="field-label">City</div><input class="edit-input" id="e-city" value="Cambridge"></div>
+              <div class="field-group"><div class="field-label">County</div><input class="edit-input" id="e-county" value="Cambridgeshire"></div>
+              <div class="field-group"><div class="field-label">Postcode</div><input class="edit-input" id="e-post" value="CB1 2AB"></div>
+            </div>
+            <div class="field-group" style="margin-top:9px;"><div class="field-label">Country</div><select class="edit-input" id="e-country"><option>United Kingdom</option><option>United States</option><option>Germany</option><option>France</option><option>Australia</option><option>Other</option></select></div>
           </div>
-          <div class="field-group" style="margin-top:10px;"><div class="field-label">Shipping Notes</div><textarea class="edit-input" rows="2" placeholder="Access instructions, preferred courier, etc."></textarea></div>
+        </div>
+
+        <!-- Shipping same as billing -->
+        <div class="same-addr" onclick="toggleShipping()">
+          <input type="checkbox" id="same-addr-chk" checked>
+          <label for="same-addr-chk">Shipping address same as billing</label>
+        </div>
+        <div class="addr-section hidden" id="shipping-section">
+          <div class="card" style="margin-top:10px;">
+            <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:700;margin-bottom:12px;">Shipping Address</div>
+            <div class="view-fields">
+              <div class="view-field"><div class="vf-label">Address</div><div class="vf-val empty" id="v-ship-addr">Same as billing</div></div>
+            </div>
+            <div class="edit-fields">
+              <div class="field-group" style="margin-bottom:9px;"><div class="field-label">Address Line 1</div><input class="edit-input" placeholder="Shipping address"></div>
+              <div class="field-group" style="margin-bottom:9px;"><div class="field-label">Address Line 2</div><input class="edit-input"></div>
+              <div class="row3">
+                <div class="field-group"><div class="field-label">City</div><input class="edit-input"></div>
+                <div class="field-group"><div class="field-label">County / State</div><input class="edit-input"></div>
+                <div class="field-group"><div class="field-label">Postcode / ZIP</div><input class="edit-input"></div>
+              </div>
+              <div class="field-group" style="margin-top:9px;"><div class="field-label">Country</div><select class="edit-input"><option>United Kingdom</option><option>United States</option><option>Germany</option><option>France</option><option>Australia</option><option>Other</option></select></div>
+              <div class="field-group" style="margin-top:9px;"><div class="field-label">Shipping Notes</div><textarea class="edit-input" rows="2" placeholder="Access instructions, preferred courier, etc."></textarea></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="edit-actions" id="customer-actions">
+          <button class="cancel-details-btn" onclick="cancelEdit('customer')">Cancel</button>
+          <button class="save-details-btn"   onclick="saveEdit('customer')">Save Changes</button>
         </div>
       </div>
-      <div style="margin-top:14px;"><button style="background:var(--navy);color:var(--gold);border:none;padding:12px 24px;border-radius:7px;font-family:var(--sans);font-weight:700;font-size:0.85rem;cursor:pointer;width:100%;">Save Details</button></div>
+
+      <!-- Change log (admin only) -->
+      <div id="cust-log-wrap" style="display:none">
+        <div class="change-log-toggle" id="cust-log-toggle" onclick="toggleLog('customer')">🔒 Admin — Change History (0 entries)</div>
+        <div class="change-log-list" id="cust-log-list"><div class="cl-empty">No changes recorded yet.</div></div>
+      </div>
     </div>
   </div>
 
@@ -642,87 +785,136 @@
   <div class="panel" id="panel-samples">
     <div class="inner">
       <div class="section-heading">Sample Packs</div>
-      <p class="section-sub">Materials and shade samples sent as part of your quote process</p>
-      <div class="samples-intro">Sample packs are sent on request and usually arrive within 3–5 working days. Samples help you compare colours and textures in real life before committing. Use the button below to request additional samples at any time.</div>
+      <p class="section-sub">Materials and shades sent for your review before the order is confirmed</p>
+
+      <!-- Login prompt (shown when pack dispatched but not confirmed received) -->
+      <div class="received-prompt" id="received-prompt" style="display:none">
+        <div class="rp-icon">📬</div>
+        <div class="rp-text">
+          <strong>Have your samples arrived?</strong>
+          Pack 1 (Leathers &amp; Carpet) was dispatched on 5 Mar. Let us know when it arrives so we can update your quote.
+          <div class="rp-actions">
+            <button class="rp-yes" onclick="markPackReceived('sp1',true)">Yes, received ✓</button>
+            <button class="rp-wait" onclick="dismissPrompt()">Still waiting</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ETA overview -->
+      <div class="samples-eta">
+        <strong>📬 How long do samples take?</strong>
+        We usually dispatch samples by Royal Mail Tracked or Signed For within 1–2 working days of your request. UK delivery typically takes 2–3 working days from dispatch. International sample packs go by tracked airmail — allow 5–10 working days depending on destination.<br><br>
+        Each sample is a real piece of the material in the relevant colour. Leather and vinyl pieces are approximately 10×10 cm; carpet samples slightly larger. Please check colours in natural daylight — phone or screen lighting can shift perception significantly.
+      </div>
+
       <div id="samples-list"></div>
-      <button class="request-sample-btn" onclick="alert('Request sent — we'll be in touch to confirm which samples to send.')">+ Request Additional Samples</button>
+      <button class="request-sample-btn" onclick="alert('Sample request sent — we\'ll confirm which samples to include and dispatch details.')">+ Request Additional Samples</button>
     </div>
   </div>
 
   <!-- ─ CAR DETAILS ─ -->
   <div class="panel" id="panel-car">
     <div class="inner">
-      <div class="section-heading">Car Details</div>
-      <p class="section-sub">Specification and history for JSM-2847</p>
-      <div class="card">
-        <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:700;margin-bottom:14px;">Vehicle Identification</div>
-        <div class="row3">
-          <div class="field-group"><div class="field-label">Make</div><input class="edit-input" value="Jaguar"></div>
-          <div class="field-group"><div class="field-label">Model</div><input class="edit-input" value="E-Type OTS"></div>
-          <div class="field-group"><div class="field-label">Series</div><input class="edit-input" value="Series 1"></div>
-        </div>
-        <div class="row2" style="margin-top:12px;">
-          <div class="field-group"><div class="field-label">Year</div><input class="edit-input" value="1972"></div>
-          <div class="field-group"><div class="field-label">Chassis Number</div><input class="edit-input" value="1E12847"></div>
-        </div>
+      <div class="section-toolbar">
+        <div><h2 style="font-family:var(--serif);font-size:1.35rem;color:var(--navy);">Car Details</h2><p class="section-sub" style="margin-bottom:0">Specification and history for JSM-2847</p></div>
+        <button class="edit-btn" id="car-edit-btn" onclick="toggleEdit('car')">✏ Edit</button>
       </div>
-      <div class="card">
-        <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:700;margin-bottom:14px;">Configuration</div>
-        <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:14px;">
-          <div>
-            <div class="field-label" style="margin-bottom:6px;">Drive</div>
-            <span class="tag-pill sel" onclick="toggleTag(this,'drive')">RHD</span>
-            <span class="tag-pill"    onclick="toggleTag(this,'drive')">LHD</span>
-          </div>
-          <div>
-            <div class="field-label" style="margin-bottom:6px;">Transmission</div>
-            <span class="tag-pill sel" onclick="toggleTag(this,'trans')">Manual</span>
-            <span class="tag-pill"    onclick="toggleTag(this,'trans')">Automatic</span>
-          </div>
-          <div>
-            <div class="field-label" style="margin-bottom:6px;">Body</div>
-            <span class="tag-pill sel" onclick="toggleTag(this,'body')">Roadster</span>
-            <span class="tag-pill"    onclick="toggleTag(this,'body')">Coupe</span>
-            <span class="tag-pill"    onclick="toggleTag(this,'body')">2+2</span>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:700;margin-bottom:14px;">Bodywork &amp; Paint</div>
-        <div class="row2">
-          <div>
-            <div class="field-label">Original Paint Colour</div>
-            <div style="display:flex;align-items:center;gap:10px;margin-top:6px;">
-              <div class="paint-swatch" style="background:#1c3a1c;"></div>
-              <input class="edit-input" style="flex:1;" value="British Racing Green (original)">
+      <div id="car-form" style="margin-top:16px;">
+
+        <!-- Vehicle ID -->
+        <div class="card" style="margin-bottom:12px;">
+          <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:700;margin-bottom:12px;">Vehicle Identification</div>
+          <div class="view-fields">
+            <div class="row3">
+              <div class="view-field"><div class="vf-label">Make</div><div class="vf-val" id="vc-make">Jaguar</div></div>
+              <div class="view-field"><div class="vf-label">Model</div><div class="vf-val" id="vc-model">E-Type OTS</div></div>
+              <div class="view-field"><div class="vf-label">Series</div><div class="vf-val" id="vc-series">Series 1</div></div>
+            </div>
+            <div class="row2" style="margin-top:4px;">
+              <div class="view-field"><div class="vf-label">Year</div><div class="vf-val" id="vc-year">1972</div></div>
+              <div class="view-field"><div class="vf-label">Chassis Number</div><div class="vf-val" id="vc-chassis" style="font-family:monospace;font-size:0.9rem;">1E12847</div></div>
             </div>
           </div>
-          <div>
-            <div class="field-label">Current Paint Colour</div>
-            <div style="display:flex;align-items:center;gap:10px;margin-top:6px;">
-              <div class="paint-swatch" id="new-paint-swatch" style="background:#1c3a1c;"></div>
-              <input class="edit-input" style="flex:1;" id="new-paint-input" placeholder="If resprayed / changed" value="">
+          <div class="edit-fields">
+            <div class="row3" style="margin-bottom:9px;">
+              <div class="field-group"><div class="field-label">Make</div><input class="edit-input" id="ec-make" value="Jaguar"></div>
+              <div class="field-group"><div class="field-label">Model</div><input class="edit-input" id="ec-model" value="E-Type OTS"></div>
+              <div class="field-group"><div class="field-label">Series</div><input class="edit-input" id="ec-series" value="Series 1"></div>
+            </div>
+            <div class="row2">
+              <div class="field-group"><div class="field-label">Year</div><input class="edit-input" id="ec-year" value="1972"></div>
+              <div class="field-group"><div class="field-label">Chassis Number</div><input class="edit-input" id="ec-chassis" value="1E12847" style="font-family:monospace"></div>
             </div>
           </div>
         </div>
-        <div style="margin-top:12px;">
-          <div class="field-label" style="margin-bottom:6px;">Paint Status</div>
-          <span class="tag-pill sel" id="ps-original" onclick="setPaintStatus('original')">Keeping Original</span>
-          <span class="tag-pill"    id="ps-new"       onclick="setPaintStatus('new')">Being Resprayed</span>
-          <span class="tag-pill"    id="ps-unknown"   onclick="setPaintStatus('unknown')">Not Yet Decided</span>
+
+        <!-- Configuration -->
+        <div class="card" style="margin-bottom:12px;">
+          <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:700;margin-bottom:12px;">Configuration</div>
+          <div class="view-fields">
+            <div class="row3">
+              <div class="view-field"><div class="vf-label">Drive</div><div class="vf-val" id="vc-drive">RHD</div></div>
+              <div class="view-field"><div class="vf-label">Transmission</div><div class="vf-val" id="vc-trans">Manual</div></div>
+              <div class="view-field"><div class="vf-label">Body</div><div class="vf-val" id="vc-body">Roadster</div></div>
+            </div>
+          </div>
+          <div class="edit-fields">
+            <div style="display:flex;gap:20px;flex-wrap:wrap;">
+              <div><div class="field-label" style="margin-bottom:6px;">Drive</div><span class="tag-pill sel" onclick="toggleTag(this,'drive')">RHD</span><span class="tag-pill" onclick="toggleTag(this,'drive')">LHD</span></div>
+              <div><div class="field-label" style="margin-bottom:6px;">Transmission</div><span class="tag-pill sel" onclick="toggleTag(this,'trans')">Manual</span><span class="tag-pill" onclick="toggleTag(this,'trans')">Automatic</span></div>
+              <div><div class="field-label" style="margin-bottom:6px;">Body</div><span class="tag-pill sel" onclick="toggleTag(this,'body')">Roadster</span><span class="tag-pill" onclick="toggleTag(this,'body')">Coupé</span><span class="tag-pill" onclick="toggleTag(this,'body')">2+2</span></div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="card">
-        <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:700;margin-bottom:10px;">Modifications Affecting Interior</div>
-        <div class="mods-box" contenteditable="true" id="mods-field">Roll cage fitted (full harness required on rear bench).
+
+        <!-- Paint -->
+        <div class="card" style="margin-bottom:12px;">
+          <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:700;margin-bottom:12px;">Bodywork &amp; Paint</div>
+          <div class="view-fields">
+            <div class="row2">
+              <div class="view-field"><div class="vf-label">Original Paint</div><div class="vf-val" style="display:flex;align-items:center;gap:8px;"><span style="width:16px;height:16px;background:#1c3a1c;border-radius:3px;border:1px solid rgba(0,0,0,0.1);flex-shrink:0"></span><span id="vc-orig-paint">British Racing Green</span></div></div>
+              <div class="view-field"><div class="vf-label">Current Paint</div><div class="vf-val empty" id="vc-new-paint">Same as original</div></div>
+            </div>
+            <div class="view-field"><div class="vf-label">Paint Status</div><div class="vf-val" id="vc-paint-status">Keeping Original</div></div>
+          </div>
+          <div class="edit-fields">
+            <div class="row2" style="margin-bottom:10px;">
+              <div><div class="field-label">Original Paint Colour</div><div style="display:flex;align-items:center;gap:8px;margin-top:6px;"><div class="paint-swatch" style="background:#1c3a1c"></div><input class="edit-input" style="flex:1" id="ec-orig-paint" value="British Racing Green (original)"></div></div>
+              <div><div class="field-label">Current Paint (if changed)</div><div style="display:flex;align-items:center;gap:8px;margin-top:6px;"><div class="paint-swatch" id="new-paint-swatch" style="background:#e3e3df"></div><input class="edit-input" style="flex:1" id="ec-new-paint" placeholder="Leave blank if unchanged"></div></div>
+            </div>
+            <div><div class="field-label" style="margin-bottom:6px;">Paint Status</div>
+              <span class="tag-pill sel" id="ps-original" onclick="setPaintStatus('original')">Keeping Original</span>
+              <span class="tag-pill" id="ps-new" onclick="setPaintStatus('new')">Being Resprayed</span>
+              <span class="tag-pill" id="ps-unknown" onclick="setPaintStatus('unknown')">Not Yet Decided</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modifications + notes -->
+        <div class="card" style="margin-bottom:12px;">
+          <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:700;margin-bottom:12px;">Modifications Affecting Interior</div>
+          <div class="view-fields"><div class="mods-box" id="vc-mods">Roll cage fitted (full harness required on rear bench).<br>Aftermarket Moto-Lita steering wheel — boss retained.<br>No other modifications noted.</div></div>
+          <div class="edit-fields"><textarea class="edit-input" id="ec-mods" rows="4">Roll cage fitted (full harness required on rear bench).
 Aftermarket Moto-Lita steering wheel — boss retained.
-No other modifications noted.</div>
+No other modifications noted.</textarea></div>
+        </div>
+        <div class="card" style="margin-bottom:12px;">
+          <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:700;margin-bottom:12px;">Additional Notes &amp; Instructions</div>
+          <div class="view-fields"><div class="comments-box" id="vc-notes">Car is not currently driveable — will be transported to workshop on a trailer. Please confirm collection address. Restoration timeline flexible — quality more important than speed.</div></div>
+          <div class="edit-fields"><textarea class="edit-input" id="ec-notes" rows="4">Car is not currently driveable — will be transported to workshop on a trailer. Please confirm collection address. Restoration timeline flexible — quality more important than speed.</textarea></div>
+        </div>
+
+        <div class="edit-actions" id="car-actions">
+          <button class="cancel-details-btn" onclick="cancelEdit('car')">Cancel</button>
+          <button class="save-details-btn"   onclick="saveEdit('car')">Save Changes</button>
+        </div>
       </div>
-      <div class="card">
-        <div style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);font-weight:700;margin-bottom:10px;">Additional Notes &amp; Instructions</div>
-        <div class="comments-box" contenteditable="true">Car is not currently driveable — will be transported to workshop on a trailer. Please confirm collection address. Restoration timeline flexible — quality more important than speed.</div>
+
+      <!-- Change log (admin only) -->
+      <div id="car-log-wrap" style="display:none">
+        <div class="change-log-toggle" id="car-log-toggle" onclick="toggleLog('car')">🔒 Admin — Change History (0 entries)</div>
+        <div class="change-log-list" id="car-log-list"><div class="cl-empty">No changes recorded yet.</div></div>
       </div>
-      <div style="margin-top:4px;"><button style="background:var(--navy);color:var(--gold);border:none;padding:12px 24px;border-radius:7px;font-family:var(--sans);font-weight:700;font-size:0.85rem;cursor:pointer;width:100%;">Save Car Details</button></div>
     </div>
   </div>
 
@@ -749,10 +941,13 @@ No other modifications noted.</div>
       <div class="ctag" data-ct="item7" onclick="setCTag('item7')">Boot</div>
     </div>
     <div class="c-hint" id="c-hint">Sending a <strong>General</strong> message — not linked to a specific item.</div>
+    <div class="attach-preview-wrap" id="main-attach-preview"></div>
     <div class="compose-row">
       <textarea class="compose-input" id="compose-input" rows="2" placeholder="Type your message…"></textarea>
+      <button class="attach-btn" onclick="triggerAttach('main-file-input')" title="Attach file">📎</button>
       <button class="compose-send" onclick="sendMsg()">Send</button>
     </div>
+    <input type="file" id="main-file-input" multiple accept="image/*,.pdf" style="display:none" onchange="handleFileSelect('main',this.files)">
   </div>
 </div>
 
@@ -845,10 +1040,13 @@ No other modifications noted.</div>
   </div>
   <div class="save-bar" id="save-bar"><button class="save-btn" onclick="saveChanges()">Save Changes ✓</button></div>
   <div class="d-footer">
+    <div class="attach-preview-wrap" id="drawer-attach-preview"></div>
     <div class="dq-row">
       <textarea class="dq-input" id="dq-input" rows="2" placeholder="Ask a question about this item…"></textarea>
+      <button class="attach-btn" onclick="triggerAttach('drawer-file-input')" title="Attach file">📎</button>
       <button class="dq-send" onclick="sendDrawerMsg()">Send</button>
     </div>
+    <input type="file" id="drawer-file-input" multiple accept="image/*,.pdf" style="display:none" onchange="handleFileSelect('drawer',this.files)">
     <div class="act-row" id="d-acts"></div>
   </div>
 </div>
@@ -947,16 +1145,23 @@ const OFFICIAL_DOCS=[
 ];
 
 /* ─ SAMPLES ─ */
-const SAMPLES=[
-  {mat:'Leather',shade:'British Racing Green',colour:'#1c3a1c',finish:'Grained',sentDate:'5 Mar',status:'received',trackingRef:'JX2847-S01',notes:'Confirmed as correct shade on 7 Mar'},
-  {mat:'Leather',shade:'British Racing Green',colour:'#1c3a1c',finish:'Smooth',sentDate:'5 Mar',status:'received',trackingRef:'JX2847-S01',notes:'Included in same pack as grained sample'},
-  {mat:'Carpet (Wool)',shade:'Sherwood Green',colour:'#2a4a2a',finish:'',sentDate:'5 Mar',status:'received',trackingRef:'JX2847-S01',notes:''},
-  {mat:'Hood (Mohair)',shade:'Black',colour:'#1a1a1a',finish:'',sentDate:'9 Mar',status:'sent',trackingRef:'JX2847-S02',notes:'Dispatched today via Royal Mail tracked'},
-  {mat:'Headlining',shade:'Off White / Light Grey',colour:'#e8e4dc',finish:'',sentDate:null,status:'pending',trackingRef:'',notes:'Awaiting customer decision on which options to send'},
+const SAMPLE_PACKS=[
+  {id:'sp1',name:'Pack 1 — Leathers &amp; Carpet',status:'received',customerConfirmed:true,
+   dispatchDate:'5 Mar',method:'Royal Mail Tracked 48',tracking:'AB123456789GB',
+   notes:'Confirmed as correct shades on 7 Mar.',
+   items:[{mat:'Leather',shade:'British Racing Green',finish:'Grained',colour:'#1c3a1c'},{mat:'Leather',shade:'British Racing Green',finish:'Smooth',colour:'#2a4a2a'},{mat:'Carpet (Wool)',shade:'Sherwood Green',finish:'',colour:'#2a4a2a'}]},
+  {id:'sp2',name:'Pack 2 — Hood Mohair',status:'dispatched',customerConfirmed:false,
+   dispatchDate:'9 Mar',method:'Royal Mail Tracked 48',tracking:'CD987654321GB',
+   notes:'',
+   items:[{mat:'Mohair',shade:'Black',finish:'',colour:'#1a1a1a'},{mat:'Mohair',shade:'Dark Blue',finish:'',colour:'#181e38'}]},
+  {id:'sp3',name:'Pack 3 — Headlining Options',status:'pending',customerConfirmed:false,
+   dispatchDate:null,method:'',tracking:'',
+   notes:'Awaiting your headlining colour decision before we compile this pack.',
+   items:[{mat:'Headlining (Cloth)',shade:'Off White',finish:'',colour:'#f0ede6'},{mat:'Headlining (Cloth)',shade:'Light Grey',finish:'',colour:'#c8c4bc'},{mat:'Headlining (Vinyl)',shade:'Ivory',finish:'',colour:'#ece8d0'}]},
 ];
 
 /* ──────────────────────────────── */
-let activeItem=null,hasUnsaved=false,activeTab='quote';
+let activeItem=null,hasUnsaved=false,activeTab='customer';
 let msgFilter='all',msgSearch='',composeTag='general',docFilter='all',docSearch='';
 let lbMsgId=null;
 let itemFilter='all'; // 'all' | 'confirmed' | 'pending'
@@ -1165,9 +1370,10 @@ function dTab(name){
 }
 function sendDrawerMsg(){
   if(!activeItem)return;
-  const inp=document.getElementById('dq-input');const txt=inp.value.trim();if(!txt)return;
-  const ts=nowStr();
-  MSGS.push({id:'m'+(MSGS.length+1),type:'customer',tag:activeItem,text:txt,time:ts,attachments:[]});
+  const inp=document.getElementById('dq-input');const txt=inp.value.trim();
+  const att=buildAttachmentsFromPending('drawer');
+  if(!txt&&!att.length)return;
+  MSGS.push({id:'m'+(MSGS.length+1),type:'customer',tag:activeItem,text:txt||'(attached)',time:nowStr(),attachments:att});
   inp.value='';renderDQThread(activeItem);
   if(activeTab!=='messages')document.getElementById('msg-badge').classList.add('show');
 }
@@ -1227,8 +1433,10 @@ function setCTag(tag){
   document.getElementById('compose-input').placeholder=tag==='general'?'Type your message…':`Ask about ${meta.label}…`;
 }
 function sendMsg(){
-  const inp=document.getElementById('compose-input');const txt=inp.value.trim();if(!txt)return;
-  MSGS.push({id:'m'+(MSGS.length+1),type:'customer',tag:composeTag,text:txt,time:nowStr(),attachments:[]});
+  const inp=document.getElementById('compose-input');const txt=inp.value.trim();
+  const att=buildAttachmentsFromPending('main');
+  if(!txt&&!att.length)return;
+  MSGS.push({id:'m'+(MSGS.length+1),type:'customer',tag:composeTag,text:txt||'(attached)',time:nowStr(),attachments:att});
   inp.value='';renderMessages();
   setTimeout(()=>document.getElementById('panel-messages').scrollTo({top:999999,behavior:'smooth'}),80);
 }
@@ -1340,9 +1548,156 @@ function fakeUpload(){
 
 /* ═══ SAMPLES ═══ */
 function renderSamples(){
-  const ss={received:'Received ✓',sent:'In Post',pending:'Not yet sent'};
-  const sc={received:'ss-received',sent:'ss-sent',pending:'ss-pending'};
-  document.getElementById('samples-list').innerHTML=SAMPLES.map(s=>`<div class="sample-card card" style="margin-bottom:10px"><div class="sc-swatch" style="background:${s.colour};min-height:${s.finish?'70':'70'}px"></div><div class="sc-info"><div class="sc-name">${s.mat} — ${s.shade}</div><div class="sc-meta">${[s.finish,s.trackingRef?'Ref: '+s.trackingRef:''].filter(Boolean).join(' · ')||'—'}</div>${s.notes?`<div class="sc-meta" style="margin-top:3px;font-style:italic">${s.notes}</div>`:''}<div class="sc-status"><span class="ss-pill ${sc[s.status]}">${ss[s.status]}</span>${s.sentDate?`<span style="font-size:0.67rem;color:var(--grey);margin-left:8px">${s.status==='pending'?'Awaiting dispatch':'Dispatched '+s.sentDate}</span>`:''}</div></div></div>`).join('');
+  const statusLabel={received:'Received ✓',dispatched:'In the Post',pending:'Not Yet Dispatched'};
+  const statusCls={received:'psp-received',dispatched:'psp-dispatched',pending:'psp-pending'};
+  // Show login prompt if any dispatched packs not yet confirmed
+  const unconfirmed=SAMPLE_PACKS.filter(p=>p.status==='dispatched'&&!p.customerConfirmed);
+  const promptEl=document.getElementById('received-prompt');
+  if(unconfirmed.length&&promptEl){
+    promptEl.style.display='flex';
+    promptEl.querySelector('.rp-text strong').textContent=`Have your samples arrived?`;
+    promptEl.querySelector('.rp-text').childNodes[1].textContent=` ${unconfirmed[0].name} was dispatched on ${unconfirmed[0].dispatchDate}. Let us know when it arrives so we can update your quote.`;
+    promptEl.querySelector('.rp-yes').onclick=()=>markPackReceived(unconfirmed[0].id,true);
+  } else if(promptEl) promptEl.style.display='none';
+
+  document.getElementById('samples-list').innerHTML=SAMPLE_PACKS.map(p=>{
+    const st=p.status;
+    const swatches=p.items.map(it=>`<div class="pack-swatch"><div class="ps-dot" style="background:${it.colour}"></div><div class="ps-name">${it.shade}${it.finish?' ('+it.finish+')':''}</div></div>`).join('');
+    const dispatchInfo=st==='pending'
+      ?`<div class="pack-dispatch-info">Awaiting dispatch${p.notes?` — <em>${p.notes}</em>`:''}</div>`
+      :`<div class="pack-dispatch-info"><strong>${p.method||'Royal Mail'}</strong> · Dispatched ${p.dispatchDate}${p.tracking?`<br><span class="pack-tracking" onclick="alert('Tracking: ${p.tracking}')" title="Click to copy">${p.tracking}</span>`:''}</div>`;
+    const actionBtn=st==='received'
+      ?`<span class="received-btn done">Received ✓</span>`
+      :st==='dispatched'
+        ?`<button class="received-btn" onclick="markPackReceived('${p.id}',true)">Mark as Received</button>`
+        :`<span style="font-size:0.74rem;color:var(--grey)">Awaiting dispatch</span>`;
+    return`<div class="pack-card st-${st}">
+      <div class="pack-header">
+        <div class="pack-icon">${st==='received'?'✅':st==='dispatched'?'📬':'📦'}</div>
+        <div class="pack-title"><div class="pack-name">${p.name}</div><div class="pack-meta">${p.items.length} sample${p.items.length!==1?'s':''} · ${statusLabel[st]}</div></div>
+        <span class="pack-status-pill ${statusCls[st]}">${statusLabel[st]}</span>
+      </div>
+      <div class="pack-items">${swatches}</div>
+      <div class="pack-footer">${dispatchInfo}${actionBtn}</div>
+    </div>`;
+  }).join('');
+}
+function markPackReceived(id,val){
+  const p=SAMPLE_PACKS.find(x=>x.id===id);
+  if(p){p.status='received';p.customerConfirmed=val;}
+  const prompt=document.getElementById('received-prompt');
+  if(prompt) prompt.style.display='none';
+  renderSamples();
+}
+function dismissPrompt(){
+  const p=document.getElementById('received-prompt');
+  if(p) p.style.display='none';
+}
+
+/* ═══ EDIT MODE (Customer + Car) ═══ */
+const CHANGE_LOG={customer:[],car:[]};
+const editModes={customer:false,car:false};
+function toggleEdit(section){
+  editModes[section]=!editModes[section];
+  const form=document.getElementById(section==='customer'?'customer-form':'car-form');
+  const btn=document.getElementById(section+'-edit-btn');
+  const actions=document.getElementById(section+'-actions');
+  if(editModes[section]){
+    form.querySelectorAll('.card,.addr-section').forEach(el=>el.classList.add('is-editing'));
+    btn.textContent='✕ Cancel'; btn.classList.add('editing');
+  } else cancelEdit(section);
+}
+function cancelEdit(section){
+  editModes[section]=false;
+  const form=document.getElementById(section==='customer'?'customer-form':'car-form');
+  const btn=document.getElementById(section+'-edit-btn');
+  form.querySelectorAll('.card,.addr-section').forEach(el=>el.classList.remove('is-editing'));
+  btn.textContent='✏ Edit'; btn.classList.remove('editing');
+}
+function saveEdit(section){
+  const ts=nowStr();
+  if(section==='customer'){
+    const fields=[
+      {id:'fname',viewId:'v-fname',label:'First Name'},
+      {id:'lname',viewId:'v-lname',label:'Last Name'},
+      {id:'email',viewId:'v-email',label:'Email'},
+      {id:'phone',viewId:'v-phone',label:'Phone'},
+      {id:'contact',viewId:'v-contact',label:'Preferred Contact'},
+    ];
+    fields.forEach(f=>{
+      const inp=document.getElementById('e-'+f.id);
+      const view=document.getElementById(f.viewId);
+      if(inp&&view){
+        const oldVal=view.textContent;const newVal=inp.value||inp.options?.[inp.selectedIndex]?.text||inp.value;
+        if(oldVal!==newVal) CHANGE_LOG.customer.push({ts,field:f.label,from:oldVal,to:newVal});
+        view.textContent=newVal;view.classList.toggle('empty',!newVal);
+      }
+    });
+    // Rebuild address display
+    const a1=document.getElementById('e-addr1')?.value||'';
+    const city=document.getElementById('e-city')?.value||'';
+    const county=document.getElementById('e-county')?.value||'';
+    const post=document.getElementById('e-post')?.value||'';
+    const country=document.getElementById('e-country');
+    const countryVal=country?.options?.[country.selectedIndex]?.text||'';
+    const addrStr=`${a1}<br>${city}, ${county} ${post}<br>${countryVal}`;
+    const addrView=document.getElementById('v-addr');
+    if(addrView) addrView.innerHTML=addrStr;
+    updateChangeLog('customer');
+  } else if(section==='car'){
+    const fields=[
+      {id:'make',viewId:'vc-make',label:'Make'},
+      {id:'model',viewId:'vc-model',label:'Model'},
+      {id:'series',viewId:'vc-series',label:'Series'},
+      {id:'year',viewId:'vc-year',label:'Year'},
+      {id:'chassis',viewId:'vc-chassis',label:'Chassis Number'},
+      {id:'mods',viewId:'vc-mods',label:'Modifications'},
+      {id:'notes',viewId:'vc-notes',label:'Notes'},
+    ];
+    fields.forEach(f=>{
+      const inp=document.getElementById('ec-'+f.id);
+      const view=document.getElementById(f.viewId);
+      if(inp&&view){
+        const oldVal=view.textContent.trim();const newVal=inp.value.trim();
+        if(oldVal!==newVal) CHANGE_LOG.car.push({ts,field:f.label,from:oldVal,to:newVal});
+        view.innerHTML=newVal.replace(/\n/g,'<br>');view.classList.toggle('empty',!newVal);
+      }
+    });
+    // Config pills
+    ['drive','trans','body'].forEach(g=>{
+      const sel=document.querySelector(`[id^="vc-${g}"]`);
+      if(!sel) return;
+      const activePill=document.querySelector(`.edit-fields .tag-pill.sel`);
+      // collect all pills in that group's parent
+    });
+    // simplified: read visible sel pills
+    ['vc-drive','vc-trans','vc-body'].forEach((vid,i)=>{
+      const editDiv=document.querySelectorAll('.is-editing .edit-fields > div > div')[i];
+      if(editDiv){const selPill=editDiv.querySelector('.tag-pill.sel');const view=document.getElementById(vid);if(selPill&&view){const old=view.textContent;const nv=selPill.textContent;if(old!==nv)CHANGE_LOG.car.push({ts,field:['Drive','Transmission','Body'][i],from:old,to:nv});view.textContent=nv;}}
+    });
+    updateChangeLog('car');
+  }
+  cancelEdit(section);
+  const btn=document.getElementById(section+'-edit-btn');
+  btn.textContent='✓ Saved'; btn.style.color='var(--green)';
+  setTimeout(()=>{btn.textContent='✏ Edit';btn.style.color='';},2000);
+}
+function updateChangeLog(section){
+  const log=CHANGE_LOG[section];
+  const wrap=document.getElementById(section+'-log-wrap');
+  const toggle=document.getElementById(section+'-log-toggle');
+  const list=document.getElementById(section+'-log-list');
+  if(wrap) wrap.style.display='block';
+  if(toggle) toggle.textContent=`🔒 Admin — Change History (${log.length} entr${log.length===1?'y':'ies'})`;
+  if(list){
+    if(!log.length){list.innerHTML='<div class="cl-empty">No changes recorded yet.</div>';return;}
+    list.innerHTML=[...log].reverse().map(c=>`<div class="cl-row"><div class="cl-time">${c.ts}</div><div class="cl-body"><div class="cl-field">${c.field}</div><div class="cl-change"><span class="cl-from">${c.from||'(empty)'}</span> → ${c.to||'(empty)'}</div></div></div>`).join('');
+  }
+}
+function toggleLog(section){
+  const toggle=document.getElementById(section+'-log-toggle');
+  const list=document.getElementById(section+'-log-list');
+  toggle.classList.toggle('open');list.classList.toggle('open');
 }
 
 /* ═══ CUSTOMER PAGE ═══ */
@@ -1354,18 +1709,70 @@ function toggleShipping(){
 
 /* ═══ CAR DETAILS ═══ */
 function toggleTag(el,group){
-  el.closest('.card').querySelectorAll('.tag-pill').forEach(t=>{
-    if([...t.closest('div').querySelectorAll('.tag-pill')].includes(el)){
-      t.classList.remove('sel');
-    }
-  });
-  // Find sibling pills in same parent div
   el.parentElement.querySelectorAll('.tag-pill').forEach(t=>t.classList.remove('sel'));
   el.classList.add('sel');
 }
 function setPaintStatus(s){
   ['original','new','unknown'].forEach(v=>document.getElementById('ps-'+v).classList.toggle('sel',v===s));
 }
+
+/* ═══ FILE ATTACHMENTS ═══ */
+const pendingAttach={main:[],drawer:[]};
+function triggerAttach(inputId){document.getElementById(inputId).click();}
+function handleFileSelect(area,files){
+  [...files].forEach(f=>{
+    pendingAttach[area].push(f);
+    addAttachChip(area,f.name,pendingAttach[area].length-1);
+  });
+}
+function addAttachChip(area,name,idx){
+  const wrap=document.getElementById(area+'-attach-preview');
+  if(!wrap) return;
+  wrap.classList.add('has-files');
+  const chip=document.createElement('div');
+  chip.className='attach-file-chip';
+  chip.dataset.idx=idx;
+  chip.innerHTML=`${name.match(/\.(jpg|jpeg|png|gif)$/i)?'🖼️':'📄'} ${name}<button class="rm" onclick="removeAttach('${area}',${idx})">✕</button>`;
+  wrap.appendChild(chip);
+}
+function removeAttach(area,idx){
+  pendingAttach[area]=pendingAttach[area].filter((_,i)=>i!==idx);
+  const wrap=document.getElementById(area+'-attach-preview');
+  if(wrap){wrap.innerHTML='';if(pendingAttach[area].length===0)wrap.classList.remove('has-files');else pendingAttach[area].forEach((f,i)=>addAttachChip(area,f.name,i));}
+}
+function buildAttachmentsFromPending(area){
+  const att=pendingAttach[area].map(f=>({name:f.name,type:f.type.startsWith('image')?'image':'pdf',icon:f.type.startsWith('image')?'🖼️':'📄',size:(f.size/1024).toFixed(0)+' KB',bg:'#e3e3df'}));
+  pendingAttach[area]=[];
+  const wrap=document.getElementById(area+'-attach-preview');
+  if(wrap){wrap.innerHTML='';wrap.classList.remove('has-files');}
+  att.forEach(a=>DOCS.push({id:'d'+(DOCS.length+1),name:a.name,type:a.type,icon:a.icon,cat:area==='drawer'&&activeItem?'item':'reference',src:'you',tag:area==='drawer'&&activeItem?activeItem:'general',date:'Today',size:a.size,bg:'#e3e3df'}));
+  return att;
+}
+// Drag-drop on compose wrap
+document.addEventListener('DOMContentLoaded',()=>{
+  const cw=document.getElementById('compose-wrap');
+  if(cw){
+    cw.addEventListener('dragover',e=>{e.preventDefault();cw.classList.add('drag-over');});
+    cw.addEventListener('dragleave',()=>cw.classList.remove('drag-over'));
+    cw.addEventListener('drop',e=>{e.preventDefault();cw.classList.remove('drag-over');handleFileSelect('main',e.dataTransfer.files);});
+  }
+});
+
+/* ═══ ORDER NOTES ═══ */
+const ORDER_NOTES=[];
+function addNote(){
+  const inp=document.getElementById('note-input');
+  const txt=inp.value.trim();if(!txt)return;
+  ORDER_NOTES.unshift({text:txt,who:'You',type:'customer',time:nowStr()});
+  inp.value='';renderNotes();
+}
+function renderNotes(){
+  const el=document.getElementById('note-list');if(!el)return;
+  if(!ORDER_NOTES.length){el.innerHTML='<div style="font-size:0.82rem;color:var(--grey);text-align:center;padding:16px 0">No notes yet.</div>';return;}
+  el.innerHTML=ORDER_NOTES.map(n=>`<div class="note-item ${n.type}-note"><div class="ni-header"><span class="ni-who">${n.who}</span><span class="ni-time">${n.time}</span></div><div class="ni-text">${n.text}</div></div>`).join('');
+}
+// Pre-populate with one admin note
+ORDER_NOTES.push({text:'Lovely car — confirmed BRG with customer on initial call. He\'s flexible on timeline, quality is the priority. Awaiting hood decision before finalising.',who:'John Skinner',type:'admin',time:'4 Mar, 9:00 AM'});
 
 /* ═══ HELPERS ═══ */
 function nowStr(){const n=new Date();return n.toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).replace(',','');}
@@ -1375,7 +1782,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('compose-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}});
   document.getElementById('dq-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendDrawerMsg();}});
   document.getElementById('lb-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendLBReply();}});
-  renderItemList();updateTotals();renderMessages();renderDocs();renderOfficialDocs();renderSamples();
+  renderItemList();updateTotals();renderMessages();renderDocs();renderOfficialDocs();renderSamples();renderNotes();
 });
 </script>
 </body>
