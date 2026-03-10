@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal — Quote Correspondence Overview</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:#181e38; --navy2:#272e66;
+      --gold:#c8ba9a; --gold-light:#dbd6ca;
+      --cream:#f6f6f3; --warm:#efede9;
+      --grey:#7d807e; --light:#e3e3df;
+      --text:#404041; --green:#1c6b3a; --red:#6d2024;
+      --serif:'EB Garamond',Georgia,serif;
+      --sans:'Open Sans',Arial,sans-serif;
+    }
+    body { font-family:var(--sans); background:var(--cream); color:var(--text); font-size:15px; }
+
+    /* ── HEADER ── */
+    .portal-header { background:var(--navy); padding:14px 20px; display:flex; align-items:center; justify-content:space-between; border-bottom:3px solid var(--gold); position:sticky; top:0; z-index:50; }
+    .logo { font-family:var(--serif); color:#fff; font-size:1.1rem; letter-spacing:0.06em; }
+    .logo em { color:var(--gold); font-style:normal; }
+    .user-tag { font-size:0.75rem; color:rgba(255,255,255,0.5); text-align:right; }
+    .user-tag strong { color:var(--gold); display:block; font-size:0.85rem; }
+    .concept-label { background:var(--navy2); color:var(--gold); text-align:center; padding:8px; font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; }
+
+    /* ── NAV TABS (top-level portal sections) ── */
+    .portal-nav { background:#fff; border-bottom:2px solid var(--light); display:flex; overflow-x:auto; scrollbar-width:none; }
+    .portal-nav::-webkit-scrollbar { display:none; }
+    .pnav { flex-shrink:0; padding:14px 20px; font-size:0.76rem; font-weight:600; letter-spacing:0.05em; text-transform:uppercase; color:var(--grey); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; white-space:nowrap; transition:color 0.2s; }
+    .pnav.active { color:var(--navy); border-bottom-color:var(--gold); }
+
+    /* ── PAGE ── */
+    .page { max-width:720px; margin:0 auto; padding:24px 16px 120px; }
+
+    /* ── SECTION HEADING ── */
+    .sec-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; gap:12px; flex-wrap:wrap; }
+    .sec-title { font-family:var(--serif); font-size:1.5rem; color:var(--navy); }
+    .sec-sub { font-size:0.8rem; color:var(--grey); margin-top:2px; }
+    .msg-count { font-size:0.72rem; background:rgba(200,186,154,0.2); color:#7a6f52; border:1px solid var(--gold); padding:4px 12px; border-radius:12px; font-weight:600; white-space:nowrap; }
+
+    /* ── SEARCH BAR ── */
+    .search-wrap { position:relative; margin-bottom:14px; }
+    .search-input { width:100%; padding:11px 40px 11px 14px; border:1.5px solid var(--light); border-radius:8px; font-family:var(--sans); font-size:0.9rem; color:var(--text); background:#fff; transition:border-color 0.2s; }
+    .search-input:focus { outline:none; border-color:var(--gold); }
+    .search-icon { position:absolute; right:13px; top:50%; transform:translateY(-50%); color:var(--grey); font-size:1rem; pointer-events:none; }
+    .search-clear { position:absolute; right:12px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--grey); font-size:1.1rem; cursor:pointer; display:none; padding:2px; }
+    .search-clear.show { display:block; }
+
+    /* ── FILTER PILLS ── */
+    .filter-row { display:flex; gap:7px; overflow-x:auto; padding-bottom:4px; scrollbar-width:none; margin-bottom:18px; }
+    .filter-row::-webkit-scrollbar { display:none; }
+    .pill { flex-shrink:0; padding:6px 14px; border-radius:20px; font-size:0.72rem; font-weight:600; cursor:pointer; border:1.5px solid var(--light); background:#fff; color:var(--grey); white-space:nowrap; transition:all 0.15s; letter-spacing:0.04em; }
+    .pill:hover { border-color:var(--gold-light); color:var(--navy); }
+    .pill.active { background:var(--navy); color:#fff; border-color:var(--navy); }
+    .pill .pill-dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:5px; vertical-align:middle; }
+    .pill-count { display:inline-block; background:rgba(255,255,255,0.2); border-radius:8px; padding:0 5px; margin-left:4px; font-size:0.65rem; }
+    .pill:not(.active) .pill-count { background:var(--light); color:var(--grey); }
+
+    /* ── NO RESULTS ── */
+    .no-results { text-align:center; padding:48px 20px; color:var(--grey); font-size:0.9rem; display:none; }
+    .no-results.show { display:block; }
+
+    /* ── MESSAGE THREAD ── */
+    .thread { display:flex; flex-direction:column; gap:0; }
+
+    /* Date separator */
+    .date-sep { text-align:center; margin:20px 0 14px; position:relative; }
+    .date-sep::before { content:''; position:absolute; left:0; right:0; top:50%; height:1px; background:var(--light); }
+    .date-sep span { position:relative; background:var(--cream); padding:0 12px; font-size:0.7rem; color:var(--grey); letter-spacing:0.1em; text-transform:uppercase; font-weight:600; }
+
+    /* Message group */
+    .msg-group { display:flex; flex-direction:column; margin-bottom:14px; }
+    .msg-group.customer { align-items:flex-end; }
+    .msg-group.admin    { align-items:flex-start; }
+
+    /* Sender label */
+    .msg-sender { font-size:0.69rem; color:var(--grey); font-weight:600; margin-bottom:4px; letter-spacing:0.04em; padding:0 2px; }
+    .msg-group.customer .msg-sender { text-align:right; }
+
+    /* Bubble */
+    .msg-bubble { max-width:82%; padding:12px 15px; border-radius:12px; font-size:0.88rem; line-height:1.62; position:relative; }
+    .msg-group.customer .msg-bubble { background:rgba(200,186,154,0.18); border:1px solid rgba(200,186,154,0.45); border-bottom-right-radius:3px; }
+    .msg-group.admin    .msg-bubble { background:var(--navy); color:rgba(255,255,255,0.9); border-bottom-left-radius:3px; }
+
+    /* Item tag on bubble */
+    .item-tag { display:inline-flex; align-items:center; gap:5px; margin-top:8px; padding:4px 9px; border-radius:12px; font-size:0.66rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; }
+    .msg-group.customer .item-tag { background:rgba(24,30,56,0.08); color:var(--navy); border:1px solid rgba(24,30,56,0.15); }
+    .msg-group.admin    .item-tag { background:rgba(255,255,255,0.12); color:rgba(255,255,255,0.7); border:1px solid rgba(255,255,255,0.15); }
+    .tag-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+    .general-tag { background:rgba(200,186,154,0.2); color:#7a6f52; border:1px solid rgba(200,186,154,0.5); }
+    .msg-group.admin .general-tag { background:rgba(200,186,154,0.15); color:var(--gold); border-color:rgba(200,186,154,0.3); }
+
+    /* Timestamp */
+    .msg-time { font-size:0.64rem; color:var(--grey); margin-top:5px; padding:0 2px; }
+    .msg-group.customer .msg-time { text-align:right; }
+    .msg-group.admin    .msg-time { color:rgba(255,255,255,0.35); padding:0; }
+
+    /* Highlight match */
+    .highlight { background:rgba(200,186,154,0.55); border-radius:2px; padding:0 1px; }
+
+    /* ── COMPOSE ── */
+    .compose-area { position:fixed; bottom:0; left:0; right:0; background:#fff; border-top:1px solid var(--light); padding:14px 16px; z-index:40; }
+    .compose-inner { max-width:720px; margin:0 auto; display:flex; flex-direction:column; gap:10px; }
+    .compose-tag-row { display:flex; gap:7px; overflow-x:auto; scrollbar-width:none; }
+    .compose-tag-row::-webkit-scrollbar { display:none; }
+    .ctag { flex-shrink:0; padding:5px 12px; border-radius:12px; font-size:0.7rem; font-weight:600; cursor:pointer; border:1.5px solid var(--light); background:#fff; color:var(--grey); white-space:nowrap; transition:all 0.15s; }
+    .ctag.active { background:var(--navy); color:#fff; border-color:var(--navy); }
+    .ctag-label { font-size:0.62rem; color:var(--grey); align-self:center; flex-shrink:0; letter-spacing:0.06em; text-transform:uppercase; }
+    .compose-input-row { display:flex; gap:8px; }
+    .compose-input { flex:1; padding:11px 14px; border:1.5px solid var(--light); border-radius:10px; font-family:var(--sans); font-size:0.9rem; resize:none; color:var(--text); transition:border-color 0.2s; }
+    .compose-input:focus { outline:none; border-color:var(--gold); }
+    .compose-send { background:var(--navy); color:var(--gold); border:none; padding:11px 18px; border-radius:10px; font-weight:700; font-size:0.85rem; cursor:pointer; white-space:nowrap; }
+    .compose-hint { font-size:0.72rem; color:var(--grey); }
+    .compose-hint strong { color:var(--navy); }
+  </style>
+</head>
+<body>
+
+<header class="portal-header">
+  <div class="logo">John <em>Skinner</em></div>
+  <div class="user-tag"><strong>David Mitchell</strong>1972 Jaguar E-Type OTS</div>
+</header>
+<div class="concept-label">Concept — Quote Correspondence Overview with Search &amp; Filter</div>
+
+<!-- Top-level portal navigation -->
+<div class="portal-nav">
+  <div class="pnav" onclick="window.location='concept-b-v3.html'">Quote Items</div>
+  <div class="pnav active">All Messages</div>
+  <div class="pnav">Documents</div>
+  <div class="pnav">Order Status</div>
+</div>
+
+<div class="page">
+
+  <div class="sec-head">
+    <div>
+      <div class="sec-title">Quote Correspondence</div>
+      <div class="sec-sub">JSM-2847 · All messages in one place, tagged by item</div>
+    </div>
+    <span class="msg-count" id="msg-count">12 messages</span>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="search-wrap">
+    <input class="search-input" id="search-input" type="text" placeholder="Search messages…" oninput="handleSearch(this.value)">
+    <span class="search-icon" id="search-icon">🔍</span>
+    <button class="search-clear" id="search-clear" onclick="clearSearch()">✕</button>
+  </div>
+
+  <!-- FILTER PILLS -->
+  <div class="filter-row" id="filter-row">
+    <div class="pill active" data-filter="all" onclick="setFilter('all')">
+      All Messages <span class="pill-count" id="pill-count-all">12</span>
+    </div>
+    <div class="pill" data-filter="general" onclick="setFilter('general')">
+      <span class="pill-dot" style="background:var(--gold);"></span>General <span class="pill-count" id="pill-count-general">3</span>
+    </div>
+    <div class="pill" data-filter="item1" onclick="setFilter('item1')">
+      <span class="pill-dot" style="background:#1c3a1c;"></span>Seat Covers <span class="pill-count" id="pill-count-item1">4</span>
+    </div>
+    <div class="pill" data-filter="item2" onclick="setFilter('item2')">
+      <span class="pill-dot" style="background:#2a4a2a;"></span>Carpet <span class="pill-count" id="pill-count-item2">2</span>
+    </div>
+    <div class="pill" data-filter="item3" onclick="setFilter('item3')">
+      <span class="pill-dot" style="background:#1a1a1a;"></span>Hood <span class="pill-count" id="pill-count-item3">2</span>
+    </div>
+    <div class="pill" data-filter="item5" onclick="setFilter('item5')">
+      <span class="pill-dot" style="background:#c8b87a;"></span>Headlining <span class="pill-count" id="pill-count-item5">1</span>
+    </div>
+  </div>
+
+  <div class="no-results" id="no-results">No messages match your search.</div>
+
+  <!-- ── MESSAGE THREAD ── -->
+  <div class="thread" id="thread"></div>
+
+</div><!-- /page -->
+
+<!-- ── COMPOSE ── -->
+<div class="compose-area">
+  <div class="compose-inner">
+    <div style="display:flex;align-items:center;gap:8px;overflow-x:auto;scrollbar-width:none;">
+      <span class="ctag-label">Regarding:</span>
+      <div class="ctag active" data-ctag="general" onclick="setComposeTag('general')">General</div>
+      <div class="ctag" data-ctag="item1" onclick="setComposeTag('item1')">Seat Covers</div>
+      <div class="ctag" data-ctag="item2" onclick="setComposeTag('item2')">Carpet</div>
+      <div class="ctag" data-ctag="item3" onclick="setComposeTag('item3')">Hood</div>
+      <div class="ctag" data-ctag="item4" onclick="setComposeTag('item4')">Door Cards</div>
+      <div class="ctag" data-ctag="item5" onclick="setComposeTag('item5')">Headlining</div>
+      <div class="ctag" data-ctag="item6" onclick="setComposeTag('item6')">Dashboard</div>
+      <div class="ctag" data-ctag="item7" onclick="setComposeTag('item7')">Boot Carpet</div>
+    </div>
+    <div class="compose-hint" id="compose-hint">Sending a <strong>General</strong> message — not linked to a specific item.</div>
+    <div class="compose-input-row">
+      <textarea class="compose-input" id="compose-input" rows="2" placeholder="Type your message…"></textarea>
+      <button class="compose-send" onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ DATA + LOGIC ════════════════ -->
+<script>
+const ITEMS_META = {
+  general: {label:'General',      colour:'#c8ba9a', shortLabel:'General'},
+  item1:   {label:'Leather Seat Covers', colour:'#1c3a1c', shortLabel:'Seat Covers'},
+  item2:   {label:'Carpet Set',    colour:'#2a4a2a', shortLabel:'Carpet'},
+  item3:   {label:'Mohair Hood',   colour:'#1a1a1a', shortLabel:'Hood'},
+  item4:   {label:'Door Card Panels', colour:'#c8ba9a', shortLabel:'Door Cards'},
+  item5:   {label:'Headlining',    colour:'#c8b87a', shortLabel:'Headlining'},
+  item6:   {label:'Dashboard Leather', colour:'#1c3a1c', shortLabel:'Dashboard'},
+  item7:   {label:'Boot Carpet',   colour:'#2a4a2a', shortLabel:'Boot Carpet'},
+};
+
+/* ── MESSAGES DATA ── */
+let MESSAGES = [
+  // Day 1 — initial
+  {id:'m1',  type:'customer', tag:'general', text:'Hi — I\'ve just received the quote. Everything looks great. I have a few questions before I confirm everything.',                                               time:'4 Mar, 9:14 AM'},
+  {id:'m2',  type:'admin',    tag:'general', text:'Morning David — great to hear from you. Take your time, we\'re happy to go through everything. Fire away.',                                                    time:'4 Mar, 10:02 AM'},
+
+  // Seat covers thread
+  {id:'m3',  type:'customer', tag:'item1',   text:'Can you match the seat colour exactly to the original 1972 British Racing Green? I want to make sure it\'s the right shade, not a modern approximation.',    time:'4 Mar, 10:15 AM'},
+  {id:'m4',  type:'admin',    tag:'item1',   text:'Yes — British Racing Green on the E-Type is one of our most frequently matched colours. We have the original Jaguar colour card on file and will confirm the match with you before production begins. You\'ll see a sample before we cut anything.',                                    time:'4 Mar, 11:30 AM'},
+
+  // Carpet thread
+  {id:'m5',  type:'customer', tag:'item2',   text:'On the carpet — is the Dark Green a close match to the seat colour or will there be a visible difference? I\'ve seen some restorations where they\'re noticeably different.',                                                                                                         time:'4 Mar, 2:45 PM'},
+  {id:'m6',  type:'admin',    tag:'item2',   text:'Good question. Carpet and leather are different materials so they will never be identical, but we work to ensure they complement each other well. We\'ve matched these two across hundreds of E-Type restorations. We can send you swatches of both together if that helps.',         time:'4 Mar, 3:20 PM'},
+
+  // Day 2 — hood
+  {id:'m7',  type:'customer', tag:'item3',   text:'I noticed you\'ve suggested adding a new hood. I didn\'t realise the existing one had UV damage — can you show me what you spotted?',                         time:'5 Mar, 8:55 AM'},
+  {id:'m8',  type:'admin',    tag:'item3',   text:'Of course — I\'ll send you a photo of the rear seam area. It\'s early-stage UV degradation, not catastrophic yet, but it will get worse. Worth addressing now while everything else is being done. Mohair will last 15+ years if maintained properly.',                             time:'5 Mar, 9:40 AM'},
+
+  // Seat covers — follow up
+  {id:'m9',  type:'customer', tag:'item1',   text:'One more thing on the seats — do you offer smooth leather as well as grained? I\'ve seen a few E-Types done in smooth and I quite like it.',                   time:'5 Mar, 11:10 AM'},
+  {id:'m10', type:'admin',    tag:'item1',   text:'We do — smooth leather is available in all the same colours. It\'s £140 more per seat cover set. The look is more continental than traditional British, but it does suit the E-Type. We can add it as an option on your quote if you\'d like to compare the pricing.',             time:'5 Mar, 11:55 AM'},
+
+  // Headlining
+  {id:'m11', type:'customer', tag:'item5',   text:'The headlining is still showing TBC — I haven\'t decided on a colour yet. Would you recommend matching it to the seats or going slightly lighter?',            time:'6 Mar, 10:20 AM'},
+
+  // General
+  {id:'m12', type:'admin',    tag:'general', text:'On the headlining question — most E-Type restorations use a lighter headlining than the seat colour, often off-white or light grey. It keeps the interior feeling airy. Matching the seats exactly can feel quite heavy. Happy to pull together some reference photos if that would help you decide.',
+                                                                                                                                                                                                                   time:'6 Mar, 10:55 AM'},
+];
+
+let currentFilter = 'all';
+let currentSearch = '';
+let composeTag = 'general';
+
+/* ── RENDER ── */
+function render() {
+  const thread = document.getElementById('thread');
+  const noResults = document.getElementById('no-results');
+
+  let filtered = MESSAGES.filter(m => {
+    const matchFilter = currentFilter === 'all' || m.tag === currentFilter;
+    const matchSearch = !currentSearch || m.text.toLowerCase().includes(currentSearch.toLowerCase())
+      || ITEMS_META[m.tag].label.toLowerCase().includes(currentSearch.toLowerCase());
+    return matchFilter && matchSearch;
+  });
+
+  // Update count display
+  document.getElementById('msg-count').textContent = filtered.length + ' message' + (filtered.length !== 1 ? 's' : '') + (currentSearch ? ' matching' : '');
+
+  if (filtered.length === 0) {
+    thread.innerHTML = '';
+    noResults.classList.add('show');
+    return;
+  }
+  noResults.classList.remove('show');
+
+  // Group by date
+  const byDate = {};
+  filtered.forEach(m => {
+    const day = m.time.split(',')[0];
+    if (!byDate[day]) byDate[day] = [];
+    byDate[day].push(m);
+  });
+
+  thread.innerHTML = Object.entries(byDate).map(([day, msgs]) => `
+    <div class="date-sep"><span>${day}</span></div>
+    ${msgs.map(m => renderMsg(m)).join('')}
+  `).join('');
+}
+
+function renderMsg(m) {
+  const meta = ITEMS_META[m.tag] || ITEMS_META.general;
+  const isGeneral = m.tag === 'general';
+  const tagHtml = `<span class="item-tag ${isGeneral?'general-tag':''}">
+    <span class="tag-dot" style="background:${meta.colour};"></span>${meta.label}
+  </span>`;
+  const rawText = m.text;
+  const displayText = currentSearch ? highlightText(rawText, currentSearch) : rawText;
+  const time = m.time.split(', ')[1] || m.time;
+
+  return `<div class="msg-group ${m.type}" data-id="${m.id}" data-tag="${m.tag}" data-text="${escHtml(rawText)}">
+    <div class="msg-sender">${m.type === 'admin' ? 'John Skinner' : 'You'}</div>
+    <div class="msg-bubble">
+      ${displayText}
+      <div>${tagHtml}</div>
+      <div class="msg-time">${time}</div>
+    </div>
+  </div>`;
+}
+
+function highlightText(text, query) {
+  if (!query) return text;
+  const re = new RegExp('(' + escRegex(query) + ')', 'gi');
+  return text.replace(re, '<mark class="highlight">$1</mark>');
+}
+function escHtml(s) { return s.replace(/"/g,'&quot;'); }
+function escRegex(s) { return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+
+/* ── FILTER ── */
+function setFilter(f) {
+  currentFilter = f;
+  document.querySelectorAll('.pill').forEach(p => p.classList.toggle('active', p.dataset.filter === f));
+  render();
+}
+
+/* ── SEARCH ── */
+function handleSearch(val) {
+  currentSearch = val.trim();
+  document.getElementById('search-clear').classList.toggle('show', !!currentSearch);
+  document.getElementById('search-icon').style.display = currentSearch ? 'none' : '';
+  render();
+}
+function clearSearch() {
+  document.getElementById('search-input').value = '';
+  currentSearch = '';
+  document.getElementById('search-clear').classList.remove('show');
+  document.getElementById('search-icon').style.display = '';
+  render();
+}
+
+/* ── COMPOSE TAG ── */
+function setComposeTag(tag) {
+  composeTag = tag;
+  document.querySelectorAll('.ctag').forEach(c => c.classList.toggle('active', c.dataset.ctag === tag));
+  const meta = ITEMS_META[tag] || ITEMS_META.general;
+  const hint = document.getElementById('compose-hint');
+  if (tag === 'general') {
+    hint.innerHTML = 'Sending a <strong>General</strong> message — not linked to a specific item.';
+  } else {
+    hint.innerHTML = `Linking this message to <strong>${meta.label}</strong> — it will appear in this thread and inside that item\'s Questions tab.`;
+  }
+  document.getElementById('compose-input').placeholder = tag === 'general'
+    ? 'Type your message…'
+    : `Ask about ${meta.label}…`;
+}
+
+/* ── SEND ── */
+function sendMessage() {
+  const input = document.getElementById('compose-input');
+  const text = input.value.trim();
+  if (!text) return;
+  const now = new Date();
+  const timeStr = now.toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).replace(',','');
+  const newMsg = {
+    id: 'm' + (MESSAGES.length + 1),
+    type: 'customer',
+    tag: composeTag,
+    text: text,
+    time: timeStr,
+  };
+  MESSAGES.push(newMsg);
+  input.value = '';
+  // Update pill counts
+  updatePillCounts();
+  render();
+  // Scroll to bottom
+  setTimeout(() => window.scrollTo({top:document.body.scrollHeight, behavior:'smooth'}), 100);
+}
+
+function updatePillCounts() {
+  const counts = {};
+  MESSAGES.forEach(m => { counts[m.tag] = (counts[m.tag]||0)+1; });
+  document.getElementById('pill-count-all').textContent = MESSAGES.length;
+  ['general','item1','item2','item3','item5'].forEach(tag => {
+    const el = document.getElementById('pill-count-'+tag);
+    if (el) el.textContent = counts[tag]||0;
+  });
+}
+
+// Enter to send (Shift+Enter for new line)
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('compose-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+  });
+  render();
+});
+</script>
+</body>
+</html>
