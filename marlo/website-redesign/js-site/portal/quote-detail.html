@@ -3264,7 +3264,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   // Enter = new line (send via button only, like WhatsApp)
   document.getElementById('dq-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendDrawerMsg();}});
   document.getElementById('lb-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendLBReply();}});
-  setItemFilter('all');updateTotals();renderApprovalSection();updateApproveBar();renderMessages();renderDocs();renderOfficialDocs();renderMilestones();renderSamples();renderNotes();renderPayments();setCTag('general');
+  setItemFilter('all');updateTotals();renderApprovalSection();updateApproveBar();renderMessages();renderDocs();renderOfficialDocs();renderMilestones();renderSamples();renderNotes();renderPayments();
+  switchTab('quote'); // sets submit-strip visibility, approve-bar, tab active states
   // Belt-and-suspenders: re-render items after paint and after a short delay
   // Guards against any first-paint timing edge cases across browsers
   requestAnimationFrame(()=>{
