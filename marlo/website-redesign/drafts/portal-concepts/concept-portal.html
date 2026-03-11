@@ -2762,7 +2762,12 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('compose-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}});
   document.getElementById('dq-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendDrawerMsg();}});
   document.getElementById('lb-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendLBReply();}});
-  setItemFilter('all');updateTotals();renderApprovalSection();updateApproveBar();renderMessages();renderDocs();renderOfficialDocs();renderMilestones();renderSamples();renderNotes();renderPayments();setCTag('general');
+  try{setItemFilter('all');}catch(e){console.error('setItemFilter failed:',e);}
+  try{updateTotals();}catch(e){console.error('updateTotals failed:',e);}
+  try{renderApprovalSection();}catch(e){console.error('renderApproval failed:',e);}
+  try{updateApproveBar();}catch(e){console.error('updateApproveBar failed:',e);}
+  try{renderMessages();}catch(e){console.error('renderMessages failed:',e);}
+  try{renderDocs();renderOfficialDocs();renderMilestones();renderSamples();renderNotes();renderPayments();setCTag('general');}catch(e){console.error('render failed:',e);}
   // Click-outside on notification overlay
   document.getElementById('notif-overlay').addEventListener('click',function(e){
     if(e.target===this) closeNotifModal();
