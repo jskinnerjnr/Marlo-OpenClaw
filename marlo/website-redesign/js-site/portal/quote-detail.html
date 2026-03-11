@@ -270,6 +270,19 @@
     .cc-field:focus { border-color:var(--gold); }
     .cc-send { width:38px; height:38px; border-radius:50%; background:var(--gold); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--navy); transition:transform 0.15s, background 0.15s; -webkit-tap-highlight-color:transparent; }
     .cc-send:hover { background:#d4c8a8; transform:scale(1.05); }
+
+    /* Inline chat images */
+    .chat-img { display:block; max-width:220px; max-height:200px; width:100%; border-radius:10px; margin:6px 0 2px; cursor:zoom-in; object-fit:cover; }
+    .chat-img-placeholder { background:rgba(255,255,255,0.1); border-radius:8px; padding:10px 14px; font-size:0.8rem; color:rgba(255,255,255,0.5); margin:4px 0; }
+
+    /* Compose attachment preview */
+    #compose-attach-preview { display:none; flex-wrap:wrap; gap:6px; padding:4px 0; }
+    #compose-attach-preview.has-files { display:flex; }
+    .attach-file-chip { display:inline-flex; align-items:center; gap:5px; background:rgba(255,255,255,0.1); border:1px solid rgba(200,186,154,0.2); color:rgba(255,255,255,0.7); font-size:0.7rem; padding:4px 8px; border-radius:8px; position:relative; }
+    .attach-file-chip.is-img { padding:3px; background:none; border:none; }
+    .attach-file-chip.is-img img { width:56px; height:56px; object-fit:cover; border-radius:8px; cursor:zoom-in; display:block; }
+    .attach-file-chip .rm { background:rgba(0,0,0,0.55); border:none; color:#fff; width:16px; height:16px; border-radius:50%; font-size:0.6rem; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+    .attach-file-chip.is-img .rm { position:absolute; top:-4px; right:-4px; }
     .date-sep { text-align:center; margin:14px 0 10px; position:relative; }
     .date-sep::before { content:''; position:absolute; left:0; right:0; top:50%; height:1px; background:var(--light); }
     .date-sep span { position:relative; background:var(--cream); padding:0 11px; font-size:0.67rem; color:var(--grey); letter-spacing:0.1em; text-transform:uppercase; }
@@ -1036,7 +1049,10 @@
     <div class="chat-thread" id="msg-thread"></div>
     <div class="chat-compose">
       <button class="cc-ico" onclick="document.getElementById('main-file-input').click()" title="Attach file">📎</button>
-      <textarea class="cc-field" id="compose-input" placeholder="Message John Skinner…" rows="1" oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px'"></textarea>
+      <div style="flex:1;display:flex;flex-direction:column;gap:6px;">
+        <div class="attach-preview-wrap" id="compose-attach-preview"></div>
+        <textarea class="cc-field" id="compose-input" placeholder="Message John Skinner…" rows="1" oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px'"></textarea>
+      </div>
       <button class="cc-send" id="cc-send-btn" onclick="sendMsg()" title="Send">
         <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
       </button>
@@ -1583,20 +1599,36 @@ const defaults={
 Object.keys(defaults).forEach(id=>S[id]={...defaults[id]});
 
 /* ─ MESSAGES ─ */
+// Generate a solid-colour placeholder dataURL for demo image attachments
+function demoImg(hex,w,h,label){
+  try{
+    const c=document.createElement('canvas');c.width=w||160;c.height=h||120;
+    const ctx=c.getContext('2d');
+    ctx.fillStyle=hex;ctx.fillRect(0,0,c.width,c.height);
+    if(label){ctx.fillStyle='rgba(255,255,255,0.35)';ctx.font='bold 11px sans-serif';ctx.textAlign='center';ctx.fillText(label,c.width/2,c.height/2+4);}
+    return c.toDataURL();
+  }catch(e){return null;}
+}
 let MSGS=[
   {id:'m1', type:'customer',tag:'general',text:'Hi — just received the quote. Everything looks great. A few questions before I confirm.',time:'4 Mar, 9:14 AM',attachments:[]},
   {id:'m2', type:'admin',   tag:'general',text:'Morning David — happy to go through everything. Fire away.',time:'4 Mar, 10:02 AM',attachments:[]},
-  {id:'m3', type:'customer',tag:'item1',  text:'Can you match the seat colour exactly to the original 1972 British Racing Green? I want the right shade, not a modern approximation.',time:'4 Mar, 10:15 AM',attachments:[{name:'BRG reference.jpg',type:'image',icon:'🖼️',size:'1.2 MB',bg:'#1c3a1c'}]},
-  {id:'m4', type:'admin',   tag:'item1',  text:'Yes — BRG is one of our most frequently matched E-Type colours. We have the original Jaguar colour card and will confirm before production. You\'ll see a sample before we cut anything.',time:'4 Mar, 11:30 AM',attachments:[{name:'Jaguar colour card.pdf',type:'pdf',icon:'📄',size:'820 KB',bg:'#f6f6f3'},{name:'BRG swatch photo.jpg',type:'image',icon:'🖼️',size:'980 KB',bg:'#2a4a2a'}]},
+  {id:'m3', type:'customer',tag:'item1',  text:'Can you match the seat colour exactly to the original 1972 British Racing Green? I want the right shade, not a modern approximation.',time:'4 Mar, 10:15 AM',attachments:[{name:'BRG reference.jpg',type:'image',icon:'🖼️',size:'1.2 MB',dataURL:null,_demo:'#1c3a1c:BRG Ref'}]},
+  {id:'m4', type:'admin',   tag:'item1',  text:'Yes — BRG is one of our most frequently matched E-Type colours. We\'ll confirm the swatch before production.',time:'4 Mar, 11:30 AM',attachments:[{name:'Jaguar colour card.pdf',type:'pdf',icon:'📄',size:'820 KB'},{name:'BRG swatch photo.jpg',type:'image',icon:'🖼️',size:'980 KB',dataURL:null,_demo:'#2a4a2a:BRG Swatch'}]},
   {id:'m5', type:'customer',tag:'item2',  text:'On the carpet — is Sherwood Green a close match to the seat colour, or will there be a visible difference?',time:'4 Mar, 2:45 PM',attachments:[]},
-  {id:'m6', type:'admin',   tag:'item2',  text:'Leather and carpet are different materials so they won\'t be identical, but we\'ve matched these two across hundreds of E-Type restorations. I can send swatches together if that helps.',time:'4 Mar, 3:20 PM',attachments:[{name:'BRG leather + carpet swatches.jpg',type:'image',icon:'🖼️',size:'1.6 MB',bg:'#1a2a1a'}]},
+  {id:'m6', type:'admin',   tag:'item2',  text:'Leather and carpet are different materials so they won\'t be identical, but we\'ve matched these two across hundreds of E-Type restorations.',time:'4 Mar, 3:20 PM',attachments:[{name:'BRG leather + carpet.jpg',type:'image',icon:'🖼️',size:'1.6 MB',dataURL:null,_demo:'#1a2a1a:Leather & Carpet'}]},
   {id:'m7', type:'customer',tag:'item3',  text:'I didn\'t realise the existing hood had UV damage — can you show me what you spotted?',time:'5 Mar, 8:55 AM',attachments:[]},
-  {id:'m8', type:'admin',   tag:'item3',  text:'Here\'s the rear seam area — early-stage UV degradation, not catastrophic yet, but worth addressing now. Mohair will last 15+ years maintained properly.',time:'5 Mar, 9:40 AM',attachments:[{name:'Hood seam damage.jpg',type:'image',icon:'🖼️',size:'2.1 MB',bg:'#2a2a2a'},{name:'Hood seam detail.jpg',type:'image',icon:'🖼️',size:'1.8 MB',bg:'#1a1a1a'}]},
+  {id:'m8', type:'admin',   tag:'item3',  text:'Here\'s the rear seam area — early-stage UV degradation, not catastrophic yet, but worth addressing now.',time:'5 Mar, 9:40 AM',attachments:[{name:'Hood seam damage.jpg',type:'image',icon:'🖼️',size:'2.1 MB',dataURL:null,_demo:'#2a2a2a:Hood Seam'},{name:'Hood seam detail.jpg',type:'image',icon:'🖼️',size:'1.8 MB',dataURL:null,_demo:'#1a1a1a:Hood Detail'}]},
   {id:'m9', type:'customer',tag:'item1',  text:'Do you also offer smooth leather? I\'ve seen a few E-Types done in smooth and quite like it.',time:'5 Mar, 11:10 AM',attachments:[]},
-  {id:'m10',type:'admin',   tag:'item1',  text:'We do — smooth leather in all the same colours at £140 more. More continental than traditional British but it suits the E-Type. I can add it as an option on your quote.',time:'5 Mar, 11:55 AM',attachments:[{name:'Smooth vs grained comparison.jpg',type:'image',icon:'🖼️',size:'1.4 MB',bg:'#3a3a3a'}]},
+  {id:'m10',type:'admin',   tag:'item1',  text:'We do — smooth leather in all the same colours. More continental than traditional British, but it suits the E-Type beautifully.',time:'5 Mar, 11:55 AM',attachments:[{name:'Smooth vs grained.jpg',type:'image',icon:'🖼️',size:'1.4 MB',dataURL:null,_demo:'#3a3a3a:Smooth vs Grained'}]},
   {id:'m11',type:'customer',tag:'item5',  text:'The headlining is still TBC — would you recommend matching it to the seats or going slightly lighter?',time:'6 Mar, 10:20 AM',attachments:[]},
-  {id:'m12',type:'admin',   tag:'general',text:'On the headlining — most E-Type restorations use a lighter colour than the seats, often off-white or light grey. Happy to send reference photos.',time:'6 Mar, 10:55 AM',attachments:[{name:'E-Type headlining options.pdf',type:'pdf',icon:'📄',size:'1.1 MB',bg:'#f6f6f3'}]},
+  {id:'m12',type:'admin',   tag:'general',text:'Most E-Type restorations use a lighter colour for the headlining — off-white or light grey works very well with BRG.',time:'6 Mar, 10:55 AM',attachments:[{name:'E-Type headlining options.pdf',type:'pdf',icon:'📄',size:'1.1 MB'}]},
 ];
+// Populate demo dataURLs after DOM ready (canvas needed)
+document.addEventListener('DOMContentLoaded',()=>{
+  MSGS.forEach(m=>m.attachments.forEach(a=>{
+    if(a._demo&&!a.dataURL){const [hex,label]=a._demo.split(':');a.dataURL=demoImg(hex,220,140,label);}
+  }));
+});
 
 /* ─ DOCUMENTS ─ */
 let DOCS=[
@@ -2163,14 +2195,22 @@ function renderThread(){
       const av=showAv?`<div class="chat-row-av">JS</div>`:'<div style="width:28px;flex-shrink:0"></div>';
       const senderHtml=isIn&&showAv?`<div class="chat-sender">John Skinner</div>`:'';
       const tagHtml=(m.tag&&m.tag!=='general')?`<div class="chat-tag">${(ITEM_META[m.tag]||{label:m.tag}).label}</div>`:'';
-      const attHtml=m.attachments&&m.attachments.length?`<div class="attach-strip">${m.attachments.map(a=>`<span class="attach-chip">${a.icon} ${a.name}</span>`).join('')}</div>`:'';
       const t=m.time.split(', ')[1]||m.time;
       const tick=isOut?`<span class="chat-tick">✓✓</span>`:'';
+      // Split attachments into images vs files
+      const imgs=(m.attachments||[]).filter(a=>a.type==='image');
+      const files=(m.attachments||[]).filter(a=>a.type!=='image');
+      const imgHtml=imgs.map(a=>a.dataURL
+        ? `<img class="chat-img" src="${a.dataURL}" alt="${a.name}" onclick="viewImgFull('${a.dataURL}')">`
+        : `<div class="chat-img-placeholder">🖼️ ${a.name}</div>`
+      ).join('');
+      const fileHtml=files.length?`<div class="attach-strip">${files.map(a=>`<span class="attach-chip">📄 ${a.name}</span>`).join('')}</div>`:'';
+      const attHtml=imgHtml+fileHtml;
       html+=`<div class="chat-row ${isOut?'out':'in'}">
         ${isIn?av:''}
         <div>
           ${senderHtml}
-          <div class="chat-bubble">${tagHtml}${m.text}${attHtml}<div class="chat-foot"><span class="chat-time">${t}</span>${tick}</div></div>
+          <div class="chat-bubble">${tagHtml}${m.text?m.text:''}${attHtml}<div class="chat-foot"><span class="chat-time">${t}</span>${tick}</div></div>
         </div>
         ${isOut?av:''}
       </div>`;
@@ -2663,27 +2703,63 @@ const pendingAttach={main:[],drawer:[]};
 function triggerAttach(inputId){document.getElementById(inputId).click();}
 function handleFileSelect(area,files){
   [...files].forEach(f=>{
-    pendingAttach[area].push(f);
-    addAttachChip(area,f.name,pendingAttach[area].length-1);
+    const isImg=f.type.startsWith('image');
+    if(isImg){
+      const reader=new FileReader();
+      reader.onload=e=>{
+        f._dataURL=e.target.result;
+        pendingAttach[area].push(f);
+        addAttachPreview(area,f,pendingAttach[area].length-1);
+      };
+      reader.readAsDataURL(f);
+    } else {
+      pendingAttach[area].push(f);
+      addAttachPreview(area,f,pendingAttach[area].length-1);
+    }
   });
 }
-function addAttachChip(area,name,idx){
-  const wrap=document.getElementById(area+'-attach-preview');
+function addAttachPreview(area,file,idx){
+  const wrap=document.getElementById(area==='main'?'compose-attach-preview':'drawer-attach-preview');
   if(!wrap) return;
   wrap.classList.add('has-files');
+  const isImg=file.type.startsWith('image');
   const chip=document.createElement('div');
-  chip.className='attach-file-chip';
+  chip.className='attach-file-chip'+(isImg?' is-img':'');
   chip.dataset.idx=idx;
-  chip.innerHTML=`${name.match(/\.(jpg|jpeg|png|gif)$/i)?'🖼️':'📄'} ${name}<button class="rm" onclick="removeAttach('${area}',${idx})">✕</button>`;
+  if(isImg&&file._dataURL){
+    chip.innerHTML=`<img src="${file._dataURL}" alt="${file.name}" onclick="viewImgFull('${file._dataURL}')"><button class="rm" onclick="removeAttach('${area}',${idx})">✕</button>`;
+  } else {
+    chip.innerHTML=`📄 ${file.name}<button class="rm" onclick="removeAttach('${area}',${idx})">✕</button>`;
+  }
   wrap.appendChild(chip);
 }
 function removeAttach(area,idx){
   pendingAttach[area]=pendingAttach[area].filter((_,i)=>i!==idx);
-  const wrap=document.getElementById(area+'-attach-preview');
-  if(wrap){wrap.innerHTML='';if(pendingAttach[area].length===0)wrap.classList.remove('has-files');else pendingAttach[area].forEach((f,i)=>addAttachChip(area,f.name,i));}
+  const wrap=document.getElementById(area==='main'?'compose-attach-preview':'drawer-attach-preview');
+  if(wrap){wrap.innerHTML='';if(pendingAttach[area].length===0)wrap.classList.remove('has-files');else pendingAttach[area].forEach((f,i)=>addAttachPreview(area,f,i));}
+}
+function viewImgFull(src){
+  let ov=document.getElementById('img-viewer-ov');
+  if(!ov){
+    ov=document.createElement('div');ov.id='img-viewer-ov';
+    ov.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:600;display:flex;align-items:center;justify-content:center;cursor:zoom-out;';
+    ov.onclick=()=>ov.remove();
+    document.body.appendChild(ov);
+  }
+  ov.innerHTML=`<img src="${src}" style="max-width:95vw;max-height:90vh;border-radius:8px;object-fit:contain;box-shadow:0 8px 40px rgba(0,0,0,0.6);">`;
+  ov.style.display='flex';
 }
 function buildAttachmentsFromPending(area){
-  const att=pendingAttach[area].map(f=>({name:f.name,type:f.type.startsWith('image')?'image':'pdf',icon:f.type.startsWith('image')?'🖼️':'📄',size:(f.size/1024).toFixed(0)+' KB',bg:'#e3e3df'}));
+  const files=pendingAttach[area];
+  // Return promise-resolved attachments with dataURLs for images
+  const att=files.map(f=>({
+    name:f.name,
+    type:f.type.startsWith('image')?'image':'pdf',
+    icon:f.type.startsWith('image')?'🖼️':'📄',
+    size:(f.size/1024).toFixed(0)+' KB',
+    bg:'#e3e3df',
+    dataURL:f._dataURL||null
+  }));
   pendingAttach[area]=[];
   const wrap=document.getElementById(area+'-attach-preview');
   if(wrap){wrap.innerHTML='';wrap.classList.remove('has-files');}
