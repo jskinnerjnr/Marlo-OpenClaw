@@ -30,17 +30,19 @@
     .user-tag .ref  { font-size:0.68rem; color:rgba(255,255,255,0.4); margin-top:1px; }
 
     /* ══ PORTAL TABS — desktop ══ */
-    .portal-tabs { background:#fff; display:flex; align-items:stretch; border-bottom:2px solid #e0ddd8; flex-shrink:0; z-index:55; overflow-x:auto; scrollbar-width:none; box-shadow:0 2px 8px rgba(24,30,56,0.06); }
+    .portal-tabs { background:#181e38; display:flex; align-items:stretch; border-bottom:2px solid rgba(200,186,154,0.25); flex-shrink:0; z-index:55; overflow-x:auto; scrollbar-width:none; }
     .portal-tabs::-webkit-scrollbar { display:none; }
     .tab-group { display:flex; align-items:stretch; }
     .tab-group.center { flex:1; justify-content:center; }
-    .ptab { flex-shrink:0; padding:0 20px; font-size:0.68rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:#9a9790; cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-2px; white-space:nowrap; transition:color 0.2s, background 0.2s; position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; height:64px; }
-    .ptab .ptab-icon { font-size:1.25rem; line-height:1; transition:transform 0.2s; }
-    .ptab:hover:not(.active) { color:var(--navy); background:rgba(24,30,56,0.03); }
-    .ptab:hover:not(.active) .ptab-icon { transform:scale(1.12); }
-    .ptab.active { color:var(--navy); border-bottom-color:var(--gold); background:var(--warm); font-weight:800; letter-spacing:0.05em; }
-    .ptab.active .ptab-icon { transform:scale(1.1); }
-    .ptab .badge { position:absolute; top:10px; right:10px; width:7px; height:7px; background:var(--red); border-radius:50%; border:1.5px solid #fff; display:none; }
+    .tab-group.left { border-right:1px solid rgba(200,186,154,0.12); }
+    .tab-group.right { border-left:1px solid rgba(200,186,154,0.12); }
+    .ptab { flex-shrink:0; padding:0 22px; font-size:0.64rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.4); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px; white-space:nowrap; transition:color 0.2s, background 0.2s; position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; height:58px; }
+    .ptab svg { opacity:0.45; transition:opacity 0.2s, transform 0.2s; }
+    .ptab:hover:not(.active) { color:rgba(255,255,255,0.75); background:rgba(255,255,255,0.05); }
+    .ptab:hover:not(.active) svg { opacity:0.7; transform:scale(1.1); }
+    .ptab.active { color:#c8ba9a; border-bottom-color:#c8ba9a; background:rgba(200,186,154,0.08); font-weight:800; }
+    .ptab.active svg { opacity:1; }
+    .ptab .badge { position:absolute; top:10px; right:8px; width:7px; height:7px; background:var(--red); border-radius:50%; border:1.5px solid #181e38; display:none; }
     .ptab .badge.show { display:block; }
     /* Customer Details sub-tabs */
     .cdt-tabs { display:flex; background:#f2f2f7; border-bottom:1px solid var(--light); padding:10px 16px; gap:6px; }
@@ -129,13 +131,16 @@
     @media (min-width:769px) {
       .tab-bar { display:none !important; }
       .submit-strip { display:none !important; }
+      /* Wider, more spacious desktop ptab labels */
+      .ptab { padding:0 28px; font-size:0.62rem; letter-spacing:0.09em; }
+      .inner { padding:32px 32px 140px; }
     }
 
     /* ══ PANELS ══ */
     .content-area { flex:1; overflow:hidden; min-height:0; position:relative; }
     .panel { position:absolute; inset:0; overflow-y:auto; -webkit-overflow-scrolling:touch; display:none; }
     .panel.active { display:block; }
-    .inner { max-width:720px; margin:0 auto; padding:20px 16px 130px; overflow-x:hidden; }
+    .inner { max-width:780px; margin:0 auto; padding:28px 24px 130px; overflow-x:hidden; }
 
     /* ══ CARDS / SHARED ══ */
     .section-heading { font-family:var(--serif); font-size:1.35rem; color:var(--navy); margin-bottom:4px; }
@@ -151,7 +156,7 @@
 
     /* ══ QUOTE PANEL ══ */
     /* Stat cards — 2-row on mobile, 1-row on wider screens */
-    .quote-card { background:#fff; border:1px solid var(--light); border-radius:10px; margin-bottom:16px; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto auto; }
+    .quote-card { background:#fff; border:1px solid rgba(24,30,56,0.1); border-radius:12px; margin-bottom:18px; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto auto; box-shadow:0 2px 12px rgba(24,30,56,0.06); }
     .qstat-top-row { grid-column:1/-1; display:flex; border-bottom:1px solid var(--light); }
     .qstat-bot-row { grid-column:1/-1; display:flex; }
     .qstat { flex:1; min-width:0; text-align:center; border-right:1px solid var(--light); padding:10px 4px 8px; cursor:default; transition:background 0.15s; border-radius:0; }
@@ -198,9 +203,9 @@
     .items-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
     .items-header h3 { font-family:var(--serif); font-size:1.1rem; color:var(--navy); }
     .items-header span { font-size:0.73rem; color:var(--grey); }
-    .item-row { display:grid; grid-template-columns:38px 1fr auto; gap:9px; align-items:center; padding:11px 13px; background:#fff; border:1.5px solid var(--light); border-radius:9px; margin-bottom:6px; cursor:pointer; transition:border-color 0.18s; min-width:0; }
-    .item-row:hover { border-color:var(--gold-light); }
-    .item-row.active { border-color:var(--gold); background:rgba(200,186,154,0.06); }
+    .item-row { display:grid; grid-template-columns:38px 1fr auto; gap:9px; align-items:center; padding:12px 14px; background:#fff; border:1px solid rgba(24,30,56,0.1); border-radius:10px; margin-bottom:7px; cursor:pointer; transition:border-color 0.18s, box-shadow 0.18s; min-width:0; box-shadow:0 1px 4px rgba(24,30,56,0.04); }
+    .item-row:hover { border-color:rgba(200,186,154,0.5); box-shadow:0 2px 10px rgba(24,30,56,0.08); }
+    .item-row.active { border-color:var(--gold); background:rgba(200,186,154,0.05); box-shadow:0 2px 12px rgba(200,186,154,0.15); }
     .i-swatch { width:38px; height:38px; border-radius:6px; flex-shrink:0; }
     .i-name  { font-weight:600; font-size:0.88rem; color:var(--navy); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .i-meta  { font-size:0.71rem; color:var(--grey); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
@@ -211,13 +216,14 @@
     .i-price { font-family:var(--serif); font-size:0.98rem; color:var(--navy); white-space:nowrap; }
 
     /* ══ APPROVE BAR ══ */
-    .approve-bar { position:fixed; bottom:0; left:0; right:0; background:var(--navy); padding:12px 20px; display:flex; align-items:center; justify-content:space-between; border-top:2px solid var(--gold); z-index:45; transition:transform 0.3s; }
+    .approve-bar { position:fixed; bottom:0; left:0; right:0; background:#181e38; padding:10px 28px; display:flex; align-items:center; justify-content:space-between; border-top:1px solid rgba(200,186,154,0.3); z-index:45; transition:transform 0.3s; box-shadow:0 -4px 24px rgba(0,0,0,0.18); }
     .approve-bar.hide { transform:translateY(100%); }
-    .ab-pdf { background:rgba(255,255,255,0.1); border:1.5px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.75); padding:9px 13px; border-radius:8px; font-family:var(--sans); font-size:0.78rem; font-weight:600; cursor:pointer; white-space:nowrap; }
-    .ab-pdf:hover { background:rgba(255,255,255,0.18); }
-    .ab-total .lbl { font-size:0.65rem; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:0.1em; }
-    .ab-total .amt { font-family:var(--serif); font-size:1.35rem; color:var(--gold); }
-    .ab-cta { background:var(--gold); color:var(--navy); border:none; padding:11px 22px; border-radius:6px; font-weight:700; font-size:0.84rem; cursor:pointer; font-family:var(--sans); }
+    .ab-pdf { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.6); padding:9px 16px; border-radius:6px; font-family:var(--sans); font-size:0.75rem; font-weight:600; cursor:pointer; white-space:nowrap; letter-spacing:0.03em; transition:all 0.15s; }
+    .ab-pdf:hover { background:rgba(255,255,255,0.13); color:rgba(255,255,255,0.85); }
+    .ab-total .lbl { font-size:0.6rem; color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:0.12em; }
+    .ab-total .amt { font-family:var(--serif); font-size:1.3rem; color:#c8ba9a; letter-spacing:0.01em; }
+    .ab-cta { background:#c8ba9a; color:#181e38; border:none; padding:10px 26px; border-radius:6px; font-weight:800; font-size:0.82rem; cursor:pointer; font-family:var(--sans); letter-spacing:0.04em; transition:background 0.15s; }
+    .ab-cta:hover { background:#d4c8a8; }
 
     /* ══ MESSAGES PANEL ══ */
     .mp-head { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:12px; gap:10px; }
@@ -966,7 +972,7 @@
 </header>
 
 <!-- ══ BREADCRUMB — desktop only ══ -->
-<div class="portal-breadcrumb" style="background:#fff;border-bottom:1px solid #e0ddd8;padding:9px 20px;font-size:0.75rem;color:#7d807e;flex-shrink:0;letter-spacing:0.01em;">
+<div class="portal-breadcrumb" style="background:var(--warm);border-bottom:1px solid rgba(24,30,56,0.08);padding:8px 20px;font-size:0.72rem;color:#9a9790;flex-shrink:0;letter-spacing:0.02em;">
   <a href="index.html" style="color:#181e38;text-decoration:none;font-weight:600;">My Account</a>
   <span style="margin:0 7px;color:#ccc;">→</span>
   <span>Quote JSM-2847 &nbsp;·&nbsp; 1972 Jaguar E-Type</span>
@@ -997,16 +1003,34 @@
 <!-- ══ PORTAL TABS ══ -->
 <div class="portal-tabs" id="portal-tabs">
   <div class="tab-group left">
-    <div class="ptab" id="pt-customer" onclick="switchTab('customer')"><span class="ptab-icon">👤</span>Customer Details</div>
+    <div class="ptab" id="pt-customer" onclick="switchTab('customer')">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      Customer
+    </div>
   </div>
   <div class="tab-group center">
-    <div class="ptab active" id="pt-quote"    onclick="switchTab('quote')"><span class="ptab-icon">📋</span>Your Quote</div>
-    <div class="ptab"        id="pt-messages" onclick="switchTab('messages')"><span class="ptab-icon">💬</span>Messages<div class="badge" id="msg-badge"></div></div>
-    <div class="ptab"        id="pt-samples"  onclick="switchTab('samples')"><span class="ptab-icon">🎨</span>Samples</div>
+    <div class="ptab active" id="pt-quote" onclick="switchTab('quote')">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="12" y2="16"/></svg>
+      Your Quote
+    </div>
+    <div class="ptab" id="pt-messages" onclick="switchTab('messages')">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Messages<div class="badge" id="msg-badge"></div>
+    </div>
+    <div class="ptab" id="pt-samples" onclick="switchTab('samples')">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="4"/><circle cx="16" cy="16" r="4"/><path d="M16 8a4 4 0 0 1 0 8"/></svg>
+      Samples
+    </div>
   </div>
   <div class="tab-group right">
-    <div class="ptab" id="pt-documents" onclick="switchTab('documents')"><span class="ptab-icon">📊</span>Docs &amp; Progress</div>
-    <div class="ptab" id="pt-payments"  onclick="switchTab('payments')"><span class="ptab-icon">💳</span>Payments</div>
+    <div class="ptab" id="pt-documents" onclick="switchTab('documents')">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+      Docs &amp; Progress
+    </div>
+    <div class="ptab" id="pt-payments" onclick="switchTab('payments')">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+      Payments
+    </div>
   </div>
 </div>
 
