@@ -356,8 +356,25 @@
 
     document.getElementById('quotes-loading').style.display = 'none';
 
+    // Demo card — always shown to logged-in users
+    const demoCardHTML = `
+      <a class="quote-card" href="quote-detail.html" style="border-left:3px solid #c8ba9a;">
+        <div>
+          <div class="quote-car">1972 Jaguar E-Type OTS</div>
+          <div class="quote-meta">
+            <span class="badge badge-in_production">In Progress</span>
+            <span class="quote-date">Quote JSM-2847</span>
+          </div>
+        </div>
+        <span class="quote-arrow">→</span>
+      </a>
+    `;
+
     if (!quotes || quotes.length === 0) {
-      document.getElementById('quotes-empty').style.display = '';
+      // Show demo card instead of empty state
+      const list = document.getElementById('quotes-list');
+      list.innerHTML = demoCardHTML;
+      list.style.display = '';
       return;
     }
 
@@ -373,7 +390,7 @@
     (unread || []).forEach(m => { unreadMap[m.quote_id] = (unreadMap[m.quote_id] || 0) + 1; });
 
     const list = document.getElementById('quotes-list');
-    list.innerHTML = quotes.map(q => `
+    list.innerHTML = demoCardHTML + quotes.map(q => `
       <a class="quote-card" href="quote.html?id=${q.id}">
         <div>
           <div class="quote-car">${q.marque || ''} ${q.model || ''} ${q.year ? '(' + q.year + ')' : ''}</div>
