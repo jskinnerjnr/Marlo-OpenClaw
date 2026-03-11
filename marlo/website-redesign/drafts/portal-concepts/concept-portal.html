@@ -16,7 +16,8 @@
       --serif:'EB Garamond',Georgia,serif;
       --sans:'Open Sans',Arial,sans-serif;
     }
-    html,body { height:100%; overflow-x:hidden; max-width:100vw; }
+    html,body { height:100%; }
+    body { overflow-x:clip; } /* prevent horizontal scroll without breaking absolute panels */
     body { font-family:var(--sans); background:var(--cream); color:var(--text); font-size:15px; overflow:hidden; display:flex; flex-direction:column; }
 
     /* ══ HEADER ══ */
@@ -336,18 +337,17 @@
     .n.green { color:#1c6b3a; }
     .n.grey  { color:#b44043; }
     /* ══ QUOTE APPROVAL SECTION ══ */
-    .approval-section { background:var(--warm); border:1.5px solid var(--light); border-radius:12px; padding:18px 18px 16px; margin-bottom:20px; }
-    .appr-heading { font-family:var(--serif); font-size:1.1rem; color:var(--navy); margin-bottom:12px; }
-    .appr-stage { display:flex; flex-direction:column; gap:10px; }
-    .appr-info  { font-size:0.82rem; color:var(--grey); line-height:1.55; }
+    /* Quote status strip — overview only, no duplicate CTA */
+    .approval-section { margin-bottom:20px; }
+    .appr-stage { display:flex; flex-direction:column; gap:8px; }
+    .appr-info  { font-size:0.82rem; color:var(--grey); line-height:1.55; background:var(--warm); border-radius:10px; padding:13px 16px; }
     .appr-info strong { color:var(--navy); }
-    .appr-warn  { background:rgba(200,186,154,0.2); border:1.5px solid var(--gold); border-radius:8px; padding:9px 13px; font-size:0.79rem; color:#7a6000; line-height:1.5; }
-    .appr-btn-submit  { width:100%; padding:14px; background:var(--navy); color:var(--gold); border:none; border-radius:9px; font-family:var(--sans); font-weight:700; font-size:0.9rem; cursor:pointer; letter-spacing:0.03em; transition:opacity 0.2s; }
-    .appr-btn-submit:disabled { opacity:0.4; cursor:not-allowed; }
-    .appr-btn-approve { width:100%; padding:14px; background:#1c6b3a; color:#fff; border:none; border-radius:9px; font-family:var(--sans); font-weight:700; font-size:0.9rem; cursor:pointer; letter-spacing:0.03em; }
-    .appr-status-pill { display:inline-flex; align-items:center; gap:7px; padding:8px 14px; border-radius:8px; font-size:0.8rem; font-weight:700; }
-    .appr-status-pill.sent     { background:rgba(39,46,102,0.08); color:var(--navy); }
-    .appr-status-pill.approved { background:rgba(28,107,58,0.1);  color:#1c6b3a; }
+    .appr-warn  { background:rgba(200,186,154,0.15); border:1.5px solid rgba(200,186,154,0.6); border-radius:10px; padding:11px 15px; font-size:0.8rem; color:#7a6000; line-height:1.5; display:flex; gap:10px; align-items:flex-start; }
+    .appr-warn-icon { font-size:1rem; flex-shrink:0; margin-top:1px; }
+    .appr-status-pill { display:inline-flex; align-items:center; gap:7px; padding:10px 16px; border-radius:10px; font-size:0.82rem; font-weight:700; width:100%; box-sizing:border-box; }
+    .appr-status-pill.sent     { background:rgba(39,46,102,0.07); color:var(--navy); border:1.5px solid rgba(39,46,102,0.12); }
+    .appr-status-pill.ready    { background:rgba(28,107,58,0.08); color:#1c6b3a;    border:1.5px solid rgba(28,107,58,0.2); }
+    .appr-status-pill.approved { background:rgba(28,107,58,0.1);  color:#1c6b3a;    border:1.5px solid rgba(28,107,58,0.25); }
 
     /* ══ MESSAGE LIGHTBOX ══ */
     .lb-overlay { position:fixed; inset:0; background:rgba(10,12,22,0.78); z-index:300; display:flex; align-items:flex-end; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.25s; }
@@ -917,12 +917,9 @@
         </div>
       </div><!-- /shipping-section -->
 
-      <!-- QUOTE APPROVAL -->
+      <!-- QUOTE STATUS SUMMARY (overview only) -->
       <div class="approval-section" id="approval-section">
-        <div class="appr-heading">Quote Approval</div>
-        <div class="appr-status" id="appr-status-block">
-          <!-- injected by JS -->
-        </div>
+        <div id="appr-status-block"><!-- injected by renderApprovalSection() --></div>
       </div>
 
       <!-- ORDER NOTES (admin only) -->
@@ -1798,20 +1795,22 @@ function renderApprovalSection(){
   const el=document.getElementById('appr-status-block');
   if(!el)return;
   const considering=Object.keys(ITEMS).filter(id=>ITEMS[id].action==='considering').length;
+  const required=Object.keys(ITEMS).filter(id=>ITEMS[id].action==='required').length;
   if(quoteStatus==='draft'){
     el.innerHTML=`<div class="appr-stage">
-      ${considering>0?`<div class="appr-warn">⚠ You have ${considering} item${considering!==1?'s':''} marked as <strong>Considering</strong>. Set each item to Required or Not Required before submitting.</div>`:'<div class="appr-info">All items have been reviewed. When you\'re happy with your selections, submit for John Skinner to review and calculate your shipping cost.</div>'}
-      <button class="appr-btn-submit" ${considering>0?'disabled':''} onclick="submitForReview()">Submit for Shipment Review →</button>
+      ${considering>0
+        ?`<div class="appr-warn"><span class="appr-warn-icon">⚠️</span><div>You have <strong>${considering} item${considering!==1?'s':''} marked as Considering</strong>. Set each to Required or Not Required before you can submit — use the button below when ready.</div></div>`
+        :`<div class="appr-info"><strong>${required} item${required!==1?'s':''} confirmed.</strong> When you're happy with your selections, use the <em>Submit for Review</em> button below.</div>`}
     </div>`;
   } else if(quoteStatus==='submitted'){
     el.innerHTML=`<div class="appr-stage">
-      <div class="appr-status-pill sent">⏳ Awaiting review by John Skinner</div>
-      <div class="appr-info">Your selections have been submitted. John Skinner will review your choices, confirm the shipping cost, and return the quote for your final approval.</div>
+      <div class="appr-status-pill sent">⏳ Submitted — awaiting John Skinner's review</div>
+      <div class="appr-info">John Skinner will confirm the shipping cost and return the quote for your final approval.</div>
     </div>`;
   } else if(quoteStatus==='ready'){
     el.innerHTML=`<div class="appr-stage">
-      <div class="appr-info">John Skinner has reviewed your order and confirmed the shipping cost. Please review the final figures below and approve to proceed.</div>
-      <button class="appr-btn-approve" onclick="approveQuote()">✓ Approve Quote</button>
+      <div class="appr-status-pill ready">✓ Quote ready — awaiting your approval</div>
+      <div class="appr-info">John Skinner has reviewed your order and confirmed the shipping cost. Use the <em>Approve Quote</em> button below to proceed.</div>
     </div>`;
   } else if(quoteStatus==='approved'){
     el.innerHTML=`<div class="appr-stage">
@@ -2783,8 +2782,14 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('dq-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendDrawerMsg();}});
   document.getElementById('lb-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendLBReply();}});
   setItemFilter('all');updateTotals();renderApprovalSection();updateApproveBar();renderMessages();renderDocs();renderOfficialDocs();renderMilestones();renderSamples();renderNotes();renderPayments();setCTag('general');
-  // Deferred re-render to catch any first-paint timing issues
-  requestAnimationFrame(()=>renderItemList());
+  // Belt-and-suspenders: re-render items after paint and after a short delay
+  // Guards against any first-paint timing edge cases across browsers
+  requestAnimationFrame(()=>{
+    if(!document.getElementById('item-list').children.length) setItemFilter('all');
+  });
+  setTimeout(()=>{
+    if(!document.getElementById('item-list').children.length) setItemFilter('all');
+  },250);
   // Click-outside on notification overlay
   document.getElementById('notif-overlay').addEventListener('click',function(e){
     if(e.target===this) closeNotifModal();
