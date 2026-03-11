@@ -64,6 +64,13 @@
     .bell-badge { position:absolute; top:-6px; right:-6px; background:#e52328; color:#fff; border-radius:10px; font-size:0.6rem; font-weight:800; min-width:17px; height:17px; display:none; align-items:center; justify-content:center; padding:0 3px; border:2px solid var(--navy); line-height:1; font-family:var(--sans); }
     .hamburger-btn { display:none; }
     @media (max-width:600px) {
+      /* iOS Safari fix: bypass flex height bug by anchoring panels with position:fixed */
+      body { overflow:hidden; }
+      .content-area { flex:none; height:0; overflow:visible; }
+      .panel { position:fixed; top:96px; left:0; right:0; bottom:0; overflow-y:auto; -webkit-overflow-scrolling:touch; display:none; }
+      .panel.active { display:block; }
+      /* approve bar stays above panels */
+      .approve-bar { z-index:46; }
       .portal-tabs { display:none; }
       /* Hamburger button in header */
       .hamburger-btn { display:flex; flex-direction:column; justify-content:center; gap:5px; background:none; border:none; cursor:pointer; padding:6px; border-radius:6px; flex-shrink:0; }
