@@ -1121,38 +1121,6 @@
         <div class="change-log-list" id="cust-log-list"><div class="cl-empty">No changes recorded yet.</div></div>
       </div>
     </div>
-  </div>
-
-  <!-- ─ SAMPLES ─ -->
-  <div class="panel" id="panel-samples">
-    <div class="inner">
-      <div class="section-heading">Sample Packs</div>
-      <p class="section-sub">Materials and shades sent for your review before the order is confirmed</p>
-
-      <!-- Login prompt (shown when pack dispatched but not confirmed received) -->
-      <div class="received-prompt" id="received-prompt" style="display:none">
-        <div class="rp-icon">📬</div>
-        <div class="rp-text">
-          <strong>Have your samples arrived?</strong>
-          Pack 1 (Leathers &amp; Carpet) was dispatched on 5 Mar. Let us know when it arrives so we can update your quote.
-          <div class="rp-actions">
-            <button class="rp-yes" onclick="markPackReceived('sp1',true)">Yes, received ✓</button>
-            <button class="rp-wait" onclick="dismissPrompt()">Still waiting</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- ETA overview -->
-      <div class="samples-eta">
-        <strong>📬 How long do samples take?</strong>
-        We usually dispatch samples by Royal Mail Tracked or Signed For within 1–2 working days of your request. UK delivery typically takes 2–3 working days from dispatch. International sample packs go by tracked airmail — allow 5–10 working days depending on destination.<br><br>
-        Each sample is a real piece of the material in the relevant colour. Leather and vinyl pieces are approximately 10×10 cm; carpet samples slightly larger. Please check colours in natural daylight — phone or screen lighting can shift perception significantly.
-      </div>
-
-      <div id="samples-list"></div>
-      <button class="request-sample-btn" onclick="alert('Sample request sent — we\'ll confirm which samples to include and dispatch details.')">+ Request Additional Samples</button>
-    </div>
-  </div>
 
     </div><!-- /cdt-customer -->
     <!-- Car sub-panel -->
@@ -1261,6 +1229,32 @@ No other modifications noted.</textarea></div>
     </div>
     </div><!-- /cdt-car -->
   </div><!-- /panel-customer -->
+
+  <!-- ─ SAMPLES ─ -->
+  <div class="panel" id="panel-samples">
+    <div class="inner">
+      <div class="section-heading">Sample Packs</div>
+      <p class="section-sub">Materials and shades sent for your review before the order is confirmed</p>
+      <div class="received-prompt" id="received-prompt" style="display:none">
+        <div class="rp-icon">📬</div>
+        <div class="rp-text">
+          <strong>Have your samples arrived?</strong>
+          Pack 1 (Leathers &amp; Carpet) was dispatched on 5 Mar. Let us know when it arrives so we can update your quote.
+          <div class="rp-actions">
+            <button class="rp-yes" onclick="markPackReceived('sp1',true)">Yes, received ✓</button>
+            <button class="rp-wait" onclick="dismissPrompt()">Still waiting</button>
+          </div>
+        </div>
+      </div>
+      <div class="samples-eta">
+        <strong>📬 How long do samples take?</strong>
+        We usually dispatch samples by Royal Mail Tracked or Signed For within 1–2 working days of your request. UK delivery typically takes 2–3 working days from dispatch. International sample packs go by tracked airmail — allow 5–10 working days depending on destination.<br><br>
+        Each sample is a real piece of the material in the relevant colour. Leather and vinyl pieces are approximately 10×10 cm; carpet samples slightly larger. Please check colours in natural daylight — phone or screen lighting can shift perception significantly.
+      </div>
+      <div id="samples-list"></div>
+      <button class="request-sample-btn" onclick="alert('Sample request sent — we\'ll confirm which samples to include and dispatch details.')">+ Request Additional Samples</button>
+    </div>
+  </div>
 
 </div><!-- /content-area -->
 
