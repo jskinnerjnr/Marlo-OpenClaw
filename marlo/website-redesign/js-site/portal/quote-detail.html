@@ -285,7 +285,18 @@
     .chat-row.in  { align-self:flex-start; }
     .chat-row + .chat-row.out, .chat-row + .chat-row.in { margin-top:2px; }
     .chat-row-av { width:28px; height:28px; border-radius:50%; background:var(--gold); display:flex; align-items:center; justify-content:center; font-size:0.62rem; font-weight:700; color:var(--navy); flex-shrink:0; margin-bottom:2px; font-family:var(--serif); }
-    .chat-bubble { padding:9px 13px; border-radius:18px; font-size:0.875rem; line-height:1.5; position:relative; }
+    .chat-bubble { padding:9px 13px; border-radius:18px; font-size:0.875rem; line-height:1.5; position:relative; user-select:none; -webkit-user-select:none; }
+    /* Reaction bar below bubble */
+    .chat-reactions { display:flex; flex-wrap:wrap; gap:4px; margin-top:4px; }
+    .react-chip { display:inline-flex; align-items:center; gap:3px; background:rgba(255,255,255,0.1); border:1px solid rgba(200,186,154,0.2); border-radius:20px; padding:3px 8px; font-size:0.8rem; cursor:pointer; -webkit-tap-highlight-color:transparent; transition:all 0.15s; }
+    .react-chip.mine { background:rgba(200,186,154,0.25); border-color:rgba(200,186,154,0.5); }
+    .react-chip .rc-count { font-size:0.65rem; font-weight:700; color:rgba(255,255,255,0.7); }
+    .react-chip.mine .rc-count { color:var(--gold); }
+    /* Emoji picker popup */
+    .emoji-picker { position:fixed; z-index:700; background:rgba(30,36,60,0.97); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border:1px solid rgba(200,186,154,0.25); border-radius:30px; padding:8px 10px; display:flex; gap:4px; box-shadow:0 8px 32px rgba(0,0,0,0.4); transform:scale(0.85); opacity:0; transition:transform 0.18s cubic-bezier(.34,1.56,.64,1), opacity 0.15s; pointer-events:none; }
+    .emoji-picker.show { transform:scale(1); opacity:1; pointer-events:auto; }
+    .ep-btn { font-size:1.4rem; padding:4px 5px; border-radius:50%; cursor:pointer; transition:transform 0.12s; -webkit-tap-highlight-color:transparent; line-height:1; }
+    .ep-btn:active { transform:scale(1.3); }
     .chat-row.in  .chat-bubble { background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.9); border:1px solid rgba(200,186,154,0.18); border-bottom-left-radius:4px; }
     .chat-row.out .chat-bubble { background:var(--gold); color:var(--navy); border-bottom-right-radius:4px; box-shadow:0 2px 8px rgba(200,186,154,0.2); }
     .chat-sender { font-size:0.65rem; font-weight:700; color:rgba(200,186,154,0.7); margin-bottom:3px; letter-spacing:0.02em; }
@@ -1626,6 +1637,16 @@ No other modifications noted.</textarea></div>
   </div>
 </div>
 
+<!-- ══ EMOJI PICKER ══ -->
+<div class="emoji-picker" id="emoji-picker">
+  <div class="ep-btn" onclick="pickReaction('👍')">👍</div>
+  <div class="ep-btn" onclick="pickReaction('❤️')">❤️</div>
+  <div class="ep-btn" onclick="pickReaction('😂')">😂</div>
+  <div class="ep-btn" onclick="pickReaction('😮')">😮</div>
+  <div class="ep-btn" onclick="pickReaction('😢')">😢</div>
+  <div class="ep-btn" onclick="pickReaction('🙏')">🙏</div>
+</div>
+
 <!-- ════════════ SCRIPT ════════════ -->
 <script>
 /* ─ META ─ */
@@ -1722,6 +1743,12 @@ let MSGS=[
   {id:'m11',type:'customer',tag:'item5',  text:'The headlining is still TBC — would you recommend matching it to the seats or going slightly lighter?',time:'6 Mar, 10:20 AM',attachments:[]},
   {id:'m12',type:'admin',   tag:'general',text:'Most E-Type restorations use a lighter colour for the headlining — off-white or light grey works very well with BRG.',time:'6 Mar, 10:55 AM',attachments:[{name:'E-Type headlining options.pdf',type:'pdf',icon:'📄',size:'1.1 MB'}]},
 ];
+// Initialise reactions on all messages
+MSGS.forEach(m=>{ if(!m.reactions) m.reactions={}; });
+// Seed a couple of demo reactions
+MSGS[1].reactions={'👍':{count:1,mine:false}};
+MSGS[5].reactions={'❤️':{count:1,mine:false},'😂':{count:2,mine:true}};
+
 // Populate demo dataURLs after DOM ready (canvas needed)
 document.addEventListener('DOMContentLoaded',()=>{
   MSGS.forEach(m=>m.attachments.forEach(a=>{
@@ -2309,6 +2336,64 @@ function renderMessages(){
   buildComposeTagRow();
   renderThread();
 }
+/* ═══ EMOJI REACTIONS ═══ */
+let _reactionTarget=null, _lpTimer=null;
+const EMOJI_PICKER_EMOJIS=['👍','❤️','😂','😮','😢','🙏'];
+
+function renderReactions(m){
+  if(!m.reactions||!Object.keys(m.reactions).length) return '';
+  const chips=Object.entries(m.reactions).map(([e,r])=>
+    `<div class="react-chip${r.mine?' mine':''}" onclick="toggleReaction('${m.id}','${e}')">${e}<span class="rc-count">${r.count}</span></div>`
+  ).join('');
+  return`<div class="chat-reactions">${chips}</div>`;
+}
+
+function openEmojiPicker(e,msgId){
+  e.preventDefault();
+  _reactionTarget=msgId;
+  const picker=document.getElementById('emoji-picker');
+  const rect=(e.touches?e.touches[0]:e);
+  const px=Math.min(rect.clientX, window.innerWidth-220);
+  const py=Math.max(rect.clientY-70, 10);
+  picker.style.left=px+'px';
+  picker.style.top=py+'px';
+  picker.classList.add('show');
+  setTimeout(()=>document.addEventListener('click',dismissPicker,{once:true}),50);
+}
+
+function startLongPress(e,msgId){
+  _lpTimer=setTimeout(()=>{
+    navigator.vibrate&&navigator.vibrate(30);
+    openEmojiPicker(e,msgId);
+  },500);
+}
+function cancelLongPress(){ clearTimeout(_lpTimer); }
+
+function dismissPicker(){
+  document.getElementById('emoji-picker').classList.remove('show');
+  _reactionTarget=null;
+}
+
+function pickReaction(emoji){
+  if(!_reactionTarget) return;
+  toggleReaction(_reactionTarget,emoji);
+  dismissPicker();
+}
+
+function toggleReaction(msgId,emoji){
+  const m=MSGS.find(x=>x.id===msgId);
+  if(!m) return;
+  if(!m.reactions) m.reactions={};
+  if(m.reactions[emoji]){
+    const r=m.reactions[emoji];
+    if(r.mine){ r.count--; r.mine=false; if(r.count===0) delete m.reactions[emoji]; }
+    else { r.count++; r.mine=true; }
+  } else {
+    m.reactions[emoji]={count:1,mine:true};
+  }
+  renderThread();
+}
+
 function buildComposeTagRow(){
   const row=document.getElementById('cc-tag-row');
   if(!row)return;
@@ -2378,7 +2463,8 @@ function renderThread(){
         ${isIn?av:''}
         <div>
           ${senderHtml}
-          <div class="chat-bubble">${tagHtml}${m.text?m.text:''}${attHtml}<div class="chat-foot"><span class="chat-time">${t}</span>${tick}</div></div>
+          <div class="chat-bubble" data-mid="${m.id}" oncontextmenu="openEmojiPicker(event,'${m.id}')" ontouchstart="startLongPress(event,'${m.id}')" ontouchend="cancelLongPress()" ontouchmove="cancelLongPress()">${tagHtml}${m.text?m.text:''}${attHtml}<div class="chat-foot"><span class="chat-time">${t}</span>${tick}</div></div>
+          ${renderReactions(m)}
         </div>
         ${isOut?av:''}
       </div>`;
