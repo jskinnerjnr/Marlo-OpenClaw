@@ -262,7 +262,7 @@
 
     /* Thread scroll area */
     /* Messenger tag filter row */
-    .chat-filters { flex-shrink:0; padding:8px 12px; overflow-x:auto; scrollbar-width:none; display:flex; gap:6px; border-bottom:1px solid rgba(200,186,154,0.1); background:rgba(255,255,255,0.03); }
+    .chat-filters { flex-shrink:0; padding:7px 12px; overflow-x:auto; scrollbar-width:none; display:flex; gap:6px; align-items:center; border-bottom:1px solid rgba(0,0,0,0.25); background:rgba(0,0,0,0.28); }
     .chat-filters::-webkit-scrollbar { display:none; }
     .cf-pill { flex-shrink:0; font-size:0.68rem; font-weight:600; padding:5px 12px; border-radius:20px; cursor:pointer; -webkit-tap-highlight-color:transparent; transition:all 0.18s; white-space:nowrap; border:1px solid rgba(200,186,154,0.2); color:rgba(255,255,255,0.45); background:transparent; letter-spacing:0.01em; }
     .cf-pill.active { background:var(--gold); color:var(--navy); border-color:var(--gold); font-weight:700; }
@@ -295,8 +295,10 @@
     /* Emoji picker popup */
     .emoji-picker { position:fixed; z-index:700; background:rgba(30,36,60,0.97); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border:1px solid rgba(200,186,154,0.25); border-radius:30px; padding:8px 10px; display:flex; gap:4px; box-shadow:0 8px 32px rgba(0,0,0,0.4); transform:scale(0.85); opacity:0; transition:transform 0.18s cubic-bezier(.34,1.56,.64,1), opacity 0.15s; pointer-events:none; }
     .emoji-picker.show { transform:scale(1); opacity:1; pointer-events:auto; }
-    .ep-btn { font-size:1.4rem; padding:4px 5px; border-radius:50%; cursor:pointer; transition:transform 0.12s; -webkit-tap-highlight-color:transparent; line-height:1; }
-    .ep-btn:active { transform:scale(1.3); }
+    @keyframes emoji-pop { 0%{transform:scale(1)} 30%{transform:scale(1.45)} 55%{transform:scale(0.9)} 75%{transform:scale(1.2)} 100%{transform:scale(1)} }
+    .ep-btn { font-size:1.4rem; padding:6px; border-radius:50%; cursor:pointer; -webkit-tap-highlight-color:transparent; line-height:1; transition:background 0.1s; }
+    .ep-btn:active { background:rgba(255,255,255,0.12); }
+    .ep-btn.popping { animation:emoji-pop 0.35s cubic-bezier(.36,.07,.19,.97) both; }
     .chat-row.in  .chat-bubble { background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.9); border:1px solid rgba(200,186,154,0.18); border-bottom-left-radius:4px; }
     .chat-row.out .chat-bubble { background:var(--gold); color:var(--navy); border-bottom-right-radius:4px; box-shadow:0 2px 8px rgba(200,186,154,0.2); }
     .chat-sender { font-size:0.65rem; font-weight:700; color:rgba(200,186,154,0.7); margin-bottom:3px; letter-spacing:0.02em; }
@@ -312,7 +314,7 @@
 
     /* Compose bar */
     /* Compose tag row */
-    .cc-tag-row { display:flex; gap:5px; overflow-x:auto; scrollbar-width:none; padding:8px 12px 4px; border-top:1px solid rgba(200,186,154,0.12); }
+    .cc-tag-row { display:flex; gap:5px; overflow-x:auto; scrollbar-width:none; padding:7px 12px; align-items:center; border-top:1px solid rgba(0,0,0,0.25); background:rgba(0,0,0,0.28); }
     .cc-tag-row::-webkit-scrollbar { display:none; }
     .cc-tag { flex-shrink:0; font-size:0.67rem; font-weight:600; padding:4px 11px; border-radius:20px; border:1px solid rgba(200,186,154,0.2); color:rgba(255,255,255,0.4); background:transparent; cursor:pointer; -webkit-tap-highlight-color:transparent; transition:all 0.18s; white-space:nowrap; letter-spacing:0.01em; }
     .cc-tag .cc-tag-dot { display:inline-block; width:6px; height:6px; border-radius:50%; margin-right:4px; vertical-align:middle; }
@@ -1639,12 +1641,12 @@ No other modifications noted.</textarea></div>
 
 <!-- ══ EMOJI PICKER ══ -->
 <div class="emoji-picker" id="emoji-picker">
-  <div class="ep-btn" onclick="pickReaction('👍')">👍</div>
-  <div class="ep-btn" onclick="pickReaction('❤️')">❤️</div>
-  <div class="ep-btn" onclick="pickReaction('😂')">😂</div>
-  <div class="ep-btn" onclick="pickReaction('😮')">😮</div>
-  <div class="ep-btn" onclick="pickReaction('😢')">😢</div>
-  <div class="ep-btn" onclick="pickReaction('🙏')">🙏</div>
+  <div class="ep-btn" onclick="pickReaction('👍',this)">👍</div>
+  <div class="ep-btn" onclick="pickReaction('❤️',this)">❤️</div>
+  <div class="ep-btn" onclick="pickReaction('😂',this)">😂</div>
+  <div class="ep-btn" onclick="pickReaction('😮',this)">😮</div>
+  <div class="ep-btn" onclick="pickReaction('😢',this)">😢</div>
+  <div class="ep-btn" onclick="pickReaction('🙏',this)">🙏</div>
 </div>
 
 <!-- ════════════ SCRIPT ════════════ -->
@@ -2374,10 +2376,13 @@ function dismissPicker(){
   _reactionTarget=null;
 }
 
-function pickReaction(emoji){
+function pickReaction(emoji,btn){
   if(!_reactionTarget) return;
-  toggleReaction(_reactionTarget,emoji);
-  dismissPicker();
+  // Bounce animation on the tapped button
+  if(btn){ btn.classList.add('popping'); btn.addEventListener('animationend',()=>btn.classList.remove('popping'),{once:true}); }
+  // Haptic on mobile
+  navigator.vibrate&&navigator.vibrate(12);
+  setTimeout(()=>{ toggleReaction(_reactionTarget,emoji); dismissPicker(); }, 120);
 }
 
 function toggleReaction(msgId,emoji){
