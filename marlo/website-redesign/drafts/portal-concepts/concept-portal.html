@@ -113,14 +113,12 @@
     hr.divider { border:none; border-top:1px solid var(--light); margin:18px 0; }
 
     /* ══ QUOTE PANEL ══ */
-    .quote-card { background:#fff; border:1px solid var(--light); border-radius:10px; padding:12px 10px; margin-bottom:16px; display:flex; gap:0; overflow:hidden; }
-    .qstat { flex:1; min-width:0; }
-    .qstat .n { font-size:1.35rem; }
-    .qstat .l { font-size:0.56rem; }
-    .qstat { flex:1; text-align:center; border-right:1px solid var(--light); padding:0 10px; cursor:default; transition:background 0.15s; border-radius:6px; }
-    .qstat:first-child{padding-left:0;} .qstat:last-child{border-right:none;padding-right:0;}
-    .qstat .n { font-family:var(--serif); font-size:1.6rem; color:var(--navy); line-height:1; }
-    .qstat .l { font-size:0.63rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--grey); margin-top:3px; }
+    .quote-card { background:#fff; border:1px solid var(--light); border-radius:10px; padding:10px 6px; margin-bottom:16px; display:flex; gap:0; overflow:hidden; }
+    .qstat { flex:1; min-width:0; text-align:center; border-right:1px solid var(--light); padding:0 4px; cursor:default; transition:background 0.15s; border-radius:6px; }
+    .qstat:last-child { border-right:none; }
+    .qstat .n { font-family:var(--serif); font-size:1.3rem; color:var(--navy); line-height:1; }
+    .qstat .l { font-size:0.5rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--grey); margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    @media(min-width:420px){ .qstat .n { font-size:1.5rem; } .qstat .l { font-size:0.57rem; } }
     .qstat .n.gold { color:#7a6f52; }
     .qstat.filterable { cursor:pointer; -webkit-tap-highlight-color:transparent; }
     .qstat.filterable:hover { background:var(--warm); }
@@ -1676,6 +1674,14 @@ function updateTotals(){
   document.getElementById('qs-required').textContent=req;
   document.getElementById('qs-considering').textContent=con;
   document.getElementById('qs-not-required').textContent=nr;
+  // Keep filter banner count in sync when status changes while on a filtered view
+  if(itemFilter!=='all'){
+    const counts={required:req,considering:con,'not-required':nr};
+    const labels={required:'Required',considering:'Considering','not-required':'Not Required'};
+    const n=counts[itemFilter]||0;
+    const fbEl=document.getElementById('fb-text');
+    if(fbEl) fbEl.textContent=`Showing ${n} ${labels[itemFilter]} item${n!==1?'s':''}`;
+  }
   renderApprovalSection();
 }
 
@@ -1863,7 +1869,8 @@ function submitForReview(){
   renderApprovalSection();
   updateApproveBar();
   // Demo: after 3s admin "reviews" and returns for final approval
-  setTimeout(()=>{quoteStatus='ready';renderApprovalSection();updateApproveBar();},3000);
+  // Demo: admin "responds" after 8s — long enough not to interfere with normal browsing
+  setTimeout(()=>{quoteStatus='ready';renderApprovalSection();updateApproveBar();},8000);
 }
 function approveQuote(){
   quoteStatus='approved';
