@@ -174,7 +174,7 @@
     .qstat.filter-active .n { color:#fff; }
     .qstat.filterable:active .l,
     .qstat.filter-active .l { color:rgba(255,255,255,0.7); }
-    #qstat-all.filter-active, #qstat-all.filterable:active          { background:var(--navy); }
+    #qstat-all.filter-active, #qstat-all.filterable:active          { background:#404041; }
     #qstat-required.filter-active, #qstat-required.filterable:active     { background:#1c6b3a; }
     #qstat-considering.filter-active, #qstat-considering.filterable:active  { background:#c8a84b; }
     #qstat-not-required.filter-active, #qstat-not-required.filterable:active { background:#b44043; }
@@ -261,6 +261,13 @@
     .chat-sub { font-size:0.7rem; color:rgba(200,186,154,0.65); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
     /* Thread scroll area */
+    /* Messenger tag filter row */
+    .chat-filters { flex-shrink:0; padding:8px 12px; overflow-x:auto; scrollbar-width:none; display:flex; gap:6px; border-bottom:1px solid rgba(200,186,154,0.1); background:rgba(255,255,255,0.03); }
+    .chat-filters::-webkit-scrollbar { display:none; }
+    .cf-pill { flex-shrink:0; font-size:0.68rem; font-weight:600; padding:5px 12px; border-radius:20px; cursor:pointer; -webkit-tap-highlight-color:transparent; transition:all 0.18s; white-space:nowrap; border:1px solid rgba(200,186,154,0.2); color:rgba(255,255,255,0.45); background:transparent; letter-spacing:0.01em; }
+    .cf-pill.active { background:var(--gold); color:var(--navy); border-color:var(--gold); font-weight:700; }
+    .cf-pill .cf-dot { display:inline-block; width:6px; height:6px; border-radius:50%; margin-right:5px; vertical-align:middle; }
+
     .chat-thread { flex:1; overflow-y:auto; padding:14px 12px; display:flex; flex-direction:column; gap:6px; -webkit-overflow-scrolling:touch; }
 
     /* Date separators */
@@ -1077,6 +1084,7 @@
         <div class="chat-sub">JSM-2847 · 1972 Jaguar E-Type OTS</div>
       </div>
     </div>
+    <div class="chat-filters" id="chat-filters"></div>
     <div class="chat-thread" id="msg-thread"></div>
     <div class="chat-compose">
       <button class="cc-ico" onclick="document.getElementById('main-file-input').click()" title="Attach file">📎</button>
@@ -2288,17 +2296,42 @@ function sendDrawerMsg(){
 
 /* ═══ MESSAGES ═══ */
 function renderMessages(){
+  buildChatFilters();
   renderThread();
 }
-function buildPills(){/* no-op — pills removed from messenger UI */}
+function buildChatFilters(){
+  const cf=document.getElementById('chat-filters');
+  if(!cf)return;
+  // Collect tags that actually appear in messages
+  const tagCounts={all:MSGS.length};
+  MSGS.forEach(m=>{if(m.tag&&m.tag!=='general')tagCounts[m.tag]=(tagCounts[m.tag]||0)+1;});
+  const tags=['all',...Object.keys(tagCounts).filter(t=>t!=='all')];
+  cf.innerHTML=tags.map(t=>{
+    const meta=ITEM_META[t]||{label:'All',colour:'#c8ba9a'};
+    const dot=t==='all'?'':`<span class="cf-dot" style="background:${meta.colour}"></span>`;
+    const label=t==='all'?'All Messages':meta.label;
+    return`<div class="cf-pill${msgFilter===t?' active':''}" onclick="setChatFilter('${t}')">${dot}${label}</div>`;
+  }).join('');
+}
+function setChatFilter(f){
+  msgFilter=f;
+  buildChatFilters();
+  renderThread();
+  scrollMsgsToBottom();
+}
+function buildPills(){/* legacy no-op */}
 function renderThread(){
   const thread=document.getElementById('msg-thread');if(!thread)return;
+  // Apply filter
+  const filtered=msgFilter==='all'?MSGS:MSGS.filter(m=>m.tag===msgFilter||(msgFilter==='general'&&(!m.tag||m.tag==='general')));
+  if(!filtered.length){thread.innerHTML='<div style="text-align:center;padding:40px 20px;color:rgba(255,255,255,0.3);font-size:0.85rem;">No messages in this category</div>';return;}
   // Oldest first; group by day
   const byDay={};
-  MSGS.forEach(m=>{const d=m.time.split(',')[0];if(!byDay[d])byDay[d]=[];byDay[d].push(m);});
+  filtered.forEach(m=>{const d=m.time.split(',')[0];if(!byDay[d])byDay[d]=[];byDay[d].push(m);});
   const days=Object.entries(byDay);
-  let html='<div class="chat-sys"><span>Quote opened · '+MSGS[0].time.split(',')[0]+'</span></div>';
-  html+='<div class="chat-quote-chip">📋 JSM-2847 — E-Type OTS Full Interior</div>';
+  let html=msgFilter==='all'?`<div class="chat-sys"><span>Quote opened · ${MSGS[0].time.split(',')[0]}</span></div><div class="chat-quote-chip">📋 JSM-2847 — E-Type OTS Full Interior</div>`:'';
+  // (chat-quote-chip already in html above when all; skip duplicate)
+
   days.forEach(([d,msgs],di)=>{
     html+=`<div class="chat-date-sep"><span>${d}</span></div>`;
     let prevType='';
