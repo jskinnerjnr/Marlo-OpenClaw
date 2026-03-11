@@ -3120,7 +3120,7 @@ const LOGIN_NOTIFS = [
     body:'Replies on your BRG seat colour question, and a note about the headlining options.',
     actions:[
       {label:'View Messages',    cls:'nc-btn-primary',   fn:"goNotif('n-messages');switchTab('messages')"},
-      {label:'Later',    cls:'nc-btn-secondary', fn:"permDismissNotif('n-messages')"},
+      {label:'Later',    cls:'nc-btn-secondary', fn:"snoozeNotif('n-messages')"},
     ]
   },
   {
@@ -3130,7 +3130,7 @@ const LOGIN_NOTIFS = [
     body:'Your Hood and Headlining options are still pending — confirm your choices to keep production on schedule.',
     actions:[
       {label:'Review Items',  cls:'nc-btn-primary',   fn:"goNotif('n-review');switchTab('quote');setItemFilter('considering')"},
-      {label:'Later',         cls:'nc-btn-secondary', fn:"permDismissNotif('n-review')"},
+      {label:'Later',         cls:'nc-btn-secondary', fn:"snoozeNotif('n-review')"},
     ]
   },
   {
@@ -3140,7 +3140,7 @@ const LOGIN_NOTIFS = [
     body:'Your hood mohair samples were sent on 9 Mar via Royal Mail Tracked. Have they arrived yet?',
     actions:[
       {label:'Yes, received ✓',  cls:'nc-btn-green',     fn:"goNotif('n-samples');markPackReceived('sp2',true);switchTab('samples')"},
-      {label:'Not yet',          cls:'nc-btn-secondary', fn:"permDismissNotif('n-samples')"},
+      {label:'Not yet',          cls:'nc-btn-secondary', fn:"snoozeNotif('n-samples')"},
     ]
   },
 ];
@@ -3189,6 +3189,12 @@ function goNotif(id){
   updateNotifBell();
 }
 
+/* Later — close modal, keep notification in bell for later */
+function snoozeNotif(id){
+  closeNotifModal();
+  // activeNotifs unchanged — bell stays pulsing, tap to reopen
+}
+
 function closeNotifModal(){
   document.getElementById('notif-overlay').classList.add('hidden');
   updateNotifBell();
@@ -3201,27 +3207,31 @@ function dismissAllNotifs(){
 }
 
 function updateNotifBell(){
-  const bell=document.getElementById('notif-bell');
-  const badge=document.getElementById('bell-badge');
-  const badgeM=document.getElementById('bell-badge-m');
-  if(!bell)return;
   const n=activeNotifs.length;
-  if(n>0){
-    bell.style.cssText='background:#c8ba9a;border:1.5px solid #c8ba9a;color:#181e38;opacity:1;pointer-events:auto;cursor:pointer;';
-    bell.classList.add('pulsing');
-    if(badge){badge.textContent=n;badge.style.display='flex';}
-    if(badgeM){badgeM.textContent=n;badgeM.style.display='flex';}
-  } else {
-    bell.style.cssText='background:rgba(255,255,255,0.12);border:1.5px solid rgba(255,255,255,0.2);color:#fff;opacity:0.28;pointer-events:none;cursor:default;';
-    bell.classList.remove('pulsing');
-    if(badge){badge.textContent='';badge.style.display='none';}
-  }
+  // Update both desktop and mobile bell buttons
+  ['bell-btn','bell-btn-m'].forEach(id=>{
+    const bell=document.getElementById(id);
+    if(!bell)return;
+    if(n>0){
+      bell.style.opacity='1';bell.style.pointerEvents='auto';bell.style.cursor='pointer';
+      bell.classList.add('pulsing');
+    } else {
+      bell.classList.remove('pulsing');
+      bell.style.opacity='';bell.style.pointerEvents='';bell.style.cursor='';
+    }
+  });
+  ['bell-badge','bell-badge-m'].forEach(id=>{
+    const badge=document.getElementById(id);
+    if(!badge)return;
+    if(n>0){badge.textContent=n;badge.style.display='flex';}
+    else{badge.textContent='';badge.style.display='none';}
+  });
 }
 
 function reopenNotifs(){
-  if(!activeNotifs.length)return;
   const overlay=document.getElementById('notif-overlay');
   if(!overlay.classList.contains('hidden')){closeNotifModal();return;}
+  if(!activeNotifs.length)return;
   renderNotifs();
   requestAnimationFrame(()=>overlay.classList.remove('hidden'));
 }
