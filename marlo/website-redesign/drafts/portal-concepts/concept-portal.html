@@ -29,18 +29,24 @@
     .user-tag .ref  { font-size:0.68rem; color:rgba(255,255,255,0.4); margin-top:1px; }
 
     /* ══ PORTAL TABS — desktop ══ */
-    .portal-tabs { background:#fff; display:flex; align-items:stretch; border-bottom:2px solid var(--light); flex-shrink:0; z-index:55; overflow-x:auto; scrollbar-width:none; }
+    .portal-tabs { background:#fff; display:flex; align-items:stretch; border-bottom:2px solid #e0ddd8; flex-shrink:0; z-index:55; overflow-x:auto; scrollbar-width:none; box-shadow:0 2px 8px rgba(24,30,56,0.06); }
     .portal-tabs::-webkit-scrollbar { display:none; }
     .tab-group { display:flex; align-items:stretch; }
     .tab-group.center { flex:1; justify-content:center; }
-    .tab-group.right { }
-    .ptab { flex-shrink:0; padding:10px 18px 9px; font-size:0.7rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; color:var(--grey); cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-2px; white-space:nowrap; transition:color 0.15s, background 0.15s; position:relative; display:flex; flex-direction:column; align-items:center; gap:4px; }
-    .ptab .ptab-icon { font-size:1.1rem; line-height:1; }
-    .ptab:hover:not(.active) { color:var(--navy); background:rgba(24,30,56,0.04); }
-    .ptab.active { color:var(--navy); border-bottom-color:var(--gold); background:var(--warm); font-weight:800; }
-    .ptab.active .ptab-icon { filter:none; }
-    .ptab .badge { position:absolute; top:8px; right:8px; width:7px; height:7px; background:var(--red); border-radius:50%; border:1.5px solid #fff; display:none; }
+    .ptab { flex-shrink:0; padding:0 20px; font-size:0.68rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:#9a9790; cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-2px; white-space:nowrap; transition:color 0.2s, background 0.2s; position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; height:64px; }
+    .ptab .ptab-icon { font-size:1.25rem; line-height:1; transition:transform 0.2s; }
+    .ptab:hover:not(.active) { color:var(--navy); background:rgba(24,30,56,0.03); }
+    .ptab:hover:not(.active) .ptab-icon { transform:scale(1.12); }
+    .ptab.active { color:var(--navy); border-bottom-color:var(--gold); background:var(--warm); font-weight:800; letter-spacing:0.05em; }
+    .ptab.active .ptab-icon { transform:scale(1.1); }
+    .ptab .badge { position:absolute; top:10px; right:10px; width:7px; height:7px; background:var(--red); border-radius:50%; border:1.5px solid #fff; display:none; }
     .ptab .badge.show { display:block; }
+    /* Customer Details sub-tabs */
+    .cdt-tabs { display:flex; border-bottom:2px solid var(--light); background:var(--warm); }
+    .cdt-tab { flex:1; text-align:center; padding:11px 12px; font-size:0.72rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--grey); cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-2px; transition:all 0.15s; }
+    .cdt-tab.active { color:var(--navy); border-bottom-color:var(--gold); background:#fff; }
+    .cdt-panel { display:none; }
+    .cdt-panel.active { display:block; }
 
     /* ══ PORTAL TABS — mobile grid ══ */
     /* ══ MOBILE — hamburger nav ══ */
@@ -829,8 +835,7 @@
 <div class="ham-menu" id="ham-menu">
   <div class="ham-spacer"></div>
   <div class="ham-items">
-    <div class="ham-item"        id="hm-customer" onclick="hamNav('customer')"><div class="hi-icon">👤</div><div class="hi-label">Customer</div></div>
-    <div class="ham-item"        id="hm-car"      onclick="hamNav('car')">      <div class="hi-icon">🚗</div><div class="hi-label">Car Details</div></div>
+    <div class="ham-item" id="hm-customer" onclick="hamNav('customer')"><div class="hi-icon">👤</div><div class="hi-label">Customer Details</div></div>
     <div class="ham-item active" id="hm-quote"    onclick="hamNav('quote')">    <div class="hi-icon">📋</div><div class="hi-label">Your Quote</div></div>
     <div class="ham-item"        id="hm-messages" onclick="hamNav('messages')"> <div class="hi-icon">💬</div><div class="hi-label">Messages</div><div class="hi-badge" id="hm-msg-badge"></div></div>
     <div class="ham-item"        id="hm-documents"onclick="hamNav('documents')" ><div class="hi-icon">📊</div><div class="hi-label">Progress</div></div>
@@ -842,8 +847,7 @@
 <!-- ══ PORTAL TABS ══ -->
 <div class="portal-tabs" id="portal-tabs">
   <div class="tab-group left">
-    <div class="ptab" id="pt-customer" onclick="switchTab('customer')"><span class="ptab-icon">👤</span>Customer</div>
-    <div class="ptab"        id="pt-car"      onclick="switchTab('car')"><span class="ptab-icon">🚗</span>Car Details</div>
+    <div class="ptab" id="pt-customer" onclick="switchTab('customer')"><span class="ptab-icon">👤</span>Customer Details</div>
   </div>
   <div class="tab-group center">
     <div class="ptab active" id="pt-quote"    onclick="switchTab('quote')"><span class="ptab-icon">📋</span>Your Quote</div>
@@ -851,8 +855,8 @@
     <div class="ptab"        id="pt-samples"  onclick="switchTab('samples')"><span class="ptab-icon">🎨</span>Samples</div>
   </div>
   <div class="tab-group right">
-    <div class="ptab"        id="pt-documents" onclick="switchTab('documents')"><span class="ptab-icon">📊</span>Docs &amp; Progress</div>
-    <div class="ptab"        id="pt-payments"  onclick="switchTab('payments')"><span class="ptab-icon">💳</span>Payments</div>
+    <div class="ptab" id="pt-documents" onclick="switchTab('documents')"><span class="ptab-icon">📊</span>Docs &amp; Progress</div>
+    <div class="ptab" id="pt-payments"  onclick="switchTab('payments')"><span class="ptab-icon">💳</span>Payments</div>
   </div>
 </div>
 
@@ -996,8 +1000,15 @@
     </div>
   </div>
 
-  <!-- ─ CUSTOMER ─ -->
+  <!-- ─ CUSTOMER DETAILS (merged Customer + Car) ─ -->
   <div class="panel" id="panel-customer">
+    <!-- Sub-tab bar -->
+    <div class="cdt-tabs">
+      <div class="cdt-tab active" id="cdt-tab-customer" onclick="switchCDT('customer')">👤 &nbsp;Customer Info</div>
+      <div class="cdt-tab"        id="cdt-tab-car"      onclick="switchCDT('car')">🚗 &nbsp;Car Details</div>
+    </div>
+    <!-- Customer sub-panel -->
+    <div class="cdt-panel active" id="cdt-customer">
     <div class="inner">
       <div class="section-toolbar">
         <div><h2 style="font-family:var(--serif);font-size:1.35rem;color:var(--navy);">Your Details</h2><p class="section-sub" style="margin-bottom:0">Contact and delivery information for this order</p></div>
@@ -1120,8 +1131,9 @@
     </div>
   </div>
 
-  <!-- ─ CAR DETAILS ─ -->
-  <div class="panel" id="panel-car">
+    </div><!-- /cdt-customer -->
+    <!-- Car sub-panel -->
+    <div class="cdt-panel" id="cdt-car">
     <div class="inner">
       <div class="section-toolbar">
         <div><h2 style="font-family:var(--serif);font-size:1.35rem;color:var(--navy);">Car Details</h2><p class="section-sub" style="margin-bottom:0">Specification and history for JSM-2847</p></div>
@@ -1224,7 +1236,8 @@ No other modifications noted.</textarea></div>
         <div class="change-log-list" id="car-log-list"><div class="cl-empty">No changes recorded yet.</div></div>
       </div>
     </div>
-  </div>
+    </div><!-- /cdt-car -->
+  </div><!-- /panel-customer -->
 
 </div><!-- /content-area -->
 
@@ -1618,9 +1631,15 @@ let itemFilter='all'; // 'all'(overview) | 'required' | 'considering' | 'not-req
 let quoteStatus='draft'; // 'draft' | 'submitted' | 'ready' | 'approved'
 
 /* ═══ TAB SWITCHING ═══ */
+function switchCDT(sub){
+  ['customer','car'].forEach(s=>{
+    const t=document.getElementById('cdt-tab-'+s); if(t) t.classList.toggle('active',s===sub);
+    const p=document.getElementById('cdt-'+s);     if(p) p.classList.toggle('active',s===sub);
+  });
+}
 function switchTab(tab){
   activeTab=tab;
-  ['quote','messages','documents','payments','customer','samples','car'].forEach(t=>{
+  ['quote','messages','documents','payments','customer','samples'].forEach(t=>{
     const pt=document.getElementById('pt-'+t);    if(pt) pt.classList.toggle('active',t===tab);
     const hm=document.getElementById('hm-'+t);    if(hm) hm.classList.toggle('active',t===tab);
     const panel=document.getElementById('panel-'+t); if(panel) panel.classList.toggle('active',t===tab);
@@ -2762,12 +2781,9 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('compose-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}});
   document.getElementById('dq-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendDrawerMsg();}});
   document.getElementById('lb-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendLBReply();}});
-  try{setItemFilter('all');}catch(e){console.error('setItemFilter failed:',e);}
-  try{updateTotals();}catch(e){console.error('updateTotals failed:',e);}
-  try{renderApprovalSection();}catch(e){console.error('renderApproval failed:',e);}
-  try{updateApproveBar();}catch(e){console.error('updateApproveBar failed:',e);}
-  try{renderMessages();}catch(e){console.error('renderMessages failed:',e);}
-  try{renderDocs();renderOfficialDocs();renderMilestones();renderSamples();renderNotes();renderPayments();setCTag('general');}catch(e){console.error('render failed:',e);}
+  setItemFilter('all');updateTotals();renderApprovalSection();updateApproveBar();renderMessages();renderDocs();renderOfficialDocs();renderMilestones();renderSamples();renderNotes();renderPayments();setCTag('general');
+  // Deferred re-render to catch any first-paint timing issues
+  requestAnimationFrame(()=>renderItemList());
   // Click-outside on notification overlay
   document.getElementById('notif-overlay').addEventListener('click',function(e){
     if(e.target===this) closeNotifModal();
