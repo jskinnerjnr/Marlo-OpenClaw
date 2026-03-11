@@ -113,12 +113,21 @@
     hr.divider { border:none; border-top:1px solid var(--light); margin:18px 0; }
 
     /* ══ QUOTE PANEL ══ */
-    .quote-card { background:#fff; border:1px solid var(--light); border-radius:10px; padding:10px 6px; margin-bottom:16px; display:flex; gap:0; overflow:hidden; }
-    .qstat { flex:1; min-width:0; text-align:center; border-right:1px solid var(--light); padding:0 4px; cursor:default; transition:background 0.15s; border-radius:6px; }
+    /* Stat cards — 2-row on mobile, 1-row on wider screens */
+    .quote-card { background:#fff; border:1px solid var(--light); border-radius:10px; margin-bottom:16px; overflow:hidden; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto auto; }
+    .qstat-top-row { grid-column:1/-1; display:flex; border-bottom:1px solid var(--light); }
+    .qstat-bot-row { grid-column:1/-1; display:flex; }
+    .qstat { flex:1; min-width:0; text-align:center; border-right:1px solid var(--light); padding:10px 4px 8px; cursor:default; transition:background 0.15s; border-radius:0; }
     .qstat:last-child { border-right:none; }
-    .qstat .n { font-family:var(--serif); font-size:1.3rem; color:var(--navy); line-height:1; }
-    .qstat .l { font-size:0.5rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--grey); margin-top:3px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    @media(min-width:420px){ .qstat .n { font-size:1.5rem; } .qstat .l { font-size:0.57rem; } }
+    .qstat .n { font-family:var(--serif); font-size:1.5rem; color:var(--navy); line-height:1; }
+    .qstat .l { font-size:0.55rem; text-transform:uppercase; letter-spacing:0.07em; color:var(--grey); margin-top:4px; white-space:nowrap; }
+    @media(min-width:560px){
+      .quote-card { display:flex; }
+      .qstat-top-row,.qstat-bot-row { display:contents; }
+      .qstat { padding:12px 8px 10px; border-right:1px solid var(--light); border-bottom:none; }
+      .qstat .n { font-size:1.6rem; }
+      .qstat .l { font-size:0.6rem; }
+    }
     .qstat .n.gold { color:#7a6f52; }
     .qstat.filterable { cursor:pointer; -webkit-tap-highlight-color:transparent; }
     .qstat.filterable:hover { background:var(--warm); }
@@ -865,11 +874,17 @@
   <div class="panel active" id="panel-quote">
     <div class="inner">
       <div class="quote-card">
-        <div class="qstat filterable filter-active" id="qstat-all"          onclick="setItemFilter('all')">          <div class="n" id="qs-total">11</div><div class="l">Overview</div></div>
-        <div class="qstat filterable"               id="qstat-required"     onclick="setItemFilter('required')">    <div class="n green" id="qs-required">5</div><div class="l">Required</div></div>
-        <div class="qstat filterable"               id="qstat-considering"  onclick="setItemFilter('considering')"> <div class="n gold"  id="qs-considering">2</div><div class="l">Considering</div></div>
-        <div class="qstat filterable"               id="qstat-not-required" onclick="setItemFilter('not-required')"><div class="n grey"  id="qs-not-required">4</div><div class="l">Not Required</div></div>
-        <div class="qstat"><div class="n gold" id="qs-price">£2,210</div><div class="l">Est. Total</div></div>
+        <!-- Top row: Overview + Est. Total -->
+        <div class="qstat-top-row">
+          <div class="qstat filterable filter-active" id="qstat-all" onclick="setItemFilter('all')"><div class="n" id="qs-total">11</div><div class="l">Overview</div></div>
+          <div class="qstat" style="border-right:none"><div class="n gold" id="qs-price">£2,210</div><div class="l">Est. Total</div></div>
+        </div>
+        <!-- Bottom row: Required / Considering / Not Required -->
+        <div class="qstat-bot-row">
+          <div class="qstat filterable" id="qstat-required"     onclick="setItemFilter('required')"    ><div class="n green" id="qs-required">5</div><div class="l">Required</div></div>
+          <div class="qstat filterable" id="qstat-considering"  onclick="setItemFilter('considering')" ><div class="n gold"  id="qs-considering">2</div><div class="l">Considering</div></div>
+          <div class="qstat filterable" id="qstat-not-required" onclick="setItemFilter('not-required')" style="border-right:none"><div class="n grey" id="qs-not-required">4</div><div class="l">Not Required</div></div>
+        </div>
       </div>
       <div class="filter-banner" id="filter-banner">
         <span class="fb-label"><span class="fb-dot"></span><span id="fb-text">Showing confirmed items</span></span>
@@ -1267,6 +1282,33 @@ No other modifications noted.</textarea></div>
       <button class="compose-send" onclick="sendMsg()">Send</button>
     </div>
     <input type="file" id="main-file-input" multiple accept="image/*,.pdf" style="display:none" onchange="handleFileSelect('main',this.files)">
+  </div>
+</div>
+
+<!-- ══ CONSIDERING PROMPT ══ -->
+<div class="sns-overlay hidden" id="cp-overlay" onclick="if(event.target===this)closeCP()">
+  <div class="sns-sheet">
+    <div style="font-size:1.5rem;margin-bottom:8px;">⚠️</div>
+    <div class="sns-title">Items still undecided</div>
+    <div class="sns-sub">You have <strong id="cp-count">0</strong> item(s) marked as <em>Considering</em>. Please set each one to <strong>Required</strong> or <strong>Not Required</strong> before submitting — we need a confirmed list to calculate your shipping cost accurately.</div>
+    <div style="display:flex;gap:8px;margin-top:4px;">
+      <button class="sns-cancel" onclick="closeCP()">OK, I'll review them</button>
+      <button class="sns-save" onclick="closeCP();setItemFilter('considering')" style="background:var(--navy)">Show Considering items →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SUBMIT CONFIRMATION ══ -->
+<div class="sns-overlay hidden" id="submit-confirm-overlay" onclick="if(event.target===this)closeSubmitConfirm()">
+  <div class="sns-sheet" style="text-align:center;">
+    <div style="font-size:2.5rem;margin-bottom:12px;">✅</div>
+    <div class="sns-title" style="text-align:center;font-size:1.3rem;">Sent to John Skinner</div>
+    <div style="font-size:0.84rem;color:#666;line-height:1.65;margin:10px 0 20px;text-align:left;">
+      Your selections have been sent to <strong>John Skinner</strong> for review.<br><br>
+      He'll go through your choices, confirm everything is correct, and calculate the shipping cost based on the weight and destination of your order.<br><br>
+      <strong>You'll receive a notification</strong> once your updated quote is ready — at that point you'll be able to review the shipping cost and give your final approval to proceed.
+    </div>
+    <button class="sns-save" onclick="closeSubmitConfirm()" style="width:100%;background:var(--navy);">Got it</button>
   </div>
 </div>
 
@@ -1868,28 +1910,44 @@ function submitForReview(){
   quoteStatus='submitted';
   renderApprovalSection();
   updateApproveBar();
-  // Demo: after 3s admin "reviews" and returns for final approval
-  // Demo: admin "responds" after 8s — long enough not to interfere with normal browsing
+  document.getElementById('submit-confirm-overlay').classList.remove('hidden');
+  // Demo: admin "responds" after 8s
   setTimeout(()=>{quoteStatus='ready';renderApprovalSection();updateApproveBar();},8000);
 }
+function closeSubmitConfirm(){document.getElementById('submit-confirm-overlay').classList.add('hidden');}
 function approveQuote(){
   quoteStatus='approved';
   renderApprovalSection();
   updateApproveBar();
 }
 function handleQuoteCTA(){
-  if(quoteStatus==='draft') submitForReview();
-  else if(quoteStatus==='ready') approveQuote();
+  if(quoteStatus==='draft'){
+    const con=Object.keys(ITEMS).filter(id=>ITEMS[id].action==='considering').length;
+    if(con>0){
+      showConsideringPrompt(con);
+    } else {
+      submitForReview();
+    }
+  } else if(quoteStatus==='ready'){
+    approveQuote();
+  }
 }
+function showConsideringPrompt(count){
+  document.getElementById('cp-count').textContent=count;
+  document.getElementById('cp-overlay').classList.remove('hidden');
+}
+function closeCP(){document.getElementById('cp-overlay').classList.add('hidden');}
 function updateApproveBar(){
   const btn=document.getElementById('ab-cta-btn');
   if(!btn)return;
   const considering=Object.keys(ITEMS).filter(id=>ITEMS[id].action==='considering').length;
   if(quoteStatus==='draft'){
-    btn.textContent='Submit for Review →';
-    btn.style.opacity=considering>0?'0.45':'1';
-    btn.disabled=considering>0;
-    btn.style.background='';btn.style.color='';btn.style.borderColor='';
+    btn.textContent=considering>0?'⚠ Submit for Review':'Submit for Review →';
+    btn.style.opacity=considering>0?'0.6':'1';
+    btn.disabled=false; // we handle tap ourselves with prompt
+    btn.style.background=considering>0?'rgba(200,186,154,0.25)':'';
+    btn.style.color=considering>0?'rgba(255,255,255,0.7)':'';
+    btn.style.borderColor='';
   } else if(quoteStatus==='submitted'){
     btn.textContent='⏳ Awaiting Admin Review';
     btn.style.opacity='0.6'; btn.disabled=true;
