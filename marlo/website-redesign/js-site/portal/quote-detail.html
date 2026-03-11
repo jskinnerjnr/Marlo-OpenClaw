@@ -214,6 +214,62 @@
     .pill-n { display:inline-block; background:var(--light); color:var(--grey); border-radius:8px; padding:0 5px; margin-left:3px; font-size:0.63rem; }
     .pill.active .pill-n { background:rgba(255,255,255,0.2); color:#fff; }
     .thread { display:flex; flex-direction:column; background:#eef0f5; border-radius:12px; padding:16px 12px; margin-top:4px; min-height:120px; }
+
+    /* ── FULL-SCREEN MESSENGER ── */
+    #panel-messages { display:none; flex-direction:column; background:var(--navy); }
+    #panel-messages.active { display:flex; position:fixed; inset:0; z-index:300; }
+
+    /* Chat header */
+    .chat-hdr { background:rgba(255,255,255,0.06); border-bottom:1px solid rgba(200,186,154,0.2); padding:10px 14px; display:flex; align-items:center; gap:11px; flex-shrink:0; min-height:58px; }
+    .chat-back { background:none; border:none; cursor:pointer; color:var(--gold); display:flex; align-items:center; padding:6px; border-radius:50%; flex-shrink:0; -webkit-tap-highlight-color:transparent; transition:background 0.15s; }
+    .chat-back:hover { background:rgba(255,255,255,0.08); }
+    .chat-avatar-wrap { position:relative; flex-shrink:0; }
+    .chat-av { width:38px; height:38px; border-radius:50%; background:var(--gold); display:flex; align-items:center; justify-content:center; font-family:var(--serif); color:var(--navy); font-size:1rem; font-weight:700; }
+    .chat-online { position:absolute; bottom:1px; right:1px; width:9px; height:9px; border-radius:50%; background:#4ade80; border:2px solid var(--navy); }
+    .chat-meta { flex:1; min-width:0; }
+    .chat-name { font-weight:700; font-size:0.9rem; color:#fff; }
+    .chat-sub { font-size:0.7rem; color:rgba(200,186,154,0.65); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+    /* Thread scroll area */
+    .chat-thread { flex:1; overflow-y:auto; padding:14px 12px; display:flex; flex-direction:column; gap:6px; -webkit-overflow-scrolling:touch; }
+
+    /* Date separators */
+    .chat-date-sep { text-align:center; margin:8px 0 4px; }
+    .chat-date-sep span { background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.35); font-size:0.66rem; padding:4px 12px; border-radius:20px; letter-spacing:0.04em; }
+
+    /* System / quote chip */
+    .chat-sys { text-align:center; margin:4px 0; }
+    .chat-sys span { background:rgba(255,255,255,0.07); color:rgba(255,255,255,0.3); font-size:0.66rem; padding:4px 14px; border-radius:20px; }
+    .chat-quote-chip { align-self:center; background:rgba(200,186,154,0.12); border:1px solid rgba(200,186,154,0.25); color:var(--gold); font-size:0.7rem; font-weight:700; padding:5px 14px; border-radius:20px; letter-spacing:0.04em; font-family:var(--serif); margin:4px auto; }
+
+    /* Bubble rows */
+    .chat-row { display:flex; align-items:flex-end; gap:8px; max-width:82%; }
+    .chat-row.out { align-self:flex-end; flex-direction:row-reverse; }
+    .chat-row.in  { align-self:flex-start; }
+    .chat-row + .chat-row.out, .chat-row + .chat-row.in { margin-top:2px; }
+    .chat-row-av { width:28px; height:28px; border-radius:50%; background:var(--gold); display:flex; align-items:center; justify-content:center; font-size:0.62rem; font-weight:700; color:var(--navy); flex-shrink:0; margin-bottom:2px; font-family:var(--serif); }
+    .chat-bubble { padding:9px 13px; border-radius:18px; font-size:0.875rem; line-height:1.5; position:relative; }
+    .chat-row.in  .chat-bubble { background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.9); border:1px solid rgba(200,186,154,0.18); border-bottom-left-radius:4px; }
+    .chat-row.out .chat-bubble { background:var(--gold); color:var(--navy); border-bottom-right-radius:4px; box-shadow:0 2px 8px rgba(200,186,154,0.2); }
+    .chat-sender { font-size:0.65rem; font-weight:700; color:rgba(200,186,154,0.7); margin-bottom:3px; letter-spacing:0.02em; }
+    .chat-foot { display:flex; align-items:center; gap:4px; justify-content:flex-end; margin-top:5px; }
+    .chat-time { font-size:0.61rem; }
+    .chat-row.in  .chat-time { color:rgba(255,255,255,0.3); }
+    .chat-row.out .chat-time { color:rgba(24,30,56,0.45); }
+    .chat-tick { font-size:0.65rem; color:rgba(24,30,56,0.4); letter-spacing:-2px; }
+
+    /* Item tag chip inside bubble */
+    .chat-tag { display:inline-block; background:rgba(24,30,56,0.15); color:rgba(24,30,56,0.6); font-size:0.6rem; font-weight:700; padding:2px 7px; border-radius:10px; margin-bottom:5px; letter-spacing:0.03em; text-transform:uppercase; }
+    .chat-row.in .chat-tag { background:rgba(255,255,255,0.12); color:rgba(255,255,255,0.45); }
+
+    /* Compose bar */
+    .chat-compose { background:rgba(255,255,255,0.05); border-top:1px solid rgba(200,186,154,0.2); padding:10px 12px; display:flex; align-items:flex-end; gap:9px; flex-shrink:0; }
+    .cc-ico { background:none; border:none; cursor:pointer; padding:7px; border-radius:50%; color:rgba(200,186,154,0.65); font-size:1.1rem; line-height:1; flex-shrink:0; -webkit-tap-highlight-color:transparent; }
+    .cc-field { flex:1; background:rgba(255,255,255,0.1); border:1.5px solid rgba(200,186,154,0.22); border-radius:22px; padding:9px 14px; font-family:var(--sans); font-size:0.875rem; color:#fff; resize:none; outline:none; min-height:38px; max-height:100px; line-height:1.45; transition:border-color 0.2s; overflow:hidden; }
+    .cc-field::placeholder { color:rgba(255,255,255,0.28); }
+    .cc-field:focus { border-color:var(--gold); }
+    .cc-send { width:38px; height:38px; border-radius:50%; background:var(--gold); border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:var(--navy); transition:transform 0.15s, background 0.15s; -webkit-tap-highlight-color:transparent; }
+    .cc-send:hover { background:#d4c8a8; transform:scale(1.05); }
     .date-sep { text-align:center; margin:14px 0 10px; position:relative; }
     .date-sep::before { content:''; position:absolute; left:0; right:0; top:50%; height:1px; background:var(--light); }
     .date-sep span { position:relative; background:var(--cream); padding:0 11px; font-size:0.67rem; color:var(--grey); letter-spacing:0.1em; text-transform:uppercase; }
@@ -963,21 +1019,27 @@
 
   <!-- ─ MESSAGES ─ -->
   <div class="panel" id="panel-messages">
-    <div class="inner">
-      <div class="mp-head">
-        <div><h2>Correspondence</h2><p>All messages · tagged by item</p></div>
-        <span class="msg-cnt" id="msg-cnt-badge">—</span>
+    <!-- Full-screen chat UI — no .inner wrapper needed -->
+    <div class="chat-hdr">
+      <button class="chat-back" onclick="switchTab('quote')" title="Back to quote">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      </button>
+      <div class="chat-avatar-wrap">
+        <div class="chat-av">JS</div>
+        <div class="chat-online"></div>
       </div>
-      <div class="msg-sticky">
-        <div class="search-wrap">
-          <input class="search-input" id="s-input" type="text" placeholder="Search messages…" oninput="handleSearch(this.value)">
-          <button class="s-clear" id="s-clear" onclick="clearSearch()">✕</button>
-          <button class="search-btn" onclick="document.getElementById('s-input').focus()">🔍</button>
-        </div>
-        <div class="filter-row" id="filter-row"></div>
+      <div class="chat-meta">
+        <div class="chat-name">John Skinner Workshop</div>
+        <div class="chat-sub">JSM-2847 · 1972 Jaguar E-Type OTS</div>
       </div>
-      <div class="no-results" id="no-results">No messages match your search.</div>
-      <div class="thread" id="msg-thread"></div>
+    </div>
+    <div class="chat-thread" id="msg-thread"></div>
+    <div class="chat-compose">
+      <button class="cc-ico" onclick="document.getElementById('main-file-input').click()" title="Attach file">📎</button>
+      <textarea class="cc-field" id="compose-input" placeholder="Message John Skinner…" rows="1" oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px'"></textarea>
+      <button class="cc-send" id="cc-send-btn" onclick="sendMsg()" title="Send">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
+      </button>
     </div>
   </div>
 
@@ -1267,30 +1329,7 @@ No other modifications noted.</textarea></div>
   </div>
 </div>
 
-<!-- ══ COMPOSE (Messages) ══ -->
-<div class="compose-wrap hide" id="compose-wrap">
-  <div class="compose-inner">
-    <div class="compose-tags">
-      <span class="ctag-lbl">About:</span>
-      <div class="ctag active" data-ct="general" onclick="setCTag('general')">General</div>
-      <div class="ctag" data-ct="item1" onclick="setCTag('item1')">Seats</div>
-      <div class="ctag" data-ct="item2" onclick="setCTag('item2')">Carpet</div>
-      <div class="ctag" data-ct="item3" onclick="setCTag('item3')">Hood</div>
-      <div class="ctag" data-ct="item4" onclick="setCTag('item4')">Doors</div>
-      <div class="ctag" data-ct="item5" onclick="setCTag('item5')">Headlining</div>
-      <div class="ctag" data-ct="item6" onclick="setCTag('item6')">Dashboard</div>
-      <div class="ctag" data-ct="item7" onclick="setCTag('item7')">Boot</div>
-    </div>
-    <div class="c-hint" id="c-hint"></div>
-    <div class="attach-preview-wrap" id="main-attach-preview"></div>
-    <div class="compose-row">
-      <textarea class="compose-input" id="compose-input" rows="2" placeholder="Type your message…"></textarea>
-      <button class="attach-btn" onclick="triggerAttach('main-file-input')" title="Attach file">📎</button>
-      <button class="compose-send" onclick="sendMsg()">Send</button>
-    </div>
-    <input type="file" id="main-file-input" multiple accept="image/*,.pdf" style="display:none" onchange="handleFileSelect('main',this.files)">
-  </div>
-</div>
+<input type="file" id="main-file-input" multiple accept="image/*,.pdf" style="display:none" onchange="handleFileSelect('main',this.files)">
 
 <!-- ══ CONSIDERING PROMPT ══ -->
 <div class="sns-overlay hidden" id="cp-overlay" onclick="if(event.target===this)closeCP()">
@@ -1689,8 +1728,13 @@ function switchTab(tab){
     const panel=document.getElementById('panel-'+t); if(panel) panel.classList.toggle('active',t===tab);
   });
   document.getElementById('approve-bar').classList.toggle('hide',tab!=='quote');
-  document.getElementById('compose-wrap').classList.toggle('hide',tab!=='messages');
-  if(tab==='messages'){document.getElementById('msg-badge').classList.remove('show');const bnb2=document.getElementById('bn-msg-badge');if(bnb2)bnb2.classList.remove('show');const hmb2=document.getElementById('hm-msg-badge');if(hmb2)hmb2.classList.remove('show');renderMessages();requestAnimationFrame(scrollMsgsToBottom);}
+  if(tab==='messages'){
+    document.getElementById('msg-badge').classList.remove('show');
+    const bnb2=document.getElementById('bn-msg-badge');if(bnb2)bnb2.classList.remove('show');
+    const hmb2=document.getElementById('hm-msg-badge');if(hmb2)hmb2.classList.remove('show');
+    renderMessages();
+    requestAnimationFrame(scrollMsgsToBottom);
+  }
   if(tab==='documents') renderDocs();
   if(tab==='payments')  renderPayments();
   if(tab==='samples') renderSamples();
@@ -2098,38 +2142,47 @@ function sendDrawerMsg(){
 
 /* ═══ MESSAGES ═══ */
 function renderMessages(){
-  buildPills();renderThread();
+  renderThread();
 }
-function buildPills(){
-  const counts={all:0};MSGS.forEach(m=>{counts[m.tag]=(counts[m.tag]||0)+1;counts.all++;});
-  const tags=['all','general',...Object.keys(ITEMS).filter(k=>counts[k])];
-  document.getElementById('filter-row').innerHTML=tags.map(t=>{
-    const meta=ITEM_META[t]||{label:'All Messages',colour:'#c8ba9a',short:'All Messages'};
-    const dot=t==='all'?'':`<span class="pill-dot" style="background:${meta.colour}"></span>`;
-    return`<div class="pill${msgFilter===t?' active':''}" onclick="setFilter('${t}')">${dot}${meta.short||'All'}<span class="pill-n">${counts[t]||0}</span></div>`;
-  }).join('');
-}
+function buildPills(){/* no-op — pills removed from messenger UI */}
 function renderThread(){
-  const filtered=MSGS.filter(m=>{
-    const mf=msgFilter==='all'||m.tag===msgFilter;
-    const ms=!msgSearch||m.text.toLowerCase().includes(msgSearch.toLowerCase());
-    return mf&&ms;
+  const thread=document.getElementById('msg-thread');if(!thread)return;
+  // Oldest first; group by day
+  const byDay={};
+  MSGS.forEach(m=>{const d=m.time.split(',')[0];if(!byDay[d])byDay[d]=[];byDay[d].push(m);});
+  const days=Object.entries(byDay);
+  let html='<div class="chat-sys"><span>Quote opened · '+MSGS[0].time.split(',')[0]+'</span></div>';
+  html+='<div class="chat-quote-chip">📋 JSM-2847 — E-Type OTS Full Interior</div>';
+  days.forEach(([d,msgs],di)=>{
+    html+=`<div class="chat-date-sep"><span>${d}</span></div>`;
+    let prevType='';
+    msgs.forEach(m=>{
+      const isOut=m.type==='customer';
+      const isIn=!isOut;
+      const showAv=isIn&&m.type!==prevType;
+      const av=showAv?`<div class="chat-row-av">JS</div>`:'<div style="width:28px;flex-shrink:0"></div>';
+      const senderHtml=isIn&&showAv?`<div class="chat-sender">John Skinner</div>`:'';
+      const tagHtml=(m.tag&&m.tag!=='general')?`<div class="chat-tag">${(ITEM_META[m.tag]||{label:m.tag}).label}</div>`:'';
+      const attHtml=m.attachments&&m.attachments.length?`<div class="attach-strip">${m.attachments.map(a=>`<span class="attach-chip">${a.icon} ${a.name}</span>`).join('')}</div>`:'';
+      const t=m.time.split(', ')[1]||m.time;
+      const tick=isOut?`<span class="chat-tick">✓✓</span>`:'';
+      html+=`<div class="chat-row ${isOut?'out':'in'}">
+        ${isIn?av:''}
+        <div>
+          ${senderHtml}
+          <div class="chat-bubble">${tagHtml}${m.text}${attHtml}<div class="chat-foot"><span class="chat-time">${t}</span>${tick}</div></div>
+        </div>
+        ${isOut?av:''}
+      </div>`;
+      prevType=m.type;
+    });
   });
-  document.getElementById('msg-cnt-badge').textContent=filtered.length+' msg'+(filtered.length!==1?'s':'');
-  const nr=document.getElementById('no-results');
-  if(!filtered.length){nr.classList.add('show');document.getElementById('msg-thread').innerHTML='';return;}
-  nr.classList.remove('show');
-  // Oldest first — newest appears at the bottom (WhatsApp/Telegram order)
-  const byDay={};filtered.forEach(m=>{const d=m.time.split(',')[0];if(!byDay[d])byDay[d]=[];byDay[d].push(m);});
-  document.getElementById('msg-thread').innerHTML=Object.entries(byDay).map(([d,msgs])=>
-    `<div class="date-sep"><span>${d}</span></div>${msgs.map(m=>renderMsgBubble(m)).join('')}`
-  ).join('');
-  // Scroll to latest after render
+  thread.innerHTML=html;
   scrollMsgsToBottom();
 }
 function scrollMsgsToBottom(){
-  const panel=document.getElementById('panel-messages');
-  if(panel) panel.scrollTop=panel.scrollHeight;
+  const t=document.getElementById('msg-thread');
+  if(t) t.scrollTop=t.scrollHeight;
 }
 function renderMsgBubble(m,inLB){
   const meta=ITEM_META[m.tag]||ITEM_META.general;
@@ -2163,8 +2216,9 @@ function sendMsg(){
   const inp=document.getElementById('compose-input');const txt=inp.value.trim();
   const att=buildAttachmentsFromPending('main');
   if(!txt&&!att.length)return;
-  MSGS.push({id:'m'+(MSGS.length+1),type:'customer',tag:composeTag,text:txt||'(attached)',time:nowStr(),attachments:att});
-  inp.value='';renderMessages();
+  MSGS.push({id:'m'+(MSGS.length+1),type:'customer',tag:'general',text:txt||'(attached)',time:nowStr(),attachments:att});
+  inp.value='';inp.style.height='';
+  renderMessages();
 }
 
 /* ═══ LIGHTBOX ═══ */
