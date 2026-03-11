@@ -72,7 +72,7 @@
       .hamburger-btn.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
       .hamburger-btn.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
       /* Dropdown menu */
-      .ham-menu { display:none; position:fixed; top:0; left:0; right:0; z-index:58; background:#fff; box-shadow:0 6px 24px rgba(0,0,0,0.14); transform:translateY(-8px); opacity:0; transition:transform 0.22s cubic-bezier(.4,0,.2,1), opacity 0.2s; border-radius:0 0 14px 14px; overflow:hidden; }
+      .ham-menu { display:none; position:fixed; top:96px; left:0; right:0; z-index:58; background:#fff; box-shadow:0 6px 24px rgba(0,0,0,0.14); transform:translateY(-8px); opacity:0; transition:transform 0.22s cubic-bezier(.4,0,.2,1), opacity 0.2s; border-radius:0 0 14px 14px; overflow:hidden; }
       .ham-menu.open { display:block; transform:translateY(0); opacity:1; }
       /* spacer so menu clears the header */
       .ham-spacer { height:60px; background:var(--navy); border-bottom:3px solid var(--gold); }
@@ -87,7 +87,7 @@
       .ham-item { position:relative; }
       .ham-item .hi-badge.show { display:block; }
       /* Dim overlay behind menu */
-      .ham-overlay { display:none; position:fixed; inset:0; z-index:57; background:rgba(0,0,0,0.35); }
+      .ham-overlay { display:none; position:fixed; top:96px; left:0; right:0; bottom:0; z-index:57; background:rgba(0,0,0,0.35); }
       .ham-overlay.open { display:block; }
     }
     @media (min-width:601px) {
@@ -809,6 +809,10 @@
   <div style="display:flex;align-items:center;gap:10px;">
     <a href="index.html" style="color:#c8ba9a;text-decoration:none;font-family:'Open Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.06em;opacity:0.85;white-space:nowrap;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">← My Account</a>
     <a href="index.html" style="color:#c8ba9a;text-decoration:none;font-family:'Open Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.06em;border:1.5px solid rgba(200,186,154,0.45);padding:6px 13px;border-radius:4px;white-space:nowrap;" onmouseover="this.style.borderColor='#c8ba9a'" onmouseout="this.style.borderColor='rgba(200,186,154,0.45)'">Sign Out</a>
+    <button class="bell-btn pulsing" id="bell-btn" onclick="reopenNotifs()" aria-label="Notifications" style="background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.2);border-radius:8px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;font-size:1.1rem;position:relative;">
+      <span id="bell-icon">🔔</span>
+      <span class="bell-badge" id="bell-badge" style="display:none;position:absolute;top:-6px;right:-6px;background:#e52328;color:#fff;border-radius:10px;font-size:0.6rem;font-weight:800;min-width:17px;height:17px;align-items:center;justify-content:center;padding:0 3px;border:2px solid #181e38;line-height:1;font-family:'Open Sans',sans-serif;"></span>
+    </button>
     <button class="hamburger-btn" id="ham-btn" onclick="toggleHamMenu()" aria-label="Navigation menu">
       <span></span><span></span><span></span>
     </button>
@@ -2725,7 +2729,7 @@ const LOGIN_NOTIFS = [
     title:'2 items are waiting for your decision',
     body:'Your Hood and Headlining options are still pending — confirm your choices to keep production on schedule.',
     actions:[
-      {label:'Review Items',  cls:'nc-btn-primary',   fn:"goNotif('n-review');switchTab('quote');setItemFilter('pending')"},
+      {label:'Review Items',  cls:'nc-btn-primary',   fn:"goNotif('n-review');switchTab('quote');setItemFilter('considering')"},
       {label:'Later',         cls:'nc-btn-secondary', fn:"permDismissNotif('n-review')"},
     ]
   },
