@@ -2638,7 +2638,8 @@ function renderNotes(){
   }).join('');
 }
 // Pre-populate with one admin note
-ORDER_NOTES.push({text:'Lovely car — confirmed BRG with customer on initial call. He\'s flexible on timeline, quality is the priority. Awaiting hood decision before finalising.',who:'John Skinner',type:'admin',time:'4 Mar, 9:00 AM'});
+ORDER_NOTES['General'].push({text:'Lovely car — confirmed BRG with customer on initial call. He\'s flexible on timeline, quality is the priority. Awaiting hood decision before finalising.',who:'John Skinner',src:'admin',time:'4 Mar, 09:00',fromMsg:false});
+ORDER_NOTES['Roof / Weather Equipment'].push({text:'Hood decision still pending — customer considering mohair vs PVC. Recommend mohair for this car. Follow up after samples received.',who:'John Skinner',src:'admin',time:'5 Mar, 10:30',fromMsg:false});
 
 /* ═══ LOGIN NOTIFICATIONS ═══ */
 const LOGIN_NOTIFS = [
