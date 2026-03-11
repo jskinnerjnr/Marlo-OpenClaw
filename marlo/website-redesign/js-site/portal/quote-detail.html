@@ -62,43 +62,36 @@
     }
     .bell-btn.pulsing { animation:bell-pulse 2s ease-in-out infinite; }
     .bell-badge { position:absolute; top:-6px; right:-6px; background:#e52328; color:#fff; border-radius:10px; font-size:0.6rem; font-weight:800; min-width:17px; height:17px; display:none; align-items:center; justify-content:center; padding:0 3px; border:2px solid var(--navy); line-height:1; font-family:var(--sans); }
-    .hamburger-btn { display:none; }
-    @media (max-width:600px) {
-      /* iOS Safari fix: bypass flex height bug by anchoring panels with position:fixed */
+    /* ══ iOS TAB BAR ══ */
+    .tab-bar { flex-shrink:0; background:rgba(255,255,255,0.94); backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px); border-top:0.5px solid rgba(0,0,0,0.12); display:none; height:62px; align-items:stretch; z-index:200; }
+    .tab-item { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; cursor:pointer; padding:6px 2px 8px; -webkit-tap-highlight-color:transparent; position:relative; transition:opacity 0.15s; }
+    .tab-item svg { width:22px; height:22px; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; fill:none; transition:stroke 0.2s; }
+    .tab-item .ti-label { font-size:0.59rem; font-weight:500; letter-spacing:0.01em; transition:color 0.2s; }
+    .tab-item:not(.active) svg { stroke:#8e8e93; }
+    .tab-item:not(.active) .ti-label { color:#8e8e93; }
+    .tab-item.active svg { stroke:var(--navy); }
+    .tab-item.active .ti-label { color:var(--navy); font-weight:700; }
+    .tab-dot { position:absolute; top:6px; right:calc(50% - 14px); width:6px; height:6px; border-radius:50%; background:#e52328; }
+
+    /* Submit strip — above tab bar, quote tab only */
+    .submit-strip { flex-shrink:0; background:rgba(24,30,56,0.97); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-top:1px solid rgba(200,186,154,0.2); padding:10px 16px; display:none; align-items:center; justify-content:space-between; gap:12px; }
+    .strip-tot .strip-lbl { font-size:0.6rem; font-weight:600; color:rgba(200,186,154,0.55); text-transform:uppercase; letter-spacing:0.08em; }
+    .strip-tot .strip-amt { font-family:var(--serif); font-size:1.25rem; color:#fff; }
+    .strip-btn { background:var(--gold); color:var(--navy); font-family:var(--sans); font-size:0.8rem; font-weight:700; padding:11px 20px; border-radius:10px; border:none; cursor:pointer; letter-spacing:0.02em; white-space:nowrap; }
+
+    @media (max-width:768px) {
+      .portal-tabs { display:none !important; }
+      .tab-bar { display:flex; }
       body { overflow:hidden; }
       .content-area { flex:none; height:0; overflow:visible; }
       .panel { position:fixed; top:96px; left:0; right:0; bottom:0; overflow-y:auto; -webkit-overflow-scrolling:touch; display:none; }
       .panel.active { display:block; }
-      /* approve bar stays above panels */
-      .approve-bar { z-index:46; }
-      .portal-tabs { display:none; }
-      /* Hamburger button in header */
-      .hamburger-btn { display:flex; flex-direction:column; justify-content:center; gap:5px; background:none; border:none; cursor:pointer; padding:6px; border-radius:6px; flex-shrink:0; }
-      .hamburger-btn span { display:block; width:22px; height:2px; background:rgba(255,255,255,0.75); border-radius:2px; transition:transform 0.25s, opacity 0.25s; }
-      .hamburger-btn.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
-      .hamburger-btn.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
-      .hamburger-btn.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
-      /* Dropdown menu */
-      .ham-menu { display:none; position:fixed; top:96px; left:0; right:0; z-index:58; background:#fff; box-shadow:0 6px 24px rgba(0,0,0,0.14); transform:translateY(-8px); opacity:0; transition:transform 0.22s cubic-bezier(.4,0,.2,1), opacity 0.2s; border-radius:0 0 14px 14px; overflow:hidden; }
-      .ham-menu.open { display:block; transform:translateY(0); opacity:1; }
-      /* spacer so menu clears the header */
-      .ham-spacer { height:60px; background:var(--navy); border-bottom:3px solid var(--gold); }
-      .ham-items { display:grid; grid-template-columns:1fr 1fr 1fr; padding:10px 12px 14px; gap:8px; }
-      .ham-item { display:flex; flex-direction:column; align-items:center; gap:5px; padding:12px 6px 10px; border-radius:10px; border:1.5px solid var(--light); background:var(--cream); cursor:pointer; -webkit-tap-highlight-color:transparent; transition:background 0.15s, border-color 0.15s; }
-      .ham-item:active { background:var(--warm); }
-      .ham-item.active { background:var(--navy); border-color:var(--navy); }
-      .ham-item .hi-icon { font-size:1.4rem; line-height:1; }
-      .ham-item .hi-label { font-size:0.67rem; font-weight:700; letter-spacing:0.03em; color:var(--text); text-align:center; text-transform:uppercase; }
-      .ham-item.active .hi-label { color:var(--gold); }
-      .ham-item .hi-badge { width:7px; height:7px; background:var(--red); border-radius:50%; border:1.5px solid #fff; position:absolute; top:8px; right:8px; display:none; }
-      .ham-item { position:relative; }
-      .ham-item .hi-badge.show { display:block; }
-      /* Dim overlay behind menu */
-      .ham-overlay { display:none; position:fixed; top:96px; left:0; right:0; bottom:0; z-index:57; background:rgba(0,0,0,0.35); }
-      .ham-overlay.open { display:block; }
+      .inner { padding-bottom:160px !important; }
+      .approve-bar { display:none !important; }
     }
-    @media (min-width:601px) {
-      .ham-menu, .ham-overlay { display:none !important; }
+    @media (min-width:769px) {
+      .tab-bar { display:none !important; }
+      .submit-strip { display:none !important; }
     }
 
     /* ══ PANELS ══ */
@@ -221,8 +214,8 @@
 
     /* Chat header */
     .chat-hdr { background:rgba(255,255,255,0.06); border-bottom:1px solid rgba(200,186,154,0.2); padding:10px 14px; display:flex; align-items:center; gap:11px; flex-shrink:0; min-height:58px; }
-    .chat-back { background:none; border:none; cursor:pointer; color:var(--gold); display:flex; align-items:center; padding:6px; border-radius:50%; flex-shrink:0; -webkit-tap-highlight-color:transparent; transition:background 0.15s; }
-    .chat-back:hover { background:rgba(255,255,255,0.08); }
+    .chat-back { background:rgba(200,186,154,0.18); border:1.5px solid rgba(200,186,154,0.45); border-radius:22px; color:var(--gold); display:flex; align-items:center; gap:7px; font-family:var(--sans); font-size:0.82rem; font-weight:700; padding:8px 16px 8px 11px; cursor:pointer; -webkit-tap-highlight-color:transparent; transition:background 0.2s; white-space:nowrap; flex-shrink:0; letter-spacing:0.01em; }
+    .chat-back:active { background:rgba(200,186,154,0.32); }
     .chat-avatar-wrap { position:relative; flex-shrink:0; }
     .chat-av { width:38px; height:38px; border-radius:50%; background:var(--gold); display:flex; align-items:center; justify-content:center; font-family:var(--serif); color:var(--navy); font-size:1rem; font-weight:700; }
     .chat-online { position:absolute; bottom:1px; right:1px; width:9px; height:9px; border-radius:50%; background:#4ade80; border:2px solid var(--navy); }
@@ -885,12 +878,9 @@
   <div style="display:flex;align-items:center;gap:10px;">
     <a href="index.html" style="color:#c8ba9a;text-decoration:none;font-family:'Open Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.06em;opacity:0.85;white-space:nowrap;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">← My Account</a>
     <a href="index.html" style="color:#c8ba9a;text-decoration:none;font-family:'Open Sans',sans-serif;font-size:0.75rem;font-weight:600;letter-spacing:0.06em;border:1.5px solid rgba(200,186,154,0.45);padding:6px 13px;border-radius:4px;white-space:nowrap;" onmouseover="this.style.borderColor='#c8ba9a'" onmouseout="this.style.borderColor='rgba(200,186,154,0.45)'">Sign Out</a>
-    <button class="bell-btn pulsing" id="bell-btn" onclick="reopenNotifs()" aria-label="Notifications" style="background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.2);border-radius:8px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;font-size:1.1rem;position:relative;">
-      <span id="bell-icon">🔔</span>
-      <span class="bell-badge" id="bell-badge" style="display:none;position:absolute;top:-6px;right:-6px;background:#e52328;color:#fff;border-radius:10px;font-size:0.6rem;font-weight:800;min-width:17px;height:17px;align-items:center;justify-content:center;padding:0 3px;border:2px solid #181e38;line-height:1;font-family:'Open Sans',sans-serif;"></span>
-    </button>
-    <button class="hamburger-btn" id="ham-btn" onclick="toggleHamMenu()" aria-label="Navigation menu">
-      <span></span><span></span><span></span>
+    <button class="bell-btn pulsing" id="bell-btn" onclick="reopenNotifs()" aria-label="Notifications" style="background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.2);border-radius:8px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;position:relative;">
+      <svg id="bell-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      <span class="bell-badge" id="bell-badge" style="display:flex;position:absolute;top:-6px;right:-6px;background:#e52328;color:#fff;border-radius:10px;font-size:0.6rem;font-weight:800;min-width:17px;height:17px;align-items:center;justify-content:center;padding:0 3px;border:2px solid #181e38;line-height:1;font-family:'Open Sans',sans-serif;">3</span>
     </button>
   </div>
 </header>
@@ -919,19 +909,7 @@
   </div>
 </div>
 
-<!-- ══ HAMBURGER DROPDOWN ══ -->
-<div class="ham-overlay" id="ham-overlay" onclick="closeHamMenu()"></div>
-<div class="ham-menu" id="ham-menu">
-  <div class="ham-spacer"></div>
-  <div class="ham-items">
-    <div class="ham-item" id="hm-customer" onclick="hamNav('customer')"><div class="hi-icon">👤</div><div class="hi-label">Customer Details</div></div>
-    <div class="ham-item active" id="hm-quote"    onclick="hamNav('quote')">    <div class="hi-icon">📋</div><div class="hi-label">Your Quote</div></div>
-    <div class="ham-item"        id="hm-messages" onclick="hamNav('messages')"> <div class="hi-icon">💬</div><div class="hi-label">Messages</div><div class="hi-badge" id="hm-msg-badge"></div></div>
-    <div class="ham-item"        id="hm-documents"onclick="hamNav('documents')" ><div class="hi-icon">📊</div><div class="hi-label">Progress</div></div>
-    <div class="ham-item"        id="hm-samples"  onclick="hamNav('samples')">  <div class="hi-icon">🎨</div><div class="hi-label">Samples</div></div>
-    <div class="ham-item"        id="hm-payments" onclick="hamNav('payments')"><div class="hi-icon">💳</div><div class="hi-label">Payments</div></div>
-  </div>
-</div>
+
 
 <!-- ══ PORTAL TABS ══ -->
 <div class="portal-tabs" id="portal-tabs">
@@ -1035,7 +1013,8 @@
     <!-- Full-screen chat UI — no .inner wrapper needed -->
     <div class="chat-hdr">
       <button class="chat-back" onclick="switchTab('quote')" title="Back to quote">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        <svg viewBox="0 0 8 13" width="8" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="7,1 1,6.5 7,12"/></svg>
+        Back to Quote
       </button>
       <div class="chat-avatar-wrap">
         <div class="chat-av">JS</div>
@@ -1335,6 +1314,58 @@ No other modifications noted.</textarea></div>
   </div>
 
 </div><!-- /content-area -->
+
+<!-- ══ SUBMIT STRIP (mobile, quote tab only) ══ -->
+<div class="submit-strip" id="submit-strip">
+  <div class="strip-tot">
+    <div class="strip-lbl">Estimated Total</div>
+    <div class="strip-amt" id="strip-amt">£2,210</div>
+  </div>
+  <button class="strip-btn" onclick="handleQuoteCTA()">Submit for Review →</button>
+</div>
+
+<!-- ══ iOS TAB BAR ══ -->
+<div class="tab-bar" id="tab-bar">
+  <div class="tab-item" id="ti-customer" onclick="switchTab('customer')">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-1a6 6 0 0 1 12 0v1"/></svg>
+    <span class="ti-label">Customer</span>
+  </div>
+  <div class="tab-item active" id="ti-quote" onclick="switchTab('quote')">
+    <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="12" y2="15"/></svg>
+    <span class="ti-label">Quote</span>
+  </div>
+  <div class="tab-item" id="ti-messages" onclick="switchTab('messages')" style="position:relative">
+    <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <div class="tab-dot" id="tab-msg-dot"></div>
+    <span class="ti-label">Messages</span>
+  </div>
+  <div class="tab-item" id="ti-samples" onclick="switchTab('samples')">
+    <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+    <span class="ti-label">Samples</span>
+  </div>
+  <div class="tab-item" id="ti-more" onclick="openMoreSheet()">
+    <svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="12" r="1.5" fill="#8e8e93" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="#8e8e93" stroke="none"/><circle cx="19" cy="12" r="1.5" fill="#8e8e93" stroke="none"/></svg>
+    <span class="ti-label">More</span>
+  </div>
+</div>
+
+<!-- ══ MORE SHEET ══ -->
+<div class="sns-overlay hidden" id="more-sheet" onclick="if(event.target===this)closeMoreSheet()">
+  <div class="sns-sheet" style="padding:20px 16px;">
+    <div class="sns-title" style="margin-bottom:16px;">More</div>
+    <div onclick="closeMoreSheet();switchTab('documents')" style="display:flex;align-items:center;gap:14px;padding:14px 4px;border-bottom:1px solid var(--light);cursor:pointer;">
+      <svg width="22" height="22" fill="none" stroke="var(--navy)" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      <span style="font-size:0.92rem;font-weight:600;color:var(--navy);">Docs &amp; Progress</span>
+      <span style="margin-left:auto;color:#ccc;font-size:1rem;">›</span>
+    </div>
+    <div onclick="closeMoreSheet();switchTab('payments')" style="display:flex;align-items:center;gap:14px;padding:14px 4px;cursor:pointer;">
+      <svg width="22" height="22" fill="none" stroke="var(--navy)" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      <span style="font-size:0.92rem;font-weight:600;color:var(--navy);">Payments</span>
+      <span style="margin-left:auto;color:#ccc;font-size:1rem;">›</span>
+    </div>
+    <button class="sns-cancel" onclick="closeMoreSheet()" style="margin-top:16px;width:100%;">Close</button>
+  </div>
+</div>
 
 <!-- ══ APPROVE BAR ══ -->
 <div class="approve-bar" id="approve-bar">
@@ -1754,23 +1785,52 @@ function switchCDT(sub){
 }
 function switchTab(tab){
   activeTab=tab;
+  const isMobile=window.innerWidth<=768;
+  const inMsg=tab==='messages';
+
+  // Panels
   ['quote','messages','documents','payments','customer','samples'].forEach(t=>{
-    const pt=document.getElementById('pt-'+t);    if(pt) pt.classList.toggle('active',t===tab);
-    const hm=document.getElementById('hm-'+t);    if(hm) hm.classList.toggle('active',t===tab);
+    const pt=document.getElementById('pt-'+t); if(pt) pt.classList.toggle('active',t===tab);
     const panel=document.getElementById('panel-'+t); if(panel) panel.classList.toggle('active',t===tab);
   });
-  document.getElementById('approve-bar').classList.toggle('hide',tab!=='quote');
-  if(tab==='messages'){
-    document.getElementById('msg-badge').classList.remove('show');
-    const bnb2=document.getElementById('bn-msg-badge');if(bnb2)bnb2.classList.remove('show');
-    const hmb2=document.getElementById('hm-msg-badge');if(hmb2)hmb2.classList.remove('show');
-    renderMessages();
-    requestAnimationFrame(scrollMsgsToBottom);
+
+  // Mobile tab bar active states
+  ['customer','quote','messages','samples'].forEach(t=>{
+    const ti=document.getElementById('ti-'+t); if(ti) ti.classList.toggle('active',t===tab);
+  });
+  // "More" tab active for documents/payments
+  const tiMore=document.getElementById('ti-more');
+  if(tiMore) tiMore.classList.toggle('active',tab==='documents'||tab==='payments');
+
+  // Submit strip: quote tab + mobile only
+  const ss=document.getElementById('submit-strip');
+  if(ss) ss.style.display=(tab==='quote'&&isMobile)?'flex':'none';
+
+  // Tab bar: hide completely on messages (compose bar is inside the panel)
+  const tb=document.getElementById('tab-bar');
+  if(tb) tb.style.display=(inMsg&&isMobile)?'none':'';
+
+  // Desktop approve bar
+  const ab=document.getElementById('approve-bar');
+  if(ab) ab.classList.toggle('hide',tab!=='quote');
+
+  if(inMsg){
+    document.getElementById('msg-badge')?.classList.remove('show');
+    document.getElementById('bn-msg-badge')?.classList.remove('show');
+    const tmd=document.getElementById('tab-msg-dot'); if(tmd) tmd.style.display='none';
+    renderMessages(); requestAnimationFrame(scrollMsgsToBottom);
   }
   if(tab==='documents') renderDocs();
   if(tab==='payments')  renderPayments();
   if(tab==='samples') renderSamples();
+
+  // Sync strip amount with approve bar amount
+  const sa=document.getElementById('strip-amt');
+  const aa=document.getElementById('ab-amt');
+  if(sa&&aa) sa.textContent=aa.textContent;
 }
+function openMoreSheet(){ document.getElementById('more-sheet').classList.remove('hidden'); }
+function closeMoreSheet(){ document.getElementById('more-sheet').classList.add('hidden'); }
 
 /* ═══ PRICE ═══ */
 function calcPrice(id){
@@ -2021,6 +2081,9 @@ function showConsideringPrompt(count){
 }
 function closeCP(){document.getElementById('cp-overlay').classList.add('hidden');}
 function updateApproveBar(){
+  // Sync mobile strip amount
+  const sa=document.getElementById('strip-amt');const aa=document.getElementById('ab-amt');
+  if(sa&&aa) sa.textContent=aa.textContent;
   const btn=document.getElementById('ab-cta-btn');
   if(!btn)return;
   const considering=Object.keys(ITEMS).filter(id=>ITEMS[id].action==='considering').length;
