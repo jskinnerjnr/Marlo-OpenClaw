@@ -448,10 +448,10 @@
     .i-right { display:flex; flex-direction:column; align-items:flex-end; gap:4px; flex-shrink:0; }
     .i-price { font-family:var(--serif); font-size:0.9rem; color:var(--navy); white-space:nowrap; }
     /* Status picker bottom-sheet */
-    .sp-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:460; display:flex; align-items:flex-end; justify-content:center; }
+    .sp-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:460; display:flex; align-items:center; justify-content:center; padding:20px; }
     .sp-overlay.hidden { display:none; }
-    .sp-sheet { background:#fff; border-radius:18px 18px 0 0; width:100%; max-width:500px; padding:0 0 env(safe-area-inset-bottom,12px); }
-    .sp-handle { width:36px; height:4px; background:#ddd; border-radius:2px; margin:12px auto 0; }
+    .sp-sheet { background:#fff; border-radius:18px; width:100%; max-width:420px; padding:0 0 8px; box-shadow:0 20px 60px rgba(0,0,0,0.25); }
+    .sp-handle { display:none; }
     .sp-title  { font-family:var(--serif); font-size:1rem; color:var(--navy); padding:14px 20px 4px; }
     .sp-item-name { font-size:0.78rem; color:var(--grey); padding:0 20px 12px; border-bottom:1px solid var(--light); }
     .sp-options { padding:10px 16px 16px; display:flex; flex-direction:column; gap:9px; }
