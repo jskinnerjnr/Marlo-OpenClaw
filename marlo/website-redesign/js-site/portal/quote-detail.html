@@ -17,7 +17,7 @@
       --sans:'Open Sans',Arial,sans-serif;
     }
     html,body { height:100%; }
-    body { overflow-x:clip; } /* prevent horizontal scroll without breaking absolute panels */
+    body { overflow-x:hidden; } /* Safari-safe horizontal scroll prevention */
     body { font-family:var(--sans); background:var(--cream); color:var(--text); font-size:15px; overflow:hidden; display:flex; flex-direction:column; }
 
     /* ══ HEADER ══ */
@@ -2436,8 +2436,14 @@ function renderSamples(){
   const promptEl=document.getElementById('received-prompt');
   if(unconfirmed.length&&promptEl){
     promptEl.style.display='flex';
-    promptEl.querySelector('.rp-text strong').textContent=`Have your samples arrived?`;
-    promptEl.querySelector('.rp-text').childNodes[1].textContent=` ${unconfirmed[0].name} was dispatched on ${unconfirmed[0].dispatchDate}. Let us know when it arrives so we can update your quote.`;
+    const rpText=promptEl.querySelector('.rp-text');
+    if(rpText){
+      const strong=rpText.querySelector('strong');
+      if(strong) strong.textContent='Have your samples arrived?';
+      // Update the text node safely
+      const textNode=Array.from(rpText.childNodes).find(n=>n.nodeType===3&&n.textContent.trim());
+      if(textNode) textNode.textContent=` ${unconfirmed[0].name} was dispatched on ${unconfirmed[0].dispatchDate}. Let us know when it arrives so we can update your quote.`;
+    }
     promptEl.querySelector('.rp-yes').onclick=()=>markPackReceived(unconfirmed[0].id,true);
   } else if(promptEl) promptEl.style.display='none';
 
