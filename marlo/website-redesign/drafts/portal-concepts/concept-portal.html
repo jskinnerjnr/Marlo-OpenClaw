@@ -1471,7 +1471,19 @@ const BSP_C=[
 
 /* ─ STATE ─ */
 const S={};
-const defaults={item1:{mat:'leather',fin:'grained',col:'British Racing Green',chx:'#1c3a1c',ctype:'oem'},item2:{mat:'wool',fin:'grained',col:'Sherwood Green',chx:'#2a4a2a',ctype:'oem'},item3:{mat:'mohair',fin:'grained',col:'Black',chx:'#1a1a1a',ctype:'oem'},item4:{mat:'leather',fin:'grained',col:'British Racing Green',chx:'#1c3a1c',ctype:'oem'},item5:{mat:'cloth',fin:'grained',col:null,chx:'#e8e4dc',ctype:null},item6:{mat:'leather',fin:'grained',col:'British Racing Green',chx:'#1c3a1c',ctype:'oem'},item7:{mat:'wool',fin:'grained',col:'Sherwood Green',chx:'#2a4a2a',ctype:'oem'}};
+const defaults={
+  item1:{mat:'leather',fin:'grained',col:'British Racing Green',chx:'#1c3a1c',ctype:'oem'},
+  item2:{mat:'wool',   fin:'grained',col:'Sherwood Green',      chx:'#2a4a2a',ctype:'oem'},
+  item3:{mat:'mohair', fin:'grained',col:'Black',               chx:'#1a1a1a',ctype:'oem'},
+  item4:{mat:'leather',fin:'grained',col:'British Racing Green',chx:'#1c3a1c',ctype:'oem'},
+  item5:{mat:'cloth',  fin:'grained',col:null,                  chx:'#e8e4dc',ctype:null},
+  item6:{mat:'leather',fin:'grained',col:'British Racing Green',chx:'#1c3a1c',ctype:'oem'},
+  item7:{mat:'wool',   fin:'grained',col:'Sherwood Green',      chx:'#2a4a2a',ctype:'oem'},
+  item8:{mat:'mohair', fin:'grained',col:'Black',               chx:'#1a1a1a',ctype:'oem'},
+  item9:{mat:'leather',fin:'grained',col:'British Racing Green',chx:'#1c3a1c',ctype:'oem'},
+  item10:{mat:'leather',fin:'grained',col:null,                 chx:'#ccc',   ctype:null},
+  item11:{mat:'wool',  fin:'grained',col:'Sherwood Green',      chx:'#2a4a2a',ctype:'oem'},
+};
 Object.keys(defaults).forEach(id=>S[id]={...defaults[id]});
 
 /* ─ MESSAGES ─ */
@@ -1623,8 +1635,8 @@ function switchTab(tab){
 
 /* ═══ PRICE ═══ */
 function calcPrice(id){
-  const it=ITEMS[id];const s=S[id];
-  const mat=MATS[it.mt].find(m=>m.id===s.mat);
+  const it=ITEMS[id];const s=S[id]||{mat:'',fin:'grained',col:null,chx:null,ctype:null};
+  const mat=(MATS[it.mt]||[]).find(m=>m.id===s.mat);
   let p=it.base+(mat?mat.d:0);
   if(it.hf&&s.mat==='leather') p+=FIN_D[s.fin]||0;
   if(BSP_C.find(c=>c.n===s.col)) p+=80;
