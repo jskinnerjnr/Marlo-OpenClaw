@@ -2986,7 +2986,7 @@ function nowStr(){const n=new Date();return n.toLocaleString('en-GB',{day:'numer
 
 /* ═══ INIT ═══ */
 document.addEventListener('DOMContentLoaded',()=>{
-  document.getElementById('compose-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}});
+  // Enter = new line (send via button only, like WhatsApp)
   document.getElementById('dq-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendDrawerMsg();}});
   document.getElementById('lb-input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendLBReply();}});
   setItemFilter('all');updateTotals();renderApprovalSection();updateApproveBar();renderMessages();renderDocs();renderOfficialDocs();renderMilestones();renderSamples();renderNotes();renderPayments();setCTag('general');
