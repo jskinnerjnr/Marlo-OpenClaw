@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<title>Nav Concept A2 — Tab Bar + Messenger + Submit</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#181e38;--gold:#c8ba9a;--text:#1c1c1e;--mid:#6e6e73;
+  --light:#e5e5ea;--warm:#f2f2f7;--red:#e52328;--green:#1c6b3a;
+  --sans:'Inter',system-ui,sans-serif;--serif:'EB Garamond',serif;
+  --tab-h:60px;
+}
+html,body{height:100%;background:var(--warm);font-family:var(--sans);overflow:hidden;}
+body{display:flex;flex-direction:column;position:fixed;inset:0;}
+
+/* ── HEADER ── */
+.hdr{background:var(--navy);padding:0 16px;display:flex;align-items:center;justify-content:space-between;min-height:52px;flex-shrink:0;border-bottom:1px solid rgba(200,186,154,0.2);z-index:10;position:relative;}
+.hdr-brand{font-family:var(--serif);color:#fff;font-size:1rem;letter-spacing:0.07em;text-transform:uppercase;}
+.hdr-brand em{color:var(--gold);font-style:normal;}
+.hdr-sub{font-size:0.54rem;color:rgba(255,255,255,0.28);letter-spacing:0.2em;text-transform:uppercase;margin-top:2px;}
+.hdr-right{display:flex;align-items:center;gap:6px;}
+.hdr-ref{font-size:0.68rem;font-weight:500;color:rgba(200,186,154,0.45);letter-spacing:0.06em;margin-right:4px;}
+.icon-btn{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.08);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;position:relative;-webkit-tap-highlight-color:transparent;transition:background 0.18s;}
+.icon-btn:active{background:rgba(255,255,255,0.18);}
+.icon-btn svg{width:17px;height:17px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.notif-dot{position:absolute;top:5px;right:5px;width:7px;height:7px;border-radius:50%;background:var(--red);border:1.5px solid var(--navy);}
+
+/* ── PANELS ── */
+.panels{flex:1;position:relative;overflow:hidden;}
+.panel{position:absolute;inset:0;overflow-y:auto;display:none;-webkit-overflow-scrolling:touch;}
+.panel.active{display:block;}
+
+/* ── QUOTE PANEL ── */
+.quote-panel{padding:14px 14px 0;}
+.stat-strip{display:flex;gap:8px;margin-bottom:14px;}
+.stat{flex:1;background:#fff;border-radius:12px;padding:12px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,0.06);}
+.stat .n{font-size:1.4rem;font-weight:700;color:var(--navy);font-family:var(--serif);}
+.stat .l{font-size:0.6rem;font-weight:600;color:var(--mid);text-transform:uppercase;letter-spacing:0.06em;margin-top:2px;}
+.stat .n.gold{color:#b07c00;}
+.stat .n.grn{color:var(--green);}
+.section-lbl{font-size:0.64rem;font-weight:700;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;padding:10px 4px 5px;}
+.card{background:#fff;border-radius:14px;overflow:hidden;margin-bottom:8px;box-shadow:0 1px 2px rgba(0,0,0,0.05);}
+.card-row{display:flex;align-items:center;padding:13px 14px;gap:11px;border-bottom:0.5px solid var(--light);}
+.card-row:last-child{border-bottom:none;}
+.cr-sw{width:32px;height:32px;border-radius:8px;flex-shrink:0;}
+.cr-b{flex:1;min-width:0;}
+.cr-name{font-size:0.875rem;font-weight:600;color:var(--text);}
+.cr-sub{font-size:0.72rem;color:var(--mid);margin-top:1px;}
+.sp{font-size:0.63rem;font-weight:700;padding:4px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:0.03em;white-space:nowrap;flex-shrink:0;}
+.s-r{background:#d4f0e0;color:#1c6b3a;}
+.s-c{background:#fdf3e0;color:#b07c00;}
+.s-n{background:#fde8e8;color:#c0392b;}
+.chev{font-size:0.85rem;color:var(--light);flex-shrink:0;}
+
+/* ── SUBMIT STRIP (above tab bar, quote tab only) ──
+   The key insight: sits between content and tab bar — never overlaps messenger */
+.submit-strip{
+  flex-shrink:0;
+  background:rgba(24,30,56,0.97);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-top:1px solid rgba(200,186,154,0.2);
+  padding:10px 16px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;
+  transition:all 0.3s cubic-bezier(.4,0,.2,1);
+}
+.submit-strip.hidden{height:0;padding:0;overflow:hidden;border:none;}
+.strip-tot{line-height:1.2;}
+.strip-lbl{font-size:0.6rem;font-weight:600;color:rgba(200,186,154,0.55);text-transform:uppercase;letter-spacing:0.08em;}
+.strip-amt{font-family:var(--serif);font-size:1.25rem;color:#fff;}
+.strip-btn{background:var(--gold);color:var(--navy);font-family:var(--sans);font-size:0.8rem;font-weight:700;padding:11px 18px;border-radius:10px;border:none;cursor:pointer;letter-spacing:0.02em;white-space:nowrap;}
+
+/* ── TAB BAR ── 
+   The other key insight: tab bar hides completely on Messages tab.
+   Compose bar replaces it seamlessly. Same bottom position, same height feel. */
+.tab-bar{
+  flex-shrink:0;
+  background:rgba(255,255,255,0.94);
+  backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-top:0.5px solid rgba(0,0,0,0.12);
+  display:flex;align-items:stretch;
+  height:var(--tab-h);
+  transition:all 0.28s cubic-bezier(.4,0,.2,1);
+  overflow:hidden;
+}
+.tab-bar.hidden{height:0;border:none;}
+.tab-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;padding:6px 2px 8px;-webkit-tap-highlight-color:transparent;transition:opacity 0.15s;position:relative;}
+.tab-item svg{width:22px;height:22px;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;transition:stroke 0.2s,fill 0.2s;}
+.tab-item span{font-size:0.6rem;font-weight:500;letter-spacing:0.01em;transition:color 0.2s;}
+.tab-item:not(.active) svg{stroke:var(--mid);fill:none;}
+.tab-item:not(.active) span{color:var(--mid);}
+.tab-item.active svg{stroke:var(--navy);fill:none;}
+.tab-item.active span{color:var(--navy);font-weight:700;}
+.tab-dot{position:absolute;top:7px;right:calc(50% - 14px);width:6px;height:6px;border-radius:50%;background:var(--red);}
+
+/* ── COMPOSE BAR — replaces tab bar in messenger ──
+   Slides up when tab bar slides down, keeping bottom area always occupied */
+.compose-bar{
+  flex-shrink:0;
+  background:rgba(24,30,56,0.97);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-top:1px solid rgba(200,186,154,0.18);
+  padding:10px 12px;
+  display:flex;align-items:flex-end;gap:9px;
+  height:0;overflow:hidden;
+  transition:height 0.28s cubic-bezier(.4,0,.2,1);
+}
+.compose-bar.visible{height:auto;overflow:visible;}
+.cc-ico{background:none;border:none;cursor:pointer;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:rgba(200,186,154,0.65);font-size:1rem;-webkit-tap-highlight-color:transparent;}
+.cc-field{flex:1;background:rgba(255,255,255,0.1);border:1.5px solid rgba(200,186,154,0.2);border-radius:22px;padding:9px 14px;font-family:var(--sans);font-size:0.875rem;color:#fff;resize:none;outline:none;min-height:38px;max-height:90px;line-height:1.45;transition:border-color 0.2s;}
+.cc-field::placeholder{color:rgba(255,255,255,0.28);}
+.cc-field:focus{border-color:var(--gold);}
+.cc-send{width:36px;height:36px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--navy);-webkit-tap-highlight-color:transparent;}
+.cc-send svg{width:14px;height:14px;fill:currentColor;}
+
+/* ── MESSENGER PANEL ── */
+.msg-panel{display:none;flex-direction:column;background:var(--navy);position:absolute;inset:0;}
+.msg-panel.active{display:flex;}
+.chat-hdr{background:rgba(255,255,255,0.05);border-bottom:1px solid rgba(200,186,154,0.18);padding:10px 14px;display:flex;align-items:center;gap:11px;flex-shrink:0;}
+.chat-back{background:none;border:none;color:var(--gold);display:flex;align-items:center;gap:4px;font-family:var(--sans);font-size:0.82rem;font-weight:500;cursor:pointer;-webkit-tap-highlight-color:transparent;padding:4px 0;}
+.chat-back svg{width:8px;height:13px;stroke:var(--gold);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+.chat-av-wrap{position:relative;flex-shrink:0;}
+.chat-av{width:36px;height:36px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--serif);color:var(--navy);font-size:0.95rem;font-weight:700;}
+.chat-online{position:absolute;bottom:1px;right:1px;width:8px;height:8px;border-radius:50%;background:#4ade80;border:2px solid var(--navy);}
+.chat-meta{flex:1;}
+.chat-name{font-weight:700;font-size:0.88rem;color:#fff;}
+.chat-sub{font-size:0.68rem;color:rgba(200,186,154,0.6);margin-top:1px;}
+.chat-thread{flex:1;overflow-y:auto;padding:14px 12px;display:flex;flex-direction:column;gap:6px;-webkit-overflow-scrolling:touch;}
+.date-sep{text-align:center;margin:6px 0 3px;}
+.date-sep span{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.32);font-size:0.65rem;padding:3px 12px;border-radius:20px;}
+.chat-row{display:flex;align-items:flex-end;gap:8px;max-width:82%;}
+.chat-row.out{align-self:flex-end;flex-direction:row-reverse;}
+.chat-row.in{align-self:flex-start;}
+.chat-row-av{width:26px;height:26px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--navy);flex-shrink:0;font-family:var(--serif);}
+.bubble{padding:9px 13px;border-radius:18px;font-size:0.875rem;line-height:1.5;}
+.chat-row.in .bubble{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.9);border:1px solid rgba(200,186,154,0.15);border-bottom-left-radius:4px;}
+.chat-row.out .bubble{background:var(--gold);color:var(--navy);border-bottom-right-radius:4px;}
+.bfoot{display:flex;align-items:center;gap:4px;justify-content:flex-end;margin-top:5px;}
+.chat-row.in .btime{font-size:0.6rem;color:rgba(255,255,255,0.28);}
+.chat-row.out .btime{font-size:0.6rem;color:rgba(24,30,56,0.4);}
+.btick{font-size:0.62rem;color:rgba(24,30,56,0.35);letter-spacing:-2px;}
+.sender-name{font-size:0.64rem;font-weight:700;color:rgba(200,186,154,0.65);margin-bottom:3px;}
+.spacer-av{width:26px;flex-shrink:0;}
+
+/* ── OTHER PANELS ── */
+.generic-panel{padding:20px 16px;color:var(--mid);font-size:0.9rem;}
+
+/* ── ANNOTATION CALLOUTS ── */
+.callout{background:rgba(255,193,7,0.15);border:1.5px solid rgba(255,193,7,0.5);border-radius:10px;padding:10px 13px;margin:10px 14px;font-size:0.75rem;line-height:1.5;color:#7a5c00;}
+.callout strong{color:#5a3e00;}
+
+.concept-label{position:fixed;top:58px;right:10px;background:var(--navy);color:var(--gold);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:3px 9px;border-radius:20px;z-index:300;}
+</style>
+</head>
+<body>
+
+<div class="concept-label">Concept A2 — Interactive</div>
+
+<!-- ══ HEADER ══ -->
+<div class="hdr">
+  <div>
+    <div class="hdr-brand">John <em>Skinner</em></div>
+    <div class="hdr-sub">Est. 1980 · Cheltenham</div>
+  </div>
+  <div class="hdr-right">
+    <span class="hdr-ref">JSM-2847</span>
+    <button class="icon-btn">
+      <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      <div class="notif-dot"></div>
+    </button>
+    <button class="icon-btn">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-1a6 6 0 0 1 12 0v1"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ══ PANELS ══ -->
+<div class="panels">
+
+  <!-- QUOTE -->
+  <div class="panel active" id="p-quote">
+    <div class="callout">
+      <strong>👆 Submit for Review</strong> — lives in the strip just above the tab bar. Only visible on the Quote tab. Scroll down to see the items, strip stays locked at the bottom.
+    </div>
+    <div class="quote-panel">
+      <div class="stat-strip">
+        <div class="stat"><div class="n">11</div><div class="l">Items</div></div>
+        <div class="stat"><div class="n gold">£2,210</div><div class="l">Est. Total</div></div>
+        <div class="stat"><div class="n grn">5</div><div class="l">Required</div></div>
+      </div>
+      <div class="section-lbl">Trim Panels</div>
+      <div class="card">
+        <div class="card-row"><div class="cr-sw" style="background:#1c3a1c"></div><div class="cr-b"><div class="cr-name">Door Card Panels</div><div class="cr-sub">Leather · Grained · BRG</div></div><span class="sp s-r">Required</span><span class="chev">›</span></div>
+        <div class="card-row"><div class="cr-sw" style="background:#1c3a1c"></div><div class="cr-b"><div class="cr-name">Sill Finishers</div><div class="cr-sub">Leather · Grained · BRG</div></div><span class="sp s-c">Considering</span><span class="chev">›</span></div>
+      </div>
+      <div class="section-lbl">Seats</div>
+      <div class="card">
+        <div class="card-row"><div class="cr-sw" style="background:#1c3a1c"></div><div class="cr-b"><div class="cr-name">Front Seat Covers</div><div class="cr-sub">Leather · Grained · BRG</div></div><span class="sp s-r">Required</span><span class="chev">›</span></div>
+      </div>
+      <div class="section-lbl">Carpets</div>
+      <div class="card">
+        <div class="card-row"><div class="cr-sw" style="background:#2a3a2a"></div><div class="cr-b"><div class="cr-name">Full Carpet Set</div><div class="cr-sub">Wilton · Sherwood Green</div></div><span class="sp s-n">Not Required</span><span class="chev">›</span></div>
+      </div>
+      <div class="section-lbl">Roof</div>
+      <div class="card">
+        <div class="card-row"><div class="cr-sw" style="background:#1a1a1a"></div><div class="cr-b"><div class="cr-name">Hood Lining</div><div class="cr-sub">Mohair · Raven Black</div></div><span class="sp s-r">Required</span><span class="chev">›</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MESSENGER (full screen, own header, own compose) -->
+  <div class="msg-panel" id="p-messages">
+    <div class="callout" style="margin:10px 12px 0;flex-shrink:0;">
+      <strong>💬 Messages tab:</strong> tab bar vanishes completely — compose bar takes its place at the bottom. Exactly how WhatsApp handles it. ← Back returns to Quote.
+    </div>
+    <div class="chat-hdr">
+      <button class="chat-back" onclick="switchTab('quote')">
+        <svg viewBox="0 0 8 13"><polyline points="7,1 1,6.5 7,12"/></svg>
+        Quote
+      </button>
+      <div class="chat-av-wrap">
+        <div class="chat-av">JS</div>
+        <div class="chat-online"></div>
+      </div>
+      <div class="chat-meta">
+        <div class="chat-name">John Skinner Workshop</div>
+        <div class="chat-sub">JSM-2847 · E-Type OTS</div>
+      </div>
+    </div>
+    <div class="chat-thread">
+      <div class="date-sep"><span>5 March</span></div>
+      <div class="chat-row in">
+        <div class="chat-row-av">JS</div>
+        <div>
+          <div class="sender-name">John Skinner</div>
+          <div class="bubble">Good morning David — your quote is ready to review. Take your time going through each item.<div class="bfoot"><span class="btime">09:14</span></div></div>
+        </div>
+      </div>
+      <div class="chat-row out">
+        <div class="spacer-av"></div>
+        <div><div class="bubble">Thanks — everything looks great so far. Quick question on the seat colour.<div class="bfoot"><span class="btime">11:32</span><span class="btick">✓✓</span></div></div></div>
+      </div>
+      <div class="chat-row in">
+        <div class="chat-row-av">JS</div>
+        <div>
+          <div class="bubble">Of course — BRG is one of our most frequently matched E-Type colours. We'll confirm the swatch before cutting anything.<div class="bfoot"><span class="btime">13:05</span></div></div>
+        </div>
+      </div>
+      <div class="date-sep"><span>Today</span></div>
+      <div class="chat-row in">
+        <div class="chat-row-av">JS</div>
+        <div>
+          <div class="sender-name">John Skinner</div>
+          <div class="bubble">Your sample pack was dispatched this morning by Royal Mail Tracked — should arrive within 2–3 days.<div class="bfoot"><span class="btime">09:30</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OTHER PANELS -->
+  <div class="panel" id="p-customer"><div class="generic-panel">Customer Details panel</div></div>
+  <div class="panel" id="p-samples"><div class="generic-panel">Samples panel</div></div>
+  <div class="panel" id="p-more"><div class="generic-panel">Progress · Payments · Documents</div></div>
+
+</div><!-- /panels -->
+
+<!-- ══ SUBMIT STRIP (quote tab only, sits above tab bar) ══ -->
+<div class="submit-strip" id="submit-strip">
+  <div class="strip-tot">
+    <div class="strip-lbl">Estimated Total</div>
+    <div class="strip-amt">£2,210</div>
+  </div>
+  <button class="strip-btn">Submit for Review →</button>
+</div>
+
+<!-- ══ TAB BAR ══ -->
+<div class="tab-bar" id="tab-bar">
+  <div class="tab-item" id="ti-customer" onclick="switchTab('customer')">
+    <svg fill="none" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-1a6 6 0 0 1 12 0v1"/></svg>
+    <span>Customer</span>
+  </div>
+  <div class="tab-item active" id="ti-quote" onclick="switchTab('quote')">
+    <svg fill="none" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="12" y2="15"/></svg>
+    <span>Quote</span>
+  </div>
+  <div class="tab-item" id="ti-messages" onclick="switchTab('messages')" style="position:relative">
+    <svg fill="none" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <div class="tab-dot"></div>
+    <span>Messages</span>
+  </div>
+  <div class="tab-item" id="ti-samples" onclick="switchTab('samples')">
+    <svg fill="none" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+    <span>Samples</span>
+  </div>
+  <div class="tab-item" id="ti-more" onclick="switchTab('more')">
+    <svg fill="none" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg>
+    <span>More</span>
+  </div>
+</div>
+
+<!-- ══ COMPOSE BAR (replaces tab bar on Messages) ══ -->
+<div class="compose-bar" id="compose-bar">
+  <button class="cc-ico">📎</button>
+  <textarea class="cc-field" placeholder="Message John Skinner…" rows="1" oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,90)+'px'"></textarea>
+  <button class="cc-send">
+    <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
+  </button>
+</div>
+
+<script>
+const TABS=['customer','quote','messages','samples','more'];
+
+function switchTab(tab){
+  const inMsg=tab==='messages';
+
+  // Show/hide panels
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.msg-panel').forEach(p=>p.classList.remove('active'));
+  if(inMsg){
+    document.getElementById('p-messages').classList.add('active');
+  } else {
+    const p=document.getElementById('p-'+tab);
+    if(p) p.classList.add('active');
+  }
+
+  // Tab bar: hide on messages, show otherwise
+  document.getElementById('tab-bar').classList.toggle('hidden', inMsg);
+
+  // Compose bar: show on messages, hide otherwise
+  document.getElementById('compose-bar').classList.toggle('visible', inMsg);
+
+  // Submit strip: only on quote tab, hidden on messages
+  document.getElementById('submit-strip').classList.toggle('hidden', tab !== 'quote');
+
+  // Update active tab indicator
+  TABS.forEach(t=>{
+    const ti=document.getElementById('ti-'+t);
+    if(ti) ti.classList.toggle('active', t===tab);
+  });
+}
+
+// Init
+switchTab('quote');
+</script>
+</body>
+</html>
