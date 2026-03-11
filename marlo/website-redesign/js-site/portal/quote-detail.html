@@ -43,9 +43,9 @@
     .ptab .badge { position:absolute; top:10px; right:10px; width:7px; height:7px; background:var(--red); border-radius:50%; border:1.5px solid #fff; display:none; }
     .ptab .badge.show { display:block; }
     /* Customer Details sub-tabs */
-    .cdt-tabs { display:flex; border-bottom:2px solid var(--light); background:var(--warm); }
-    .cdt-tab { flex:1; text-align:center; padding:11px 12px; font-size:0.72rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; color:var(--grey); cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-2px; transition:all 0.15s; }
-    .cdt-tab.active { color:var(--navy); border-bottom-color:var(--gold); background:#fff; }
+    .cdt-tabs { display:flex; background:#fff; border-bottom:1px solid var(--light); padding:0 16px; gap:0; }
+    .cdt-tab { flex:1; text-align:center; padding:13px 12px 11px; font-size:0.75rem; font-weight:600; letter-spacing:0.02em; color:var(--grey); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-1px; transition:all 0.18s; -webkit-tap-highlight-color:transparent; }
+    .cdt-tab.active { color:var(--navy); border-bottom-color:var(--navy); font-weight:700; }
     .cdt-panel { display:none; }
     .cdt-panel.active { display:block; }
 
@@ -69,9 +69,11 @@
     .tab-item .ti-label { font-size:0.59rem; font-weight:500; letter-spacing:0.01em; transition:color 0.2s; }
     .tab-item:not(.active) svg { stroke:#8e8e93; }
     .tab-item:not(.active) .ti-label { color:#8e8e93; }
+    .tab-item .ti-icon-wrap { position:relative; width:32px; height:28px; display:flex; align-items:center; justify-content:center; border-radius:10px; transition:background 0.2s; }
+    .tab-item.active .ti-icon-wrap { background:rgba(24,30,56,0.1); }
     .tab-item.active svg { stroke:var(--navy); }
     .tab-item.active .ti-label { color:var(--navy); font-weight:700; }
-    .tab-dot { position:absolute; top:6px; right:calc(50% - 14px); width:6px; height:6px; border-radius:50%; background:#e52328; }
+    .tab-dot { position:absolute; top:-2px; right:-2px; width:7px; height:7px; border-radius:50%; background:#e52328; border:1.5px solid #fff; }
 
     /* Submit strip — above tab bar, quote tab only */
     .submit-strip { flex-shrink:0; background:rgba(24,30,56,0.97); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-top:1px solid rgba(200,186,154,0.2); padding:10px 16px; display:none; align-items:center; justify-content:space-between; gap:12px; }
@@ -210,7 +212,7 @@
 
     /* ── FULL-SCREEN MESSENGER ── */
     #panel-messages { display:none; flex-direction:column; background:var(--navy); }
-    #panel-messages.active { display:flex; position:fixed; inset:0; z-index:300; }
+    #panel-messages.active { display:flex; position:fixed; inset:0; z-index:600; }
 
     /* Chat header */
     .chat-hdr { background:rgba(255,255,255,0.06); border-bottom:1px solid rgba(200,186,154,0.2); padding:10px 14px; display:flex; align-items:center; gap:11px; flex-shrink:0; min-height:58px; }
@@ -1084,8 +1086,8 @@
   <div class="panel" id="panel-customer">
     <!-- Sub-tab bar -->
     <div class="cdt-tabs">
-      <div class="cdt-tab active" id="cdt-tab-customer" onclick="switchCDT('customer')">👤 &nbsp;Customer Info</div>
-      <div class="cdt-tab"        id="cdt-tab-car"      onclick="switchCDT('car')">🚗 &nbsp;Car Details</div>
+      <div class="cdt-tab active" id="cdt-tab-customer" onclick="switchCDT('customer')">Customer Info</div>
+      <div class="cdt-tab"        id="cdt-tab-car"      onclick="switchCDT('car')">Car Details</div>
     </div>
     <!-- Customer sub-panel -->
     <div class="cdt-panel active" id="cdt-customer">
@@ -1327,24 +1329,23 @@ No other modifications noted.</textarea></div>
 <!-- ══ iOS TAB BAR ══ -->
 <div class="tab-bar" id="tab-bar">
   <div class="tab-item" id="ti-customer" onclick="switchTab('customer')">
-    <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-1a6 6 0 0 1 12 0v1"/></svg>
+    <div class="ti-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-1a6 6 0 0 1 12 0v1"/></svg></div>
     <span class="ti-label">Customer</span>
   </div>
   <div class="tab-item active" id="ti-quote" onclick="switchTab('quote')">
-    <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="12" y2="15"/></svg>
+    <div class="ti-icon-wrap"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="12" y2="15"/></svg></div>
     <span class="ti-label">Quote</span>
   </div>
-  <div class="tab-item" id="ti-messages" onclick="switchTab('messages')" style="position:relative">
-    <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-    <div class="tab-dot" id="tab-msg-dot"></div>
+  <div class="tab-item" id="ti-messages" onclick="switchTab('messages')">
+    <div class="ti-icon-wrap" style="position:relative"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><div class="tab-dot" id="tab-msg-dot"></div></div>
     <span class="ti-label">Messages</span>
   </div>
   <div class="tab-item" id="ti-samples" onclick="switchTab('samples')">
-    <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+    <div class="ti-icon-wrap"><svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
     <span class="ti-label">Samples</span>
   </div>
   <div class="tab-item" id="ti-more" onclick="openMoreSheet()">
-    <svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="12" r="1.5" fill="#8e8e93" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="#8e8e93" stroke="none"/><circle cx="19" cy="12" r="1.5" fill="#8e8e93" stroke="none"/></svg>
+    <div class="ti-icon-wrap"><svg viewBox="0 0 24 24" fill="none"><circle cx="5" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg></div>
     <span class="ti-label">More</span>
   </div>
 </div>
