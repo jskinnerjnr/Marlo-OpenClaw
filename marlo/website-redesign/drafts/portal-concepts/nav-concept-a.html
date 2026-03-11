@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Nav Concept A — iOS Tab Bar</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#181e38;--gold:#c8ba9a;--cream:#efede9;--off:#f6f6f3;
+  --text:#1c1c1e;--mid:#6e6e73;--light:#e5e5ea;--warm:#f2f2f7;
+  --green:#1c6b3a;--red:#e52328;
+  --sans:'Inter',system-ui,sans-serif;--serif:'EB Garamond',serif;
+}
+html,body{height:100%;background:var(--warm);font-family:var(--sans);}
+body{display:flex;flex-direction:column;}
+
+/* HEADER */
+.hdr{background:var(--navy);padding:0 18px;display:flex;align-items:center;justify-content:space-between;min-height:56px;flex-shrink:0;border-bottom:2px solid rgba(200,186,154,0.25);}
+.hdr-brand{font-family:var(--serif);color:#fff;font-size:1.05rem;letter-spacing:0.07em;text-transform:uppercase;line-height:1.15;}
+.hdr-brand em{color:var(--gold);font-style:normal;}
+.hdr-sub{font-size:0.58rem;color:rgba(255,255,255,0.3);letter-spacing:0.2em;text-transform:uppercase;margin-top:2px;}
+.hdr-actions{display:flex;align-items:center;gap:6px;}
+
+/* Bell — clean SF-style */
+.bell-btn{position:relative;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.1);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
+.bell-btn:active{background:rgba(255,255,255,0.2);}
+.bell-btn svg{width:18px;height:18px;fill:rgba(255,255,255,0.85);}
+.bell-dot{position:absolute;top:6px;right:6px;width:8px;height:8px;border-radius:50%;background:var(--red);border:2px solid var(--navy);}
+
+/* Sign out — text link, Apple style */
+.hdr-signout{font-size:0.78rem;font-weight:500;color:rgba(200,186,154,0.75);background:none;border:none;cursor:pointer;padding:6px 4px;letter-spacing:0.01em;}
+.hdr-signout:active{color:var(--gold);}
+
+/* SECTION TITLE BAR (breadcrumb-style, very minimal) */
+.section-bar{background:#fff;border-bottom:1px solid var(--light);padding:10px 18px;display:flex;align-items:center;justify-content:space-between;}
+.section-bar .ref{font-size:0.72rem;font-weight:600;color:var(--mid);letter-spacing:0.04em;text-transform:uppercase;}
+.section-bar .title{font-family:var(--serif);font-size:1.05rem;color:var(--navy);}
+
+/* CONTENT */
+.content{flex:1;overflow-y:auto;padding:16px 16px 100px;}
+.card{background:#fff;border-radius:14px;overflow:hidden;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,0.06);}
+.card-row{display:flex;align-items:center;padding:14px 16px;gap:12px;border-bottom:1px solid var(--light);}
+.card-row:last-child{border-bottom:none;}
+.cr-swatch{width:36px;height:36px;border-radius:8px;flex-shrink:0;}
+.cr-body{flex:1;min-width:0;}
+.cr-name{font-size:0.9rem;font-weight:600;color:var(--text);}
+.cr-sub{font-size:0.75rem;color:var(--mid);margin-top:2px;}
+.cr-badge{font-size:0.65rem;font-weight:700;padding:4px 10px;border-radius:20px;background:#d4f0e0;color:#1c6b3a;letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap;}
+.cr-badge.considering{background:#fdf3e0;color:#b07c00;}
+.section-lbl{font-size:0.65rem;font-weight:700;color:var(--mid);letter-spacing:0.12em;text-transform:uppercase;padding:10px 4px 6px;}
+
+/* BOTTOM TAB BAR — iOS native style */
+.tab-bar{
+  position:fixed;bottom:0;left:0;right:0;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-top:0.5px solid rgba(0,0,0,0.15);
+  display:flex;align-items:stretch;padding-bottom:env(safe-area-inset-bottom,0px);
+  z-index:100;
+}
+.tab-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 4px 6px;cursor:pointer;gap:3px;-webkit-tap-highlight-color:transparent;transition:opacity 0.15s;}
+.tab-item svg{width:22px;height:22px;flex-shrink:0;}
+.tab-item span{font-size:0.6rem;font-weight:500;letter-spacing:0.01em;color:var(--mid);}
+.tab-item.active svg{stroke:var(--navy);}
+.tab-item.active span{color:var(--navy);font-weight:600;}
+.tab-item:not(.active) svg{stroke:var(--mid);}
+.tab-item .tb-badge{width:6px;height:6px;border-radius:50%;background:var(--red);position:absolute;top:6px;right:calc(50% - 15px);}
+
+/* Label */
+.concept-label{position:fixed;top:62px;right:10px;background:var(--navy);color:var(--gold);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:3px 9px;border-radius:20px;z-index:200;}
+</style>
+</head>
+<body>
+
+<div class="concept-label">Concept A · iOS Tab Bar</div>
+
+<!-- Header -->
+<div class="hdr">
+  <div>
+    <div class="hdr-brand">John <em>Skinner</em></div>
+    <div class="hdr-sub">Est. 1980 · Cheltenham</div>
+  </div>
+  <div class="hdr-actions">
+    <button class="hdr-signout">Sign out</button>
+    <button class="bell-btn">
+      <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      <div class="bell-dot"></div>
+    </button>
+  </div>
+</div>
+
+<!-- Section title -->
+<div class="section-bar">
+  <div class="ref">JSM-2847</div>
+  <div class="title">Your Quote</div>
+</div>
+
+<!-- Content (quote items preview) -->
+<div class="content">
+  <div class="section-lbl">Trim Panels</div>
+  <div class="card">
+    <div class="card-row">
+      <div class="cr-swatch" style="background:#1c3a1c"></div>
+      <div class="cr-body"><div class="cr-name">Door Card Panels</div><div class="cr-sub">Leather · Grained · BRG</div></div>
+      <div class="cr-badge">Required</div>
+    </div>
+    <div class="card-row">
+      <div class="cr-swatch" style="background:#1c3a1c"></div>
+      <div class="cr-body"><div class="cr-name">Sill Finishers</div><div class="cr-sub">Leather · Grained · BRG</div></div>
+      <div class="cr-badge considering">Considering</div>
+    </div>
+  </div>
+  <div class="section-lbl">Seats</div>
+  <div class="card">
+    <div class="card-row">
+      <div class="cr-swatch" style="background:#1c3a1c"></div>
+      <div class="cr-body"><div class="cr-name">Front Seat Covers</div><div class="cr-sub">Leather · Grained · BRG</div></div>
+      <div class="cr-badge">Required</div>
+    </div>
+  </div>
+</div>
+
+<!-- iOS-style bottom tab bar (no emoji, clean SVG icons) -->
+<div class="tab-bar">
+  <div class="tab-item" onclick="setTab(this,'quote')">
+    <svg fill="none" stroke-width="1.6" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="12" y2="15"/></svg>
+    <span>Quote</span>
+  </div>
+  <div class="tab-item active" onclick="setTab(this,'quote')">
+    <svg fill="none" stroke-width="1.6" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <span>Customer</span>
+  </div>
+  <div class="tab-item" style="position:relative" onclick="setTab(this,'msg')">
+    <svg fill="none" stroke-width="1.6" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <div class="tb-badge"></div>
+    <span>Messages</span>
+  </div>
+  <div class="tab-item" onclick="setTab(this,'docs')">
+    <svg fill="none" stroke-width="1.6" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+    <span>Progress</span>
+  </div>
+  <div class="tab-item" onclick="setTab(this,'more')">
+    <svg fill="none" stroke-width="1.6" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg>
+    <span>More</span>
+  </div>
+</div>
+
+<script>
+function setTab(el,id){
+  document.querySelectorAll('.tab-item').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>

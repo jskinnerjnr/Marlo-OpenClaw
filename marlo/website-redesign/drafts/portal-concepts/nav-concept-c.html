@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Nav Concept C — Minimal Pill Nav</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#181e38;--gold:#c8ba9a;--text:#1c1c1e;--mid:#6e6e73;
+  --light:#e5e5ea;--warm:#f2f2f7;--red:#e52328;
+  --sans:'Inter',system-ui,sans-serif;--serif:'EB Garamond',serif;
+}
+html,body{height:100%;background:var(--warm);font-family:var(--sans);}
+body{display:flex;flex-direction:column;}
+
+/* HEADER — ultra minimal */
+.hdr{
+  background:var(--navy);
+  padding:0 16px;display:flex;align-items:center;justify-content:space-between;
+  min-height:52px;flex-shrink:0;
+}
+.hdr-left{display:flex;align-items:center;gap:10px;}
+.back-btn{color:var(--gold);background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:4px;font-family:var(--sans);font-size:0.82rem;font-weight:500;padding:4px 0;}
+.back-btn svg{width:9px;height:14px;stroke:var(--gold);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;}
+.hdr-title{font-family:var(--serif);font-size:1rem;color:#fff;letter-spacing:0.06em;text-transform:uppercase;}
+.hdr-title em{color:var(--gold);font-style:normal;}
+.hdr-right{display:flex;align-items:center;gap:6px;}
+.icon-btn{width:34px;height:34px;border-radius:50%;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;position:relative;-webkit-tap-highlight-color:transparent;}
+.icon-btn svg{width:17px;height:17px;stroke:#fff;fill:none;stroke-width:1.8;}
+.notif-dot{position:absolute;top:4px;right:4px;width:8px;height:8px;border-radius:50%;background:var(--red);border:2px solid var(--navy);}
+
+/* SCROLLABLE PILL NAV */
+.pill-nav{background:var(--navy);padding:0 16px 12px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid rgba(200,186,154,0.15);flex-shrink:0;}
+.pill-nav::-webkit-scrollbar{display:none;}
+.pill-nav-inner{display:flex;gap:7px;width:max-content;}
+.pill{font-size:0.75rem;font-weight:500;padding:7px 16px;border-radius:20px;cursor:pointer;white-space:nowrap;-webkit-tap-highlight-color:transparent;transition:all 0.2s;border:1px solid transparent;}
+.pill:not(.active){color:rgba(255,255,255,0.45);border-color:rgba(255,255,255,0.1);}
+.pill.active{background:var(--gold);color:var(--navy);font-weight:700;border-color:var(--gold);}
+
+/* CONTENT */
+.content{flex:1;overflow-y:auto;padding:14px 14px 88px;}
+.section-title{font-size:1.2rem;font-family:var(--serif);color:var(--navy);margin-bottom:4px;}
+.section-meta{font-size:0.75rem;color:var(--mid);margin-bottom:14px;}
+.card{background:#fff;border-radius:14px;overflow:hidden;margin-bottom:10px;box-shadow:0 1px 2px rgba(0,0,0,0.05);}
+.card-row{display:flex;align-items:center;padding:13px 15px;gap:12px;border-bottom:0.5px solid var(--light);}
+.card-row:last-child{border-bottom:none;}
+.cr-swatch{width:34px;height:34px;border-radius:9px;flex-shrink:0;}
+.cr-body{flex:1;}
+.cr-name{font-size:0.88rem;font-weight:600;color:var(--text);}
+.cr-sub{font-size:0.73rem;color:var(--mid);margin-top:1px;}
+.status-pill{font-size:0.65rem;font-weight:700;padding:4px 11px;border-radius:20px;white-space:nowrap;text-transform:uppercase;letter-spacing:0.03em;}
+.s-req{background:#d4f0e0;color:#1c6b3a;}
+.s-con{background:#fdf3e0;color:#b07c00;}
+.s-nr{background:#fde8e8;color:#c0392b;}
+.section-lbl{font-size:0.65rem;font-weight:700;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;padding:10px 4px 5px;}
+
+/* BOTTOM ACTION BAR */
+.action-bar{position:fixed;bottom:0;left:0;right:0;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:10px;z-index:50;background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:0.5px solid rgba(0,0,0,0.1);}
+.tot{flex:1;}
+.tot-lbl{font-size:0.62rem;color:var(--mid);text-transform:uppercase;letter-spacing:0.07em;font-weight:600;}
+.tot-val{font-family:var(--serif);font-size:1.3rem;color:var(--navy);line-height:1.1;}
+.action-pdf{width:40px;height:40px;border-radius:10px;background:var(--warm);border:1px solid var(--light);display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.action-pdf svg{width:17px;height:17px;stroke:var(--mid);fill:none;stroke-width:1.8;}
+.action-submit{flex:1.4;background:var(--navy);color:var(--gold);font-family:var(--sans);font-size:0.82rem;font-weight:600;padding:12px;border-radius:12px;border:none;cursor:pointer;letter-spacing:0.02em;}
+
+.concept-label{position:fixed;top:58px;right:10px;background:#1c1c1e;color:#fff;font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:3px 9px;border-radius:20px;z-index:200;}
+</style>
+</head>
+<body>
+
+<div class="concept-label">Concept C · Pill Nav</div>
+
+<!-- Header -->
+<div class="hdr">
+  <div class="hdr-left">
+    <button class="back-btn"><svg viewBox="0 0 9 14"><polyline points="8,1 1,7 8,13"/></svg>Account</button>
+    <div class="hdr-title">John <em>Skinner</em></div>
+  </div>
+  <div class="hdr-right">
+    <button class="icon-btn">
+      <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      <div class="notif-dot"></div>
+    </button>
+    <button class="icon-btn">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-1a6 6 0 0 1 12 0v1"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- Scrollable pill nav (slides horizontally) -->
+<div class="pill-nav">
+  <div class="pill-nav-inner">
+    <div class="pill" onclick="setPill(this)">Customer</div>
+    <div class="pill active" onclick="setPill(this)">Your Quote</div>
+    <div class="pill" onclick="setPill(this)">Messages</div>
+    <div class="pill" onclick="setPill(this)">Progress</div>
+    <div class="pill" onclick="setPill(this)">Samples</div>
+    <div class="pill" onclick="setPill(this)">Payments</div>
+  </div>
+</div>
+
+<!-- Content -->
+<div class="content">
+  <div class="section-title">Your Quote</div>
+  <div class="section-meta">JSM-2847 · 1972 Jaguar E-Type OTS</div>
+
+  <div class="section-lbl">Trim Panels</div>
+  <div class="card">
+    <div class="card-row">
+      <div class="cr-swatch" style="background:#1c3a1c"></div>
+      <div class="cr-body"><div class="cr-name">Door Card Panels</div><div class="cr-sub">Leather · Grained · BRG</div></div>
+      <span class="status-pill s-req">Required</span>
+    </div>
+    <div class="card-row">
+      <div class="cr-swatch" style="background:#1c3a1c"></div>
+      <div class="cr-body"><div class="cr-name">Sill Finishers</div><div class="cr-sub">Leather · Grained · BRG</div></div>
+      <span class="status-pill s-con">Considering</span>
+    </div>
+  </div>
+
+  <div class="section-lbl">Seats</div>
+  <div class="card">
+    <div class="card-row">
+      <div class="cr-swatch" style="background:#1c3a1c"></div>
+      <div class="cr-body"><div class="cr-name">Front Seat Covers</div><div class="cr-sub">Leather · Grained · BRG</div></div>
+      <span class="status-pill s-req">Required</span>
+    </div>
+  </div>
+
+  <div class="section-lbl">Carpets</div>
+  <div class="card">
+    <div class="card-row">
+      <div class="cr-swatch" style="background:#2a3a2a"></div>
+      <div class="cr-body"><div class="cr-name">Full Carpet Set</div><div class="cr-sub">Wilton · Sherwood Green</div></div>
+      <span class="status-pill s-nr">Not Required</span>
+    </div>
+  </div>
+</div>
+
+<!-- Action bar -->
+<div class="action-bar">
+  <div class="tot"><div class="tot-lbl">Est. Total</div><div class="tot-val">£2,210</div></div>
+  <div class="action-pdf">
+    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+  </div>
+  <button class="action-submit">Submit for Review</button>
+</div>
+
+<script>
+function setPill(el){document.querySelectorAll('.pill').forEach(p=>p.classList.remove('active'));el.classList.add('active');}
+</script>
+</body>
+</html>

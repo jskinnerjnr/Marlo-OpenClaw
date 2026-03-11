@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Nav Concept B — Segmented + Frosted Drawer</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#181e38;--gold:#c8ba9a;--cream:#efede9;
+  --text:#1c1c1e;--mid:#6e6e73;--light:#e5e5ea;--warm:#f2f2f7;
+  --red:#e52328;--green:#1c6b3a;
+  --sans:'Inter',system-ui,sans-serif;--serif:'EB Garamond',serif;
+}
+html,body{height:100%;background:var(--warm);font-family:var(--sans);}
+body{display:flex;flex-direction:column;}
+
+/* HEADER — slimmer, cleaner */
+.hdr{
+  background:rgba(24,30,56,0.97);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  padding:0 16px;display:flex;align-items:center;justify-content:space-between;
+  min-height:52px;flex-shrink:0;border-bottom:1px solid rgba(200,186,154,0.2);
+  position:sticky;top:0;z-index:50;
+}
+.hdr-brand{font-family:var(--serif);color:#fff;font-size:1rem;letter-spacing:0.07em;text-transform:uppercase;}
+.hdr-brand em{color:var(--gold);font-style:normal;}
+.hdr-sub{font-size:0.55rem;color:rgba(255,255,255,0.28);letter-spacing:0.2em;text-transform:uppercase;margin-top:1px;}
+.hdr-right{display:flex;align-items:center;gap:8px;}
+.hdr-ref{font-size:0.7rem;font-weight:500;color:rgba(200,186,154,0.5);letter-spacing:0.06em;}
+.icon-btn{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.08);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;position:relative;-webkit-tap-highlight-color:transparent;transition:background 0.2s;}
+.icon-btn:active{background:rgba(255,255,255,0.18);}
+.icon-btn svg{width:17px;height:17px;}
+.notif-dot{position:absolute;top:5px;right:5px;width:7px;height:7px;border-radius:50%;background:var(--red);border:1.5px solid rgba(24,30,56,0.97);}
+
+/* SEGMENTED CONTROL (iOS-style section switcher) */
+.seg-wrap{background:rgba(24,30,56,0.97);padding:0 16px 12px;border-bottom:1px solid rgba(200,186,154,0.15);flex-shrink:0;}
+.seg{display:flex;background:rgba(255,255,255,0.08);border-radius:10px;padding:3px;gap:2px;}
+.seg-item{flex:1;text-align:center;font-size:0.68rem;font-weight:500;color:rgba(255,255,255,0.45);padding:6px 4px;border-radius:7px;cursor:pointer;transition:all 0.2s;letter-spacing:0.01em;white-space:nowrap;-webkit-tap-highlight-color:transparent;}
+.seg-item.active{background:#fff;color:var(--navy);font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,0.2);}
+
+/* CONTENT */
+.content{flex:1;overflow-y:auto;padding:14px 14px 80px;}
+.card{background:#fff;border-radius:14px;overflow:hidden;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,0.05);}
+.card-row{display:flex;align-items:center;padding:13px 15px;gap:12px;border-bottom:0.5px solid var(--light);}
+.card-row:last-child{border-bottom:none;}
+.cr-swatch{width:34px;height:34px;border-radius:8px;flex-shrink:0;}
+.cr-body{flex:1;}
+.cr-name{font-size:0.88rem;font-weight:600;color:var(--text);}
+.cr-sub{font-size:0.73rem;color:var(--mid);margin-top:1px;}
+.cr-badge{font-size:0.64rem;font-weight:700;padding:4px 10px;border-radius:20px;background:#d4f0e0;color:#1c6b3a;letter-spacing:0.03em;text-transform:uppercase;white-space:nowrap;}
+.cr-badge.con{background:#fdf3e0;color:#b07c00;}
+.chevron{color:var(--light);font-size:0.9rem;}
+.section-lbl{font-size:0.65rem;font-weight:700;color:var(--mid);letter-spacing:0.1em;text-transform:uppercase;padding:10px 4px 5px;}
+
+/* BOTTOM BAR — approval / submit */
+.bottom-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(24,30,56,0.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:0.5px solid rgba(200,186,154,0.2);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;justify-content:space-between;z-index:100;}
+.tot-lbl{font-size:0.65rem;font-weight:600;color:rgba(200,186,154,0.6);text-transform:uppercase;letter-spacing:0.08em;}
+.tot-val{font-family:var(--serif);font-size:1.35rem;color:#fff;margin-top:1px;}
+.submit-btn{background:var(--gold);color:var(--navy);font-family:var(--sans);font-size:0.82rem;font-weight:700;padding:11px 22px;border-radius:12px;border:none;cursor:pointer;letter-spacing:0.02em;}
+
+/* CONCEPT LABEL */
+.concept-label{position:fixed;top:58px;right:10px;background:var(--gold);color:var(--navy);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:3px 9px;border-radius:20px;z-index:200;}
+</style>
+</head>
+<body>
+
+<div class="concept-label">Concept B · Segmented</div>
+
+<div class="hdr">
+  <div>
+    <div class="hdr-brand">John <em>Skinner</em></div>
+    <div class="hdr-sub">Est. 1980 · Cheltenham</div>
+  </div>
+  <div class="hdr-right">
+    <span class="hdr-ref">JSM-2847</span>
+    <button class="icon-btn">
+      <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      <div class="notif-dot"></div>
+    </button>
+    <button class="icon-btn">
+      <svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M6 20v-1a6 6 0 0 1 12 0v1"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- Segmented control (iOS-style, all navigation in one compact control) -->
+<div class="seg-wrap">
+  <div class="seg">
+    <div class="seg-item" onclick="setSeg(this)">Customer</div>
+    <div class="seg-item active" onclick="setSeg(this)">Quote</div>
+    <div class="seg-item" onclick="setSeg(this)">Messages</div>
+    <div class="seg-item" onclick="setSeg(this)">Progress</div>
+    <div class="seg-item" onclick="setSeg(this)">Samples</div>
+    <div class="seg-item" onclick="setSeg(this)">Payments</div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="section-lbl">Trim Panels</div>
+  <div class="card">
+    <div class="card-row">
+      <div class="cr-swatch" style="background:#1c3a1c"></div>
+      <div class="cr-body"><div class="cr-name">Door Card Panels</div><div class="cr-sub">Leather · Grained · BRG</div></div>
+      <div class="cr-badge">Required</div>
+      <span class="chevron">›</span>
+    </div>
+    <div class="card-row">
+      <div class="cr-swatch" style="background:#1c3a1c"></div>
+      <div class="cr-body"><div class="cr-name">Sill Finishers</div><div class="cr-sub">Leather · Grained · BRG</div></div>
+      <div class="cr-badge con">Considering</div>
+      <span class="chevron">›</span>
+    </div>
+  </div>
+  <div class="section-lbl">Seats</div>
+  <div class="card">
+    <div class="card-row">
+      <div class="cr-swatch" style="background:#1c3a1c"></div>
+      <div class="cr-body"><div class="cr-name">Front Seat Covers</div><div class="cr-sub">Leather · Grained · BRG</div></div>
+      <div class="cr-badge">Required</div>
+      <span class="chevron">›</span>
+    </div>
+  </div>
+</div>
+
+<div class="bottom-bar">
+  <div><div class="tot-lbl">Est. Total</div><div class="tot-val">£2,210</div></div>
+  <button class="submit-btn">Submit for Review →</button>
+</div>
+
+<script>
+function setSeg(el){document.querySelectorAll('.seg-item').forEach(s=>s.classList.remove('active'));el.classList.add('active');}
+</script>
+</body>
+</html>
