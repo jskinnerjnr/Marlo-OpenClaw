@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Restorer's Guide — MarqueFile</title>
+<meta name="description" content="Honest advice about restoring a classic British car. What nobody tells you until it's too late.">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#1c1c1c;--green:#2a5c3f;--green-light:#3a7a55;--gold:#c8a84b;--cream:#f8f6f1;--warm:#efede9;--white:#fff;--grey:#6b6b6b;--border:#e2ddd6;--text:#1a1a1a}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:16px;-webkit-text-size-adjust:100%}
+  body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);line-height:1.6}
+  img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+  .site-header{background:var(--navy);position:sticky;top:0;z-index:200;border-bottom:3px solid var(--green)}
+  .hdr-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{display:flex;align-items:center;gap:11px;text-decoration:none}
+  .logo-mark{width:38px;height:38px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:1.1rem;color:#fff;font-weight:600;flex-shrink:0}
+  .logo-text{font-family:'EB Garamond',serif;font-size:1.25rem;color:#fff;letter-spacing:0.04em}
+  .logo-text em{color:var(--gold);font-style:normal}
+  .site-nav{display:flex;align-items:center;gap:4px}
+  .site-nav a,.nav-dd>a{color:rgba(255,255,255,0.72);font-size:0.78rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;padding:20px 13px;display:block;transition:color 0.2s;white-space:nowrap;border-bottom:2px solid transparent}
+  .site-nav a:hover,.nav-dd>a:hover{color:#fff;border-bottom-color:var(--gold)}
+  .nav-dd{position:relative}
+  .nav-dd .drop{position:absolute;top:100%;left:0;background:var(--navy);border:1px solid rgba(255,255,255,0.1);border-top:2px solid var(--green);min-width:180px;display:none;flex-direction:column;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+  .nav-dd:hover .drop{display:flex}
+  .nav-dd .drop a{padding:11px 18px;font-size:0.8rem;border-bottom:1px solid rgba(255,255,255,0.07);border-left:none;color:rgba(255,255,255,0.7)}
+  .nav-dd .drop a:hover{background:var(--green);color:#fff}
+  .nav-cta{background:var(--green)!important;color:#fff!important;border-radius:4px;padding:9px 18px!important;margin-left:8px;border:none!important;font-weight:600!important}
+  .nav-cta:hover{background:var(--green-light)!important}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+  .nav-toggle span{width:24px;height:2px;background:#fff;border-radius:1px;display:block;transition:all 0.25s}
+  @media(max-width:768px){
+    .site-nav{display:none;position:absolute;top:62px;left:0;right:0;background:var(--navy);flex-direction:column;border-top:2px solid var(--green);padding:8px 0 20px;z-index:200}
+    .site-nav.open{display:flex}
+    .site-nav a,.nav-dd>a{padding:16px 28px;border-bottom:none;border-left:3px solid transparent;font-size:0.9rem}
+    .site-nav a:hover,.nav-dd>a:hover{border-left-color:var(--gold);border-bottom:none}
+    .nav-dd .drop{position:static;display:flex!important;box-shadow:none;border:none;background:rgba(255,255,255,0.05)}
+    .nav-dd .drop a{padding:12px 44px;font-size:0.82rem}
+    .nav-cta{margin:12px 28px 0!important;text-align:center;border-radius:4px!important;padding:16px 28px!important}
+    .nav-toggle{display:flex}
+  }
+  footer{background:#111;border-top:3px solid var(--green);padding:52px 24px 28px;margin-top:80px}
+  .ft-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:48px;margin-bottom:40px}
+  .ft-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .ft-cols h4{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.35);margin-bottom:14px;font-weight:600}
+  .ft-cols a{display:block;color:rgba(255,255,255,0.55);font-size:0.82rem;margin-bottom:8px;transition:color 0.2s}
+  .ft-cols a:hover{color:var(--gold)}
+  .ft-base{max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:0.74rem;color:rgba(255,255,255,0.25)}
+  @media(max-width:768px){.ft-inner{grid-template-columns:1fr}.ft-cols{grid-template-columns:repeat(2,1fr)}}
+  .page-hero{background:#1c1c1c;padding:72px 24px 80px;text-align:center}
+  .page-hero-inner{max-width:760px;margin:0 auto}
+  .hero-eyebrow{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);margin-bottom:16px;font-weight:600}
+  .page-hero h1{font-family:'EB Garamond',serif;font-size:clamp(2.2rem,5vw,3.4rem);color:#fff;line-height:1.15;margin-bottom:20px}
+  .page-hero h1 em{color:var(--gold);font-style:normal}
+  .page-hero p{font-size:1.05rem;color:rgba(255,255,255,0.6);max-width:560px;margin:0 auto;line-height:1.7}
+  .guide-section{max-width:1100px;margin:64px auto;padding:0 24px}
+  .section-label{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--green);font-weight:700;margin-bottom:10px}
+  .section-title{font-family:'EB Garamond',serif;font-size:2.2rem;color:var(--text);margin-bottom:8px}
+  .section-sub{color:var(--grey);max-width:560px;margin-bottom:36px;font-size:0.95rem}
+  .guide-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:24px}
+  .guide-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:28px 28px 24px;display:block;transition:box-shadow 0.2s,transform 0.2s}
+  .guide-card:hover{box-shadow:0 8px 32px rgba(0,0,0,0.11);transform:translateY(-3px)}
+  .guide-card-num{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--gold);font-weight:700;margin-bottom:12px}
+  .guide-card h2{font-family:'EB Garamond',serif;font-size:1.45rem;color:var(--text);line-height:1.3;margin-bottom:12px}
+  .guide-card p{font-size:0.9rem;color:var(--grey);line-height:1.65;margin-bottom:20px}
+  .guide-card-link{color:var(--green);font-size:0.82rem;font-weight:600}
+  .guide-card-link::after{content:' →'}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="hdr-inner">
+    <a href="../index.html" class="logo"><div class="logo-mark">MF</div><div class="logo-text">Marque<em>File</em></div></a>
+    <nav class="site-nav" id="site-nav">
+      <div class="nav-dd"><a href="../triumph/index.html">Cars &#9662;</a>
+        <div class="drop"><a href="../triumph/index.html">Triumph TR</a><a href="../jaguar/index.html">Jaguar</a><a href="../austin-healey/index.html">Austin-Healey</a><a href="../mg/index.html">MG</a></div>
+      </div>
+      <div class="nav-dd"><a href="../clubs/index.html">Directory &#9662;</a>
+        <div class="drop"><a href="../clubs/index.html">Clubs</a><a href="../events/index.html">Events</a><a href="../suppliers/index.html">Suppliers</a><a href="../publications/index.html">Publications</a><a href="../insurance/index.html">Insurance</a><a href="../storage/index.html">Storage</a></div>
+      </div>
+      <div class="nav-dd"><a href="../valuations/index.html">Market &#9662;</a>
+        <div class="drop"><a href="../valuations/index.html">Price Guides</a><a href="../classifieds/index.html">Cars for Sale</a><a href="../classifieds/sell.html">Sell Your Car</a></div>
+      </div>
+      <div class="nav-dd"><a href="../resources/index.html">Resources &#9662;</a>
+        <div class="drop"><a href="../resources/index.html#youtube">YouTube Channels</a><a href="../resources/index.html#tv">TV Shows</a><a href="../resources/index.html#websites">Websites &amp; Forums</a><a href="../resources/index.html#podcasts">Podcasts</a><a href="../resources/index.html#magazines">Magazines</a></div>
+      </div>
+      <a href="../care/index.html" style="color:rgba(255,255,255,0.72);font-size:0.78rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;padding:20px 13px;display:block;white-space:nowrap;border-bottom:2px solid transparent">Care</a>
+      <a href="index.html" style="color:#fff!important;border-bottom-color:var(--gold)!important;font-size:0.78rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;padding:20px 13px;display:block;white-space:nowrap;border-bottom:2px solid var(--gold)">Guide</a>
+      <a href="../classifieds/index.html" class="nav-cta">Cars for Sale</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-eyebrow">For the Complete Novice</div>
+    <h1>The Restorer's <em>Guide</em></h1>
+    <p>Honest advice about restoring a classic British car. What nobody tells you until it's too late.</p>
+  </div>
+</div>
+
+<section class="guide-section">
+  <div class="section-label">Editorial</div>
+  <div class="section-title">Five things worth knowing before you start</div>
+  <p class="section-sub">Straight answers to the questions most novice restorers only think to ask halfway through the project.</p>
+  <div class="guide-grid">
+    <a href="one-stop-shops.html" class="guide-card">
+      <div class="guide-card-num">Article 01</div>
+      <h2>The One-Stop-Shop Trap</h2>
+      <p>Buying everything from one supplier feels convenient. Here's why it often isn't.</p>
+      <span class="guide-card-link">Read the article</span>
+    </a>
+    <a href="restoration-order.html" class="guide-card">
+      <div class="guide-card-num">Article 02</div>
+      <h2>The Restoration Order Mistake</h2>
+      <p>Interior trim ends up last on almost every restoration. By that point, the budget and timeline are usually gone.</p>
+      <span class="guide-card-link">Read the article</span>
+    </a>
+    <a href="interior-trim.html" class="guide-card">
+      <div class="guide-card-num">Article 03</div>
+      <h2>Why Interior Trim Deserves Your Full Attention</h2>
+      <p>It's the least standardised part of the car. It's what you see every time you sit down. And it's the part most often treated as an afterthought.</p>
+      <span class="guide-card-link">Read the article</span>
+    </a>
+    <a href="budget.html" class="guide-card">
+      <div class="guide-card-num">Article 04</div>
+      <h2>Setting a Realistic Budget</h2>
+      <p>The number most restorers start with and the number they end up spending rarely match. Here's how to plan more honestly.</p>
+      <span class="guide-card-link">Read the article</span>
+    </a>
+    <a href="buying.html" class="guide-card">
+      <div class="guide-card-num">Article 05</div>
+      <h2>What to Look For When Buying a Classic</h2>
+      <p>A crash course for first-time buyers on what matters, what doesn't, and what the seller probably won't tell you.</p>
+      <span class="guide-card-link">Read the article</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-inner">
+    <div>
+      <div class="logo" style="margin-bottom:16px"><div class="logo-mark">MF</div><div class="logo-text" style="color:#fff">Marque<em style="color:var(--gold);font-style:normal">File</em></div></div>
+      <p style="font-size:0.82rem;color:rgba(255,255,255,0.4);line-height:1.6;max-width:260px">The classic car data resource for British marques.</p>
+    </div>
+    <div class="ft-cols">
+      <div>
+        <h4>Cars</h4>
+        <a href="../triumph/index.html">Triumph TR</a>
+        <a href="../jaguar/index.html">Jaguar</a>
+        <a href="../austin-healey/index.html">Austin-Healey</a>
+        <a href="../mg/index.html">MG</a>
+      </div>
+      <div>
+        <h4>Restorer's Guide</h4>
+        <a href="one-stop-shops.html">The One-Stop-Shop Trap</a>
+        <a href="restoration-order.html">Restoration Order</a>
+        <a href="interior-trim.html">Interior Trim</a>
+        <a href="budget.html">Setting a Budget</a>
+        <a href="buying.html">Buying a Classic</a>
+      </div>
+      <div>
+        <h4>Directory</h4>
+        <a href="../clubs/index.html">Clubs</a>
+        <a href="../suppliers/index.html">Suppliers</a>
+        <a href="../events/index.html">Events</a>
+        <a href="../care/index.html">Care &amp; Maintenance</a>
+      </div>
+    </div>
+  </div>
+  <div class="ft-base"><span>&copy; 2025 MarqueFile</span><span>Independent. Unsponsored. Honest.</span></div>
+</footer>
+<script>document.getElementById('nav-toggle').addEventListener('click',function(){document.getElementById('site-nav').classList.toggle('open');});</script>
+</body>
+</html>

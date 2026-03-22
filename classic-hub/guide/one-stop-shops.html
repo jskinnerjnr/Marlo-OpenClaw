@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The One-Stop-Shop Trap — MarqueFile Restorer's Guide</title>
+<meta name="description" content="Buying everything from one supplier feels convenient. Here's why it often isn't.">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#1c1c1c;--green:#2a5c3f;--green-light:#3a7a55;--gold:#c8a84b;--cream:#f8f6f1;--warm:#efede9;--white:#fff;--grey:#6b6b6b;--border:#e2ddd6;--text:#1a1a1a}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:16px;-webkit-text-size-adjust:100%}
+  body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);line-height:1.6}
+  img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+  .site-header{background:var(--navy);position:sticky;top:0;z-index:200;border-bottom:3px solid var(--green)}
+  .hdr-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{display:flex;align-items:center;gap:11px;text-decoration:none}
+  .logo-mark{width:38px;height:38px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:1.1rem;color:#fff;font-weight:600;flex-shrink:0}
+  .logo-text{font-family:'EB Garamond',serif;font-size:1.25rem;color:#fff;letter-spacing:0.04em}
+  .logo-text em{color:var(--gold);font-style:normal}
+  .site-nav{display:flex;align-items:center;gap:4px}
+  .site-nav a,.nav-dd>a{color:rgba(255,255,255,0.72);font-size:0.78rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;padding:20px 13px;display:block;transition:color 0.2s;white-space:nowrap;border-bottom:2px solid transparent}
+  .site-nav a:hover,.nav-dd>a:hover{color:#fff;border-bottom-color:var(--gold)}
+  .nav-dd{position:relative}
+  .nav-dd .drop{position:absolute;top:100%;left:0;background:var(--navy);border:1px solid rgba(255,255,255,0.1);border-top:2px solid var(--green);min-width:180px;display:none;flex-direction:column;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+  .nav-dd:hover .drop{display:flex}
+  .nav-dd .drop a{padding:11px 18px;font-size:0.8rem;border-bottom:1px solid rgba(255,255,255,0.07);border-left:none;color:rgba(255,255,255,0.7)}
+  .nav-dd .drop a:hover{background:var(--green);color:#fff}
+  .nav-cta{background:var(--green)!important;color:#fff!important;border-radius:4px;padding:9px 18px!important;margin-left:8px;border:none!important;font-weight:600!important}
+  .nav-cta:hover{background:var(--green-light)!important}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+  .nav-toggle span{width:24px;height:2px;background:#fff;border-radius:1px;display:block;transition:all 0.25s}
+  @media(max-width:768px){
+    .site-nav{display:none;position:absolute;top:62px;left:0;right:0;background:var(--navy);flex-direction:column;border-top:2px solid var(--green);padding:8px 0 20px;z-index:200}
+    .site-nav.open{display:flex}
+    .site-nav a,.nav-dd>a{padding:16px 28px;border-bottom:none;border-left:3px solid transparent;font-size:0.9rem}
+    .site-nav a:hover,.nav-dd>a:hover{border-left-color:var(--gold);border-bottom:none}
+    .nav-dd .drop{position:static;display:flex!important;box-shadow:none;border:none;background:rgba(255,255,255,0.05)}
+    .nav-dd .drop a{padding:12px 44px;font-size:0.82rem}
+    .nav-cta{margin:12px 28px 0!important;text-align:center;border-radius:4px!important;padding:16px 28px!important}
+    .nav-toggle{display:flex}
+  }
+  footer{background:#111;border-top:3px solid var(--green);padding:52px 24px 28px;margin-top:80px}
+  .ft-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:48px;margin-bottom:40px}
+  .ft-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .ft-cols h4{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.35);margin-bottom:14px;font-weight:600}
+  .ft-cols a{display:block;color:rgba(255,255,255,0.55);font-size:0.82rem;margin-bottom:8px;transition:color 0.2s}
+  .ft-cols a:hover{color:var(--gold)}
+  .ft-base{max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:0.74rem;color:rgba(255,255,255,0.25)}
+  @media(max-width:768px){.ft-inner{grid-template-columns:1fr}.ft-cols{grid-template-columns:repeat(2,1fr)}}
+  .page-hero{background:#1c1c1c;padding:64px 24px 72px}
+  .page-hero-inner{max-width:720px;margin:0 auto}
+  .hero-eyebrow{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);margin-bottom:14px;font-weight:600}
+  .page-hero h1{font-family:'EB Garamond',serif;font-size:clamp(2rem,5vw,3rem);color:#fff;margin-bottom:16px;line-height:1.2}
+  .page-hero .subtitle{font-size:1.05rem;color:rgba(255,255,255,0.6);max-width:620px;line-height:1.7;margin-bottom:16px}
+  .page-hero .article-meta{font-size:0.78rem;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.1em;margin-top:12px}
+  .article-body{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+  .article-body h2{font-family:'EB Garamond',serif;font-size:1.7rem;color:#1c1c1c;margin:40px 0 16px}
+  .article-body p{font-size:1rem;color:#333;line-height:1.85;margin-bottom:20px}
+  .article-body strong{color:#1c1c1c}
+  .article-body ol,.article-body ul{margin:0 0 20px 24px}
+  .article-body li{font-size:1rem;color:#333;line-height:1.85;margin-bottom:8px}
+  .article-lede{font-family:'EB Garamond',serif;font-size:1.25rem;color:#1c1c1c;line-height:1.7;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid #e2ddd6}
+  .article-meta{font-size:0.78rem;color:#6b6b6b;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:40px}
+  .jsm-box{background:#f8f6f1;border:2px solid var(--gold);border-radius:6px;padding:28px 32px;margin:48px 0 0}
+  .jsm-box-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--gold);font-weight:700;margin-bottom:8px}
+  .jsm-box h3{font-family:'EB Garamond',serif;font-size:1.3rem;color:#1a1a1a;margin-bottom:10px}
+  .jsm-box p{font-size:0.9rem;color:#444;line-height:1.65;margin-bottom:16px}
+  .jsm-box a.btn-jsm{background:var(--green);color:#fff;padding:10px 20px;border-radius:4px;font-size:0.85rem;font-weight:600;display:inline-block;transition:background 0.2s}
+  .jsm-box a.btn-jsm:hover{background:var(--green-light)}
+  .more-guide{background:#fff;border:1px solid var(--border);border-radius:8px;padding:28px 28px;margin-top:48px}
+  .more-guide h3{font-family:'EB Garamond',serif;font-size:1.2rem;color:var(--text);margin-bottom:16px}
+  .more-guide-links{display:flex;flex-direction:column;gap:10px}
+  .more-guide-links a{font-size:0.9rem;color:var(--green);font-weight:500}
+  .more-guide-links a:hover{text-decoration:underline}
+  .more-guide-links a::after{content:" →"}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="hdr-inner">
+    <a href="../index.html" class="logo"><div class="logo-mark">MF</div><div class="logo-text">Marque<em>File</em></div></a>
+    <nav class="site-nav" id="site-nav">
+      <div class="nav-dd"><a href="../triumph/index.html">Cars &#9662;</a>
+        <div class="drop"><a href="../triumph/index.html">Triumph TR</a><a href="../jaguar/index.html">Jaguar</a><a href="../austin-healey/index.html">Austin-Healey</a><a href="../mg/index.html">MG</a></div>
+      </div>
+      <div class="nav-dd"><a href="../clubs/index.html">Directory &#9662;</a>
+        <div class="drop"><a href="../clubs/index.html">Clubs</a><a href="../events/index.html">Events</a><a href="../suppliers/index.html">Suppliers</a><a href="../publications/index.html">Publications</a><a href="../insurance/index.html">Insurance</a><a href="../storage/index.html">Storage</a></div>
+      </div>
+      <div class="nav-dd"><a href="../valuations/index.html">Market &#9662;</a>
+        <div class="drop"><a href="../valuations/index.html">Price Guides</a><a href="../classifieds/index.html">Cars for Sale</a><a href="../classifieds/sell.html">Sell Your Car</a></div>
+      </div>
+      <div class="nav-dd"><a href="../resources/index.html">Resources &#9662;</a>
+        <div class="drop"><a href="../resources/index.html#youtube">YouTube Channels</a><a href="../resources/index.html#tv">TV Shows</a><a href="../resources/index.html#websites">Websites &amp; Forums</a><a href="../resources/index.html#podcasts">Podcasts</a><a href="../resources/index.html#magazines">Magazines</a></div>
+      </div>
+      <a href="../care/index.html" style="color:rgba(255,255,255,0.72);font-size:0.78rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;padding:20px 13px;display:block;white-space:nowrap;border-bottom:2px solid transparent">Care</a>
+      <a href="index.html" style="color:#fff!important;border-bottom:2px solid var(--gold)!important;font-size:0.78rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;padding:20px 13px;display:block;white-space:nowrap">Guide</a>
+      <a href="../classifieds/index.html" class="nav-cta">Cars for Sale</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-eyebrow">Restorer's Guide</div>
+    <h1>The One-Stop-Shop Trap</h1>
+    <p class="subtitle">Buying everything from one supplier feels convenient. Here's why it often isn't.</p>
+    <div class="article-meta">6 min read</div>
+  </div>
+</div>
+<div class="article-body">
+  <p class="article-lede">There's an understandable logic to the one-stop-shop. You're restoring a classic — a project that already demands time, patience and money in quantities you probably underestimated. The appeal of a single supplier who can provide the steering wheel, the gearbox rebuild kit, the body panels and the interior trim is obvious. One relationship. One invoice. One delivery.</p>
+  <p class="article-lede" style="border-bottom:none;margin-bottom:0;padding-bottom:0">The problem is that convenience and quality pull in opposite directions. A supplier who covers everything from mechanical parts to interior trim to chrome is, by definition, a generalist. And in classic car restoration, the devil is almost entirely in the detail.</p>
+  <div class="article-meta" style="margin-top:28px;margin-bottom:40px">Restorer's Guide &mdash; Article 01</div>
+
+  <h2>Where it works</h2>
+  <p>To be fair, the one-stop-shop model holds up reasonably well for mechanical and running gear components. A wheel cylinder is a wheel cylinder. The tolerances are specified, the material requirements are defined, and a correctly manufactured part from a generalist supplier will perform as well as one from a specialist. The same is broadly true for brake lines, gaskets, fasteners, and most electrical components. These are standardised products with measurable performance criteria.</p>
+
+  <h2>Where it falls apart</h2>
+  <p>Interior trim is where the one-stop model breaks down — and it breaks down badly.</p>
+  <p>The reason is straightforward: interior trim is not a standardised product. Unlike a brake cylinder, a seat cover or a carpet set has no single correct specification. It has material requirements, pattern requirements, cutting requirements, and fitting requirements — and the quality of the end result depends entirely on how seriously each of those is taken.</p>
+  <p>A generalist supplier who also sells axle oil and wiper blades is unlikely to employ a master trimmer. They are more likely to source trim kits from a contract manufacturer working to a price point, using whatever material comes closest to the original at the required margin. The kit will be described as 'correct for the model.' It may even look acceptable in a photograph.</p>
+  <p>In the car, on your seats, with afternoon light through the windows — the difference between a properly made trim kit and a budget alternative is immediately apparent to anyone who has ever sat in an original car.</p>
+
+  <h2>The material question</h2>
+  <p>Original Connolly hide — the leather used in Jaguar, Bentley and many British sports cars from the 1920s onwards — has a specific hand, grain and weight. Period-correct Ambla leathercloth, used on MGB, Spitfire and Austin-Healey interiors, has a particular texture and backing that distinguishes it from modern PVC substitutes. Wool loop carpet behaves differently from cut-pile, and differently again from the synthetic alternatives that dominate the budget end of the market.</p>
+  <p>A specialist interior trim manufacturer works with these materials because they understand what period-correct means and why it matters. A generalist sources what's available at the right price.</p>
+
+  <h2>The recommendation</h2>
+  <p>The practical takeaway is simple: use generalist suppliers for the standardised items — mechanical parts, fasteners, seals — where quality is consistent and specification is measurable. For interior trim, find a specialist. The difference in cost is smaller than most people expect. The difference in result is much larger.</p>
+  <div class="jsm-box">
+    <div class="jsm-box-label">Specialist Supplier</div>
+    <h3>John Skinner (Manufacturing) Ltd</h3>
+    <p>John Skinner (Manufacturing) Ltd in Cheltenham has manufactured interior trim kits for Triumph TR, Jaguar E-Type, Austin-Healey and MG since 1980. Every kit is cut to original factory patterns in period-correct materials. It is what a specialist looks like.</p>
+    <a href="https://john-skinner.co.uk?utm_source=marquefile&utm_medium=guide-onestop&utm_campaign=editorial" class="btn-jsm" target="_blank" rel="noopener">Visit john-skinner.co.uk &rarr;</a>
+  </div>
+  <div class="more-guide">
+    <h3>More from the Guide &rarr;</h3>
+    <div class="more-guide-links">
+      <a href="restoration-order.html">The Restoration Order Mistake</a>
+      <a href="interior-trim.html">Why Interior Trim Deserves Your Full Attention</a>
+      <a href="budget.html">Setting a Realistic Budget</a>
+      <a href="buying.html">What to Look For When Buying a Classic</a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="ft-inner">
+    <div>
+      <div class="logo" style="margin-bottom:16px"><div class="logo-mark">MF</div><div class="logo-text" style="color:#fff">Marque<em style="color:var(--gold);font-style:normal">File</em></div></div>
+      <p style="font-size:0.82rem;color:rgba(255,255,255,0.4);line-height:1.6;max-width:260px">The classic car data resource for British marques.</p>
+    </div>
+    <div class="ft-cols">
+      <div>
+        <h4>Cars</h4>
+        <a href="../triumph/index.html">Triumph TR</a>
+        <a href="../jaguar/index.html">Jaguar</a>
+        <a href="../austin-healey/index.html">Austin-Healey</a>
+        <a href="../mg/index.html">MG</a>
+      </div>
+      <div>
+        <h4>Restorer's Guide</h4>
+        <a href="one-stop-shops.html">The One-Stop-Shop Trap</a>
+        <a href="restoration-order.html">Restoration Order</a>
+        <a href="interior-trim.html">Interior Trim</a>
+        <a href="budget.html">Setting a Budget</a>
+        <a href="buying.html">Buying a Classic</a>
+      </div>
+      <div>
+        <h4>Directory</h4>
+        <a href="../clubs/index.html">Clubs</a>
+        <a href="../suppliers/index.html">Suppliers</a>
+        <a href="../events/index.html">Events</a>
+        <a href="../care/index.html">Care &amp; Maintenance</a>
+      </div>
+    </div>
+  </div>
+  <div class="ft-base"><span>&copy; 2025 MarqueFile</span><span>Independent. Unsponsored. Honest.</span></div>
+</footer>
+<script>document.getElementById('nav-toggle').addEventListener('click',function(){document.getElementById('site-nav').classList.toggle('open');});</script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Setting a Realistic Budget — MarqueFile Restorer's Guide</title>
+<meta name="description" content="The number most restorers start with and the number they end up spending rarely match.">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#1c1c1c;--green:#2a5c3f;--green-light:#3a7a55;--gold:#c8a84b;--cream:#f8f6f1;--warm:#efede9;--white:#fff;--grey:#6b6b6b;--border:#e2ddd6;--text:#1a1a1a}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:16px;-webkit-text-size-adjust:100%}
+  body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);line-height:1.6}
+  img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+  .site-header{background:var(--navy);position:sticky;top:0;z-index:200;border-bottom:3px solid var(--green)}
+  .hdr-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{display:flex;align-items:center;gap:11px;text-decoration:none}
+  .logo-mark{width:38px;height:38px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:1.1rem;color:#fff;font-weight:600;flex-shrink:0}
+  .logo-text{font-family:'EB Garamond',serif;font-size:1.25rem;color:#fff;letter-spacing:0.04em}
+  .logo-text em{color:var(--gold);font-style:normal}
+  .site-nav{display:flex;align-items:center;gap:4px}
+  .site-nav a,.nav-dd>a{color:rgba(255,255,255,0.72);font-size:0.78rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;padding:20px 13px;display:block;transition:color 0.2s;white-space:nowrap;border-bottom:2px solid transparent}
+  .site-nav a:hover,.nav-dd>a:hover{color:#fff;border-bottom-color:var(--gold)}
+  .nav-dd{position:relative}
+  .nav-dd .drop{position:absolute;top:100%;left:0;background:var(--navy);border:1px solid rgba(255,255,255,0.1);border-top:2px solid var(--green);min-width:180px;display:none;flex-direction:column;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+  .nav-dd:hover .drop{display:flex}
+  .nav-dd .drop a{padding:11px 18px;font-size:0.8rem;border-bottom:1px solid rgba(255,255,255,0.07);border-left:none;color:rgba(255,255,255,0.7)}
+  .nav-dd .drop a:hover{background:var(--green);color:#fff}
+  .nav-cta{background:var(--green)!important;color:#fff!important;border-radius:4px;padding:9px 18px!important;margin-left:8px;border:none!important;font-weight:600!important}
+  .nav-cta:hover{background:var(--green-light)!important}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+  .nav-toggle span{width:24px;height:2px;background:#fff;border-radius:1px;display:block;transition:all 0.25s}
+  @media(max-width:768px){
+    .site-nav{display:none;position:absolute;top:62px;left:0;right:0;background:var(--navy);flex-direction:column;border-top:2px solid var(--green);padding:8px 0 20px;z-index:200}
+    .site-nav.open{display:flex}
+    .site-nav a,.nav-dd>a{padding:16px 28px;border-bottom:none;border-left:3px solid transparent;font-size:0.9rem}
+    .site-nav a:hover,.nav-dd>a:hover{border-left-color:var(--gold);border-bottom:none}
+    .nav-dd .drop{position:static;display:flex!important;box-shadow:none;border:none;background:rgba(255,255,255,0.05)}
+    .nav-dd .drop a{padding:12px 44px;font-size:0.82rem}
+    .nav-cta{margin:12px 28px 0!important;text-align:center;border-radius:4px!important;padding:16px 28px!important}
+    .nav-toggle{display:flex}
+  }
+  footer{background:#111;border-top:3px solid var(--green);padding:52px 24px 28px;margin-top:80px}
+  .ft-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:48px;margin-bottom:40px}
+  .ft-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .ft-cols h4{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.35);margin-bottom:14px;font-weight:600}
+  .ft-cols a{display:block;color:rgba(255,255,255,0.55);font-size:0.82rem;margin-bottom:8px;transition:color 0.2s}
+  .ft-cols a:hover{color:var(--gold)}
+  .ft-base{max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:0.74rem;color:rgba(255,255,255,0.25)}
+  @media(max-width:768px){.ft-inner{grid-template-columns:1fr}.ft-cols{grid-template-columns:repeat(2,1fr)}}
+  .page-hero{background:#1c1c1c;padding:64px 24px 72px}
+  .page-hero-inner{max-width:720px;margin:0 auto}
+  .hero-eyebrow{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);margin-bottom:14px;font-weight:600}
+  .page-hero h1{font-family:'EB Garamond',serif;font-size:clamp(2rem,5vw,3rem);color:#fff;margin-bottom:16px;line-height:1.2}
+  .page-hero .subtitle{font-size:1.05rem;color:rgba(255,255,255,0.6);max-width:620px;line-height:1.7;margin-bottom:16px}
+  .page-hero .article-meta{font-size:0.78rem;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.1em;margin-top:12px}
+  .article-body{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+  .article-body h2{font-family:'EB Garamond',serif;font-size:1.7rem;color:#1c1c1c;margin:40px 0 16px}
+  .article-body p{font-size:1rem;color:#333;line-height:1.85;margin-bottom:20px}
+  .article-body strong{color:#1c1c1c}
+  .article-body ol,.article-body ul{margin:0 0 20px 24px}
+  .article-body li{font-size:1rem;color:#333;line-height:1.85;margin-bottom:8px}
+  .article-lede{font-family:'EB Garamond',serif;font-size:1.25rem;color:#1c1c1c;line-height:1.7;margin-bottom:32px;padding-bottom:24px;border-bottom:1px solid #e2ddd6}
+  .article-meta{font-size:0.78rem;color:#6b6b6b;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:40px}
+  .jsm-box{background:#f8f6f1;border:2px solid var(--gold);border-radius:6px;padding:28px 32px;margin:48px 0 0}
+  .jsm-box-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--gold);font-weight:700;margin-bottom:8px}
+  .jsm-box h3{font-family:'EB Garamond',serif;font-size:1.3rem;color:#1a1a1a;margin-bottom:10px}
+  .jsm-box p{font-size:0.9rem;color:#444;line-height:1.65;margin-bottom:16px}
+  .jsm-box a.btn-jsm{background:var(--green);color:#fff;padding:10px 20px;border-radius:4px;font-size:0.85rem;font-weight:600;display:inline-block;transition:background 0.2s}
+  .jsm-box a.btn-jsm:hover{background:var(--green-light)}
+  .more-guide{background:#fff;border:1px solid var(--border);border-radius:8px;padding:28px 28px;margin-top:48px}
+  .more-guide h3{font-family:'EB Garamond',serif;font-size:1.2rem;color:var(--text);margin-bottom:16px}
+  .more-guide-links{display:flex;flex-direction:column;gap:10px}
+  .more-guide-links a{font-size:0.9rem;color:var(--green);font-weight:500}
+  .more-guide-links a:hover{text-decoration:underline}
+  .more-guide-links a::after{content:" →"}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="hdr-inner">
+    <a href="../index.html" class="logo"><div class="logo-mark">MF</div><div class="logo-text">Marque<em>File</em></div></a>
+    <nav class="site-nav" id="site-nav">
+      <div class="nav-dd"><a href="../triumph/index.html">Cars &#9662;</a>
+        <div class="drop"><a href="../triumph/index.html">Triumph TR</a><a href="../jaguar/index.html">Jaguar</a><a href="../austin-healey/index.html">Austin-Healey</a><a href="../mg/index.html">MG</a></div>
+      </div>
+      <div class="nav-dd"><a href="../clubs/index.html">Directory &#9662;</a>
+        <div class="drop"><a href="../clubs/index.html">Clubs</a><a href="../events/index.html">Events</a><a href="../suppliers/index.html">Suppliers</a><a href="../publications/index.html">Publications</a><a href="../insurance/index.html">Insurance</a><a href="../storage/index.html">Storage</a></div>
+      </div>
+      <div class="nav-dd"><a href="../valuations/index.html">Market &#9662;</a>
+        <div class="drop"><a href="../valuations/index.html">Price Guides</a><a href="../classifieds/index.html">Cars for Sale</a><a href="../classifieds/sell.html">Sell Your Car</a></div>
+      </div>
+      <div class="nav-dd"><a href="../resources/index.html">Resources &#9662;</a>
+        <div class="drop"><a href="../resources/index.html#youtube">YouTube Channels</a><a href="../resources/index.html#tv">TV Shows</a><a href="../resources/index.html#websites">Websites &amp; Forums</a><a href="../resources/index.html#podcasts">Podcasts</a><a href="../resources/index.html#magazines">Magazines</a></div>
+      </div>
+      <a href="../care/index.html" style="color:rgba(255,255,255,0.72);font-size:0.78rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;padding:20px 13px;display:block;white-space:nowrap;border-bottom:2px solid transparent">Care</a>
+      <a href="index.html" style="color:#fff!important;border-bottom:2px solid var(--gold)!important;font-size:0.78rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;padding:20px 13px;display:block;white-space:nowrap">Guide</a>
+      <a href="../classifieds/index.html" class="nav-cta">Cars for Sale</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-eyebrow">Restorer's Guide</div>
+    <h1>Setting a Realistic Budget</h1>
+    <p class="subtitle">The number most restorers start with and the number they end up spending rarely match.</p>
+    <div class="article-meta">7 min read</div>
+  </div>
+</div>
+<div class="article-body">
+  <p class="article-lede">Ask any experienced restorer what they'd tell their past self before starting a project, and the answer is almost always the same: the number you think it will cost and the number it actually costs are not the same number. They rarely are. They are frequently not in the same postcode.</p>
+  <p class="article-lede" style="border-bottom:none;margin-bottom:0;padding-bottom:0">This is not a counsel of despair. It is a starting point. The restorers who get closest to budget are the ones who planned for reality, not aspiration.</p>
+  <div class="article-meta" style="margin-top:28px;margin-bottom:40px">Restorer's Guide &mdash; Article 04</div>
+
+  <h2>The golden rule</h2>
+  <p>Double your estimate. It sounds flippant. It isn't. It's the single most reliable correction factor in classic car restoration, and it holds across marques, decades and levels of ambition. If you think a job will take ten hours, budget for twenty. If you think a part will cost £200, budget for £400. If your total project estimate is £12,000, plan for £24,000.</p>
+  <p>This feels extreme. It isn't extreme enough, if anything. Bodywork always reveals more than it appeared to. Engines that "just need a service" often need a rebuild. Wiring looms that "seem fine" frequently aren't. These are not edge cases — they are the standard experience of classic car restoration.</p>
+
+  <h2>What different levels of restoration actually cost</h2>
+  <p>These are rough bands, not guarantees. Prices vary significantly by region, by how much work you do yourself, and by specification. They are honest starting points for planning, not quotes.</p>
+  <p><strong>Triumph TR6 (1969–1976)</strong><br>Running restoration (roadworthy, decent condition): £8,000–15,000. Full nut-and-bolt restoration to high standard: £25,000–45,000. Concours standard: £45,000+.</p>
+  <p><strong>MGB Roadster (1962–1980)</strong><br>Running restoration: £6,000–12,000. Full restoration: £18,000–35,000. Concours: £35,000+.</p>
+  <p><strong>Austin-Healey 3000 (1959–1967)</strong><br>Running restoration: £15,000–25,000. Full restoration: £40,000–70,000. Concours: £70,000+.</p>
+  <p>The Austin-Healey commands higher figures partly because of its value and partly because parts are scarcer and more expensive. The principle is the same across all marques: the closer to concours standard, the exponential — not linear — increase in cost.</p>
+
+  <h2>The items most commonly underestimated</h2>
+  <p><strong>Bodywork hours.</strong> The biggest budget black hole in almost every restoration. Rust is rarely confined to where it's visible. Sills that look surface-rusty are often rotten behind the inner panel. Floors that seem solid frequently aren't. A good bodyshop will strip the car completely before quoting. Any quote given on an unstripped car is a guess.</p>
+  <p><strong>Interior trim.</strong> Consistently allocated too little, too late. A complete, quality trim kit for a TR6 — seat covers, carpet, hood, door cards, dash — runs to £800–1,500. It belongs in the budget from day one, not as an afterthought when the money has run out. See <a href="restoration-order.html" style="color:var(--green);font-weight:600">The Restoration Order Mistake</a>.</p>
+  <p><strong>Wiring loom.</strong> Repairing a 50-year-old wiring loom is often false economy. A full replacement loom for most British classics costs £400–800. The labour to diagnose and repair a failing original often costs more. Budget for a new loom upfront and save the diagnostic headaches.</p>
+  <p><strong>Chrome and brightwork.</strong> Re-chroming is expensive and often overlooked. A set of bumpers can cost £600–1,200 to rechrome. Door handles, trim strips, wheel arch finishers — these add up quickly and are easy to ignore on a parts list.</p>
+
+  <h2>Running restoration vs concours</h2>
+  <p>These are fundamentally different projects with different logic. A running restoration asks: what does this car need to be reliable, safe and enjoyable to drive? A concours restoration asks: what would this car have looked like leaving the factory, and how do we get as close as possible?</p>
+  <p>The difference in cost is significant. The difference in purpose is even more significant. Be honest with yourself about which project you're actually doing. Most people who start a concours restoration finish a running restoration. There is no shame in this. The mistake is budgeting for one and discovering you're doing the other halfway through.</p>
+
+  <h2>The one key tip</h2>
+  <p>Get quotes for everything before you start, not as you go. Before you buy a car, before you strip it, before you commit a penny to the project — get actual quotes from the suppliers and specialists you intend to use. Bodywork, engine rebuild, trim, chrome, paint, electrics. Put every figure in a spreadsheet. Add 30% to each. Add those up. If the total doesn't work for you, the project doesn't work for you. Better to know now than eighteen months in.</p>
+  <div class="jsm-box">
+    <div class="jsm-box-label">Specialist Supplier</div>
+    <h3>John Skinner (Manufacturing) Ltd</h3>
+    <p>Before you budget for anything else, get a quote for your interior trim. John Skinner (Manufacturing) Ltd manufactures complete trim kits for Triumph TR, Jaguar E-Type, Austin-Healey and MG — made to order, in period-correct materials. Know the number before you start.</p>
+    <a href="https://john-skinner.co.uk?utm_source=marquefile&utm_medium=guide-budget&utm_campaign=editorial" class="btn-jsm" target="_blank" rel="noopener">Visit john-skinner.co.uk &rarr;</a>
+  </div>
+  <div class="more-guide">
+    <h3>More from the Guide &rarr;</h3>
+    <div class="more-guide-links">
+      <a href="one-stop-shops.html">The One-Stop-Shop Trap</a>
+      <a href="restoration-order.html">The Restoration Order Mistake</a>
+      <a href="interior-trim.html">Why Interior Trim Deserves Your Full Attention</a>
+      <a href="buying.html">What to Look For When Buying a Classic</a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="ft-inner">
+    <div>
+      <div class="logo" style="margin-bottom:16px"><div class="logo-mark">MF</div><div class="logo-text" style="color:#fff">Marque<em style="color:var(--gold);font-style:normal">File</em></div></div>
+      <p style="font-size:0.82rem;color:rgba(255,255,255,0.4);line-height:1.6;max-width:260px">The classic car data resource for British marques.</p>
+    </div>
+    <div class="ft-cols">
+      <div>
+        <h4>Cars</h4>
+        <a href="../triumph/index.html">Triumph TR</a>
+        <a href="../jaguar/index.html">Jaguar</a>
+        <a href="../austin-healey/index.html">Austin-Healey</a>
+        <a href="../mg/index.html">MG</a>
+      </div>
+      <div>
+        <h4>Restorer's Guide</h4>
+        <a href="one-stop-shops.html">The One-Stop-Shop Trap</a>
+        <a href="restoration-order.html">Restoration Order</a>
+        <a href="interior-trim.html">Interior Trim</a>
+        <a href="budget.html">Setting a Budget</a>
+        <a href="buying.html">Buying a Classic</a>
+      </div>
+      <div>
+        <h4>Directory</h4>
+        <a href="../clubs/index.html">Clubs</a>
+        <a href="../suppliers/index.html">Suppliers</a>
+        <a href="../events/index.html">Events</a>
+        <a href="../care/index.html">Care &amp; Maintenance</a>
+      </div>
+    </div>
+  </div>
+  <div class="ft-base"><span>&copy; 2025 MarqueFile</span><span>Independent. Unsponsored. Honest.</span></div>
+</footer>
+<script>document.getElementById('nav-toggle').addEventListener('click',function(){document.getElementById('site-nav').classList.toggle('open');});</script>
+</body>
+</html>
