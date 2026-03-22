@@ -1,0 +1,258 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Austin-Healey Sprite (& MG Midget) — MarqueFile</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><style>
+  :root{--navy:#1c1c1c;--green:#2a5c3f;--green-light:#3a7a55;--gold:#c8a84b;--cream:#f8f6f1;--warm:#efede9;--white:#fff;--grey:#6b6b6b;--border:#e2ddd6;--text:#1a1a1a}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:16px;-webkit-text-size-adjust:100%}
+  body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);line-height:1.6}
+  img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+  .site-header{background:var(--navy);position:sticky;top:0;z-index:200;border-bottom:3px solid var(--green)}
+  .hdr-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{display:flex;align-items:center;gap:11px;text-decoration:none}
+  .logo-mark{width:38px;height:38px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:1.1rem;color:#fff;font-weight:600;flex-shrink:0}
+  .logo-text{font-family:'EB Garamond',serif;font-size:1.25rem;color:#fff;letter-spacing:0.04em}
+  .logo-text em{color:var(--gold);font-style:normal}
+  .site-nav{display:flex;align-items:center;gap:4px}
+  .site-nav a,.nav-dd>a{color:rgba(255,255,255,0.72);font-size:0.78rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;padding:20px 13px;display:block;transition:color 0.2s;white-space:nowrap;border-bottom:2px solid transparent}
+  .site-nav a:hover,.nav-dd>a:hover{color:#fff;border-bottom-color:var(--gold)}
+  .nav-dd{position:relative}
+  .nav-dd .drop{position:absolute;top:100%;left:0;background:var(--navy);border:1px solid rgba(255,255,255,0.1);border-top:2px solid var(--green);min-width:180px;display:none;flex-direction:column;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+  .nav-dd:hover .drop{display:flex}
+  .nav-dd .drop a{padding:11px 18px;font-size:0.8rem;border-bottom:1px solid rgba(255,255,255,0.07);border-left:none;color:rgba(255,255,255,0.7)}
+  .nav-dd .drop a:hover{background:var(--green);color:#fff}
+  .nav-cta{background:var(--green)!important;color:#fff!important;border-radius:4px;padding:9px 18px!important;margin-left:8px;border:none!important;font-weight:600!important}
+  .nav-cta:hover{background:var(--green-light)!important}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+  .nav-toggle span{width:24px;height:2px;background:#fff;border-radius:1px;display:block;transition:all 0.25s}
+  @media(max-width:768px){.site-nav{display:none;position:absolute;top:62px;left:0;right:0;background:var(--navy);flex-direction:column;border-top:2px solid var(--green);padding:8px 0 20px;z-index:200}.site-nav.open{display:flex}.site-nav a,.nav-dd>a{padding:16px 28px;border-bottom:none;border-left:3px solid transparent;font-size:0.9rem}.site-nav a:hover,.nav-dd>a:hover{border-left-color:var(--gold);border-bottom:none}.nav-dd .drop{position:static;display:flex!important;box-shadow:none;border:none;background:rgba(255,255,255,0.05)}.nav-dd .drop a{padding:12px 44px;font-size:0.82rem}.nav-cta{margin:12px 28px 0!important;text-align:center;border-radius:4px!important;padding:16px 28px!important}.nav-toggle{display:flex}}
+  footer{background:#111;border-top:3px solid var(--green);padding:52px 24px 28px;margin-top:80px}
+  .ft-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:48px;margin-bottom:40px}
+  .ft-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .ft-cols h4{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.35);margin-bottom:14px;font-weight:600}
+  .ft-cols a{display:block;color:rgba(255,255,255,0.55);font-size:0.82rem;margin-bottom:8px;transition:color 0.2s}
+  .ft-cols a:hover{color:var(--gold)}
+  .ft-base{max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:0.74rem;color:rgba(255,255,255,0.25)}
+  @media(max-width:768px){.ft-inner{grid-template-columns:1fr}.ft-cols{grid-template-columns:repeat(2,1fr)}}
+  .page-hero{padding:60px 24px 70px}
+  .page-hero-inner{max-width:1000px;margin:0 auto}
+  .hero-eyebrow{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);margin-bottom:14px;font-weight:600}
+  .page-hero h1{font-family:'EB Garamond',serif;font-size:clamp(2rem,5vw,3.2rem);color:#fff;margin-bottom:12px}
+  .hero-stats{display:flex;flex-wrap:wrap;gap:28px;margin-top:28px}
+  .hs{color:rgba(255,255,255,0.55);font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em}
+  .hs strong{display:block;font-family:'EB Garamond',serif;font-size:1.8rem;color:#fff;font-weight:400;letter-spacing:0;margin-bottom:2px}
+  .page-body{max-width:1000px;margin:0 auto;padding:48px 24px 0}
+  .data-section{margin-bottom:48px}
+  .ds-title{font-family:'EB Garamond',serif;font-size:1.5rem;color:var(--text);border-bottom:2px solid var(--green);padding-bottom:8px;margin-bottom:20px}
+  table.data-table{width:100%;border-collapse:collapse;font-size:0.88rem}
+  .data-table th{text-align:left;padding:10px 12px;background:var(--green);color:#fff;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;font-weight:600}
+  .data-table td{padding:10px 12px;border-bottom:1px solid var(--border)}
+  .data-table tr:hover td{background:var(--cream)}
+  .colour-grid{display:flex;flex-wrap:wrap;gap:12px}
+  .colour-chip{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 14px;min-width:200px;flex:1}
+  .colour-swatch{width:36px;height:36px;border-radius:6px;flex-shrink:0;border:1px solid rgba(0,0,0,0.1)}
+  .colour-name{font-size:0.82rem;font-weight:600;color:var(--text)}
+  .colour-code{font-size:0.72rem;color:var(--grey)}
+  .alert-box{background:#fff8e8;border:1px solid var(--gold);border-left:4px solid var(--gold);border-radius:6px;padding:16px 18px;font-size:0.88rem;color:#5a4a10;margin-bottom:24px}
+  .info-box{background:#f0f8f3;border:1px solid #b0d8be;border-left:4px solid var(--green);border-radius:6px;padding:16px 18px;font-size:0.88rem;color:#1a3a2a;margin-bottom:24px}
+  .supplier-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:12px}
+  .supplier-card.featured{border-color:var(--gold);box-shadow:0 0 0 2px rgba(200,168,75,0.15)}
+  .sc-badge{background:var(--gold);color:#fff;font-size:0.62rem;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;border-radius:20px;font-weight:700;margin-bottom:6px;display:inline-block}
+  .sc-name{font-weight:700;color:var(--text);font-size:1rem}
+  .sc-desc{font-size:0.82rem;color:var(--grey);margin-top:4px}
+  .sc-link{background:var(--green);color:#fff;padding:9px 18px;border-radius:4px;font-size:0.82rem;font-weight:600;white-space:nowrap;transition:background 0.2s}
+  .sc-link:hover{background:var(--green-light)}
+  .int-swatches{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+  .int-chip{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 13px}
+  .int-dot{width:28px;height:28px;border-radius:50%;border:2px solid rgba(0,0,0,0.1);flex-shrink:0}
+  .int-name{font-size:0.8rem;font-weight:600;color:var(--text)}
+  .int-mat{font-size:0.7rem;color:var(--grey)}
+  @media(max-width:768px){.hero-stats{gap:20px}}
+.page-hero{background:linear-gradient(135deg,#1a2a3a,#2a4a6a)}
+</style></head><body>
+<header class="site-header">
+  <div class="hdr-inner">
+    <a href="../index.html" class="logo"><div class="logo-mark">MF</div><div class="logo-text">Marque<em>File</em></div></a>
+    <nav class="site-nav" id="site-nav">
+      <div class="nav-dd"><a href="../triumph/index.html">Cars &#9662;</a>
+        <div class="drop"><a href="../triumph/index.html">Triumph TR</a><a href="../jaguar/index.html">Jaguar</a><a href="../austin-healey/index.html">Austin-Healey</a><a href="../mg/index.html">MG</a></div>
+      </div>
+      <div class="nav-dd"><a href="../clubs/index.html">Directory &#9662;</a>
+        <div class="drop"><a href="../clubs/index.html">Clubs</a><a href="../events/index.html">Events</a><a href="../suppliers/index.html">Suppliers</a><a href="../publications/index.html">Publications</a><a href="../insurance/index.html">Insurance</a><a href="../storage/index.html">Storage</a></div>
+      </div>
+      <div class="nav-dd"><a href="../valuations/index.html">Market &#9662;</a>
+        <div class="drop"><a href="../valuations/index.html">Price Guides</a><a href="../classifieds/index.html">Cars for Sale</a><a href="../classifieds/sell.html">Sell Your Car</a></div>
+      </div>
+      <div class="nav-dd"><a href="../resources/index.html">Resources &#9662;</a>
+        <div class="drop"><a href="../resources/index.html#youtube">YouTube Channels</a><a href="../resources/index.html#tv">TV Shows</a><a href="../resources/index.html#websites">Websites &amp; Forums</a><a href="../resources/index.html#podcasts">Podcasts</a><a href="../resources/index.html#magazines">Magazines</a></div>
+      </div>
+      <a href="../classifieds/index.html" class="nav-cta">Cars for Sale</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-eyebrow">MarqueFile &rsaquo; Austin-Healey &rsaquo; Sprite</div>
+    <h1>Austin-Healey Sprite<br><span style="font-size:0.65em;opacity:0.75">&amp; MG Midget — the "Spridget"</span></h1>
+    <div class="hero-stats">
+      <div class="hs"><strong>1958–1971</strong>Sprite production</div>
+      <div class="hs"><strong>~130,000</strong>Sprites built</div>
+      <div class="hs"><strong>~226,000</strong>Midgets built</div>
+      <div class="hs"><strong>4 marks</strong>+ Midget 1500</div>
+    </div>
+  </div>
+</div>
+<div class="page-body">
+  <div class="data-section">
+    <div class="ds-title">Overview — the Spridget story</div>
+    <p style="font-size:0.95rem;color:var(--grey);line-height:1.7;margin-bottom:16px">The Austin-Healey Sprite and MG Midget share a single platform and are collectively known among enthusiasts as the "Spridget." Both were designed by Donald Healey's team (styling by Gerry Coker and Geoffrey Healey) and built at BMC's Abingdon factory. The MG Midget was launched simultaneously with the Mk2 Sprite in 1961 — sharing identical mechanicals but wearing MG badging, a different grille, and slightly better trim at a small premium. The two models evolved in lockstep until the Sprite was discontinued in 1971; the Midget continued until 1979 with the controversial Triumph-engined 1500 variant.</p>
+    <div class="info-box">&#9432; The Mk1 Frogeye/Bugeye is one of the most characterful British sports cars ever made. The headlight retraction mechanism was cut from the design to save cost — the headlights simply sit on top of the bonnet, giving the car its distinctive frog-eyed look.</div>
+  </div>
+
+  <div class="data-section">
+    <div class="ds-title">Mk1 Sprite — Frogeye / Bugeye (1958–1961)</div>
+    <table class="data-table">
+      <thead><tr><th>Detail</th><th>Specification</th></tr></thead>
+      <tbody>
+        <tr><td>Production</td><td>48,987 built</td></tr>
+        <tr><td>Engine</td><td>948cc BMC A-Series, 43bhp</td></tr>
+        <tr><td>Gearbox</td><td>4-speed manual, no synchro on 1st</td></tr>
+        <tr><td>Suspension</td><td>Front: coil/wishbone. Rear: quarter-elliptic leaf springs</td></tr>
+        <tr><td>Performance</td><td>0–60 ~20.5s, 83mph</td></tr>
+        <tr><td>Weight</td><td>635kg</td></tr>
+        <tr><td>Notable features</td><td>Bonnet and front wings open as a single clamshell. No exterior door handles. No boot lid — access via fold-forward seat backs. Sidescreens only. Monocoque construction.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="data-section">
+    <div class="ds-title">Mk2 Sprite / MG Midget Mk1 (1961–1964)</div>
+    <p style="font-size:0.88rem;color:var(--grey);margin-bottom:14px">The MG Midget launched simultaneously — MG grille, better trim, slightly higher price. Both models shared identical mechanicals.</p>
+    <table class="data-table">
+      <thead><tr><th>Detail</th><th>Specification</th></tr></thead>
+      <tbody>
+        <tr><td>Sprite production</td><td>31,665 Sprites built</td></tr>
+        <tr><td>Engine</td><td>948cc → 1098cc from October 1962 (56bhp)</td></tr>
+        <tr><td>Brakes</td><td>Front disc brakes added 1962</td></tr>
+        <tr><td>Suspension</td><td>Rear: semi-elliptic springs (replacing quarter-elliptic)</td></tr>
+        <tr><td>Body changes</td><td>Conventional headlights in wings, full-width grille, proper boot lid with external handle</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="data-section">
+    <div class="ds-title">Mk3 Sprite / MG Midget Mk2 (1964–1966)</div>
+    <table class="data-table">
+      <thead><tr><th>Detail</th><th>Specification</th></tr></thead>
+      <tbody>
+        <tr><td>Engine</td><td>1098cc, 59bhp</td></tr>
+        <tr><td>New features</td><td>Wind-up windows, swivelling quarter-lights, external door locks, curved windscreen</td></tr>
+        <tr><td>Character</td><td>Significantly more civilised than Mk2. Good balance of classic feel and usability.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="data-section">
+    <div class="ds-title">Mk4 Sprite / MG Midget Mk3 (1966–1971/1974)</div>
+    <table class="data-table">
+      <thead><tr><th>Detail</th><th>Specification</th></tr></thead>
+      <tbody>
+        <tr><td>Engine</td><td>1275cc BMC A-Series (detuned Cooper S unit), 65bhp</td></tr>
+        <tr><td>Sprite end</td><td>Austin-Healey Sprite discontinued 1971</td></tr>
+        <tr><td>Midget continuation</td><td>MG Midget Mk3 continues to 1974</td></tr>
+        <tr><td>Character</td><td>The 1275cc engine transforms performance. Most usable of the classic Spridgets.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="data-section">
+    <div class="ds-title">MG Midget 1500 (1974–1979)</div>
+    <p style="font-size:0.88rem;color:var(--grey);margin-bottom:14px">The Midget 1500 is a separate chapter — politically contentious within British Leyland, it used a Triumph Spitfire engine rather than the traditional A-Series.</p>
+    <table class="data-table">
+      <thead><tr><th>Detail</th><th>Specification</th></tr></thead>
+      <tbody>
+        <tr><td>Production</td><td>73,899 built</td></tr>
+        <tr><td>Engine</td><td>1493cc Triumph Spitfire engine (not A-Series)</td></tr>
+        <tr><td>Gearbox</td><td>Morris Marina 4-speed</td></tr>
+        <tr><td>Power</td><td>65bhp UK / 50bhp US (emissions)</td></tr>
+        <tr><td>Appearance</td><td>Black rubber bumpers (US federal regulations). Raised ride height.</td></tr>
+        <tr><td>Last car</td><td>Rolled off the line 7 December 1979</td></tr>
+      </tbody>
+    </table>
+    <div class="alert-box" style="margin-top:12px">&#9888; The 1500 Triumph engine has a known timing chain issue — check maintenance history carefully.</div>
+  </div>
+
+  <div class="data-section">
+    <div class="ds-title">What to look for when buying</div>
+    <table class="data-table">
+      <thead><tr><th>Area</th><th>What to check</th><th>Severity</th></tr></thead>
+      <tbody>
+        <tr><td>A-posts &amp; sills</td><td>All Spridgets rust here. The inner and outer sills are structural — probe carefully.</td><td style="color:#c0392b;font-weight:600">High</td></tr>
+        <tr><td>Floors &amp; rear tub</td><td>Floor pans and rear bodywork rot extensively. Check under carpets and boot lining.</td><td style="color:#c0392b;font-weight:600">High</td></tr>
+        <tr><td>Mk1 quarter-elliptic springs</td><td>The quarter-elliptic rear springs give wayward handling when worn. Check condition.</td><td style="color:#e67e22;font-weight:600">Medium</td></tr>
+        <tr><td>A-Series valve adjustment</td><td>Solid lifters need regular valve adjustment — check maintenance history.</td><td style="color:#e67e22;font-weight:600">Medium</td></tr>
+        <tr><td>1098cc crank bearings</td><td>The 1098cc engine is vulnerable to crank bearing failure. Check oil pressure.</td><td style="color:#e67e22;font-weight:600">Medium</td></tr>
+        <tr><td>Hood mechanism</td><td>Hood frames corrode and mechanisms seize. Check operation and hood condition.</td><td style="color:#27ae60;font-weight:600">Lower</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="data-section">
+    <div class="ds-title">Interior trim suppliers</div>
+    <div class="supplier-card featured">
+      <div><div class="sc-badge">Featured Supplier</div><div class="sc-name">John Skinner Manufacturing</div><div class="sc-desc">Cheltenham-based manufacturers of original-specification interior trim kits for the Austin-Healey Sprite / MG Midget — carpets, seats, hood lining, door cards and more. Made in Britain since 1980.</div></div>
+      <a href="https://john-skinner.co.uk" target="_blank" rel="noopener" class="sc-link">View kits →</a>
+    </div>
+  </div>
+
+  <div class="data-section">
+    <div class="ds-title">Clubs &amp; resources</div>
+    <div class="supplier-card">
+      <div><div class="sc-name">Austin-Healey Club</div><div class="sc-desc">Covers all Austin-Healey models including the Sprite. Technical support and spares.</div></div>
+      <a href="https://www.healey.co.uk" target="_blank" rel="noopener" class="sc-link">Visit →</a>
+    </div>
+    <div class="supplier-card">
+      <div><div class="sc-name">MG Car Club — Midget Register</div><div class="sc-desc">Dedicated register for all MG Midget variants within the MGCC.</div></div>
+      <a href="https://www.mgcc.co.uk" target="_blank" rel="noopener" class="sc-link">Visit →</a>
+    </div>
+    <div class="supplier-card">
+      <div><div class="sc-name">MG Owners Club</div><div class="sc-desc">One of the largest single-marque clubs in the world. Strong Midget coverage.</div></div>
+      <a href="https://www.mgownersclub.co.uk" target="_blank" rel="noopener" class="sc-link">Visit →</a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="ft-inner">
+    <div class="ft-brand">
+      <div class="logo-mark" style="width:44px;height:44px;font-size:1.2rem;margin-bottom:10px">MF</div>
+      <div style="font-family:'EB Garamond',serif;font-size:1.2rem;color:#fff;margin-bottom:4px">Marque<em style="color:var(--gold)">File</em></div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.35);line-height:1.7">The classic car data resource.<br>Triumph TR · Jaguar · Austin-Healey · MG</div>
+    </div>
+    <div class="ft-cols">
+      <div><h4>Cars</h4>
+        <a href="/Marlo-OpenClaw/classic-hub/triumph/">Triumph TR</a>
+        <a href="/Marlo-OpenClaw/classic-hub/jaguar/">Jaguar</a>
+        <a href="/Marlo-OpenClaw/classic-hub/austin-healey/">Austin-Healey</a>
+        <a href="/Marlo-OpenClaw/classic-hub/mg/">MG</a>
+      </div>
+      <div><h4>Directory</h4>
+        <a href="/Marlo-OpenClaw/classic-hub/clubs/">Clubs</a>
+        <a href="/Marlo-OpenClaw/classic-hub/events/">Events</a>
+        <a href="/Marlo-OpenClaw/classic-hub/suppliers/">Suppliers</a>
+      </div>
+      <div><h4>Classifieds</h4>
+        <a href="#">Cars for Sale</a>
+        <a href="#">List Your Car</a>
+      </div>
+    </div>
+  </div>
+  <div class="ft-base">
+    <span>&copy; 2026 MarqueFile. All rights reserved.</span>
+    <span>Data for reference only &mdash; always verify before purchase.</span>
+  </div>
+</footer><script>
+  const toggle=document.getElementById('nav-toggle'),nav=document.getElementById('site-nav');
+  if(toggle&&nav)toggle.addEventListener('click',()=>nav.classList.toggle('open'));
+</script>
+</body></html>

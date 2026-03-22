@@ -1,0 +1,194 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MG Midget — MarqueFile</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><style>
+  :root{--navy:#1c1c1c;--green:#2a5c3f;--green-light:#3a7a55;--gold:#c8a84b;--cream:#f8f6f1;--warm:#efede9;--white:#fff;--grey:#6b6b6b;--border:#e2ddd6;--text:#1a1a1a}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:16px;-webkit-text-size-adjust:100%}
+  body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);line-height:1.6}
+  img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+  .site-header{background:var(--navy);position:sticky;top:0;z-index:200;border-bottom:3px solid var(--green)}
+  .hdr-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{display:flex;align-items:center;gap:11px;text-decoration:none}
+  .logo-mark{width:38px;height:38px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:1.1rem;color:#fff;font-weight:600;flex-shrink:0}
+  .logo-text{font-family:'EB Garamond',serif;font-size:1.25rem;color:#fff;letter-spacing:0.04em}
+  .logo-text em{color:var(--gold);font-style:normal}
+  .site-nav{display:flex;align-items:center;gap:4px}
+  .site-nav a,.nav-dd>a{color:rgba(255,255,255,0.72);font-size:0.78rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;padding:20px 13px;display:block;transition:color 0.2s;white-space:nowrap;border-bottom:2px solid transparent}
+  .site-nav a:hover,.nav-dd>a:hover{color:#fff;border-bottom-color:var(--gold)}
+  .nav-dd{position:relative}
+  .nav-dd .drop{position:absolute;top:100%;left:0;background:var(--navy);border:1px solid rgba(255,255,255,0.1);border-top:2px solid var(--green);min-width:180px;display:none;flex-direction:column;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+  .nav-dd:hover .drop{display:flex}
+  .nav-dd .drop a{padding:11px 18px;font-size:0.8rem;border-bottom:1px solid rgba(255,255,255,0.07);border-left:none;color:rgba(255,255,255,0.7)}
+  .nav-dd .drop a:hover{background:var(--green);color:#fff}
+  .nav-cta{background:var(--green)!important;color:#fff!important;border-radius:4px;padding:9px 18px!important;margin-left:8px;border:none!important;font-weight:600!important}
+  .nav-cta:hover{background:var(--green-light)!important}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+  .nav-toggle span{width:24px;height:2px;background:#fff;border-radius:1px;display:block;transition:all 0.25s}
+  @media(max-width:768px){.site-nav{display:none;position:absolute;top:62px;left:0;right:0;background:var(--navy);flex-direction:column;border-top:2px solid var(--green);padding:8px 0 20px;z-index:200}.site-nav.open{display:flex}.site-nav a,.nav-dd>a{padding:16px 28px;border-bottom:none;border-left:3px solid transparent;font-size:0.9rem}.site-nav a:hover,.nav-dd>a:hover{border-left-color:var(--gold);border-bottom:none}.nav-dd .drop{position:static;display:flex!important;box-shadow:none;border:none;background:rgba(255,255,255,0.05)}.nav-dd .drop a{padding:12px 44px;font-size:0.82rem}.nav-cta{margin:12px 28px 0!important;text-align:center;border-radius:4px!important;padding:16px 28px!important}.nav-toggle{display:flex}}
+  footer{background:#111;border-top:3px solid var(--green);padding:52px 24px 28px;margin-top:80px}
+  .ft-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:48px;margin-bottom:40px}
+  .ft-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .ft-cols h4{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.35);margin-bottom:14px;font-weight:600}
+  .ft-cols a{display:block;color:rgba(255,255,255,0.55);font-size:0.82rem;margin-bottom:8px;transition:color 0.2s}
+  .ft-cols a:hover{color:var(--gold)}
+  .ft-base{max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:0.74rem;color:rgba(255,255,255,0.25)}
+  @media(max-width:768px){.ft-inner{grid-template-columns:1fr}.ft-cols{grid-template-columns:repeat(2,1fr)}}
+  .page-hero{padding:60px 24px 70px}
+  .page-hero-inner{max-width:1000px;margin:0 auto}
+  .hero-eyebrow{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);margin-bottom:14px;font-weight:600}
+  .page-hero h1{font-family:'EB Garamond',serif;font-size:clamp(2rem,5vw,3.2rem);color:#fff;margin-bottom:12px}
+  .hero-stats{display:flex;flex-wrap:wrap;gap:28px;margin-top:28px}
+  .hs{color:rgba(255,255,255,0.55);font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em}
+  .hs strong{display:block;font-family:'EB Garamond',serif;font-size:1.8rem;color:#fff;font-weight:400;letter-spacing:0;margin-bottom:2px}
+  .page-body{max-width:1000px;margin:0 auto;padding:48px 24px 0}
+  .data-section{margin-bottom:48px}
+  .ds-title{font-family:'EB Garamond',serif;font-size:1.5rem;color:var(--text);border-bottom:2px solid var(--green);padding-bottom:8px;margin-bottom:20px}
+  table.data-table{width:100%;border-collapse:collapse;font-size:0.88rem}
+  .data-table th{text-align:left;padding:10px 12px;background:var(--green);color:#fff;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;font-weight:600}
+  .data-table td{padding:10px 12px;border-bottom:1px solid var(--border)}
+  .data-table tr:hover td{background:var(--cream)}
+  .colour-grid{display:flex;flex-wrap:wrap;gap:12px}
+  .colour-chip{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 14px;min-width:200px;flex:1}
+  .colour-swatch{width:36px;height:36px;border-radius:6px;flex-shrink:0;border:1px solid rgba(0,0,0,0.1)}
+  .colour-name{font-size:0.82rem;font-weight:600;color:var(--text)}
+  .colour-code{font-size:0.72rem;color:var(--grey)}
+  .alert-box{background:#fff8e8;border:1px solid var(--gold);border-left:4px solid var(--gold);border-radius:6px;padding:16px 18px;font-size:0.88rem;color:#5a4a10;margin-bottom:24px}
+  .info-box{background:#f0f8f3;border:1px solid #b0d8be;border-left:4px solid var(--green);border-radius:6px;padding:16px 18px;font-size:0.88rem;color:#1a3a2a;margin-bottom:24px}
+  .supplier-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:12px}
+  .supplier-card.featured{border-color:var(--gold);box-shadow:0 0 0 2px rgba(200,168,75,0.15)}
+  .sc-badge{background:var(--gold);color:#fff;font-size:0.62rem;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;border-radius:20px;font-weight:700;margin-bottom:6px;display:inline-block}
+  .sc-name{font-weight:700;color:var(--text);font-size:1rem}
+  .sc-desc{font-size:0.82rem;color:var(--grey);margin-top:4px}
+  .sc-link{background:var(--green);color:#fff;padding:9px 18px;border-radius:4px;font-size:0.82rem;font-weight:600;white-space:nowrap;transition:background 0.2s}
+  .sc-link:hover{background:var(--green-light)}
+  .int-swatches{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+  .int-chip{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px 13px}
+  .int-dot{width:28px;height:28px;border-radius:50%;border:2px solid rgba(0,0,0,0.1);flex-shrink:0}
+  .int-name{font-size:0.8rem;font-weight:600;color:var(--text)}
+  .int-mat{font-size:0.7rem;color:var(--grey)}
+  @media(max-width:768px){.hero-stats{gap:20px}}
+  .page-hero{background:linear-gradient(135deg,#5a0a0a,#8a1a1a)}
+</style></head><body>
+<header class="site-header">
+  <div class="hdr-inner">
+    <a href="../index.html" class="logo"><div class="logo-mark">MF</div><div class="logo-text">Marque<em>File</em></div></a>
+    <nav class="site-nav" id="site-nav">
+      <div class="nav-dd"><a href="../triumph/index.html">Cars &#9662;</a>
+        <div class="drop"><a href="../triumph/index.html">Triumph TR</a><a href="../jaguar/index.html">Jaguar</a><a href="../austin-healey/index.html">Austin-Healey</a><a href="../mg/index.html">MG</a></div>
+      </div>
+      <div class="nav-dd"><a href="../clubs/index.html">Directory &#9662;</a>
+        <div class="drop"><a href="../clubs/index.html">Clubs</a><a href="../events/index.html">Events</a><a href="../suppliers/index.html">Suppliers</a><a href="../publications/index.html">Publications</a><a href="../insurance/index.html">Insurance</a><a href="../storage/index.html">Storage</a></div>
+      </div>
+      <div class="nav-dd"><a href="../valuations/index.html">Market &#9662;</a>
+        <div class="drop"><a href="../valuations/index.html">Price Guides</a><a href="../classifieds/index.html">Cars for Sale</a><a href="../classifieds/sell.html">Sell Your Car</a></div>
+      </div>
+      <div class="nav-dd"><a href="../resources/index.html">Resources &#9662;</a>
+        <div class="drop"><a href="../resources/index.html#youtube">YouTube Channels</a><a href="../resources/index.html#tv">TV Shows</a><a href="../resources/index.html#websites">Websites &amp; Forums</a><a href="../resources/index.html#podcasts">Podcasts</a><a href="../resources/index.html#magazines">Magazines</a></div>
+      </div>
+      <a href="../classifieds/index.html" class="nav-cta">Cars for Sale</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-eyebrow">MarqueFile &rsaquo; MG &rsaquo; Midget</div>
+    <h1>MG Midget</h1>
+    <div class="hero-stats">
+      <div class="hs"><strong>1961–1979</strong>Production years</div>
+      <div class="hs"><strong>~226,000</strong>Total produced</div>
+      <div class="hs"><strong>948–1493cc</strong>Engine range</div>
+    </div>
+  </div>
+</div>
+<div class="page-body">
+  <div class="data-section">
+    <div class="ds-title">The Spridget — shared DNA with the Sprite</div>
+    <div class="info-box">&#9432; The Midget shares its DNA entirely with the Austin-Healey Sprite — <a href="../austin-healey/sprite.html" style="color:var(--green);font-weight:600;text-decoration:underline">see our Sprite page for the full shared story</a>, including the Frogeye Mk1 history, technical evolution and complete buying guide. This page covers the Midget-specific details and final 1500 variant.</div>
+    <p style="font-size:0.95rem;color:var(--grey);line-height:1.7;margin-bottom:16px">The MG Midget launched simultaneously with the Mk2 Austin-Healey Sprite in 1961. Identical mechanically, it wore an MG grille, better interior trim and a slightly higher price tag. Both evolved together until the Sprite was discontinued in 1971; the Midget continued to 1979, latterly with the controversial Triumph 1500 engine. The last Midget rolled off the Abingdon line on 7 December 1979 — the last car built at the famous works.</p>
+  </div>
+
+  <div class="data-section">
+    <div class="ds-title">Midget variants</div>
+    <table class="data-table">
+      <thead><tr><th>Variant</th><th>Years</th><th>Key details</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Mk1</strong></td><td>1961–1964</td><td>948cc → 1098cc (Oct 1962), 56bhp. Better trim than Sprite. No exterior door handles initially. Front discs from 1962. MG grille and badging.</td></tr>
+        <tr><td><strong>Mk2</strong></td><td>1964–1966</td><td>1098cc, 59bhp. Wind-up windows, swivelling quarter-lights, external door locks, curved windscreen. Much more civilised.</td></tr>
+        <tr><td><strong>Mk3</strong></td><td>1966–1974</td><td>1275cc A-Series (detuned Cooper S), 65bhp. Round rear wheel arches from 1972. Alternator from 1973. Continues after Sprite ends in 1971.</td></tr>
+        <tr><td><strong>1500</strong></td><td>1974–1979</td><td>1493cc Triumph Spitfire engine (not A-Series). Morris Marina gearbox. Rubber bumpers. 65bhp UK / 50bhp US. Last car 7 December 1979.</td></tr>
+      </tbody>
+    </table>
+    <div class="alert-box" style="margin-top:12px">&#9888; <strong>Midget 1500 timing chain:</strong> The Triumph 1493cc engine has a known timing chain tensioner issue — always verify service history and listen carefully at cold start for chain rattle.</div>
+  </div>
+
+  <div class="data-section">
+    <div class="ds-title">What to look for when buying</div>
+    <p style="font-size:0.88rem;color:var(--grey);margin-bottom:12px">See the <a href="../austin-healey/sprite.html" style="color:var(--green);font-weight:600">Sprite page</a> for the complete buying guide — all rust, mechanical and hood issues are identical across both marques.</p>
+    <table class="data-table">
+      <thead><tr><th>Area</th><th>What to check</th><th>Severity</th></tr></thead>
+      <tbody>
+        <tr><td>Sills, floors &amp; A-posts</td><td>Rust everywhere — same as Sprite. These cars rot at every join and seam.</td><td style="color:#c0392b;font-weight:600">High</td></tr>
+        <tr><td>Rear tub</td><td>The rear bodywork rots around the wheel arches and boot floor.</td><td style="color:#c0392b;font-weight:600">High</td></tr>
+        <tr><td>1500 timing chain</td><td>Triumph engine timing chain tensioner — known failure point. Listen at cold start.</td><td style="color:#e67e22;font-weight:600">Medium (1500 only)</td></tr>
+        <tr><td>1098cc crank bearings</td><td>Mk1/Mk2 with 1098cc: vulnerable to crank bearing failure. Check oil pressure.</td><td style="color:#e67e22;font-weight:600">Medium</td></tr>
+        <tr><td>Hood &amp; mechanism</td><td>Hoods deteriorate and frames corrode. Check operation before buying.</td><td style="color:#27ae60;font-weight:600">Lower</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="data-section">
+    <div class="ds-title">Interior trim suppliers</div>
+    <div class="supplier-card featured">
+      <div><div class="sc-badge">Featured Supplier</div><div class="sc-name">John Skinner Manufacturing</div><div class="sc-desc">Cheltenham-based manufacturers of original-specification interior trim kits for the MG Midget — carpets, seats, hood lining, door cards and more. Made in Britain since 1980.</div></div>
+      <a href="https://john-skinner.co.uk" target="_blank" rel="noopener" class="sc-link">View kits →</a>
+    </div>
+  </div>
+
+  <div class="data-section">
+    <div class="ds-title">Clubs &amp; resources</div>
+    <div class="supplier-card">
+      <div><div class="sc-name">MG Car Club — Midget Register</div><div class="sc-desc">Dedicated Midget register within the MGCC. Technical expertise and events.</div></div>
+      <a href="https://www.mgcc.co.uk" target="_blank" rel="noopener" class="sc-link">Visit →</a>
+    </div>
+    <div class="supplier-card">
+      <div><div class="sc-name">MG Owners Club</div><div class="sc-desc">Large, active club with strong Midget coverage and spares scheme.</div></div>
+      <a href="https://www.mgownersclub.co.uk" target="_blank" rel="noopener" class="sc-link">Visit →</a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="ft-inner">
+    <div class="ft-brand">
+      <div class="logo-mark" style="width:44px;height:44px;font-size:1.2rem;margin-bottom:10px">MF</div>
+      <div style="font-family:'EB Garamond',serif;font-size:1.2rem;color:#fff;margin-bottom:4px">Marque<em style="color:var(--gold)">File</em></div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.35);line-height:1.7">The classic car data resource.<br>Triumph TR · Jaguar · Austin-Healey · MG</div>
+    </div>
+    <div class="ft-cols">
+      <div><h4>Cars</h4>
+        <a href="/Marlo-OpenClaw/classic-hub/triumph/">Triumph TR</a>
+        <a href="/Marlo-OpenClaw/classic-hub/jaguar/">Jaguar</a>
+        <a href="/Marlo-OpenClaw/classic-hub/austin-healey/">Austin-Healey</a>
+        <a href="/Marlo-OpenClaw/classic-hub/mg/">MG</a>
+      </div>
+      <div><h4>Directory</h4>
+        <a href="/Marlo-OpenClaw/classic-hub/clubs/">Clubs</a>
+        <a href="/Marlo-OpenClaw/classic-hub/events/">Events</a>
+        <a href="/Marlo-OpenClaw/classic-hub/suppliers/">Suppliers</a>
+      </div>
+      <div><h4>Classifieds</h4>
+        <a href="#">Cars for Sale</a>
+        <a href="#">List Your Car</a>
+      </div>
+    </div>
+  </div>
+  <div class="ft-base">
+    <span>&copy; 2026 MarqueFile. All rights reserved.</span>
+    <span>Data for reference only &mdash; always verify before purchase.</span>
+  </div>
+</footer><script>
+  const toggle=document.getElementById('nav-toggle'),nav=document.getElementById('site-nav');
+  if(toggle&&nav)toggle.addEventListener('click',()=>nav.classList.toggle('open'));
+</script>
+</body></html>

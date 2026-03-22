@@ -1,19 +1,12 @@
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Triumph TR — MarqueFile</title>
+<title>Austin-Healey — MarqueFile</title>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><style>
-
-  :root {
-    --navy:#1c1c1c; --green:#2a5c3f; --green-light:#3a7a55; --gold:#c8a84b;
-    --cream:#f8f6f1; --warm:#efede9; --white:#fff; --grey:#6b6b6b;
-    --border:#e2ddd6; --text:#1a1a1a;
-  }
+  :root{--navy:#1c1c1c;--green:#2a5c3f;--green-light:#3a7a55;--gold:#c8a84b;--cream:#f8f6f1;--warm:#efede9;--white:#fff;--grey:#6b6b6b;--border:#e2ddd6;--text:#1a1a1a;--brand:#1a2a3a}
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   html{font-size:16px;-webkit-text-size-adjust:100%}
   body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);line-height:1.6}
-  img{max-width:100%;display:block}
-  a{color:inherit;text-decoration:none}
-
+  img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
   .site-header{background:var(--navy);position:sticky;top:0;z-index:200;border-bottom:3px solid var(--green)}
   .hdr-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:62px}
   .logo{display:flex;align-items:center;gap:11px;text-decoration:none}
@@ -32,17 +25,7 @@
   .nav-cta:hover{background:var(--green-light)!important}
   .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
   .nav-toggle span{width:24px;height:2px;background:#fff;border-radius:1px;display:block;transition:all 0.25s}
-  @media(max-width:768px){
-    .site-nav{display:none;position:absolute;top:62px;left:0;right:0;background:var(--navy);flex-direction:column;border-top:2px solid var(--green);padding:8px 0 20px;z-index:200}
-    .site-nav.open{display:flex}
-    .site-nav a,.nav-dd>a{padding:16px 28px;border-bottom:none;border-left:3px solid transparent;font-size:0.9rem}
-    .site-nav a:hover,.nav-dd>a:hover{border-left-color:var(--gold);border-bottom:none}
-    .nav-dd .drop{position:static;display:flex!important;box-shadow:none;border:none;background:rgba(255,255,255,0.05)}
-    .nav-dd .drop a{padding:12px 44px;font-size:0.82rem}
-    .nav-cta{margin:12px 28px 0!important;text-align:center;border-radius:4px!important;padding:16px 28px!important}
-    .nav-toggle{display:flex}
-  }
-
+  @media(max-width:768px){.site-nav{display:none;position:absolute;top:62px;left:0;right:0;background:var(--navy);flex-direction:column;border-top:2px solid var(--green);padding:8px 0 20px;z-index:200}.site-nav.open{display:flex}.site-nav a,.nav-dd>a{padding:16px 28px;border-bottom:none;border-left:3px solid transparent;font-size:0.9rem}.site-nav a:hover,.nav-dd>a:hover{border-left-color:var(--gold);border-bottom:none}.nav-dd .drop{position:static;display:flex!important;box-shadow:none;border:none;background:rgba(255,255,255,0.05)}.nav-dd .drop a{padding:12px 44px;font-size:0.82rem}.nav-cta{margin:12px 28px 0!important;text-align:center;border-radius:4px!important;padding:16px 28px!important}.nav-toggle{display:flex}}
   footer{background:#111;border-top:3px solid var(--green);padding:52px 24px 28px;margin-top:80px}
   .ft-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:48px;margin-bottom:40px}
   .ft-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -51,8 +34,7 @@
   .ft-cols a:hover{color:var(--gold)}
   .ft-base{max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:0.74rem;color:rgba(255,255,255,0.25)}
   @media(max-width:768px){.ft-inner{grid-template-columns:1fr}.ft-cols{grid-template-columns:repeat(2,1fr)}}
-
-  .page-hero{background:linear-gradient(135deg,#1a3a2a,#2a5c3f);padding:60px 24px 70px}
+  .page-hero{background:linear-gradient(135deg,var(--brand),#2a4a6a);padding:60px 24px 70px}
   .page-hero-inner{max-width:1200px;margin:0 auto}
   .hero-eyebrow{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);margin-bottom:14px;font-weight:600}
   .page-hero h1{font-family:'EB Garamond',serif;font-size:clamp(2rem,5vw,3.2rem);color:#fff;margin-bottom:12px}
@@ -63,15 +45,13 @@
   .model-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-top:32px}
   .model-card{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:box-shadow 0.2s,transform 0.2s;display:block}
   .model-card.live:hover{box-shadow:0 6px 24px rgba(0,0,0,0.1);transform:translateY(-2px)}
-  .model-card.stub{opacity:0.65;cursor:default}
-  .mc-stripe{height:6px;background:linear-gradient(90deg,var(--green),var(--gold))}
+  .mc-stripe{height:6px;background:linear-gradient(90deg,var(--brand),var(--gold))}
   .mc-pad{padding:20px 22px 22px}
   .mc-name{font-family:'EB Garamond',serif;font-size:1.6rem;color:var(--text);margin-bottom:2px}
   .mc-years{font-size:0.75rem;color:var(--grey);letter-spacing:0.04em;margin-bottom:8px}
   .mc-stat{font-size:0.78rem;color:var(--grey);margin-bottom:8px}
   .mc-desc{font-size:0.86rem;color:var(--grey);line-height:1.55;margin-bottom:14px}
   .mc-cta{color:var(--green);font-size:0.82rem;font-weight:600}
-  .mc-cta.stub-lbl{color:var(--grey);font-weight:400;font-style:italic}
   .popular-badge{display:inline-block;background:var(--gold);color:#fff;font-size:0.62rem;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;border-radius:20px;font-weight:700;margin-bottom:8px}
 </style></head><body>
 <header class="site-header">
@@ -82,30 +62,13 @@
         <div class="drop"><a href="../triumph/index.html">Triumph TR</a><a href="../jaguar/index.html">Jaguar</a><a href="../austin-healey/index.html">Austin-Healey</a><a href="../mg/index.html">MG</a></div>
       </div>
       <div class="nav-dd"><a href="../clubs/index.html">Directory &#9662;</a>
-        <div class="drop">
-          <a href="../clubs/index.html">Clubs</a>
-          <a href="../events/index.html">Events</a>
-          <a href="../suppliers/index.html">Suppliers</a>
-          <a href="../publications/index.html">Publications</a>
-          <a href="../insurance/index.html">Insurance</a>
-          <a href="../storage/index.html">Storage</a>
-        </div>
+        <div class="drop"><a href="../clubs/index.html">Clubs</a><a href="../events/index.html">Events</a><a href="../suppliers/index.html">Suppliers</a><a href="../publications/index.html">Publications</a><a href="../insurance/index.html">Insurance</a><a href="../storage/index.html">Storage</a></div>
       </div>
       <div class="nav-dd"><a href="../valuations/index.html">Market &#9662;</a>
-        <div class="drop">
-          <a href="../valuations/index.html">Price Guides</a>
-          <a href="../classifieds/index.html">Cars for Sale</a>
-          <a href="../classifieds/sell.html">Sell Your Car</a>
-        </div>
+        <div class="drop"><a href="../valuations/index.html">Price Guides</a><a href="../classifieds/index.html">Cars for Sale</a><a href="../classifieds/sell.html">Sell Your Car</a></div>
       </div>
       <div class="nav-dd"><a href="../resources/index.html">Resources &#9662;</a>
-        <div class="drop">
-          <a href="../resources/index.html#youtube">YouTube Channels</a>
-          <a href="../resources/index.html#tv">TV Shows</a>
-          <a href="../resources/index.html#websites">Websites &amp; Forums</a>
-          <a href="../resources/index.html#podcasts">Podcasts</a>
-          <a href="../resources/index.html#magazines">Magazines</a>
-        </div>
+        <div class="drop"><a href="../resources/index.html#youtube">YouTube Channels</a><a href="../resources/index.html#tv">TV Shows</a><a href="../resources/index.html#websites">Websites &amp; Forums</a><a href="../resources/index.html#podcasts">Podcasts</a><a href="../resources/index.html#magazines">Magazines</a></div>
       </div>
       <a href="../classifieds/index.html" class="nav-cta">Cars for Sale</a>
     </nav>
@@ -115,119 +78,42 @@
 <div class="page-hero">
   <div class="page-hero-inner">
     <div class="hero-eyebrow">MarqueFile › Cars</div>
-    <h1>Triumph TR</h1>
-    <p>From the TR2 of 1953 to the V8-powered TR8 of 1981 — production data, colour codes, chassis records and buying guides for every TR model.</p>
+    <h1>Austin-Healey</h1>
+    <p>Austin-Healey produced some of the most charismatic British sports cars of the 1950s and 60s. From the four-cylinder 100 to the six-cylinder 3000 — the definitive Big Healey — and the lightweight Sprite, each has a distinct character and a passionate global following.</p>
   </div>
 </div>
 <div class="page-body">
   <div class="section-label">Model range</div>
-  <div class="section-title">All Triumph TR models</div>
+  <div class="section-title">All Austin-Healey models</div>
   <div class="model-grid">
-    <a href="tr2.html" class="model-card live">
+    <a href="100.html" class="model-card live">
       <div class="mc-stripe"></div>
       <div class="mc-pad">
-        
-        <div class="mc-name">TR2</div>
-        <div class="mc-years">1953–1955</div>
-        <div class="mc-stat"><strong>8,628</strong> produced</div>
-        <div class="mc-desc">The original. 1991cc four-cylinder, 90bhp. The car that started the TR story.</div>
-        <div class="mc-cta ">Full data →</div>
+        <div class="mc-name">Austin-Healey 100</div>
+        <div class="mc-years">1953–1956</div>
+        <div class="mc-stat"><strong>14,634</strong> produced</div>
+        <div class="mc-desc">Named for its 100mph capability. The original Big Healey — four-cylinder, body by Jensen, deal struck overnight at Earls Court 1952. 91.5% exported.</div>
+        <div class="mc-cta">Full data →</div>
       </div>
     </a>
-    <a href="tr3.html" class="model-card live">
-      <div class="mc-stripe"></div>
-      <div class="mc-pad">
-        
-        <div class="mc-name">TR3 &amp; TR3A</div>
-        <div class="mc-years">1955–1962</div>
-        <div class="mc-stat"><strong>~72,000</strong> produced</div>
-        <div class="mc-desc">First production car with disc brakes as standard. TR3A brought the full-width grille and external door handles.</div>
-        <div class="mc-cta ">Full data →</div>
-      </div>
-    </a>
-    <a href="tr4.html" class="model-card live">
-      <div class="mc-stripe"></div>
-      <div class="mc-pad">
-        
-        <div class="mc-name">TR4 &amp; TR4A</div>
-        <div class="mc-years">1961–1967</div>
-        <div class="mc-stat"><strong>68,718</strong> produced</div>
-        <div class="mc-desc">Styled by Michelotti. Wind-up windows, rack-and-pinion steering, and the famous Surrey Top on the TR4A.</div>
-        <div class="mc-cta ">Full data →</div>
-      </div>
-    </a>
-    <a href="tr5.html" class="model-card live">
-      <div class="mc-stripe"></div>
-      <div class="mc-pad">
-        
-        <div class="mc-name">TR5 &amp; TR250</div>
-        <div class="mc-years">1967–1968</div>
-        <div class="mc-stat"><strong>11,431</strong> produced</div>
-        <div class="mc-desc">The first fuel-injected TR — 150bhp Lucas PI on UK cars. Only 2,947 genuine TR5s built.</div>
-        <div class="mc-cta ">Full data →</div>
-      </div>
-    </a>
-    <a href="tr6.html" class="model-card live">
+    <a href="3000.html" class="model-card live">
       <div class="mc-stripe"></div>
       <div class="mc-pad">
         <div class="popular-badge">Most popular</div>
-        <div class="mc-name">TR6</div>
-        <div class="mc-years">1969–1976</div>
-        <div class="mc-stat"><strong>94,619</strong> produced</div>
-        <div class="mc-desc">The best-selling TR of all time. Karmann-styled, fuel-injected UK cars. The definitive TR.</div>
-        <div class="mc-cta ">Full data →</div>
-      </div>
-    </a>
-    <a href="#" class="model-card stub">
-      <div class="mc-stripe"></div>
-      <div class="mc-pad">
-        
-        <div class="mc-name">TR7</div>
-        <div class="mc-years">1975–1981</div>
-        <div class="mc-stat"><strong>112,368</strong> produced</div>
-        <div class="mc-desc">Wedge design, four-cylinder engine. Fixed head and drophead versions.</div>
-        <div class="mc-cta stub-lbl">Coming soon</div>
-      </div>
-    </a>
-    <a href="#" class="model-card stub">
-      <div class="mc-stripe"></div>
-      <div class="mc-pad">
-        
-        <div class="mc-name">TR8</div>
-        <div class="mc-years">1980–1981</div>
-        <div class="mc-stat"><strong>2,722</strong> produced</div>
-        <div class="mc-desc">V8-powered TR7. Rare and sought after. Mostly exported to the USA.</div>
-        <div class="mc-cta stub-lbl">Coming soon</div>
-      </div>
-    </a>
-
-    <a href="spitfire.html" class="model-card live">
-      <div class="mc-stripe"></div>
-      <div class="mc-pad">
-        <div class="mc-name">Spitfire</div>
-        <div class="mc-years">1962–1980</div>
-        <div class="mc-stat"><strong>315,000</strong> produced</div>
-        <div class="mc-desc">Michelotti-styled, Herald-based backbone chassis. Five marks from the Mk1 swing axle to the 1493cc 1500. Wind-down windows from launch — a step above the Sprite/Midget.</div>
+        <div class="mc-name">Austin-Healey 3000</div>
+        <div class="mc-years">1959–1967</div>
+        <div class="mc-stat"><strong>42,926</strong> produced</div>
+        <div class="mc-desc">The definitive Big Healey. Six-cylinder, four marks, built at Abingdon. Pat Moss won the 1960 Liège-Sofia-Liège. The Mk3 BJ8 Phase 2 is the most desirable.</div>
         <div class="mc-cta">Full data →</div>
       </div>
     </a>
-    <a href="gt6.html" class="model-card live">
+    <a href="sprite.html" class="model-card live">
       <div class="mc-stripe"></div>
       <div class="mc-pad">
-        <div class="mc-name">GT6</div>
-        <div class="mc-years">1966–1973</div>
-        <div class="mc-stat"><strong>40,926</strong> produced</div>
-        <div class="mc-desc">The "poor man's E-Type." Spitfire platform, 2.0L straight-six, fastback coupe roofline. Mk2 transformed by the Rotoflex rear suspension. Three marks, all desirable.</div>
-        <div class="mc-cta">Full data →</div>
-      </div>
-    </a>
-    <a href="stag.html" class="model-card live">
-      <div class="mc-stripe"></div>
-      <div class="mc-pad">
-        <div class="mc-name">Stag</div>
-        <div class="mc-years">1970–1977</div>
-        <div class="mc-stat"><strong>25,939</strong> produced</div>
-        <div class="mc-desc">3.0L Triumph V8, T-bar roll hoop, Michelotti styling. The reliability issues are real but manageable. A well-maintained Stag is a genuinely beautiful GT. Know what you're buying.</div>
+        <div class="mc-name">Sprite (&amp; MG Midget)</div>
+        <div class="mc-years">1958–1971</div>
+        <div class="mc-stat"><strong>~130,000</strong> Sprites produced</div>
+        <div class="mc-desc">The Frogeye Mk1 is one of the most loved British sports cars. Shared DNA with the MG Midget — the "Spridget" — through four marks plus the Midget 1500.</div>
         <div class="mc-cta">Full data →</div>
       </div>
     </a>
@@ -238,12 +124,14 @@
     <div class="ft-brand">
       <div class="logo-mark" style="width:44px;height:44px;font-size:1.2rem;margin-bottom:10px">MF</div>
       <div style="font-family:'EB Garamond',serif;font-size:1.2rem;color:#fff;margin-bottom:4px">Marque<em style="color:var(--gold)">File</em></div>
-      <div style="font-size:0.78rem;color:rgba(255,255,255,0.35);line-height:1.7">The classic car data resource.<br>Triumph TR · Jaguar</div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.35);line-height:1.7">The classic car data resource.<br>Triumph TR · Jaguar · Austin-Healey · MG</div>
     </div>
     <div class="ft-cols">
       <div><h4>Cars</h4>
         <a href="/Marlo-OpenClaw/classic-hub/triumph/">Triumph TR</a>
         <a href="/Marlo-OpenClaw/classic-hub/jaguar/">Jaguar</a>
+        <a href="/Marlo-OpenClaw/classic-hub/austin-healey/">Austin-Healey</a>
+        <a href="/Marlo-OpenClaw/classic-hub/mg/">MG</a>
       </div>
       <div><h4>Directory</h4>
         <a href="/Marlo-OpenClaw/classic-hub/clubs/">Clubs</a>
