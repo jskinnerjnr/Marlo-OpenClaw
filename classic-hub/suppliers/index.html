@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Suppliers Directory — MarqueFile</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --navy:#1c1c1c; --green:#2a5c3f; --green-light:#3a7a55; --gold:#c8a84b;
+    --cream:#f8f6f1; --warm:#efede9; --white:#fff; --grey:#6b6b6b;
+    --border:#e2ddd6; --text:#1a1a1a;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:16px;-webkit-text-size-adjust:100%}
+  body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);line-height:1.6}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+
+  /* ── HEADER ── */
+  .site-header{background:var(--navy);position:sticky;top:0;z-index:200;border-bottom:3px solid var(--green)}
+  .hdr-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{display:flex;align-items:center;gap:11px;text-decoration:none}
+  .logo-mark{width:38px;height:38px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:1.1rem;color:#fff;font-weight:600;flex-shrink:0}
+  .logo-text{font-family:'EB Garamond',serif;font-size:1.25rem;color:#fff;letter-spacing:0.04em}
+  .logo-text em{color:var(--gold);font-style:normal}
+  .site-nav{display:flex;align-items:center;gap:4px}
+  .site-nav a,.nav-dd>a{color:rgba(255,255,255,0.72);font-size:0.78rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;padding:20px 13px;display:block;transition:color 0.2s;white-space:nowrap;border-bottom:2px solid transparent}
+  .site-nav a:hover,.nav-dd>a:hover{color:#fff;border-bottom-color:var(--gold)}
+  .nav-dd{position:relative}
+  .nav-dd .drop{position:absolute;top:100%;left:0;background:var(--navy);border:1px solid rgba(255,255,255,0.1);border-top:2px solid var(--green);min-width:180px;display:none;flex-direction:column;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+  .nav-dd:hover .drop{display:flex}
+  .nav-dd .drop a{padding:11px 18px;font-size:0.8rem;border-bottom:1px solid rgba(255,255,255,0.07);border-left:none;color:rgba(255,255,255,0.7)}
+  .nav-dd .drop a:hover{background:var(--green);color:#fff}
+  .nav-cta{background:var(--green)!important;color:#fff!important;border-radius:4px;padding:9px 18px!important;margin-left:8px;border:none!important;font-weight:600!important}
+  .nav-cta:hover{background:var(--green-light)!important}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+  .nav-toggle span{width:24px;height:2px;background:#fff;border-radius:1px;display:block;transition:all 0.25s}
+  @media(max-width:768px){
+    .site-nav{display:none;position:absolute;top:62px;left:0;right:0;background:var(--navy);flex-direction:column;border-top:2px solid var(--green);padding:8px 0 20px;z-index:200}
+    .site-nav.open{display:flex}
+    .site-nav a,.nav-dd>a{padding:16px 28px;border-bottom:none;border-left:3px solid transparent;font-size:0.9rem}
+    .site-nav a:hover,.nav-dd>a:hover{border-left-color:var(--gold);border-bottom:none}
+    .nav-dd .drop{position:static;display:flex!important;box-shadow:none;border:none;background:rgba(255,255,255,0.05)}
+    .nav-dd .drop a{padding:12px 44px;font-size:0.82rem}
+    .nav-cta{margin:12px 28px 0!important;text-align:center;border-radius:4px!important;padding:16px 28px!important}
+    .nav-toggle{display:flex}
+  }
+
+  footer{background:#111;border-top:3px solid var(--green);padding:52px 24px 28px;margin-top:80px}
+  .ft-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:48px;margin-bottom:40px}
+  .ft-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .ft-cols h4{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.35);margin-bottom:14px;font-weight:600}
+  .ft-cols a{display:block;color:rgba(255,255,255,0.55);font-size:0.82rem;margin-bottom:8px;transition:color 0.2s}
+  .ft-cols a:hover{color:var(--gold)}
+  .ft-base{max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:0.74rem;color:rgba(255,255,255,0.25)}
+  @media(max-width:768px){.ft-inner{grid-template-columns:1fr}.ft-cols{grid-template-columns:repeat(2,1fr)}}
+
+  .page-hero{background:linear-gradient(135deg,#1c1c1c,#2a5c3f);padding:56px 24px 64px}
+  .page-hero-inner{max-width:1100px;margin:0 auto}
+  .hero-eyebrow{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);margin-bottom:14px;font-weight:600}
+  .page-hero h1{font-family:'EB Garamond',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;margin-bottom:10px}
+  .page-hero p{color:rgba(255,255,255,0.65);max-width:560px}
+  .page-body{max-width:1100px;margin:48px auto;padding:0 24px}
+  .filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px}
+  .f-btn{padding:7px 15px;border-radius:20px;font-size:0.76rem;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:#fff;color:var(--grey);transition:all 0.2s;white-space:nowrap}
+  .f-btn.active,.f-btn:hover{background:var(--green);color:#fff;border-color:var(--green)}
+  .supplier-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+  .sc{background:#fff;border:1px solid var(--border);border-radius:10px;padding:20px 22px;display:flex;flex-direction:column;transition:box-shadow 0.2s}
+  .sc:hover{box-shadow:0 4px 20px rgba(0,0,0,0.08)}
+  .sc.featured{border-color:var(--gold);box-shadow:0 0 0 2px rgba(200,168,75,0.15)}
+  .sc-badge{background:var(--gold);color:#fff;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;border-radius:20px;font-weight:700;margin-bottom:8px;display:inline-block;align-self:flex-start}
+  .sc-name{font-family:'EB Garamond',serif;font-size:1.15rem;color:var(--text);margin-bottom:4px}
+  .sc-cat{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--green);font-weight:600;margin-bottom:8px}
+  .sc-cars{font-size:0.75rem;color:var(--grey);margin-bottom:10px}
+  .sc-desc{font-size:0.84rem;color:var(--grey);line-height:1.55;flex:1;margin-bottom:16px}
+  .sc-link{background:var(--green);color:#fff;padding:9px 16px;border-radius:4px;font-size:0.8rem;font-weight:600;transition:background 0.2s;text-align:center;display:block}
+  .sc-link:hover{background:var(--green-light)}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="hdr-inner">
+    <a href="../index.html" class="logo">
+      <div class="logo-mark">MF</div>
+      <div class="logo-text">Marque<em>File</em></div>
+    </a>
+    <nav class="site-nav" id="site-nav">
+      <div class="nav-dd">
+        <a href="../triumph/index.html">Cars &#9662;</a>
+        <div class="drop">
+          <a href="../triumph/index.html">Triumph TR</a>
+          <a href="../jaguar/index.html">Jaguar</a>
+        </div>
+      </div>
+      <a href="../clubs/index.html">Clubs</a>
+      <a href="../events/index.html">Events</a>
+      <a href="../suppliers/index.html">Suppliers</a>
+      <a href="#" class="nav-cta">Cars for Sale</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-eyebrow">MarqueFile &rsaquo; Directory</div>
+    <h1>Suppliers Directory</h1>
+    <p>Parts, trim, tyres and restoration services for Triumph TR and Jaguar — curated by the MarqueFile team.</p>
+  </div>
+</div>
+<div class="page-body">
+  <div class="filter-row">
+<button class="f-btn active" onclick="filterSuppliers('all',this)">All</button>
+<button class="f-btn" onclick="filterSuppliers('interiortrim',this)">Interior Trim</button>
+<button class="f-btn" onclick="filterSuppliers('mechanicalparts',this)">Mechanical Parts</button>
+<button class="f-btn" onclick="filterSuppliers('restoration',this)">Restoration</button>
+<button class="f-btn" onclick="filterSuppliers('hoodweatherequipment',this)">Hood & Weather Equipment</button>
+<button class="f-btn" onclick="filterSuppliers('paintworkcare',this)">Paintwork & Care</button>
+<button class="f-btn" onclick="filterSuppliers('tyres',this)">Tyres</button>
+<button class="f-btn" onclick="filterSuppliers('chromebrightwork',this)">Chrome & Brightwork</button>
+<button class="f-btn" onclick="filterSuppliers('electrical',this)">Electrical</button>
+</div><div class="supplier-grid" id="supplier-grid">
+  <div class="sc  featured" data-cat="interiortrim">
+    <div class="sc-badge">Featured</div>
+    <div class="sc-name">John Skinner Manufacturing</div>
+    <div class="sc-cat">Interior Trim</div>
+    <div class="sc-cars">Covers: Triumph, Jaguar</div>
+    <div class="sc-desc">Cheltenham-based manufacturers of original-specification interior trim kits. Carpets, seat covers, hood linings, door cards and more. Made in Britain since 1980.</div>
+    <a href="https://www.john-skinner.co.uk" target="_blank" rel="noopener" class="sc-link">Visit john-skinner.co.uk →</a>
+  </div>
+  <div class="sc" data-cat="mechanicalparts">
+    
+    <div class="sc-name">Moss Europe</div>
+    <div class="sc-cat">Mechanical Parts</div>
+    <div class="sc-cars">Covers: Triumph</div>
+    <div class="sc-desc">The world's leading Triumph TR parts supplier. Mechanical, body, electrical and trim parts. Comprehensive catalogue.</div>
+    <a href="https://www.moss.europe.com" target="_blank" rel="noopener" class="sc-link">Visit moss.europe.com →</a>
+  </div>
+  <div class="sc" data-cat="mechanicalparts">
+    
+    <div class="sc-name">Rimmer Bros</div>
+    <div class="sc-cat">Mechanical Parts</div>
+    <div class="sc-cars">Covers: Triumph, Jaguar</div>
+    <div class="sc-desc">Huge stock of Triumph and Jaguar parts. Fast dispatch, competitive pricing. Online catalogue.</div>
+    <a href="https://www.rimmerbros.com" target="_blank" rel="noopener" class="sc-link">Visit rimmerbros.com →</a>
+  </div>
+  <div class="sc" data-cat="mechanicalparts">
+    
+    <div class="sc-name">SNG Barratt</div>
+    <div class="sc-cat">Mechanical Parts</div>
+    <div class="sc-cars">Covers: Jaguar</div>
+    <div class="sc-desc">Specialist Jaguar parts supplier. XK, E-Type, Mk II, XJ coverage. OE-quality parts.</div>
+    <a href="https://www.sngbarratt.com" target="_blank" rel="noopener" class="sc-link">Visit sngbarratt.com →</a>
+  </div>
+  <div class="sc" data-cat="interiortrim">
+    
+    <div class="sc-name">Newton Commercial</div>
+    <div class="sc-cat">Interior Trim</div>
+    <div class="sc-cars">Covers: Triumph, Jaguar</div>
+    <div class="sc-desc">Interior trim manufacturer covering a wide range of classic British cars. Carpets, hoods, seat covers.</div>
+    <a href="https://www.newtoncomm.co.uk" target="_blank" rel="noopener" class="sc-link">Visit newtoncomm.co.uk →</a>
+  </div>
+  <div class="sc" data-cat="interiortrim">
+    
+    <div class="sc-name">Woolies Trim</div>
+    <div class="sc-cat">Interior Trim</div>
+    <div class="sc-cars">Covers: Triumph, Jaguar</div>
+    <div class="sc-desc">Long-established trim supplier. Broad range of headlining, carpet and trim materials.</div>
+    <a href="https://www.woolies-trim.co.uk" target="_blank" rel="noopener" class="sc-link">Visit woolies-trim.co.uk →</a>
+  </div>
+  <div class="sc" data-cat="mechanicalparts">
+    
+    <div class="sc-name">XK Engineering</div>
+    <div class="sc-cat">Mechanical Parts</div>
+    <div class="sc-cars">Covers: Jaguar</div>
+    <div class="sc-desc">Coventry-based Jaguar specialist. E-Type and XK expertise. Restoration and parts.</div>
+    <a href="https://www.xkengineering.com" target="_blank" rel="noopener" class="sc-link">Visit xkengineering.com →</a>
+  </div>
+  <div class="sc" data-cat="mechanicalparts">
+    
+    <div class="sc-name">TR Enterprises</div>
+    <div class="sc-cat">Mechanical Parts</div>
+    <div class="sc-cars">Covers: Triumph</div>
+    <div class="sc-desc">Triumph TR specialist. Engine, gearbox and suspension parts. Technical support.</div>
+    <a href="https://www.tr-enterprises.co.uk" target="_blank" rel="noopener" class="sc-link">Visit tr-enterprises.co.uk →</a>
+  </div>
+  <div class="sc" data-cat="restoration">
+    
+    <div class="sc-name">Autofarm</div>
+    <div class="sc-cat">Restoration</div>
+    <div class="sc-cars">Covers: Jaguar</div>
+    <div class="sc-desc">Porsche and Jaguar specialist. Full restoration services, parts and advice.</div>
+    <a href="https://www.autofarm.co.uk" target="_blank" rel="noopener" class="sc-link">Visit autofarm.co.uk →</a>
+  </div>
+  <div class="sc" data-cat="hoodweatherequipment">
+    
+    <div class="sc-name">The Vintage Hood Company</div>
+    <div class="sc-cat">Hood & Weather Equipment</div>
+    <div class="sc-cars">Covers: Triumph, Jaguar</div>
+    <div class="sc-desc">Specialist manufacturers of hoods for classic British sports cars. Mohair, vinyl and canvas.</div>
+    <a href="https://www.vintagehoodcompany.co.uk" target="_blank" rel="noopener" class="sc-link">Visit vintagehoodcompany.co.uk →</a>
+  </div>
+  <div class="sc" data-cat="paintworkcare">
+    
+    <div class="sc-name">Meguiar's UK</div>
+    <div class="sc-cat">Paintwork & Care</div>
+    <div class="sc-cars">Covers: All</div>
+    <div class="sc-desc">Classic car detailing and paint care products. Opalescent and metallic paint specialists.</div>
+    <a href="https://www.meguiars.co.uk" target="_blank" rel="noopener" class="sc-link">Visit meguiars.co.uk →</a>
+  </div>
+  <div class="sc" data-cat="tyres">
+    
+    <div class="sc-name">Longstone Tyres</div>
+    <div class="sc-cat">Tyres</div>
+    <div class="sc-cars">Covers: All</div>
+    <div class="sc-desc">Period-correct tyres for classic cars. Cross-ply and early radials. Technical advice.</div>
+    <a href="https://www.longstonetyres.co.uk" target="_blank" rel="noopener" class="sc-link">Visit longstonetyres.co.uk →</a>
+  </div>
+  <div class="sc" data-cat="chromebrightwork">
+    
+    <div class="sc-name">Vintage Car Parts</div>
+    <div class="sc-cat">Chrome & Brightwork</div>
+    <div class="sc-cars">Covers: Triumph, Jaguar</div>
+    <div class="sc-desc">Chrome bumpers, grilles and brightwork. Re-plating and new manufacture.</div>
+    <a href="https://www.vintagecarparts.co.uk" target="_blank" rel="noopener" class="sc-link">Visit vintagecarparts.co.uk →</a>
+  </div>
+  <div class="sc" data-cat="electrical">
+    
+    <div class="sc-name">Vehicle Wiring Products</div>
+    <div class="sc-cat">Electrical</div>
+    <div class="sc-cars">Covers: All</div>
+    <div class="sc-desc">Classic car electrical components. Lucas replacement parts, loom repair materials.</div>
+    <a href="https://www.vehiclewiringproducts.co.uk" target="_blank" rel="noopener" class="sc-link">Visit vehiclewiringproducts.co.uk →</a>
+  </div>
+</div>
+</div>
+
+<footer>
+  <div class="ft-inner">
+    <div class="ft-brand">
+      <div class="logo-mark" style="width:44px;height:44px;font-size:1.2rem;margin-bottom:10px">MF</div>
+      <div style="font-family:'EB Garamond',serif;font-size:1.2rem;color:#fff;margin-bottom:4px">Marque<em style="color:var(--gold)">File</em></div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.35);line-height:1.7">The classic car data resource.<br>Triumph TR · Jaguar</div>
+    </div>
+    <div class="ft-cols">
+      <div><h4>Cars</h4>
+        <a href="/Marlo-OpenClaw/classic-hub/triumph/">Triumph TR</a>
+        <a href="/Marlo-OpenClaw/classic-hub/jaguar/">Jaguar</a>
+      </div>
+      <div><h4>Directory</h4>
+        <a href="/Marlo-OpenClaw/classic-hub/clubs/">Clubs</a>
+        <a href="/Marlo-OpenClaw/classic-hub/events/">Events</a>
+        <a href="/Marlo-OpenClaw/classic-hub/suppliers/">Suppliers</a>
+      </div>
+      <div><h4>Classifieds</h4>
+        <a href="#">Cars for Sale</a>
+        <a href="#">List Your Car</a>
+      </div>
+    </div>
+  </div>
+  <div class="ft-base">
+    <span>&copy; 2026 MarqueFile. All rights reserved.</span>
+    <span>Data for reference only &mdash; always verify before purchase.</span>
+  </div>
+</footer>
+
+<script>
+  const toggle=document.getElementById('nav-toggle'),nav=document.getElementById('site-nav');
+  if(toggle&&nav)toggle.addEventListener('click',()=>nav.classList.toggle('open'));
+  function filterSuppliers(cat,btn){
+    document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.sc').forEach(c=>{
+      c.style.display=(cat==='all'||c.dataset.cat===cat)?'flex':'none';
+    });
+  }
+</script>
+</body></html>

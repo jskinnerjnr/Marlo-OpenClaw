@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Events 2026 — MarqueFile</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --navy:#1c1c1c; --green:#2a5c3f; --green-light:#3a7a55; --gold:#c8a84b;
+    --cream:#f8f6f1; --warm:#efede9; --white:#fff; --grey:#6b6b6b;
+    --border:#e2ddd6; --text:#1a1a1a;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:16px;-webkit-text-size-adjust:100%}
+  body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);line-height:1.6}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+
+  /* ── HEADER ── */
+  .site-header{background:var(--navy);position:sticky;top:0;z-index:200;border-bottom:3px solid var(--green)}
+  .hdr-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{display:flex;align-items:center;gap:11px;text-decoration:none}
+  .logo-mark{width:38px;height:38px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:1.1rem;color:#fff;font-weight:600;flex-shrink:0}
+  .logo-text{font-family:'EB Garamond',serif;font-size:1.25rem;color:#fff;letter-spacing:0.04em}
+  .logo-text em{color:var(--gold);font-style:normal}
+  .site-nav{display:flex;align-items:center;gap:4px}
+  .site-nav a,.nav-dd>a{color:rgba(255,255,255,0.72);font-size:0.78rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;padding:20px 13px;display:block;transition:color 0.2s;white-space:nowrap;border-bottom:2px solid transparent}
+  .site-nav a:hover,.nav-dd>a:hover{color:#fff;border-bottom-color:var(--gold)}
+  .nav-dd{position:relative}
+  .nav-dd .drop{position:absolute;top:100%;left:0;background:var(--navy);border:1px solid rgba(255,255,255,0.1);border-top:2px solid var(--green);min-width:180px;display:none;flex-direction:column;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+  .nav-dd:hover .drop{display:flex}
+  .nav-dd .drop a{padding:11px 18px;font-size:0.8rem;border-bottom:1px solid rgba(255,255,255,0.07);border-left:none;color:rgba(255,255,255,0.7)}
+  .nav-dd .drop a:hover{background:var(--green);color:#fff}
+  .nav-cta{background:var(--green)!important;color:#fff!important;border-radius:4px;padding:9px 18px!important;margin-left:8px;border:none!important;font-weight:600!important}
+  .nav-cta:hover{background:var(--green-light)!important}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+  .nav-toggle span{width:24px;height:2px;background:#fff;border-radius:1px;display:block;transition:all 0.25s}
+  @media(max-width:768px){
+    .site-nav{display:none;position:absolute;top:62px;left:0;right:0;background:var(--navy);flex-direction:column;border-top:2px solid var(--green);padding:8px 0 20px;z-index:200}
+    .site-nav.open{display:flex}
+    .site-nav a,.nav-dd>a{padding:16px 28px;border-bottom:none;border-left:3px solid transparent;font-size:0.9rem}
+    .site-nav a:hover,.nav-dd>a:hover{border-left-color:var(--gold);border-bottom:none}
+    .nav-dd .drop{position:static;display:flex!important;box-shadow:none;border:none;background:rgba(255,255,255,0.05)}
+    .nav-dd .drop a{padding:12px 44px;font-size:0.82rem}
+    .nav-cta{margin:12px 28px 0!important;text-align:center;border-radius:4px!important;padding:16px 28px!important}
+    .nav-toggle{display:flex}
+  }
+
+  footer{background:#111;border-top:3px solid var(--green);padding:52px 24px 28px;margin-top:80px}
+  .ft-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:48px;margin-bottom:40px}
+  .ft-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .ft-cols h4{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.35);margin-bottom:14px;font-weight:600}
+  .ft-cols a{display:block;color:rgba(255,255,255,0.55);font-size:0.82rem;margin-bottom:8px;transition:color 0.2s}
+  .ft-cols a:hover{color:var(--gold)}
+  .ft-base{max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:0.74rem;color:rgba(255,255,255,0.25)}
+  @media(max-width:768px){.ft-inner{grid-template-columns:1fr}.ft-cols{grid-template-columns:repeat(2,1fr)}}
+
+  .page-hero{background:linear-gradient(135deg,#1c1c1c,#2a3a1a);padding:56px 24px 64px}
+  .page-hero-inner{max-width:1000px;margin:0 auto}
+  .hero-eyebrow{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);margin-bottom:14px;font-weight:600}
+  .page-hero h1{font-family:'EB Garamond',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;margin-bottom:10px}
+  .page-hero p{color:rgba(255,255,255,0.65);max-width:560px}
+  .page-body{max-width:1000px;margin:48px auto;padding:0 24px}
+  .filter-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}
+  .f-btn{padding:8px 18px;border-radius:20px;font-size:0.78rem;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:#fff;color:var(--grey);transition:all 0.2s}
+  .f-btn.active,.f-btn:hover{background:var(--green);color:#fff;border-color:var(--green)}
+  .month-group{margin-bottom:36px}
+  .month-label{font-family:'EB Garamond',serif;font-size:1.35rem;color:var(--text);padding-bottom:8px;border-bottom:2px solid var(--green);margin-bottom:16px}
+  .event-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin-bottom:10px;display:flex;align-items:flex-start;gap:16px;transition:box-shadow 0.2s}
+  .event-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.08)}
+  .ec-date{background:var(--green);color:#fff;border-radius:6px;padding:8px 12px;text-align:center;min-width:56px;flex-shrink:0}
+  .ec-date-mon{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.1em;font-weight:600}
+  .ec-date-yr{font-size:0.75rem;font-weight:600;margin-top:2px;opacity:0.8}
+  .ec-main{flex:1}
+  .ec-name{font-family:'EB Garamond',serif;font-size:1.1rem;color:var(--text);margin-bottom:4px}
+  .ec-loc{font-size:0.78rem;color:var(--grey);margin-bottom:6px}
+  .ec-desc{font-size:0.84rem;color:var(--grey);line-height:1.55}
+  .ec-tags{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;align-items:center}
+  .ec-tag{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;padding:3px 10px;border-radius:20px;font-weight:700}
+  .tag-triumph{background:#e8f5ee;color:var(--green)}
+  .tag-jaguar{background:#e8e8f8;color:#2a2a5c}
+  .tag-all{background:#f0f0f0;color:#555}
+  .ec-link{font-size:0.78rem;color:var(--green);font-weight:600}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="hdr-inner">
+    <a href="../index.html" class="logo">
+      <div class="logo-mark">MF</div>
+      <div class="logo-text">Marque<em>File</em></div>
+    </a>
+    <nav class="site-nav" id="site-nav">
+      <div class="nav-dd">
+        <a href="../triumph/index.html">Cars &#9662;</a>
+        <div class="drop">
+          <a href="../triumph/index.html">Triumph TR</a>
+          <a href="../jaguar/index.html">Jaguar</a>
+        </div>
+      </div>
+      <a href="../clubs/index.html">Clubs</a>
+      <a href="../events/index.html">Events</a>
+      <a href="../suppliers/index.html">Suppliers</a>
+      <a href="#" class="nav-cta">Cars for Sale</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-eyebrow">MarqueFile &rsaquo; Directory</div>
+    <h1>Events 2026</h1>
+    <p>Key events for Triumph TR and Jaguar enthusiasts across the year — from club runs and concours to the major national shows.</p>
+  </div>
+</div>
+<div class="page-body">
+  <div class="filter-row">
+    <button class="f-btn active" onclick="filterEvents('all',this)">All Events</button>
+    <button class="f-btn" onclick="filterEvents('triumph',this)">Triumph</button>
+    <button class="f-btn" onclick="filterEvents('jaguar',this)">Jaguar</button>
+  </div>
+<div class="month-group"><div class="month-label">Apr 2026</div>
+    <div class="event-card" data-marque="triumph">
+      <div class="ec-date"><div class="ec-date-mon">Apr</div><div class="ec-date-yr">2026</div></div>
+      <div class="ec-main">
+        <div class="ec-name">Triumph TR Register Spring Run</div>
+        <div class="ec-loc">📍 Midlands &nbsp;·&nbsp; April 2026</div>
+        <div class="ec-desc">Annual spring driving event for TR owners. Route through the Cotswolds.</div>
+        <div class="ec-tags">
+          <div class="ec-tag tag-triumph">Triumph</div>
+          <a href="https://www.tr-register.co.uk" target="_blank" rel="noopener" class="ec-link">tr-register.co.uk →</a>
+        </div>
+      </div>
+    </div></div><div class="month-group"><div class="month-label">May 2026</div>
+    <div class="event-card" data-marque="jaguar">
+      <div class="ec-date"><div class="ec-date-mon">May</div><div class="ec-date-yr">2026</div></div>
+      <div class="ec-main">
+        <div class="ec-name">Jaguar Enthusiasts Club — Spring Concours</div>
+        <div class="ec-loc">📍 Various regional venues &nbsp;·&nbsp; May 2026</div>
+        <div class="ec-desc">Regional concours rounds across the UK. All Jaguar models welcome.</div>
+        <div class="ec-tags">
+          <div class="ec-tag tag-jaguar">Jaguar</div>
+          <a href="https://www.jec.org.uk" target="_blank" rel="noopener" class="ec-link">jec.org.uk →</a>
+        </div>
+      </div>
+    </div></div><div class="month-group"><div class="month-label">Jun 2026</div>
+    <div class="event-card" data-marque="triumph">
+      <div class="ec-date"><div class="ec-date-mon">Jun</div><div class="ec-date-yr">2026</div></div>
+      <div class="ec-main">
+        <div class="ec-name">TR Register International Weekend</div>
+        <div class="ec-loc">📍 Stratford-upon-Avon &nbsp;·&nbsp; June 2026</div>
+        <div class="ec-desc">The highlight of the TR calendar. Concours, driving tests, trade stands and social events over a weekend.</div>
+        <div class="ec-tags">
+          <div class="ec-tag tag-triumph">Triumph</div>
+          <a href="https://www.tr-register.co.uk" target="_blank" rel="noopener" class="ec-link">tr-register.co.uk →</a>
+        </div>
+      </div>
+    </div></div><div class="month-group"><div class="month-label">Jul 2026</div>
+    <div class="event-card" data-marque="all">
+      <div class="ec-date"><div class="ec-date-mon">Jul</div><div class="ec-date-yr">2026</div></div>
+      <div class="ec-main">
+        <div class="ec-name">Silverstone Classic</div>
+        <div class="ec-loc">📍 Silverstone Circuit &nbsp;·&nbsp; 25–27 July 2026</div>
+        <div class="ec-desc">The world's largest classic motor racing festival. Triumph TR and Jaguar racing throughout the weekend.</div>
+        <div class="ec-tags">
+          <div class="ec-tag tag-all">All</div>
+          <a href="https://www.silverstoneклассик.com" target="_blank" rel="noopener" class="ec-link">silverstoneклассик.com →</a>
+        </div>
+      </div>
+    </div></div><div class="month-group"><div class="month-label">Aug 2026</div>
+    <div class="event-card" data-marque="jaguar">
+      <div class="ec-date"><div class="ec-date-mon">Aug</div><div class="ec-date-yr">2026</div></div>
+      <div class="ec-main">
+        <div class="ec-name">E-Type Club Concours</div>
+        <div class="ec-loc">📍 Blenheim Palace &nbsp;·&nbsp; August 2026</div>
+        <div class="ec-desc">Annual concours d'élégance dedicated to the Jaguar E-Type. All three series represented.</div>
+        <div class="ec-tags">
+          <div class="ec-tag tag-jaguar">Jaguar</div>
+          <a href="https://www.etypeclub.com" target="_blank" rel="noopener" class="ec-link">etypeclub.com →</a>
+        </div>
+      </div>
+    </div></div><div class="month-group"><div class="month-label">Sep 2026</div>
+    <div class="event-card" data-marque="all">
+      <div class="ec-date"><div class="ec-date-mon">Sep</div><div class="ec-date-yr">2026</div></div>
+      <div class="ec-main">
+        <div class="ec-name">Goodwood Revival</div>
+        <div class="ec-loc">📍 Goodwood Circuit &nbsp;·&nbsp; 11–13 September 2026</div>
+        <div class="ec-desc">The world's most popular historic motor racing event. Period dress required. Triumph and Jaguar heavily represented.</div>
+        <div class="ec-tags">
+          <div class="ec-tag tag-all">All</div>
+          <a href="https://www.goodwood.com" target="_blank" rel="noopener" class="ec-link">goodwood.com →</a>
+        </div>
+      </div>
+    </div>
+    <div class="event-card" data-marque="jaguar">
+      <div class="ec-date"><div class="ec-date-mon">Sep</div><div class="ec-date-yr">2026</div></div>
+      <div class="ec-main">
+        <div class="ec-name">Jaguar Drivers Club National Rally</div>
+        <div class="ec-loc">📍 TBC &nbsp;·&nbsp; September 2026</div>
+        <div class="ec-desc">Annual national rally for JDC members. Concours judging, driving tests and display.</div>
+        <div class="ec-tags">
+          <div class="ec-tag tag-jaguar">Jaguar</div>
+          <a href="https://www.jaguardriver.co.uk" target="_blank" rel="noopener" class="ec-link">jaguardriver.co.uk →</a>
+        </div>
+      </div>
+    </div></div><div class="month-group"><div class="month-label">Oct 2026</div>
+    <div class="event-card" data-marque="all">
+      <div class="ec-date"><div class="ec-date-mon">Oct</div><div class="ec-date-yr">2026</div></div>
+      <div class="ec-main">
+        <div class="ec-name">Classic & Sports Car Show</div>
+        <div class="ec-loc">📍 Stoneleigh Park &nbsp;·&nbsp; October 2026</div>
+        <div class="ec-desc">Midlands-based classic car show. Strong Triumph and Jaguar content.</div>
+        <div class="ec-tags">
+          <div class="ec-tag tag-all">All</div>
+          
+        </div>
+      </div>
+    </div></div><div class="month-group"><div class="month-label">Nov 2026</div>
+    <div class="event-card" data-marque="all">
+      <div class="ec-date"><div class="ec-date-mon">Nov</div><div class="ec-date-yr">2026</div></div>
+      <div class="ec-main">
+        <div class="ec-name">NEC Classic Motor Show</div>
+        <div class="ec-loc">📍 Birmingham NEC &nbsp;·&nbsp; 6–8 November 2026</div>
+        <div class="ec-desc">The UK's largest indoor classic car show. Club displays, trade stands and auction.</div>
+        <div class="ec-tags">
+          <div class="ec-tag tag-all">All</div>
+          <a href="https://www.necclassicmotorshow.com" target="_blank" rel="noopener" class="ec-link">necclassicmotorshow.com →</a>
+        </div>
+      </div>
+    </div>
+    <div class="event-card" data-marque="triumph">
+      <div class="ec-date"><div class="ec-date-mon">Nov</div><div class="ec-date-yr">2026</div></div>
+      <div class="ec-main">
+        <div class="ec-name">TR Register End of Season Dinner</div>
+        <div class="ec-loc">📍 Midlands &nbsp;·&nbsp; November 2026</div>
+        <div class="ec-desc">Annual end-of-season dinner and awards for TR Register members.</div>
+        <div class="ec-tags">
+          <div class="ec-tag tag-triumph">Triumph</div>
+          <a href="https://www.tr-register.co.uk" target="_blank" rel="noopener" class="ec-link">tr-register.co.uk →</a>
+        </div>
+      </div>
+    </div></div>
+</div>
+
+<footer>
+  <div class="ft-inner">
+    <div class="ft-brand">
+      <div class="logo-mark" style="width:44px;height:44px;font-size:1.2rem;margin-bottom:10px">MF</div>
+      <div style="font-family:'EB Garamond',serif;font-size:1.2rem;color:#fff;margin-bottom:4px">Marque<em style="color:var(--gold)">File</em></div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.35);line-height:1.7">The classic car data resource.<br>Triumph TR · Jaguar</div>
+    </div>
+    <div class="ft-cols">
+      <div><h4>Cars</h4>
+        <a href="/Marlo-OpenClaw/classic-hub/triumph/">Triumph TR</a>
+        <a href="/Marlo-OpenClaw/classic-hub/jaguar/">Jaguar</a>
+      </div>
+      <div><h4>Directory</h4>
+        <a href="/Marlo-OpenClaw/classic-hub/clubs/">Clubs</a>
+        <a href="/Marlo-OpenClaw/classic-hub/events/">Events</a>
+        <a href="/Marlo-OpenClaw/classic-hub/suppliers/">Suppliers</a>
+      </div>
+      <div><h4>Classifieds</h4>
+        <a href="#">Cars for Sale</a>
+        <a href="#">List Your Car</a>
+      </div>
+    </div>
+  </div>
+  <div class="ft-base">
+    <span>&copy; 2026 MarqueFile. All rights reserved.</span>
+    <span>Data for reference only &mdash; always verify before purchase.</span>
+  </div>
+</footer>
+
+<script>
+  const toggle=document.getElementById('nav-toggle'),nav=document.getElementById('site-nav');
+  if(toggle&&nav)toggle.addEventListener('click',()=>nav.classList.toggle('open'));
+  function filterEvents(marque,btn){
+    document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.event-card').forEach(c=>{
+      const m=c.dataset.marque;
+      c.style.display=(marque==='all'||m===marque||m==='all')?'flex':'none';
+    });
+    document.querySelectorAll('.month-group').forEach(g=>{
+      const visible=[...g.querySelectorAll('.event-card')].some(c=>c.style.display!=='none');
+      g.style.display=visible?'':'none';
+    });
+  }
+</script>
+</body></html>

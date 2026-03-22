@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jaguar E-Type — Production Data, Colours &amp; Specs — MarqueFile</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --navy:#1c1c1c; --green:#2a5c3f; --green-light:#3a7a55; --gold:#c8a84b;
+    --cream:#f8f6f1; --warm:#efede9; --white:#fff; --grey:#6b6b6b;
+    --border:#e2ddd6; --text:#1a1a1a;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:16px;-webkit-text-size-adjust:100%}
+  body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);line-height:1.6}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+
+  /* ── HEADER ── */
+  .site-header{background:var(--navy);position:sticky;top:0;z-index:200;border-bottom:3px solid var(--green)}
+  .hdr-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{display:flex;align-items:center;gap:11px;text-decoration:none}
+  .logo-mark{width:38px;height:38px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:1.1rem;color:#fff;font-weight:600;flex-shrink:0}
+  .logo-text{font-family:'EB Garamond',serif;font-size:1.25rem;color:#fff;letter-spacing:0.04em}
+  .logo-text em{color:var(--gold);font-style:normal}
+  .site-nav{display:flex;align-items:center;gap:4px}
+  .site-nav a,.nav-dd>a{color:rgba(255,255,255,0.72);font-size:0.78rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;padding:20px 13px;display:block;transition:color 0.2s;white-space:nowrap;border-bottom:2px solid transparent}
+  .site-nav a:hover,.nav-dd>a:hover{color:#fff;border-bottom-color:var(--gold)}
+  .nav-dd{position:relative}
+  .nav-dd .drop{position:absolute;top:100%;left:0;background:var(--navy);border:1px solid rgba(255,255,255,0.1);border-top:2px solid var(--green);min-width:180px;display:none;flex-direction:column;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+  .nav-dd:hover .drop{display:flex}
+  .nav-dd .drop a{padding:11px 18px;font-size:0.8rem;border-bottom:1px solid rgba(255,255,255,0.07);border-left:none;color:rgba(255,255,255,0.7)}
+  .nav-dd .drop a:hover{background:var(--green);color:#fff}
+  .nav-cta{background:var(--green)!important;color:#fff!important;border-radius:4px;padding:9px 18px!important;margin-left:8px;border:none!important;font-weight:600!important}
+  .nav-cta:hover{background:var(--green-light)!important}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+  .nav-toggle span{width:24px;height:2px;background:#fff;border-radius:1px;display:block;transition:all 0.25s}
+  @media(max-width:768px){
+    .site-nav{display:none;position:absolute;top:62px;left:0;right:0;background:var(--navy);flex-direction:column;border-top:2px solid var(--green);padding:8px 0 20px;z-index:200}
+    .site-nav.open{display:flex}
+    .site-nav a,.nav-dd>a{padding:16px 28px;border-bottom:none;border-left:3px solid transparent;font-size:0.9rem}
+    .site-nav a:hover,.nav-dd>a:hover{border-left-color:var(--gold);border-bottom:none}
+    .nav-dd .drop{position:static;display:flex!important;box-shadow:none;border:none;background:rgba(255,255,255,0.05)}
+    .nav-dd .drop a{padding:12px 44px;font-size:0.82rem}
+    .nav-cta{margin:12px 28px 0!important;text-align:center;border-radius:4px!important;padding:16px 28px!important}
+    .nav-toggle{display:flex}
+  }
+
+  footer{background:#111;border-top:3px solid var(--green);padding:52px 24px 28px;margin-top:80px}
+  .ft-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:48px;margin-bottom:40px}
+  .ft-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .ft-cols h4{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.35);margin-bottom:14px;font-weight:600}
+  .ft-cols a{display:block;color:rgba(255,255,255,0.55);font-size:0.82rem;margin-bottom:8px;transition:color 0.2s}
+  .ft-cols a:hover{color:var(--gold)}
+  .ft-base{max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:0.74rem;color:rgba(255,255,255,0.25)}
+  @media(max-width:768px){.ft-inner{grid-template-columns:1fr}.ft-cols{grid-template-columns:repeat(2,1fr)}}
+
+  .page-hero{background:linear-gradient(135deg,#1a1a3a,#2a2a5c);padding:60px 24px 70px}
+  .page-hero-inner{max-width:1000px;margin:0 auto}
+  .hero-eyebrow{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);margin-bottom:14px;font-weight:600}
+  .page-hero h1{font-family:'EB Garamond',serif;font-size:clamp(2rem,5vw,3.2rem);color:#fff;margin-bottom:12px}
+  .hero-stats{display:flex;flex-wrap:wrap;gap:28px;margin-top:28px}
+  .hs{color:rgba(255,255,255,0.55);font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em}
+  .hs strong{display:block;font-family:'EB Garamond',serif;font-size:1.8rem;color:#fff;font-weight:400;letter-spacing:0;margin-bottom:2px}
+  .page-body{max-width:1000px;margin:0 auto;padding:48px 24px 0}
+  .data-section{margin-bottom:48px}
+  .ds-title{font-family:'EB Garamond',serif;font-size:1.5rem;color:var(--text);border-bottom:2px solid #2a2a5c;padding-bottom:8px;margin-bottom:20px}
+  table.data-table{width:100%;border-collapse:collapse;font-size:0.88rem}
+  .data-table th{text-align:left;padding:10px 12px;background:#2a2a5c;color:#fff;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;font-weight:600}
+  .data-table td{padding:10px 12px;border-bottom:1px solid var(--border)}
+  .data-table tr:hover td{background:var(--cream)}
+  .colour-grid{display:flex;flex-wrap:wrap;gap:12px}
+  .colour-chip{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 14px;min-width:200px;flex:1}
+  .colour-swatch{width:36px;height:36px;border-radius:6px;flex-shrink:0;border:1px solid rgba(0,0,0,0.1)}
+  .colour-name{font-size:0.82rem;font-weight:600;color:var(--text)}
+  .colour-code{font-size:0.72rem;color:var(--grey)}
+  .alert-box{background:#fff8e8;border:1px solid var(--gold);border-left:4px solid var(--gold);border-radius:6px;padding:16px 18px;font-size:0.88rem;color:#5a4a10;margin-bottom:24px}
+  .info-box{background:#f0f4ff;border:1px solid #b0bcd8;border-left:4px solid #2a2a5c;border-radius:6px;padding:16px 18px;font-size:0.88rem;color:#1a1a3a;margin-bottom:24px}
+  .series-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:24px}
+  .series-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:18px 20px;border-top:3px solid #2a2a5c}
+  .sc-num{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:#2a2a5c;font-weight:700;margin-bottom:6px}
+  .sc-name{font-family:'EB Garamond',serif;font-size:1.15rem;color:var(--text);margin-bottom:8px}
+  .sc-facts{font-size:0.8rem;color:var(--grey);line-height:1.6}
+  .supplier-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:12px}
+  .supplier-card.featured{border-color:var(--gold);box-shadow:0 0 0 2px rgba(200,168,75,0.15)}
+  .sc-badge{background:var(--gold);color:#fff;font-size:0.62rem;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;border-radius:20px;font-weight:700;margin-bottom:6px;display:inline-block}
+  .sc-link{background:#2a2a5c;color:#fff;padding:9px 18px;border-radius:4px;font-size:0.82rem;font-weight:600;white-space:nowrap;transition:background 0.2s}
+  .sc-link:hover{background:#3a3a7c}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="hdr-inner">
+    <a href="../../index.html" class="logo">
+      <div class="logo-mark">MF</div>
+      <div class="logo-text">Marque<em>File</em></div>
+    </a>
+    <nav class="site-nav" id="site-nav">
+      <div class="nav-dd">
+        <a href="../../triumph/index.html">Cars &#9662;</a>
+        <div class="drop">
+          <a href="../../triumph/index.html">Triumph TR</a>
+          <a href="../../jaguar/index.html">Jaguar</a>
+        </div>
+      </div>
+      <a href="../../clubs/index.html">Clubs</a>
+      <a href="../../events/index.html">Events</a>
+      <a href="../../suppliers/index.html">Suppliers</a>
+      <a href="#" class="nav-cta">Cars for Sale</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-eyebrow">MarqueFile &rsaquo; Jaguar &rsaquo; E-Type</div>
+    <h1>Jaguar E-Type</h1>
+    <div class="hero-stats">
+      <div class="hs"><strong>1961–1975</strong>Production years</div>
+      <div class="hs"><strong>72,520</strong>Total produced</div>
+      <div class="hs"><strong>3 Series</strong>S1, S2, S3</div>
+      <div class="hs"><strong>3.8 – 5.3L</strong>Engine range</div>
+    </div>
+  </div>
+</div>
+<div class="page-body">
+
+  <div class="data-section">
+    <div class="ds-title">Overview</div>
+    <p style="font-size:0.95rem;color:var(--grey);line-height:1.7;margin-bottom:16px">Enzo Ferrari called it the most beautiful car in the world. The E-Type debuted at the 1961 Geneva Motor Show and caused a sensation — a 150mph grand tourer priced at £2,097. Over fourteen years and three series it evolved from the svelte Series 1 with its covered headlights and triple carburettors through the federalised Series 2 to the wide-tracked V12 Series 3. All remain among the most desirable classic cars in the world.</p>
+    <div class="alert-box">⚠️ <strong>Buyer's note:</strong> Early S1 cars (pre-1965) with flat floors, external bonnet latches and 3.8L engines command the highest premiums. Verify all numbers — Heritage Certificates from Jaguar Daimler Heritage Trust are strongly recommended.</div>
+  </div>
+
+  <div class="data-section">
+    <div class="ds-title">Series guide</div>
+    <div class="series-grid">
+      <div class="series-card">
+        <div class="sc-num">Series 1</div>
+        <div class="sc-name">1961–1968</div>
+        <div class="sc-facts">
+          3.8L (1961–1964): 265bhp, triple SU carbs<br>
+          4.2L (1964–1968): 265bhp, improved gearbox<br>
+          Covered headlights (early S1)<br>
+          External bonnet latches (to 1961)<br>
+          Bodies: OTS, FHC, 2+2 (from 1966)<br>
+          ~38,000 produced
+        </div>
+      </div>
+      <div class="series-card">
+        <div class="sc-num">Series 2</div>
+        <div class="sc-name">1968–1971</div>
+        <div class="sc-facts">
+          4.2L: detuned for US emissions (171bhp US)<br>
+          Open headlights, larger air intake<br>
+          Revised tail lights<br>
+          Power steering and A/C options<br>
+          Bodies: OTS, FHC, 2+2<br>
+          ~18,800 produced
+        </div>
+      </div>
+      <div class="series-card">
+        <div class="sc-num">Series 3</div>
+        <div class="sc-name">1971–1975</div>
+        <div class="sc-facts">
+          5.3L V12: 272bhp<br>
+          Wider track, flared arches<br>
+          V12 grille badge<br>
+          OTS and 2+2 only (no FHC)<br>
+          Power steering standard<br>
+          ~15,300 produced
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="data-section">
+    <div class="ds-title">Body colours</div>
+    <div class="info-box">Factory colours varied by series and year. Opalescent finishes were a Jaguar speciality in the early 1960s — these require specialist application and are more expensive to match.</div>
+    <div class="colour-grid">
+      <div class="colour-chip"><div class="colour-swatch" style="background:#f5f2e8"></div><div><div class="colour-name">Old English White</div><div class="colour-code">Jaguar 1 · All series</div></div></div>
+      <div class="colour-chip"><div class="colour-swatch" style="background:#cc1a1a"></div><div><div class="colour-name">Carmen Red</div><div class="colour-code">Jaguar 2 · All series</div></div></div>
+      <div class="colour-chip"><div class="colour-swatch" style="background:#1a3d1a"></div><div><div class="colour-name">British Racing Green</div><div class="colour-code">Jaguar 3 · All series</div></div></div>
+      <div class="colour-chip"><div class="colour-swatch" style="background:#3a3a3a"></div><div><div class="colour-name">Opalescent Gunmetal</div><div class="colour-code">Jaguar 6 · S1 mainly</div></div></div>
+      <div class="colour-chip"><div class="colour-swatch" style="background:#6a8ab0"></div><div><div class="colour-name">Opalescent Silver Blue</div><div class="colour-code">Jaguar 7 · S1</div></div></div>
+      <div class="colour-chip"><div class="colour-swatch" style="background:#e8d44d"></div><div><div class="colour-name">Primrose</div><div class="colour-code">Jaguar 9 · S1, S2</div></div></div>
+      <div class="colour-chip"><div class="colour-swatch" style="background:#1a1a1a"></div><div><div class="colour-name">Black</div><div class="colour-code">Jaguar 11 · All series</div></div></div>
+      <div class="colour-chip"><div class="colour-swatch" style="background:#8a6a30"></div><div><div class="colour-name">Opalescent Golden Sand</div><div class="colour-code">Jaguar 14 · S1</div></div></div>
+      <div class="colour-chip"><div class="colour-swatch" style="background:#5c3a6e"></div><div><div class="colour-name">Opalescent Dark Blue</div><div class="colour-code">Jaguar 15 · S1</div></div></div>
+      <div class="colour-chip"><div class="colour-swatch" style="background:#c07030"></div><div><div class="colour-name">Tan</div><div class="colour-code">Jaguar 19 · S2, S3</div></div></div>
+      <div class="colour-chip"><div class="colour-swatch" style="background:#3a5fa0"></div><div><div class="colour-name">Regency Red</div><div class="colour-code">Jaguar 21 · S2, S3</div></div></div>
+      <div class="colour-chip"><div class="colour-swatch" style="background:#b0c0d0"></div><div><div class="colour-name">Silver</div><div class="colour-code">Jaguar 23 · S3</div></div></div>
+    </div>
+  </div>
+
+  <div class="data-section">
+    <div class="ds-title">Interior trim specifications</div>
+    <table class="data-table">
+      <thead><tr><th>Colour</th><th>Material</th><th>Series</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Black</td><td>Connolly leather</td><td>S1, S2, S3</td><td>Most common. Standard on early cars</td></tr>
+        <tr><td>Red</td><td>Connolly leather</td><td>S1, S2, S3</td><td>Popular combination with white or BRG body</td></tr>
+        <tr><td>Tan / Biscuit</td><td>Connolly leather</td><td>S1, S2, S3</td><td>Warm tone, ages well</td></tr>
+        <tr><td>Blue</td><td>Connolly leather</td><td>S1, S2</td><td>Rarer — desirable on blue-bodied cars</td></tr>
+        <tr><td>Beige</td><td>Connolly leather</td><td>S2, S3</td><td>Later cars. Can look grubby if neglected</td></tr>
+      </tbody>
+    </table>
+    <div class="info-box" style="margin-top:16px">Original Connolly leather hide is no longer produced. Equivalent hides from Bridge of Weir (Scotland) are considered the closest modern match for concours restoration.</div>
+  </div>
+
+  <div class="data-section">
+    <div class="ds-title">What to look for when buying</div>
+    <table class="data-table">
+      <thead><tr><th>Area</th><th>What to check</th><th>Severity</th></tr></thead>
+      <tbody>
+        <tr><td>Numbers matching</td><td>Body, engine and gearbox numbers — verify against Heritage Certificate</td><td style="color:#c0392b;font-weight:600">Critical</td></tr>
+        <tr><td>Monocoque structure</td><td>Floor pan, sills, inner sills — expensive to restore if compromised</td><td style="color:#c0392b;font-weight:600">High</td></tr>
+        <tr><td>Bonnet alignment</td><td>Misalignment indicates accident damage or poor restoration</td><td style="color:#c0392b;font-weight:600">High</td></tr>
+        <tr><td>Cooling (V12)</td><td>S3 V12 runs hot. Check coolant condition and radiator efficiency</td><td style="color:#e67e22;font-weight:600">Medium</td></tr>
+        <tr><td>Electrical system</td><td>Lucas electrics — check all switches, instruments, windows (2+2)</td><td style="color:#e67e22;font-weight:600">Medium</td></tr>
+        <tr><td>Interior trim</td><td>Full leather retrim: £3,000–£6,000+. Check seat foam and door cards</td><td style="color:#e67e22;font-weight:600">Medium</td></tr>
+        <tr><td>Chrome work</td><td>Re-chroming is expensive. Check bumpers, headlight surrounds, grille</td><td style="color:#27ae60;font-weight:600">Lower</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="data-section">
+    <div class="ds-title">Clubs &amp; resources</div>
+    <div class="supplier-card">
+      <div><div class="sc-name">Jaguar Enthusiasts Club</div><div class="sc-desc">The largest Jaguar club in the world. Technical advice, spares, events and Heritage Certificate assistance.</div></div>
+      <a href="https://www.jec.org.uk" target="_blank" rel="noopener" class="sc-link">Visit →</a>
+    </div>
+    <div class="supplier-card">
+      <div><div class="sc-name">E-Type Club</div><div class="sc-desc">Dedicated to the E-Type in all series. Concours events, technical library and register.</div></div>
+      <a href="https://www.etypeclub.com" target="_blank" rel="noopener" class="sc-link">Visit →</a>
+    </div>
+  </div>
+
+  <div class="data-section">
+    <div class="ds-title">Interior trim suppliers</div>
+    <div class="supplier-card featured">
+      <div><div class="sc-badge">Featured Supplier</div><div class="sc-name">John Skinner Manufacturing</div><div class="sc-desc">Cheltenham-based manufacturers of original-specification interior trim kits for the Jaguar E-Type — carpets, seat covers, hood linings, door cards and transmission tunnel covers. Made in Britain since 1980.</div></div>
+      <a href="https://john-skinner.co.uk" target="_blank" rel="noopener" class="sc-link">View kits →</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="ft-inner">
+    <div class="ft-brand">
+      <div class="logo-mark" style="width:44px;height:44px;font-size:1.2rem;margin-bottom:10px">MF</div>
+      <div style="font-family:'EB Garamond',serif;font-size:1.2rem;color:#fff;margin-bottom:4px">Marque<em style="color:var(--gold)">File</em></div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.35);line-height:1.7">The classic car data resource.<br>Triumph TR · Jaguar</div>
+    </div>
+    <div class="ft-cols">
+      <div><h4>Cars</h4>
+        <a href="/Marlo-OpenClaw/classic-hub/triumph/">Triumph TR</a>
+        <a href="/Marlo-OpenClaw/classic-hub/jaguar/">Jaguar</a>
+      </div>
+      <div><h4>Directory</h4>
+        <a href="/Marlo-OpenClaw/classic-hub/clubs/">Clubs</a>
+        <a href="/Marlo-OpenClaw/classic-hub/events/">Events</a>
+        <a href="/Marlo-OpenClaw/classic-hub/suppliers/">Suppliers</a>
+      </div>
+      <div><h4>Classifieds</h4>
+        <a href="#">Cars for Sale</a>
+        <a href="#">List Your Car</a>
+      </div>
+    </div>
+  </div>
+  <div class="ft-base">
+    <span>&copy; 2026 MarqueFile. All rights reserved.</span>
+    <span>Data for reference only &mdash; always verify before purchase.</span>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const nav = document.getElementById('site-nav');
+  if(toggle && nav) toggle.addEventListener('click', () => {
+    nav.classList.toggle('open');
+  });
+</script>
+
+</body></html>

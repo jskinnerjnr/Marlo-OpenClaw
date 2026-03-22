@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Clubs Directory — MarqueFile</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --navy:#1c1c1c; --green:#2a5c3f; --green-light:#3a7a55; --gold:#c8a84b;
+    --cream:#f8f6f1; --warm:#efede9; --white:#fff; --grey:#6b6b6b;
+    --border:#e2ddd6; --text:#1a1a1a;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:16px;-webkit-text-size-adjust:100%}
+  body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);line-height:1.6}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+
+  /* ── HEADER ── */
+  .site-header{background:var(--navy);position:sticky;top:0;z-index:200;border-bottom:3px solid var(--green)}
+  .hdr-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{display:flex;align-items:center;gap:11px;text-decoration:none}
+  .logo-mark{width:38px;height:38px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:1.1rem;color:#fff;font-weight:600;flex-shrink:0}
+  .logo-text{font-family:'EB Garamond',serif;font-size:1.25rem;color:#fff;letter-spacing:0.04em}
+  .logo-text em{color:var(--gold);font-style:normal}
+  .site-nav{display:flex;align-items:center;gap:4px}
+  .site-nav a,.nav-dd>a{color:rgba(255,255,255,0.72);font-size:0.78rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;padding:20px 13px;display:block;transition:color 0.2s;white-space:nowrap;border-bottom:2px solid transparent}
+  .site-nav a:hover,.nav-dd>a:hover{color:#fff;border-bottom-color:var(--gold)}
+  .nav-dd{position:relative}
+  .nav-dd .drop{position:absolute;top:100%;left:0;background:var(--navy);border:1px solid rgba(255,255,255,0.1);border-top:2px solid var(--green);min-width:180px;display:none;flex-direction:column;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+  .nav-dd:hover .drop{display:flex}
+  .nav-dd .drop a{padding:11px 18px;font-size:0.8rem;border-bottom:1px solid rgba(255,255,255,0.07);border-left:none;color:rgba(255,255,255,0.7)}
+  .nav-dd .drop a:hover{background:var(--green);color:#fff}
+  .nav-cta{background:var(--green)!important;color:#fff!important;border-radius:4px;padding:9px 18px!important;margin-left:8px;border:none!important;font-weight:600!important}
+  .nav-cta:hover{background:var(--green-light)!important}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+  .nav-toggle span{width:24px;height:2px;background:#fff;border-radius:1px;display:block;transition:all 0.25s}
+  @media(max-width:768px){
+    .site-nav{display:none;position:absolute;top:62px;left:0;right:0;background:var(--navy);flex-direction:column;border-top:2px solid var(--green);padding:8px 0 20px;z-index:200}
+    .site-nav.open{display:flex}
+    .site-nav a,.nav-dd>a{padding:16px 28px;border-bottom:none;border-left:3px solid transparent;font-size:0.9rem}
+    .site-nav a:hover,.nav-dd>a:hover{border-left-color:var(--gold);border-bottom:none}
+    .nav-dd .drop{position:static;display:flex!important;box-shadow:none;border:none;background:rgba(255,255,255,0.05)}
+    .nav-dd .drop a{padding:12px 44px;font-size:0.82rem}
+    .nav-cta{margin:12px 28px 0!important;text-align:center;border-radius:4px!important;padding:16px 28px!important}
+    .nav-toggle{display:flex}
+  }
+
+  footer{background:#111;border-top:3px solid var(--green);padding:52px 24px 28px;margin-top:80px}
+  .ft-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:48px;margin-bottom:40px}
+  .ft-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .ft-cols h4{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.35);margin-bottom:14px;font-weight:600}
+  .ft-cols a{display:block;color:rgba(255,255,255,0.55);font-size:0.82rem;margin-bottom:8px;transition:color 0.2s}
+  .ft-cols a:hover{color:var(--gold)}
+  .ft-base{max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:0.74rem;color:rgba(255,255,255,0.25)}
+  @media(max-width:768px){.ft-inner{grid-template-columns:1fr}.ft-cols{grid-template-columns:repeat(2,1fr)}}
+
+  .page-hero{background:linear-gradient(135deg,#1c1c1c,#2a5c3f);padding:56px 24px 64px}
+  .page-hero-inner{max-width:1000px;margin:0 auto}
+  .hero-eyebrow{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);margin-bottom:14px;font-weight:600}
+  .page-hero h1{font-family:'EB Garamond',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;margin-bottom:10px}
+  .page-hero p{color:rgba(255,255,255,0.65);max-width:560px}
+  .page-body{max-width:1000px;margin:48px auto;padding:0 24px}
+  .filter-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+  .f-btn{padding:8px 18px;border-radius:20px;font-size:0.78rem;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:#fff;color:var(--grey);transition:all 0.2s}
+  .f-btn.active,.f-btn:hover{background:var(--green);color:#fff;border-color:var(--green)}
+  .club-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:22px 24px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;transition:box-shadow 0.2s}
+  .club-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.08)}
+  .cc-main{flex:1;min-width:0}
+  .cc-header{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap}
+  .cc-name{font-family:'EB Garamond',serif;font-size:1.25rem;color:var(--text)}
+  .cc-tag{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;padding:3px 10px;border-radius:20px;font-weight:700}
+  .tag-triumph{background:#e8f5ee;color:var(--green)}
+  .tag-jaguar{background:#e8e8f8;color:#2a2a5c}
+  .cc-desc{font-size:0.86rem;color:var(--grey);line-height:1.6;margin-bottom:10px}
+  .cc-meta{font-size:0.76rem;color:var(--grey);display:flex;gap:16px;flex-wrap:wrap}
+  .cc-links{display:flex;flex-direction:column;gap:8px;flex-shrink:0}
+  .cc-visit{background:var(--green);color:#fff;padding:9px 18px;border-radius:4px;font-size:0.8rem;font-weight:600;white-space:nowrap;transition:background 0.2s;text-align:center}
+  .cc-visit:hover{background:var(--green-light)}
+  .cc-email{font-size:0.76rem;color:var(--grey);text-align:center}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="hdr-inner">
+    <a href="../index.html" class="logo">
+      <div class="logo-mark">MF</div>
+      <div class="logo-text">Marque<em>File</em></div>
+    </a>
+    <nav class="site-nav" id="site-nav">
+      <div class="nav-dd">
+        <a href="../triumph/index.html">Cars &#9662;</a>
+        <div class="drop">
+          <a href="../triumph/index.html">Triumph TR</a>
+          <a href="../jaguar/index.html">Jaguar</a>
+        </div>
+      </div>
+      <a href="../clubs/index.html">Clubs</a>
+      <a href="../events/index.html">Events</a>
+      <a href="../suppliers/index.html">Suppliers</a>
+      <a href="#" class="nav-cta">Cars for Sale</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-eyebrow">MarqueFile &rsaquo; Directory</div>
+    <h1>Clubs Directory</h1>
+    <p>The definitive list of owners clubs for Triumph TR and Jaguar. Find your club, connect with fellow enthusiasts and access technical resources.</p>
+  </div>
+</div>
+<div class="page-body">
+  <div class="filter-row">
+    <button class="f-btn active" onclick="filterClubs('all',this)">All Clubs</button>
+    <button class="f-btn" onclick="filterClubs('triumph',this)">Triumph</button>
+    <button class="f-btn" onclick="filterClubs('jaguar',this)">Jaguar</button>
+  </div>
+  <div id="clubs-list">
+
+  <div class="club-card" data-marque="triumph">
+    <div class="cc-main">
+      <div class="cc-header">
+        <div class="cc-name">TR Register</div>
+        <div class="cc-tag tag-triumph">Triumph</div>
+      </div>
+      <div class="cc-desc">The primary owners club for all TR models. Over 8,000 members worldwide. Comprehensive spares scheme, technical advice, regional groups and the annual International weekend.</div>
+      <div class="cc-meta"><span>👥 8,000+ members</span><span>🌐 tr-register.co.uk</span><span>✉ office@tr-register.co.uk</span></div>
+    </div>
+    <div class="cc-links">
+      <a href="https://www.tr-register.co.uk" target="_blank" rel="noopener" class="cc-visit">Visit club →</a>
+      <div class="cc-email">office@tr-register.co.uk</div>
+    </div>
+  </div>
+  <div class="club-card" data-marque="triumph">
+    <div class="cc-main">
+      <div class="cc-header">
+        <div class="cc-name">Triumph Sports Six Club</div>
+        <div class="cc-tag tag-triumph">Triumph</div>
+      </div>
+      <div class="cc-desc">Covers all six-cylinder Triumphs including TR5, TR6, TR250 and the Vitesse. Excellent technical library and concours judging standards.</div>
+      <div class="cc-meta"><span>👥 5,000+ members</span><span>🌐 tssc.org.uk</span><span>✉ info@tssc.org.uk</span></div>
+    </div>
+    <div class="cc-links">
+      <a href="https://www.tssc.org.uk" target="_blank" rel="noopener" class="cc-visit">Visit club →</a>
+      <div class="cc-email">info@tssc.org.uk</div>
+    </div>
+  </div>
+  <div class="club-card" data-marque="jaguar">
+    <div class="cc-main">
+      <div class="cc-header">
+        <div class="cc-name">Jaguar Enthusiasts Club</div>
+        <div class="cc-tag tag-jaguar">Jaguar</div>
+      </div>
+      <div class="cc-desc">The world's largest Jaguar club with over 10,000 members. Full range of models covered. Heritage Certificate assistance, spares directory and events.</div>
+      <div class="cc-meta"><span>👥 10,000+ members</span><span>🌐 jec.org.uk</span><span>✉ info@jec.org.uk</span></div>
+    </div>
+    <div class="cc-links">
+      <a href="https://www.jec.org.uk" target="_blank" rel="noopener" class="cc-visit">Visit club →</a>
+      <div class="cc-email">info@jec.org.uk</div>
+    </div>
+  </div>
+  <div class="club-card" data-marque="jaguar">
+    <div class="cc-main">
+      <div class="cc-header">
+        <div class="cc-name">Jaguar Drivers Club</div>
+        <div class="cc-tag tag-jaguar">Jaguar</div>
+      </div>
+      <div class="cc-desc">One of the oldest Jaguar clubs, founded 1956. Strong concours and racing programme. Monthly magazine and regional centres.</div>
+      <div class="cc-meta"><span>👥 4,000+ members</span><span>🌐 jaguardriver.co.uk</span><span>✉ office@jaguardriver.co.uk</span></div>
+    </div>
+    <div class="cc-links">
+      <a href="https://www.jaguardriver.co.uk" target="_blank" rel="noopener" class="cc-visit">Visit club →</a>
+      <div class="cc-email">office@jaguardriver.co.uk</div>
+    </div>
+  </div>
+  <div class="club-card" data-marque="jaguar">
+    <div class="cc-main">
+      <div class="cc-header">
+        <div class="cc-name">E-Type Club</div>
+        <div class="cc-tag tag-jaguar">Jaguar</div>
+      </div>
+      <div class="cc-desc">Dedicated entirely to the E-Type in all series and body styles. Concours d'Elégance, technical articles and factory records research.</div>
+      <div class="cc-meta"><span>👥 2,000+ members</span><span>🌐 etypeclub.com</span><span>✉ info@etypeclub.com</span></div>
+    </div>
+    <div class="cc-links">
+      <a href="https://www.etypeclub.com" target="_blank" rel="noopener" class="cc-visit">Visit club →</a>
+      <div class="cc-email">info@etypeclub.com</div>
+    </div>
+  </div>
+  <div class="club-card" data-marque="jaguar">
+    <div class="cc-main">
+      <div class="cc-header">
+        <div class="cc-name">Jaguar Car Club</div>
+        <div class="cc-tag tag-jaguar">Jaguar</div>
+      </div>
+      <div class="cc-desc">Independent club with a friendly, inclusive approach. All Jaguar models welcome. Regular events and technical days.</div>
+      <div class="cc-meta"><span>👥 3,000+ members</span><span>🌐 jaguarcarclub.co.uk</span><span>✉ enquiries@jaguarcarclub.co.uk</span></div>
+    </div>
+    <div class="cc-links">
+      <a href="https://www.jaguarcarclub.co.uk" target="_blank" rel="noopener" class="cc-visit">Visit club →</a>
+      <div class="cc-email">enquiries@jaguarcarclub.co.uk</div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<footer>
+  <div class="ft-inner">
+    <div class="ft-brand">
+      <div class="logo-mark" style="width:44px;height:44px;font-size:1.2rem;margin-bottom:10px">MF</div>
+      <div style="font-family:'EB Garamond',serif;font-size:1.2rem;color:#fff;margin-bottom:4px">Marque<em style="color:var(--gold)">File</em></div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.35);line-height:1.7">The classic car data resource.<br>Triumph TR · Jaguar</div>
+    </div>
+    <div class="ft-cols">
+      <div><h4>Cars</h4>
+        <a href="/Marlo-OpenClaw/classic-hub/triumph/">Triumph TR</a>
+        <a href="/Marlo-OpenClaw/classic-hub/jaguar/">Jaguar</a>
+      </div>
+      <div><h4>Directory</h4>
+        <a href="/Marlo-OpenClaw/classic-hub/clubs/">Clubs</a>
+        <a href="/Marlo-OpenClaw/classic-hub/events/">Events</a>
+        <a href="/Marlo-OpenClaw/classic-hub/suppliers/">Suppliers</a>
+      </div>
+      <div><h4>Classifieds</h4>
+        <a href="#">Cars for Sale</a>
+        <a href="#">List Your Car</a>
+      </div>
+    </div>
+  </div>
+  <div class="ft-base">
+    <span>&copy; 2026 MarqueFile. All rights reserved.</span>
+    <span>Data for reference only &mdash; always verify before purchase.</span>
+  </div>
+</footer>
+
+<script>
+  const toggle=document.getElementById('nav-toggle'),nav=document.getElementById('site-nav');
+  if(toggle&&nav)toggle.addEventListener('click',()=>nav.classList.toggle('open'));
+  function filterClubs(marque,btn){
+    document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.club-card').forEach(c=>{
+      c.style.display=(marque==='all'||c.dataset.marque===marque)?'flex':'none';
+    });
+  }
+</script>
+</body></html>

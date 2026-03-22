@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Triumph TR6 — Production Data, Colours &amp; Specs — MarqueFile</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --navy:#1c1c1c; --green:#2a5c3f; --green-light:#3a7a55; --gold:#c8a84b;
+    --cream:#f8f6f1; --warm:#efede9; --white:#fff; --grey:#6b6b6b;
+    --border:#e2ddd6; --text:#1a1a1a;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:16px;-webkit-text-size-adjust:100%}
+  body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);line-height:1.6}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+
+  /* ── HEADER ── */
+  .site-header{background:var(--navy);position:sticky;top:0;z-index:200;border-bottom:3px solid var(--green)}
+  .hdr-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{display:flex;align-items:center;gap:11px;text-decoration:none}
+  .logo-mark{width:38px;height:38px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:1.1rem;color:#fff;font-weight:600;flex-shrink:0}
+  .logo-text{font-family:'EB Garamond',serif;font-size:1.25rem;color:#fff;letter-spacing:0.04em}
+  .logo-text em{color:var(--gold);font-style:normal}
+  .site-nav{display:flex;align-items:center;gap:4px}
+  .site-nav a,.nav-dd>a{color:rgba(255,255,255,0.72);font-size:0.78rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;padding:20px 13px;display:block;transition:color 0.2s;white-space:nowrap;border-bottom:2px solid transparent}
+  .site-nav a:hover,.nav-dd>a:hover{color:#fff;border-bottom-color:var(--gold)}
+  .nav-dd{position:relative}
+  .nav-dd .drop{position:absolute;top:100%;left:0;background:var(--navy);border:1px solid rgba(255,255,255,0.1);border-top:2px solid var(--green);min-width:180px;display:none;flex-direction:column;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+  .nav-dd:hover .drop{display:flex}
+  .nav-dd .drop a{padding:11px 18px;font-size:0.8rem;border-bottom:1px solid rgba(255,255,255,0.07);border-left:none;color:rgba(255,255,255,0.7)}
+  .nav-dd .drop a:hover{background:var(--green);color:#fff}
+  .nav-cta{background:var(--green)!important;color:#fff!important;border-radius:4px;padding:9px 18px!important;margin-left:8px;border:none!important;font-weight:600!important}
+  .nav-cta:hover{background:var(--green-light)!important}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+  .nav-toggle span{width:24px;height:2px;background:#fff;border-radius:1px;display:block;transition:all 0.25s}
+  @media(max-width:768px){
+    .site-nav{display:none;position:absolute;top:62px;left:0;right:0;background:var(--navy);flex-direction:column;border-top:2px solid var(--green);padding:8px 0 20px;z-index:200}
+    .site-nav.open{display:flex}
+    .site-nav a,.nav-dd>a{padding:16px 28px;border-bottom:none;border-left:3px solid transparent;font-size:0.9rem}
+    .site-nav a:hover,.nav-dd>a:hover{border-left-color:var(--gold);border-bottom:none}
+    .nav-dd .drop{position:static;display:flex!important;box-shadow:none;border:none;background:rgba(255,255,255,0.05)}
+    .nav-dd .drop a{padding:12px 44px;font-size:0.82rem}
+    .nav-cta{margin:12px 28px 0!important;text-align:center;border-radius:4px!important;padding:16px 28px!important}
+    .nav-toggle{display:flex}
+  }
+
+  footer{background:#111;border-top:3px solid var(--green);padding:52px 24px 28px;margin-top:80px}
+  .ft-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:48px;margin-bottom:40px}
+  .ft-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .ft-cols h4{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.35);margin-bottom:14px;font-weight:600}
+  .ft-cols a{display:block;color:rgba(255,255,255,0.55);font-size:0.82rem;margin-bottom:8px;transition:color 0.2s}
+  .ft-cols a:hover{color:var(--gold)}
+  .ft-base{max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:0.74rem;color:rgba(255,255,255,0.25)}
+  @media(max-width:768px){.ft-inner{grid-template-columns:1fr}.ft-cols{grid-template-columns:repeat(2,1fr)}}
+
+  .page-hero{background:linear-gradient(135deg,#1a3a2a,#2a5c3f);padding:60px 24px 70px}
+  .page-hero-inner{max-width:1000px;margin:0 auto}
+  .hero-eyebrow{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);margin-bottom:14px;font-weight:600}
+  .page-hero h1{font-family:'EB Garamond',serif;font-size:clamp(2rem,5vw,3.2rem);color:#fff;margin-bottom:12px}
+  .hero-stats{display:flex;flex-wrap:wrap;gap:28px;margin-top:28px}
+  .hs{color:rgba(255,255,255,0.55);font-size:0.78rem;text-transform:uppercase;letter-spacing:0.08em}
+  .hs strong{display:block;font-family:'EB Garamond',serif;font-size:1.8rem;color:#fff;font-weight:400;letter-spacing:0;margin-bottom:2px}
+  .page-body{max-width:1000px;margin:0 auto;padding:48px 24px 0}
+  .data-section{margin-bottom:48px}
+  .ds-title{font-family:'EB Garamond',serif;font-size:1.5rem;color:var(--text);border-bottom:2px solid var(--green);padding-bottom:8px;margin-bottom:20px}
+  table.data-table{width:100%;border-collapse:collapse;font-size:0.88rem}
+  .data-table th{text-align:left;padding:10px 12px;background:var(--green);color:#fff;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;font-weight:600}
+  .data-table td{padding:10px 12px;border-bottom:1px solid var(--border)}
+  .data-table tr:hover td{background:var(--cream)}
+  .colour-grid{display:flex;flex-wrap:wrap;gap:12px}
+  .colour-chip{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 14px;min-width:200px;flex:1}
+  .colour-swatch{width:36px;height:36px;border-radius:6px;flex-shrink:0;border:1px solid rgba(0,0,0,0.1)}
+  .colour-name{font-size:0.82rem;font-weight:600;color:var(--text)}
+  .colour-code{font-size:0.72rem;color:var(--grey)}
+  .alert-box{background:#fff8e8;border:1px solid var(--gold);border-left:4px solid var(--gold);border-radius:6px;padding:16px 18px;font-size:0.88rem;color:#5a4a10;margin-bottom:24px}
+  .info-box{background:#f0f8f3;border:1px solid #b0d8be;border-left:4px solid var(--green);border-radius:6px;padding:16px 18px;font-size:0.88rem;color:#1a3a2a;margin-bottom:24px}
+  .supplier-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:12px}
+  .supplier-card.featured{border-color:var(--gold);box-shadow:0 0 0 2px rgba(200,168,75,0.15)}
+  .sc-badge{background:var(--gold);color:#fff;font-size:0.62rem;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;border-radius:20px;font-weight:700;margin-bottom:6px;display:inline-block}
+  .sc-name{font-weight:700;color:var(--text);font-size:1rem}
+  .sc-desc{font-size:0.82rem;color:var(--grey);margin-top:4px}
+  .sc-link{background:var(--green);color:#fff;padding:9px 18px;border-radius:4px;font-size:0.82rem;font-weight:600;white-space:nowrap;transition:background 0.2s}
+  .sc-link:hover{background:var(--green-light)}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  @media(max-width:768px){.two-col{grid-template-columns:1fr}.hero-stats{gap:20px}}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="hdr-inner">
+    <a href="../../index.html" class="logo">
+      <div class="logo-mark">MF</div>
+      <div class="logo-text">Marque<em>File</em></div>
+    </a>
+    <nav class="site-nav" id="site-nav">
+      <div class="nav-dd">
+        <a href="../../triumph/index.html">Cars &#9662;</a>
+        <div class="drop">
+          <a href="../../triumph/index.html">Triumph TR</a>
+          <a href="../../jaguar/index.html">Jaguar</a>
+        </div>
+      </div>
+      <a href="../../clubs/index.html">Clubs</a>
+      <a href="../../events/index.html">Events</a>
+      <a href="../../suppliers/index.html">Suppliers</a>
+      <a href="#" class="nav-cta">Cars for Sale</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-eyebrow">MarqueFile &rsaquo; Triumph TR &rsaquo; TR6</div>
+    <h1>Triumph TR6</h1>
+    <div class="hero-stats">
+      <div class="hs"><strong>1969–1976</strong>Production years</div>
+      <div class="hs"><strong>94,619</strong>Total produced</div>
+      <div class="hs"><strong>2498cc</strong>Engine</div>
+      <div class="hs"><strong>150bhp</strong>UK specification</div>
+    </div>
+  </div>
+</div>
+<div class="page-body">
+
+  <div class="data-section">
+    <div class="ds-title">Overview</div>
+    <p style="font-size:0.95rem;color:var(--grey);line-height:1.7;margin-bottom:16px">The TR6 is the best-selling TR of all time and arguably the definitive sports car of its era. Styled by Karmann of Germany, it retained the proven TR5 drivetrain — a 2498cc straight-six with Lucas fuel injection on UK-spec cars producing 150bhp. American emissions regulations meant US-market cars received twin carburettors and a detuned 104bhp. The TR6 ran in essentially unchanged form for seven years, a testament to the correctness of the design.</p>
+    <div class="alert-box">⚠️ <strong>Buyer's note:</strong> Chassis numbers alone don't confirm UK vs US specification. Always verify the fuel system — injected cars command a significant premium.</div>
+  </div>
+
+  <div class="data-section">
+    <div class="ds-title">Production by year</div>
+    <table class="data-table">
+      <thead><tr><th>Year</th><th>Chassis range (CR prefix)</th><th>Approx. units</th><th>Key changes</th></tr></thead>
+      <tbody>
+        <tr><td>1969</td><td>CC50001 – CC75000</td><td>~3,000</td><td>Launch. Karmann body, Lucas PI injection (UK), Stromberg carbs (US)</td></tr>
+        <tr><td>1970</td><td>CC75001 – CC85000</td><td>~6,800</td><td>Revised dashboard, improved hood</td></tr>
+        <tr><td>1971</td><td>CC85001 – CC99999 / CF1</td><td>~8,500</td><td>Recirculatory ball steering introduced</td></tr>
+        <tr><td>1972</td><td>CF1 – CF15000</td><td>~9,800</td><td>US cars: emissions changes, detuned to 104bhp</td></tr>
+        <tr><td>1973</td><td>CF15001 – CF28000</td><td>~14,900</td><td>Overdrive option widely available</td></tr>
+        <tr><td>1974</td><td>CF28001 – CF40000</td><td>~10,400</td><td>US bumper regulations — rubber over-riders added</td></tr>
+        <tr><td>1975</td><td>CF40001 – CF52000</td><td>~8,600</td><td>Last of the injected UK cars (Mar 1975)</td></tr>
+        <tr><td>1976</td><td>CF52001 – CF58000+</td><td>~6,200</td><td>Final year. UK cars now Zenith-Stromberg carburettors</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="data-section">
+    <div class="ds-title">Body colours</div>
+    <div class="info-box">Colours listed are factory options. Not all colours were available in all years. Paint codes are Standard Triumph references.</div>
+    <div class="colour-grid">
+      <div class="colour-chip"><div class="colour-swatch" style="background:#f5f0e8"></div><div><div class="colour-name">Jasmine Yellow</div><div class="colour-code">Triumph 19 · Early production</div></div></div>
+      <div class="colour-chip"><div class="colour-swatch" style="background:#cc1111"></div><div><div class="colour-name">Signal Red</div><div class="colour-code">Triumph 32 · Full run</div></div></div>
+      <div class="colour-chip"><div class="colour-swatch" style="background:#5c1a2e"></div><div><div class="colour-name">Damson</div><div class="colour-code">Triumph 62 · 1970–1972</div></div></div>
+      <div class="colour-chip"><div class="colour-swatch" style="background:#d4801a"></div><div><div class="colour-name">Saffron</div><div class="colour-code">Triumph 73 · 1971–1974</div></div></div>
+      <div class="colour-chip"><div class="colour-swatch" style="background:#1e5c2a"></div><div><div class="colour-name">Emerald Green</div><div class="colour-code">Triumph 61 · 1969–1972</div></div></div>
+      <div class="colour-chip"><div class="colour-swatch" style="background:#3a5fa0"></div><div><div class="colour-name">French Blue</div><div class="colour-code">Triumph 76 · 1972–1974</div></div></div>
+      <div class="colour-chip"><div class="colour-swatch" style="background:#c0392b"></div><div><div class="colour-name">Pimento</div><div class="colour-code">Triumph 66 · 1973–1976</div></div></div>
+      <div class="colour-chip"><div class="colour-swatch" style="background:#e8d44d"></div><div><div class="colour-name">Mimosa</div><div class="colour-code">Triumph 82 · 1974–1976</div></div></div>
+      <div class="colour-chip"><div class="colour-swatch" style="background:#f8f8f6"></div><div><div class="colour-name">White</div><div class="colour-code">Triumph 19W · Full run</div></div></div>
+      <div class="colour-chip"><div class="colour-swatch" style="background:#aa1133"></div><div><div class="colour-name">Carmine</div><div class="colour-code">Triumph 72 · 1971–1973</div></div></div>
+      <div class="colour-chip"><div class="colour-swatch" style="background:#1a3d1a"></div><div><div class="colour-name">Racing Green</div><div class="colour-code">Triumph 65 · 1969–1971</div></div></div>
+      <div class="colour-chip"><div class="colour-swatch" style="background:#c4834a"></div><div><div class="colour-name">Sienna</div><div class="colour-code">Triumph 84 · 1974–1976</div></div></div>
+      <div class="colour-chip"><div class="colour-swatch" style="background:#3a6ea0"></div><div><div class="colour-name">Valencia Blue</div><div class="colour-code">Triumph 78 · 1974–1976</div></div></div>
+      <div class="colour-chip"><div class="colour-swatch" style="background:#d4c46a"></div><div><div class="colour-name">Strontium Yellow</div><div class="colour-code">Triumph 86 · 1975–1976</div></div></div>
+      <div class="colour-chip"><div class="colour-swatch" style="background:#c8a84b"></div><div><div class="colour-name">Maple</div><div class="colour-code">Triumph 71 · 1970–1972</div></div></div>
+    </div>
+  </div>
+
+  <div class="data-section">
+    <div class="ds-title">Interior trim specifications</div>
+    <div class="two-col">
+      <div>
+        <table class="data-table">
+          <thead><tr><th>Colour</th><th>Material</th><th>Years available</th></tr></thead>
+          <tbody>
+            <tr><td>Black</td><td>Vinyl / Leather option</td><td>Full run</td></tr>
+            <tr><td>Shadow (Beige)</td><td>Vinyl / Leather option</td><td>Full run</td></tr>
+            <tr><td>Chestnut</td><td>Vinyl / Leather option</td><td>1972–1976</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="info-box" style="margin-bottom:0"><strong>Original specification:</strong> Ambla vinyl was standard fitment. Leather was a cost option. Carpet was loop-pile in matching colour. Door cards and hood lining in complementary material. Seat piping typically in contrasting colour on earlier cars.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="data-section">
+    <div class="ds-title">What to look for when buying</div>
+    <table class="data-table">
+      <thead><tr><th>Area</th><th>What to check</th><th>Severity</th></tr></thead>
+      <tbody>
+        <tr><td>Chassis rails</td><td>Rot in the outriggers and main rails — common and expensive to repair</td><td style="color:#c0392b;font-weight:600">High</td></tr>
+        <tr><td>Sills</td><td>Structural sills rust from inside out. Probe carefully — filler hides rot</td><td style="color:#c0392b;font-weight:600">High</td></tr>
+        <tr><td>Lucas PI injection</td><td>Metering unit wear, fuel pressure issues. Specialist knowledge required</td><td style="color:#e67e22;font-weight:600">Medium</td></tr>
+        <tr><td>Overdrive</td><td>Check engagement — solenoid and isolator switch common failures</td><td style="color:#e67e22;font-weight:600">Medium</td></tr>
+        <tr><td>Interior trim</td><td>Hood, carpets and seats deteriorate with age. Full retrim can cost £2–4k</td><td style="color:#e67e22;font-weight:600">Medium</td></tr>
+        <tr><td>Differential</td><td>Whining on overrun indicates wear. Parts available but not cheap</td><td style="color:#27ae60;font-weight:600">Lower</td></tr>
+        <tr><td>Hood (soft top)</td><td>Check for leaks at seams and rear window crazing</td><td style="color:#27ae60;font-weight:600">Lower</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="data-section">
+    <div class="ds-title">Clubs &amp; resources</div>
+    <div class="supplier-card">
+      <div><div class="sc-name">TR Register</div><div class="sc-desc">The primary owners club for all TR models. Excellent technical library, spares scheme and events programme.</div></div>
+      <a href="https://www.tr-register.co.uk" target="_blank" rel="noopener" class="sc-link">Visit →</a>
+    </div>
+    <div class="supplier-card">
+      <div><div class="sc-name">Triumph Sports Six Club</div><div class="sc-desc">Covers all six-cylinder Triumphs including the TR5 and TR6. Technical advice and concours judging.</div></div>
+      <a href="https://www.tssc.org.uk" target="_blank" rel="noopener" class="sc-link">Visit →</a>
+    </div>
+  </div>
+
+  <div class="data-section">
+    <div class="ds-title">Interior trim suppliers</div>
+    <div class="supplier-card featured">
+      <div><div class="sc-badge">Featured Supplier</div><div class="sc-name">John Skinner Manufacturing</div><div class="sc-desc">Cheltenham-based manufacturers of original-specification interior trim kits for the TR6 — carpets, seats, hood lining, door cards and more. Made in Britain since 1980.</div></div>
+      <a href="https://john-skinner.co.uk" target="_blank" rel="noopener" class="sc-link">View kits →</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="ft-inner">
+    <div class="ft-brand">
+      <div class="logo-mark" style="width:44px;height:44px;font-size:1.2rem;margin-bottom:10px">MF</div>
+      <div style="font-family:'EB Garamond',serif;font-size:1.2rem;color:#fff;margin-bottom:4px">Marque<em style="color:var(--gold)">File</em></div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.35);line-height:1.7">The classic car data resource.<br>Triumph TR · Jaguar</div>
+    </div>
+    <div class="ft-cols">
+      <div><h4>Cars</h4>
+        <a href="/Marlo-OpenClaw/classic-hub/triumph/">Triumph TR</a>
+        <a href="/Marlo-OpenClaw/classic-hub/jaguar/">Jaguar</a>
+      </div>
+      <div><h4>Directory</h4>
+        <a href="/Marlo-OpenClaw/classic-hub/clubs/">Clubs</a>
+        <a href="/Marlo-OpenClaw/classic-hub/events/">Events</a>
+        <a href="/Marlo-OpenClaw/classic-hub/suppliers/">Suppliers</a>
+      </div>
+      <div><h4>Classifieds</h4>
+        <a href="#">Cars for Sale</a>
+        <a href="#">List Your Car</a>
+      </div>
+    </div>
+  </div>
+  <div class="ft-base">
+    <span>&copy; 2026 MarqueFile. All rights reserved.</span>
+    <span>Data for reference only &mdash; always verify before purchase.</span>
+  </div>
+</footer>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const nav = document.getElementById('site-nav');
+  if(toggle && nav) toggle.addEventListener('click', () => {
+    nav.classList.toggle('open');
+  });
+</script>
+
+</body></html>
