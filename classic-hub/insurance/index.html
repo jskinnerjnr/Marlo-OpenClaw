@@ -1,0 +1,220 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Classic Car Insurance — MarqueFile</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','GA_MEASUREMENT_ID');</script>
+<style>
+
+  :root{--green:#2a5c3f;--gl:#3a7a55;--gold:#c8a84b;--cream:#f8f6f1;--white:#fff;--grey:#6b6b6b;--border:#e2ddd6;--text:#1a1a1a;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  .site-header{background:#1c1c1c;position:sticky;top:0;z-index:200;border-bottom:3px solid var(--green)}
+  .hdr-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{display:flex;align-items:center;gap:11px}
+  .logo-mark{width:38px;height:38px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:1.1rem;color:#fff;font-weight:600;flex-shrink:0}
+  .logo-text{font-family:'EB Garamond',serif;font-size:1.25rem;color:#fff;letter-spacing:0.04em}
+  .logo-text em{color:var(--gold);font-style:normal}
+  .site-nav{display:flex;align-items:center;gap:4px}
+  .site-nav a,.nav-dd>a{color:rgba(255,255,255,0.72);font-size:0.78rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;padding:20px 13px;display:block;transition:color 0.2s;white-space:nowrap;border-bottom:2px solid transparent}
+  .site-nav a:hover,.nav-dd>a:hover{color:#fff;border-bottom-color:var(--gold)}
+  .nav-dd{position:relative}
+  .nav-dd .drop{position:absolute;top:100%;left:0;background:#1c1c1c;border:1px solid rgba(255,255,255,0.1);border-top:2px solid var(--green);min-width:190px;display:none;flex-direction:column;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+  .nav-dd:hover .drop{display:flex}
+  .nav-dd .drop a{padding:11px 18px;font-size:0.8rem;border-bottom:1px solid rgba(255,255,255,0.07);color:rgba(255,255,255,0.7)}
+  .nav-dd .drop a:hover{background:var(--green);color:#fff}
+  .nav-cta{background:var(--green)!important;color:#fff!important;border-radius:4px;padding:9px 18px!important;margin-left:8px;border:none!important;font-weight:600!important}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+  .nav-toggle span{width:24px;height:2px;background:#fff;border-radius:1px;display:block}
+  @media(max-width:768px){
+    .site-nav{display:none;position:absolute;top:62px;left:0;right:0;background:#1c1c1c;flex-direction:column;border-top:2px solid var(--green);padding:8px 0 20px;z-index:200}
+    .site-nav.open{display:flex}
+    .site-nav a,.nav-dd>a{padding:16px 28px;border-bottom:none;border-left:3px solid transparent;font-size:0.9rem}
+    .site-nav a:hover,.nav-dd>a:hover{border-left-color:var(--gold);border-bottom:none}
+    .nav-dd .drop{position:static;display:flex!important;box-shadow:none;border:none;background:rgba(255,255,255,0.05)}
+    .nav-dd .drop a{padding:12px 44px}
+    .nav-cta{margin:12px 28px 0!important;text-align:center;padding:16px 28px!important;border-radius:4px!important}
+    .nav-toggle{display:flex}
+  }
+  footer{background:#111;border-top:3px solid var(--green);padding:52px 24px 28px;margin-top:80px}
+  .ft-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:48px;margin-bottom:40px}
+  .ft-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .ft-cols h4{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.35);margin-bottom:14px;font-weight:600}
+  .ft-cols a{display:block;color:rgba(255,255,255,0.55);font-size:0.82rem;margin-bottom:8px;transition:color 0.2s}
+  .ft-cols a:hover{color:var(--gold)}
+  .ft-base{max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:0.74rem;color:rgba(255,255,255,0.25)}
+  @media(max-width:768px){.ft-inner{grid-template-columns:1fr}.ft-cols{grid-template-columns:repeat(2,1fr)}}
+  .page-hero{padding:56px 24px 64px}
+  .page-hero-inner,.page-body{max-width:1100px;margin:0 auto;padding:0 24px}
+  .page-body{margin-top:48px;margin-bottom:48px}
+  .hero-eyebrow{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);margin-bottom:14px;font-weight:600}
+  .page-hero h1{font-family:'EB Garamond',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;margin-bottom:10px}
+  .page-hero p{color:rgba(255,255,255,0.65);max-width:620px}
+  .section-title{font-family:'EB Garamond',serif;font-size:1.7rem;color:var(--text);border-bottom:2px solid var(--green);padding-bottom:8px;margin:48px 0 24px}
+  .f-btn{padding:7px 15px;border-radius:20px;font-size:0.76rem;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:#fff;color:var(--grey);transition:all 0.2s;white-space:nowrap}
+  .f-btn.active,.f-btn:hover{background:var(--green);color:#fff;border-color:var(--green)}
+  .filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+
+  .ins-hero{background:linear-gradient(135deg,#1c1c1c,#1a2a4a)}
+  .ins-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px}
+  .ic{background:#fff;border:1px solid var(--border);border-radius:10px;padding:20px 22px;display:flex;flex-direction:column;transition:box-shadow 0.2s}
+  .ic:hover{box-shadow:0 4px 20px rgba(0,0,0,0.08)}
+  .ic.featured{border-color:var(--gold);box-shadow:0 0 0 2px rgba(200,168,75,0.12)}
+  .ic-feat{background:var(--gold);color:#fff;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;border-radius:20px;font-weight:700;margin-bottom:8px;display:inline-block;align-self:flex-start}
+  .ic-name{font-family:'EB Garamond',serif;font-size:1.2rem;margin-bottom:2px}
+  .ic-hq{font-size:0.74rem;color:var(--grey);margin-bottom:2px}
+  .ic-type{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--green);font-weight:600;margin-bottom:10px}
+  .ic-desc{font-size:0.83rem;color:var(--grey);line-height:1.55;flex:1;margin-bottom:10px}
+  .ic-features{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+  .ic-feature{font-size:0.72rem;background:#e8f5ee;color:var(--green);padding:3px 8px;border-radius:12px;font-weight:600}
+  .ic-feature.no{background:#f5e8e8;color:#8a2020}
+  .ic-best{font-size:0.76rem;color:var(--grey);margin-bottom:6px}<span style="font-weight:600;color:var(--text)">Best for:</span>
+  .ic-tip{font-size:0.76rem;background:#fef9e8;border-left:3px solid var(--gold);padding:8px 10px;border-radius:0 6px 6px 0;color:#5a4010;margin-bottom:14px;line-height:1.5}
+  .ic-link{background:var(--green);color:#fff;padding:9px 16px;border-radius:4px;font-size:0.8rem;font-weight:600;transition:background 0.2s;text-align:center;display:block}
+  .ic-link:hover{background:var(--gl)}
+  .tips-box{background:#fff;border:1px solid var(--border);border-radius:10px;padding:24px 28px;margin-bottom:40px}
+  .tips-box h3{font-family:'EB Garamond',serif;font-size:1.25rem;margin-bottom:14px}
+  .tips-list{list-style:none;font-size:0.86rem;color:var(--grey)}
+  .tips-list li{padding:7px 0;border-bottom:1px solid var(--border);display:flex;gap:8px;line-height:1.5}
+  .tips-list li:last-child{border-bottom:none}
+  .tips-list li::before{content:'💡';flex-shrink:0}
+</style></head><body>
+<header class="site-header">
+  <div class="hdr-inner">
+    <a href="../index.html" class="logo"><div class="logo-mark">MF</div><div class="logo-text">Marque<em>File</em></div></a>
+    <nav class="site-nav" id="site-nav">
+      <div class="nav-dd"><a href="../triumph/index.html">Cars &#9662;</a>
+        <div class="drop"><a href="../triumph/index.html">Triumph TR</a><a href="../jaguar/index.html">Jaguar</a></div>
+      </div>
+      <div class="nav-dd"><a href="../clubs/index.html">Directory &#9662;</a>
+        <div class="drop">
+          <a href="../clubs/index.html">Clubs</a><a href="../suppliers/index.html">Suppliers</a>
+          <a href="../publications/index.html">Publications</a><a href="../insurance/index.html">Insurance</a>
+          <a href="../storage/index.html">Storage</a>
+        </div>
+      </div>
+      <div class="nav-dd"><a href="../valuations/index.html">Market &#9662;</a>
+        <div class="drop">
+          <a href="../valuations/index.html">Price Guides</a>
+          <a href="../classifieds/index.html">Cars for Sale</a>
+          <a href="../classifieds/sell.html">Sell Your Car</a>
+        </div>
+      </div>
+      <a href="../classifieds/index.html" class="nav-cta">Cars for Sale</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="page-hero ins-hero">
+  <div class="page-hero-inner">
+    <div class="hero-eyebrow">MarqueFile › Directory</div>
+    <h1>Classic Car Insurance</h1>
+    <p>Specialist insurers who understand the value of your Triumph or Jaguar — and won't treat it like a Ford Fiesta when you need to claim.</p>
+  </div>
+</div>
+<div class="page-body">
+  <div class="tips-box">
+    <h3>Before you choose — what to check</h3>
+    <ul class="tips-list">
+      <li><strong>Agreed value vs market value</strong> — always insist on agreed value. Market value policies let the insurer argue the figure down at claim time.</li>
+      <li><strong>Salvage rights</strong> — make sure you retain the right to buy back a written-off car. Classic salvage has genuine value.</li>
+      <li><strong>Laid-up cover</strong> — if you store for winter, a SORN/laid-up policy is much cheaper than full road cover.</li>
+      <li><strong>Club membership discount</strong> — TR Register, JEC and JDC members get discounts with several of the insurers below. Join first, then get a quote.</li>
+      <li><strong>Mileage limit</strong> — most classic policies have annual mileage limits (typically 3,000–7,500 miles). Declare your realistic usage honestly.</li>
+      <li><strong>Modification disclosure</strong> — non-standard wheels, engine upgrades, roll bars — declare everything. Undisclosed mods void claims.</li>
+    </ul>
+  </div>
+  <div class="ins-grid">
+  <div class="ic  featured">
+    <div class="ic-feat">Recommended</div>
+    <div class="ic-name">Hagerty UK</div>
+    <div class="ic-hq">🇬🇧 UK (US parent — Hagerty Inc.)</div>
+    <div class="ic-type">Specialist</div>
+    <div class="ic-desc">The world's largest classic car insurer and valuation authority. Agreed-value policies with no depreciation on claims. Strong reputation and deep understanding of the classic car market. Also offer breakdown cover and valuation tools free to policy holders.</div>
+    <div class="ic-features"><span class="ic-feature">✓ Agreed value</span><span class="ic-feature">✓ Laid-up cover</span><span class="ic-feature">✓ Club discount</span><span class="ic-feature">✓ Breakdown cover</span><span class="ic-feature">✓ Salvage rights</span>
+    </div>
+    <div class="ic-best" style="margin-bottom:6px"><strong style="color:var(--text)">Best for:</strong> All models — particularly strong on E-Type and high-value classics</div>
+    <div class="ic-tip">💡 Hagerty include free access to their valuation guide with every policy — worth it alone.</div>
+    <a href="https://www.hagerty.co.uk?utm_source=marquefile&utm_medium=insurance&utm_campaign=directory" target="_blank" rel="noopener" class="ic-link">Get a quote at hagerty.co.uk →</a>
+  </div>
+  <div class="ic  featured">
+    <div class="ic-feat">Recommended</div>
+    <div class="ic-name">Footman James</div>
+    <div class="ic-hq">🇬🇧 Hagley, West Midlands</div>
+    <div class="ic-type">Specialist</div>
+    <div class="ic-desc">One of the UK's most established classic car insurance specialists. Strong club relationships — often the insurer recommended by TR Register and JEC. Flexible agreed value, limited mileage options and laid-up (SORN) policies.</div>
+    <div class="ic-features"><span class="ic-feature">✓ Agreed value</span><span class="ic-feature">✓ Laid-up cover</span><span class="ic-feature">✓ Club discount</span><span class="ic-feature no">– Breakdown cover</span><span class="ic-feature">✓ Salvage rights</span>
+    </div>
+    <div class="ic-best" style="margin-bottom:6px"><strong style="color:var(--text)">Best for:</strong> Triumph TR and Jaguar — widely recommended on club forums</div>
+    <div class="ic-tip">💡 Ask about their club discount — TR Register and JEC members often qualify.</div>
+    <a href="https://www.footmanjames.co.uk?utm_source=marquefile&utm_medium=insurance&utm_campaign=directory" target="_blank" rel="noopener" class="ic-link">Get a quote at footmanjames.co.uk →</a>
+  </div>
+  <div class="ic">
+    
+    <div class="ic-name">Adrian Flux</div>
+    <div class="ic-hq">🇬🇧 North Walsham, Norfolk</div>
+    <div class="ic-type">Specialist</div>
+    <div class="ic-desc">Broad classic car specialist with flexible policies including modified and imported classics. Worth comparing — sometimes competitive on older or modified Triumph and Jaguar models that other insurers price conservatively.</div>
+    <div class="ic-features"><span class="ic-feature">✓ Agreed value</span><span class="ic-feature">✓ Laid-up cover</span><span class="ic-feature no">– Club discount</span><span class="ic-feature">✓ Breakdown cover</span><span class="ic-feature">✓ Salvage rights</span>
+    </div>
+    <div class="ic-best" style="margin-bottom:6px"><strong style="color:var(--text)">Best for:</strong> Modified or imported cars — more flexibility than most</div>
+    <div class="ic-tip">💡 Good for US-import or left-hand-drive classics that standard insurers struggle with.</div>
+    <a href="https://www.adrianflux.co.uk?utm_source=marquefile&utm_medium=insurance&utm_campaign=directory" target="_blank" rel="noopener" class="ic-link">Get a quote at adrianflux.co.uk →</a>
+  </div>
+  <div class="ic">
+    
+    <div class="ic-name">Lancaster Insurance</div>
+    <div class="ic-hq">🇬🇧 Uckfield, East Sussex</div>
+    <div class="ic-type">Specialist</div>
+    <div class="ic-desc">Well-regarded classic car insurer with agreed value policies and club discounts. Good online quote system. Recommended on a number of TR and Jaguar owner forums.</div>
+    <div class="ic-features"><span class="ic-feature">✓ Agreed value</span><span class="ic-feature">✓ Laid-up cover</span><span class="ic-feature">✓ Club discount</span><span class="ic-feature no">– Breakdown cover</span><span class="ic-feature">✓ Salvage rights</span>
+    </div>
+    <div class="ic-best" style="margin-bottom:6px"><strong style="color:var(--text)">Best for:</strong> Standard UK-spec Triumph and Jaguar</div>
+    <div class="ic-tip">💡 Compare their agreed value with Hagerty — sometimes more competitive on lower-value cars.</div>
+    <a href="https://www.lancasterinsurance.co.uk?utm_source=marquefile&utm_medium=insurance&utm_campaign=directory" target="_blank" rel="noopener" class="ic-link">Get a quote at lancasterinsurance.co.uk →</a>
+  </div>
+  <div class="ic">
+    
+    <div class="ic-name">Cherished Vehicle Insurance</div>
+    <div class="ic-hq">🇬🇧 Nationwide (broker)</div>
+    <div class="ic-type">Broker</div>
+    <div class="ic-desc">Classic car insurance broker sourcing from multiple underwriters. Can be useful for unusual vehicles or collections where a single insurer won't cover everything.</div>
+    <div class="ic-features"><span class="ic-feature">✓ Agreed value</span><span class="ic-feature">✓ Laid-up cover</span><span class="ic-feature no">– Club discount</span><span class="ic-feature no">– Breakdown cover</span><span class="ic-feature">✓ Salvage rights</span>
+    </div>
+    <div class="ic-best" style="margin-bottom:6px"><strong style="color:var(--text)">Best for:</strong> Collections or unusual classics</div>
+    <div class="ic-tip">💡 Useful if you have multiple classics — collection policies can be cost-effective.</div>
+    <a href="https://www.cherishedvehicle.co.uk?utm_source=marquefile&utm_medium=insurance&utm_campaign=directory" target="_blank" rel="noopener" class="ic-link">Get a quote at cherishedvehicle.co.uk →</a>
+  </div>
+  <div class="ic">
+    
+    <div class="ic-name">ClassicLine Insurance</div>
+    <div class="ic-hq">🇬🇧 Wirksworth, Derbyshire</div>
+    <div class="ic-type">Specialist</div>
+    <div class="ic-desc">Specialist classic car insurer with a strong reputation on enthusiast forums. Often competitive on sports cars including Triumph TR and Jaguar. Club discounts available.</div>
+    <div class="ic-features"><span class="ic-feature">✓ Agreed value</span><span class="ic-feature">✓ Laid-up cover</span><span class="ic-feature">✓ Club discount</span><span class="ic-feature no">– Breakdown cover</span><span class="ic-feature">✓ Salvage rights</span>
+    </div>
+    <div class="ic-best" style="margin-bottom:6px"><strong style="color:var(--text)">Best for:</strong> TR models — frequently mentioned on TR Register forum</div>
+    <div class="ic-tip">💡 Worth getting a quote alongside Footman James for TR6 and TR4A models.</div>
+    <a href="https://www.classicline.co.uk?utm_source=marquefile&utm_medium=insurance&utm_campaign=directory" target="_blank" rel="noopener" class="ic-link">Get a quote at classicline.co.uk →</a>
+  </div>
+  </div>
+</div>
+<footer>
+  <div class="ft-inner">
+    <div>
+      <div class="logo-mark" style="width:44px;height:44px;font-size:1.2rem;margin-bottom:10px">MF</div>
+      <div style="font-family:'EB Garamond',serif;font-size:1.2rem;color:#fff;margin-bottom:4px">Marque<em style="color:#c8a84b">File</em></div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.35);line-height:1.7">The classic car data resource.<br>Triumph TR · Jaguar</div>
+    </div>
+    <div class="ft-cols">
+      <div><h4>Cars</h4><a href="/Marlo-OpenClaw/classic-hub/triumph/">Triumph TR</a><a href="/Marlo-OpenClaw/classic-hub/jaguar/">Jaguar</a></div>
+      <div><h4>Directory</h4><a href="/Marlo-OpenClaw/classic-hub/clubs/">Clubs</a><a href="/Marlo-OpenClaw/classic-hub/suppliers/">Suppliers</a><a href="/Marlo-OpenClaw/classic-hub/publications/">Publications</a><a href="/Marlo-OpenClaw/classic-hub/insurance/">Insurance</a><a href="/Marlo-OpenClaw/classic-hub/storage/">Storage</a></div>
+      <div><h4>Market</h4><a href="/Marlo-OpenClaw/classic-hub/valuations/">Price Guides</a><a href="/Marlo-OpenClaw/classic-hub/classifieds/">Cars for Sale</a><a href="/Marlo-OpenClaw/classic-hub/classifieds/sell.html">Sell Your Car</a></div>
+      <div><h4>MarqueFile</h4><a href="/Marlo-OpenClaw/classic-hub/">Home</a></div>
+    </div>
+  </div>
+  <div class="ft-base">
+    <span>&copy; 2026 MarqueFile. All rights reserved.</span>
+    <span>Valuations are guides only — always verify independently before buying or selling.</span>
+  </div>
+</footer><script>const t=document.getElementById('nav-toggle'),n=document.getElementById('site-nav');if(t&&n)t.addEventListener('click',()=>n.classList.toggle('open'));</script></body></html>

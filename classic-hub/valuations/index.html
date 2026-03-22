@@ -1,0 +1,412 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Classic Car Price Guides — MarqueFile</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','GA_MEASUREMENT_ID');</script><script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+
+  :root{--green:#2a5c3f;--gl:#3a7a55;--gold:#c8a84b;--cream:#f8f6f1;--white:#fff;--grey:#6b6b6b;--border:#e2ddd6;--text:#1a1a1a;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);line-height:1.6}
+  a{color:inherit;text-decoration:none}
+  .site-header{background:#1c1c1c;position:sticky;top:0;z-index:200;border-bottom:3px solid var(--green)}
+  .hdr-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{display:flex;align-items:center;gap:11px}
+  .logo-mark{width:38px;height:38px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:1.1rem;color:#fff;font-weight:600;flex-shrink:0}
+  .logo-text{font-family:'EB Garamond',serif;font-size:1.25rem;color:#fff;letter-spacing:0.04em}
+  .logo-text em{color:var(--gold);font-style:normal}
+  .site-nav{display:flex;align-items:center;gap:4px}
+  .site-nav a,.nav-dd>a{color:rgba(255,255,255,0.72);font-size:0.78rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;padding:20px 13px;display:block;transition:color 0.2s;white-space:nowrap;border-bottom:2px solid transparent}
+  .site-nav a:hover,.nav-dd>a:hover{color:#fff;border-bottom-color:var(--gold)}
+  .nav-dd{position:relative}
+  .nav-dd .drop{position:absolute;top:100%;left:0;background:#1c1c1c;border:1px solid rgba(255,255,255,0.1);border-top:2px solid var(--green);min-width:190px;display:none;flex-direction:column;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+  .nav-dd:hover .drop{display:flex}
+  .nav-dd .drop a{padding:11px 18px;font-size:0.8rem;border-bottom:1px solid rgba(255,255,255,0.07);color:rgba(255,255,255,0.7)}
+  .nav-dd .drop a:hover{background:var(--green);color:#fff}
+  .nav-cta{background:var(--green)!important;color:#fff!important;border-radius:4px;padding:9px 18px!important;margin-left:8px;border:none!important;font-weight:600!important}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+  .nav-toggle span{width:24px;height:2px;background:#fff;border-radius:1px;display:block}
+  @media(max-width:768px){
+    .site-nav{display:none;position:absolute;top:62px;left:0;right:0;background:#1c1c1c;flex-direction:column;border-top:2px solid var(--green);padding:8px 0 20px;z-index:200}
+    .site-nav.open{display:flex}
+    .site-nav a,.nav-dd>a{padding:16px 28px;border-bottom:none;border-left:3px solid transparent;font-size:0.9rem}
+    .site-nav a:hover,.nav-dd>a:hover{border-left-color:var(--gold);border-bottom:none}
+    .nav-dd .drop{position:static;display:flex!important;box-shadow:none;border:none;background:rgba(255,255,255,0.05)}
+    .nav-dd .drop a{padding:12px 44px}
+    .nav-cta{margin:12px 28px 0!important;text-align:center;padding:16px 28px!important;border-radius:4px!important}
+    .nav-toggle{display:flex}
+  }
+  footer{background:#111;border-top:3px solid var(--green);padding:52px 24px 28px;margin-top:80px}
+  .ft-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:48px;margin-bottom:40px}
+  .ft-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .ft-cols h4{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.35);margin-bottom:14px;font-weight:600}
+  .ft-cols a{display:block;color:rgba(255,255,255,0.55);font-size:0.82rem;margin-bottom:8px;transition:color 0.2s}
+  .ft-cols a:hover{color:var(--gold)}
+  .ft-base{max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:0.74rem;color:rgba(255,255,255,0.25)}
+  @media(max-width:768px){.ft-inner{grid-template-columns:1fr}.ft-cols{grid-template-columns:repeat(2,1fr)}}
+  .page-hero{padding:56px 24px 64px}
+  .page-hero-inner,.page-body{max-width:1100px;margin:0 auto;padding:0 24px}
+  .page-body{margin-top:48px;margin-bottom:48px}
+  .hero-eyebrow{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);margin-bottom:14px;font-weight:600}
+  .page-hero h1{font-family:'EB Garamond',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;margin-bottom:10px}
+  .page-hero p{color:rgba(255,255,255,0.65);max-width:620px}
+  .section-title{font-family:'EB Garamond',serif;font-size:1.7rem;color:var(--text);border-bottom:2px solid var(--green);padding-bottom:8px;margin:48px 0 24px}
+  .f-btn{padding:7px 15px;border-radius:20px;font-size:0.76rem;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:#fff;color:var(--grey);transition:all 0.2s;white-space:nowrap}
+  .f-btn.active,.f-btn:hover{background:var(--green);color:#fff;border-color:var(--green)}
+  .filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+
+  .cond-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:40px}
+  .cond-card{border-radius:8px;padding:14px 16px;border:1px solid var(--border)}
+  .cond-name{font-weight:700;font-size:0.88rem;margin-bottom:4px}
+  .cond-desc{font-size:0.78rem;color:var(--grey);line-height:1.5}
+  .model-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:32px;border-bottom:2px solid var(--border);padding-bottom:12px}
+  .m-tab{padding:8px 18px;border-radius:4px 4px 0 0;font-size:0.82rem;font-weight:600;cursor:pointer;border:1.5px solid transparent;color:var(--grey);background:none;transition:all 0.2s}
+  .m-tab.active{background:var(--green);color:#fff;border-color:var(--green)}
+  .m-tab:hover:not(.active){background:#f0f0f0}
+  .model-panel{display:none}.model-panel.active{display:block}
+  .val-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:28px}
+  .val-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:20px 22px}
+  .val-title{font-family:'EB Garamond',serif;font-size:1.2rem;margin-bottom:16px;color:var(--text)}
+  .price-rows{display:flex;flex-direction:column;gap:10px}
+  .price-row{display:flex;align-items:center;gap:12px}
+  .pr-label{font-size:0.76rem;font-weight:600;width:90px;flex-shrink:0}
+  .pr-bar-wrap{flex:1;background:#f0f0ec;border-radius:4px;height:20px;position:relative;overflow:hidden}
+  .pr-bar{height:100%;border-radius:4px;transition:width 0.8s ease}
+  .pr-val{font-size:0.82rem;font-weight:700;color:var(--text);white-space:nowrap;width:90px;text-align:right;flex-shrink:0}
+  .chart-wrap{background:#fff;border:1px solid var(--border);border-radius:10px;padding:20px 22px;grid-column:1/-1}
+  .watch-wrap{background:#fff;border:1px solid var(--border);border-radius:10px;padding:20px 22px}
+  .watch-title{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--green);font-weight:700;margin-bottom:12px}
+  .watch-list{list-style:none;font-size:0.83rem;color:var(--grey)}
+  .watch-list li{padding:6px 0;border-bottom:1px solid var(--border);display:flex;gap:8px}
+  .watch-list li:last-child{border-bottom:none}
+  .watch-list li::before{content:'⚠';color:var(--gold)}
+  .hagerty-cta{background:linear-gradient(135deg,#1c1c1c,#2a5c3f);border-radius:12px;padding:28px 32px;margin-top:40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+  .hagerty-cta h3{font-family:'EB Garamond',serif;font-size:1.4rem;color:#fff;margin-bottom:6px}
+  .hagerty-cta p{color:rgba(255,255,255,0.6);font-size:0.86rem;max-width:480px}
+  .hag-btn{background:var(--gold);color:#1c1c1c;padding:12px 24px;border-radius:4px;font-weight:700;font-size:0.86rem;white-space:nowrap;transition:opacity 0.2s}
+  .hag-btn:hover{opacity:0.85}
+  .disclaimer{font-size:0.78rem;color:var(--grey);background:#f8f6f1;border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin-top:24px;line-height:1.6}
+  @media(max-width:700px){.val-grid{grid-template-columns:1fr}}
+</style></head><body>
+<header class="site-header">
+  <div class="hdr-inner">
+    <a href="../index.html" class="logo"><div class="logo-mark">MF</div><div class="logo-text">Marque<em>File</em></div></a>
+    <nav class="site-nav" id="site-nav">
+      <div class="nav-dd"><a href="../triumph/index.html">Cars &#9662;</a>
+        <div class="drop"><a href="../triumph/index.html">Triumph TR</a><a href="../jaguar/index.html">Jaguar</a></div>
+      </div>
+      <div class="nav-dd"><a href="../clubs/index.html">Directory &#9662;</a>
+        <div class="drop">
+          <a href="../clubs/index.html">Clubs</a><a href="../suppliers/index.html">Suppliers</a>
+          <a href="../publications/index.html">Publications</a><a href="../insurance/index.html">Insurance</a>
+          <a href="../storage/index.html">Storage</a>
+        </div>
+      </div>
+      <div class="nav-dd"><a href="../valuations/index.html">Market &#9662;</a>
+        <div class="drop">
+          <a href="../valuations/index.html">Price Guides</a>
+          <a href="../classifieds/index.html">Cars for Sale</a>
+          <a href="../classifieds/sell.html">Sell Your Car</a>
+        </div>
+      </div>
+      <a href="../classifieds/index.html" class="nav-cta">Cars for Sale</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="page-hero" style="background:linear-gradient(135deg,#1c1c1c,#2a3a2a)">
+  <div class="page-hero-inner">
+    <div class="hero-eyebrow">MarqueFile › Market</div>
+    <h1>Classic Car Price Guides</h1>
+    <p>Condition-graded valuations and 15-year price trend charts for Triumph TR and Jaguar E-Type. Updated annually. All figures in GBP — UK market.</p>
+  </div>
+</div>
+<div class="page-body">
+  <div class="section-title">Understanding Condition Grades</div>
+  <div class="cond-grid"><div class="cond-card" style="background:#e8f5ee;border-color:#2a5c3f40"><div class="cond-name" style="color:#2a5c3f">Concours</div><div class="cond-desc">Restored to show standard or exceptional original condition. Correct in all details. Would win at national level.</div></div><div class="cond-card" style="background:#f0f8e8;border-color:#4a7a2040"><div class="cond-name" style="color:#4a7a20">Good Driver</div><div class="cond-desc">Fully sorted and enjoyable. May have minor imperfections. Regularly used, well maintained. This is the sweet spot for most buyers.</div></div><div class="cond-card" style="background:#fef8e0;border-color:#8a7a1040"><div class="cond-name" style="color:#8a7a10">Driver</div><div class="cond-desc">Presentable and usable but with visible age. May need cosmetic attention. Mechanically sound.</div></div><div class="cond-card" style="background:#fef0e8;border-color:#8a301040"><div class="cond-name" style="color:#8a3010">Project</div><div class="cond-desc">Requires restoration. May be running but not to a high standard. Priced for what it needs.</div></div></div><div class="section-title">Model Price Guides</div><div class="model-tabs"><button class="m-tab  active" onclick="showModel('TR6',this)">TR6</button><button class="m-tab" onclick="showModel('TR4_TR4A',this)">TR4 / TR4A</button><button class="m-tab" onclick="showModel('TR5',this)">TR5</button><button class="m-tab" onclick="showModel('E_Type_S1',this)">E-Type Series 1</button><button class="m-tab" onclick="showModel('E_Type_S3',this)">E-Type Series 3 V12</button></div>
+  <div class="model-panel  active" id="panel-TR6">
+    <p style="color:var(--grey);margin-bottom:24px;max-width:680px;line-height:1.65">The TR6 is the most produced and most accessible of the TR series. Prices rose sharply in the COVID era but have softened slightly from their 2021 peak. Strong demand for original, unmodified cars and PI-injected (non-carb conversion) examples.</p>
+    <div class="val-grid">
+      <div class="val-card">
+        <div class="val-title">Current Market Values — 2025</div>
+        <div class="price-rows">
+          <div class="price-row">
+            <div class="pr-label" style="color:#2a5c3f">Concours</div>
+            <div class="pr-bar-wrap"><div class="pr-bar" style="width:100%;background:#2a5c3f"></div></div>
+            <div class="pr-val">£25,500</div>
+          </div>
+          <div class="price-row">
+            <div class="pr-label" style="color:#4a7a20">Good Driver</div>
+            <div class="pr-bar-wrap"><div class="pr-bar" style="width:75%;background:#4a7a20"></div></div>
+            <div class="pr-val">£19,000</div>
+          </div>
+          <div class="price-row">
+            <div class="pr-label" style="color:#8a7a10">Driver</div>
+            <div class="pr-bar-wrap"><div class="pr-bar" style="width:47%;background:#8a7a10"></div></div>
+            <div class="pr-val">£12,000</div>
+          </div>
+          <div class="price-row">
+            <div class="pr-label" style="color:#8a3010">Project</div>
+            <div class="pr-bar-wrap"><div class="pr-bar" style="width:22%;background:#8a3010"></div></div>
+            <div class="pr-val">£5,500</div>
+          </div>
+        </div>
+        <div style="font-size:0.72rem;color:var(--grey);margin-top:14px">Production years: 1969–1976 · UK market · Figures approximate</div>
+      </div>
+      <div class="watch-wrap">
+        <div class="watch-title">What to look for when buying</div>
+        <ul class="watch-list"><li>PI injection condition (TR5-spec, rare but valuable)</li><li>Rust in sills, rear wings and floor</li><li>Original panel colour codes (build plate)</li><li>Overdrive gearbox commands premium</li><li>US-spec cars (carburettors) generally worth less than UK PI cars</li></ul>
+      </div>
+      <div class="chart-wrap">
+        <div class="val-title">Triumph TR6 — 15-Year Price Trend (UK Market)</div>
+        <canvas id="chart-TR6" height="90"></canvas>
+        <div style="font-size:0.72rem;color:var(--grey);margin-top:8px">Source: MarqueFile editorial analysis based on auction results, dealer listings and Hagerty/Classic Trader data · Not financial advice</div>
+      </div>
+    </div>
+  </div>
+  <div class="model-panel" id="panel-TR4_TR4A">
+    <p style="color:var(--grey);margin-bottom:24px;max-width:680px;line-height:1.65">The TR4 introduced the more modern Michelotti body and remains one of the best-value open sports cars available. The TR4A added IRS independent rear suspension. Both are strong value propositions — usable and affordable with good club support.</p>
+    <div class="val-grid">
+      <div class="val-card">
+        <div class="val-title">Current Market Values — 2025</div>
+        <div class="price-rows">
+          <div class="price-row">
+            <div class="pr-label" style="color:#2a5c3f">Concours</div>
+            <div class="pr-bar-wrap"><div class="pr-bar" style="width:100%;background:#2a5c3f"></div></div>
+            <div class="pr-val">£24,000</div>
+          </div>
+          <div class="price-row">
+            <div class="pr-label" style="color:#4a7a20">Good Driver</div>
+            <div class="pr-bar-wrap"><div class="pr-bar" style="width:73%;background:#4a7a20"></div></div>
+            <div class="pr-val">£17,500</div>
+          </div>
+          <div class="price-row">
+            <div class="pr-label" style="color:#8a7a10">Driver</div>
+            <div class="pr-bar-wrap"><div class="pr-bar" style="width:44%;background:#8a7a10"></div></div>
+            <div class="pr-val">£10,500</div>
+          </div>
+          <div class="price-row">
+            <div class="pr-label" style="color:#8a3010">Project</div>
+            <div class="pr-bar-wrap"><div class="pr-bar" style="width:21%;background:#8a3010"></div></div>
+            <div class="pr-val">£5,000</div>
+          </div>
+        </div>
+        <div style="font-size:0.72rem;color:var(--grey);margin-top:14px">Production years: 1961–1967 · UK market · Figures approximate</div>
+      </div>
+      <div class="watch-wrap">
+        <div class="watch-title">What to look for when buying</div>
+        <ul class="watch-list"><li>IRS vs live axle (TR4A IRS commands 10–15% premium)</li><li>Surrey Top (hardtop + targa panel) adds value</li><li>Rust behind headlamps, in sills and beneath battery</li><li>Panel fit and shut lines after any bodywork</li></ul>
+      </div>
+      <div class="chart-wrap">
+        <div class="val-title">Triumph TR4 / TR4A — 15-Year Price Trend (UK Market)</div>
+        <canvas id="chart-TR4_TR4A" height="90"></canvas>
+        <div style="font-size:0.72rem;color:var(--grey);margin-top:8px">Source: MarqueFile editorial analysis based on auction results, dealer listings and Hagerty/Classic Trader data · Not financial advice</div>
+      </div>
+    </div>
+  </div>
+  <div class="model-panel" id="panel-TR5">
+    <p style="color:var(--grey);margin-bottom:24px;max-width:680px;line-height:1.65">Only 2,947 UK-market TR5s were made — the rarest of the inline-6 TRs and the only one with Lucas PI fuel injection from the factory in UK spec. Genuine TR5s command a significant premium over TR6s. Values have been strong and relatively stable.</p>
+    <div class="val-grid">
+      <div class="val-card">
+        <div class="val-title">Current Market Values — 2025</div>
+        <div class="price-rows">
+          <div class="price-row">
+            <div class="pr-label" style="color:#2a5c3f">Concours</div>
+            <div class="pr-bar-wrap"><div class="pr-bar" style="width:100%;background:#2a5c3f"></div></div>
+            <div class="pr-val">£43,000</div>
+          </div>
+          <div class="price-row">
+            <div class="pr-label" style="color:#4a7a20">Good Driver</div>
+            <div class="pr-bar-wrap"><div class="pr-bar" style="width:70%;background:#4a7a20"></div></div>
+            <div class="pr-val">£30,000</div>
+          </div>
+          <div class="price-row">
+            <div class="pr-label" style="color:#8a7a10">Driver</div>
+            <div class="pr-bar-wrap"><div class="pr-bar" style="width:45%;background:#8a7a10"></div></div>
+            <div class="pr-val">£19,500</div>
+          </div>
+          <div class="price-row">
+            <div class="pr-label" style="color:#8a3010">Project</div>
+            <div class="pr-bar-wrap"><div class="pr-bar" style="width:21%;background:#8a3010"></div></div>
+            <div class="pr-val">£9,000</div>
+          </div>
+        </div>
+        <div style="font-size:0.72rem;color:var(--grey);margin-top:14px">Production years: 1967–1968 · UK market · Figures approximate</div>
+      </div>
+      <div class="watch-wrap">
+        <div class="watch-title">What to look for when buying</div>
+        <ul class="watch-list"><li>Chassis plate confirming CP-prefix (UK PI car)</li><li>Lucas injection originality — many converted</li><li>Matching numbers engine highly desirable</li><li>Provenance documentation — family ownership history is valuable</li></ul>
+      </div>
+      <div class="chart-wrap">
+        <div class="val-title">Triumph TR5 — 15-Year Price Trend (UK Market)</div>
+        <canvas id="chart-TR5" height="90"></canvas>
+        <div style="font-size:0.72rem;color:var(--grey);margin-top:8px">Source: MarqueFile editorial analysis based on auction results, dealer listings and Hagerty/Classic Trader data · Not financial advice</div>
+      </div>
+    </div>
+  </div>
+  <div class="model-panel" id="panel-E_Type_S1">
+    <p style="color:var(--grey);margin-bottom:24px;max-width:680px;line-height:1.65">The Series 1 is the most desirable E-Type and has seen the strongest price appreciation. Early flat-floor cars (pre-1963) and 3.8L examples command further premiums. Original colour combinations and Heritage Certificates are critical to value.</p>
+    <div class="val-grid">
+      <div class="val-card">
+        <div class="val-title">Current Market Values — 2025</div>
+        <div class="price-rows">
+          <div class="price-row">
+            <div class="pr-label" style="color:#2a5c3f">Concours</div>
+            <div class="pr-bar-wrap"><div class="pr-bar" style="width:100%;background:#2a5c3f"></div></div>
+            <div class="pr-val">£145,000</div>
+          </div>
+          <div class="price-row">
+            <div class="pr-label" style="color:#4a7a20">Good Driver</div>
+            <div class="pr-bar-wrap"><div class="pr-bar" style="width:69%;background:#4a7a20"></div></div>
+            <div class="pr-val">£100,000</div>
+          </div>
+          <div class="price-row">
+            <div class="pr-label" style="color:#8a7a10">Driver</div>
+            <div class="pr-bar-wrap"><div class="pr-bar" style="width:45%;background:#8a7a10"></div></div>
+            <div class="pr-val">£65,000</div>
+          </div>
+          <div class="price-row">
+            <div class="pr-label" style="color:#8a3010">Project</div>
+            <div class="pr-bar-wrap"><div class="pr-bar" style="width:19%;background:#8a3010"></div></div>
+            <div class="pr-val">£27,000</div>
+          </div>
+        </div>
+        <div style="font-size:0.72rem;color:var(--grey);margin-top:14px">Production years: 1961–1968 · UK market · Figures approximate</div>
+      </div>
+      <div class="watch-wrap">
+        <div class="watch-title">What to look for when buying</div>
+        <ul class="watch-list"><li>Heritage Certificate confirming original colour/spec</li><li>Flat-floor vs raised-floor (pre/post 1963)</li><li>3.8L vs 4.2L engine (3.8L often more valuable)</li><li>Original opalescent paint — difficult and expensive to replicate</li><li>Matching numbers throughout</li></ul>
+      </div>
+      <div class="chart-wrap">
+        <div class="val-title">Jaguar E-Type Series 1 — 15-Year Price Trend (UK Market)</div>
+        <canvas id="chart-E_Type_S1" height="90"></canvas>
+        <div style="font-size:0.72rem;color:var(--grey);margin-top:8px">Source: MarqueFile editorial analysis based on auction results, dealer listings and Hagerty/Classic Trader data · Not financial advice</div>
+      </div>
+    </div>
+  </div>
+  <div class="model-panel" id="panel-E_Type_S3">
+    <p style="color:var(--grey);margin-bottom:24px;max-width:680px;line-height:1.65">The S3 is the most usable E-Type — the V12 is smoother and more reliable than the straight-six when maintained. Often overlooked in favour of S1, which means relatively better value. Roadster is worth significantly more than 2+2.</p>
+    <div class="val-grid">
+      <div class="val-card">
+        <div class="val-title">Current Market Values — 2025</div>
+        <div class="price-rows">
+          <div class="price-row">
+            <div class="pr-label" style="color:#2a5c3f">Concours</div>
+            <div class="pr-bar-wrap"><div class="pr-bar" style="width:100%;background:#2a5c3f"></div></div>
+            <div class="pr-val">£80,000</div>
+          </div>
+          <div class="price-row">
+            <div class="pr-label" style="color:#4a7a20">Good Driver</div>
+            <div class="pr-bar-wrap"><div class="pr-bar" style="width:70%;background:#4a7a20"></div></div>
+            <div class="pr-val">£56,000</div>
+          </div>
+          <div class="price-row">
+            <div class="pr-label" style="color:#8a7a10">Driver</div>
+            <div class="pr-bar-wrap"><div class="pr-bar" style="width:46%;background:#8a7a10"></div></div>
+            <div class="pr-val">£37,000</div>
+          </div>
+          <div class="price-row">
+            <div class="pr-label" style="color:#8a3010">Project</div>
+            <div class="pr-bar-wrap"><div class="pr-bar" style="width:22%;background:#8a3010"></div></div>
+            <div class="pr-val">£17,500</div>
+          </div>
+        </div>
+        <div style="font-size:0.72rem;color:var(--grey);margin-top:14px">Production years: 1971–1975 · UK market · Figures approximate</div>
+      </div>
+      <div class="watch-wrap">
+        <div class="watch-title">What to look for when buying</div>
+        <ul class="watch-list"><li>Roadster vs 2+2 coupe (roadster 40–50% premium)</li><li>V12 cooling system condition — critical</li><li>Air conditioning (common failure, expensive)</li><li>Rust behind wheel arches and in sills</li><li>Manual vs automatic gearbox</li></ul>
+      </div>
+      <div class="chart-wrap">
+        <div class="val-title">Jaguar E-Type Series 3 V12 — 15-Year Price Trend (UK Market)</div>
+        <canvas id="chart-E_Type_S3" height="90"></canvas>
+        <div style="font-size:0.72rem;color:var(--grey);margin-top:8px">Source: MarqueFile editorial analysis based on auction results, dealer listings and Hagerty/Classic Trader data · Not financial advice</div>
+      </div>
+    </div>
+  </div>
+  <div class="hagerty-cta">
+    <div>
+      <h3>Hagerty Price Guide — Live Valuations</h3>
+      <p>Hagerty's Price Guide is the industry standard for classic car valuations. Free to use, updated regularly with auction data from around the world.</p>
+    </div>
+    <a href="https://www.hagerty.co.uk/valuation-tools?utm_source=marquefile&utm_medium=valuations" target="_blank" rel="noopener" class="hag-btn">Open Hagerty Valuations →</a>
+  </div>
+  <div class="disclaimer">
+    <strong>Disclaimer:</strong> All valuations shown are editorial estimates based on publicly available market data including auction results, dealer listings and published price guides as of 2025. They are provided as a general guide only and should not be relied upon for insurance, purchase or sale purposes. Values fluctuate — always obtain independent professional advice before buying or selling. MarqueFile accepts no liability for decisions made based on these figures.
+  </div>
+</div>
+<footer>
+  <div class="ft-inner">
+    <div>
+      <div class="logo-mark" style="width:44px;height:44px;font-size:1.2rem;margin-bottom:10px">MF</div>
+      <div style="font-family:'EB Garamond',serif;font-size:1.2rem;color:#fff;margin-bottom:4px">Marque<em style="color:#c8a84b">File</em></div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.35);line-height:1.7">The classic car data resource.<br>Triumph TR · Jaguar</div>
+    </div>
+    <div class="ft-cols">
+      <div><h4>Cars</h4><a href="/Marlo-OpenClaw/classic-hub/triumph/">Triumph TR</a><a href="/Marlo-OpenClaw/classic-hub/jaguar/">Jaguar</a></div>
+      <div><h4>Directory</h4><a href="/Marlo-OpenClaw/classic-hub/clubs/">Clubs</a><a href="/Marlo-OpenClaw/classic-hub/suppliers/">Suppliers</a><a href="/Marlo-OpenClaw/classic-hub/publications/">Publications</a><a href="/Marlo-OpenClaw/classic-hub/insurance/">Insurance</a><a href="/Marlo-OpenClaw/classic-hub/storage/">Storage</a></div>
+      <div><h4>Market</h4><a href="/Marlo-OpenClaw/classic-hub/valuations/">Price Guides</a><a href="/Marlo-OpenClaw/classic-hub/classifieds/">Cars for Sale</a><a href="/Marlo-OpenClaw/classic-hub/classifieds/sell.html">Sell Your Car</a></div>
+      <div><h4>MarqueFile</h4><a href="/Marlo-OpenClaw/classic-hub/">Home</a></div>
+    </div>
+  </div>
+  <div class="ft-base">
+    <span>&copy; 2026 MarqueFile. All rights reserved.</span>
+    <span>Valuations are guides only — always verify independently before buying or selling.</span>
+  </div>
+</footer>
+<script>
+  const pdata = {'TR6': {'years': [2010, 2012, 2014, 2016, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025], 'concours': [14000, 15500, 17000, 19000, 23000, 25000, 26500, 30000, 28500, 27000, 26000, 25500], 'good': [8000, 9000, 10500, 12000, 16000, 18000, 20000, 22000, 21000, 20500, 19500, 19000], 'driver': [4500, 5000, 5500, 7000, 9500, 11000, 12500, 14000, 13500, 13000, 12500, 12000], 'project': [1500, 2000, 2500, 3000, 4500, 5500, 6000, 7000, 6500, 6000, 6000, 5500]}, 'TR4_TR4A': {'years': [2010, 2012, 2014, 2016, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025], 'concours': [13000, 14000, 15500, 17500, 21000, 23000, 24000, 27000, 26000, 25000, 24500, 24000], 'good': [7500, 8500, 9500, 11000, 14500, 16500, 17500, 20000, 19000, 18500, 18000, 17500], 'driver': [4000, 4500, 5000, 6000, 8500, 9500, 11000, 12500, 12000, 11500, 11000, 10500], 'project': [1200, 1500, 2000, 2500, 3500, 4500, 5000, 6000, 5500, 5500, 5000, 5000]}, 'TR5': {'years': [2010, 2012, 2014, 2016, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025], 'concours': [22000, 24000, 27000, 32000, 38000, 42000, 45000, 50000, 48000, 46000, 44000, 43000], 'good': [14000, 15500, 18000, 22000, 26000, 30000, 32000, 36000, 34000, 32000, 31000, 30000], 'driver': [8000, 9000, 10500, 13000, 16000, 19000, 20500, 23000, 22000, 21000, 20000, 19500], 'project': [3000, 3500, 4000, 5000, 7000, 8500, 9500, 11000, 10500, 10000, 9500, 9000]}, 'E_Type_S1': {'years': [2010, 2012, 2014, 2016, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025], 'concours': [55000, 70000, 90000, 115000, 130000, 140000, 145000, 160000, 155000, 150000, 145000, 145000], 'good': [32000, 42000, 55000, 70000, 85000, 95000, 100000, 115000, 110000, 105000, 100000, 100000], 'driver': [18000, 24000, 32000, 45000, 55000, 62000, 67000, 75000, 72000, 70000, 67000, 65000], 'project': [7000, 9000, 12000, 16000, 22000, 26000, 28000, 32000, 30000, 29000, 28000, 27000]}, 'E_Type_S3': {'years': [2010, 2012, 2014, 2016, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025], 'concours': [35000, 40000, 50000, 62000, 72000, 78000, 82000, 92000, 88000, 85000, 82000, 80000], 'good': [22000, 26000, 32000, 40000, 48000, 54000, 58000, 65000, 62000, 60000, 57000, 56000], 'driver': [13000, 16000, 20000, 26000, 32000, 36000, 39000, 44000, 42000, 40000, 38000, 37000], 'project': [5000, 6500, 8000, 11000, 14000, 16500, 18000, 21000, 19500, 19000, 18000, 17500]}};
+
+  function showModel(key, btn){
+    document.querySelectorAll('.model-panel').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.m-tab').forEach(b=>b.classList.remove('active'));
+    document.getElementById('panel-'+key).classList.add('active');
+    btn.classList.add('active');
+  }
+  const chartColours = {
+    concours:'#2a5c3f', good:'#4a7a20', driver:'#c8a84b', project:'#8a3010'
+  };
+  function buildChart(key){
+    const d = pdata[key];
+    if(!d) return;
+    const ctx = document.getElementById('chart-'+key);
+    if(!ctx || ctx._mfBuilt) return;
+    ctx._mfBuilt = true;
+    new Chart(ctx, {
+      type:'line',
+      data:{
+        labels: d.years,
+        datasets:[
+          {label:'Concours', data:d.concours, borderColor:chartColours.concours, backgroundColor:chartColours.concours+'22', fill:true, tension:0.4, pointRadius:3},
+          {label:'Good Driver', data:d.good, borderColor:chartColours.good, backgroundColor:'transparent', tension:0.4, pointRadius:3},
+          {label:'Driver', data:d.driver, borderColor:chartColours.driver, backgroundColor:'transparent', tension:0.4, pointRadius:3, borderDash:[4,3]},
+          {label:'Project', data:d.project, borderColor:chartColours.project, backgroundColor:'transparent', tension:0.4, pointRadius:3, borderDash:[2,4]},
+        ]
+      },
+      options:{
+        responsive:true, interaction:{mode:'index',intersect:false},
+        plugins:{legend:{position:'bottom', labels:{font:{size:11},boxWidth:12}}, tooltip:{callbacks:{label:ctx=>'  '+ctx.dataset.label+': £'+ctx.parsed.y.toLocaleString()}}},
+        scales:{
+          x:{grid:{display:false}, ticks:{font:{size:11}}},
+          y:{ticks:{font:{size:11}, callback:v=>'£'+v.toLocaleString()}, grid:{color:'#e8e4de'}}
+        }
+      }
+    });
+  }
+  // Build first chart immediately, others on tab switch
+  document.addEventListener('DOMContentLoaded',()=>{
+    buildChart('TR6');
+    document.querySelectorAll('.m-tab').forEach(btn=>{
+      btn.addEventListener('click',()=>buildChart(btn.textContent.trim().replace('/','_').replace(' ','_')));
+    });
+  });
+  // Override showModel to also build chart
+  const _orig = showModel;
+  function showModel(key,btn){
+    document.querySelectorAll('.model-panel').forEach(p=>p.classList.remove('active'));
+    document.querySelectorAll('.m-tab').forEach(b=>b.classList.remove('active'));
+    document.getElementById('panel-'+key).classList.add('active');
+    btn.classList.add('active');
+    setTimeout(()=>buildChart(key), 50);
+  }
+<script>const t=document.getElementById('nav-toggle'),n=document.getElementById('site-nav');if(t&&n)t.addEventListener('click',()=>n.classList.toggle('open'));</script></script></body></html>
