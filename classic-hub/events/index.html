@@ -1,26 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Events 2026 — MarqueFile</title>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>Classic Car Events 2025 — MarqueFile</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','GA_MEASUREMENT_ID');
+document.addEventListener('click',function(e){var a=e.target.closest('a[data-track]');if(a){gtag('event','event_click',{event_category:a.dataset.track,event_label:a.href,transport_type:'beacon'});}});</script>
 <style>
-
-  :root {
-    --navy:#1c1c1c; --green:#2a5c3f; --green-light:#3a7a55; --gold:#c8a84b;
-    --cream:#f8f6f1; --warm:#efede9; --white:#fff; --grey:#6b6b6b;
-    --border:#e2ddd6; --text:#1a1a1a;
-  }
+  :root{--green:#2a5c3f;--gl:#3a7a55;--gold:#c8a84b;--cream:#f8f6f1;--grey:#6b6b6b;--border:#e2ddd6;--text:#1a1a1a;}
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  html{font-size:16px;-webkit-text-size-adjust:100%}
   body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);line-height:1.6}
-  img{max-width:100%;display:block}
   a{color:inherit;text-decoration:none}
-
-  /* ── HEADER ── */
-  .site-header{background:var(--navy);position:sticky;top:0;z-index:200;border-bottom:3px solid var(--green)}
+  .site-header{background:#1c1c1c;position:sticky;top:0;z-index:200;border-bottom:3px solid var(--green)}
   .hdr-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:62px}
-  .logo{display:flex;align-items:center;gap:11px;text-decoration:none}
+  .logo{display:flex;align-items:center;gap:11px}
   .logo-mark{width:38px;height:38px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:1.1rem;color:#fff;font-weight:600;flex-shrink:0}
   .logo-text{font-family:'EB Garamond',serif;font-size:1.25rem;color:#fff;letter-spacing:0.04em}
   .logo-text em{color:var(--gold);font-style:normal}
@@ -28,267 +19,859 @@
   .site-nav a,.nav-dd>a{color:rgba(255,255,255,0.72);font-size:0.78rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;padding:20px 13px;display:block;transition:color 0.2s;white-space:nowrap;border-bottom:2px solid transparent}
   .site-nav a:hover,.nav-dd>a:hover{color:#fff;border-bottom-color:var(--gold)}
   .nav-dd{position:relative}
-  .nav-dd .drop{position:absolute;top:100%;left:0;background:var(--navy);border:1px solid rgba(255,255,255,0.1);border-top:2px solid var(--green);min-width:180px;display:none;flex-direction:column;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+  .nav-dd .drop{position:absolute;top:100%;left:0;background:#1c1c1c;border:1px solid rgba(255,255,255,0.1);border-top:2px solid var(--green);min-width:190px;display:none;flex-direction:column;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
   .nav-dd:hover .drop{display:flex}
-  .nav-dd .drop a{padding:11px 18px;font-size:0.8rem;border-bottom:1px solid rgba(255,255,255,0.07);border-left:none;color:rgba(255,255,255,0.7)}
+  .nav-dd .drop a{padding:11px 18px;font-size:0.8rem;border-bottom:1px solid rgba(255,255,255,0.07);color:rgba(255,255,255,0.7)}
   .nav-dd .drop a:hover{background:var(--green);color:#fff}
   .nav-cta{background:var(--green)!important;color:#fff!important;border-radius:4px;padding:9px 18px!important;margin-left:8px;border:none!important;font-weight:600!important}
-  .nav-cta:hover{background:var(--green-light)!important}
   .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
-  .nav-toggle span{width:24px;height:2px;background:#fff;border-radius:1px;display:block;transition:all 0.25s}
+  .nav-toggle span{width:24px;height:2px;background:#fff;border-radius:1px;display:block}
   @media(max-width:768px){
-    .site-nav{display:none;position:absolute;top:62px;left:0;right:0;background:var(--navy);flex-direction:column;border-top:2px solid var(--green);padding:8px 0 20px;z-index:200}
+    .site-nav{display:none;position:absolute;top:62px;left:0;right:0;background:#1c1c1c;flex-direction:column;border-top:2px solid var(--green);padding:8px 0 20px;z-index:200}
     .site-nav.open{display:flex}
     .site-nav a,.nav-dd>a{padding:16px 28px;border-bottom:none;border-left:3px solid transparent;font-size:0.9rem}
     .site-nav a:hover,.nav-dd>a:hover{border-left-color:var(--gold);border-bottom:none}
     .nav-dd .drop{position:static;display:flex!important;box-shadow:none;border:none;background:rgba(255,255,255,0.05)}
-    .nav-dd .drop a{padding:12px 44px;font-size:0.82rem}
-    .nav-cta{margin:12px 28px 0!important;text-align:center;border-radius:4px!important;padding:16px 28px!important}
+    .nav-dd .drop a{padding:12px 44px}
+    .nav-cta{margin:12px 28px 0!important;text-align:center;padding:16px 28px!important;border-radius:4px!important}
     .nav-toggle{display:flex}
   }
-
   footer{background:#111;border-top:3px solid var(--green);padding:52px 24px 28px;margin-top:80px}
   .ft-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:48px;margin-bottom:40px}
-  .ft-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .ft-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
   .ft-cols h4{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.35);margin-bottom:14px;font-weight:600}
   .ft-cols a{display:block;color:rgba(255,255,255,0.55);font-size:0.82rem;margin-bottom:8px;transition:color 0.2s}
   .ft-cols a:hover{color:var(--gold)}
   .ft-base{max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:0.74rem;color:rgba(255,255,255,0.25)}
   @media(max-width:768px){.ft-inner{grid-template-columns:1fr}.ft-cols{grid-template-columns:repeat(2,1fr)}}
-
-  .page-hero{background:linear-gradient(135deg,#1c1c1c,#2a3a1a);padding:56px 24px 64px}
-  .page-hero-inner{max-width:1000px;margin:0 auto}
+  .page-hero{background:linear-gradient(135deg,#1c1c1c,#2a1a3a);padding:48px 24px 56px}
+  .page-hero-inner{max-width:1100px;margin:0 auto}
   .hero-eyebrow{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);margin-bottom:14px;font-weight:600}
   .page-hero h1{font-family:'EB Garamond',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;margin-bottom:10px}
-  .page-hero p{color:rgba(255,255,255,0.65);max-width:560px}
-  .page-body{max-width:1000px;margin:48px auto;padding:0 24px}
-  .filter-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}
-  .f-btn{padding:8px 18px;border-radius:20px;font-size:0.78rem;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:#fff;color:var(--grey);transition:all 0.2s}
+  .page-hero p{color:rgba(255,255,255,0.65);max-width:580px}
+  .page-body{max-width:1100px;margin:32px auto 64px;padding:0 24px}
+  .filter-bar{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin-bottom:20px;display:flex;flex-direction:column;gap:10px}
+  .filter-group{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .filter-label{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);font-weight:700;min-width:50px;flex-shrink:0}
+  .f-btn{padding:5px 12px;border-radius:16px;font-size:0.72rem;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:#fff;color:var(--grey);transition:all 0.18s;white-space:nowrap}
   .f-btn.active,.f-btn:hover{background:var(--green);color:#fff;border-color:var(--green)}
-  .month-group{margin-bottom:36px}
-  .month-label{font-family:'EB Garamond',serif;font-size:1.35rem;color:var(--text);padding-bottom:8px;border-bottom:2px solid var(--green);margin-bottom:16px}
-  .event-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px 20px;margin-bottom:10px;display:flex;align-items:flex-start;gap:16px;transition:box-shadow 0.2s}
-  .event-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.08)}
-  .ec-date{background:var(--green);color:#fff;border-radius:6px;padding:8px 12px;text-align:center;min-width:56px;flex-shrink:0}
-  .ec-date-mon{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.1em;font-weight:600}
-  .ec-date-yr{font-size:0.75rem;font-weight:600;margin-top:2px;opacity:0.8}
-  .ec-main{flex:1}
-  .ec-name{font-family:'EB Garamond',serif;font-size:1.1rem;color:var(--text);margin-bottom:4px}
-  .ec-loc{font-size:0.78rem;color:var(--grey);margin-bottom:6px}
-  .ec-desc{font-size:0.84rem;color:var(--grey);line-height:1.55}
-  .ec-tags{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;align-items:center}
-  .ec-tag{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;padding:3px 10px;border-radius:20px;font-weight:700}
-  .tag-triumph{background:#e8f5ee;color:var(--green)}
-  .tag-jaguar{background:#e8e8f8;color:#2a2a5c}
-  .tag-all{background:#f0f0f0;color:#555}
-  .ec-link{font-size:0.78rem;color:var(--green);font-weight:600}
+  .results-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+  .results-count{font-size:0.82rem;color:var(--grey)}
+  .view-toggle{display:flex;gap:6px}
+  .vt-btn{padding:5px 12px;border-radius:6px;font-size:0.74rem;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:#fff;color:var(--grey);transition:all 0.18s}
+  .vt-btn.active{background:var(--green);color:#fff;border-color:var(--green)}
+  /* Accordion list */
+  .ev-list{display:flex;flex-direction:column;gap:8px}
+  .ev-acc{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .ev-acc.featured{border-color:var(--gold)}
+  .ev-acc-head{display:flex;align-items:center;gap:12px;padding:13px 16px;cursor:pointer;-webkit-user-select:none;user-select:none;transition:background 0.15s}
+  .ev-acc-head:hover{background:#fafaf8}
+  .ev-date-chip{background:var(--green);color:#fff;border-radius:6px;padding:5px 9px;font-size:0.68rem;font-weight:700;text-align:center;min-width:44px;flex-shrink:0;line-height:1.25}
+  .ev-acc-title{flex:1;min-width:0}
+  .ev-acc-name{font-family:'EB Garamond',serif;font-size:1.05rem;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ev-acc-sub{font-size:0.73rem;color:var(--grey);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ev-acc-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+  .ev-price-pill{font-size:0.74rem;font-weight:600;white-space:nowrap}
+  .ev-chevron{color:var(--grey);transition:transform 0.22s;display:flex;align-items:center;flex-shrink:0}
+  .ev-acc.open .ev-chevron{transform:rotate(180deg)}
+  .ev-acc-body{display:none;padding:0 16px 16px;border-top:1px solid var(--border)}
+  .ev-acc.open .ev-acc-body{display:block}
+  .ev-detail{display:grid;grid-template-columns:1fr 156px;gap:18px;padding-top:14px}
+  .ev-marque-tag{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.08em;padding:2px 8px;border-radius:12px;font-weight:700;display:inline-block;margin-bottom:8px}
+  .mt-triumph{background:#e8f5ee;color:var(--green)}
+  .mt-jaguar{background:#e8e8f8;color:#2a2a5c}
+  .mt-both{background:#f0f0f0;color:#444}
+  .ev-desc{font-size:0.83rem;color:var(--grey);line-height:1.6;margin-bottom:10px}
+  .ev-hl{list-style:none;margin-bottom:12px}
+  .ev-hl li{font-size:0.79rem;color:var(--grey);padding:3px 0;border-bottom:1px solid var(--border);display:flex;gap:7px}
+  .ev-hl li:last-child{border-bottom:none}
+  .ev-hl li::before{content:'→';color:var(--green);font-weight:600;flex-shrink:0}
+  .ev-venue{background:#f8f6f1;border-radius:6px;padding:10px 12px;font-size:0.78rem;color:var(--grey);line-height:1.6;margin-bottom:0}
+  .ev-venue strong{color:var(--text);display:block;margin-bottom:1px}
+  .ev-venue a{color:var(--green);font-weight:600}
+  .ev-btns{display:flex;flex-direction:column;gap:8px}
+  .ev-btn{display:block;padding:10px 14px;border-radius:5px;font-size:0.8rem;font-weight:700;text-align:center;transition:all 0.18s;line-height:1.3}
+  .ev-btn-t{background:var(--green);color:#fff}
+  .ev-btn-t:hover{background:var(--gl)}
+  .ev-btn-i{background:#fff;color:var(--green);border:1.5px solid var(--green)}
+  .ev-btn-i:hover{background:var(--green);color:#fff}
+  .ev-aff{font-size:0.64rem;color:rgba(100,100,100,0.55);text-align:center;margin-top:3px;line-height:1.4}
+  .ev-feat-badge{background:var(--gold);color:#fff;font-size:0.58rem;text-transform:uppercase;letter-spacing:0.1em;padding:2px 7px;border-radius:20px;font-weight:700;margin-right:6px;vertical-align:middle}
+  /* Grid view */
+  .ev-grid{display:none;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
+  .ev-card{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.2s,transform 0.2s;cursor:pointer}
+  .ev-card:hover{box-shadow:0 4px 18px rgba(0,0,0,0.09);transform:translateY(-2px)}
+  .ev-card.featured{border-color:var(--gold)}
+  .ev-card-head{padding:13px 15px;border-bottom:1px solid var(--border)}
+  .ev-card-date{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--green);margin-bottom:2px}
+  .ev-card-name{font-family:'EB Garamond',serif;font-size:1.08rem;line-height:1.2;margin-bottom:3px}
+  .ev-card-loc{font-size:0.74rem;color:var(--grey)}
+  .ev-card-body{padding:11px 15px;flex:1;display:flex;flex-direction:column}
+  .ev-card-desc{font-size:0.8rem;color:var(--grey);line-height:1.55;flex:1;margin-bottom:10px}
+  .ev-card-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:10px;border-top:1px solid var(--border)}
+  .ev-card-price{font-size:0.8rem;font-weight:600}
+  .ev-card-btn{background:none;border:1.5px solid var(--green);color:var(--green);padding:7px 11px;border-radius:4px;font-size:0.73rem;font-weight:600;cursor:pointer;transition:all 0.18s;white-space:nowrap}
+  .ev-card-btn:hover{background:var(--green);color:#fff}
+  /* Modal */
+  .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:800;align-items:flex-end;justify-content:center}
+  .modal-bg.open{display:flex}
+  @media(min-width:600px){.modal-bg{align-items:center}}
+  .modal{background:#fff;border-radius:14px 14px 0 0;width:100%;max-width:540px;max-height:88vh;overflow-y:auto;padding:22px 20px 28px;position:relative}
+  @media(min-width:600px){.modal{border-radius:14px;max-height:80vh}}
+  .modal-x{position:absolute;top:14px;right:16px;background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--grey);line-height:1;padding:4px}
+  .modal-feat{background:var(--gold);color:#fff;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;padding:2px 8px;border-radius:20px;font-weight:700;display:inline-block;margin-bottom:8px}
+  .modal-date{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--green);margin-bottom:3px}
+  .modal-name{font-family:'EB Garamond',serif;font-size:1.45rem;margin-bottom:4px;line-height:1.2;padding-right:28px}
+  .modal-org{font-size:0.78rem;color:var(--grey);margin-bottom:12px}
+  .modal-desc{font-size:0.85rem;color:var(--grey);line-height:1.65;margin-bottom:12px}
+  .modal-hl-label{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--green);font-weight:700;margin-bottom:7px}
+  .modal-hl{list-style:none;margin-bottom:14px}
+  .modal-hl li{font-size:0.82rem;color:var(--grey);padding:4px 0;border-bottom:1px solid var(--border);display:flex;gap:8px}
+  .modal-hl li:last-child{border-bottom:none}
+  .modal-hl li::before{content:'→';color:var(--green)}
+  .modal-venue{background:#f8f6f1;border-radius:8px;padding:11px 13px;margin-bottom:14px;font-size:0.8rem;color:var(--grey);line-height:1.6}
+  .modal-venue strong{color:var(--text);display:block;margin-bottom:1px}
+  .modal-venue a{color:var(--green);font-weight:600}
+  .modal-btns{display:flex;flex-direction:column;gap:8px}
+  .modal-btn{display:block;padding:13px 16px;border-radius:5px;font-size:0.86rem;font-weight:700;text-align:center;transition:all 0.18s}
+  .modal-btn-t{background:var(--green);color:#fff}
+  .modal-btn-t:hover{background:var(--gl)}
+  .modal-btn-i{background:#fff;color:var(--green);border:2px solid var(--green)}
+  .modal-btn-i:hover{background:var(--green);color:#fff}
+  .modal-aff{font-size:0.66rem;color:rgba(100,100,100,0.5);text-align:center;margin-top:5px;line-height:1.4}
+  /* List CTA */
+  .list-cta{background:linear-gradient(135deg,#1c1c1c,#2a5c3f);border-radius:12px;padding:28px 28px;margin-top:44px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+  .list-cta h3{font-family:'EB Garamond',serif;font-size:1.35rem;color:#fff;margin-bottom:5px}
+  .list-cta p{color:rgba(255,255,255,0.6);font-size:0.84rem;max-width:420px}
+  .lc-pricing{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+  .lc-pill{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);border-radius:7px;padding:8px 14px;text-align:center}
+  .lc-pill strong{display:block;color:#fff;font-size:0.95rem;font-family:'EB Garamond',serif}
+  .lc-pill span{font-size:0.7rem;color:rgba(255,255,255,0.5)}
+  .lc-btn{background:var(--gold);color:#1c1c1c;padding:11px 22px;border-radius:4px;font-weight:700;font-size:0.84rem;white-space:nowrap;transition:opacity 0.2s;align-self:flex-start}
+  .lc-btn:hover{opacity:0.85}
+  @media(max-width:580px){.ev-detail{grid-template-columns:1fr}.ev-btns{flex-direction:row;flex-wrap:wrap}.ev-btn{flex:1;min-width:110px}}
 </style>
-</head>
-<body>
-
+</head><body>
 <header class="site-header">
   <div class="hdr-inner">
-    <a href="../index.html" class="logo">
-      <div class="logo-mark">MF</div>
-      <div class="logo-text">Marque<em>File</em></div>
-    </a>
+    <a href="../index.html" class="logo"><div class="logo-mark">MF</div><div class="logo-text">Marque<em>File</em></div></a>
     <nav class="site-nav" id="site-nav">
-      <div class="nav-dd">
-        <a href="../triumph/index.html">Cars &#9662;</a>
-        <div class="drop">
-          <a href="../triumph/index.html">Triumph TR</a>
-          <a href="../jaguar/index.html">Jaguar</a>
-        </div>
+      <div class="nav-dd"><a href="../triumph/index.html">Cars &#9662;</a>
+        <div class="drop"><a href="../triumph/index.html">Triumph TR</a><a href="../jaguar/index.html">Jaguar</a></div>
       </div>
-      <a href="../clubs/index.html">Clubs</a>
-      <a href="../events/index.html">Events</a>
-      <a href="../suppliers/index.html">Suppliers</a>
-      <a href="#" class="nav-cta">Cars for Sale</a>
+      <div class="nav-dd"><a href="../clubs/index.html">Directory &#9662;</a>
+        <div class="drop"><a href="../clubs/index.html">Clubs</a><a href="../suppliers/index.html">Suppliers</a>
+          <a href="../publications/index.html">Publications</a><a href="../insurance/index.html">Insurance</a>
+          <a href="../storage/index.html">Storage</a></div>
+      </div>
+      <div class="nav-dd"><a href="../valuations/index.html">Market &#9662;</a>
+        <div class="drop"><a href="../valuations/index.html">Price Guides</a><a href="../classifieds/index.html">Cars for Sale</a></div>
+      </div>
+      <a href="../classifieds/index.html" class="nav-cta">Cars for Sale</a>
     </nav>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </header>
 <div class="page-hero">
   <div class="page-hero-inner">
-    <div class="hero-eyebrow">MarqueFile &rsaquo; Directory</div>
-    <h1>Events 2026</h1>
-    <p>Key events for Triumph TR and Jaguar enthusiasts across the year — from club runs and concours to the major national shows.</p>
+    <div class="hero-eyebrow">MarqueFile › Events</div>
+    <h1>Classic Car Events 2025</h1>
+    <p>Shows, concours, hillclimbs and autojumbles — venues, dates, ticket links. Tap any event for full details.</p>
   </div>
 </div>
 <div class="page-body">
-  <div class="filter-row">
-    <button class="f-btn active" onclick="filterEvents('all',this)">All Events</button>
-    <button class="f-btn" onclick="filterEvents('triumph',this)">Triumph</button>
-    <button class="f-btn" onclick="filterEvents('jaguar',this)">Jaguar</button>
+  <div class="filter-bar">
+    <div class="filter-group">
+      <span class="filter-label">Marque</span>
+      <button class="f-btn active" data-f="marque" data-v="all" onclick="af(this)">All</button>
+      <button class="f-btn" data-f="marque" data-v="triumph" onclick="af(this)">Triumph</button>
+      <button class="f-btn" data-f="marque" data-v="jaguar" onclick="af(this)">Jaguar</button>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Region</span>
+      <button class="f-btn active" data-f="region" data-v="all" onclick="af(this)">All</button>
+      <button class="f-btn" data-f="region" data-v="south" onclick="af(this)">South</button>
+      <button class="f-btn" data-f="region" data-v="midlands" onclick="af(this)">Midlands</button>
+      <button class="f-btn" data-f="region" data-v="north" onclick="af(this)">North</button>
+    </div>
+    <div class="filter-group">
+      <span class="filter-label">Month</span>
+      <button class="f-btn active" data-f="month" data-v="all" onclick="af(this)">All</button>
+      <button class="f-btn" data-f="month" data-v="1" onclick="af(this)">Jan</button><button class="f-btn" data-f="month" data-v="2" onclick="af(this)">Feb</button><button class="f-btn" data-f="month" data-v="3" onclick="af(this)">Mar</button><button class="f-btn" data-f="month" data-v="4" onclick="af(this)">Apr</button><button class="f-btn" data-f="month" data-v="5" onclick="af(this)">May</button><button class="f-btn" data-f="month" data-v="6" onclick="af(this)">Jun</button><button class="f-btn" data-f="month" data-v="7" onclick="af(this)">Jul</button><button class="f-btn" data-f="month" data-v="8" onclick="af(this)">Aug</button><button class="f-btn" data-f="month" data-v="9" onclick="af(this)">Sep</button><button class="f-btn" data-f="month" data-v="10" onclick="af(this)">Oct</button><button class="f-btn" data-f="month" data-v="11" onclick="af(this)">Nov</button><button class="f-btn" data-f="month" data-v="12" onclick="af(this)">Dec</button>
+    </div>
   </div>
-<div class="month-group"><div class="month-label">Apr 2026</div>
-    <div class="event-card" data-marque="triumph">
-      <div class="ec-date"><div class="ec-date-mon">Apr</div><div class="ec-date-yr">2026</div></div>
-      <div class="ec-main">
-        <div class="ec-name">Triumph TR Register Spring Run</div>
-        <div class="ec-loc">📍 Midlands &nbsp;·&nbsp; April 2026</div>
-        <div class="ec-desc">Annual spring driving event for TR owners. Route through the Cotswolds.</div>
-        <div class="ec-tags">
-          <div class="ec-tag tag-triumph">Triumph</div>
-          <a href="https://www.tr-register.co.uk" target="_blank" rel="noopener" class="ec-link">tr-register.co.uk →</a>
+  <div class="results-bar">
+    <div class="results-count" id="rc">12 events</div>
+    <div class="view-toggle">
+      <button class="vt-btn active" id="vt-list" onclick="sv('list')">☰ List</button>
+      <button class="vt-btn" id="vt-grid" onclick="sv('grid')">⊞ Grid</button>
+    </div>
+  </div>
+
+  <div class="ev-list" id="ev-list">
+    <div class="ev-acc  featured" data-marque="both" data-region="south" data-month="7">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">JUL<br>10–13</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name"><span class="ev-feat-badge">Featured</span>Goodwood Festival of Speed</div>
+          <div class="ev-acc-sub">📍 Chichester, West Sussex</div>
+        </div>
+        <div class="ev-acc-right">
+          <span class="ev-price-pill">From £45/day</span>
+          <div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
         </div>
       </div>
-    </div></div><div class="month-group"><div class="month-label">May 2026</div>
-    <div class="event-card" data-marque="jaguar">
-      <div class="ec-date"><div class="ec-date-mon">May</div><div class="ec-date-yr">2026</div></div>
-      <div class="ec-main">
-        <div class="ec-name">Jaguar Enthusiasts Club — Spring Concours</div>
-        <div class="ec-loc">📍 Various regional venues &nbsp;·&nbsp; May 2026</div>
-        <div class="ec-desc">Regional concours rounds across the UK. All Jaguar models welcome.</div>
-        <div class="ec-tags">
-          <div class="ec-tag tag-jaguar">Jaguar</div>
-          <a href="https://www.jec.org.uk" target="_blank" rel="noopener" class="ec-link">jec.org.uk →</a>
-        </div>
-      </div>
-    </div></div><div class="month-group"><div class="month-label">Jun 2026</div>
-    <div class="event-card" data-marque="triumph">
-      <div class="ec-date"><div class="ec-date-mon">Jun</div><div class="ec-date-yr">2026</div></div>
-      <div class="ec-main">
-        <div class="ec-name">TR Register International Weekend</div>
-        <div class="ec-loc">📍 Stratford-upon-Avon &nbsp;·&nbsp; June 2026</div>
-        <div class="ec-desc">The highlight of the TR calendar. Concours, driving tests, trade stands and social events over a weekend.</div>
-        <div class="ec-tags">
-          <div class="ec-tag tag-triumph">Triumph</div>
-          <a href="https://www.tr-register.co.uk" target="_blank" rel="noopener" class="ec-link">tr-register.co.uk →</a>
-        </div>
-      </div>
-    </div></div><div class="month-group"><div class="month-label">Jul 2026</div>
-    <div class="event-card" data-marque="all">
-      <div class="ec-date"><div class="ec-date-mon">Jul</div><div class="ec-date-yr">2026</div></div>
-      <div class="ec-main">
-        <div class="ec-name">Silverstone Classic</div>
-        <div class="ec-loc">📍 Silverstone Circuit &nbsp;·&nbsp; 25–27 July 2026</div>
-        <div class="ec-desc">The world's largest classic motor racing festival. Triumph TR and Jaguar racing throughout the weekend.</div>
-        <div class="ec-tags">
-          <div class="ec-tag tag-all">All</div>
-          <a href="https://www.silverstoneклассик.com" target="_blank" rel="noopener" class="ec-link">silverstoneклассик.com →</a>
-        </div>
-      </div>
-    </div></div><div class="month-group"><div class="month-label">Aug 2026</div>
-    <div class="event-card" data-marque="jaguar">
-      <div class="ec-date"><div class="ec-date-mon">Aug</div><div class="ec-date-yr">2026</div></div>
-      <div class="ec-main">
-        <div class="ec-name">E-Type Club Concours</div>
-        <div class="ec-loc">📍 Blenheim Palace &nbsp;·&nbsp; August 2026</div>
-        <div class="ec-desc">Annual concours d'élégance dedicated to the Jaguar E-Type. All three series represented.</div>
-        <div class="ec-tags">
-          <div class="ec-tag tag-jaguar">Jaguar</div>
-          <a href="https://www.etypeclub.com" target="_blank" rel="noopener" class="ec-link">etypeclub.com →</a>
-        </div>
-      </div>
-    </div></div><div class="month-group"><div class="month-label">Sep 2026</div>
-    <div class="event-card" data-marque="all">
-      <div class="ec-date"><div class="ec-date-mon">Sep</div><div class="ec-date-yr">2026</div></div>
-      <div class="ec-main">
-        <div class="ec-name">Goodwood Revival</div>
-        <div class="ec-loc">📍 Goodwood Circuit &nbsp;·&nbsp; 11–13 September 2026</div>
-        <div class="ec-desc">The world's most popular historic motor racing event. Period dress required. Triumph and Jaguar heavily represented.</div>
-        <div class="ec-tags">
-          <div class="ec-tag tag-all">All</div>
-          <a href="https://www.goodwood.com" target="_blank" rel="noopener" class="ec-link">goodwood.com →</a>
+      <div class="ev-acc-body">
+        <div class="ev-detail">
+          <div>
+            <span class="ev-marque-tag mt-both">Triumph & Jaguar</span>
+            <div class="ev-desc">The world's greatest automotive celebration — hillclimb, static displays, manufacturer features and the moving motor show. Triumph TRs and Jaguars appear in the hillclimb and the spectacular Forest Rally Stage.</div>
+            <ul class="ev-hl"><li>Hillclimb with historic and modern cars</li><li>Forest Rally Stage</li><li>Manufacturer showcase pavilions</li><li>Supercar paddock and classic car lawn</li></ul>
+            <div class="ev-venue">
+              <strong>Goodwood House & Park</strong>
+              Chichester, West Sussex PO18 0PX<br>
+              <a href="https://maps.google.com/?q=Goodwood+House,Chichester" target="_blank" rel="noopener" data-track="maps">Google Maps →</a>
+            </div>
+          </div>
+          <div class="ev-btns">
+            <a href="https://www.goodwood.com/motorsport/festival-of-speed/tickets/?utm_source=marquefile&utm_medium=events&utm_campaign=featured" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">🎟 Tickets</a>
+            <a href="https://www.goodwood.com/motorsport/festival-of-speed/?utm_source=marquefile&utm_medium=events&utm_campaign=featured" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info →</a>
+            <div class="ev-aff">⟳ Affiliate link — MarqueFile may earn from purchases</div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="event-card" data-marque="jaguar">
-      <div class="ec-date"><div class="ec-date-mon">Sep</div><div class="ec-date-yr">2026</div></div>
-      <div class="ec-main">
-        <div class="ec-name">Jaguar Drivers Club National Rally</div>
-        <div class="ec-loc">📍 TBC &nbsp;·&nbsp; September 2026</div>
-        <div class="ec-desc">Annual national rally for JDC members. Concours judging, driving tests and display.</div>
-        <div class="ec-tags">
-          <div class="ec-tag tag-jaguar">Jaguar</div>
-          <a href="https://www.jaguardriver.co.uk" target="_blank" rel="noopener" class="ec-link">jaguardriver.co.uk →</a>
+    <div class="ev-acc  featured" data-marque="triumph" data-region="midlands" data-month="7">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">JUL<br>4–6</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name"><span class="ev-feat-badge">Featured</span>TR Register International Weekend</div>
+          <div class="ev-acc-sub">📍 Northampton, Northamptonshire</div>
+        </div>
+        <div class="ev-acc-right">
+          <span class="ev-price-pill">Members from £35/weekend</span>
+          <div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
         </div>
       </div>
-    </div></div><div class="month-group"><div class="month-label">Oct 2026</div>
-    <div class="event-card" data-marque="all">
-      <div class="ec-date"><div class="ec-date-mon">Oct</div><div class="ec-date-yr">2026</div></div>
-      <div class="ec-main">
-        <div class="ec-name">Classic & Sports Car Show</div>
-        <div class="ec-loc">📍 Stoneleigh Park &nbsp;·&nbsp; October 2026</div>
-        <div class="ec-desc">Midlands-based classic car show. Strong Triumph and Jaguar content.</div>
-        <div class="ec-tags">
-          <div class="ec-tag tag-all">All</div>
-          
-        </div>
-      </div>
-    </div></div><div class="month-group"><div class="month-label">Nov 2026</div>
-    <div class="event-card" data-marque="all">
-      <div class="ec-date"><div class="ec-date-mon">Nov</div><div class="ec-date-yr">2026</div></div>
-      <div class="ec-main">
-        <div class="ec-name">NEC Classic Motor Show</div>
-        <div class="ec-loc">📍 Birmingham NEC &nbsp;·&nbsp; 6–8 November 2026</div>
-        <div class="ec-desc">The UK's largest indoor classic car show. Club displays, trade stands and auction.</div>
-        <div class="ec-tags">
-          <div class="ec-tag tag-all">All</div>
-          <a href="https://www.necclassicmotorshow.com" target="_blank" rel="noopener" class="ec-link">necclassicmotorshow.com →</a>
+      <div class="ev-acc-body">
+        <div class="ev-detail">
+          <div>
+            <span class="ev-marque-tag mt-triumph">Triumph</span>
+            <div class="ev-desc">The TR Register's flagship annual event — the largest gathering of Triumph TR cars in the world. Concours competition, driving tests, trade stands, parts autojumble, club AGM and social evenings. Essential for any TR owner.</div>
+            <ul class="ev-hl"><li>Concours d'Élégance judged to marque standards</li><li>Driving tests and sprints</li><li>Largest autojumble of TR parts in UK</li><li>Club awards and social evenings</li><li>All models TR2–TR8 represented</li></ul>
+            <div class="ev-venue">
+              <strong>Billing Aquadrome</strong>
+              Northampton, Northamptonshire NN3 9DA<br>
+              <a href="https://maps.google.com/?q=Billing+Aquadrome,Northampton" target="_blank" rel="noopener" data-track="maps">Google Maps →</a>
+            </div>
+          </div>
+          <div class="ev-btns">
+            <a href="https://www.tr-register.co.uk/events/?utm_source=marquefile&utm_medium=events&utm_campaign=featured" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">🎟 Tickets</a>
+            <a href="https://www.tr-register.co.uk/events/international-weekend/?utm_source=marquefile&utm_medium=events&utm_campaign=featured" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info →</a>
+            <div class="ev-aff">Direct to organiser</div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="event-card" data-marque="triumph">
-      <div class="ec-date"><div class="ec-date-mon">Nov</div><div class="ec-date-yr">2026</div></div>
-      <div class="ec-main">
-        <div class="ec-name">TR Register End of Season Dinner</div>
-        <div class="ec-loc">📍 Midlands &nbsp;·&nbsp; November 2026</div>
-        <div class="ec-desc">Annual end-of-season dinner and awards for TR Register members.</div>
-        <div class="ec-tags">
-          <div class="ec-tag tag-triumph">Triumph</div>
-          <a href="https://www.tr-register.co.uk" target="_blank" rel="noopener" class="ec-link">tr-register.co.uk →</a>
+    <div class="ev-acc  featured" data-marque="both" data-region="south" data-month="9">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">SEP<br>12–14</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name"><span class="ev-feat-badge">Featured</span>Goodwood Revival</div>
+          <div class="ev-acc-sub">📍 Chichester, West Sussex</div>
+        </div>
+        <div class="ev-acc-right">
+          <span class="ev-price-pill">From £55/day</span>
+          <div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
         </div>
       </div>
-    </div></div>
+      <div class="ev-acc-body">
+        <div class="ev-detail">
+          <div>
+            <span class="ev-marque-tag mt-both">Triumph & Jaguar</span>
+            <div class="ev-desc">The world's finest historic motor racing festival. Three days of period racing, trade stands, fashion and entertainment — all dressed in authentic 1940s–60s style. E-Types and TR racing cars appear regularly on track. One of the unmissable events in the classic car calendar.</div>
+            <ul class="ev-hl"><li>Period racing on the original Goodwood circuit</li><li>Dress code — 1940s to 1966 encouraged</li><li>Huge paddock with cars available to view</li><li>Trade stands, autojumble and hospitality</li></ul>
+            <div class="ev-venue">
+              <strong>Goodwood Motor Circuit</strong>
+              Chichester, West Sussex PO18 0PH<br>
+              <a href="https://maps.google.com/?q=Goodwood+Motor+Circuit,Chichester" target="_blank" rel="noopener" data-track="maps">Google Maps →</a>
+            </div>
+          </div>
+          <div class="ev-btns">
+            <a href="https://www.goodwood.com/motorsport/revival/tickets/?utm_source=marquefile&utm_medium=events&utm_campaign=featured" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">🎟 Tickets</a>
+            <a href="https://www.goodwood.com/motorsport/revival/?utm_source=marquefile&utm_medium=events&utm_campaign=featured" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info →</a>
+            <div class="ev-aff">⟳ Affiliate link — MarqueFile may earn from purchases</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ev-acc" data-marque="both" data-region="midlands" data-month="3">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">MAR<br>28–30</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name">Practical Classics Restoration Show</div>
+          <div class="ev-acc-sub">📍 Birmingham, West Midlands</div>
+        </div>
+        <div class="ev-acc-right">
+          <span class="ev-price-pill">From £18/day</span>
+          <div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        </div>
+      </div>
+      <div class="ev-acc-body">
+        <div class="ev-detail">
+          <div>
+            <span class="ev-marque-tag mt-both">Triumph & Jaguar</span>
+            <div class="ev-desc">The UK's premier restoration-focused show — tools, materials, specialist services and advice. If you're mid-restoration on a TR or Jaguar, this is invaluable.</div>
+            <ul class="ev-hl"><li>Restoration tools and materials</li><li>Specialist body, trim and mechanical services</li><li>Technical advice from restorers</li><li>Project cars on display</li></ul>
+            <div class="ev-venue">
+              <strong>NEC Birmingham</strong>
+              Birmingham, West Midlands B40 1NT<br>
+              <a href="https://maps.google.com/?q=NEC+Birmingham" target="_blank" rel="noopener" data-track="maps">Google Maps →</a>
+            </div>
+          </div>
+          <div class="ev-btns">
+            <a href="https://www.practicalclassics.co.uk/events/restoration-show/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">🎟 Tickets</a>
+            <a href="https://www.practicalclassics.co.uk/events/restoration-show/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info →</a>
+            <div class="ev-aff">⟳ Affiliate link — MarqueFile may earn from purchases</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ev-acc" data-marque="jaguar" data-region="midlands" data-month="5">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">MAY<br>May</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name">JEC National Day</div>
+          <div class="ev-acc-sub">📍 Kenilworth, Warwickshire</div>
+        </div>
+        <div class="ev-acc-right">
+          <span class="ev-price-pill">Members from £12</span>
+          <div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        </div>
+      </div>
+      <div class="ev-acc-body">
+        <div class="ev-detail">
+          <div>
+            <span class="ev-marque-tag mt-jaguar">Jaguar</span>
+            <div class="ev-desc">The JEC's annual national gathering — the largest gathering of Jaguar Enthusiasts Club members. Concours judged across all Jaguar classes including E-Type, XK, Mk II and XJ.</div>
+            <ul class="ev-hl"><li>Concours judged by marque experts</li><li>All Jaguar models welcomed</li><li>Trade stands and specialist advice</li><li>Member-exclusive early access</li></ul>
+            <div class="ev-venue">
+              <strong>Stoneleigh Park</strong>
+              Kenilworth, Warwickshire CV8 2LZ<br>
+              <a href="https://maps.google.com/?q=Stoneleigh+Park,Kenilworth" target="_blank" rel="noopener" data-track="maps">Google Maps →</a>
+            </div>
+          </div>
+          <div class="ev-btns">
+            <a href="https://www.jec.org.uk/events/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">🎟 Tickets</a>
+            <a href="https://www.jec.org.uk/events/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info →</a>
+            <div class="ev-aff">Direct to organiser</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ev-acc" data-marque="both" data-region="south" data-month="5">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">MAY<br>Multiple</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name">Prescott Hill Climb — Classic Day</div>
+          <div class="ev-acc-sub">📍 Gotherington, Gloucestershire</div>
+        </div>
+        <div class="ev-acc-right">
+          <span class="ev-price-pill">From £15 spectator</span>
+          <div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        </div>
+      </div>
+      <div class="ev-acc-body">
+        <div class="ev-detail">
+          <div>
+            <span class="ev-marque-tag mt-both">Triumph & Jaguar</span>
+            <div class="ev-desc">Prescott Hill Climb near Cheltenham runs multiple events through the season. Classic car days see Triumph TRs and Jaguar E-Types on the hill. Spectator friendly with excellent viewing.</div>
+            <ul class="ev-hl"><li>Historic hillclimb near Cheltenham</li><li>TR and Jaguar regularly compete</li><li>Excellent spectator viewing</li><li>Multiple events through season</li></ul>
+            <div class="ev-venue">
+              <strong>Prescott Speed Hill Climb</strong>
+              Gotherington, Gloucestershire GL52 9RD<br>
+              <a href="https://maps.google.com/?q=Prescott+Hill+Climb,Gotherington,Cheltenham" target="_blank" rel="noopener" data-track="maps">Google Maps →</a>
+            </div>
+          </div>
+          <div class="ev-btns">
+            <a href="https://www.prescotthillclimb.com/tickets/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">🎟 Tickets</a>
+            <a href="https://www.prescotthillclimb.com/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info →</a>
+            <div class="ev-aff">Direct to organiser</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ev-acc" data-marque="jaguar" data-region="south" data-month="6">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">JUN<br>June</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name">E-Type Club Concours d'Élégance</div>
+          <div class="ev-acc-sub">📍 Oxfordshire (typical), Oxfordshire</div>
+        </div>
+        <div class="ev-acc-right">
+          <span class="ev-price-pill">Members from £20</span>
+          <div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        </div>
+      </div>
+      <div class="ev-acc-body">
+        <div class="ev-detail">
+          <div>
+            <span class="ev-marque-tag mt-jaguar">Jaguar</span>
+            <div class="ev-desc">The E-Type Club's flagship annual event — a prestigious concours with strict judging standards across all three series. Held at a carefully chosen historic venue.</div>
+            <ul class="ev-hl"><li>All three series — S1, S2, S3 judged</li><li>Strict OE-standard judging</li><li>Historic house setting</li><li>Club awards and presentations</li></ul>
+            <div class="ev-venue">
+              <strong>Historic country house (varies)</strong>
+              Oxfordshire (typical), Oxfordshire<br>
+              <a href="https://maps.google.com/?q=Oxfordshire+England" target="_blank" rel="noopener" data-track="maps">Google Maps →</a>
+            </div>
+          </div>
+          <div class="ev-btns">
+            <a href="https://www.etypeclub.com/events/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">🎟 Tickets</a>
+            <a href="https://www.etypeclub.com/events/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info →</a>
+            <div class="ev-aff">Direct to organiser</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ev-acc" data-marque="both" data-region="north" data-month="6">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">JUN<br>June</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name">Tatton Park Classic Car Show</div>
+          <div class="ev-acc-sub">📍 Knutsford, Cheshire</div>
+        </div>
+        <div class="ev-acc-right">
+          <span class="ev-price-pill">From £12/day</span>
+          <div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        </div>
+      </div>
+      <div class="ev-acc-body">
+        <div class="ev-detail">
+          <div>
+            <span class="ev-marque-tag mt-both">Triumph & Jaguar</span>
+            <div class="ev-desc">A popular northern England classic show held at the stunning Tatton Park estate. Good Triumph and Jaguar club presence. Concours in the formal gardens.</div>
+            <ul class="ev-hl"><li>Stunning estate setting</li><li>Concours in formal gardens</li><li>Good northern club presence</li><li>Family friendly</li></ul>
+            <div class="ev-venue">
+              <strong>Tatton Park Estate</strong>
+              Knutsford, Cheshire WA16 6QN<br>
+              <a href="https://maps.google.com/?q=Tatton+Park,Knutsford,Cheshire" target="_blank" rel="noopener" data-track="maps">Google Maps →</a>
+            </div>
+          </div>
+          <div class="ev-btns">
+            <a href="https://www.tattonpark.org.uk/whats-on/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">🎟 Tickets</a>
+            <a href="https://www.tattonpark.org.uk/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info →</a>
+            <div class="ev-aff">Direct to organiser</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ev-acc" data-marque="both" data-region="midlands" data-month="7">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">JUL<br>25–27</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name">Silverstone Classic</div>
+          <div class="ev-acc-sub">📍 Silverstone, Northamptonshire</div>
+        </div>
+        <div class="ev-acc-right">
+          <span class="ev-price-pill">From £39/day</span>
+          <div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        </div>
+      </div>
+      <div class="ev-acc-body">
+        <div class="ev-detail">
+          <div>
+            <span class="ev-marque-tag mt-both">Triumph & Jaguar</span>
+            <div class="ev-desc">The world's biggest classic motor racing festival. Held at Silverstone, with dedicated club areas for Triumph and Jaguar clubs. Racing, live music and the vast Classic Car Club display areas.</div>
+            <ul class="ev-hl"><li>Historic racing on the full GP circuit</li><li>TR Register and JEC club enclosures</li><li>Live music Saturday and Sunday evenings</li><li>Access to both paddocks included</li></ul>
+            <div class="ev-venue">
+              <strong>Silverstone Circuit</strong>
+              Silverstone, Northamptonshire NN12 8TN<br>
+              <a href="https://maps.google.com/?q=Silverstone+Circuit,Northamptonshire" target="_blank" rel="noopener" data-track="maps">Google Maps →</a>
+            </div>
+          </div>
+          <div class="ev-btns">
+            <a href="https://www.silverstoneclassic.com/tickets/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">🎟 Tickets</a>
+            <a href="https://www.silverstoneclassic.com/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info →</a>
+            <div class="ev-aff">⟳ Affiliate link — MarqueFile may earn from purchases</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ev-acc" data-marque="triumph" data-region="midlands" data-month="8">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">AUG<br>August</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name">TSSC Triumph Extravaganza</div>
+          <div class="ev-acc-sub">📍 Stoneleigh, Warwickshire</div>
+        </div>
+        <div class="ev-acc-right">
+          <span class="ev-price-pill">Members from £15</span>
+          <div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        </div>
+      </div>
+      <div class="ev-acc-body">
+        <div class="ev-detail">
+          <div>
+            <span class="ev-marque-tag mt-triumph">Triumph</span>
+            <div class="ev-desc">The Triumph Sports Six Club's annual gathering celebrating all six-cylinder Triumph models. Strong TR5 and TR6 representation alongside Vitesse, GT6 and Herald.</div>
+            <ul class="ev-hl"><li>All six-cylinder Triumph models</li><li>Concours competition</li><li>Technical Q&A with marque experts</li><li>Parts autojumble</li></ul>
+            <div class="ev-venue">
+              <strong>Stoneleigh Park</strong>
+              Stoneleigh, Warwickshire CV8 2LZ<br>
+              <a href="https://maps.google.com/?q=Stoneleigh+Park,Kenilworth" target="_blank" rel="noopener" data-track="maps">Google Maps →</a>
+            </div>
+          </div>
+          <div class="ev-btns">
+            <a href="https://www.tssc.org.uk/events/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">🎟 Tickets</a>
+            <a href="https://www.tssc.org.uk/events/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info →</a>
+            <div class="ev-aff">Direct to organiser</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ev-acc" data-marque="both" data-region="south" data-month="9">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">SEP<br>6–7</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name">Beaulieu International Autojumble</div>
+          <div class="ev-acc-sub">📍 Beaulieu, Hampshire</div>
+        </div>
+        <div class="ev-acc-right">
+          <span class="ev-price-pill">From £25/day</span>
+          <div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        </div>
+      </div>
+      <div class="ev-acc-body">
+        <div class="ev-detail">
+          <div>
+            <span class="ev-marque-tag mt-both">Triumph & Jaguar</span>
+            <div class="ev-desc">Europe's largest autojumble — two days of parts, spares, memorabilia and classic cars for sale. If you're looking for TR or Jaguar parts, this is where to come.</div>
+            <ul class="ev-hl"><li>2,000+ stalls of parts and memorabilia</li><li>Cars for sale area</li><li>National Motor Museum access included</li><li>Spring (May) and Autumn (September) events</li></ul>
+            <div class="ev-venue">
+              <strong>Beaulieu Estate</strong>
+              Beaulieu, Hampshire SO42 7ZN<br>
+              <a href="https://maps.google.com/?q=Beaulieu+Estate,Hampshire" target="_blank" rel="noopener" data-track="maps">Google Maps →</a>
+            </div>
+          </div>
+          <div class="ev-btns">
+            <a href="https://www.beaulieu.co.uk/events/international-autojumble/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">🎟 Tickets</a>
+            <a href="https://www.beaulieu.co.uk/events/international-autojumble/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info →</a>
+            <div class="ev-aff">Direct to organiser</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ev-acc" data-marque="both" data-region="midlands" data-month="11">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">NOV<br>14–16</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name">Classic Motor Show — NEC Birmingham</div>
+          <div class="ev-acc-sub">📍 Birmingham, West Midlands</div>
+        </div>
+        <div class="ev-acc-right">
+          <span class="ev-price-pill">From £20/day</span>
+          <div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        </div>
+      </div>
+      <div class="ev-acc-body">
+        <div class="ev-detail">
+          <div>
+            <span class="ev-marque-tag mt-both">Triumph & Jaguar</span>
+            <div class="ev-desc">The UK's largest indoor classic car show — held at the NEC each November. Over 100 clubs represented including TR Register and JEC. Trade stands, restoration features and the Simply Classics displays.</div>
+            <ul class="ev-hl"><li>100+ clubs with dedicated display areas</li><li>Indoor — suitable whatever the weather</li><li>Restoration and trade stands</li><li>Simply Classics static displays</li></ul>
+            <div class="ev-venue">
+              <strong>NEC Birmingham</strong>
+              Birmingham, West Midlands B40 1NT<br>
+              <a href="https://maps.google.com/?q=NEC+Birmingham" target="_blank" rel="noopener" data-track="maps">Google Maps →</a>
+            </div>
+          </div>
+          <div class="ev-btns">
+            <a href="https://www.necclassicmotorshow.com/tickets/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">🎟 Tickets</a>
+            <a href="https://www.necclassicmotorshow.com/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info →</a>
+            <div class="ev-aff">⟳ Affiliate link — MarqueFile may earn from purchases</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ev-grid" id="ev-grid">
+    <div class="ev-card  featured" data-marque="both" data-region="south" data-month="7" onclick="om('e002')">
+      <div class="ev-card-head">
+        <span class="ev-feat-badge">Featured</span>
+        <div class="ev-card-date">10–13 July 2025</div>
+        <div class="ev-card-name">Goodwood Festival of Speed</div>
+        <div class="ev-card-loc">📍 Chichester, West Sussex</div>
+      </div>
+      <div class="ev-card-body">
+        <span class="ev-marque-tag mt-both" style="margin-bottom:8px;display:inline-block">Triumph & Jaguar</span>
+        <div class="ev-card-desc">The world's greatest automotive celebration — hillclimb, static displays, manufacturer features and the moving motor show. Triumph TRs and Jaguars app…</div>
+        <div class="ev-card-foot">
+          <span class="ev-card-price">From £45/day</span>
+          <button class="ev-card-btn">Details & Tickets →</button>
+        </div>
+      </div>
+    </div>
+    <div class="ev-card  featured" data-marque="triumph" data-region="midlands" data-month="7" onclick="om('e003')">
+      <div class="ev-card-head">
+        <span class="ev-feat-badge">Featured</span>
+        <div class="ev-card-date">4–6 July 2025</div>
+        <div class="ev-card-name">TR Register International Weekend</div>
+        <div class="ev-card-loc">📍 Northampton, Northamptonshire</div>
+      </div>
+      <div class="ev-card-body">
+        <span class="ev-marque-tag mt-triumph" style="margin-bottom:8px;display:inline-block">Triumph</span>
+        <div class="ev-card-desc">The TR Register's flagship annual event — the largest gathering of Triumph TR cars in the world. Concours competition, driving tests, trade stands, pa…</div>
+        <div class="ev-card-foot">
+          <span class="ev-card-price">Members from £35/weekend</span>
+          <button class="ev-card-btn">Details & Tickets →</button>
+        </div>
+      </div>
+    </div>
+    <div class="ev-card  featured" data-marque="both" data-region="south" data-month="9" onclick="om('e001')">
+      <div class="ev-card-head">
+        <span class="ev-feat-badge">Featured</span>
+        <div class="ev-card-date">12–14 September 2025</div>
+        <div class="ev-card-name">Goodwood Revival</div>
+        <div class="ev-card-loc">📍 Chichester, West Sussex</div>
+      </div>
+      <div class="ev-card-body">
+        <span class="ev-marque-tag mt-both" style="margin-bottom:8px;display:inline-block">Triumph & Jaguar</span>
+        <div class="ev-card-desc">The world's finest historic motor racing festival. Three days of period racing, trade stands, fashion and entertainment — all dressed in authentic 194…</div>
+        <div class="ev-card-foot">
+          <span class="ev-card-price">From £55/day</span>
+          <button class="ev-card-btn">Details & Tickets →</button>
+        </div>
+      </div>
+    </div>
+    <div class="ev-card" data-marque="both" data-region="midlands" data-month="3" onclick="om('e012')">
+      <div class="ev-card-head">
+        
+        <div class="ev-card-date">28–30 March 2025</div>
+        <div class="ev-card-name">Practical Classics Restoration Show</div>
+        <div class="ev-card-loc">📍 Birmingham, West Midlands</div>
+      </div>
+      <div class="ev-card-body">
+        <span class="ev-marque-tag mt-both" style="margin-bottom:8px;display:inline-block">Triumph & Jaguar</span>
+        <div class="ev-card-desc">The UK's premier restoration-focused show — tools, materials, specialist services and advice. If you're mid-restoration on a TR or Jaguar, this is inv…</div>
+        <div class="ev-card-foot">
+          <span class="ev-card-price">From £18/day</span>
+          <button class="ev-card-btn">Details & Tickets →</button>
+        </div>
+      </div>
+    </div>
+    <div class="ev-card" data-marque="jaguar" data-region="midlands" data-month="5" onclick="om('e008')">
+      <div class="ev-card-head">
+        
+        <div class="ev-card-date">May 2025 (TBC)</div>
+        <div class="ev-card-name">JEC National Day</div>
+        <div class="ev-card-loc">📍 Kenilworth, Warwickshire</div>
+      </div>
+      <div class="ev-card-body">
+        <span class="ev-marque-tag mt-jaguar" style="margin-bottom:8px;display:inline-block">Jaguar</span>
+        <div class="ev-card-desc">The JEC's annual national gathering — the largest gathering of Jaguar Enthusiasts Club members. Concours judged across all Jaguar classes including E-…</div>
+        <div class="ev-card-foot">
+          <span class="ev-card-price">Members from £12</span>
+          <button class="ev-card-btn">Details & Tickets →</button>
+        </div>
+      </div>
+    </div>
+    <div class="ev-card" data-marque="both" data-region="south" data-month="5" onclick="om('e010')">
+      <div class="ev-card-head">
+        
+        <div class="ev-card-date">Multiple dates 2025</div>
+        <div class="ev-card-name">Prescott Hill Climb — Classic Day</div>
+        <div class="ev-card-loc">📍 Gotherington, Gloucestershire</div>
+      </div>
+      <div class="ev-card-body">
+        <span class="ev-marque-tag mt-both" style="margin-bottom:8px;display:inline-block">Triumph & Jaguar</span>
+        <div class="ev-card-desc">Prescott Hill Climb near Cheltenham runs multiple events through the season. Classic car days see Triumph TRs and Jaguar E-Types on the hill. Spectato…</div>
+        <div class="ev-card-foot">
+          <span class="ev-card-price">From £15 spectator</span>
+          <button class="ev-card-btn">Details & Tickets →</button>
+        </div>
+      </div>
+    </div>
+    <div class="ev-card" data-marque="jaguar" data-region="south" data-month="6" onclick="om('e009')">
+      <div class="ev-card-head">
+        
+        <div class="ev-card-date">June 2025 (TBC)</div>
+        <div class="ev-card-name">E-Type Club Concours d'Élégance</div>
+        <div class="ev-card-loc">📍 Oxfordshire (typical), Oxfordshire</div>
+      </div>
+      <div class="ev-card-body">
+        <span class="ev-marque-tag mt-jaguar" style="margin-bottom:8px;display:inline-block">Jaguar</span>
+        <div class="ev-card-desc">The E-Type Club's flagship annual event — a prestigious concours with strict judging standards across all three series. Held at a carefully chosen his…</div>
+        <div class="ev-card-foot">
+          <span class="ev-card-price">Members from £20</span>
+          <button class="ev-card-btn">Details & Tickets →</button>
+        </div>
+      </div>
+    </div>
+    <div class="ev-card" data-marque="both" data-region="north" data-month="6" onclick="om('e011')">
+      <div class="ev-card-head">
+        
+        <div class="ev-card-date">June 2025 (TBC)</div>
+        <div class="ev-card-name">Tatton Park Classic Car Show</div>
+        <div class="ev-card-loc">📍 Knutsford, Cheshire</div>
+      </div>
+      <div class="ev-card-body">
+        <span class="ev-marque-tag mt-both" style="margin-bottom:8px;display:inline-block">Triumph & Jaguar</span>
+        <div class="ev-card-desc">A popular northern England classic show held at the stunning Tatton Park estate. Good Triumph and Jaguar club presence. Concours in the formal gardens…</div>
+        <div class="ev-card-foot">
+          <span class="ev-card-price">From £12/day</span>
+          <button class="ev-card-btn">Details & Tickets →</button>
+        </div>
+      </div>
+    </div>
+    <div class="ev-card" data-marque="both" data-region="midlands" data-month="7" onclick="om('e004')">
+      <div class="ev-card-head">
+        
+        <div class="ev-card-date">25–27 July 2025</div>
+        <div class="ev-card-name">Silverstone Classic</div>
+        <div class="ev-card-loc">📍 Silverstone, Northamptonshire</div>
+      </div>
+      <div class="ev-card-body">
+        <span class="ev-marque-tag mt-both" style="margin-bottom:8px;display:inline-block">Triumph & Jaguar</span>
+        <div class="ev-card-desc">The world's biggest classic motor racing festival. Held at Silverstone, with dedicated club areas for Triumph and Jaguar clubs. Racing, live music and…</div>
+        <div class="ev-card-foot">
+          <span class="ev-card-price">From £39/day</span>
+          <button class="ev-card-btn">Details & Tickets →</button>
+        </div>
+      </div>
+    </div>
+    <div class="ev-card" data-marque="triumph" data-region="midlands" data-month="8" onclick="om('e007')">
+      <div class="ev-card-head">
+        
+        <div class="ev-card-date">August 2025 (TBC)</div>
+        <div class="ev-card-name">TSSC Triumph Extravaganza</div>
+        <div class="ev-card-loc">📍 Stoneleigh, Warwickshire</div>
+      </div>
+      <div class="ev-card-body">
+        <span class="ev-marque-tag mt-triumph" style="margin-bottom:8px;display:inline-block">Triumph</span>
+        <div class="ev-card-desc">The Triumph Sports Six Club's annual gathering celebrating all six-cylinder Triumph models. Strong TR5 and TR6 representation alongside Vitesse, GT6 a…</div>
+        <div class="ev-card-foot">
+          <span class="ev-card-price">Members from £15</span>
+          <button class="ev-card-btn">Details & Tickets →</button>
+        </div>
+      </div>
+    </div>
+    <div class="ev-card" data-marque="both" data-region="south" data-month="9" onclick="om('e005')">
+      <div class="ev-card-head">
+        
+        <div class="ev-card-date">6–7 September 2025</div>
+        <div class="ev-card-name">Beaulieu International Autojumble</div>
+        <div class="ev-card-loc">📍 Beaulieu, Hampshire</div>
+      </div>
+      <div class="ev-card-body">
+        <span class="ev-marque-tag mt-both" style="margin-bottom:8px;display:inline-block">Triumph & Jaguar</span>
+        <div class="ev-card-desc">Europe's largest autojumble — two days of parts, spares, memorabilia and classic cars for sale. If you're looking for TR or Jaguar parts, this is wher…</div>
+        <div class="ev-card-foot">
+          <span class="ev-card-price">From £25/day</span>
+          <button class="ev-card-btn">Details & Tickets →</button>
+        </div>
+      </div>
+    </div>
+    <div class="ev-card" data-marque="both" data-region="midlands" data-month="11" onclick="om('e006')">
+      <div class="ev-card-head">
+        
+        <div class="ev-card-date">14–16 November 2025</div>
+        <div class="ev-card-name">Classic Motor Show — NEC Birmingham</div>
+        <div class="ev-card-loc">📍 Birmingham, West Midlands</div>
+      </div>
+      <div class="ev-card-body">
+        <span class="ev-marque-tag mt-both" style="margin-bottom:8px;display:inline-block">Triumph & Jaguar</span>
+        <div class="ev-card-desc">The UK's largest indoor classic car show — held at the NEC each November. Over 100 clubs represented including TR Register and JEC. Trade stands, rest…</div>
+        <div class="ev-card-foot">
+          <span class="ev-card-price">From £20/day</span>
+          <button class="ev-card-btn">Details & Tickets →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="list-cta">
+    <div>
+      <h3>Got an event to list?</h3>
+      <p>Reach Triumph and Jaguar enthusiasts actively looking for events. Free standard listings, or pay for featured placement at the top.</p>
+      <div class="lc-pricing">
+        <div class="lc-pill"><strong>Free</strong><span>Standard listing</span></div>
+        <div class="lc-pill"><strong>£75</strong><span>Featured — top of results</span></div>
+        <div class="lc-pill"><strong>+ Affiliate</strong><span>Earn on our ticket links</span></div>
+      </div>
+    </div>
+    <a href="mailto:events@marquefile.co.uk?subject=Event listing enquiry" class="lc-btn">List an Event →</a>
+  </div>
+</div>
+
+<div class="modal-bg" id="modal-bg" onclick="cmbg(event)">
+  <div class="modal"><button class="modal-x" onclick="cm()">✕</button><div id="modal-inner"></div></div>
 </div>
 
 <footer>
   <div class="ft-inner">
-    <div class="ft-brand">
+    <div>
       <div class="logo-mark" style="width:44px;height:44px;font-size:1.2rem;margin-bottom:10px">MF</div>
-      <div style="font-family:'EB Garamond',serif;font-size:1.2rem;color:#fff;margin-bottom:4px">Marque<em style="color:var(--gold)">File</em></div>
+      <div style="font-family:'EB Garamond',serif;font-size:1.2rem;color:#fff;margin-bottom:4px">Marque<em style="color:#c8a84b">File</em></div>
       <div style="font-size:0.78rem;color:rgba(255,255,255,0.35);line-height:1.7">The classic car data resource.<br>Triumph TR · Jaguar</div>
     </div>
     <div class="ft-cols">
-      <div><h4>Cars</h4>
-        <a href="/Marlo-OpenClaw/classic-hub/triumph/">Triumph TR</a>
-        <a href="/Marlo-OpenClaw/classic-hub/jaguar/">Jaguar</a>
-      </div>
-      <div><h4>Directory</h4>
-        <a href="/Marlo-OpenClaw/classic-hub/clubs/">Clubs</a>
-        <a href="/Marlo-OpenClaw/classic-hub/events/">Events</a>
-        <a href="/Marlo-OpenClaw/classic-hub/suppliers/">Suppliers</a>
-      </div>
-      <div><h4>Classifieds</h4>
-        <a href="#">Cars for Sale</a>
-        <a href="#">List Your Car</a>
-      </div>
+      <div><h4>Cars</h4><a href="/Marlo-OpenClaw/classic-hub/triumph/">Triumph TR</a><a href="/Marlo-OpenClaw/classic-hub/jaguar/">Jaguar</a></div>
+      <div><h4>Directory</h4><a href="/Marlo-OpenClaw/classic-hub/clubs/">Clubs</a><a href="/Marlo-OpenClaw/classic-hub/suppliers/">Suppliers</a><a href="/Marlo-OpenClaw/classic-hub/publications/">Publications</a><a href="/Marlo-OpenClaw/classic-hub/insurance/">Insurance</a><a href="/Marlo-OpenClaw/classic-hub/storage/">Storage</a></div>
+      <div><h4>Market</h4><a href="/Marlo-OpenClaw/classic-hub/valuations/">Price Guides</a><a href="/Marlo-OpenClaw/classic-hub/classifieds/">Cars for Sale</a></div>
+      <div><h4>Events</h4><a href="/Marlo-OpenClaw/classic-hub/events/">All Events</a><a href="mailto:events@marquefile.co.uk">List an Event</a></div>
     </div>
   </div>
-  <div class="ft-base">
-    <span>&copy; 2026 MarqueFile. All rights reserved.</span>
-    <span>Data for reference only &mdash; always verify before purchase.</span>
-  </div>
+  <div class="ft-base"><span>&copy; 2026 MarqueFile.</span><span>Event details subject to change — always verify with organiser.</span></div>
 </footer>
 
 <script>
-  const toggle=document.getElementById('nav-toggle'),nav=document.getElementById('site-nav');
-  if(toggle&&nav)toggle.addEventListener('click',()=>nav.classList.toggle('open'));
-  function filterEvents(marque,btn){
-    document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.event-card').forEach(c=>{
-      const m=c.dataset.marque;
-      c.style.display=(marque==='all'||m===marque||m==='all')?'flex':'none';
-    });
-    document.querySelectorAll('.month-group').forEach(g=>{
-      const visible=[...g.querySelectorAll('.event-card')].some(c=>c.style.display!=='none');
-      g.style.display=visible?'':'none';
-    });
-  }
-</script>
-</body></html>
+const EV={"e001": {"id": "e001", "featured": true, "marque": "both", "region": "south", "name": "Goodwood Revival", "org": "Goodwood Motor Circuit", "venue": "Goodwood Motor Circuit", "town": "Chichester", "county": "West Sussex", "postcode": "PO18 0PH", "maps": "https://maps.google.com/?q=Goodwood+Motor+Circuit,Chichester", "date_label": "12\u201314 September 2025", "month": 9, "price": "From \u00a355/day", "price_tier": "paid", "desc": "The world's finest historic motor racing festival. Three days of period racing, trade stands, fashion and entertainment \u2014 all dressed in authentic 1940s\u201360s style. E-Types and TR racing cars appear regularly on track. One of the unmissable events in the classic car calendar.", "highlights": ["Period racing on the original Goodwood circuit", "Dress code \u2014 1940s to 1966 encouraged", "Huge paddock with cars available to view", "Trade stands, autojumble and hospitality"], "ticket_url": "https://www.goodwood.com/motorsport/revival/tickets/", "affiliate_note": "awin", "info_url": "https://www.goodwood.com/motorsport/revival/"}, "e002": {"id": "e002", "featured": true, "marque": "both", "region": "south", "name": "Goodwood Festival of Speed", "org": "Goodwood House", "venue": "Goodwood House & Park", "town": "Chichester", "county": "West Sussex", "postcode": "PO18 0PX", "maps": "https://maps.google.com/?q=Goodwood+House,Chichester", "date_label": "10\u201313 July 2025", "month": 7, "price": "From \u00a345/day", "price_tier": "paid", "desc": "The world's greatest automotive celebration \u2014 hillclimb, static displays, manufacturer features and the moving motor show. Triumph TRs and Jaguars appear in the hillclimb and the spectacular Forest Rally Stage.", "highlights": ["Hillclimb with historic and modern cars", "Forest Rally Stage", "Manufacturer showcase pavilions", "Supercar paddock and classic car lawn"], "ticket_url": "https://www.goodwood.com/motorsport/festival-of-speed/tickets/", "affiliate_note": "awin", "info_url": "https://www.goodwood.com/motorsport/festival-of-speed/"}, "e003": {"id": "e003", "featured": true, "marque": "triumph", "region": "midlands", "name": "TR Register International Weekend", "org": "TR Register", "venue": "Billing Aquadrome", "town": "Northampton", "county": "Northamptonshire", "postcode": "NN3 9DA", "maps": "https://maps.google.com/?q=Billing+Aquadrome,Northampton", "date_label": "4\u20136 July 2025", "month": 7, "price": "Members from \u00a335/weekend", "price_tier": "paid", "desc": "The TR Register's flagship annual event \u2014 the largest gathering of Triumph TR cars in the world. Concours competition, driving tests, trade stands, parts autojumble, club AGM and social evenings. Essential for any TR owner.", "highlights": ["Concours d'\u00c9l\u00e9gance judged to marque standards", "Driving tests and sprints", "Largest autojumble of TR parts in UK", "Club awards and social evenings", "All models TR2\u2013TR8 represented"], "ticket_url": "https://www.tr-register.co.uk/events/", "affiliate_note": "direct", "info_url": "https://www.tr-register.co.uk/events/international-weekend/"}, "e004": {"id": "e004", "featured": false, "marque": "both", "region": "midlands", "name": "Silverstone Classic", "org": "Silverstone Classic Ltd", "venue": "Silverstone Circuit", "town": "Silverstone", "county": "Northamptonshire", "postcode": "NN12 8TN", "maps": "https://maps.google.com/?q=Silverstone+Circuit,Northamptonshire", "date_label": "25\u201327 July 2025", "month": 7, "price": "From \u00a339/day", "price_tier": "paid", "desc": "The world's biggest classic motor racing festival. Held at Silverstone, with dedicated club areas for Triumph and Jaguar clubs. Racing, live music and the vast Classic Car Club display areas.", "highlights": ["Historic racing on the full GP circuit", "TR Register and JEC club enclosures", "Live music Saturday and Sunday evenings", "Access to both paddocks included"], "ticket_url": "https://www.silverstoneclassic.com/tickets/", "affiliate_note": "awin", "info_url": "https://www.silverstoneclassic.com/"}, "e005": {"id": "e005", "featured": false, "marque": "both", "region": "south", "name": "Beaulieu International Autojumble", "org": "National Motor Museum Beaulieu", "venue": "Beaulieu Estate", "town": "Beaulieu", "county": "Hampshire", "postcode": "SO42 7ZN", "maps": "https://maps.google.com/?q=Beaulieu+Estate,Hampshire", "date_label": "6\u20137 September 2025", "month": 9, "price": "From \u00a325/day", "price_tier": "paid", "desc": "Europe's largest autojumble \u2014 two days of parts, spares, memorabilia and classic cars for sale. If you're looking for TR or Jaguar parts, this is where to come.", "highlights": ["2,000+ stalls of parts and memorabilia", "Cars for sale area", "National Motor Museum access included", "Spring (May) and Autumn (September) events"], "ticket_url": "https://www.beaulieu.co.uk/events/international-autojumble/", "affiliate_note": "direct", "info_url": "https://www.beaulieu.co.uk/events/international-autojumble/"}, "e006": {"id": "e006", "featured": false, "marque": "both", "region": "midlands", "name": "Classic Motor Show \u2014 NEC Birmingham", "org": "Clarion Events", "venue": "NEC Birmingham", "town": "Birmingham", "county": "West Midlands", "postcode": "B40 1NT", "maps": "https://maps.google.com/?q=NEC+Birmingham", "date_label": "14\u201316 November 2025", "month": 11, "price": "From \u00a320/day", "price_tier": "paid", "desc": "The UK's largest indoor classic car show \u2014 held at the NEC each November. Over 100 clubs represented including TR Register and JEC. Trade stands, restoration features and the Simply Classics displays.", "highlights": ["100+ clubs with dedicated display areas", "Indoor \u2014 suitable whatever the weather", "Restoration and trade stands", "Simply Classics static displays"], "ticket_url": "https://www.necclassicmotorshow.com/tickets/", "affiliate_note": "awin", "info_url": "https://www.necclassicmotorshow.com/"}, "e007": {"id": "e007", "featured": false, "marque": "triumph", "region": "midlands", "name": "TSSC Triumph Extravaganza", "org": "Triumph Sports Six Club", "venue": "Stoneleigh Park", "town": "Stoneleigh", "county": "Warwickshire", "postcode": "CV8 2LZ", "maps": "https://maps.google.com/?q=Stoneleigh+Park,Kenilworth", "date_label": "August 2025 (TBC)", "month": 8, "price": "Members from \u00a315", "price_tier": "paid", "desc": "The Triumph Sports Six Club's annual gathering celebrating all six-cylinder Triumph models. Strong TR5 and TR6 representation alongside Vitesse, GT6 and Herald.", "highlights": ["All six-cylinder Triumph models", "Concours competition", "Technical Q&A with marque experts", "Parts autojumble"], "ticket_url": "https://www.tssc.org.uk/events/", "affiliate_note": "direct", "info_url": "https://www.tssc.org.uk/events/"}, "e008": {"id": "e008", "featured": false, "marque": "jaguar", "region": "midlands", "name": "JEC National Day", "org": "Jaguar Enthusiasts Club", "venue": "Stoneleigh Park", "town": "Kenilworth", "county": "Warwickshire", "postcode": "CV8 2LZ", "maps": "https://maps.google.com/?q=Stoneleigh+Park,Kenilworth", "date_label": "May 2025 (TBC)", "month": 5, "price": "Members from \u00a312", "price_tier": "paid", "desc": "The JEC's annual national gathering \u2014 the largest gathering of Jaguar Enthusiasts Club members. Concours judged across all Jaguar classes including E-Type, XK, Mk II and XJ.", "highlights": ["Concours judged by marque experts", "All Jaguar models welcomed", "Trade stands and specialist advice", "Member-exclusive early access"], "ticket_url": "https://www.jec.org.uk/events/", "affiliate_note": "direct", "info_url": "https://www.jec.org.uk/events/"}, "e009": {"id": "e009", "featured": false, "marque": "jaguar", "region": "south", "name": "E-Type Club Concours d'\u00c9l\u00e9gance", "org": "E-Type Club", "venue": "Historic country house (varies)", "town": "Oxfordshire (typical)", "county": "Oxfordshire", "postcode": "", "maps": "https://maps.google.com/?q=Oxfordshire+England", "date_label": "June 2025 (TBC)", "month": 6, "price": "Members from \u00a320", "price_tier": "paid", "desc": "The E-Type Club's flagship annual event \u2014 a prestigious concours with strict judging standards across all three series. Held at a carefully chosen historic venue.", "highlights": ["All three series \u2014 S1, S2, S3 judged", "Strict OE-standard judging", "Historic house setting", "Club awards and presentations"], "ticket_url": "https://www.etypeclub.com/events/", "affiliate_note": "direct", "info_url": "https://www.etypeclub.com/events/"}, "e010": {"id": "e010", "featured": false, "marque": "both", "region": "south", "name": "Prescott Hill Climb \u2014 Classic Day", "org": "Bugatti Owners Club", "venue": "Prescott Speed Hill Climb", "town": "Gotherington", "county": "Gloucestershire", "postcode": "GL52 9RD", "maps": "https://maps.google.com/?q=Prescott+Hill+Climb,Gotherington,Cheltenham", "date_label": "Multiple dates 2025", "month": 5, "price": "From \u00a315 spectator", "price_tier": "paid", "desc": "Prescott Hill Climb near Cheltenham runs multiple events through the season. Classic car days see Triumph TRs and Jaguar E-Types on the hill. Spectator friendly with excellent viewing.", "highlights": ["Historic hillclimb near Cheltenham", "TR and Jaguar regularly compete", "Excellent spectator viewing", "Multiple events through season"], "ticket_url": "https://www.prescotthillclimb.com/tickets/", "affiliate_note": "direct", "info_url": "https://www.prescotthillclimb.com/"}, "e011": {"id": "e011", "featured": false, "marque": "both", "region": "north", "name": "Tatton Park Classic Car Show", "org": "Tatton Park Events", "venue": "Tatton Park Estate", "town": "Knutsford", "county": "Cheshire", "postcode": "WA16 6QN", "maps": "https://maps.google.com/?q=Tatton+Park,Knutsford,Cheshire", "date_label": "June 2025 (TBC)", "month": 6, "price": "From \u00a312/day", "price_tier": "paid", "desc": "A popular northern England classic show held at the stunning Tatton Park estate. Good Triumph and Jaguar club presence. Concours in the formal gardens.", "highlights": ["Stunning estate setting", "Concours in formal gardens", "Good northern club presence", "Family friendly"], "ticket_url": "https://www.tattonpark.org.uk/whats-on/", "affiliate_note": "direct", "info_url": "https://www.tattonpark.org.uk/"}, "e012": {"id": "e012", "featured": false, "marque": "both", "region": "midlands", "name": "Practical Classics Restoration Show", "org": "Bauer Media", "venue": "NEC Birmingham", "town": "Birmingham", "county": "West Midlands", "postcode": "B40 1NT", "maps": "https://maps.google.com/?q=NEC+Birmingham", "date_label": "28\u201330 March 2025", "month": 3, "price": "From \u00a318/day", "price_tier": "paid", "desc": "The UK's premier restoration-focused show \u2014 tools, materials, specialist services and advice. If you're mid-restoration on a TR or Jaguar, this is invaluable.", "highlights": ["Restoration tools and materials", "Specialist body, trim and mechanical services", "Technical advice from restorers", "Project cars on display"], "ticket_url": "https://www.practicalclassics.co.uk/events/restoration-show/", "affiliate_note": "awin", "info_url": "https://www.practicalclassics.co.uk/events/restoration-show/"}};
+const flt={marque:'all',region:'all',month:'all'};
+function tg(h){const a=h.closest('.ev-acc'),o=a.classList.contains('open');document.querySelectorAll('.ev-acc.open').forEach(x=>x.classList.remove('open'));if(!o)a.classList.add('open');}
+function sv(v){
+  document.getElementById('ev-list').style.display=v==='list'?'flex':'none';
+  document.getElementById('ev-grid').style.display=v==='grid'?'grid':'none';
+  document.getElementById('vt-list').classList.toggle('active',v==='list');
+  document.getElementById('vt-grid').classList.toggle('active',v==='grid');
+}
+function af(btn){
+  const f=btn.dataset.f,v=btn.dataset.v;flt[f]=v;
+  btn.closest('.filter-group').querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  let n=0;
+  document.querySelectorAll('[data-marque]').forEach(el=>{
+    const mok=flt.marque==='all'||el.dataset.marque===flt.marque||el.dataset.marque==='both';
+    const rok=flt.region==='all'||el.dataset.region===flt.region;
+    const mok2=flt.month==='all'||el.dataset.month===flt.month;
+    const show=mok&&rok&&mok2;el.style.display=show?'':'none';if(show)n++;
+  });
+  document.getElementById('rc').textContent=n+' event'+(n!==1?'s':'');
+}
+function om(id){
+  const ev=EV[id];if(!ev)return;
+  const utm='?utm_source=marquefile&utm_medium=events&utm_campaign='+(ev.featured?'featured':'directory');
+  const ml={"triumph":"Triumph","jaguar":"Jaguar","both":"Triumph & Jaguar"};
+  document.getElementById('modal-inner').innerHTML=`
+    ${ev.featured?'<div class="modal-feat">Featured</div>':''}
+    <div class="modal-date">${ev.date_label}</div>
+    <div class="modal-name">${ev.name}</div>
+    <div class="modal-org">${ev.org} · ${ml[ev.marque]}</div>
+    <div class="modal-desc">${ev.desc}</div>
+    <div class="modal-hl-label">What to expect</div>
+    <ul class="modal-hl">${ev.highlights.map(h=>'<li>'+h+'</li>').join('')}</ul>
+    <div class="modal-venue"><strong>${ev.venue}</strong>${ev.town}, ${ev.county}${ev.postcode?' '+ev.postcode:''}<br>
+    <a href="${ev.maps}" target="_blank" rel="noopener">Google Maps →</a></div>
+    <div class="modal-btns">
+      <a href="${ev.ticket_url+utm}" target="_blank" rel="noopener" class="modal-btn modal-btn-t">🎟 Get Tickets — ${ev.price}</a>
+      <a href="${ev.info_url+utm}" target="_blank" rel="noopener" class="modal-btn modal-btn-i">More information →</a>
+    </div>
+    <div class="modal-aff">${ev.affiliate_note==='awin'?'⟳ MarqueFile may earn a small commission from ticket purchases — at no cost to you.':'Direct link to the event organiser.'}</div>
+  `;
+  document.getElementById('modal-bg').classList.add('open');document.body.style.overflow='hidden';
+}
+function cm(){document.getElementById('modal-bg').classList.remove('open');document.body.style.overflow='';}
+function cmbg(e){if(e.target===document.getElementById('modal-bg'))cm();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')cm();});
+const t=document.getElementById('nav-toggle'),n=document.getElementById('site-nav');
+if(t&&n)t.addEventListener('click',()=>n.classList.toggle('open'));
+</script></body></html>
