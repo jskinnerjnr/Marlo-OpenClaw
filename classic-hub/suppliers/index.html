@@ -9,7 +9,6 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js',new Date());
   gtag('config','GA_MEASUREMENT_ID');
-  // Track all outbound link clicks automatically
   document.addEventListener('click',function(e){
     var a=e.target.closest('a[href^="http"]');
     if(a&&!a.href.includes(location.hostname)){
@@ -18,7 +17,6 @@
   });
 </script>
 <style>
-
   :root {
     --navy:#1c1c1c; --green:#2a5c3f; --green-light:#3a7a55; --gold:#c8a84b;
     --cream:#f8f6f1; --warm:#efede9; --white:#fff; --grey:#6b6b6b;
@@ -101,10 +99,7 @@
     <a href="../index.html" class="logo"><div class="logo-mark">MF</div><div class="logo-text">Marque<em>File</em></div></a>
     <nav class="site-nav" id="site-nav">
       <div class="nav-dd"><a href="../triumph/index.html">Cars &#9662;</a>
-        <div class="drop">
-          <a href="../triumph/index.html">Triumph TR</a>
-          <a href="../jaguar/index.html">Jaguar</a>
-        </div>
+        <div class="drop"><a href="../triumph/index.html">Triumph TR</a><a href="../jaguar/index.html">Jaguar</a><a href="../austin-healey/index.html">Austin-Healey</a><a href="../mg/index.html">MG</a></div>
       </div>
       <div class="nav-dd"><a href="../clubs/index.html">Directory &#9662;</a>
         <div class="drop">
@@ -141,19 +136,22 @@
   <div class="page-hero-inner">
     <div class="hero-eyebrow">MarqueFile › Directory</div>
     <h1>Suppliers Directory</h1>
-    <p>Parts, trim, tyres and restoration services for Triumph TR and Jaguar. Each supplier shows ownership type and country of operation.</p>
+    <p>Parts, trim, tyres and restoration services for Triumph TR, Jaguar, Austin-Healey and MG. Each supplier shows ownership type and country of operation.</p>
   </div>
 </div>
 <div class="page-body">
-  <div class="filter-row"><button class="f-btn active" onclick="filterS('all',this)">All</button>
-<button class="f-btn" onclick="filterS('interiortrim',this)">Interior Trim</button>
-<button class="f-btn" onclick="filterS('mechanicalparts',this)">Mechanical Parts</button>
-<button class="f-btn" onclick="filterS('restoration',this)">Restoration</button>
-<button class="f-btn" onclick="filterS('hoodweatherequipment',this)">Hood & Weather Equipment</button>
-<button class="f-btn" onclick="filterS('tyres',this)">Tyres</button>
-<button class="f-btn" onclick="filterS('electrical',this)">Electrical</button>
-<button class="f-btn" onclick="filterS('paintworkcare',this)">Paintwork & Care</button>
-</div>
+  <div class="filter-row">
+    <button class="f-btn active" onclick="filterS('all',this)">All</button>
+    <button class="f-btn" onclick="filterS('interiortrim',this)">Interior Trim</button>
+    <button class="f-btn" onclick="filterS('mechanicalparts',this)">Mechanical Parts</button>
+    <button class="f-btn" onclick="filterS('restoration',this)">Restoration</button>
+    <button class="f-btn" onclick="filterS('hoodweatherequipment',this)">Hood &amp; Weather Equipment</button>
+    <button class="f-btn" onclick="filterS('tyres',this)">Tyres</button>
+    <button class="f-btn" onclick="filterS('electrical',this)">Electrical</button>
+    <button class="f-btn" onclick="filterS('paintworkcare',this)">Paintwork &amp; Care</button>
+    <button class="f-btn" onclick="filterS('austinhealey',this)">Austin-Healey Specialists</button>
+    <button class="f-btn" onclick="filterS('mg',this)">MG Specialists</button>
+  </div>
   <div class="legend">
     <span class="leg-item"><span class="leg-pill" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent</span> Independent or family-owned</span>
     <span class="leg-item"><span class="leg-pill" style="background:#e8eaf8;color:#2a2a7c;border:1px solid #2a2a7c">Trade Group</span> Part of a trade group</span>
@@ -161,36 +159,37 @@
     <span style="color:#aaa;margin-left:4px">· Flags show HQ + countries of operation</span>
   </div>
   <div class="supplier-grid" id="supplier-grid">
-  <div class="sc  featured" data-cat="interiortrim">
-    <div class="sc-feat">Featured</div>
+
+  <!-- ==================== INTERIOR TRIM ==================== -->
+
+  <div class="sc featured" data-cat="interiortrim">
+    <div class="sc-feat">⭐ Featured</div>
     <div class="sc-top">
-      <div class="sc-name">John Skinner Manufacturing</div>
+      <div class="sc-name">John Skinner (Manufacturing) Ltd</div>
       <div class="sc-flags" title="Cheltenham, England">🇬🇧</div>
     </div>
     <div class="sc-cat">Interior Trim</div>
-    <div class="sc-cars">Covers: Triumph TR2–TR6, Jaguar E-Type, XK, MGB, Austin Healey</div>
+    <div class="sc-cars">Covers: Triumph TR, Jaguar E-Type, Austin-Healey, MG</div>
     <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent · Family Business</div>
     <div class="sc-hq">📍 HQ: Cheltenham, England</div>
-    
-    <div class="sc-desc">Manufacturer of original-specification interior trim kits for classic British cars. Carpets, seat covers, hood linings, door cards and full interior kits. Made in their Cheltenham workshop since 1980. Family-owned and run.</div>
-    <a href="https://www.john-skinner.co.uk?utm_source=marquefile&utm_medium=directory&utm_campaign=supplier_listing" target="_blank" rel="noopener" class="sc-link">Visit john-skinner.co.uk →</a>
+    <div class="sc-desc">Made-to-order interior trim kits for Triumph TR, Jaguar E-Type, Austin-Healey and MG models. Seat covers, carpets, hoods, door panels and more — manufactured to original factory specification in Cheltenham since 1980. Richard Hammond is among their customers.</div>
+    <a href="https://john-skinner.co.uk?utm_source=marquefile&utm_medium=suppliers&utm_campaign=featured" target="_blank" rel="noopener" class="sc-link">Visit john-skinner.co.uk →</a>
   </div>
+
   <div class="sc" data-cat="interiortrim">
-    
     <div class="sc-top">
       <div class="sc-name">Newton Commercial</div>
       <div class="sc-flags" title="Worcestershire, England">🇬🇧</div>
     </div>
     <div class="sc-cat">Interior Trim</div>
-    <div class="sc-cars">Covers: Triumph, Jaguar, MG, Austin Healey, broad coverage</div>
+    <div class="sc-cars">Covers: Triumph, Jaguar, MG, Austin-Healey, broad coverage</div>
     <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent</div>
     <div class="sc-hq">📍 HQ: Worcestershire, England</div>
-    
-    <div class="sc-desc">Established trim manufacturer covering a wide range of classic British cars. Carpets, hoods, seat covers and headlinings. Both DIY and trade supply.</div>
-    <a href="https://www.newtoncomm.co.uk?utm_source=marquefile&utm_medium=directory&utm_campaign=supplier_listing" target="_blank" rel="noopener" class="sc-link">Visit newtoncomm.co.uk →</a>
+    <div class="sc-desc">Established trim manufacturer covering a wide range of classic British cars. Hoods, soft tops, tonneau covers, carpets and seat covers. Both DIY and trade supply.</div>
+    <a href="https://www.newtoncommercial.com?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit newtoncommercial.com →</a>
   </div>
+
   <div class="sc" data-cat="interiortrim">
-    
     <div class="sc-top">
       <div class="sc-name">Woolies Trim</div>
       <div class="sc-flags" title="West Midlands, England">🇬🇧</div>
@@ -199,26 +198,40 @@
     <div class="sc-cars">Covers: Broad coverage — most British classics</div>
     <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent</div>
     <div class="sc-hq">📍 HQ: West Midlands, England</div>
-    
-    <div class="sc-desc">Long-established supplier of trim materials — headlining, carpets, vinyl, leather and hood materials. Primarily trade supply but also available to enthusiasts.</div>
-    <a href="https://www.woolies-trim.co.uk?utm_source=marquefile&utm_medium=directory&utm_campaign=supplier_listing" target="_blank" rel="noopener" class="sc-link">Visit woolies-trim.co.uk →</a>
+    <div class="sc-desc">Long-established supplier of trim materials — headlining, carpets, vinyl, leather, hoods and carpet materials for British classics. Primarily trade supply but also available to enthusiasts.</div>
+    <a href="https://woolies-trim.co.uk?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit woolies-trim.co.uk →</a>
   </div>
+
+  <div class="sc" data-cat="interiortrim">
+    <div class="sc-top">
+      <div class="sc-name">Autotrim Products</div>
+      <div class="sc-flags" title="England">🇬🇧</div>
+    </div>
+    <div class="sc-cat">Interior Trim</div>
+    <div class="sc-cars">Covers: British classics — broad coverage</div>
+    <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent</div>
+    <div class="sc-hq">📍 HQ: England</div>
+    <div class="sc-desc">Supplier of trim materials and kits for classic car restoration. Fabrics, headlining, carpet sets and vinyl for a wide range of British marques.</div>
+    <a href="https://www.autotrimproducts.co.uk?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit autotrimproducts.co.uk →</a>
+  </div>
+
+  <!-- ==================== MECHANICAL PARTS ==================== -->
+
   <div class="sc" data-cat="mechanicalparts">
-    
     <div class="sc-top">
       <div class="sc-name">Moss Europe</div>
-      <div class="sc-flags" title="Goleta, California, USA (parent company)">🇺🇸 🇬🇧 🇩🇪 🇫🇷</div>
+      <div class="sc-flags" title="Bradford, England (UK warehouse)">🇬🇧 🇺🇸 🇩🇪 🇫🇷</div>
     </div>
     <div class="sc-cat">Mechanical Parts</div>
-    <div class="sc-cars">Covers: Triumph TR, MG, Austin Healey, Jaguar</div>
+    <div class="sc-cars">Covers: Triumph TR, MG, Austin-Healey, Jaguar</div>
     <div class="sc-ind" style="background:#fef9e8;color:#8a6a10;border:1px solid #8a6a10">Subsidiary of Moss Motors Inc. (USA)</div>
     <div class="sc-hq">📍 HQ: Goleta, California, USA (parent company)</div>
     <div class="sc-other">Also operates: UK warehouse in Bradford; distribution centres in Germany and France</div>
-    <div class="sc-desc">The world's largest classic British car parts supplier. UK warehouse holds extensive Triumph TR stock. Mechanical, body, electrical and trim parts with same-day despatch.</div>
-    <a href="https://www.moss.europe.com?utm_source=marquefile&utm_medium=directory&utm_campaign=supplier_listing" target="_blank" rel="noopener" class="sc-link">Visit moss.europe.com →</a>
+    <div class="sc-desc">The world's largest classic British car parts supplier. UK warehouse holds extensive stock for Triumph TR, MG and Austin-Healey. Mechanical, body, electrical and trim parts with fast despatch.</div>
+    <a href="https://www.mosseurope.co.uk?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit mosseurope.co.uk →</a>
   </div>
+
   <div class="sc" data-cat="mechanicalparts">
-    
     <div class="sc-top">
       <div class="sc-name">Rimmer Bros</div>
       <div class="sc-flags" title="Lincoln, England">🇬🇧 🇺🇸</div>
@@ -228,11 +241,11 @@
     <div class="sc-ind" style="background:#e8eaf8;color:#2a2a7c;border:1px solid #2a2a7c">Trade Group (same ownership as SNG Barratt)</div>
     <div class="sc-hq">📍 HQ: Lincoln, England</div>
     <div class="sc-other">Also operates: Ships extensively to North America; US-friendly pricing and shipping options</div>
-    <div class="sc-desc">Major Triumph and Jaguar parts supplier based in Lincoln. Huge stock of Triumph TR parts with online catalogue and fast despatch. Commonly understood to be under the same ownership as SNG Barratt.</div>
-    <a href="https://www.rimmerbros.com?utm_source=marquefile&utm_medium=directory&utm_campaign=supplier_listing" target="_blank" rel="noopener" class="sc-link">Visit rimmerbros.com →</a>
+    <div class="sc-desc">Major Triumph and Jaguar parts supplier based in Lincoln. Huge stock of Triumph TR parts with comprehensive online catalogue and fast despatch. Commonly understood to be under the same ownership as SNG Barratt.</div>
+    <a href="https://www.rimmerbros.com?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit rimmerbros.com →</a>
   </div>
+
   <div class="sc" data-cat="mechanicalparts">
-    
     <div class="sc-top">
       <div class="sc-name">SNG Barratt</div>
       <div class="sc-flags" title="Daventry, England">🇬🇧 🇺🇸</div>
@@ -243,10 +256,10 @@
     <div class="sc-hq">📍 HQ: Daventry, England</div>
     <div class="sc-other">Also operates: SNG Barratt USA operation based in Virginia</div>
     <div class="sc-desc">The definitive Jaguar parts supplier. Comprehensive catalogue covering all classic Jaguar models. OE-quality parts, excellent technical support. US operation serves North America.</div>
-    <a href="https://www.sngbarratt.com?utm_source=marquefile&utm_medium=directory&utm_campaign=supplier_listing" target="_blank" rel="noopener" class="sc-link">Visit sngbarratt.com →</a>
+    <a href="https://www.sngbarratt.com?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit sngbarratt.com →</a>
   </div>
+
   <div class="sc" data-cat="mechanicalparts">
-    
     <div class="sc-top">
       <div class="sc-name">TR Enterprises</div>
       <div class="sc-flags" title="Hampshire, England">🇬🇧</div>
@@ -255,12 +268,24 @@
     <div class="sc-cars">Covers: Triumph TR (all models)</div>
     <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent</div>
     <div class="sc-hq">📍 HQ: Hampshire, England</div>
-    
-    <div class="sc-desc">Triumph TR specialist with particular expertise in Lucas PI fuel injection systems for TR5 and TR6. Engine, gearbox and suspension components.</div>
-    <a href="https://www.tr-enterprises.co.uk?utm_source=marquefile&utm_medium=directory&utm_campaign=supplier_listing" target="_blank" rel="noopener" class="sc-link">Visit tr-enterprises.co.uk →</a>
+    <div class="sc-desc">Triumph TR specialist with particular expertise in Lucas PI fuel injection systems for TR5 and TR6. Engine, gearbox and suspension components for all TR models.</div>
+    <a href="https://www.tr-enterprises.co.uk?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit tr-enterprises.co.uk →</a>
   </div>
+
   <div class="sc" data-cat="mechanicalparts">
-    
+    <div class="sc-top">
+      <div class="sc-name">Revington TR</div>
+      <div class="sc-flags" title="Somerset, England">🇬🇧</div>
+    </div>
+    <div class="sc-cat">Mechanical Parts</div>
+    <div class="sc-cars">Covers: Triumph TR2–TR6</div>
+    <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent</div>
+    <div class="sc-hq">📍 HQ: Somerset, England</div>
+    <div class="sc-desc">Premium Triumph TR parts and restoration specialists in Somerset. Known for high-quality parts and knowledgeable technical support across the full TR range.</div>
+    <a href="https://www.revingtontr.com?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit revingtontr.com →</a>
+  </div>
+
+  <div class="sc" data-cat="mechanicalparts">
     <div class="sc-top">
       <div class="sc-name">XK Engineering</div>
       <div class="sc-flags" title="Coventry, England">🇬🇧</div>
@@ -269,26 +294,41 @@
     <div class="sc-cars">Covers: Jaguar XK120, XK140, XK150, E-Type</div>
     <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent</div>
     <div class="sc-hq">📍 HQ: Coventry, England</div>
-    
-    <div class="sc-desc">Coventry-based specialist focusing on the XK-engined Jaguars. Full restoration services, parts supply and pre-purchase inspections.</div>
-    <a href="https://www.xkengineering.com?utm_source=marquefile&utm_medium=directory&utm_campaign=supplier_listing" target="_blank" rel="noopener" class="sc-link">Visit xkengineering.com →</a>
+    <div class="sc-desc">Coventry-based specialist focusing on the XK-engined Jaguars. Full restoration services, parts supply and pre-purchase inspections for XK and E-Type models.</div>
+    <a href="https://www.xkengineering.co.uk?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit xkengineering.co.uk →</a>
   </div>
+
+  <div class="sc" data-cat="mechanicalparts">
+    <div class="sc-top">
+      <div class="sc-name">David Manners Group</div>
+      <div class="sc-flags" title="Birmingham, England">🇬🇧</div>
+    </div>
+    <div class="sc-cat">Mechanical Parts</div>
+    <div class="sc-cars">Covers: Jaguar (XK, E-Type, Mk II, XJ)</div>
+    <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent</div>
+    <div class="sc-hq">📍 HQ: Birmingham, England</div>
+    <div class="sc-desc">Long-established Jaguar parts specialist based in Birmingham. Comprehensive stock covering XK series through to E-Type and beyond, with a knowledgeable team.</div>
+    <a href="https://www.davidmanners.co.uk?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit davidmanners.co.uk →</a>
+  </div>
+
+  <!-- ==================== HOOD & WEATHER EQUIPMENT ==================== -->
+
   <div class="sc" data-cat="hoodweatherequipment">
-    
     <div class="sc-top">
       <div class="sc-name">The Vintage Hood Company</div>
       <div class="sc-flags" title="Kent, England">🇬🇧</div>
     </div>
-    <div class="sc-cat">Hood & Weather Equipment</div>
-    <div class="sc-cars">Covers: Triumph TR, Jaguar E-Type, MG, Austin Healey</div>
+    <div class="sc-cat">Hood &amp; Weather Equipment</div>
+    <div class="sc-cars">Covers: Triumph TR, Jaguar E-Type, MG, Austin-Healey</div>
     <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent · Family Business</div>
     <div class="sc-hq">📍 HQ: Kent, England</div>
-    
     <div class="sc-desc">Specialist soft top manufacturers for classic British sports cars. Mohair, vinyl and canvas options. OE-pattern hoods for TR models and E-Type.</div>
-    <a href="https://www.vintagehoodcompany.co.uk?utm_source=marquefile&utm_medium=directory&utm_campaign=supplier_listing" target="_blank" rel="noopener" class="sc-link">Visit vintagehoodcompany.co.uk →</a>
+    <a href="https://www.vintagehoodcompany.co.uk?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit vintagehoodcompany.co.uk →</a>
   </div>
+
+  <!-- ==================== RESTORATION ==================== -->
+
   <div class="sc" data-cat="restoration">
-    
     <div class="sc-top">
       <div class="sc-name">Autofarm</div>
       <div class="sc-flags" title="Oxfordshire, England">🇬🇧</div>
@@ -297,12 +337,13 @@
     <div class="sc-cars">Covers: Jaguar (classic models), Porsche</div>
     <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent</div>
     <div class="sc-hq">📍 HQ: Oxfordshire, England</div>
-    
     <div class="sc-desc">Long-established restoration specialist and parts supplier. Full restoration services, pre-purchase inspections and advice. Particularly strong on Jaguar and Porsche.</div>
-    <a href="https://www.autofarm.co.uk?utm_source=marquefile&utm_medium=directory&utm_campaign=supplier_listing" target="_blank" rel="noopener" class="sc-link">Visit autofarm.co.uk →</a>
+    <a href="https://www.autofarm.co.uk?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit autofarm.co.uk →</a>
   </div>
+
+  <!-- ==================== TYRES ==================== -->
+
   <div class="sc" data-cat="tyres">
-    
     <div class="sc-top">
       <div class="sc-name">Longstone Tyres</div>
       <div class="sc-flags" title="Derbyshire, England">🇬🇧</div>
@@ -311,12 +352,13 @@
     <div class="sc-cars">Covers: All classic cars</div>
     <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent</div>
     <div class="sc-hq">📍 HQ: Derbyshire, England</div>
-    
     <div class="sc-desc">Period-correct classic car tyres. Cross-ply, early radial and remould options. Expert advice on correct tyre specification for your model and year.</div>
-    <a href="https://www.longstonetyres.co.uk?utm_source=marquefile&utm_medium=directory&utm_campaign=supplier_listing" target="_blank" rel="noopener" class="sc-link">Visit longstonetyres.co.uk →</a>
+    <a href="https://www.longstonetyres.co.uk?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit longstonetyres.co.uk →</a>
   </div>
+
+  <!-- ==================== ELECTRICAL ==================== -->
+
   <div class="sc" data-cat="electrical">
-    
     <div class="sc-top">
       <div class="sc-name">Vehicle Wiring Products</div>
       <div class="sc-flags" title="West Midlands, England">🇬🇧</div>
@@ -325,24 +367,186 @@
     <div class="sc-cars">Covers: All British classics</div>
     <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent</div>
     <div class="sc-hq">📍 HQ: West Midlands, England</div>
-    
     <div class="sc-desc">Classic car electrical components and wiring loom materials. Lucas replacement parts, connectors, switches and comprehensive wiring supplies.</div>
-    <a href="https://www.vehiclewiringproducts.co.uk?utm_source=marquefile&utm_medium=directory&utm_campaign=supplier_listing" target="_blank" rel="noopener" class="sc-link">Visit vehiclewiringproducts.co.uk →</a>
+    <a href="https://www.vehiclewiringproducts.co.uk?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit vehiclewiringproducts.co.uk →</a>
   </div>
+
+  <!-- ==================== PAINTWORK & CARE ==================== -->
+
   <div class="sc" data-cat="paintworkcare">
-    
     <div class="sc-top">
       <div class="sc-name">Meguiar's UK</div>
       <div class="sc-flags" title="Irvine, California, USA">🇺🇸 🇬🇧 🇩🇪 🇦🇺 🇿🇦</div>
     </div>
-    <div class="sc-cat">Paintwork & Care</div>
+    <div class="sc-cat">Paintwork &amp; Care</div>
     <div class="sc-cars">Covers: All</div>
     <div class="sc-ind" style="background:#fef9e8;color:#8a6a10;border:1px solid #8a6a10">Subsidiary of 3M Corporation (USA)</div>
     <div class="sc-hq">📍 HQ: Irvine, California, USA</div>
     <div class="sc-other">Also operates: Global distribution — UK, Germany, Australia, South Africa and many more</div>
     <div class="sc-desc">Premium detailing and paint care products. Specialist compounds suitable for opalescent and metallic classic car finishes. Widely available in UK motor factors.</div>
-    <a href="https://www.meguiars.co.uk?utm_source=marquefile&utm_medium=directory&utm_campaign=supplier_listing" target="_blank" rel="noopener" class="sc-link">Visit meguiars.co.uk →</a>
+    <a href="https://www.meguiars.co.uk?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit meguiars.co.uk →</a>
   </div>
+
+  <!-- ==================== AUSTIN-HEALEY SPECIALISTS ==================== -->
+
+  <div class="sc" data-cat="austinhealey">
+    <div class="sc-top">
+      <div class="sc-name">Moss Europe — Healey Parts</div>
+      <div class="sc-flags" title="Bradford, England (UK warehouse)">🇬🇧 🇺🇸 🇩🇪 🇫🇷</div>
+    </div>
+    <div class="sc-cat">Austin-Healey Specialist · Parts</div>
+    <div class="sc-cars">Covers: Austin-Healey 100, 3000, Sprite; Triumph TR; MG</div>
+    <div class="sc-ind" style="background:#fef9e8;color:#8a6a10;border:1px solid #8a6a10">Subsidiary of Moss Motors Inc. (USA)</div>
+    <div class="sc-hq">📍 HQ: Goleta, California, USA (parent); UK warehouse in Bradford</div>
+    <div class="sc-desc">One of the largest Austin-Healey parts suppliers in the world. Comprehensive stock for the 100, 3000 and Sprite — mechanical, body, electrical and trim. Fast UK despatch.</div>
+    <a href="https://www.mosseurope.co.uk?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit mosseurope.co.uk →</a>
+  </div>
+
+  <div class="sc" data-cat="austinhealey">
+    <div class="sc-top">
+      <div class="sc-name">Healey Surgeons</div>
+      <div class="sc-flags" title="England">🇬🇧</div>
+    </div>
+    <div class="sc-cat">Austin-Healey Specialist · Restoration &amp; Parts</div>
+    <div class="sc-cars">Covers: Austin-Healey 100, 3000 (Big Healeys)</div>
+    <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent</div>
+    <div class="sc-hq">📍 HQ: England</div>
+    <div class="sc-desc">Dedicated Big Healey specialists offering restoration, parts and technical expertise for Austin-Healey 100 and 3000 models. Trusted by the Healey community.</div>
+    <a href="https://www.healeysurgeons.co.uk?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit healeysurgeons.co.uk →</a>
+  </div>
+
+  <div class="sc" data-cat="austinhealey">
+    <div class="sc-top">
+      <div class="sc-name">Cambridge Motorsport</div>
+      <div class="sc-flags" title="Cambridgeshire, England">🇬🇧</div>
+    </div>
+    <div class="sc-cat">Austin-Healey Specialist · Restoration &amp; Parts</div>
+    <div class="sc-cars">Covers: Austin-Healey (all models)</div>
+    <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent</div>
+    <div class="sc-hq">📍 HQ: Cambridgeshire, England</div>
+    <div class="sc-desc">Austin-Healey restoration and parts specialists based in Cambridgeshire. Full restoration services and parts supply for all Healey models.</div>
+    <a href="https://www.cambridge-motorsport.co.uk?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit cambridge-motorsport.co.uk →</a>
+  </div>
+
+  <div class="sc" data-cat="austinhealey">
+    <div class="sc-top">
+      <div class="sc-name">Harvey Bailey Engineering</div>
+      <div class="sc-flags" title="England">🇬🇧</div>
+    </div>
+    <div class="sc-cat">Austin-Healey Specialist · Mechanical &amp; Handling</div>
+    <div class="sc-cars">Covers: Austin-Healey (all models)</div>
+    <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent</div>
+    <div class="sc-hq">📍 HQ: England</div>
+    <div class="sc-desc">Specialists in Austin-Healey handling improvements and mechanical parts. Known for suspension and steering upgrades that transform the driving experience of classic Healeys.</div>
+    <a href="https://www.harveybailey.com?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit harveybailey.com →</a>
+  </div>
+
+  <div class="sc" data-cat="austinhealey">
+    <div class="sc-top">
+      <div class="sc-name">Original Healey Cars</div>
+      <div class="sc-flags" title="England">🇬🇧</div>
+    </div>
+    <div class="sc-cat">Austin-Healey Specialist · Restoration &amp; Parts</div>
+    <div class="sc-cars">Covers: Austin-Healey (all models)</div>
+    <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent</div>
+    <div class="sc-hq">📍 HQ: England</div>
+    <div class="sc-desc">Austin-Healey restoration specialists and parts suppliers with a focus on maintaining originality. Parts, restoration and sales for all Healey models.</div>
+    <a href="https://www.originalhealey.co.uk?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit originalhealey.co.uk →</a>
+  </div>
+
+  <div class="sc" data-cat="austinhealey">
+    <div class="sc-top">
+      <div class="sc-name">Frogeye Car Company</div>
+      <div class="sc-flags" title="England">🇬🇧</div>
+    </div>
+    <div class="sc-cat">Austin-Healey Specialist · Parts &amp; Restoration</div>
+    <div class="sc-cars">Covers: Austin-Healey Sprite (Frogeye/Mk1), MG Midget</div>
+    <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent</div>
+    <div class="sc-hq">📍 HQ: England</div>
+    <div class="sc-desc">Dedicated specialists for the iconic Austin-Healey Frogeye Sprite and MG Midget. Parts, restoration and technical expertise for these beloved small sports cars.</div>
+    <a href="https://www.frogeye.co.uk?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit frogeye.co.uk →</a>
+  </div>
+
+  <!-- ==================== MG SPECIALISTS ==================== -->
+
+  <div class="sc" data-cat="mg">
+    <div class="sc-top">
+      <div class="sc-name">Brown &amp; Gammons</div>
+      <div class="sc-flags" title="Baldock, Hertfordshire, England">🇬🇧</div>
+    </div>
+    <div class="sc-cat">MG Specialist · Parts</div>
+    <div class="sc-cars">Covers: MGA, MGB, MG Midget, MG TC/TD/TF</div>
+    <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent · Family Business</div>
+    <div class="sc-hq">📍 HQ: Baldock, Hertfordshire, England</div>
+    <div class="sc-desc">One of the major independent MG parts suppliers in the UK, based in Baldock. Family-run business covering MGA, MGB and Midget with comprehensive stock and expert knowledge built up over decades.</div>
+    <a href="https://www.browngammons.com?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit browngammons.com →</a>
+  </div>
+
+  <div class="sc" data-cat="mg">
+    <div class="sc-top">
+      <div class="sc-name">Moss Europe — MG Parts</div>
+      <div class="sc-flags" title="Bradford, England (UK warehouse)">🇬🇧 🇺🇸 🇩🇪 🇫🇷</div>
+    </div>
+    <div class="sc-cat">MG Specialist · Parts</div>
+    <div class="sc-cars">Covers: MGA, MGB, MG Midget; Austin-Healey; Triumph TR</div>
+    <div class="sc-ind" style="background:#fef9e8;color:#8a6a10;border:1px solid #8a6a10">Subsidiary of Moss Motors Inc. (USA)</div>
+    <div class="sc-hq">📍 HQ: Goleta, California, USA (parent); UK warehouse in Bradford</div>
+    <div class="sc-desc">Comprehensive MG parts covering MGA, MGB and Midget. One of the largest stocks of MG parts available in Europe, with mechanical, body, trim and electrical components.</div>
+    <a href="https://www.mosseurope.co.uk?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit mosseurope.co.uk →</a>
+  </div>
+
+  <div class="sc" data-cat="mg">
+    <div class="sc-top">
+      <div class="sc-name">Frontline Developments</div>
+      <div class="sc-flags" title="England">🇬🇧</div>
+    </div>
+    <div class="sc-cat">MG Specialist · Restoration &amp; Parts</div>
+    <div class="sc-cars">Covers: MGA, MGB, MG Midget</div>
+    <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent</div>
+    <div class="sc-hq">📍 HQ: England</div>
+    <div class="sc-desc">MG restoration specialists with particular expertise in the MGA. Full restoration services and parts supply, with a reputation for quality work on all classic MG models.</div>
+    <a href="https://www.frontline-mg.co.uk?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit frontline-mg.co.uk →</a>
+  </div>
+
+  <div class="sc" data-cat="mg">
+    <div class="sc-top">
+      <div class="sc-name">MG Owners Club Spares</div>
+      <div class="sc-flags" title="Swavesey, Cambridgeshire, England">🇬🇧</div>
+    </div>
+    <div class="sc-cat">MG Specialist · Parts</div>
+    <div class="sc-cars">Covers: MGB, MG Midget, MGA</div>
+    <div class="sc-ind" style="background:#e8eaf8;color:#2a2a7c;border:1px solid #2a2a7c">Club-Owned Trade Operation</div>
+    <div class="sc-hq">📍 HQ: Swavesey, Cambridgeshire, England</div>
+    <div class="sc-desc">The spares operation of the MG Owners Club — one of the largest MG clubs in the world. Comprehensive MGB parts stock with the backing of the club's technical expertise and community.</div>
+    <a href="https://www.mgownersclub.co.uk/shop?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit mgownersclub.co.uk/shop →</a>
+  </div>
+
+  <div class="sc" data-cat="mg">
+    <div class="sc-top">
+      <div class="sc-name">Barrie Jones MG</div>
+      <div class="sc-flags" title="North Wales">🏴󠁧󠁢󠁷󠁬󠁳󠁿</div>
+    </div>
+    <div class="sc-cat">MG Specialist · Parts &amp; Restoration</div>
+    <div class="sc-cars">Covers: MGA, MGB, MG Midget, MG TC/TD/TF</div>
+    <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent</div>
+    <div class="sc-hq">📍 HQ: North Wales</div>
+    <div class="sc-desc">MG specialists based in North Wales with many years experience in MG parts and restoration. Knowledgeable team covering the full range of classic MG models.</div>
+    <a href="https://www.barriejonesmg.co.uk?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit barriejonesmg.co.uk →</a>
+  </div>
+
+  <div class="sc" data-cat="mg">
+    <div class="sc-top">
+      <div class="sc-name">MGA Twin Cam Register</div>
+      <div class="sc-flags" title="England">🇬🇧</div>
+    </div>
+    <div class="sc-cat">MG Specialist · Parts &amp; Technical</div>
+    <div class="sc-cars">Covers: MGA Twin Cam</div>
+    <div class="sc-ind" style="background:#e8eaf8;color:#2a2a7c;border:1px solid #2a2a7c">Club / Register</div>
+    <div class="sc-hq">📍 HQ: England</div>
+    <div class="sc-desc">Dedicated resource for MGA Twin Cam owners with specific parts expertise and technical knowledge. The go-to register for this rare and complex model.</div>
+    <a href="https://www.mga-twincam.co.uk?utm_source=marquefile&utm_medium=suppliers&utm_campaign=directory" target="_blank" rel="noopener" class="sc-link">Visit mga-twincam.co.uk →</a>
+  </div>
+
   </div>
 </div>
 <footer>
@@ -350,12 +554,14 @@
     <div>
       <div class="logo-mark" style="width:44px;height:44px;font-size:1.2rem;margin-bottom:10px">MF</div>
       <div style="font-family:'EB Garamond',serif;font-size:1.2rem;color:#fff;margin-bottom:4px">Marque<em style="color:var(--gold)">File</em></div>
-      <div style="font-size:0.78rem;color:rgba(255,255,255,0.35);line-height:1.7">The classic car data resource.<br>Triumph TR · Jaguar</div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.35);line-height:1.7">The classic car data resource.<br>Triumph TR · Jaguar · Austin-Healey · MG</div>
     </div>
     <div class="ft-cols">
       <div><h4>Cars</h4>
         <a href="/Marlo-OpenClaw/classic-hub/triumph/">Triumph TR</a>
         <a href="/Marlo-OpenClaw/classic-hub/jaguar/">Jaguar</a>
+        <a href="/Marlo-OpenClaw/classic-hub/austin-healey/">Austin-Healey</a>
+        <a href="/Marlo-OpenClaw/classic-hub/mg/">MG</a>
       </div>
       <div><h4>Directory</h4>
         <a href="/Marlo-OpenClaw/classic-hub/clubs/">Clubs</a>
