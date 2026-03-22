@@ -84,12 +84,18 @@
     <a href="../index.html" class="logo"><div class="logo-mark">MF</div><div class="logo-text">Marque<em>File</em></div></a>
     <nav class="site-nav" id="site-nav">
       <div class="nav-dd"><a href="../triumph/index.html">Cars &#9662;</a>
-        <div class="drop"><a href="../triumph/index.html">Triumph TR</a><a href="../jaguar/index.html">Jaguar</a></div>
+        <div class="drop">
+          <a href="../triumph/index.html">Triumph TR</a>
+          <a href="../jaguar/index.html">Jaguar</a>
+        </div>
       </div>
       <div class="nav-dd"><a href="../clubs/index.html">Directory &#9662;</a>
         <div class="drop">
-          <a href="../clubs/index.html">Clubs</a><a href="../suppliers/index.html">Suppliers</a>
-          <a href="../publications/index.html">Publications</a><a href="../insurance/index.html">Insurance</a>
+          <a href="../clubs/index.html">Clubs</a>
+          <a href="../events/index.html">Events</a>
+          <a href="../suppliers/index.html">Suppliers</a>
+          <a href="../publications/index.html">Publications</a>
+          <a href="../insurance/index.html">Insurance</a>
           <a href="../storage/index.html">Storage</a>
         </div>
       </div>
@@ -98,6 +104,15 @@
           <a href="../valuations/index.html">Price Guides</a>
           <a href="../classifieds/index.html">Cars for Sale</a>
           <a href="../classifieds/sell.html">Sell Your Car</a>
+        </div>
+      </div>
+      <div class="nav-dd"><a href="../resources/index.html">Resources &#9662;</a>
+        <div class="drop">
+          <a href="../resources/index.html#youtube">YouTube Channels</a>
+          <a href="../resources/index.html#tv">TV Shows</a>
+          <a href="../resources/index.html#websites">Websites &amp; Forums</a>
+          <a href="../resources/index.html#podcasts">Podcasts</a>
+          <a href="../resources/index.html#magazines">Magazines</a>
         </div>
       </div>
       <a href="../classifieds/index.html" class="nav-cta">Cars for Sale</a>
@@ -125,7 +140,7 @@
     </ul>
   </div>
   <div class="ins-grid">
-  <div class="ic  featured">
+  <div class="ic  featured" data-country="gb">
     <div class="ic-feat">Recommended</div>
     <div class="ic-name">Hagerty UK</div>
     <div class="ic-hq">🇬🇧 UK (US parent — Hagerty Inc.)</div>
@@ -137,7 +152,7 @@
     <div class="ic-tip">💡 Hagerty include free access to their valuation guide with every policy — worth it alone.</div>
     <a href="https://www.hagerty.co.uk?utm_source=marquefile&utm_medium=insurance&utm_campaign=directory" target="_blank" rel="noopener" class="ic-link">Get a quote at hagerty.co.uk →</a>
   </div>
-  <div class="ic  featured">
+  <div class="ic  featured" data-country="gb">
     <div class="ic-feat">Recommended</div>
     <div class="ic-name">Footman James</div>
     <div class="ic-hq">🇬🇧 Hagley, West Midlands</div>
@@ -217,4 +232,14 @@
     <span>&copy; 2026 MarqueFile. All rights reserved.</span>
     <span>Valuations are guides only — always verify independently before buying or selling.</span>
   </div>
-</footer><script>const t=document.getElementById('nav-toggle'),n=document.getElementById('site-nav');if(t&&n)t.addEventListener('click',()=>n.classList.toggle('open'));</script></body></html>
+</footer><script>
+  const t=document.getElementById('nav-toggle'),n=document.getElementById('site-nav');
+  if(t&&n)t.addEventListener('click',()=>n.classList.toggle('open'));
+  function fc(c,btn){
+    document.querySelectorAll('[data-fc]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.ic').forEach(card=>{
+      card.style.display=(c==='all'||card.dataset.country===c)?'flex':'none';
+    });
+  }
+</script></body></html>

@@ -90,7 +90,10 @@
     <a href="../index.html" class="logo"><div class="logo-mark">MF</div><div class="logo-text">Marque<em>File</em></div></a>
     <nav class="site-nav" id="site-nav">
       <div class="nav-dd"><a href="../triumph/index.html">Cars &#9662;</a>
-        <div class="drop"><a href="../triumph/index.html">Triumph TR</a><a href="../jaguar/index.html">Jaguar</a></div>
+        <div class="drop">
+          <a href="../triumph/index.html">Triumph TR</a>
+          <a href="../jaguar/index.html">Jaguar</a>
+        </div>
       </div>
       <div class="nav-dd"><a href="../clubs/index.html">Directory &#9662;</a>
         <div class="drop">
@@ -98,6 +101,24 @@
           <a href="../events/index.html">Events</a>
           <a href="../suppliers/index.html">Suppliers</a>
           <a href="../publications/index.html">Publications</a>
+          <a href="../insurance/index.html">Insurance</a>
+          <a href="../storage/index.html">Storage</a>
+        </div>
+      </div>
+      <div class="nav-dd"><a href="../valuations/index.html">Market &#9662;</a>
+        <div class="drop">
+          <a href="../valuations/index.html">Price Guides</a>
+          <a href="../classifieds/index.html">Cars for Sale</a>
+          <a href="../classifieds/sell.html">Sell Your Car</a>
+        </div>
+      </div>
+      <div class="nav-dd"><a href="../resources/index.html">Resources &#9662;</a>
+        <div class="drop">
+          <a href="../resources/index.html#youtube">YouTube Channels</a>
+          <a href="../resources/index.html#tv">TV Shows</a>
+          <a href="../resources/index.html#websites">Websites &amp; Forums</a>
+          <a href="../resources/index.html#podcasts">Podcasts</a>
+          <a href="../resources/index.html#magazines">Magazines</a>
         </div>
       </div>
       <a href="../classifieds/index.html" class="nav-cta">Cars for Sale</a>
@@ -113,13 +134,28 @@
   </div>
 </div>
 <div class="page-body">
-  <div class="filter-row">
-    <button class="f-btn active" onclick="filterC('all',this)">All Clubs</button>
+  <div class="filter-row" id="country-filter">
+    <button class="f-btn active" data-fc="all" onclick="fc('all',this)">&#127758; All Countries</button>
+    <button class="f-btn" data-fc="gb" onclick="fc('gb',this)">&#127468;&#127463; UK</button>
+    <button class="f-btn" data-fc="us" onclick="fc('us',this)">&#127482;&#127480; USA</button>
+    <button class="f-btn" data-fc="au" onclick="fc('au',this)">&#127462;&#127482; Australia</button>
+    <button class="f-btn" data-fc="ca" onclick="fc('ca',this)">&#127464;&#127462; Canada</button>
+    <button class="f-btn" data-fc="za" onclick="fc('za',this)">&#127487;&#127462; South Africa</button>
+    <button class="f-btn" data-fc="de" onclick="fc('de',this)">&#127465;&#127466; Germany</button>
+    <button class="f-btn" data-fc="fr" onclick="fc('fr',this)">&#127467;&#127479; France</button>
+    <button class="f-btn" data-fc="nl" onclick="fc('nl',this)">&#127475;&#127473; Netherlands</button>
+    <button class="f-btn" data-fc="be" onclick="fc('be',this)">&#127463;&#127466; Belgium</button>
+    <button class="f-btn" data-fc="it" onclick="fc('it',this)">&#127470;&#127481; Italy</button>
+    <button class="f-btn" data-fc="ch" onclick="fc('ch',this)">&#127464;&#127469; Switzerland</button>
+  </div>
+  <div class="filter-row" id="marque-filter">
+    <button class="f-btn active" onclick="filterC('all',this)">All Marques</button>
     <button class="f-btn" onclick="filterC('triumph',this)">Triumph</button>
     <button class="f-btn" onclick="filterC('jaguar',this)">Jaguar</button>
   </div>
+  <div style="font-size:0.78rem;color:var(--grey);margin-bottom:20px">Your country not listed? <a href="mailto:clubs@marquefile.co.uk" style="color:var(--green);text-decoration:underline">Submit a club &rarr;</a></div>
 
-  <div class="club-card" data-marque="triumph">
+  <div class="club-card" data-country="gb" data-marque="triumph">
     <div class="cc-head">
       <div>
         <div class="cc-tag tag-triumph">Triumph</div>
@@ -153,7 +189,7 @@
       </div>
     </div>
   </div>
-  <div class="club-card" data-marque="triumph">
+  <div class="club-card" data-country="gb" data-marque="triumph">
     <div class="cc-head">
       <div>
         <div class="cc-tag tag-triumph">Triumph</div>
@@ -187,7 +223,7 @@
       </div>
     </div>
   </div>
-  <div class="club-card" data-marque="jaguar">
+  <div class="club-card" data-country="gb" data-marque="jaguar">
     <div class="cc-head">
       <div>
         <div class="cc-tag tag-jaguar">Jaguar</div>
@@ -221,7 +257,7 @@
       </div>
     </div>
   </div>
-  <div class="club-card" data-marque="jaguar">
+  <div class="club-card" data-country="gb" data-marque="jaguar">
     <div class="cc-head">
       <div>
         <div class="cc-tag tag-jaguar">Jaguar</div>
@@ -255,7 +291,7 @@
       </div>
     </div>
   </div>
-  <div class="club-card" data-marque="jaguar">
+  <div class="club-card" data-country="gb" data-marque="jaguar">
     <div class="cc-head">
       <div>
         <div class="cc-tag tag-jaguar">Jaguar</div>
@@ -289,7 +325,7 @@
       </div>
     </div>
   </div>
-  <div class="club-card" data-marque="jaguar">
+  <div class="club-card" data-country="gb" data-marque="jaguar">
     <div class="cc-head">
       <div>
         <div class="cc-tag tag-jaguar">Jaguar</div>
@@ -323,6 +359,488 @@
       </div>
     </div>
   </div>
+
+  <!-- INTERNATIONAL CLUBS -->
+  <!-- USA -->
+  <div class="club-card" data-country="us" data-marque="triumph">
+    <div class="cc-head">
+      <div>
+        <div class="cc-tag tag-triumph">Triumph</div>
+        <div class="cc-name">Vintage Triumph Register (VTR)</div>
+        <div class="cc-desc">The definitive US club for all Triumph models. Extensive chassis record database helpful for import provenance research. The US equivalent of the TR Register.</div>
+        <div class="cc-meta"><span>&#127482;&#127480; National US club</span><span>&#127760; vintagetriumphregister.org</span></div>
+      </div>
+      <div class="cc-right">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px">Annual membership</div>
+        <div class="cc-fee-main">$35/year</div>
+        <div class="cc-fee-note">Covers US and Canadian members</div>
+        <a href="https://www.vintagetriumphregister.org?utm_source=marquefile&utm_medium=clubs&utm_campaign=directory" target="_blank" rel="noopener" class="cc-visit">Join / visit &rarr;</a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-benefits">
+        <div class="cc-section-label">What&apos;s included</div>
+        <ul class="benefit-list">
+          <li><span class="benefit-name">Technical register</span><span>Experts for each Triumph model</span></li>
+          <li><span class="benefit-name">Annual national event</span><span>Rotating states &mdash; concours, driving tests, tech sessions</span></li>
+          <li><span class="benefit-name">Spares advice</span><span>Parts sourcing guidance for US-spec Triumphs</span></li>
+          <li><span class="benefit-name">Chassis records</span><span>Extensive database &mdash; valuable for import provenance research</span></li>
+        </ul>
+      </div>
+      <div class="cc-pub">
+        <div class="cc-section-label">Club publication</div>
+        <div class="pub-title">Vintage Triumph</div>
+        <div class="pub-freq">Quarterly magazine</div>
+        <div class="pub-desc">Quarterly publication covering all Triumph models with technical features, restoration articles and event reports.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="club-card" data-country="us" data-marque="jaguar">
+    <div class="cc-head">
+      <div>
+        <div class="cc-tag tag-jaguar">Jaguar</div>
+        <div class="cc-name">Jaguar Clubs of North America (JCNA)</div>
+        <div class="cc-desc">The governing body for Jaguar clubs across North America. Membership includes local chapter affiliation. 50+ regional chapters, national concours series, technical support and insurance discount scheme.</div>
+        <div class="cc-meta"><span>&#127482;&#127480; National umbrella body</span><span>&#127760; jcna.com</span></div>
+      </div>
+      <div class="cc-right">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px">Annual membership</div>
+        <div class="cc-fee-main">$60/year</div>
+        <div class="cc-fee-note">Varies by chapter</div>
+        <a href="https://www.jcna.com?utm_source=marquefile&utm_medium=clubs&utm_campaign=directory" target="_blank" rel="noopener" class="cc-visit">Join / visit &rarr;</a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-benefits">
+        <div class="cc-section-label">What&apos;s included</div>
+        <ul class="benefit-list">
+          <li><span class="benefit-name">50+ chapters</span><span>Regional chapters across US and Canada</span></li>
+          <li><span class="benefit-name">National concours</span><span>Annual national concours championship series</span></li>
+          <li><span class="benefit-name">Technical support</span><span>Model-specific technical expertise</span></li>
+          <li><span class="benefit-name">Insurance discount</span><span>Negotiated classic car insurance rates for members</span></li>
+        </ul>
+      </div>
+      <div class="cc-pub">
+        <div class="cc-section-label">Club publication</div>
+        <div class="pub-title">Jaguar Journal</div>
+        <div class="pub-freq">Quarterly</div>
+        <div class="pub-desc">JCNA&apos;s quarterly publication covering all Jaguar models, concours results, technical articles and club news from across North America.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="club-card" data-country="us" data-marque="jaguar">
+    <div class="cc-head">
+      <div>
+        <div class="cc-tag tag-jaguar">Jaguar</div>
+        <div class="cc-name">Jaguar Association of New England</div>
+        <div class="cc-desc">Active regional club covering New England states with regular events and technical days. Member of the JCNA umbrella.</div>
+        <div class="cc-meta"><span>&#127482;&#127480; New England regional club</span><span>&#127760; jane.org</span></div>
+      </div>
+      <div class="cc-right">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px">Annual membership</div>
+        <div class="cc-fee-main">$45/year</div>
+        <a href="https://www.jane.org?utm_source=marquefile&utm_medium=clubs&utm_campaign=directory" target="_blank" rel="noopener" class="cc-visit">Join / visit &rarr;</a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-benefits">
+        <div class="cc-section-label">What&apos;s included</div>
+        <ul class="benefit-list">
+          <li><span class="benefit-name">Regular events</span><span>Meets, road tours and technical days across New England</span></li>
+          <li><span class="benefit-name">JCNA affiliation</span><span>Access to national JCNA events and resources</span></li>
+          <li><span class="benefit-name">Technical advice</span><span>Regional experts for Jaguar models</span></li>
+        </ul>
+      </div>
+      <div class="cc-pub">
+        <div class="cc-section-label">Club publication</div>
+        <div class="pub-title">JANE Newsletter</div>
+        <div class="pub-freq">Periodic newsletter</div>
+        <div class="pub-desc">Club newsletter covering regional events, technical tips and member news from across New England.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Australia -->
+  <div class="club-card" data-country="au" data-marque="triumph">
+    <div class="cc-head">
+      <div>
+        <div class="cc-tag tag-triumph">Triumph</div>
+        <div class="cc-name">Triumph Sports Owners Association (TSOA) Victoria</div>
+        <div class="cc-desc">Primary Triumph club in Victoria covering all TR models. Active events programme and technical support. Revs magazine published quarterly.</div>
+        <div class="cc-meta"><span>&#127462;&#127482; Victoria state club</span><span>&#127760; tsoa.org.au</span></div>
+      </div>
+      <div class="cc-right">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px">Annual membership</div>
+        <div class="cc-fee-main">AUD $60/year</div>
+        <a href="https://www.tsoa.org.au?utm_source=marquefile&utm_medium=clubs&utm_campaign=directory" target="_blank" rel="noopener" class="cc-visit">Join / visit &rarr;</a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-benefits">
+        <div class="cc-section-label">What&apos;s included</div>
+        <ul class="benefit-list">
+          <li><span class="benefit-name">All TR models</span><span>TR2 through TR8 all covered</span></li>
+          <li><span class="benefit-name">Technical support</span><span>Model-specific experts available to members</span></li>
+          <li><span class="benefit-name">Events programme</span><span>Active calendar of runs, rallies and technical days</span></li>
+        </ul>
+      </div>
+      <div class="cc-pub">
+        <div class="cc-section-label">Club publication</div>
+        <div class="pub-title">Revs</div>
+        <div class="pub-freq">Quarterly magazine</div>
+        <div class="pub-desc">Quarterly magazine covering Triumph events in Victoria, technical articles and member restorations.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="club-card" data-country="au" data-marque="triumph">
+    <div class="cc-head">
+      <div>
+        <div class="cc-tag tag-triumph">Triumph</div>
+        <div class="cc-name">Triumph Sports Car Club Queensland</div>
+        <div class="cc-desc">Queensland Triumph club with active register of TR owners. Covers all Triumph sports car models with regular events.</div>
+        <div class="cc-meta"><span>&#127462;&#127482; Queensland</span><span>&#127760; tscq.org.au</span></div>
+      </div>
+      <div class="cc-right">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px">Annual membership</div>
+        <div class="cc-fee-main">AUD $55/year</div>
+        <a href="https://www.tscq.org.au?utm_source=marquefile&utm_medium=clubs&utm_campaign=directory" target="_blank" rel="noopener" class="cc-visit">Join / visit &rarr;</a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-benefits">
+        <div class="cc-section-label">What&apos;s included</div>
+        <ul class="benefit-list">
+          <li><span class="benefit-name">TR register</span><span>Active register of Queensland Triumph owners</span></li>
+          <li><span class="benefit-name">Regular events</span><span>Meets, runs and technical evenings</span></li>
+        </ul>
+      </div>
+      <div class="cc-pub">
+        <div class="cc-section-label">Club publication</div>
+        <div class="pub-title">TSCQ Newsletter</div>
+        <div class="pub-freq">Periodic newsletter</div>
+        <div class="pub-desc">Club newsletter covering Queensland Triumph events and technical advice.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="club-card" data-country="au" data-marque="jaguar">
+    <div class="cc-head">
+      <div>
+        <div class="cc-tag tag-jaguar">Jaguar</div>
+        <div class="cc-name">Jaguar Car Club of Victoria</div>
+        <div class="cc-desc">Victoria&apos;s premier Jaguar club with concours, tours and technical events. Publishes Jaguar Journal Australia bi-monthly.</div>
+        <div class="cc-meta"><span>&#127462;&#127482; Victoria</span><span>&#127760; jccv.org.au</span></div>
+      </div>
+      <div class="cc-right">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px">Annual membership</div>
+        <div class="cc-fee-main">AUD $80/year</div>
+        <a href="https://www.jccv.org.au?utm_source=marquefile&utm_medium=clubs&utm_campaign=directory" target="_blank" rel="noopener" class="cc-visit">Join / visit &rarr;</a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-benefits">
+        <div class="cc-section-label">What&apos;s included</div>
+        <ul class="benefit-list">
+          <li><span class="benefit-name">Concours events</span><span>Annual Concours d&apos;Elegance and class judging</span></li>
+          <li><span class="benefit-name">Touring programme</span><span>Organised road tours and driving events</span></li>
+          <li><span class="benefit-name">Technical support</span><span>All Jaguar models covered</span></li>
+        </ul>
+      </div>
+      <div class="cc-pub">
+        <div class="cc-section-label">Club publication</div>
+        <div class="pub-title">Jaguar Journal Australia</div>
+        <div class="pub-freq">Bi-monthly</div>
+        <div class="pub-desc">Bi-monthly magazine covering Jaguar events, restorations and technical features from across Victoria and Australia.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="club-card" data-country="au" data-marque="jaguar">
+    <div class="cc-head">
+      <div>
+        <div class="cc-tag tag-jaguar">Jaguar</div>
+        <div class="cc-name">Jaguar Drivers Club of Australia</div>
+        <div class="cc-desc">National Australian Jaguar club covering all states. The primary Jaguar organisation for Australian owners.</div>
+        <div class="cc-meta"><span>&#127462;&#127482; National</span><span>&#127760; jdca.com.au</span></div>
+      </div>
+      <div class="cc-right">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px">Annual membership</div>
+        <div class="cc-fee-main">AUD $70/year</div>
+        <a href="https://www.jdca.com.au?utm_source=marquefile&utm_medium=clubs&utm_campaign=directory" target="_blank" rel="noopener" class="cc-visit">Join / visit &rarr;</a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-benefits">
+        <div class="cc-section-label">What&apos;s included</div>
+        <ul class="benefit-list">
+          <li><span class="benefit-name">National coverage</span><span>Members across all Australian states</span></li>
+          <li><span class="benefit-name">All models</span><span>E-Type, XK, Mk II and all Jaguar covered</span></li>
+        </ul>
+      </div>
+      <div class="cc-pub">
+        <div class="cc-section-label">Club publication</div>
+        <div class="pub-title">JDCA Newsletter</div>
+        <div class="pub-freq">Periodic</div>
+        <div class="pub-desc">National club newsletter covering events and news from across Australia.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Canada -->
+  <div class="club-card" data-country="ca" data-marque="jaguar">
+    <div class="cc-head">
+      <div>
+        <div class="cc-tag tag-jaguar">Jaguar</div>
+        <div class="cc-name">Jaguar Clubs of North America (JCNA) &mdash; Canada</div>
+        <div class="cc-desc">JCNA umbrella covers Canadian members through regional chapters. Canadian Jaguar owners join their nearest JCNA regional chapter.</div>
+        <div class="cc-meta"><span>&#127464;&#127462; Covers Canada</span><span>&#127760; jcna.com</span></div>
+      </div>
+      <div class="cc-right">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px">Annual membership</div>
+        <div class="cc-fee-main">$60/year</div>
+        <a href="https://www.jcna.com?utm_source=marquefile&utm_medium=clubs&utm_campaign=directory" target="_blank" rel="noopener" class="cc-visit">Join / visit &rarr;</a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-benefits">
+        <div class="cc-section-label">What&apos;s included</div>
+        <ul class="benefit-list"><li><span class="benefit-name">Regional chapters</span><span>Canadian chapters in major cities</span></li><li><span class="benefit-name">National concours</span><span>Access to JCNA national championship</span></li></ul>
+      </div>
+      <div class="cc-pub"><div class="cc-section-label">Club publication</div><div class="pub-title">Jaguar Journal</div><div class="pub-freq">Quarterly</div><div class="pub-desc">North American quarterly publication covering all Jaguar models.</div></div>
+    </div>
+  </div>
+
+  <div class="club-card" data-country="ca" data-marque="triumph">
+    <div class="cc-head">
+      <div>
+        <div class="cc-tag tag-triumph">Triumph</div>
+        <div class="cc-name">Vintage Triumph Register &mdash; Canada</div>
+        <div class="cc-desc">VTR membership covers Canadian Triumph owners. Canadian members enjoy full access to VTR resources and the annual national event.</div>
+        <div class="cc-meta"><span>&#127464;&#127462; Covers Canada</span><span>&#127760; vintagetriumphregister.org</span></div>
+      </div>
+      <div class="cc-right">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px">Annual membership</div>
+        <div class="cc-fee-main">$35/year</div>
+        <a href="https://www.vintagetriumphregister.org?utm_source=marquefile&utm_medium=clubs&utm_campaign=directory" target="_blank" rel="noopener" class="cc-visit">Join / visit &rarr;</a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-benefits"><div class="cc-section-label">What&apos;s included</div><ul class="benefit-list"><li><span class="benefit-name">Full VTR access</span><span>All VTR resources including chassis records</span></li><li><span class="benefit-name">Annual event</span><span>Access to rotating national VTR event</span></li></ul></div>
+      <div class="cc-pub"><div class="cc-section-label">Club publication</div><div class="pub-title">Vintage Triumph</div><div class="pub-freq">Quarterly</div><div class="pub-desc">Quarterly publication for all North American Triumph owners.</div></div>
+    </div>
+  </div>
+
+  <!-- South Africa -->
+  <div class="club-card" data-country="za" data-marque="triumph">
+    <div class="cc-head">
+      <div>
+        <div class="cc-tag tag-triumph">Triumph</div>
+        <div class="cc-name">Triumph Owners Club South Africa</div>
+        <div class="cc-desc">South African Triumph owners club &mdash; contact through Classic Car Club of South Africa. Events in Gauteng and Western Cape.</div>
+        <div class="cc-meta"><span>&#127487;&#127462; South Africa</span></div>
+      </div>
+      <div class="cc-right">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px">Annual membership</div>
+        <div class="cc-fee-main">~R 500/year</div>
+        <a href="https://www.google.com/search?q=Triumph+Owners+Club+South+Africa" target="_blank" rel="noopener" class="cc-visit">Find online &rarr;</a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-benefits"><div class="cc-section-label">What&apos;s included</div><ul class="benefit-list"><li><span class="benefit-name">Local events</span><span>Meets and runs in major South African cities</span></li><li><span class="benefit-name">Technical advice</span><span>South African Triumph expertise</span></li></ul></div>
+      <div class="cc-pub"><div class="cc-section-label">Contact</div><div class="pub-title">Via CCSA</div><div class="pub-freq">Contact Classic Car Club of South Africa</div><div class="pub-desc">Contact through the Classic Car Club of South Africa network for current membership details.</div></div>
+    </div>
+  </div>
+
+  <div class="club-card" data-country="za" data-marque="jaguar">
+    <div class="cc-head">
+      <div>
+        <div class="cc-tag tag-jaguar">Jaguar</div>
+        <div class="cc-name">Jaguar Club of South Africa</div>
+        <div class="cc-desc">The South African Jaguar owners club with regular events in Gauteng and Western Cape. Strong British classic community.</div>
+        <div class="cc-meta"><span>&#127487;&#127462; South Africa</span><span>&#127760; jaguar-south-africa.co.za</span></div>
+      </div>
+      <div class="cc-right">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px">Annual membership</div>
+        <div class="cc-fee-main">~R 600/year</div>
+        <a href="https://www.jaguar-south-africa.co.za?utm_source=marquefile&utm_medium=clubs&utm_campaign=directory" target="_blank" rel="noopener" class="cc-visit">Join / visit &rarr;</a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-benefits"><div class="cc-section-label">What&apos;s included</div><ul class="benefit-list"><li><span class="benefit-name">Regular events</span><span>Events in Gauteng and Western Cape</span></li><li><span class="benefit-name">All Jaguar models</span><span>E-Type, XK, Mk II and more</span></li></ul></div>
+      <div class="cc-pub"><div class="cc-section-label">Club publication</div><div class="pub-title">JCSA Newsletter</div><div class="pub-freq">Periodic</div><div class="pub-desc">Club newsletter covering South African Jaguar events and member news.</div></div>
+    </div>
+  </div>
+
+  <!-- Germany -->
+  <div class="club-card" data-country="de" data-marque="triumph">
+    <div class="cc-head">
+      <div>
+        <div class="cc-tag tag-triumph">Triumph</div>
+        <div class="cc-name">Triumph TR Register Deutschland</div>
+        <div class="cc-desc">German Triumph TR club with strong following in Bavaria and NRW. Covers all TR models with a knowledgeable membership.</div>
+        <div class="cc-meta"><span>&#127465;&#127466; Germany</span><span>&#127760; triumph-register.de</span></div>
+      </div>
+      <div class="cc-right">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px">Annual membership</div>
+        <div class="cc-fee-main">&euro;45/year</div>
+        <a href="https://www.triumph-register.de?utm_source=marquefile&utm_medium=clubs&utm_campaign=directory" target="_blank" rel="noopener" class="cc-visit">Join / visit &rarr;</a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-benefits"><div class="cc-section-label">What&apos;s included</div><ul class="benefit-list"><li><span class="benefit-name">TR expertise</span><span>Strong technical knowledge for all TR models</span></li><li><span class="benefit-name">Regional groups</span><span>Active groups in Bavaria and NRW</span></li></ul></div>
+      <div class="cc-pub"><div class="cc-section-label">Club publication</div><div class="pub-title">TR Register DE Newsletter</div><div class="pub-freq">Periodic</div><div class="pub-desc">German-language newsletter for Triumph TR owners across Germany.</div></div>
+    </div>
+  </div>
+
+  <div class="club-card" data-country="de" data-marque="jaguar">
+    <div class="cc-head">
+      <div>
+        <div class="cc-tag tag-jaguar">Jaguar</div>
+        <div class="cc-name">Jaguar Enthusiasts Club Deutschland (JEC-D)</div>
+        <div class="cc-desc">German chapter of the Jaguar Enthusiasts Club. Active membership with events across Germany.</div>
+        <div class="cc-meta"><span>&#127465;&#127466; Germany</span><span>&#127760; jec-deutschland.de</span></div>
+      </div>
+      <div class="cc-right">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px">Annual membership</div>
+        <div class="cc-fee-main">&euro;50/year</div>
+        <a href="https://www.jec-deutschland.de?utm_source=marquefile&utm_medium=clubs&utm_campaign=directory" target="_blank" rel="noopener" class="cc-visit">Join / visit &rarr;</a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-benefits"><div class="cc-section-label">What&apos;s included</div><ul class="benefit-list"><li><span class="benefit-name">JEC affiliation</span><span>Connected to the UK JEC network</span></li><li><span class="benefit-name">German events</span><span>Concours and touring events across Germany</span></li></ul></div>
+      <div class="cc-pub"><div class="cc-section-label">Club publication</div><div class="pub-title">JEC-D Magazin</div><div class="pub-freq">Periodic</div><div class="pub-desc">German-language publication for Jaguar enthusiasts in Germany.</div></div>
+    </div>
+  </div>
+
+  <!-- France -->
+  <div class="club-card" data-country="fr" data-marque="triumph">
+    <div class="cc-head">
+      <div>
+        <div class="cc-tag tag-triumph">Triumph</div>
+        <div class="cc-name">Club Triumph France</div>
+        <div class="cc-desc">French national Triumph club covering all models. Active events programme with a strong TR following.</div>
+        <div class="cc-meta"><span>&#127467;&#127479; France</span><span>&#127760; club-triumph.fr</span></div>
+      </div>
+      <div class="cc-right">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px">Annual membership</div>
+        <div class="cc-fee-main">&euro;40/year</div>
+        <a href="https://www.club-triumph.fr?utm_source=marquefile&utm_medium=clubs&utm_campaign=directory" target="_blank" rel="noopener" class="cc-visit">Join / visit &rarr;</a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-benefits"><div class="cc-section-label">What&apos;s included</div><ul class="benefit-list"><li><span class="benefit-name">All Triumph models</span><span>TR2 through TR8 and other Triumph sports cars</span></li><li><span class="benefit-name">French events</span><span>Regular meets and touring events across France</span></li></ul></div>
+      <div class="cc-pub"><div class="cc-section-label">Club publication</div><div class="pub-title">Club Triumph France Magazine</div><div class="pub-freq">Periodic</div><div class="pub-desc">French-language publication for Triumph owners across France.</div></div>
+    </div>
+  </div>
+
+  <div class="club-card" data-country="fr" data-marque="jaguar">
+    <div class="cc-head">
+      <div>
+        <div class="cc-tag tag-jaguar">Jaguar</div>
+        <div class="cc-name">Jaguar Club de France</div>
+        <div class="cc-desc">French Jaguar club with regular Concours d&apos;&Eacute;l&eacute;gance events. Well-regarded on the French classic car circuit.</div>
+        <div class="cc-meta"><span>&#127467;&#127479; France</span><span>&#127760; jaguar-club-france.com</span></div>
+      </div>
+      <div class="cc-right">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px">Annual membership</div>
+        <div class="cc-fee-main">&euro;55/year</div>
+        <a href="https://www.jaguar-club-france.com?utm_source=marquefile&utm_medium=clubs&utm_campaign=directory" target="_blank" rel="noopener" class="cc-visit">Join / visit &rarr;</a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-benefits"><div class="cc-section-label">What&apos;s included</div><ul class="benefit-list"><li><span class="benefit-name">Concours events</span><span>Regular Concours d&apos;&Eacute;l&eacute;gance events in France</span></li><li><span class="benefit-name">All Jaguar models</span><span>E-Type, XK and all classic Jaguars covered</span></li></ul></div>
+      <div class="cc-pub"><div class="cc-section-label">Club publication</div><div class="pub-title">JCF Magazine</div><div class="pub-freq">Periodic</div><div class="pub-desc">French-language publication covering Jaguar events and restorations.</div></div>
+    </div>
+  </div>
+
+  <!-- Netherlands -->
+  <div class="club-card" data-country="nl" data-marque="triumph">
+    <div class="cc-head">
+      <div>
+        <div class="cc-tag tag-triumph">Triumph</div>
+        <div class="cc-name">Triumph Register Nederland</div>
+        <div class="cc-desc">Dutch Triumph club with active membership and technical days. Good TR coverage with English-speaking members.</div>
+        <div class="cc-meta"><span>&#127475;&#127473; Netherlands</span><span>&#127760; triumph.nl</span></div>
+      </div>
+      <div class="cc-right">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px">Annual membership</div>
+        <div class="cc-fee-main">&euro;45/year</div>
+        <a href="https://www.triumph.nl?utm_source=marquefile&utm_medium=clubs&utm_campaign=directory" target="_blank" rel="noopener" class="cc-visit">Join / visit &rarr;</a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-benefits"><div class="cc-section-label">What&apos;s included</div><ul class="benefit-list"><li><span class="benefit-name">Technical days</span><span>Hands-on technical sessions for members</span></li><li><span class="benefit-name">Active membership</span><span>Regular meets and driving events</span></li></ul></div>
+      <div class="cc-pub"><div class="cc-section-label">Club publication</div><div class="pub-title">TRN Magazine</div><div class="pub-freq">Periodic</div><div class="pub-desc">Dutch-language magazine for Triumph owners in the Netherlands.</div></div>
+    </div>
+  </div>
+
+  <!-- Belgium -->
+  <div class="club-card" data-country="be" data-marque="triumph">
+    <div class="cc-head">
+      <div>
+        <div class="cc-tag tag-triumph">Triumph</div>
+        <div class="cc-name">Triumph Club Belgium</div>
+        <div class="cc-desc">Belgian Triumph owners club. Active membership with events across Belgium. Connected to Dutch and French Triumph communities.</div>
+        <div class="cc-meta"><span>&#127463;&#127466; Belgium</span><span>&#127760; triumphclub.be</span></div>
+      </div>
+      <div class="cc-right">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px">Annual membership</div>
+        <div class="cc-fee-main">&euro;40/year</div>
+        <a href="https://www.triumphclub.be?utm_source=marquefile&utm_medium=clubs&utm_campaign=directory" target="_blank" rel="noopener" class="cc-visit">Join / visit &rarr;</a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-benefits"><div class="cc-section-label">What&apos;s included</div><ul class="benefit-list"><li><span class="benefit-name">Belgian events</span><span>Regular meets and runs across Belgium</span></li><li><span class="benefit-name">All Triumph models</span><span>TR and other Triumph sports cars</span></li></ul></div>
+      <div class="cc-pub"><div class="cc-section-label">Club publication</div><div class="pub-title">TCB Newsletter</div><div class="pub-freq">Periodic</div><div class="pub-desc">Club newsletter for Belgian Triumph owners.</div></div>
+    </div>
+  </div>
+
+  <!-- Italy -->
+  <div class="club-card" data-country="it" data-marque="triumph">
+    <div class="cc-head">
+      <div>
+        <div class="cc-tag tag-triumph">Triumph</div>
+        <div class="cc-name">Triumph Club Italia</div>
+        <div class="cc-desc">Italian Triumph enthusiasts club. Growing membership with events across Italy, particularly in the north.</div>
+        <div class="cc-meta"><span>&#127470;&#127481; Italy</span><span>&#127760; triumph-italia.it</span></div>
+      </div>
+      <div class="cc-right">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px">Annual membership</div>
+        <div class="cc-fee-main">&euro;45/year</div>
+        <a href="https://www.triumph-italia.it?utm_source=marquefile&utm_medium=clubs&utm_campaign=directory" target="_blank" rel="noopener" class="cc-visit">Join / visit &rarr;</a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-benefits"><div class="cc-section-label">What&apos;s included</div><ul class="benefit-list"><li><span class="benefit-name">Italian events</span><span>Meets and driving events across Italy</span></li><li><span class="benefit-name">Technical support</span><span>Italian-language Triumph expertise</span></li></ul></div>
+      <div class="cc-pub"><div class="cc-section-label">Club publication</div><div class="pub-title">TCI Newsletter</div><div class="pub-freq">Periodic</div><div class="pub-desc">Italian-language newsletter for Triumph owners in Italy.</div></div>
+    </div>
+  </div>
+
+  <!-- Switzerland -->
+  <div class="club-card" data-country="ch" data-marque="triumph">
+    <div class="cc-head">
+      <div>
+        <div class="cc-tag tag-triumph">Triumph</div>
+        <div class="cc-name">Triumph Register Schweiz</div>
+        <div class="cc-desc">Swiss Triumph owners register. Active membership covering all regions of Switzerland. Good connections to German and French Triumph communities.</div>
+        <div class="cc-meta"><span>&#127464;&#127469; Switzerland</span><span>&#127760; triumph-register.ch</span></div>
+      </div>
+      <div class="cc-right">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px">Annual membership</div>
+        <div class="cc-fee-main">CHF 60/year</div>
+        <a href="https://www.triumph-register.ch?utm_source=marquefile&utm_medium=clubs&utm_campaign=directory" target="_blank" rel="noopener" class="cc-visit">Join / visit &rarr;</a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-benefits"><div class="cc-section-label">What&apos;s included</div><ul class="benefit-list"><li><span class="benefit-name">Swiss events</span><span>Meets and tours across Switzerland</span></li><li><span class="benefit-name">Multilingual support</span><span>German, French and Italian support available</span></li></ul></div>
+      <div class="cc-pub"><div class="cc-section-label">Club publication</div><div class="pub-title">TRS Newsletter</div><div class="pub-freq">Periodic</div><div class="pub-desc">Newsletter for Swiss Triumph owners in multiple languages.</div></div>
+    </div>
+  </div>
+
+  <div style="font-size:0.78rem;color:var(--grey);font-style:italic;text-align:center;margin-top:28px;padding:12px;background:#fff;border-radius:6px;border:1px solid var(--border)">MarqueFile is expanding internationally. Listings are community-submitted &mdash; accuracy cannot be guaranteed. Always verify directly.</div>
 </div>
 <footer>
   <div class="ft-inner">
@@ -361,8 +879,20 @@
 <script>
   const t=document.getElementById('nav-toggle'),n=document.getElementById('site-nav');
   if(t&&n)t.addEventListener('click',()=>n.classList.toggle('open'));
+  let activeCountry='all',activeMarque='all';
   function filterC(m,btn){
-    document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
-    document.querySelectorAll('.club-card').forEach(c=>c.style.display=(m==='all'||c.dataset.marque===m)?'block':'none');
+    document.querySelectorAll('#marque-filter .f-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');activeMarque=m;applyFilters();
+  }
+  function fc(c,btn){
+    document.querySelectorAll('[data-fc]').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');activeCountry=c;applyFilters();
+  }
+  function applyFilters(){
+    document.querySelectorAll('.club-card').forEach(c=>{
+      const mc=activeCountry==='all'||c.dataset.country===activeCountry;
+      const mm=activeMarque==='all'||c.dataset.marque===activeMarque;
+      c.style.display=(mc&&mm)?'block':'none';
+    });
   }
 </script></body></html>

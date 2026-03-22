@@ -133,23 +133,40 @@
     <a href="../index.html" class="logo"><div class="logo-mark">MF</div><div class="logo-text">Marque<em>File</em></div></a>
     <nav class="site-nav" id="site-nav">
       <div class="nav-dd"><a href="../triumph/index.html">Cars &#9662;</a>
-        <div class="drop"><a href="../triumph/index.html">Triumph TR</a><a href="../jaguar/index.html">Jaguar</a></div>
+        <div class="drop">
+          <a href="../triumph/index.html">Triumph TR</a>
+          <a href="../jaguar/index.html">Jaguar</a>
+        </div>
       </div>
       <div class="nav-dd"><a href="../clubs/index.html">Directory &#9662;</a>
-        <div class="drop"><a href="../clubs/index.html">Clubs</a><a href="../suppliers/index.html">Suppliers</a>
-          <a href="../publications/index.html">Publications</a><a href="../insurance/index.html">Insurance</a>
-          <a href="../storage/index.html">Storage</a></div>
+        <div class="drop">
+          <a href="../clubs/index.html">Clubs</a>
+          <a href="../events/index.html">Events</a>
+          <a href="../suppliers/index.html">Suppliers</a>
+          <a href="../publications/index.html">Publications</a>
+          <a href="../insurance/index.html">Insurance</a>
+          <a href="../storage/index.html">Storage</a>
+        </div>
       </div>
       <div class="nav-dd"><a href="../valuations/index.html">Market &#9662;</a>
-        <div class="drop"><a href="../valuations/index.html">Price Guides</a><a href="../classifieds/index.html">Cars for Sale</a></div>
+        <div class="drop">
+          <a href="../valuations/index.html">Price Guides</a>
+          <a href="../classifieds/index.html">Cars for Sale</a>
+          <a href="../classifieds/sell.html">Sell Your Car</a>
+        </div>
       </div>
       <div class="nav-dd"><a href="../resources/index.html">Resources &#9662;</a>
-        <div class="drop"><a href="../resources/index.html">YouTube Channels</a><a href="../resources/index.html#websites">Websites &amp; Forums</a>
-          <a href="../resources/index.html#tv">TV Shows</a><a href="../resources/index.html#podcasts">Podcasts</a></div>
+        <div class="drop">
+          <a href="../resources/index.html#youtube">YouTube Channels</a>
+          <a href="../resources/index.html#tv">TV Shows</a>
+          <a href="../resources/index.html#websites">Websites &amp; Forums</a>
+          <a href="../resources/index.html#podcasts">Podcasts</a>
+          <a href="../resources/index.html#magazines">Magazines</a>
+        </div>
       </div>
       <a href="../classifieds/index.html" class="nav-cta">Cars for Sale</a>
     </nav>
-    <button class="nav-toggle" id="nav-toggle"><span></span><span></span><span></span></button>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </header>
 <div class="page-hero">
@@ -165,6 +182,7 @@
     <a href="#tv" class="snav-btn">📺 TV Shows</a>
     <a href="#websites" class="snav-btn">🌐 Websites & Forums</a>
     <a href="#podcasts" class="snav-btn">🎙 Podcasts</a>
+    <a href="#magazines" class="snav-btn">📰 Magazines</a>
   </div>
 
   <!-- YOUTUBE -->
@@ -579,6 +597,387 @@
     </div>
   </div>
 
+
+
+  <!-- MAGAZINES -->
+  <div class="res-section" id="magazines">
+    <div class="res-section-head">
+      <div class="res-section-icon">📰</div>
+      <div class="res-section-title">Magazines &amp; Newsletters</div>
+    </div>
+    <div class="res-section-sub">Print and digital titles from the UK, USA, Australia, Germany, France, Italy and the Netherlands — plus the essential club publications that members-only access includes. International scope: the market intelligence in Sports Car Market (US) and Motor Klassik (Germany) is surprisingly useful even for UK owners.</div>
+    <div class="filter-row" id="mag-filters">
+      <button class="f-btn active" data-mc="all" onclick="fmag(this)">All</button>
+      <button class="f-btn" data-mc="uk" onclick="fmag(this)">🇬🇧 UK</button>
+      <button class="f-btn" data-mc="us" onclick="fmag(this)">🇺🇸 USA</button>
+      <button class="f-btn" data-mc="au" onclick="fmag(this)">🇦🇺 Australia</button>
+      <button class="f-btn" data-mc="eu" onclick="fmag(this)">🇪🇺 Europe</button>
+      <button class="f-btn" data-mc="club" onclick="fmag(this)">Club publications</button>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px" id="mag-grid">
+      <div style="background:#fff;border:1px solid #e2ddd6;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.2s" class="mag-card" data-mc="uk" onmouseenter="this.style.boxShadow='0 4px 18px rgba(0,0,0,0.08)'" onmouseleave="this.style.boxShadow='none'">
+        <div style="background:#2a4a1a;padding:12px 16px;display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:6px;background:rgba(255,255,255,0.15);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:0.82rem;font-weight:700;flex-shrink:0">C&SC</div>
+          <div>
+            <div style="font-family:'EB Garamond',serif;font-size:1rem;color:#fff;line-height:1.2">Classic & Sports Car</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.6)">🇬🇧 UK · Monthly print + digital</div>
+          </div>
+        </div>
+        <div style="padding:13px 16px;flex:1;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="font-size:0.78rem;font-weight:600;color:#1a1a1a">~£6.50/issue · ~£65/yr</span>
+            <span style="font-size:0.62rem;background:#e8f5ee;color:#2a5c3f;padding:2px 7px;border-radius:10px;font-weight:700">Available to buy</span>
+          </div>
+          <div style="font-size:0.81rem;color:#6b6b6b;line-height:1.55;flex:1;margin-bottom:10px">The UK's best-selling classic car magazine. Authoritative road tests, market reports and auction analysis. Triumph TR and Jaguar E-Type feature regularly — their buying guides are the gold standard for the UK market.</div>
+          <div style="font-size:0.76rem;background:#f8f6f1;border-left:3px solid #c8a84b;padding:7px 10px;border-radius:0 5px 5px 0;color:#5a4a10;margin-bottom:12px;line-height:1.45">💡 Buying guides and market values — their annual price guide issue is genuinely useful</div>
+          <a href="https://www.classicandsportscar.com?utm_source=marquefile&utm_medium=resources&utm_campaign=magazines" target="_blank" rel="noopener" style="background:#2a5c3f;color:#fff;padding:9px 14px;border-radius:4px;font-size:0.78rem;font-weight:600;text-align:center;display:block;transition:background 0.18s" onmouseenter="this.style.background='#3a7a55'" onmouseleave="this.style.background='#2a5c3f'">Visit classicandsportscar.com →</a>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #e2ddd6;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.2s" class="mag-card" data-mc="uk" onmouseenter="this.style.boxShadow='0 4px 18px rgba(0,0,0,0.08)'" onmouseleave="this.style.boxShadow='none'">
+        <div style="background:#4a2a1a;padding:12px 16px;display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:6px;background:rgba(255,255,255,0.15);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:0.82rem;font-weight:700;flex-shrink:0">PC</div>
+          <div>
+            <div style="font-family:'EB Garamond',serif;font-size:1rem;color:#fff;line-height:1.2">Practical Classics</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.6)">🇬🇧 UK · Monthly print + digital</div>
+          </div>
+        </div>
+        <div style="padding:13px 16px;flex:1;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="font-size:0.78rem;font-weight:600;color:#1a1a1a">~£5.99/issue · ~£60/yr</span>
+            <span style="font-size:0.62rem;background:#e8f5ee;color:#2a5c3f;padding:2px 7px;border-radius:10px;font-weight:700">Available to buy</span>
+          </div>
+          <div style="font-size:0.81rem;color:#6b6b6b;line-height:1.55;flex:1;margin-bottom:10px">Hands-on restoration and maintenance focus. Step-by-step guides, MOT advice and project car features. Strong TR and Jaguar content. If you're doing your own work, this is the practical companion.</div>
+          <div style="font-size:0.76rem;background:#f8f6f1;border-left:3px solid #c8a84b;padding:7px 10px;border-radius:0 5px 5px 0;color:#5a4a10;margin-bottom:12px;line-height:1.45">💡 DIY restoration — the guides are specific, practical and written for people doing the actual work</div>
+          <a href="https://www.practicalclassics.co.uk?utm_source=marquefile&utm_medium=resources&utm_campaign=magazines" target="_blank" rel="noopener" style="background:#2a5c3f;color:#fff;padding:9px 14px;border-radius:4px;font-size:0.78rem;font-weight:600;text-align:center;display:block;transition:background 0.18s" onmouseenter="this.style.background='#3a7a55'" onmouseleave="this.style.background='#2a5c3f'">Visit practicalclassics.co.uk →</a>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #e2ddd6;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.2s" class="mag-card" data-mc="uk" onmouseenter="this.style.boxShadow='0 4px 18px rgba(0,0,0,0.08)'" onmouseleave="this.style.boxShadow='none'">
+        <div style="background:#1a1a1a;padding:12px 16px;display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:6px;background:rgba(255,255,255,0.15);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:0.82rem;font-weight:700;flex-shrink:0">OCT</div>
+          <div>
+            <div style="font-family:'EB Garamond',serif;font-size:1rem;color:#fff;line-height:1.2">Octane</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.6)">🇬🇧 UK · Monthly print + digital</div>
+          </div>
+        </div>
+        <div style="padding:13px 16px;flex:1;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="font-size:0.78rem;font-weight:600;color:#1a1a1a">~£7.50/issue · ~£75/yr</span>
+            <span style="font-size:0.62rem;background:#e8f5ee;color:#2a5c3f;padding:2px 7px;border-radius:10px;font-weight:700">Available to buy</span>
+          </div>
+          <div style="font-size:0.81rem;color:#6b6b6b;line-height:1.55;flex:1;margin-bottom:10px">Premium classic and performance car magazine. Beautifully produced with a focus on significant and rare cars. Strong on early E-Types and unusual Triumphs. More collector-oriented than workshop-focused.</div>
+          <div style="font-size:0.76rem;background:#f8f6f1;border-left:3px solid #c8a84b;padding:7px 10px;border-radius:0 5px 5px 0;color:#5a4a10;margin-bottom:12px;line-height:1.45">💡 Significant and rare cars — if you want context on what makes a car important, Octane delivers it</div>
+          <a href="https://www.octane-magazine.com?utm_source=marquefile&utm_medium=resources&utm_campaign=magazines" target="_blank" rel="noopener" style="background:#2a5c3f;color:#fff;padding:9px 14px;border-radius:4px;font-size:0.78rem;font-weight:600;text-align:center;display:block;transition:background 0.18s" onmouseenter="this.style.background='#3a7a55'" onmouseleave="this.style.background='#2a5c3f'">Visit octane-magazine.com →</a>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #e2ddd6;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.2s" class="mag-card" data-mc="uk" onmouseenter="this.style.boxShadow='0 4px 18px rgba(0,0,0,0.08)'" onmouseleave="this.style.boxShadow='none'">
+        <div style="background:#1a3a5c;padding:12px 16px;display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:6px;background:rgba(255,255,255,0.15);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:0.82rem;font-weight:700;flex-shrink:0">T&CC</div>
+          <div>
+            <div style="font-family:'EB Garamond',serif;font-size:1rem;color:#fff;line-height:1.2">Thoroughbred & Classic Cars</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.6)">🇬🇧 UK · Monthly print + digital</div>
+          </div>
+        </div>
+        <div style="padding:13px 16px;flex:1;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="font-size:0.78rem;font-weight:600;color:#1a1a1a">~£5.50/issue · ~£55/yr</span>
+            <span style="font-size:0.62rem;background:#e8f5ee;color:#2a5c3f;padding:2px 7px;border-radius:10px;font-weight:700">Available to buy</span>
+          </div>
+          <div style="font-size:0.81rem;color:#6b6b6b;line-height:1.55;flex:1;margin-bottom:10px">One of the longest-running British classic car magazines. Broad coverage with good depth on British sports cars including Triumph and Jaguar. Market reports and restoration features are consistent monthly content.</div>
+          <div style="font-size:0.76rem;background:#f8f6f1;border-left:3px solid #c8a84b;padding:7px 10px;border-radius:0 5px 5px 0;color:#5a4a10;margin-bottom:12px;line-height:1.45">💡 Historical depth — long archive of TR and Jaguar technical and historical features</div>
+          <a href="https://www.classiccarsmagazine.co.uk?utm_source=marquefile&utm_medium=resources&utm_campaign=magazines" target="_blank" rel="noopener" style="background:#2a5c3f;color:#fff;padding:9px 14px;border-radius:4px;font-size:0.78rem;font-weight:600;text-align:center;display:block;transition:background 0.18s" onmouseenter="this.style.background='#3a7a55'" onmouseleave="this.style.background='#2a5c3f'">Visit classiccarsmagazine.co.uk →</a>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #e2ddd6;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.2s" class="mag-card" data-mc="eu" onmouseenter="this.style.boxShadow='0 4px 18px rgba(0,0,0,0.08)'" onmouseleave="this.style.boxShadow='none'">
+        <div style="background:#1a1a3a;padding:12px 16px;display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:6px;background:rgba(255,255,255,0.15);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:0.82rem;font-weight:700;flex-shrink:0">CD</div>
+          <div>
+            <div style="font-family:'EB Garamond',serif;font-size:1rem;color:#fff;line-height:1.2">Classic Driver (magazine)</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.6)">🇩🇪🇬🇧 International · Online + print specials</div>
+          </div>
+        </div>
+        <div style="padding:13px 16px;flex:1;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="font-size:0.78rem;font-weight:600;color:#1a1a1a">Free (online) / print varies</span>
+            <span style="font-size:0.62rem;background:#e8f5ee;color:#2a5c3f;padding:2px 7px;border-radius:10px;font-weight:700">Available to buy</span>
+          </div>
+          <div style="font-size:0.81rem;color:#6b6b6b;line-height:1.55;flex:1;margin-bottom:10px">The European premium classic car platform — classifieds, editorial and market intelligence. Strong on high-value classics. The E-Type and pre-war Jaguar content reflects their European readership well.</div>
+          <div style="font-size:0.76rem;background:#f8f6f1;border-left:3px solid #c8a84b;padding:7px 10px;border-radius:0 5px 5px 0;color:#5a4a10;margin-bottom:12px;line-height:1.45">💡 European market and high-value classics — the classifieds have significant European inventory</div>
+          <a href="https://www.classicdriver.com?utm_source=marquefile&utm_medium=resources&utm_campaign=magazines" target="_blank" rel="noopener" style="background:#2a5c3f;color:#fff;padding:9px 14px;border-radius:4px;font-size:0.78rem;font-weight:600;text-align:center;display:block;transition:background 0.18s" onmouseenter="this.style.background='#3a7a55'" onmouseleave="this.style.background='#2a5c3f'">Visit classicdriver.com →</a>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #e2ddd6;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.2s" class="mag-card" data-mc="us" onmouseenter="this.style.boxShadow='0 4px 18px rgba(0,0,0,0.08)'" onmouseleave="this.style.boxShadow='none'">
+        <div style="background:#8a1a1a;padding:12px 16px;display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:6px;background:rgba(255,255,255,0.15);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:0.82rem;font-weight:700;flex-shrink:0">SCM</div>
+          <div>
+            <div style="font-family:'EB Garamond',serif;font-size:1rem;color:#fff;line-height:1.2">Sports Car Market</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.6)">🇺🇸 USA · Monthly print + digital</div>
+          </div>
+        </div>
+        <div style="padding:13px 16px;flex:1;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="font-size:0.78rem;font-weight:600;color:#1a1a1a">~$12/issue · ~$99/yr</span>
+            <span style="font-size:0.62rem;background:#e8f5ee;color:#2a5c3f;padding:2px 7px;border-radius:10px;font-weight:700">Available to buy</span>
+          </div>
+          <div style="font-size:0.81rem;color:#6b6b6b;line-height:1.55;flex:1;margin-bottom:10px">The definitive US classic car market intelligence publication. Every issue analyses auction results in detail — what sold, what didn't, and why. If you want to understand US market pricing for TR5, TR6 or E-Type, this is the source.</div>
+          <div style="font-size:0.76rem;background:#f8f6f1;border-left:3px solid #c8a84b;padding:7px 10px;border-radius:0 5px 5px 0;color:#5a4a10;margin-bottom:12px;line-height:1.45">💡 US auction market analysis — the most rigorous price tracking publication in North America</div>
+          <a href="https://www.sportscarmarket.com?utm_source=marquefile&utm_medium=resources&utm_campaign=magazines" target="_blank" rel="noopener" style="background:#2a5c3f;color:#fff;padding:9px 14px;border-radius:4px;font-size:0.78rem;font-weight:600;text-align:center;display:block;transition:background 0.18s" onmouseenter="this.style.background='#3a7a55'" onmouseleave="this.style.background='#2a5c3f'">Visit sportscarmarket.com →</a>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #e2ddd6;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.2s" class="mag-card" data-mc="us" onmouseenter="this.style.boxShadow='0 4px 18px rgba(0,0,0,0.08)'" onmouseleave="this.style.boxShadow='none'">
+        <div style="background:#8a2a10;padding:12px 16px;display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:6px;background:rgba(255,255,255,0.15);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:0.82rem;font-weight:700;flex-shrink:0">HMN</div>
+          <div>
+            <div style="font-family:'EB Garamond',serif;font-size:1rem;color:#fff;line-height:1.2">Hemmings Motor News</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.6)">🇺🇸 USA · Monthly print + digital</div>
+          </div>
+        </div>
+        <div style="padding:13px 16px;flex:1;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="font-size:0.78rem;font-weight:600;color:#1a1a1a">~$5.99/issue · ~$50/yr</span>
+            <span style="font-size:0.62rem;background:#e8f5ee;color:#2a5c3f;padding:2px 7px;border-radius:10px;font-weight:700">Available to buy</span>
+          </div>
+          <div style="font-size:0.81rem;color:#6b6b6b;line-height:1.55;flex:1;margin-bottom:10px">America's largest classic car classifieds publication — also has editorial content and technical articles. The classifieds section has the widest US inventory of Triumph TR and Jaguar. Monthly since 1954.</div>
+          <div style="font-size:0.76rem;background:#f8f6f1;border-left:3px solid #c8a84b;padding:7px 10px;border-radius:0 5px 5px 0;color:#5a4a10;margin-bottom:12px;line-height:1.45">💡 US classifieds — the most comprehensive print/digital source of US-market classic cars for sale</div>
+          <a href="https://www.hemmings.com?utm_source=marquefile&utm_medium=resources&utm_campaign=magazines" target="_blank" rel="noopener" style="background:#2a5c3f;color:#fff;padding:9px 14px;border-radius:4px;font-size:0.78rem;font-weight:600;text-align:center;display:block;transition:background 0.18s" onmouseenter="this.style.background='#3a7a55'" onmouseleave="this.style.background='#2a5c3f'">Visit hemmings.com →</a>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #e2ddd6;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.2s" class="mag-card" data-mc="us" onmouseenter="this.style.boxShadow='0 4px 18px rgba(0,0,0,0.08)'" onmouseleave="this.style.boxShadow='none'">
+        <div style="background:#2a1a5a;padding:12px 16px;display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:6px;background:rgba(255,255,255,0.15);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:0.82rem;font-weight:700;flex-shrink:0">HSEC</div>
+          <div>
+            <div style="font-family:'EB Garamond',serif;font-size:1rem;color:#fff;line-height:1.2">Hemmings Sports & Exotic Car</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.6)">🇺🇸 USA · Bi-monthly</div>
+          </div>
+        </div>
+        <div style="padding:13px 16px;flex:1;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="font-size:0.78rem;font-weight:600;color:#1a1a1a">~$8.99/issue</span>
+            <span style="font-size:0.62rem;background:#e8f5ee;color:#2a5c3f;padding:2px 7px;border-radius:10px;font-weight:700">Available to buy</span>
+          </div>
+          <div style="font-size:0.81rem;color:#6b6b6b;line-height:1.55;flex:1;margin-bottom:10px">Hemmings' focused sports car title — more relevant to Triumph and Jaguar than the main Motor News. Road tests, history and technical features on British, Italian and European sports cars.</div>
+          <div style="font-size:0.76rem;background:#f8f6f1;border-left:3px solid #c8a84b;padding:7px 10px;border-radius:0 5px 5px 0;color:#5a4a10;margin-bottom:12px;line-height:1.45">💡 British sports cars specifically — more focused than the main Hemmings title</div>
+          <a href="https://www.hemmings.com/sportsandexotic?utm_source=marquefile&utm_medium=resources&utm_campaign=magazines" target="_blank" rel="noopener" style="background:#2a5c3f;color:#fff;padding:9px 14px;border-radius:4px;font-size:0.78rem;font-weight:600;text-align:center;display:block;transition:background 0.18s" onmouseenter="this.style.background='#3a7a55'" onmouseleave="this.style.background='#2a5c3f'">Visit hemmings.com →</a>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #e2ddd6;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.2s" class="mag-card" data-mc="us" onmouseenter="this.style.boxShadow='0 4px 18px rgba(0,0,0,0.08)'" onmouseleave="this.style.boxShadow='none'">
+        <div style="background:#1a2a4a;padding:12px 16px;display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:6px;background:rgba(255,255,255,0.15);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:0.82rem;font-weight:700;flex-shrink:0">R&T</div>
+          <div>
+            <div style="font-family:'EB Garamond',serif;font-size:1rem;color:#fff;line-height:1.2">Road & Track (Classic issues)</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.6)">🇺🇸 USA · Online archive + print</div>
+          </div>
+        </div>
+        <div style="padding:13px 16px;flex:1;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="font-size:0.78rem;font-weight:600;color:#1a1a1a">Subscription varies</span>
+            <span style="font-size:0.62rem;background:#e8f5ee;color:#2a5c3f;padding:2px 7px;border-radius:10px;font-weight:700">Available to buy</span>
+          </div>
+          <div style="font-size:0.81rem;color:#6b6b6b;line-height:1.55;flex:1;margin-bottom:10px">Road & Track's archive includes decades of Triumph and Jaguar road tests from when the cars were new. The historical road tests are available digitally and provide fascinating period perspective on how these cars drove new.</div>
+          <div style="font-size:0.76rem;background:#f8f6f1;border-left:3px solid #c8a84b;padding:7px 10px;border-radius:0 5px 5px 0;color:#5a4a10;margin-bottom:12px;line-height:1.45">💡 Historical road tests — original period impressions of TR and Jaguar when new</div>
+          <a href="https://www.roadandtrack.com?utm_source=marquefile&utm_medium=resources&utm_campaign=magazines" target="_blank" rel="noopener" style="background:#2a5c3f;color:#fff;padding:9px 14px;border-radius:4px;font-size:0.78rem;font-weight:600;text-align:center;display:block;transition:background 0.18s" onmouseenter="this.style.background='#3a7a55'" onmouseleave="this.style.background='#2a5c3f'">Visit roadandtrack.com →</a>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #e2ddd6;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.2s" class="mag-card" data-mc="au" onmouseenter="this.style.boxShadow='0 4px 18px rgba(0,0,0,0.08)'" onmouseleave="this.style.boxShadow='none'">
+        <div style="background:#1a3a1a;padding:12px 16px;display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:6px;background:rgba(255,255,255,0.15);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:0.82rem;font-weight:700;flex-shrink:0">UC</div>
+          <div>
+            <div style="font-family:'EB Garamond',serif;font-size:1rem;color:#fff;line-height:1.2">Unique Cars</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.6)">🇦🇺 Australia · Monthly print + digital</div>
+          </div>
+        </div>
+        <div style="padding:13px 16px;flex:1;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="font-size:0.78rem;font-weight:600;color:#1a1a1a">AUD $8.95/issue · ~$75/yr</span>
+            <span style="font-size:0.62rem;background:#e8f5ee;color:#2a5c3f;padding:2px 7px;border-radius:10px;font-weight:700">Available to buy</span>
+          </div>
+          <div style="font-size:0.81rem;color:#6b6b6b;line-height:1.55;flex:1;margin-bottom:10px">Australia's premier classic car magazine. Strong British car content reflecting Australian enthusiasm for imported classics. Regular Triumph TR and Jaguar features. The classifieds have good Australian-market inventory.</div>
+          <div style="font-size:0.76rem;background:#f8f6f1;border-left:3px solid #c8a84b;padding:7px 10px;border-radius:0 5px 5px 0;color:#5a4a10;margin-bottom:12px;line-height:1.45">💡 Australian market — essential if you're buying or selling in Australia</div>
+          <a href="https://www.uniquecars.com.au?utm_source=marquefile&utm_medium=resources&utm_campaign=magazines" target="_blank" rel="noopener" style="background:#2a5c3f;color:#fff;padding:9px 14px;border-radius:4px;font-size:0.78rem;font-weight:600;text-align:center;display:block;transition:background 0.18s" onmouseenter="this.style.background='#3a7a55'" onmouseleave="this.style.background='#2a5c3f'">Visit uniquecars.com.au →</a>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #e2ddd6;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.2s" class="mag-card" data-mc="eu" onmouseenter="this.style.boxShadow='0 4px 18px rgba(0,0,0,0.08)'" onmouseleave="this.style.boxShadow='none'">
+        <div style="background:#1a2a4a;padding:12px 16px;display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:6px;background:rgba(255,255,255,0.15);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:0.82rem;font-weight:700;flex-shrink:0">MK</div>
+          <div>
+            <div style="font-family:'EB Garamond',serif;font-size:1rem;color:#fff;line-height:1.2">Motor Klassik</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.6)">🇩🇪 Germany · Monthly print + digital</div>
+          </div>
+        </div>
+        <div style="padding:13px 16px;flex:1;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="font-size:0.78rem;font-weight:600;color:#1a1a1a">€6.50/issue · ~€65/yr</span>
+            <span style="font-size:0.62rem;background:#e8f5ee;color:#2a5c3f;padding:2px 7px;border-radius:10px;font-weight:700">Available to buy</span>
+          </div>
+          <div style="font-size:0.81rem;color:#6b6b6b;line-height:1.55;flex:1;margin-bottom:10px">Germany's premier classic car magazine. Very strong on British classics — Germany has a passionate classic car community and Jaguar and Triumph are well represented. Good technical depth and restoration features. German language.</div>
+          <div style="font-size:0.76rem;background:#f8f6f1;border-left:3px solid #c8a84b;padding:7px 10px;border-radius:0 5px 5px 0;color:#5a4a10;margin-bottom:12px;line-height:1.45">💡 German market context — British classics are highly regarded in Germany; this shows what they're worth there</div>
+          <a href="https://www.motorklassik.de?utm_source=marquefile&utm_medium=resources&utm_campaign=magazines" target="_blank" rel="noopener" style="background:#2a5c3f;color:#fff;padding:9px 14px;border-radius:4px;font-size:0.78rem;font-weight:600;text-align:center;display:block;transition:background 0.18s" onmouseenter="this.style.background='#3a7a55'" onmouseleave="this.style.background='#2a5c3f'">Visit motorklassik.de →</a>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #e2ddd6;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.2s" class="mag-card" data-mc="eu" onmouseenter="this.style.boxShadow='0 4px 18px rgba(0,0,0,0.08)'" onmouseleave="this.style.boxShadow='none'">
+        <div style="background:#2a1a1a;padding:12px 16px;display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:6px;background:rgba(255,255,255,0.15);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:0.82rem;font-weight:700;flex-shrink:0">OM</div>
+          <div>
+            <div style="font-family:'EB Garamond',serif;font-size:1rem;color:#fff;line-height:1.2">Oldtimer Markt</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.6)">🇩🇪 Germany · Monthly print + digital</div>
+          </div>
+        </div>
+        <div style="padding:13px 16px;flex:1;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="font-size:0.78rem;font-weight:600;color:#1a1a1a">€6.50/issue · ~€65/yr</span>
+            <span style="font-size:0.62rem;background:#e8f5ee;color:#2a5c3f;padding:2px 7px;border-radius:10px;font-weight:700">Available to buy</span>
+          </div>
+          <div style="font-size:0.81rem;color:#6b6b6b;line-height:1.55;flex:1;margin-bottom:10px">Germany's classic car parts and classifieds magazine. Strong parts autojumble section alongside classifieds. Useful for finding German-based suppliers of TR and Jaguar parts. German language.</div>
+          <div style="font-size:0.76rem;background:#f8f6f1;border-left:3px solid #c8a84b;padding:7px 10px;border-radius:0 5px 5px 0;color:#5a4a10;margin-bottom:12px;line-height:1.45">💡 German parts market — surprisingly good source of NOS and used TR/Jaguar parts from German owners</div>
+          <a href="https://www.oldtimer-markt.de?utm_source=marquefile&utm_medium=resources&utm_campaign=magazines" target="_blank" rel="noopener" style="background:#2a5c3f;color:#fff;padding:9px 14px;border-radius:4px;font-size:0.78rem;font-weight:600;text-align:center;display:block;transition:background 0.18s" onmouseenter="this.style.background='#3a7a55'" onmouseleave="this.style.background='#2a5c3f'">Visit oldtimer-markt.de →</a>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #e2ddd6;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.2s" class="mag-card" data-mc="eu" onmouseenter="this.style.boxShadow='0 4px 18px rgba(0,0,0,0.08)'" onmouseleave="this.style.boxShadow='none'">
+        <div style="background:#cc1a2a;padding:12px 16px;display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:6px;background:rgba(255,255,255,0.15);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:0.82rem;font-weight:700;flex-shrink:0">LVA</div>
+          <div>
+            <div style="font-family:'EB Garamond',serif;font-size:1rem;color:#fff;line-height:1.2">La Vie de l'Auto</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.6)">🇫🇷 France · Weekly print</div>
+          </div>
+        </div>
+        <div style="padding:13px 16px;flex:1;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="font-size:0.78rem;font-weight:600;color:#1a1a1a">€3.50/issue</span>
+            <span style="font-size:0.62rem;background:#e8f5ee;color:#2a5c3f;padding:2px 7px;border-radius:10px;font-weight:700">Available to buy</span>
+          </div>
+          <div style="font-size:0.81rem;color:#6b6b6b;line-height:1.55;flex:1;margin-bottom:10px">France's most popular weekly classic car publication — primarily classifieds with editorial content. Good European market pricing context. French language.</div>
+          <div style="font-size:0.76rem;background:#f8f6f1;border-left:3px solid #c8a84b;padding:7px 10px;border-radius:0 5px 5px 0;color:#5a4a10;margin-bottom:12px;line-height:1.45">💡 French market classifieds — good for European pricing context</div>
+          <a href="https://www.laviedelauto.fr?utm_source=marquefile&utm_medium=resources&utm_campaign=magazines" target="_blank" rel="noopener" style="background:#2a5c3f;color:#fff;padding:9px 14px;border-radius:4px;font-size:0.78rem;font-weight:600;text-align:center;display:block;transition:background 0.18s" onmouseenter="this.style.background='#3a7a55'" onmouseleave="this.style.background='#2a5c3f'">Visit laviedelauto.fr →</a>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #e2ddd6;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.2s" class="mag-card" data-mc="eu" onmouseenter="this.style.boxShadow='0 4px 18px rgba(0,0,0,0.08)'" onmouseleave="this.style.boxShadow='none'">
+        <div style="background:#1a3a5c;padding:12px 16px;display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:6px;background:rgba(255,255,255,0.15);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:0.82rem;font-weight:700;flex-shrink:0">AEC</div>
+          <div>
+            <div style="font-family:'EB Garamond',serif;font-size:1rem;color:#fff;line-height:1.2">Auto en Classic</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.6)">🇳🇱 Netherlands · Monthly print</div>
+          </div>
+        </div>
+        <div style="padding:13px 16px;flex:1;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="font-size:0.78rem;font-weight:600;color:#1a1a1a">€6.95/issue</span>
+            <span style="font-size:0.62rem;background:#e8f5ee;color:#2a5c3f;padding:2px 7px;border-radius:10px;font-weight:700">Available to buy</span>
+          </div>
+          <div style="font-size:0.81rem;color:#6b6b6b;line-height:1.55;flex:1;margin-bottom:10px">Netherlands' main classic car magazine. Dutch language. Good Benelux market classifieds and technical features. Strong interest in British classics in the Netherlands.</div>
+          <div style="font-size:0.76rem;background:#f8f6f1;border-left:3px solid #c8a84b;padding:7px 10px;border-radius:0 5px 5px 0;color:#5a4a10;margin-bottom:12px;line-height:1.45">💡 Benelux market — good if buying or selling in the Netherlands or Belgium</div>
+          <a href="https://www.auto-en-classic.nl?utm_source=marquefile&utm_medium=resources&utm_campaign=magazines" target="_blank" rel="noopener" style="background:#2a5c3f;color:#fff;padding:9px 14px;border-radius:4px;font-size:0.78rem;font-weight:600;text-align:center;display:block;transition:background 0.18s" onmouseenter="this.style.background='#3a7a55'" onmouseleave="this.style.background='#2a5c3f'">Visit auto-en-classic.nl →</a>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #e2ddd6;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.2s" class="mag-card" data-mc="eu" onmouseenter="this.style.boxShadow='0 4px 18px rgba(0,0,0,0.08)'" onmouseleave="this.style.boxShadow='none'">
+        <div style="background:#cc4400;padding:12px 16px;display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:6px;background:rgba(255,255,255,0.15);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:0.82rem;font-weight:700;flex-shrink:0">ADE</div>
+          <div>
+            <div style="font-family:'EB Garamond',serif;font-size:1rem;color:#fff;line-height:1.2">Auto d'Epoca</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.6)">🇮🇹 Italy · Monthly print + digital</div>
+          </div>
+        </div>
+        <div style="padding:13px 16px;flex:1;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="font-size:0.78rem;font-weight:600;color:#1a1a1a">€5.50/issue</span>
+            <span style="font-size:0.62rem;background:#e8f5ee;color:#2a5c3f;padding:2px 7px;border-radius:10px;font-weight:700">Available to buy</span>
+          </div>
+          <div style="font-size:0.81rem;color:#6b6b6b;line-height:1.55;flex:1;margin-bottom:10px">Italy's leading classic car magazine. Strong coverage of significant European and British classics — Jaguar E-Types are regularly featured given their design connection to Italian coachbuilding tradition. Italian language.</div>
+          <div style="font-size:0.76rem;background:#f8f6f1;border-left:3px solid #c8a84b;padding:7px 10px;border-radius:0 5px 5px 0;color:#5a4a10;margin-bottom:12px;line-height:1.45">💡 Italian market and E-Type — fascinating perspective on how Italian enthusiasts view the E-Type</div>
+          <a href="https://www.autodepoca.com?utm_source=marquefile&utm_medium=resources&utm_campaign=magazines" target="_blank" rel="noopener" style="background:#2a5c3f;color:#fff;padding:9px 14px;border-radius:4px;font-size:0.78rem;font-weight:600;text-align:center;display:block;transition:background 0.18s" onmouseenter="this.style.background='#3a7a55'" onmouseleave="this.style.background='#2a5c3f'">Visit autodepoca.com →</a>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #e2ddd6;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.2s" class="mag-card" data-mc="club" onmouseenter="this.style.boxShadow='0 4px 18px rgba(0,0,0,0.08)'" onmouseleave="this.style.boxShadow='none'">
+        <div style="background:#cc2222;padding:12px 16px;display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:6px;background:rgba(255,255,255,0.15);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:0.82rem;font-weight:700;flex-shrink:0">TRA</div>
+          <div>
+            <div style="font-family:'EB Garamond',serif;font-size:1rem;color:#fff;line-height:1.2">TR Action (TR Register)</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.6)">🇬🇧 UK · Members only · Monthly — 12 issues/year</div>
+          </div>
+        </div>
+        <div style="padding:13px 16px;flex:1;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="font-size:0.78rem;font-weight:600;color:#1a1a1a">Included with membership (£48/yr)</span>
+            <span style="font-size:0.62rem;background:#fef9e8;color:#8a6a10;padding:2px 7px;border-radius:10px;font-weight:700">Members only</span>
+          </div>
+          <div style="font-size:0.81rem;color:#6b6b6b;line-height:1.55;flex:1;margin-bottom:10px">The TR Register's monthly magazine. The most important publication for any TR owner — technical content, event reports, members' cars and the club's technical helpline output. 60+ pages monthly.</div>
+          <div style="font-size:0.76rem;background:#f8f6f1;border-left:3px solid #c8a84b;padding:7px 10px;border-radius:0 5px 5px 0;color:#5a4a10;margin-bottom:12px;line-height:1.45">💡 TR owners — this is the monthly bible; the technical content alone justifies membership</div>
+          <a href="https://www.tr-register.co.uk?utm_source=marquefile&utm_medium=resources&utm_campaign=magazines" target="_blank" rel="noopener" style="background:#2a5c3f;color:#fff;padding:9px 14px;border-radius:4px;font-size:0.78rem;font-weight:600;text-align:center;display:block;transition:background 0.18s" onmouseenter="this.style.background='#3a7a55'" onmouseleave="this.style.background='#2a5c3f'">Visit tr-register.co.uk →</a>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #e2ddd6;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.2s" class="mag-card" data-mc="club" onmouseenter="this.style.boxShadow='0 4px 18px rgba(0,0,0,0.08)'" onmouseleave="this.style.boxShadow='none'">
+        <div style="background:#1a2a5c;padding:12px 16px;display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:6px;background:rgba(255,255,255,0.15);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:0.82rem;font-weight:700;flex-shrink:0">JE</div>
+          <div>
+            <div style="font-family:'EB Garamond',serif;font-size:1rem;color:#fff;line-height:1.2">Jaguar Enthusiast (JEC)</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.6)">🇬🇧 UK · Members only · Monthly — 12 issues/year</div>
+          </div>
+        </div>
+        <div style="padding:13px 16px;flex:1;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="font-size:0.78rem;font-weight:600;color:#1a1a1a">Included with membership (£45/yr)</span>
+            <span style="font-size:0.62rem;background:#fef9e8;color:#8a6a10;padding:2px 7px;border-radius:10px;font-weight:700">Members only</span>
+          </div>
+          <div style="font-size:0.81rem;color:#6b6b6b;line-height:1.55;flex:1;margin-bottom:10px">The JEC's monthly magazine — one of the longest-running Jaguar publications. Full-colour, covering all Jaguar models. Market reports and heritage features are consistently strong.</div>
+          <div style="font-size:0.76rem;background:#f8f6f1;border-left:3px solid #c8a84b;padding:7px 10px;border-radius:0 5px 5px 0;color:#5a4a10;margin-bottom:12px;line-height:1.45">💡 Jaguar owners — the market reports and E-Type technical content are worth the membership alone</div>
+          <a href="https://www.jec.org.uk?utm_source=marquefile&utm_medium=resources&utm_campaign=magazines" target="_blank" rel="noopener" style="background:#2a5c3f;color:#fff;padding:9px 14px;border-radius:4px;font-size:0.78rem;font-weight:600;text-align:center;display:block;transition:background 0.18s" onmouseenter="this.style.background='#3a7a55'" onmouseleave="this.style.background='#2a5c3f'">Visit jec.org.uk →</a>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #e2ddd6;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.2s" class="mag-card" data-mc="club" onmouseenter="this.style.boxShadow='0 4px 18px rgba(0,0,0,0.08)'" onmouseleave="this.style.boxShadow='none'">
+        <div style="background:#2a2a5c;padding:12px 16px;display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:6px;background:rgba(255,255,255,0.15);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:0.82rem;font-weight:700;flex-shrink:0">JJ</div>
+          <div>
+            <div style="font-family:'EB Garamond',serif;font-size:1rem;color:#fff;line-height:1.2">Jaguar Journal (JCNA)</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.6)">🇺🇸 USA · Members only · Quarterly</div>
+          </div>
+        </div>
+        <div style="padding:13px 16px;flex:1;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="font-size:0.78rem;font-weight:600;color:#1a1a1a">Included with JCNA membership (~$60/yr)</span>
+            <span style="font-size:0.62rem;background:#fef9e8;color:#8a6a10;padding:2px 7px;border-radius:10px;font-weight:700">Members only</span>
+          </div>
+          <div style="font-size:0.81rem;color:#6b6b6b;line-height:1.55;flex:1;margin-bottom:10px">The Jaguar Clubs of North America's quarterly publication. US-focused content covering JCNA events, concours results and technical articles. Good for US-market Jaguar owners.</div>
+          <div style="font-size:0.76rem;background:#f8f6f1;border-left:3px solid #c8a84b;padding:7px 10px;border-radius:0 5px 5px 0;color:#5a4a10;margin-bottom:12px;line-height:1.45">💡 US Jaguar owners — concours results and US-specific technical content</div>
+          <a href="https://www.jcna.com?utm_source=marquefile&utm_medium=resources&utm_campaign=magazines" target="_blank" rel="noopener" style="background:#2a5c3f;color:#fff;padding:9px 14px;border-radius:4px;font-size:0.78rem;font-weight:600;text-align:center;display:block;transition:background 0.18s" onmouseenter="this.style.background='#3a7a55'" onmouseleave="this.style.background='#2a5c3f'">Visit jcna.com →</a>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #e2ddd6;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.2s" class="mag-card" data-mc="club" onmouseenter="this.style.boxShadow='0 4px 18px rgba(0,0,0,0.08)'" onmouseleave="this.style.boxShadow='none'">
+        <div style="background:#8a1a1a;padding:12px 16px;display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:6px;background:rgba(255,255,255,0.15);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:0.82rem;font-weight:700;flex-shrink:0">VT</div>
+          <div>
+            <div style="font-family:'EB Garamond',serif;font-size:1rem;color:#fff;line-height:1.2">Vintage Triumph (VTR)</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.6)">🇺🇸 USA · Members only · Quarterly</div>
+          </div>
+        </div>
+        <div style="padding:13px 16px;flex:1;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="font-size:0.78rem;font-weight:600;color:#1a1a1a">Included with VTR membership ($35/yr)</span>
+            <span style="font-size:0.62rem;background:#fef9e8;color:#8a6a10;padding:2px 7px;border-radius:10px;font-weight:700">Members only</span>
+          </div>
+          <div style="font-size:0.81rem;color:#6b6b6b;line-height:1.55;flex:1;margin-bottom:10px">The Vintage Triumph Register's quarterly publication. Technical articles, member restorations and event reports for all Triumph models. Particularly strong on US-specific TR issues.</div>
+          <div style="font-size:0.76rem;background:#f8f6f1;border-left:3px solid #c8a84b;padding:7px 10px;border-radius:0 5px 5px 0;color:#5a4a10;margin-bottom:12px;line-height:1.45">💡 US TR owners — the most useful US-focused Triumph publication available</div>
+          <a href="https://www.vintagetriumphregister.org?utm_source=marquefile&utm_medium=resources&utm_campaign=magazines" target="_blank" rel="noopener" style="background:#2a5c3f;color:#fff;padding:9px 14px;border-radius:4px;font-size:0.78rem;font-weight:600;text-align:center;display:block;transition:background 0.18s" onmouseenter="this.style.background='#3a7a55'" onmouseleave="this.style.background='#2a5c3f'">Visit vintagetriumphregister.org →</a>
+        </div>
+      </div>
+      <div style="background:#fff;border:1px solid #e2ddd6;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.2s" class="mag-card" data-mc="club" onmouseenter="this.style.boxShadow='0 4px 18px rgba(0,0,0,0.08)'" onmouseleave="this.style.boxShadow='none'">
+        <div style="background:#1a3a1a;padding:12px 16px;display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:6px;background:rgba(255,255,255,0.15);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:0.82rem;font-weight:700;flex-shrink:0">RV</div>
+          <div>
+            <div style="font-family:'EB Garamond',serif;font-size:1rem;color:#fff;line-height:1.2">Revs (TSOA Victoria)</div>
+            <div style="font-size:0.7rem;color:rgba(255,255,255,0.6)">🇦🇺 Australia · Members only · Quarterly</div>
+          </div>
+        </div>
+        <div style="padding:13px 16px;flex:1;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <span style="font-size:0.78rem;font-weight:600;color:#1a1a1a">Included with TSOA membership (AUD $60/yr)</span>
+            <span style="font-size:0.62rem;background:#fef9e8;color:#8a6a10;padding:2px 7px;border-radius:10px;font-weight:700">Members only</span>
+          </div>
+          <div style="font-size:0.81rem;color:#6b6b6b;line-height:1.55;flex:1;margin-bottom:10px">The Triumph Sports Owners Association Victoria's quarterly magazine. Australian-focused Triumph content with local event reports and technical features relevant to Australian conditions.</div>
+          <div style="font-size:0.76rem;background:#f8f6f1;border-left:3px solid #c8a84b;padding:7px 10px;border-radius:0 5px 5px 0;color:#5a4a10;margin-bottom:12px;line-height:1.45">💡 Australian TR owners — locally relevant content you won't find in UK publications</div>
+          <a href="https://www.tsoa.org.au?utm_source=marquefile&utm_medium=resources&utm_campaign=magazines" target="_blank" rel="noopener" style="background:#2a5c3f;color:#fff;padding:9px 14px;border-radius:4px;font-size:0.78rem;font-weight:600;text-align:center;display:block;transition:background 0.18s" onmouseenter="this.style.background='#3a7a55'" onmouseleave="this.style.background='#2a5c3f'">Visit tsoa.org.au →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="suggest-cta">
     <div>
       <h3>Know something we've missed?</h3>
@@ -611,6 +1010,15 @@
     const type=btn.dataset.type;
     document.querySelectorAll('#yt-grid .yt-card').forEach(c=>{
       c.style.display=(type==='all'||c.dataset.type===type)?'flex':'none';
+    });
+  }
+
+  function fmag(btn){
+    document.querySelectorAll('#mag-filters .f-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const mc=btn.dataset.mc;
+    document.querySelectorAll('.mag-card').forEach(c=>{
+      c.style.display=(mc==='all'||c.dataset.mc===mc)?'flex':'none';
     });
   }
   // Smooth scroll for section nav
