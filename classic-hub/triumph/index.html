@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Triumph TR — MarqueFile</title>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><style>
 
   :root {
     --navy:#1c1c1c; --green:#2a5c3f; --green-light:#3a7a55; --gold:#c8a84b;
@@ -17,7 +14,6 @@
   img{max-width:100%;display:block}
   a{color:inherit;text-decoration:none}
 
-  /* ── HEADER ── */
   .site-header{background:var(--navy);position:sticky;top:0;z-index:200;border-bottom:3px solid var(--green)}
   .hdr-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:62px}
   .logo{display:flex;align-items:center;gap:11px;text-decoration:none}
@@ -62,30 +58,25 @@
   .page-hero h1{font-family:'EB Garamond',serif;font-size:clamp(2rem,5vw,3.2rem);color:#fff;margin-bottom:12px}
   .page-hero p{color:rgba(255,255,255,0.65);max-width:580px;font-size:1rem}
   .page-body{max-width:1200px;margin:56px auto;padding:0 24px}
-  .model-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;margin-top:32px}
+  .section-label{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--green);font-weight:700;margin-bottom:8px}
+  .section-title{font-family:'EB Garamond',serif;font-size:2rem;color:var(--text);margin-bottom:6px}
+  .model-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-top:32px}
   .model-card{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:box-shadow 0.2s,transform 0.2s;display:block}
-  .model-card:hover{box-shadow:0 6px 24px rgba(0,0,0,0.1);transform:translateY(-2px)}
+  .model-card.live:hover{box-shadow:0 6px 24px rgba(0,0,0,0.1);transform:translateY(-2px)}
+  .model-card.stub{opacity:0.65;cursor:default}
   .mc-stripe{height:6px;background:linear-gradient(90deg,var(--green),var(--gold))}
   .mc-pad{padding:20px 22px 22px}
   .mc-name{font-family:'EB Garamond',serif;font-size:1.6rem;color:var(--text);margin-bottom:2px}
-  .mc-years{font-size:0.75rem;color:var(--grey);letter-spacing:0.04em;margin-bottom:10px}
-  .mc-stat{font-size:0.78rem;color:var(--grey);margin-bottom:10px}.mc-stat strong{color:var(--text);font-weight:600}
-  .mc-desc{font-size:0.88rem;color:var(--grey);line-height:1.55;margin-bottom:16px}
+  .mc-years{font-size:0.75rem;color:var(--grey);letter-spacing:0.04em;margin-bottom:8px}
+  .mc-stat{font-size:0.78rem;color:var(--grey);margin-bottom:8px}
+  .mc-desc{font-size:0.86rem;color:var(--grey);line-height:1.55;margin-bottom:14px}
   .mc-cta{color:var(--green);font-size:0.82rem;font-weight:600}
-  .popular{border-color:var(--gold);box-shadow:0 0 0 2px rgba(200,168,75,0.2)}
+  .mc-cta.stub-lbl{color:var(--grey);font-weight:400;font-style:italic}
   .popular-badge{display:inline-block;background:var(--gold);color:#fff;font-size:0.62rem;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;border-radius:20px;font-weight:700;margin-bottom:8px}
-  .section-label{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--green);font-weight:700;margin-bottom:8px}
-  .section-title{font-family:'EB Garamond',serif;font-size:2rem;color:var(--text);margin-bottom:6px}
-</style>
-</head>
-<body>
-
+</style></head><body>
 <header class="site-header">
   <div class="hdr-inner">
-    <a href="../index.html" class="logo">
-      <div class="logo-mark">MF</div>
-      <div class="logo-text">Marque<em>File</em></div>
-    </a>
+    <a href="../index.html" class="logo"><div class="logo-mark">MF</div><div class="logo-text">Marque<em>File</em></div></a>
     <nav class="site-nav" id="site-nav">
       <div class="nav-dd">
         <a href="../triumph/index.html">Cars &#9662;</a>
@@ -99,125 +90,99 @@
       <a href="../suppliers/index.html">Suppliers</a>
       <a href="#" class="nav-cta">Cars for Sale</a>
     </nav>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </header>
 <div class="page-hero">
   <div class="page-hero-inner">
-    <div class="hero-eyebrow">MarqueFile &rsaquo; Cars</div>
+    <div class="hero-eyebrow">MarqueFile › Cars</div>
     <h1>Triumph TR</h1>
-    <p>Eight models spanning 1953 to 1981. Production data, colour specifications, chassis records and buying guides for every TR from the TR2 to the TR8.</p>
+    <p>From the TR2 of 1953 to the V8-powered TR8 of 1981 — production data, colour codes, chassis records and buying guides for every TR model.</p>
   </div>
 </div>
 <div class="page-body">
   <div class="section-label">Model range</div>
   <div class="section-title">All Triumph TR models</div>
   <div class="model-grid">
-
-    <a href="#" class="model-card">
+    <a href="tr2.html" class="model-card live">
       <div class="mc-stripe"></div>
       <div class="mc-pad">
         
         <div class="mc-name">TR2</div>
         <div class="mc-years">1953–1955</div>
         <div class="mc-stat"><strong>8,628</strong> produced</div>
-        <div class="mc-desc">The original. 1991cc four-cylinder, 90bhp. Disc brakes from 1954. The car that started it all.</div>
-        <div class="mc-cta">Coming soon</div>
+        <div class="mc-desc">The original. 1991cc four-cylinder, 90bhp. The car that started the TR story.</div>
+        <div class="mc-cta ">Full data →</div>
       </div>
     </a>
-    <a href="#" class="model-card">
+    <a href="tr3.html" class="model-card live">
       <div class="mc-stripe"></div>
       <div class="mc-pad">
         
-        <div class="mc-name">TR3</div>
-        <div class="mc-years">1955–1957</div>
-        <div class="mc-stat"><strong>13,377</strong> produced</div>
-        <div class="mc-desc">Gained a front grille, 95bhp. The first British production car with disc brakes as standard.</div>
-        <div class="mc-cta">Coming soon</div>
+        <div class="mc-name">TR3 &amp; TR3A</div>
+        <div class="mc-years">1955–1962</div>
+        <div class="mc-stat"><strong>~72,000</strong> produced</div>
+        <div class="mc-desc">First production car with disc brakes as standard. TR3A brought the full-width grille and external door handles.</div>
+        <div class="mc-cta ">Full data →</div>
       </div>
     </a>
-    <a href="#" class="model-card">
+    <a href="tr4.html" class="model-card live">
       <div class="mc-stripe"></div>
       <div class="mc-pad">
         
-        <div class="mc-name">TR3A</div>
-        <div class="mc-years">1957–1962</div>
-        <div class="mc-stat"><strong>58,236</strong> produced</div>
-        <div class="mc-desc">The most produced early TR. External door handles, full-width grille, wider cockpit. Hugely popular in the USA.</div>
-        <div class="mc-cta">Coming soon</div>
+        <div class="mc-name">TR4 &amp; TR4A</div>
+        <div class="mc-years">1961–1967</div>
+        <div class="mc-stat"><strong>68,718</strong> produced</div>
+        <div class="mc-desc">Styled by Michelotti. Wind-up windows, rack-and-pinion steering, and the famous Surrey Top on the TR4A.</div>
+        <div class="mc-cta ">Full data →</div>
       </div>
     </a>
-    <a href="#" class="model-card">
+    <a href="tr5.html" class="model-card live">
       <div class="mc-stripe"></div>
       <div class="mc-pad">
         
-        <div class="mc-name">TR4</div>
-        <div class="mc-years">1961–1965</div>
-        <div class="mc-stat"><strong>40,253</strong> produced</div>
-        <div class="mc-desc">Styled by Michelotti. Wider cockpit, wind-up windows, rack-and-pinion steering. 2138cc engine.</div>
-        <div class="mc-cta">Coming soon</div>
-      </div>
-    </a>
-    <a href="#" class="model-card">
-      <div class="mc-stripe"></div>
-      <div class="mc-pad">
-        
-        <div class="mc-name">TR4A</div>
-        <div class="mc-years">1965–1967</div>
-        <div class="mc-stat"><strong>28,465</strong> produced</div>
-        <div class="mc-desc">Independent rear suspension (IRS) option. Surrey top removable centre panel. Refined over the TR4.</div>
-        <div class="mc-cta">Coming soon</div>
-      </div>
-    </a>
-    <a href="#" class="model-card">
-      <div class="mc-stripe"></div>
-      <div class="mc-pad">
-        
-        <div class="mc-name">TR5</div>
+        <div class="mc-name">TR5 &amp; TR250</div>
         <div class="mc-years">1967–1968</div>
-        <div class="mc-stat"><strong>2,947</strong> produced</div>
-        <div class="mc-desc">First fuel-injected TR. Lucas PI 2498cc straight-six, 150bhp. UK market only — US got carburetted TR250.</div>
-        <div class="mc-cta">Coming soon</div>
+        <div class="mc-stat"><strong>11,431</strong> produced</div>
+        <div class="mc-desc">The first fuel-injected TR — 150bhp Lucas PI on UK cars. Only 2,947 genuine TR5s built.</div>
+        <div class="mc-cta ">Full data →</div>
       </div>
     </a>
-    <a href="tr6.html" class="model-card  popular">
+    <a href="tr6.html" class="model-card live">
       <div class="mc-stripe"></div>
       <div class="mc-pad">
-        <div class="popular-badge">Most Popular</div>
+        <div class="popular-badge">Most popular</div>
         <div class="mc-name">TR6</div>
         <div class="mc-years">1969–1976</div>
         <div class="mc-stat"><strong>94,619</strong> produced</div>
-        <div class="mc-desc">Best-selling TR of all. Karmann-styled body, fuel injection on UK cars. The definitive TR6. <strong>Most popular model.</strong></div>
-        <div class="mc-cta">View full data →</div>
+        <div class="mc-desc">The best-selling TR of all time. Karmann-styled, fuel-injected UK cars. The definitive TR.</div>
+        <div class="mc-cta ">Full data →</div>
       </div>
     </a>
-    <a href="#" class="model-card">
+    <a href="#" class="model-card stub">
       <div class="mc-stripe"></div>
       <div class="mc-pad">
         
         <div class="mc-name">TR7</div>
         <div class="mc-years">1975–1981</div>
         <div class="mc-stat"><strong>112,368</strong> produced</div>
-        <div class="mc-desc">Wedge design. 1998cc four-cylinder. Fixed head and drophead versions. Built in Speke then Canley.</div>
-        <div class="mc-cta">Coming soon</div>
+        <div class="mc-desc">Wedge design, four-cylinder engine. Fixed head and drophead versions.</div>
+        <div class="mc-cta stub-lbl">Coming soon</div>
       </div>
     </a>
-    <a href="#" class="model-card">
+    <a href="#" class="model-card stub">
       <div class="mc-stripe"></div>
       <div class="mc-pad">
         
         <div class="mc-name">TR8</div>
         <div class="mc-years">1980–1981</div>
         <div class="mc-stat"><strong>2,722</strong> produced</div>
-        <div class="mc-desc">V8-powered TR7. 3528cc Rover engine, 133bhp. Mostly exported to USA. Rare and sought after.</div>
-        <div class="mc-cta">Coming soon</div>
+        <div class="mc-desc">V8-powered TR7. Rare and sought after. Mostly exported to the USA.</div>
+        <div class="mc-cta stub-lbl">Coming soon</div>
       </div>
     </a>
   </div>
 </div>
-
 <footer>
   <div class="ft-inner">
     <div class="ft-brand">
@@ -245,14 +210,7 @@
     <span>&copy; 2026 MarqueFile. All rights reserved.</span>
     <span>Data for reference only &mdash; always verify before purchase.</span>
   </div>
-</footer>
-
-<script>
-  const toggle = document.getElementById('nav-toggle');
-  const nav = document.getElementById('site-nav');
-  if(toggle && nav) toggle.addEventListener('click', () => {
-    nav.classList.toggle('open');
-  });
-</script>
-
-</body></html>
+</footer><script>
+  const toggle=document.getElementById('nav-toggle'),nav=document.getElementById('site-nav');
+  if(toggle&&nav)toggle.addEventListener('click',()=>nav.classList.toggle('open'));
+</script></body></html>
