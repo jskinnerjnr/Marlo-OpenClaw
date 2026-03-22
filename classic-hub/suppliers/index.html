@@ -1,7 +1,23 @@
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Suppliers Directory — MarqueFile</title>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><style>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Google Analytics — replace GA_MEASUREMENT_ID with your ID from analytics.google.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>
+  window.dataLayer=window.dataLayer||[];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());
+  gtag('config','GA_MEASUREMENT_ID');
+  // Track all outbound link clicks automatically
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a[href^="http"]');
+    if(a&&!a.href.includes(location.hostname)){
+      gtag('event','outbound_click',{event_category:'outbound',event_label:a.href,transport_type:'beacon'});
+    }
+  });
+</script>
+<style>
 
   :root {
     --navy:#1c1c1c; --green:#2a5c3f; --green-light:#3a7a55; --gold:#c8a84b;
@@ -11,8 +27,7 @@
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   html{font-size:16px;-webkit-text-size-adjust:100%}
   body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);line-height:1.6}
-  img{max-width:100%;display:block}
-  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block} a{color:inherit;text-decoration:none}
 
   .site-header{background:var(--navy);position:sticky;top:0;z-index:200;border-bottom:3px solid var(--green)}
   .hdr-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:62px}
@@ -26,12 +41,12 @@
   .nav-dd{position:relative}
   .nav-dd .drop{position:absolute;top:100%;left:0;background:var(--navy);border:1px solid rgba(255,255,255,0.1);border-top:2px solid var(--green);min-width:180px;display:none;flex-direction:column;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
   .nav-dd:hover .drop{display:flex}
-  .nav-dd .drop a{padding:11px 18px;font-size:0.8rem;border-bottom:1px solid rgba(255,255,255,0.07);border-left:none;color:rgba(255,255,255,0.7)}
+  .nav-dd .drop a{padding:11px 18px;font-size:0.8rem;border-bottom:1px solid rgba(255,255,255,0.07);color:rgba(255,255,255,0.7)}
   .nav-dd .drop a:hover{background:var(--green);color:#fff}
   .nav-cta{background:var(--green)!important;color:#fff!important;border-radius:4px;padding:9px 18px!important;margin-left:8px;border:none!important;font-weight:600!important}
   .nav-cta:hover{background:var(--green-light)!important}
   .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
-  .nav-toggle span{width:24px;height:2px;background:#fff;border-radius:1px;display:block;transition:all 0.25s}
+  .nav-toggle span{width:24px;height:2px;background:#fff;border-radius:1px;display:block}
   @media(max-width:768px){
     .site-nav{display:none;position:absolute;top:62px;left:0;right:0;background:var(--navy);flex-direction:column;border-top:2px solid var(--green);padding:8px 0 20px;z-index:200}
     .site-nav.open{display:flex}
@@ -58,24 +73,26 @@
   .page-hero h1{font-family:'EB Garamond',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;margin-bottom:10px}
   .page-hero p{color:rgba(255,255,255,0.65);max-width:560px}
   .page-body{max-width:1100px;margin:48px auto;padding:0 24px}
-  .filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+  .filter-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
   .f-btn{padding:7px 15px;border-radius:20px;font-size:0.76rem;font-weight:600;cursor:pointer;border:1.5px solid var(--border);background:#fff;color:var(--grey);transition:all 0.2s;white-space:nowrap}
   .f-btn.active,.f-btn:hover{background:var(--green);color:#fff;border-color:var(--green)}
-  .ind-legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px;font-size:0.76rem}
-  .il-item{display:flex;align-items:center;gap:6px;color:var(--grey)}
+  .legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px;font-size:0.74rem;color:var(--grey);align-items:center}
+  .leg-item{display:inline-flex;align-items:center;gap:5px}
+  .leg-pill{font-size:0.68rem;font-weight:700;padding:2px 9px;border-radius:20px}
   .supplier-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px}
   .sc{background:#fff;border:1px solid var(--border);border-radius:10px;padding:20px 22px;display:flex;flex-direction:column;transition:box-shadow 0.2s}
   .sc:hover{box-shadow:0 4px 20px rgba(0,0,0,0.08)}
   .sc.featured{border-color:var(--gold);box-shadow:0 0 0 2px rgba(200,168,75,0.15)}
-  .sc-featured-badge{background:var(--gold);color:#fff;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;border-radius:20px;font-weight:700;margin-bottom:8px;display:inline-block;align-self:flex-start}
-  .sc-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px}
-  .sc-name{font-family:'EB Garamond',serif;font-size:1.15rem;color:var(--text)}
-  .sc-flag{font-size:1.1rem}
-  .sc-cat{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--green);font-weight:600;margin-bottom:6px}
-  .sc-cars{font-size:0.74rem;color:var(--grey);margin-bottom:10px}
-  .sc-ind{display:inline-flex;align-items:center;gap:5px;font-size:0.72rem;font-weight:600;padding:3px 10px;border-radius:20px;margin-bottom:10px}
-  .sc-hq{font-size:0.72rem;color:var(--grey);margin-bottom:10px}
-  .sc-desc{font-size:0.84rem;color:var(--grey);line-height:1.55;flex:1;margin-bottom:16px}
+  .sc-feat{background:var(--gold);color:#fff;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;border-radius:20px;font-weight:700;margin-bottom:8px;display:inline-block;align-self:flex-start}
+  .sc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:4px}
+  .sc-name{font-family:'EB Garamond',serif;font-size:1.1rem;color:var(--text);line-height:1.2}
+  .sc-flags{font-size:1rem;flex-shrink:0;line-height:1}
+  .sc-cat{font-size:0.68rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--green);font-weight:600;margin-bottom:6px}
+  .sc-cars{font-size:0.74rem;color:var(--grey);margin-bottom:8px}
+  .sc-ind{display:inline-flex;align-items:center;gap:5px;font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:20px;margin-bottom:6px}
+  .sc-hq{font-size:0.74rem;color:var(--grey);margin-bottom:4px}
+  .sc-other{font-size:0.72rem;color:var(--grey);margin-bottom:10px;font-style:italic}
+  .sc-desc{font-size:0.83rem;color:var(--grey);line-height:1.55;flex:1;margin-bottom:16px}
   .sc-link{background:var(--green);color:#fff;padding:9px 16px;border-radius:4px;font-size:0.8rem;font-weight:600;transition:background 0.2s;text-align:center;display:block}
   .sc-link:hover{background:var(--green-light)}
 </style></head><body>
@@ -93,7 +110,7 @@
       <a href="../clubs/index.html">Clubs</a>
       <a href="../events/index.html">Events</a>
       <a href="../suppliers/index.html">Suppliers</a>
-      <a href="#" class="nav-cta">Cars for Sale</a>
+      <a href="../classifieds/index.html" class="nav-cta">Cars for Sale</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
@@ -102,7 +119,7 @@
   <div class="page-hero-inner">
     <div class="hero-eyebrow">MarqueFile › Directory</div>
     <h1>Suppliers Directory</h1>
-    <p>Parts, trim, tyres and restoration services for Triumph TR and Jaguar — with independent business and location ratings.</p>
+    <p>Parts, trim, tyres and restoration services for Triumph TR and Jaguar. Each supplier shows ownership type and country of operation.</p>
   </div>
 </div>
 <div class="page-body">
@@ -115,147 +132,200 @@
 <button class="f-btn" onclick="filterS('electrical',this)">Electrical</button>
 <button class="f-btn" onclick="filterS('paintworkcare',this)">Paintwork & Care</button>
 </div>
-  <div class="ind-legend">
-    <div class="il-item"><span style="background:#e8f5ee;border:1px solid #2a5c3f;border-radius:20px;padding:2px 8px;color:#2a5c3f;font-weight:700;font-size:0.7rem">Independent</span> Independently owned business</div>
-    <div class="il-item"><span style="background:#e8eaf8;border:1px solid #2a2a7c;border-radius:20px;padding:2px 8px;color:#2a2a7c;font-weight:700;font-size:0.7rem">Trade Group</span> Part of a larger trade group</div>
-    <div class="il-item"><span style="background:#fef9e8;border:1px solid #8a6a10;border-radius:20px;padding:2px 8px;color:#8a6a10;font-weight:700;font-size:0.7rem">Group</span> Subsidiary of a larger corporation</div>
+  <div class="legend">
+    <span class="leg-item"><span class="leg-pill" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent</span> Independent or family-owned</span>
+    <span class="leg-item"><span class="leg-pill" style="background:#e8eaf8;color:#2a2a7c;border:1px solid #2a2a7c">Trade Group</span> Part of a trade group</span>
+    <span class="leg-item"><span class="leg-pill" style="background:#fef9e8;color:#8a6a10;border:1px solid #c8a84b">Group</span> Subsidiary of a larger corporation</span>
+    <span style="color:#aaa;margin-left:4px">· Flags show HQ + countries of operation</span>
   </div>
   <div class="supplier-grid" id="supplier-grid">
   <div class="sc  featured" data-cat="interiortrim">
-    <div class="sc-featured-badge">Featured</div>
-    <div class="sc-header"><div class="sc-name">John Skinner Manufacturing</div><div class="sc-flag">🇬🇧</div></div>
+    <div class="sc-feat">Featured</div>
+    <div class="sc-top">
+      <div class="sc-name">John Skinner Manufacturing</div>
+      <div class="sc-flags" title="Cheltenham, England">🇬🇧</div>
+    </div>
     <div class="sc-cat">Interior Trim</div>
-    <div class="sc-cars">Covers: Triumph TR, Jaguar E-Type</div>
+    <div class="sc-cars">Covers: Triumph TR2–TR6, Jaguar E-Type, XK, MGB, Austin Healey</div>
     <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent · Family Business</div>
-    <div class="sc-hq">📍 Cheltenham, England</div>
-    <div class="sc-desc">Cheltenham-based manufacturers of original-specification interior trim kits for Triumph TR and Jaguar. Carpets, seat covers, hood linings, door cards and more. Made in Britain since 1980.</div>
-    <a href="https://www.john-skinner.co.uk" target="_blank" rel="noopener" class="sc-link">Visit john-skinner.co.uk →</a>
+    <div class="sc-hq">📍 HQ: Cheltenham, England</div>
+    
+    <div class="sc-desc">Manufacturer of original-specification interior trim kits for classic British cars. Carpets, seat covers, hood linings, door cards and full interior kits. Made in their Cheltenham workshop since 1980. Family-owned and run.</div>
+    <a href="https://www.john-skinner.co.uk?utm_source=marquefile&utm_medium=directory&utm_campaign=supplier_listing" target="_blank" rel="noopener" class="sc-link">Visit john-skinner.co.uk →</a>
   </div>
   <div class="sc" data-cat="interiortrim">
     
-    <div class="sc-header"><div class="sc-name">Newton Commercial</div><div class="sc-flag">🇬🇧</div></div>
+    <div class="sc-top">
+      <div class="sc-name">Newton Commercial</div>
+      <div class="sc-flags" title="Worcestershire, England">🇬🇧</div>
+    </div>
     <div class="sc-cat">Interior Trim</div>
-    <div class="sc-cars">Covers: Triumph, Jaguar, broad coverage</div>
+    <div class="sc-cars">Covers: Triumph, Jaguar, MG, Austin Healey, broad coverage</div>
     <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent</div>
-    <div class="sc-hq">📍 Worcestershire, England</div>
-    <div class="sc-desc">Interior trim manufacturer covering a wide range of classic British cars. Carpets, hoods, seat covers and headlinings.</div>
-    <a href="https://www.newtoncomm.co.uk" target="_blank" rel="noopener" class="sc-link">Visit newtoncomm.co.uk →</a>
+    <div class="sc-hq">📍 HQ: Worcestershire, England</div>
+    
+    <div class="sc-desc">Established trim manufacturer covering a wide range of classic British cars. Carpets, hoods, seat covers and headlinings. Both DIY and trade supply.</div>
+    <a href="https://www.newtoncomm.co.uk?utm_source=marquefile&utm_medium=directory&utm_campaign=supplier_listing" target="_blank" rel="noopener" class="sc-link">Visit newtoncomm.co.uk →</a>
   </div>
   <div class="sc" data-cat="interiortrim">
     
-    <div class="sc-header"><div class="sc-name">Woolies Trim</div><div class="sc-flag">🇬🇧</div></div>
+    <div class="sc-top">
+      <div class="sc-name">Woolies Trim</div>
+      <div class="sc-flags" title="West Midlands, England">🇬🇧</div>
+    </div>
     <div class="sc-cat">Interior Trim</div>
-    <div class="sc-cars">Covers: Broad coverage</div>
+    <div class="sc-cars">Covers: Broad coverage — most British classics</div>
     <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent</div>
-    <div class="sc-hq">📍 West Midlands, England</div>
-    <div class="sc-desc">Long-established supplier of trim materials — headlining, carpets, vinyl and leather. DIY and trade supply.</div>
-    <a href="https://www.woolies-trim.co.uk" target="_blank" rel="noopener" class="sc-link">Visit woolies-trim.co.uk →</a>
+    <div class="sc-hq">📍 HQ: West Midlands, England</div>
+    
+    <div class="sc-desc">Long-established supplier of trim materials — headlining, carpets, vinyl, leather and hood materials. Primarily trade supply but also available to enthusiasts.</div>
+    <a href="https://www.woolies-trim.co.uk?utm_source=marquefile&utm_medium=directory&utm_campaign=supplier_listing" target="_blank" rel="noopener" class="sc-link">Visit woolies-trim.co.uk →</a>
   </div>
   <div class="sc" data-cat="mechanicalparts">
     
-    <div class="sc-header"><div class="sc-name">Moss Europe</div><div class="sc-flag">🇺🇸</div></div>
+    <div class="sc-top">
+      <div class="sc-name">Moss Europe</div>
+      <div class="sc-flags" title="Goleta, California, USA (parent company)">🇺🇸 🇬🇧 🇩🇪 🇫🇷</div>
+    </div>
     <div class="sc-cat">Mechanical Parts</div>
-    <div class="sc-cars">Covers: Triumph TR, MG, Austin Healey</div>
-    <div class="sc-ind" style="background:#fef9e8;color:#8a6a10;border:1px solid #8a6a10">Part of Moss Motors Group (USA)</div>
-    <div class="sc-hq">📍 Bradford, England (US parent company)</div>
-    <div class="sc-desc">The world's leading classic British car parts supplier. Mechanical, body, electrical and trim parts for Triumph TR. UK warehouse with large stock.</div>
-    <a href="https://www.moss.europe.com" target="_blank" rel="noopener" class="sc-link">Visit moss.europe.com →</a>
+    <div class="sc-cars">Covers: Triumph TR, MG, Austin Healey, Jaguar</div>
+    <div class="sc-ind" style="background:#fef9e8;color:#8a6a10;border:1px solid #8a6a10">Subsidiary of Moss Motors Inc. (USA)</div>
+    <div class="sc-hq">📍 HQ: Goleta, California, USA (parent company)</div>
+    <div class="sc-other">Also operates: UK warehouse in Bradford; distribution centres in Germany and France</div>
+    <div class="sc-desc">The world's largest classic British car parts supplier. UK warehouse holds extensive Triumph TR stock. Mechanical, body, electrical and trim parts with same-day despatch.</div>
+    <a href="https://www.moss.europe.com?utm_source=marquefile&utm_medium=directory&utm_campaign=supplier_listing" target="_blank" rel="noopener" class="sc-link">Visit moss.europe.com →</a>
   </div>
   <div class="sc" data-cat="mechanicalparts">
     
-    <div class="sc-header"><div class="sc-name">Rimmer Bros</div><div class="sc-flag">🇬🇧</div></div>
+    <div class="sc-top">
+      <div class="sc-name">Rimmer Bros</div>
+      <div class="sc-flags" title="Lincoln, England">🇬🇧 🇺🇸</div>
+    </div>
     <div class="sc-cat">Mechanical Parts</div>
-    <div class="sc-cars">Covers: Triumph, Jaguar, Rover</div>
-    <div class="sc-ind" style="background:#e8eaf8;color:#2a2a7c;border:1px solid #2a2a7c">Trade Group (linked to SNG Barratt)</div>
-    <div class="sc-hq">📍 Lincoln, England</div>
-    <div class="sc-desc">Major Triumph and Jaguar parts supplier. Huge stock, fast dispatch and competitive pricing. Online catalogue with same-day despatch.</div>
-    <a href="https://www.rimmerbros.com" target="_blank" rel="noopener" class="sc-link">Visit rimmerbros.com →</a>
+    <div class="sc-cars">Covers: Triumph (all models), Jaguar, Rover, Land Rover</div>
+    <div class="sc-ind" style="background:#e8eaf8;color:#2a2a7c;border:1px solid #2a2a7c">Trade Group (same ownership as SNG Barratt)</div>
+    <div class="sc-hq">📍 HQ: Lincoln, England</div>
+    <div class="sc-other">Also operates: Ships extensively to North America; US-friendly pricing and shipping options</div>
+    <div class="sc-desc">Major Triumph and Jaguar parts supplier based in Lincoln. Huge stock of Triumph TR parts with online catalogue and fast despatch. Commonly understood to be under the same ownership as SNG Barratt.</div>
+    <a href="https://www.rimmerbros.com?utm_source=marquefile&utm_medium=directory&utm_campaign=supplier_listing" target="_blank" rel="noopener" class="sc-link">Visit rimmerbros.com →</a>
   </div>
   <div class="sc" data-cat="mechanicalparts">
     
-    <div class="sc-header"><div class="sc-name">SNG Barratt</div><div class="sc-flag">🇬🇧</div></div>
+    <div class="sc-top">
+      <div class="sc-name">SNG Barratt</div>
+      <div class="sc-flags" title="Daventry, England">🇬🇧 🇺🇸</div>
+    </div>
     <div class="sc-cat">Mechanical Parts</div>
-    <div class="sc-cars">Covers: Jaguar (all models)</div>
-    <div class="sc-ind" style="background:#e8eaf8;color:#2a2a7c;border:1px solid #2a2a7c">Trade Group (linked to Rimmer Bros)</div>
-    <div class="sc-hq">📍 Daventry, England</div>
-    <div class="sc-desc">Specialist Jaguar parts supplier covering XK, E-Type, Mk II, XJ and more. OE-quality parts and comprehensive catalogue.</div>
-    <a href="https://www.sngbarratt.com" target="_blank" rel="noopener" class="sc-link">Visit sngbarratt.com →</a>
+    <div class="sc-cars">Covers: Jaguar (all models — XK, E-Type, Mk II, XJ, XJS)</div>
+    <div class="sc-ind" style="background:#e8eaf8;color:#2a2a7c;border:1px solid #2a2a7c">Trade Group (same ownership as Rimmer Bros)</div>
+    <div class="sc-hq">📍 HQ: Daventry, England</div>
+    <div class="sc-other">Also operates: SNG Barratt USA operation based in Virginia</div>
+    <div class="sc-desc">The definitive Jaguar parts supplier. Comprehensive catalogue covering all classic Jaguar models. OE-quality parts, excellent technical support. US operation serves North America.</div>
+    <a href="https://www.sngbarratt.com?utm_source=marquefile&utm_medium=directory&utm_campaign=supplier_listing" target="_blank" rel="noopener" class="sc-link">Visit sngbarratt.com →</a>
   </div>
   <div class="sc" data-cat="mechanicalparts">
     
-    <div class="sc-header"><div class="sc-name">TR Enterprises</div><div class="sc-flag">🇬🇧</div></div>
+    <div class="sc-top">
+      <div class="sc-name">TR Enterprises</div>
+      <div class="sc-flags" title="Hampshire, England">🇬🇧</div>
+    </div>
     <div class="sc-cat">Mechanical Parts</div>
-    <div class="sc-cars">Covers: Triumph TR all models</div>
+    <div class="sc-cars">Covers: Triumph TR (all models)</div>
     <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent</div>
-    <div class="sc-hq">📍 Hampshire, England</div>
-    <div class="sc-desc">Triumph TR specialist for engine, gearbox and suspension parts. Strong on PI injection components and Lucas system expertise.</div>
-    <a href="https://www.tr-enterprises.co.uk" target="_blank" rel="noopener" class="sc-link">Visit tr-enterprises.co.uk →</a>
+    <div class="sc-hq">📍 HQ: Hampshire, England</div>
+    
+    <div class="sc-desc">Triumph TR specialist with particular expertise in Lucas PI fuel injection systems for TR5 and TR6. Engine, gearbox and suspension components.</div>
+    <a href="https://www.tr-enterprises.co.uk?utm_source=marquefile&utm_medium=directory&utm_campaign=supplier_listing" target="_blank" rel="noopener" class="sc-link">Visit tr-enterprises.co.uk →</a>
   </div>
   <div class="sc" data-cat="mechanicalparts">
     
-    <div class="sc-header"><div class="sc-name">XK Engineering</div><div class="sc-flag">🇬🇧</div></div>
+    <div class="sc-top">
+      <div class="sc-name">XK Engineering</div>
+      <div class="sc-flags" title="Coventry, England">🇬🇧</div>
+    </div>
     <div class="sc-cat">Mechanical Parts</div>
-    <div class="sc-cars">Covers: Jaguar XK, E-Type</div>
+    <div class="sc-cars">Covers: Jaguar XK120, XK140, XK150, E-Type</div>
     <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent</div>
-    <div class="sc-hq">📍 Coventry, England</div>
-    <div class="sc-desc">Coventry-based Jaguar specialist. E-Type and XK expertise. Full restoration services and parts supply.</div>
-    <a href="https://www.xkengineering.com" target="_blank" rel="noopener" class="sc-link">Visit xkengineering.com →</a>
+    <div class="sc-hq">📍 HQ: Coventry, England</div>
+    
+    <div class="sc-desc">Coventry-based specialist focusing on the XK-engined Jaguars. Full restoration services, parts supply and pre-purchase inspections.</div>
+    <a href="https://www.xkengineering.com?utm_source=marquefile&utm_medium=directory&utm_campaign=supplier_listing" target="_blank" rel="noopener" class="sc-link">Visit xkengineering.com →</a>
   </div>
   <div class="sc" data-cat="hoodweatherequipment">
     
-    <div class="sc-header"><div class="sc-name">The Vintage Hood Company</div><div class="sc-flag">🇬🇧</div></div>
+    <div class="sc-top">
+      <div class="sc-name">The Vintage Hood Company</div>
+      <div class="sc-flags" title="Kent, England">🇬🇧</div>
+    </div>
     <div class="sc-cat">Hood & Weather Equipment</div>
-    <div class="sc-cars">Covers: Triumph, Jaguar, MG, Austin Healey</div>
+    <div class="sc-cars">Covers: Triumph TR, Jaguar E-Type, MG, Austin Healey</div>
     <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent · Family Business</div>
-    <div class="sc-hq">📍 Kent, England</div>
-    <div class="sc-desc">Specialist manufacturers of soft tops for classic British sports cars. Mohair, vinyl and canvas. OE pattern hoods for TR and E-Type.</div>
-    <a href="https://www.vintagehoodcompany.co.uk" target="_blank" rel="noopener" class="sc-link">Visit vintagehoodcompany.co.uk →</a>
+    <div class="sc-hq">📍 HQ: Kent, England</div>
+    
+    <div class="sc-desc">Specialist soft top manufacturers for classic British sports cars. Mohair, vinyl and canvas options. OE-pattern hoods for TR models and E-Type.</div>
+    <a href="https://www.vintagehoodcompany.co.uk?utm_source=marquefile&utm_medium=directory&utm_campaign=supplier_listing" target="_blank" rel="noopener" class="sc-link">Visit vintagehoodcompany.co.uk →</a>
   </div>
   <div class="sc" data-cat="restoration">
     
-    <div class="sc-header"><div class="sc-name">Autofarm</div><div class="sc-flag">🇬🇧</div></div>
+    <div class="sc-top">
+      <div class="sc-name">Autofarm</div>
+      <div class="sc-flags" title="Oxfordshire, England">🇬🇧</div>
+    </div>
     <div class="sc-cat">Restoration</div>
-    <div class="sc-cars">Covers: Jaguar, Porsche</div>
+    <div class="sc-cars">Covers: Jaguar (classic models), Porsche</div>
     <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent</div>
-    <div class="sc-hq">📍 Oxfordshire, England</div>
-    <div class="sc-desc">Long-established restoration and parts specialist. Full restoration services, pre-purchase inspections and parts supply.</div>
-    <a href="https://www.autofarm.co.uk" target="_blank" rel="noopener" class="sc-link">Visit autofarm.co.uk →</a>
+    <div class="sc-hq">📍 HQ: Oxfordshire, England</div>
+    
+    <div class="sc-desc">Long-established restoration specialist and parts supplier. Full restoration services, pre-purchase inspections and advice. Particularly strong on Jaguar and Porsche.</div>
+    <a href="https://www.autofarm.co.uk?utm_source=marquefile&utm_medium=directory&utm_campaign=supplier_listing" target="_blank" rel="noopener" class="sc-link">Visit autofarm.co.uk →</a>
   </div>
   <div class="sc" data-cat="tyres">
     
-    <div class="sc-header"><div class="sc-name">Longstone Tyres</div><div class="sc-flag">🇬🇧</div></div>
+    <div class="sc-top">
+      <div class="sc-name">Longstone Tyres</div>
+      <div class="sc-flags" title="Derbyshire, England">🇬🇧</div>
+    </div>
     <div class="sc-cat">Tyres</div>
     <div class="sc-cars">Covers: All classic cars</div>
     <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent</div>
-    <div class="sc-hq">📍 Derbyshire, England</div>
-    <div class="sc-desc">Period-correct tyres for classic cars. Cross-ply and early radials. Expert technical advice on correct tyre specification.</div>
-    <a href="https://www.longstonetyres.co.uk" target="_blank" rel="noopener" class="sc-link">Visit longstonetyres.co.uk →</a>
+    <div class="sc-hq">📍 HQ: Derbyshire, England</div>
+    
+    <div class="sc-desc">Period-correct classic car tyres. Cross-ply, early radial and remould options. Expert advice on correct tyre specification for your model and year.</div>
+    <a href="https://www.longstonetyres.co.uk?utm_source=marquefile&utm_medium=directory&utm_campaign=supplier_listing" target="_blank" rel="noopener" class="sc-link">Visit longstonetyres.co.uk →</a>
   </div>
   <div class="sc" data-cat="electrical">
     
-    <div class="sc-header"><div class="sc-name">Vehicle Wiring Products</div><div class="sc-flag">🇬🇧</div></div>
+    <div class="sc-top">
+      <div class="sc-name">Vehicle Wiring Products</div>
+      <div class="sc-flags" title="West Midlands, England">🇬🇧</div>
+    </div>
     <div class="sc-cat">Electrical</div>
-    <div class="sc-cars">Covers: All classic cars</div>
+    <div class="sc-cars">Covers: All British classics</div>
     <div class="sc-ind" style="background:#e8f5ee;color:#2a5c3f;border:1px solid #2a5c3f">Independent</div>
-    <div class="sc-hq">📍 West Midlands, England</div>
-    <div class="sc-desc">Classic car electrical components and wiring loom materials. Lucas replacement parts, connectors and switches.</div>
-    <a href="https://www.vehiclewiringproducts.co.uk" target="_blank" rel="noopener" class="sc-link">Visit vehiclewiringproducts.co.uk →</a>
+    <div class="sc-hq">📍 HQ: West Midlands, England</div>
+    
+    <div class="sc-desc">Classic car electrical components and wiring loom materials. Lucas replacement parts, connectors, switches and comprehensive wiring supplies.</div>
+    <a href="https://www.vehiclewiringproducts.co.uk?utm_source=marquefile&utm_medium=directory&utm_campaign=supplier_listing" target="_blank" rel="noopener" class="sc-link">Visit vehiclewiringproducts.co.uk →</a>
   </div>
   <div class="sc" data-cat="paintworkcare">
     
-    <div class="sc-header"><div class="sc-name">Meguiar's UK</div><div class="sc-flag">🇺🇸</div></div>
+    <div class="sc-top">
+      <div class="sc-name">Meguiar's UK</div>
+      <div class="sc-flags" title="Irvine, California, USA">🇺🇸 🇬🇧 🇩🇪 🇦🇺 🇿🇦</div>
+    </div>
     <div class="sc-cat">Paintwork & Care</div>
     <div class="sc-cars">Covers: All</div>
     <div class="sc-ind" style="background:#fef9e8;color:#8a6a10;border:1px solid #8a6a10">Subsidiary of 3M Corporation (USA)</div>
-    <div class="sc-hq">📍 California, USA (UK distribution)</div>
-    <div class="sc-desc">Classic car detailing and paint care products. Specialist compounds for opalescent and metallic finishes. Widely available.</div>
-    <a href="https://www.meguiars.co.uk" target="_blank" rel="noopener" class="sc-link">Visit meguiars.co.uk →</a>
+    <div class="sc-hq">📍 HQ: Irvine, California, USA</div>
+    <div class="sc-other">Also operates: Global distribution — UK, Germany, Australia, South Africa and many more</div>
+    <div class="sc-desc">Premium detailing and paint care products. Specialist compounds suitable for opalescent and metallic classic car finishes. Widely available in UK motor factors.</div>
+    <a href="https://www.meguiars.co.uk?utm_source=marquefile&utm_medium=directory&utm_campaign=supplier_listing" target="_blank" rel="noopener" class="sc-link">Visit meguiars.co.uk →</a>
   </div>
   </div>
 </div>
 <footer>
   <div class="ft-inner">
-    <div class="ft-brand">
+    <div>
       <div class="logo-mark" style="width:44px;height:44px;font-size:1.2rem;margin-bottom:10px">MF</div>
       <div style="font-family:'EB Garamond',serif;font-size:1.2rem;color:#fff;margin-bottom:4px">Marque<em style="color:var(--gold)">File</em></div>
       <div style="font-size:0.78rem;color:rgba(255,255,255,0.35);line-height:1.7">The classic car data resource.<br>Triumph TR · Jaguar</div>
@@ -271,14 +341,14 @@
         <a href="/Marlo-OpenClaw/classic-hub/suppliers/">Suppliers</a>
       </div>
       <div><h4>Classifieds</h4>
-        <a href="#">Cars for Sale</a>
-        <a href="#">List Your Car</a>
+        <a href="/Marlo-OpenClaw/classic-hub/classifieds/">Cars for Sale</a>
+        <a href="/Marlo-OpenClaw/classic-hub/classifieds/sell.html">List Your Car</a>
       </div>
     </div>
   </div>
   <div class="ft-base">
     <span>&copy; 2026 MarqueFile. All rights reserved.</span>
-    <span>Data for reference only &mdash; always verify before purchase.</span>
+    <span>Data for reference only — always verify before purchase.</span>
   </div>
 </footer>
 <script>

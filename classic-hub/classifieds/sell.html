@@ -1,0 +1,275 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>List Your Car — MarqueFile</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Google Analytics — replace GA_MEASUREMENT_ID with your ID from analytics.google.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>
+  window.dataLayer=window.dataLayer||[];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());
+  gtag('config','GA_MEASUREMENT_ID');
+  // Track all outbound link clicks automatically
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a[href^="http"]');
+    if(a&&!a.href.includes(location.hostname)){
+      gtag('event','outbound_click',{event_category:'outbound',event_label:a.href,transport_type:'beacon'});
+    }
+  });
+</script>
+<style>
+
+  :root {
+    --navy:#1c1c1c; --green:#2a5c3f; --green-light:#3a7a55; --gold:#c8a84b;
+    --cream:#f8f6f1; --warm:#efede9; --white:#fff; --grey:#6b6b6b;
+    --border:#e2ddd6; --text:#1a1a1a;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:16px;-webkit-text-size-adjust:100%}
+  body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);line-height:1.6}
+  img{max-width:100%;display:block} a{color:inherit;text-decoration:none}
+
+  .site-header{background:var(--navy);position:sticky;top:0;z-index:200;border-bottom:3px solid var(--green)}
+  .hdr-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{display:flex;align-items:center;gap:11px;text-decoration:none}
+  .logo-mark{width:38px;height:38px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:1.1rem;color:#fff;font-weight:600;flex-shrink:0}
+  .logo-text{font-family:'EB Garamond',serif;font-size:1.25rem;color:#fff;letter-spacing:0.04em}
+  .logo-text em{color:var(--gold);font-style:normal}
+  .site-nav{display:flex;align-items:center;gap:4px}
+  .site-nav a,.nav-dd>a{color:rgba(255,255,255,0.72);font-size:0.78rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;padding:20px 13px;display:block;transition:color 0.2s;white-space:nowrap;border-bottom:2px solid transparent}
+  .site-nav a:hover,.nav-dd>a:hover{color:#fff;border-bottom-color:var(--gold)}
+  .nav-dd{position:relative}
+  .nav-dd .drop{position:absolute;top:100%;left:0;background:var(--navy);border:1px solid rgba(255,255,255,0.1);border-top:2px solid var(--green);min-width:180px;display:none;flex-direction:column;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+  .nav-dd:hover .drop{display:flex}
+  .nav-dd .drop a{padding:11px 18px;font-size:0.8rem;border-bottom:1px solid rgba(255,255,255,0.07);color:rgba(255,255,255,0.7)}
+  .nav-dd .drop a:hover{background:var(--green);color:#fff}
+  .nav-cta{background:var(--green)!important;color:#fff!important;border-radius:4px;padding:9px 18px!important;margin-left:8px;border:none!important;font-weight:600!important}
+  .nav-cta:hover{background:var(--green-light)!important}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+  .nav-toggle span{width:24px;height:2px;background:#fff;border-radius:1px;display:block}
+  @media(max-width:768px){
+    .site-nav{display:none;position:absolute;top:62px;left:0;right:0;background:var(--navy);flex-direction:column;border-top:2px solid var(--green);padding:8px 0 20px;z-index:200}
+    .site-nav.open{display:flex}
+    .site-nav a,.nav-dd>a{padding:16px 28px;border-bottom:none;border-left:3px solid transparent;font-size:0.9rem}
+    .site-nav a:hover,.nav-dd>a:hover{border-left-color:var(--gold);border-bottom:none}
+    .nav-dd .drop{position:static;display:flex!important;box-shadow:none;border:none;background:rgba(255,255,255,0.05)}
+    .nav-dd .drop a{padding:12px 44px;font-size:0.82rem}
+    .nav-cta{margin:12px 28px 0!important;text-align:center;border-radius:4px!important;padding:16px 28px!important}
+    .nav-toggle{display:flex}
+  }
+
+  footer{background:#111;border-top:3px solid var(--green);padding:52px 24px 28px;margin-top:80px}
+  .ft-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:48px;margin-bottom:40px}
+  .ft-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .ft-cols h4{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.35);margin-bottom:14px;font-weight:600}
+  .ft-cols a{display:block;color:rgba(255,255,255,0.55);font-size:0.82rem;margin-bottom:8px;transition:color 0.2s}
+  .ft-cols a:hover{color:var(--gold)}
+  .ft-base{max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:0.74rem;color:rgba(255,255,255,0.25)}
+  @media(max-width:768px){.ft-inner{grid-template-columns:1fr}.ft-cols{grid-template-columns:repeat(2,1fr)}}
+
+  .page-hero{background:linear-gradient(135deg,#1c1c1c,#2a3a1a);padding:56px 24px 64px}
+  .page-hero-inner{max-width:800px;margin:0 auto}
+  .hero-eyebrow{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);margin-bottom:14px;font-weight:600}
+  .page-hero h1{font-family:'EB Garamond',serif;font-size:clamp(1.8rem,4vw,2.8rem);color:#fff;margin-bottom:10px}
+  .page-hero p{color:rgba(255,255,255,0.65);max-width:540px}
+  .page-body{max-width:800px;margin:48px auto;padding:0 24px}
+  .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:40px}
+  .plan{background:#fff;border:1px solid var(--border);border-radius:12px;padding:24px;text-align:center}
+  .plan.popular{border-color:var(--gold);box-shadow:0 0 0 2px rgba(200,168,75,0.15)}
+  .plan-badge{background:var(--gold);color:#fff;font-size:0.62rem;text-transform:uppercase;letter-spacing:0.1em;padding:3px 9px;border-radius:20px;font-weight:700;margin-bottom:12px;display:inline-block}
+  .plan-name{font-family:'EB Garamond',serif;font-size:1.35rem;margin-bottom:6px}
+  .plan-price{font-size:2rem;font-weight:700;color:var(--green);font-family:'EB Garamond',serif}
+  .plan-period{font-size:0.78rem;color:var(--grey);margin-bottom:14px}
+  .plan-features{text-align:left;font-size:0.83rem;color:var(--grey);line-height:2}
+  .form-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:32px}
+  .form-title{font-family:'EB Garamond',serif;font-size:1.5rem;margin-bottom:6px}
+  .form-sub{color:var(--grey);font-size:0.88rem;margin-bottom:28px}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .form-group{display:flex;flex-direction:column;gap:6px}
+  .form-group.full{grid-column:1/-1}
+  label{font-size:0.78rem;font-weight:600;color:var(--text);letter-spacing:0.02em}
+  input,select,textarea{border:1.5px solid var(--border);border-radius:6px;padding:10px 12px;font-family:'Inter',sans-serif;font-size:0.88rem;color:var(--text);background:#fff;transition:border-color 0.2s;outline:none;width:100%}
+  input:focus,select:focus,textarea:focus{border-color:var(--green)}
+  textarea{resize:vertical;min-height:100px}
+  .form-submit{margin-top:24px;background:var(--green);color:#fff;padding:14px 28px;border:none;border-radius:6px;font-weight:700;font-size:0.92rem;cursor:pointer;width:100%;transition:background 0.2s}
+  .form-submit:hover{background:var(--green-light)}
+  .form-note{font-size:0.76rem;color:var(--grey);text-align:center;margin-top:12px}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:40px}
+  .step{text-align:center;padding:20px}
+  .step-num{width:40px;height:40px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-family:'EB Garamond',serif;font-size:1.2rem;color:#fff}
+  .step h4{font-size:0.88rem;font-weight:700;margin-bottom:4px}
+  .step p{font-size:0.8rem;color:var(--grey)}
+  @media(max-width:600px){.form-grid{grid-template-columns:1fr}}
+</style></head><body>
+<header class="site-header">
+  <div class="hdr-inner">
+    <a href="../index.html" class="logo"><div class="logo-mark">MF</div><div class="logo-text">Marque<em>File</em></div></a>
+    <nav class="site-nav" id="site-nav">
+      <div class="nav-dd">
+        <a href="../triumph/index.html">Cars &#9662;</a>
+        <div class="drop">
+          <a href="../triumph/index.html">Triumph TR</a>
+          <a href="../jaguar/index.html">Jaguar</a>
+        </div>
+      </div>
+      <a href="../clubs/index.html">Clubs</a>
+      <a href="../events/index.html">Events</a>
+      <a href="../suppliers/index.html">Suppliers</a>
+      <a href="../classifieds/index.html" class="nav-cta">Cars for Sale</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-eyebrow">MarqueFile › Classifieds</div>
+    <h1>List Your Car</h1>
+    <p>Reach buyers who are genuinely looking for your specific car — not a general audience, but Triumph TR and Jaguar enthusiasts who know what they want.</p>
+  </div>
+</div>
+<div class="page-body">
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><h4>Submit your listing</h4><p>Fill in the form — takes about 5 minutes. Upload photos if you have them.</p></div>
+    <div class="step"><div class="step-num">2</div><h4>We review it</h4><p>MarqueFile checks the listing before it goes live — usually within 24 hours.</p></div>
+    <div class="step"><div class="step-num">3</div><h4>Buyers enquire</h4><p>Interested buyers contact you directly. No middleman, no commission.</p></div>
+    <div class="step"><div class="step-num">4</div><h4>You sell</h4><p>Once sold, simply notify us and we'll mark the listing as sold.</p></div>
+  </div>
+  <div class="pricing-grid" style="margin-bottom:40px">
+    <div class="plan">
+      <div class="plan-name">Standard</div>
+      <div class="plan-price">Free</div>
+      <div class="plan-period">per listing</div>
+      <div class="plan-features">
+        ✓ Listed for up to 6 months<br>
+        ✓ Unlimited description text<br>
+        ✓ Up to 4 photos<br>
+        ✓ Direct buyer contact<br>
+        ✗ Homepage placement<br>
+        ✗ Top of category
+      </div>
+    </div>
+    <div class="plan popular">
+      <div class="plan-badge">Most effective</div>
+      <div class="plan-name">Featured</div>
+      <div class="plan-price">£19</div>
+      <div class="plan-period">per listing</div>
+      <div class="plan-features">
+        ✓ Everything in Standard<br>
+        ✓ Featured badge<br>
+        ✓ Top of category results<br>
+        ✓ Homepage featured slot<br>
+        ✓ Up to 10 photos<br>
+        ✓ Bold listing in search
+      </div>
+    </div>
+    <div class="plan">
+      <div class="plan-name">Bump</div>
+      <div class="plan-price">£5</div>
+      <div class="plan-period">per use</div>
+      <div class="plan-features">
+        ✓ Push listing back to top<br>
+        ✓ Resets position in results<br>
+        ✓ Use any time<br>
+        ✓ Available on any listing<br>
+        — Ideal after 7–14 days
+      </div>
+    </div>
+  </div>
+  <div class="form-card">
+    <div class="form-title">Submit your listing</div>
+    <div class="form-sub">Standard listings are free. Choose Featured below if you'd like priority placement — we'll follow up with payment details before your listing goes live.</div>
+    <form action="mailto:listings@marquefile.co.uk" method="post" enctype="text/plain">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Make</label>
+          <select name="make" required>
+            <option value="">Select…</option>
+            <option>Triumph TR2</option><option>Triumph TR3</option><option>Triumph TR3A</option>
+            <option>Triumph TR4</option><option>Triumph TR4A</option><option>Triumph TR5</option>
+            <option>Triumph TR6</option><option>Triumph TR7</option><option>Triumph TR8</option>
+            <option>Jaguar E-Type Series 1</option><option>Jaguar E-Type Series 2</option>
+            <option>Jaguar E-Type Series 3</option><option>Jaguar XK120</option>
+            <option>Jaguar XK140</option><option>Jaguar XK150</option>
+            <option>Jaguar Mark II</option><option>Jaguar XJ6</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Year</label>
+          <input type="number" name="year" min="1948" max="1992" placeholder="e.g. 1972" required>
+        </div>
+        <div class="form-group">
+          <label>Asking price (£)</label>
+          <input type="text" name="price" placeholder="e.g. 24,500" required>
+        </div>
+        <div class="form-group">
+          <label>Mileage</label>
+          <input type="text" name="mileage" placeholder="e.g. 62,400">
+        </div>
+        <div class="form-group">
+          <label>Body colour</label>
+          <input type="text" name="colour" placeholder="e.g. Signal Red">
+        </div>
+        <div class="form-group">
+          <label>Interior colour / material</label>
+          <input type="text" name="interior" placeholder="e.g. Black vinyl">
+        </div>
+        <div class="form-group">
+          <label>Location (county / region)</label>
+          <input type="text" name="location" placeholder="e.g. Gloucestershire" required>
+        </div>
+        <div class="form-group">
+          <label>Listing type</label>
+          <select name="listing_type">
+            <option value="standard">Standard — Free</option>
+            <option value="featured">Featured — £19 (priority placement)</option>
+          </select>
+        </div>
+        <div class="form-group full">
+          <label>Description — be honest and specific. Buyers appreciate it.</label>
+          <textarea name="description" placeholder="Describe the car's history, condition, recent work, what's included. The more detail the better — serious buyers will ask anyway." required></textarea>
+        </div>
+        <div class="form-group full">
+          <label>Your contact name</label>
+          <input type="text" name="contact_name" required>
+        </div>
+        <div class="form-group full">
+          <label>Your email address</label>
+          <input type="email" name="contact_email" required>
+        </div>
+      </div>
+      <button type="submit" class="form-submit">Submit Listing →</button>
+      <div class="form-note">By submitting you agree that MarqueFile may edit listings for clarity. No trade dealers. We do not take commission — buyers contact you directly.</div>
+    </form>
+  </div>
+</div>
+<footer>
+  <div class="ft-inner">
+    <div>
+      <div class="logo-mark" style="width:44px;height:44px;font-size:1.2rem;margin-bottom:10px">MF</div>
+      <div style="font-family:'EB Garamond',serif;font-size:1.2rem;color:#fff;margin-bottom:4px">Marque<em style="color:var(--gold)">File</em></div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.35);line-height:1.7">The classic car data resource.<br>Triumph TR · Jaguar</div>
+    </div>
+    <div class="ft-cols">
+      <div><h4>Cars</h4>
+        <a href="/Marlo-OpenClaw/classic-hub/triumph/">Triumph TR</a>
+        <a href="/Marlo-OpenClaw/classic-hub/jaguar/">Jaguar</a>
+      </div>
+      <div><h4>Directory</h4>
+        <a href="/Marlo-OpenClaw/classic-hub/clubs/">Clubs</a>
+        <a href="/Marlo-OpenClaw/classic-hub/events/">Events</a>
+        <a href="/Marlo-OpenClaw/classic-hub/suppliers/">Suppliers</a>
+      </div>
+      <div><h4>Classifieds</h4>
+        <a href="/Marlo-OpenClaw/classic-hub/classifieds/">Cars for Sale</a>
+        <a href="/Marlo-OpenClaw/classic-hub/classifieds/sell.html">List Your Car</a>
+      </div>
+    </div>
+  </div>
+  <div class="ft-base">
+    <span>&copy; 2026 MarqueFile. All rights reserved.</span>
+    <span>Data for reference only — always verify before purchase.</span>
+  </div>
+</footer><script>
+  const toggle=document.getElementById('nav-toggle'),nav=document.getElementById('site-nav');
+  if(toggle&&nav)toggle.addEventListener('click',()=>nav.classList.toggle('open'));
+</script></body></html>

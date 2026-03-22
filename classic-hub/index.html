@@ -103,6 +103,21 @@
   .cta-banner p{color:rgba(255,255,255,0.75);margin-bottom:28px}
   @media(max-width:768px){.hero h1{font-size:2rem}.trust-item{min-width:50%}}
 </style>
+<!-- Google Analytics — replace GA_MEASUREMENT_ID with your ID from analytics.google.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>
+  window.dataLayer=window.dataLayer||[];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());
+  gtag('config','GA_MEASUREMENT_ID');
+  // Track all outbound link clicks automatically
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a[href^="http"]');
+    if(a&&!a.href.includes(location.hostname)){
+      gtag('event','outbound_click',{event_category:'outbound',event_label:a.href,transport_type:'beacon'});
+    }
+  });
+</script>
 </head>
 <body>
 
