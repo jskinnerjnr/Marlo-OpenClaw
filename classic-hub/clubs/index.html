@@ -63,6 +63,8 @@
   .cc-tag{display:inline-block;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;padding:3px 10px;border-radius:20px;font-weight:700;margin-bottom:6px}
   .tag-triumph{background:#e8f5ee;color:var(--green)}
   .tag-jaguar{background:#e8e8f8;color:#2a2a5c}
+  .tag-austin-healey{background:#fff3e0;color:#b34c00}
+  .tag-mg{background:#fde8e8;color:#8b0000}
   .cc-desc{font-size:0.87rem;color:var(--grey);line-height:1.6;margin-bottom:10px}
   .cc-meta{font-size:0.76rem;color:var(--grey);display:flex;flex-wrap:wrap;gap:6px 16px}
   .cc-right{text-align:right;flex-shrink:0}
@@ -90,10 +92,7 @@
     <a href="../index.html" class="logo"><div class="logo-mark">MF</div><div class="logo-text">Marque<em>File</em></div></a>
     <nav class="site-nav" id="site-nav">
       <div class="nav-dd"><a href="../triumph/index.html">Cars &#9662;</a>
-        <div class="drop">
-          <a href="../triumph/index.html">Triumph TR</a>
-          <a href="../jaguar/index.html">Jaguar</a>
-        </div>
+        <div class="drop"><a href="../triumph/index.html">Triumph TR</a><a href="../jaguar/index.html">Jaguar</a><a href="../austin-healey/index.html">Austin-Healey</a><a href="../mg/index.html">MG</a></div>
       </div>
       <div class="nav-dd"><a href="../clubs/index.html">Directory &#9662;</a>
         <div class="drop">
@@ -130,7 +129,7 @@
   <div class="page-hero-inner">
     <div class="hero-eyebrow">MarqueFile › Directory</div>
     <h1>Clubs Directory</h1>
-    <p>Membership fees, what's included, publications and contact details for every major Triumph TR and Jaguar club. <em style="color:rgba(255,255,255,0.5);font-style:normal;font-size:0.88rem">Fees approximate — verify with club directly.</em></p>
+    <p>Membership fees, what's included, publications and contact details for every major Triumph, Jaguar, Austin-Healey and MG club. <em style="color:rgba(255,255,255,0.5);font-style:normal;font-size:0.88rem">Fees approximate — verify with club directly.</em></p>
   </div>
 </div>
 <div class="page-body">
@@ -152,6 +151,8 @@
     <button class="f-btn active" onclick="filterC('all',this)">All Marques</button>
     <button class="f-btn" onclick="filterC('triumph',this)">Triumph</button>
     <button class="f-btn" onclick="filterC('jaguar',this)">Jaguar</button>
+    <button class="f-btn" onclick="filterC('austin-healey',this)">Austin-Healey</button>
+    <button class="f-btn" onclick="filterC('mg',this)">MG</button>
   </div>
   <div style="font-size:0.78rem;color:var(--grey);margin-bottom:20px">Your country not listed? <a href="mailto:clubs@marquefile.co.uk" style="color:var(--green);text-decoration:underline">Submit a club &rarr;</a></div>
 
@@ -360,6 +361,164 @@
     </div>
   </div>
 
+
+  <!-- UK AUSTIN-HEALEY CLUBS -->
+  <div class="club-card" data-country="gb" data-marque="austin-healey">
+    <div class="cc-head">
+      <div>
+        <div class="cc-tag tag-austin-healey">Austin-Healey</div>
+        <div class="cc-name">Austin-Healey Club</div>
+        <div class="cc-desc">The definitive UK club for all Austin-Healey models. The Heritage Register is particularly valuable — it maintains records of original factory specifications and can verify whether a car is matching-numbers. Essential membership for any serious Healey owner.</div>
+        <div class="cc-meta">
+          <span>👥 4,000+ members</span>
+          <span>📍 National (UK)</span>
+          <span>✉ info@healey.co.uk</span>
+        </div>
+      </div>
+      <div class="cc-right">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px">Annual membership</div>
+        <div class="cc-fee-main">£45/year</div>
+        <div class="cc-fee-joint">£55/year (family membership)</div>
+        <div class="cc-fee-note">Covers all Austin-Healey models</div>
+        <a href="https://www.healey.co.uk" target="_blank" rel="noopener" class="cc-visit">Join / visit →</a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-benefits">
+        <div class="cc-section-label">What's included</div>
+        <ul class="benefit-list">
+          <li><span class="benefit-name">Heritage Register</span><span>Verifies factory specifications and matching-numbers status</span></li>
+          <li><span class="benefit-name">Technical register</span><span>Model experts for every variant — 100, 100-6, 3000, Sprite</span></li>
+          <li><span class="benefit-name">Spares scheme</span><span>Extensive parts operation for all Healey models</span></li>
+          <li><span class="benefit-name">National Weekend</span><span>Annual flagship gathering with concours and driving events</span></li>
+          <li><span class="benefit-name">Regional runs</span><span>Active regional groups across the UK</span></li>
+          <li><span class="benefit-name">International Meeting</span><span>Held alternately UK and overseas — major Healey event</span></li>
+        </ul>
+      </div>
+      <div class="cc-pub">
+        <div class="cc-section-label">Club publication</div>
+        <div class="pub-title">Healey</div>
+        <div class="pub-freq">Quarterly magazine</div>
+        <div class="pub-desc">Quarterly club magazine covering all Austin-Healey models — 100, 100-6, 3000 and Sprite. Technical articles, restoration features, concours coverage and club news.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- UK MG CLUBS -->
+  <div class="club-card" data-country="gb" data-marque="mg">
+    <div class="cc-head">
+      <div>
+        <div class="cc-tag tag-mg">MG</div>
+        <div class="cc-name">MG Car Club</div>
+        <div class="cc-desc">The oldest and largest MG club in the world, founded in 1930. The model registers are the definitive technical resource for each MG variant. The MGA Register in particular maintains comprehensive production records and can help verify originality.</div>
+        <div class="cc-meta">
+          <span>👥 10,000+ members</span>
+          <span>📍 Abingdon (historic home of MG), Oxfordshire</span>
+          <span>✉ mgcc@mgcc.co.uk</span>
+        </div>
+      </div>
+      <div class="cc-right">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px">Annual membership</div>
+        <div class="cc-fee-main">£55/year</div>
+        <div class="cc-fee-joint">£65/year (joint membership)</div>
+        <div class="cc-fee-note">Founded 1930 — oldest MG club in the world</div>
+        <a href="https://www.mgcc.co.uk" target="_blank" rel="noopener" class="cc-visit">Join / visit →</a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-benefits">
+        <div class="cc-section-label">What's included</div>
+        <ul class="benefit-list">
+          <li><span class="benefit-name">Model registers</span><span>MGA, MGB, Midget registers — definitive technical resource per variant</span></li>
+          <li><span class="benefit-name">MGCC Kimber House</span><span>Access to the club's dedicated facility at Abingdon</span></li>
+          <li><span class="benefit-name">Silverstone events</span><span>Race and track events at Silverstone — unique to MGCC</span></li>
+          <li><span class="benefit-name">Concours &amp; tours</span><span>Annual concours and organised driving tours nationwide</span></li>
+          <li><span class="benefit-name">Technical advice</span><span>Register experts for every MG model available to members</span></li>
+          <li><span class="benefit-name">Heritage records</span><span>MGA Register maintains production records for provenance verification</span></li>
+        </ul>
+      </div>
+      <div class="cc-pub">
+        <div class="cc-section-label">Club publication</div>
+        <div class="pub-title">Safety Fast!</div>
+        <div class="pub-freq">Bi-monthly magazine</div>
+        <div class="pub-desc">One of the longest-running car club publications in the world. Bi-monthly full-colour magazine covering all MG models — technical articles, restoration features, concours reports, racing coverage and club news.</div>
+      </div>
+    </div>
+  </div>
+  <div class="club-card" data-country="gb" data-marque="mg">
+    <div class="cc-head">
+      <div>
+        <div class="cc-tag tag-mg">MG</div>
+        <div class="cc-name">MG Owners Club</div>
+        <div class="cc-desc">The other major UK MG club — more commercially focused with an excellent spares operation. Many owners belong to both MGCC and MGOC. The spares scheme is particularly good for MGB owners.</div>
+        <div class="cc-meta">
+          <span>👥 8,000+ members</span>
+          <span>📍 Cambridge</span>
+          <span>✉ mgoc@mgownersclub.co.uk</span>
+        </div>
+      </div>
+      <div class="cc-right">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px">Annual membership</div>
+        <div class="cc-fee-main">£49/year</div>
+        <div class="cc-fee-joint">£59/year (joint membership)</div>
+        <div class="cc-fee-note">Outstanding spares operation — particularly for MGB</div>
+        <a href="https://www.mgownersclub.co.uk" target="_blank" rel="noopener" class="cc-visit">Join / visit →</a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-benefits">
+        <div class="cc-section-label">What's included</div>
+        <ul class="benefit-list">
+          <li><span class="benefit-name">Spares operation</span><span>One of the best MG parts operations in the UK — especially MGB</span></li>
+          <li><span class="benefit-name">Insurance scheme</span><span>Negotiated agreed-value classic car insurance for members</span></li>
+          <li><span class="benefit-name">Technical library</span><span>Extensive archive of factory and workshop data</span></li>
+          <li><span class="benefit-name">Regional centres</span><span>Active regional groups across the UK</span></li>
+          <li><span class="benefit-name">Events programme</span><span>Regular concours, tours and driving events nationwide</span></li>
+        </ul>
+      </div>
+      <div class="cc-pub">
+        <div class="cc-section-label">Club publication</div>
+        <div class="pub-title">Enjoying MG</div>
+        <div class="pub-freq">Bi-monthly magazine</div>
+        <div class="pub-desc">Bi-monthly full-colour magazine covering MGA, MGB, Midget and all MG models. Restoration features, technical guides, member cars and event reports.</div>
+      </div>
+    </div>
+  </div>
+  <div class="club-card" data-country="gb" data-marque="mg">
+    <div class="cc-head">
+      <div>
+        <div class="cc-tag tag-mg">MG</div>
+        <div class="cc-name">MG Octagon Car Club</div>
+        <div class="cc-desc">Focuses on pre-war and vintage MG models — T-types, M-types and pre-war cars. The specialist resource for owners of the earliest MGs. Less relevant for MGA/MGB/Midget era.</div>
+        <div class="cc-meta">
+          <span>📍 National (UK)</span>
+        </div>
+      </div>
+      <div class="cc-right">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px">Specialist pre-war club</div>
+        <div class="cc-fee-main">Contact club</div>
+        <div class="cc-fee-note">Specialist pre-war and vintage MG focus</div>
+        <a href="https://www.mgoctagon.com" target="_blank" rel="noopener" class="cc-visit">Join / visit →</a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-benefits">
+        <div class="cc-section-label">What's included</div>
+        <ul class="benefit-list">
+          <li><span class="benefit-name">Pre-war expertise</span><span>Definitive resource for T-types, M-types and earliest MGs</span></li>
+          <li><span class="benefit-name">Octagon magazine</span><span>Quarterly publication focused on vintage MG</span></li>
+          <li><span class="benefit-name">Events</span><span>Specialist pre-war MG gatherings and concours</span></li>
+        </ul>
+      </div>
+      <div class="cc-pub">
+        <div class="cc-section-label">Club publication</div>
+        <div class="pub-title">Octagon</div>
+        <div class="pub-freq">Quarterly magazine</div>
+        <div class="pub-desc">Quarterly magazine focused on pre-war and vintage MG models. Essential reading for T-type and M-type owners.</div>
+      </div>
+    </div>
+  </div>
+
   <!-- INTERNATIONAL CLUBS -->
   <!-- USA -->
   <div class="club-card" data-country="us" data-marque="triumph">
@@ -458,6 +617,106 @@
         <div class="pub-title">JANE Newsletter</div>
         <div class="pub-freq">Periodic newsletter</div>
         <div class="pub-desc">Club newsletter covering regional events, technical tips and member news from across New England.</div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="club-card" data-country="us" data-marque="austin-healey">
+    <div class="cc-head">
+      <div>
+        <div class="cc-tag tag-austin-healey">Austin-Healey</div>
+        <div class="cc-name">Austin Healey Club of America (AHCA)</div>
+        <div class="cc-desc">The main US Austin-Healey club. Strong following for the Big Healeys (3000 especially) and Sprites. Annual convention is a major US Healey gathering, held alternately with the AHSA convention.</div>
+        <div class="cc-meta"><span>&#127482;&#127480; National US club</span><span>&#127760; ahca.com</span></div>
+      </div>
+      <div class="cc-right">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px">Annual membership</div>
+        <div class="cc-fee-main">$45/year</div>
+        <div class="cc-fee-note">Regional chapters across USA</div>
+        <a href="https://www.ahca.com" target="_blank" rel="noopener" class="cc-visit">Join / visit &rarr;</a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-benefits">
+        <div class="cc-section-label">What&apos;s included</div>
+        <ul class="benefit-list">
+          <li><span class="benefit-name">Regional chapters</span><span>Active chapters across USA — local meetings and runs</span></li>
+          <li><span class="benefit-name">Technical advisors</span><span>Model-specific experts for every Healey variant</span></li>
+          <li><span class="benefit-name">National convention</span><span>Annual convention — major US Healey gathering</span></li>
+          <li><span class="benefit-name">Spares advice</span><span>Parts sourcing guidance for US-spec Healeys</span></li>
+        </ul>
+      </div>
+      <div class="cc-pub">
+        <div class="cc-section-label">Club publication</div>
+        <div class="pub-title">Healey Marque</div>
+        <div class="pub-freq">Quarterly magazine</div>
+        <div class="pub-desc">Quarterly magazine covering all Austin-Healey models with technical features, restoration articles, event reports and club news from across North America.</div>
+      </div>
+    </div>
+  </div>
+  <div class="club-card" data-country="us" data-marque="austin-healey">
+    <div class="cc-head">
+      <div>
+        <div class="cc-tag tag-austin-healey">Austin-Healey</div>
+        <div class="cc-name">Austin Healey Society of America (AHSA)</div>
+        <div class="cc-desc">Second major US Healey club — friendly rivalry with AHCA. Many enthusiasts belong to both. Strong Sprite membership alongside Big Healeys.</div>
+        <div class="cc-meta"><span>&#127482;&#127480; National US club</span><span>&#127760; austinhealey.com</span></div>
+      </div>
+      <div class="cc-right">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px">Annual membership</div>
+        <div class="cc-fee-main">$40/year</div>
+        <div class="cc-fee-note">Strong Sprite and Big Healey membership</div>
+        <a href="https://www.austinhealey.com" target="_blank" rel="noopener" class="cc-visit">Join / visit &rarr;</a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-benefits">
+        <div class="cc-section-label">What&apos;s included</div>
+        <ul class="benefit-list">
+          <li><span class="benefit-name">Annual convention</span><span>National AHSA convention — alternates with AHCA event</span></li>
+          <li><span class="benefit-name">Sprite expertise</span><span>Strong membership base for Sprite alongside Big Healeys</span></li>
+          <li><span class="benefit-name">Technical support</span><span>Healey model experts available to members</span></li>
+        </ul>
+      </div>
+      <div class="cc-pub">
+        <div class="cc-section-label">Club publication</div>
+        <div class="pub-title">The Healey News</div>
+        <div class="pub-freq">Quarterly newsletter</div>
+        <div class="pub-desc">Quarterly publication covering all Austin-Healey models with technical content, event reports and member news from across the USA.</div>
+      </div>
+    </div>
+  </div>
+  <div class="club-card" data-country="us" data-marque="mg">
+    <div class="cc-head">
+      <div>
+        <div class="cc-tag tag-mg">MG</div>
+        <div class="cc-name">MG Car Club of America (MGCCA)</div>
+        <div class="cc-desc">The main US MG club. Strong MGB and Midget following with an active annual convention and national concours series.</div>
+        <div class="cc-meta"><span>&#127482;&#127480; National US club</span><span>&#127760; mgcca.org</span></div>
+      </div>
+      <div class="cc-right">
+        <div style="font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px">Annual membership</div>
+        <div class="cc-fee-main">$40/year</div>
+        <div class="cc-fee-note">Strong MGB and Midget following</div>
+        <a href="https://www.mgcca.org" target="_blank" rel="noopener" class="cc-visit">Join / visit &rarr;</a>
+      </div>
+    </div>
+    <div class="cc-body">
+      <div class="cc-benefits">
+        <div class="cc-section-label">What&apos;s included</div>
+        <ul class="benefit-list">
+          <li><span class="benefit-name">Annual convention</span><span>National convention and concours — major US MG event</span></li>
+          <li><span class="benefit-name">Concours series</span><span>National concours championship for all MG models</span></li>
+          <li><span class="benefit-name">MGB expertise</span><span>Strong technical support for MGB and Midget owners</span></li>
+          <li><span class="benefit-name">Regional chapters</span><span>Local groups across the USA</span></li>
+        </ul>
+      </div>
+      <div class="cc-pub">
+        <div class="cc-section-label">Club publication</div>
+        <div class="pub-title">The Sacred Octagon</div>
+        <div class="pub-freq">Quarterly magazine</div>
+        <div class="pub-desc">Quarterly publication covering all MG models — MGA, MGB, Midget, T-types and more. Technical features, restoration articles, concours results and event reports from across the USA.</div>
       </div>
     </div>
   </div>
