@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bodywork &amp; Paint Care — MarqueFile</title>
+<meta name="description" content="Polishes, waxes and touch-up paint for classic British single-stage paintwork.">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#1c1c1c;--green:#2a5c3f;--green-light:#3a7a55;--gold:#c8a84b;--cream:#f8f6f1;--warm:#efede9;--white:#fff;--grey:#6b6b6b;--border:#e2ddd6;--text:#1a1a1a}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:16px;-webkit-text-size-adjust:100%}
+  body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);line-height:1.6}
+  img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+  .site-header{background:var(--navy);position:sticky;top:0;z-index:200;border-bottom:3px solid var(--green)}
+  .hdr-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{display:flex;align-items:center;gap:11px;text-decoration:none}
+  .logo-mark{width:38px;height:38px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:1.1rem;color:#fff;font-weight:600;flex-shrink:0}
+  .logo-text{font-family:'EB Garamond',serif;font-size:1.25rem;color:#fff;letter-spacing:0.04em}
+  .logo-text em{color:var(--gold);font-style:normal}
+  .site-nav{display:flex;align-items:center;gap:4px}
+  .site-nav a,.nav-dd>a{color:rgba(255,255,255,0.72);font-size:0.78rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;padding:20px 13px;display:block;transition:color 0.2s;white-space:nowrap;border-bottom:2px solid transparent}
+  .site-nav a:hover,.nav-dd>a:hover{color:#fff;border-bottom-color:var(--gold)}
+  .nav-dd{position:relative}
+  .nav-dd .drop{position:absolute;top:100%;left:0;background:var(--navy);border:1px solid rgba(255,255,255,0.1);border-top:2px solid var(--green);min-width:180px;display:none;flex-direction:column;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+  .nav-dd:hover .drop{display:flex}
+  .nav-dd .drop a{padding:11px 18px;font-size:0.8rem;border-bottom:1px solid rgba(255,255,255,0.07);border-left:none;color:rgba(255,255,255,0.7)}
+  .nav-dd .drop a:hover{background:var(--green);color:#fff}
+  .nav-cta{background:var(--green)!important;color:#fff!important;border-radius:4px;padding:9px 18px!important;margin-left:8px;border:none!important;font-weight:600!important}
+  .nav-cta:hover{background:var(--green-light)!important}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+  .nav-toggle span{width:24px;height:2px;background:#fff;border-radius:1px;display:block;transition:all 0.25s}
+  @media(max-width:768px){
+    .site-nav{display:none;position:absolute;top:62px;left:0;right:0;background:var(--navy);flex-direction:column;border-top:2px solid var(--green);padding:8px 0 20px;z-index:200}
+    .site-nav.open{display:flex}
+    .site-nav a,.nav-dd>a{padding:16px 28px;border-bottom:none;border-left:3px solid transparent;font-size:0.9rem}
+    .site-nav a:hover,.nav-dd>a:hover{border-left-color:var(--gold);border-bottom:none}
+    .nav-dd .drop{position:static;display:flex!important;box-shadow:none;border:none;background:rgba(255,255,255,0.05)}
+    .nav-dd .drop a{padding:12px 44px;font-size:0.82rem}
+    .nav-cta{margin:12px 28px 0!important;text-align:center;border-radius:4px!important;padding:16px 28px!important}
+    .nav-toggle{display:flex}
+  }
+  footer{background:#111;border-top:3px solid var(--green);padding:52px 24px 28px;margin-top:80px}
+  .ft-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:48px;margin-bottom:40px}
+  .ft-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  .ft-cols h4{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;color:rgba(255,255,255,0.35);margin-bottom:14px;font-weight:600}
+  .ft-cols a{display:block;color:rgba(255,255,255,0.55);font-size:0.82rem;margin-bottom:8px;transition:color 0.2s}
+  .ft-cols a:hover{color:var(--gold)}
+  .ft-base{max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,0.08);padding-top:20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:0.74rem;color:rgba(255,255,255,0.25)}
+  @media(max-width:768px){.ft-inner{grid-template-columns:1fr}.ft-cols{grid-template-columns:repeat(2,1fr)}}
+  .page-hero{background:#1c1c1c;padding:60px 24px 70px}
+  .page-hero-inner{max-width:1000px;margin:0 auto}
+  .hero-eyebrow{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--gold);margin-bottom:14px;font-weight:600}
+  .page-hero h1{font-family:'EB Garamond',serif;font-size:clamp(2rem,5vw,3.2rem);color:#fff;margin-bottom:16px}
+  .page-hero p{font-size:1rem;color:rgba(255,255,255,0.65);max-width:620px;line-height:1.7}
+  .page-body{max-width:1000px;margin:0 auto;padding:48px 24px 0}
+  .section-title{font-family:'EB Garamond',serif;font-size:1.6rem;color:var(--text);border-bottom:2px solid var(--green);padding-bottom:8px;margin:40px 0 16px}
+  .section-intro{font-size:0.92rem;color:#555;line-height:1.7;margin-bottom:24px}
+  .product-card{background:#fff;border:1px solid var(--border);border-radius:6px;padding:22px 24px;margin-bottom:16px}
+  .product-card.recommended{border-left:3px solid var(--gold)}
+  .product-name{font-weight:600;font-size:1rem;color:#1a1a1a;margin-bottom:2px}
+  .product-brand{font-size:0.78rem;color:#6b6b6b;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px}
+  .product-desc{font-size:0.88rem;color:#444;line-height:1.65;margin-bottom:14px}
+  .product-links{display:flex;gap:10px;flex-wrap:wrap}
+  .btn-buy{background:#2a5c3f;color:#fff;padding:8px 16px;border-radius:4px;font-size:0.82rem;font-weight:600;text-decoration:none;display:inline-block}
+  .btn-buy:hover{background:#3a7a55}
+  .btn-direct{background:transparent;color:#2a5c3f;padding:8px 16px;border-radius:4px;font-size:0.82rem;font-weight:600;text-decoration:none;border:1px solid #2a5c3f;display:inline-block}
+  .recommend-badge{background:#c8a84b;color:#1c1c1c;font-size:0.65rem;font-weight:700;padding:2px 7px;border-radius:3px;text-transform:uppercase;letter-spacing:0.06em;margin-left:8px;vertical-align:middle}
+  .jsm-box{background:#f8f6f1;border:2px solid var(--gold);border-radius:6px;padding:24px 28px;margin:36px 0}
+  .jsm-box-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.15em;color:var(--gold);font-weight:700;margin-bottom:8px}
+  .jsm-box h3{font-family:'EB Garamond',serif;font-size:1.3rem;color:#1a1a1a;margin-bottom:10px}
+  .jsm-box p{font-size:0.9rem;color:#444;line-height:1.65;margin-bottom:16px}
+  .jsm-box a.btn-buy{display:inline-block}
+  .disclosure{background:#f0f0ec;border-left:3px solid var(--gold);padding:12px 16px;font-size:0.8rem;color:#6b6b6b;margin-bottom:32px}
+  .alert-box{background:#fff8e8;border:1px solid var(--gold);border-left:4px solid var(--gold);border-radius:6px;padding:16px 18px;font-size:0.88rem;color:#5a4a10;margin-bottom:24px}
+  .stag-box{background:#fff3f3;border:1px solid #e08080;border-left:4px solid #c04040;border-radius:6px;padding:16px 18px;font-size:0.88rem;color:#5a1a1a;margin-bottom:24px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="hdr-inner">
+    <a href="../index.html" class="logo"><div class="logo-mark">MF</div><div class="logo-text">Marque<em>File</em></div></a>
+    <nav class="site-nav" id="site-nav">
+      <div class="nav-dd"><a href="../triumph/index.html">Cars &#9662;</a>
+        <div class="drop"><a href="../triumph/index.html">Triumph TR</a><a href="../jaguar/index.html">Jaguar</a><a href="../austin-healey/index.html">Austin-Healey</a><a href="../mg/index.html">MG</a></div>
+      </div>
+      <div class="nav-dd"><a href="../clubs/index.html">Directory &#9662;</a>
+        <div class="drop"><a href="../clubs/index.html">Clubs</a><a href="../events/index.html">Events</a><a href="../suppliers/index.html">Suppliers</a><a href="../publications/index.html">Publications</a><a href="../insurance/index.html">Insurance</a><a href="../storage/index.html">Storage</a></div>
+      </div>
+      <div class="nav-dd"><a href="../valuations/index.html">Market &#9662;</a>
+        <div class="drop"><a href="../valuations/index.html">Price Guides</a><a href="../classifieds/index.html">Cars for Sale</a><a href="../classifieds/sell.html">Sell Your Car</a></div>
+      </div>
+      <div class="nav-dd"><a href="../resources/index.html">Resources &#9662;</a>
+        <div class="drop"><a href="../resources/index.html#youtube">YouTube Channels</a><a href="../resources/index.html#tv">TV Shows</a><a href="../resources/index.html#websites">Websites &amp; Forums</a><a href="../resources/index.html#podcasts">Podcasts</a><a href="../resources/index.html#magazines">Magazines</a></div>
+      </div>
+      <a href="index.html" style="color:#fff!important;border-bottom:2px solid var(--gold)!important">Care</a>
+      <a href="../classifieds/index.html" class="nav-cta">Cars for Sale</a>
+    </nav>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-eyebrow">Care &amp; Maintenance</div>
+    <h1>Bodywork &amp; Paint</h1>
+    <p>British Leyland paint from the 1960s and 70s is single-stage — no clear coat. It polishes differently to modern paints and responds well to traditional products.</p>
+  </div>
+</div>
+<div class="page-body">
+<div class="disclosure"><strong>Affiliate disclosure:</strong> MarqueFile may earn a small commission from purchases made through Amazon links on this page, at no cost to you. Products are recommended on merit.</div>
+
+<p class="section-intro" style="margin-top:0">British Leyland paint from the 1960s and 70s is single-stage — there's no clear coat on top. This means it polishes differently to modern paints: it responds well to traditional products and can be damaged by overly aggressive modern compounds designed for two-stage finishes.</p>
+
+<div class="section-title">Polishing</div>
+<div class="product-card recommended">
+  <div class="product-name">Autoglym Super Resin Polish <span class="recommend-badge">&#9733; Marlo Recommends</span></div>
+  <div class="product-brand">Autoglym</div>
+  <p class="product-desc">The classic British choice and deservedly so. Light cut combined with fillers that hide fine swirls — leaves a deep gloss without stripping single-stage paint. The benchmark product for classic paintwork.</p>
+  <div class="product-links"><a href="https://www.amazon.co.uk/s?k=Autoglym+Super+Resin+Polish&tag=marquefile-21" target="_blank" rel="noopener" class="btn-buy">Buy on Amazon &rarr;</a></div>
+</div>
+<div class="product-card">
+  <div class="product-name">Meguiar's Ultimate Compound </div>
+  <div class="product-brand">Meguiar's</div>
+  <p class="product-desc">Heavier cut for oxidised or neglected paint. Use before polishing if the surface looks chalky or dull — then follow with Super Resin Polish or a wax.</p>
+  <div class="product-links"><a href="https://www.amazon.co.uk/s?k=Meguiars+Ultimate+Compound&tag=marquefile-21" target="_blank" rel="noopener" class="btn-buy">Buy on Amazon &rarr;</a></div>
+</div>
+
+<div class="section-title">Protection &amp; waxing</div>
+<div class="product-card">
+  <div class="product-name">Autoglym Extra Gloss Protection </div>
+  <div class="product-brand">Autoglym</div>
+  <p class="product-desc">Polymer sealant to apply after polishing. Extends the life of the finish and provides good water resistance between wax applications.</p>
+  <div class="product-links"><a href="https://www.amazon.co.uk/s?k=Autoglym+Extra+Gloss+Protection&tag=marquefile-21" target="_blank" rel="noopener" class="btn-buy">Buy on Amazon &rarr;</a></div>
+</div>
+<div class="product-card">
+  <div class="product-name">Collinite 476S Paste Wax </div>
+  <div class="product-brand">Collinite</div>
+  <p class="product-desc">Long-lasting carnauba wax beloved by classic car owners. Hard paste — takes effort to apply properly, but lasts far longer than most liquid waxes.</p>
+  <div class="product-links"><a href="https://www.amazon.co.uk/s?k=Collinite+476S+Paste+Wax&tag=marquefile-21" target="_blank" rel="noopener" class="btn-buy">Buy on Amazon &rarr;</a></div>
+</div>
+<div class="product-card">
+  <div class="product-name">Swissvax Best of Show </div>
+  <div class="product-brand">Swissvax</div>
+  <p class="product-desc">Premium carnauba paste wax — one of the finest available. For concours preparation or owners who want the absolute best depth of shine.</p>
+  <div class="product-links"><a href="https://www.amazon.co.uk/s?k=Swissvax+Best+of+Show&tag=marquefile-21" target="_blank" rel="noopener" class="btn-buy">Buy on Amazon &rarr;</a></div>
+</div>
+
+<div class="section-title">Touch-up paint</div>
+<p class="section-intro">For colour-matched touch-up paint by Triumph, Jaguar, Austin-Healey or MG paint code, specialist suppliers mix by code rather than guessing from a chart:</p>
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px">
+  <a href="https://www.carpaintuk.co.uk" target="_blank" rel="noopener" class="btn-direct">carpaintuk.co.uk</a>
+  <a href="https://www.heritage-approved.co.uk" target="_blank" rel="noopener" class="btn-direct">heritage-approved.co.uk</a>
+</div>
+
+</div>
+<footer>
+  <div class="ft-inner">
+    <div>
+      <div style="width:44px;height:44px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'EB Garamond',serif;font-size:1.2rem;color:#fff;font-weight:600;margin-bottom:10px">MF</div>
+      <div style="font-family:'EB Garamond',serif;font-size:1.2rem;color:#fff;margin-bottom:4px">Marque<em style="color:var(--gold)">File</em></div>
+      <div style="font-size:0.78rem;color:rgba(255,255,255,0.35);line-height:1.7">The classic car data resource.<br>Triumph &middot; Jaguar &middot; Austin-Healey &middot; MG</div>
+    </div>
+    <div class="ft-cols">
+      <div><h4>Cars</h4><a href="../triumph/index.html">Triumph TR</a><a href="../jaguar/index.html">Jaguar</a><a href="../austin-healey/index.html">Austin-Healey</a><a href="../mg/index.html">MG</a></div>
+      <div><h4>Directory</h4><a href="../clubs/index.html">Clubs</a><a href="../events/index.html">Events</a><a href="../suppliers/index.html">Suppliers</a></div>
+      <div><h4>Care</h4><a href="leather.html">Leather Care</a><a href="soft-tops.html">Soft Tops</a><a href="bodywork.html">Bodywork &amp; Paint</a><a href="chrome.html">Chrome</a><a href="engine-bay.html">Engine Bay</a><a href="interior.html">Interior Trim</a></div>
+      <div><h4>Classifieds</h4><a href="../classifieds/index.html">Cars for Sale</a><a href="../classifieds/sell.html">List Your Car</a></div>
+    </div>
+  </div>
+  <div class="ft-base"><span>&copy; 2026 MarqueFile. All rights reserved.</span><span>Data for reference only &mdash; always verify before purchase.</span></div>
+</footer>
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const nav = document.getElementById('site-nav');
+  if(toggle && nav) toggle.addEventListener('click', () => { nav.classList.toggle('open'); });
+</script>
+</body></html>

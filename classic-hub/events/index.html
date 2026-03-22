@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Classic Car Events 2025 — MarqueFile</title>
+<title>Classic Car Events 2026 — MarqueFile</title>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','GA_MEASUREMENT_ID');
 document.addEventListener('click',function(e){var a=e.target.closest('a[data-track]');if(a){gtag('event','event_click',{event_category:a.dataset.track,event_label:a.href,transport_type:'beacon'});}});</script>
@@ -81,6 +81,9 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
   .mt-triumph{background:#e8f5ee;color:var(--green)}
   .mt-jaguar{background:#e8e8f8;color:#2a2a5c}
   .mt-both{background:#f0f0f0;color:#444}
+  .mt-healey{background:#e8f0f8;color:#1a3a5c}
+  .mt-mg{background:#fde8e8;color:#5c1a1a}
+  .mt-all{background:#f5f0e8;color:#5c4a1a}
   .ev-desc{font-size:0.83rem;color:var(--grey);line-height:1.6;margin-bottom:10px}
   .ev-hl{list-style:none;margin-bottom:12px}
   .ev-hl li{font-size:0.79rem;color:var(--grey);padding:3px 0;border-bottom:1px solid var(--border);display:flex;gap:7px}
@@ -185,7 +188,7 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
           <a href="../resources/index.html#magazines">Magazines</a>
         </div>
       </div>
-      <a href="../classifieds/index.html" class="nav-cta">Cars for Sale</a>
+      <a href="../care/index.html" style="color:rgba(255,255,255,0.72);font-size:0.78rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;padding:20px 13px;display:block;transition:color 0.2s;white-space:nowrap;border-bottom:2px solid transparent">Care</a><a href="../classifieds/index.html" class="nav-cta">Cars for Sale</a>
     </nav>
     <button class="nav-toggle" id="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
@@ -193,8 +196,8 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
 <div class="page-hero">
   <div class="page-hero-inner">
     <div class="hero-eyebrow">MarqueFile › Events</div>
-    <h1>Classic Car Events 2025</h1>
-    <p>Shows, concours, hillclimbs and autojumbles — venues, dates, ticket links. Tap any event for full details.</p>
+    <h1>Classic Car Events 2026</h1>
+    <p>Shows, concours, hillclimbs and autojumbles — worldwide coverage. UK, USA, Australia and Europe. Tap any event for full details.</p>
   </div>
 </div>
 <div class="page-body">
@@ -204,13 +207,17 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
       <button class="f-btn active" data-f="marque" data-v="all" onclick="af(this)">All</button>
       <button class="f-btn" data-f="marque" data-v="triumph" onclick="af(this)">Triumph</button>
       <button class="f-btn" data-f="marque" data-v="jaguar" onclick="af(this)">Jaguar</button>
+      <button class="f-btn" data-f="marque" data-v="healey" onclick="af(this)">Austin-Healey</button>
+      <button class="f-btn" data-f="marque" data-v="mg" onclick="af(this)">MG</button>
+      <button class="f-btn" data-f="marque" data-v="british" onclick="af(this)">All British</button>
     </div>
     <div class="filter-group">
       <span class="filter-label">Region</span>
-      <button class="f-btn active" data-f="region" data-v="all" onclick="af(this)">All</button>
-      <button class="f-btn" data-f="region" data-v="south" onclick="af(this)">South</button>
-      <button class="f-btn" data-f="region" data-v="midlands" onclick="af(this)">Midlands</button>
-      <button class="f-btn" data-f="region" data-v="north" onclick="af(this)">North</button>
+      <button class="f-btn active" data-f="country" data-v="all" onclick="af(this)">All</button>
+      <button class="f-btn" data-f="country" data-v="uk" onclick="af(this)">&#127468;&#127463; UK</button>
+      <button class="f-btn" data-f="country" data-v="usa" onclick="af(this)">&#127482;&#127480; USA</button>
+      <button class="f-btn" data-f="country" data-v="australia" onclick="af(this)">&#127462;&#127482; Australia</button>
+      <button class="f-btn" data-f="country" data-v="europe" onclick="af(this)">&#127757; Europe</button>
     </div>
     <div class="filter-group">
       <span class="filter-label">Month</span>
@@ -219,7 +226,7 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
     </div>
   </div>
   <div class="results-bar">
-    <div class="results-count" id="rc">12 events</div>
+    <div class="results-count" id="rc">27 events</div>
     <div class="view-toggle">
       <button class="vt-btn active" id="vt-list" onclick="sv('list')">☰ List</button>
       <button class="vt-btn" id="vt-grid" onclick="sv('grid')">⊞ Grid</button>
@@ -227,7 +234,7 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
   </div>
 
   <div class="ev-list" id="ev-list">
-    <div class="ev-acc  featured" data-marque="both" data-region="south" data-month="7">
+    <div class="ev-acc  featured" data-marque="both" data-country="uk" data-region="south" data-month="7">
       <div class="ev-acc-head" onclick="tg(this)">
         <div class="ev-date-chip">JUL<br>10–13</div>
         <div class="ev-acc-title">
@@ -254,12 +261,12 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
           <div class="ev-btns">
             <a href="https://www.goodwood.com/motorsport/festival-of-speed/tickets/?utm_source=marquefile&utm_medium=events&utm_campaign=featured" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">🎟 Tickets</a>
             <a href="https://www.goodwood.com/motorsport/festival-of-speed/?utm_source=marquefile&utm_medium=events&utm_campaign=featured" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info →</a>
-            <div class="ev-aff">⟳ Affiliate link — MarqueFile may earn from purchases</div>
+            <div class="ev-aff">&#x27F3; MarqueFile may earn a small commission from ticket purchases &#8212; at no cost to you.</div>
           </div>
         </div>
       </div>
     </div>
-    <div class="ev-acc  featured" data-marque="triumph" data-region="midlands" data-month="7">
+    <div class="ev-acc  featured" data-marque="triumph" data-country="uk" data-region="midlands" data-month="7">
       <div class="ev-acc-head" onclick="tg(this)">
         <div class="ev-date-chip">JUL<br>4–6</div>
         <div class="ev-acc-title">
@@ -286,12 +293,12 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
           <div class="ev-btns">
             <a href="https://www.tr-register.co.uk/events/?utm_source=marquefile&utm_medium=events&utm_campaign=featured" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">🎟 Tickets</a>
             <a href="https://www.tr-register.co.uk/events/international-weekend/?utm_source=marquefile&utm_medium=events&utm_campaign=featured" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info →</a>
-            <div class="ev-aff">Direct to organiser</div>
+            <div class="ev-aff">Direct link to the event organiser.</div>
           </div>
         </div>
       </div>
     </div>
-    <div class="ev-acc  featured" data-marque="both" data-region="south" data-month="9">
+    <div class="ev-acc  featured" data-marque="both" data-country="uk" data-region="south" data-month="9">
       <div class="ev-acc-head" onclick="tg(this)">
         <div class="ev-date-chip">SEP<br>12–14</div>
         <div class="ev-acc-title">
@@ -318,12 +325,12 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
           <div class="ev-btns">
             <a href="https://www.goodwood.com/motorsport/revival/tickets/?utm_source=marquefile&utm_medium=events&utm_campaign=featured" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">🎟 Tickets</a>
             <a href="https://www.goodwood.com/motorsport/revival/?utm_source=marquefile&utm_medium=events&utm_campaign=featured" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info →</a>
-            <div class="ev-aff">⟳ Affiliate link — MarqueFile may earn from purchases</div>
+            <div class="ev-aff">&#x27F3; MarqueFile may earn a small commission from ticket purchases &#8212; at no cost to you.</div>
           </div>
         </div>
       </div>
     </div>
-    <div class="ev-acc" data-marque="both" data-region="midlands" data-month="3">
+    <div class="ev-acc" data-marque="both" data-country="uk" data-region="midlands" data-month="3">
       <div class="ev-acc-head" onclick="tg(this)">
         <div class="ev-date-chip">MAR<br>28–30</div>
         <div class="ev-acc-title">
@@ -350,12 +357,12 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
           <div class="ev-btns">
             <a href="https://www.practicalclassics.co.uk/events/restoration-show/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">🎟 Tickets</a>
             <a href="https://www.practicalclassics.co.uk/events/restoration-show/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info →</a>
-            <div class="ev-aff">⟳ Affiliate link — MarqueFile may earn from purchases</div>
+            <div class="ev-aff">&#x27F3; MarqueFile may earn a small commission from ticket purchases &#8212; at no cost to you.</div>
           </div>
         </div>
       </div>
     </div>
-    <div class="ev-acc" data-marque="jaguar" data-region="midlands" data-month="5">
+    <div class="ev-acc" data-marque="jaguar" data-country="uk" data-region="midlands" data-month="5">
       <div class="ev-acc-head" onclick="tg(this)">
         <div class="ev-date-chip">MAY<br>May</div>
         <div class="ev-acc-title">
@@ -382,12 +389,12 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
           <div class="ev-btns">
             <a href="https://www.jec.org.uk/events/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">🎟 Tickets</a>
             <a href="https://www.jec.org.uk/events/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info →</a>
-            <div class="ev-aff">Direct to organiser</div>
+            <div class="ev-aff">Direct link to the event organiser.</div>
           </div>
         </div>
       </div>
     </div>
-    <div class="ev-acc" data-marque="both" data-region="south" data-month="5">
+    <div class="ev-acc" data-marque="both" data-country="uk" data-region="south" data-month="5">
       <div class="ev-acc-head" onclick="tg(this)">
         <div class="ev-date-chip">MAY<br>Multiple</div>
         <div class="ev-acc-title">
@@ -414,12 +421,12 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
           <div class="ev-btns">
             <a href="https://www.prescotthillclimb.com/tickets/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">🎟 Tickets</a>
             <a href="https://www.prescotthillclimb.com/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info →</a>
-            <div class="ev-aff">Direct to organiser</div>
+            <div class="ev-aff">Direct link to the event organiser.</div>
           </div>
         </div>
       </div>
     </div>
-    <div class="ev-acc" data-marque="jaguar" data-region="south" data-month="6">
+    <div class="ev-acc" data-marque="jaguar" data-country="uk" data-region="south" data-month="6">
       <div class="ev-acc-head" onclick="tg(this)">
         <div class="ev-date-chip">JUN<br>June</div>
         <div class="ev-acc-title">
@@ -446,12 +453,12 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
           <div class="ev-btns">
             <a href="https://www.etypeclub.com/events/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">🎟 Tickets</a>
             <a href="https://www.etypeclub.com/events/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info →</a>
-            <div class="ev-aff">Direct to organiser</div>
+            <div class="ev-aff">Direct link to the event organiser.</div>
           </div>
         </div>
       </div>
     </div>
-    <div class="ev-acc" data-marque="both" data-region="north" data-month="6">
+    <div class="ev-acc" data-marque="both" data-country="uk" data-region="north" data-month="6">
       <div class="ev-acc-head" onclick="tg(this)">
         <div class="ev-date-chip">JUN<br>June</div>
         <div class="ev-acc-title">
@@ -478,12 +485,12 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
           <div class="ev-btns">
             <a href="https://www.tattonpark.org.uk/whats-on/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">🎟 Tickets</a>
             <a href="https://www.tattonpark.org.uk/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info →</a>
-            <div class="ev-aff">Direct to organiser</div>
+            <div class="ev-aff">Direct link to the event organiser.</div>
           </div>
         </div>
       </div>
     </div>
-    <div class="ev-acc" data-marque="both" data-region="midlands" data-month="7">
+    <div class="ev-acc" data-marque="both" data-country="uk" data-region="midlands" data-month="7">
       <div class="ev-acc-head" onclick="tg(this)">
         <div class="ev-date-chip">JUL<br>25–27</div>
         <div class="ev-acc-title">
@@ -510,12 +517,12 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
           <div class="ev-btns">
             <a href="https://www.silverstoneclassic.com/tickets/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">🎟 Tickets</a>
             <a href="https://www.silverstoneclassic.com/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info →</a>
-            <div class="ev-aff">⟳ Affiliate link — MarqueFile may earn from purchases</div>
+            <div class="ev-aff">&#x27F3; MarqueFile may earn a small commission from ticket purchases &#8212; at no cost to you.</div>
           </div>
         </div>
       </div>
     </div>
-    <div class="ev-acc" data-marque="triumph" data-region="midlands" data-month="8">
+    <div class="ev-acc" data-marque="triumph" data-country="uk" data-region="midlands" data-month="8">
       <div class="ev-acc-head" onclick="tg(this)">
         <div class="ev-date-chip">AUG<br>August</div>
         <div class="ev-acc-title">
@@ -542,12 +549,12 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
           <div class="ev-btns">
             <a href="https://www.tssc.org.uk/events/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">🎟 Tickets</a>
             <a href="https://www.tssc.org.uk/events/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info →</a>
-            <div class="ev-aff">Direct to organiser</div>
+            <div class="ev-aff">Direct link to the event organiser.</div>
           </div>
         </div>
       </div>
     </div>
-    <div class="ev-acc" data-marque="both" data-region="south" data-month="9">
+    <div class="ev-acc" data-marque="both" data-country="uk" data-region="south" data-month="9">
       <div class="ev-acc-head" onclick="tg(this)">
         <div class="ev-date-chip">SEP<br>6–7</div>
         <div class="ev-acc-title">
@@ -574,12 +581,12 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
           <div class="ev-btns">
             <a href="https://www.beaulieu.co.uk/events/international-autojumble/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">🎟 Tickets</a>
             <a href="https://www.beaulieu.co.uk/events/international-autojumble/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info →</a>
-            <div class="ev-aff">Direct to organiser</div>
+            <div class="ev-aff">Direct link to the event organiser.</div>
           </div>
         </div>
       </div>
     </div>
-    <div class="ev-acc" data-marque="both" data-region="midlands" data-month="11">
+    <div class="ev-acc" data-marque="both" data-country="uk" data-region="midlands" data-month="11">
       <div class="ev-acc-head" onclick="tg(this)">
         <div class="ev-date-chip">NOV<br>14–16</div>
         <div class="ev-acc-title">
@@ -606,15 +613,356 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
           <div class="ev-btns">
             <a href="https://www.necclassicmotorshow.com/tickets/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">🎟 Tickets</a>
             <a href="https://www.necclassicmotorshow.com/?utm_source=marquefile&utm_medium=events&utm_campaign=directory" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info →</a>
-            <div class="ev-aff">⟳ Affiliate link — MarqueFile may earn from purchases</div>
+            <div class="ev-aff">&#x27F3; MarqueFile may earn a small commission from ticket purchases &#8212; at no cost to you.</div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- ===== NEW UK EVENTS ===== -->
+    <div class="ev-acc" data-marque="mg" data-country="uk" data-month="6">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">JUN<br>June</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name">MG Live!</div>
+          <div class="ev-acc-sub">&#128205; Silverstone, Northamptonshire &#127468;&#127463;</div>
+        </div>
+        <div class="ev-acc-right"><span class="ev-price-pill">See website</span><div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div>
+      </div>
+      <div class="ev-acc-body"><div class="ev-detail"><div>
+        <span class="ev-marque-tag mt-mg">MG</span>
+        <div class="ev-desc">The MG Car Club&#8217;s flagship annual event at Silverstone — the definitive gathering for MG enthusiasts. Track demonstrations, concours, autojumble and club stands spanning all MG models from prewar to modern.</div>
+        <ul class="ev-hl"><li>All MG models from prewar to MGF</li><li>Track parade and demonstrations at Silverstone</li><li>Concours d&#8217;&#201;l&#233;gance</li><li>Parts autojumble and trade stands</li></ul>
+        <div class="ev-venue"><strong>Silverstone Circuit</strong>Silverstone, Northamptonshire NN12 8TN<br><a href="https://maps.google.com/?q=Silverstone+Circuit" target="_blank" rel="noopener" data-track="maps">Google Maps &#8594;</a></div>
+      </div><div class="ev-btns">
+        <a href="https://www.mgcc.co.uk/mglive/" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">&#127903; Tickets</a>
+        <a href="https://www.mgcc.co.uk/mglive/" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info &#8594;</a>
+        <div class="ev-aff">Direct link to the event organiser.</div>
+      </div></div></div>
+    </div>
+
+    <div class="ev-acc" data-marque="healey" data-country="uk" data-month="7">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">JUL<br>Annual</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name">Austin-Healey Club National Weekend</div>
+          <div class="ev-acc-sub">&#128205; UK &#8212; venue rotates &#127468;&#127463;</div>
+        </div>
+        <div class="ev-acc-right"><span class="ev-price-pill">See website</span><div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div>
+      </div>
+      <div class="ev-acc-body"><div class="ev-detail"><div>
+        <span class="ev-marque-tag mt-healey">Austin-Healey</span>
+        <div class="ev-desc">The primary UK Austin-Healey gathering &#8212; the Austin-Healey Club&#8217;s flagship annual event. All models from 100 to Sprite, with concours judging, driving tests and the largest Healey parts autojumble in the country.</div>
+        <ul class="ev-hl"><li>All Austin-Healey models &#8212; 100, 100-6, 3000, Sprite</li><li>Concours and driving tests</li><li>Parts autojumble and specialist trade stands</li><li>Venue rotates annually</li></ul>
+        <div class="ev-venue"><strong>Venue rotates annually</strong>UK<br><a href="https://www.healey.co.uk/events/" target="_blank" rel="noopener">Visit Austin-Healey Club &#8594;</a></div>
+      </div><div class="ev-btns">
+        <a href="https://www.healey.co.uk/events/" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">&#127903; Tickets &amp; Info</a>
+        <a href="https://www.healey.co.uk/events/" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info &#8594;</a>
+        <div class="ev-aff">Direct link to the event organiser.</div>
+      </div></div></div>
+    </div>
+
+    <div class="ev-acc" data-marque="triumph" data-country="uk" data-month="7">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">JUL<br>Summer</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name">Stag Owners Club Annual Rally</div>
+          <div class="ev-acc-sub">&#128205; UK &#8212; venue varies &#127468;&#127463;</div>
+        </div>
+        <div class="ev-acc-right"><span class="ev-price-pill">See website</span><div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div>
+      </div>
+      <div class="ev-acc-body"><div class="ev-detail"><div>
+        <span class="ev-marque-tag mt-triumph">Triumph Stag</span>
+        <div class="ev-desc">The definitive Stag gathering &#8212; the Stag Owners Club&#8217;s flagship annual rally. Hundreds of V8-powered Stags converge for concours judging, driving tours and the chance to source rare parts from the autojumble.</div>
+        <ul class="ev-hl"><li>Largest annual gathering of Triumph Stags</li><li>Concours and driving tour</li><li>Parts autojumble</li><li>Venue rotates annually</li></ul>
+        <div class="ev-venue"><strong>Venue rotates annually</strong>UK<br><a href="https://www.stag.org.uk/events/" target="_blank" rel="noopener">Visit Stag Owners Club &#8594;</a></div>
+      </div><div class="ev-btns">
+        <a href="https://www.stag.org.uk/events/" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">&#127903; Tickets &amp; Info</a>
+        <a href="https://www.stag.org.uk/events/" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info &#8594;</a>
+        <div class="ev-aff">Direct link to the event organiser.</div>
+      </div></div></div>
+    </div>
+
+    <div class="ev-acc" data-marque="triumph" data-country="uk" data-month="8">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">AUG<br>Various</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name">Triumph World &#8212; TSSC Events Calendar</div>
+          <div class="ev-acc-sub">&#128205; Various UK venues &#127468;&#127463;</div>
+        </div>
+        <div class="ev-acc-right"><span class="ev-price-pill">See website</span><div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div>
+      </div>
+      <div class="ev-acc-body"><div class="ev-detail"><div>
+        <span class="ev-marque-tag mt-triumph">Triumph</span>
+        <div class="ev-desc">The Triumph Sports Six Club runs a year-round events calendar covering all Triumph models. From local club nights to national rallies, the TSSC events page is the definitive source for UK Triumph events.</div>
+        <ul class="ev-hl"><li>Year-round events calendar</li><li>All Triumph models covered</li><li>Local, regional and national events</li><li>Tech days, tours and concours</li></ul>
+        <div class="ev-venue"><strong>Various UK venues</strong>See TSSC website for current listings<br><a href="https://www.tssc.org.uk/events/" target="_blank" rel="noopener">Visit TSSC Events &#8594;</a></div>
+      </div><div class="ev-btns">
+        <a href="https://www.tssc.org.uk/events/" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">&#127903; View Events</a>
+        <a href="https://www.tssc.org.uk/events/" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info &#8594;</a>
+        <div class="ev-aff">Direct link to the event organiser.</div>
+      </div></div></div>
+    </div>
+
+    <div class="ev-acc" data-marque="both" data-country="uk" data-month="5">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">MAY<br>Multiple</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name">Prescott Hill Climb</div>
+          <div class="ev-acc-sub">&#128205; Gotherington, Gloucestershire &#127468;&#127463;</div>
+        </div>
+        <div class="ev-acc-right"><span class="ev-price-pill">From &#163;15 spectator</span><div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div>
+      </div>
+      <div class="ev-acc-body"><div class="ev-detail"><div>
+        <span class="ev-marque-tag mt-triumph">Triumph</span><span class="ev-marque-tag mt-healey">Austin-Healey</span>
+        <div class="ev-desc">The Bugatti Owners Club&#8217;s famous hill climb near Cheltenham runs multiple events through the season. TR and Healey regulars compete on the twisting 1,127-yard course &#8212; excellent spectator viewing throughout.</div>
+        <ul class="ev-hl"><li>Historic hillclimb near Cheltenham</li><li>TR and Austin-Healey regularly compete</li><li>Multiple events through the season</li><li>Excellent spectator viewing</li></ul>
+        <div class="ev-venue"><strong>Prescott Speed Hill Climb</strong>Gotherington, Gloucestershire GL52 9RD<br><a href="https://maps.google.com/?q=Prescott+Hill+Climb+Gotherington" target="_blank" rel="noopener" data-track="maps">Google Maps &#8594;</a></div>
+      </div><div class="ev-btns">
+        <a href="https://www.prescott-hillclimb.com" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">&#127903; Tickets</a>
+        <a href="https://www.prescott-hillclimb.com" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info &#8594;</a>
+        <div class="ev-aff">Direct link to the event organiser.</div>
+      </div></div></div>
+    </div>
+
+    <!-- ===== USA EVENTS ===== -->
+    <div class="ev-acc featured" data-marque="all" data-country="usa" data-month="3">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">MAR<br>March</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name"><span class="ev-feat-badge">Featured</span>Amelia Island Concours d&#8217;Elegance</div>
+          <div class="ev-acc-sub">&#128205; Amelia Island, Florida &#127482;&#127480;</div>
+        </div>
+        <div class="ev-acc-right"><span class="ev-price-pill">See website</span><div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div>
+      </div>
+      <div class="ev-acc-body"><div class="ev-detail"><div>
+        <span class="ev-marque-tag mt-jaguar">Jaguar</span><span class="ev-marque-tag mt-healey">Austin-Healey</span><span class="ev-marque-tag mt-mg">MG</span><span class="ev-marque-tag mt-triumph">Triumph</span>
+        <div class="ev-desc">One of the world&#8217;s premier concours events held on the fairways of The Ritz-Carlton, Amelia Island. E-Types, Big Healeys and Triumph competition cars regularly feature in the curated classes &#8212; a highlight of the North American classic car calendar.</div>
+        <ul class="ev-hl"><li>World-class concours on oceanside fairways</li><li>Curated classes often featuring British marques</li><li>Weekend of related events and seminars</li><li>Adjacent auction events during Amelia Island week</li></ul>
+        <div class="ev-venue"><strong>The Ritz-Carlton, Amelia Island</strong>Amelia Island, Florida, USA<br><a href="https://maps.google.com/?q=Ritz+Carlton+Amelia+Island+Florida" target="_blank" rel="noopener" data-track="maps">Google Maps &#8594;</a></div>
+      </div><div class="ev-btns">
+        <a href="https://www.ameliaconcours.org" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">&#127903; Tickets &amp; Info</a>
+        <a href="https://www.ameliaconcours.org" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info &#8594;</a>
+        <div class="ev-aff">Direct link to the event organiser.</div>
+      </div></div></div>
+    </div>
+
+    <div class="ev-acc featured" data-marque="all" data-country="usa" data-month="8">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">AUG<br>August</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name"><span class="ev-feat-badge">Featured</span>Pebble Beach Concours d&#8217;Elegance</div>
+          <div class="ev-acc-sub">&#128205; Pebble Beach, California &#127482;&#127480;</div>
+        </div>
+        <div class="ev-acc-right"><span class="ev-price-pill">See website</span><div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div>
+      </div>
+      <div class="ev-acc-body"><div class="ev-detail"><div>
+        <span class="ev-marque-tag mt-jaguar">Jaguar</span><span class="ev-marque-tag mt-healey">Austin-Healey</span>
+        <div class="ev-desc">The world&#8217;s most prestigious concours &#8212; held on the 18th fairway of Pebble Beach Golf Links as part of Monterey Car Week. Jaguar and Austin-Healey regularly among the most celebrated vehicles on the lawn.</div>
+        <ul class="ev-hl"><li>The world&#8217;s most prestigious concours</li><li>18th fairway of Pebble Beach Golf Links</li><li>Part of the wider Monterey Car Week</li><li>Jaguar and British cars regularly featured</li></ul>
+        <div class="ev-venue"><strong>Pebble Beach Golf Links &#8212; 18th Fairway</strong>Pebble Beach, California, USA<br><a href="https://maps.google.com/?q=Pebble+Beach+Golf+Links+California" target="_blank" rel="noopener" data-track="maps">Google Maps &#8594;</a></div>
+      </div><div class="ev-btns">
+        <a href="https://www.pebblebeachconcours.net" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">&#127903; Tickets &amp; Info</a>
+        <a href="https://www.pebblebeachconcours.net" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info &#8594;</a>
+        <div class="ev-aff">Direct link to the event organiser.</div>
+      </div></div></div>
+    </div>
+
+    <div class="ev-acc" data-marque="triumph" data-country="usa" data-month="7">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">JUL<br>Annual</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name">VTR International</div>
+          <div class="ev-acc-sub">&#128205; USA &#8212; city rotates &#127482;&#127480;</div>
+        </div>
+        <div class="ev-acc-right"><span class="ev-price-pill">See website</span><div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div>
+      </div>
+      <div class="ev-acc-body"><div class="ev-detail"><div>
+        <span class="ev-marque-tag mt-triumph">Triumph</span>
+        <div class="ev-desc">The Vintage Triumph Register&#8217;s national convention &#8212; the premier annual gathering for Triumph enthusiasts in North America. All TR models from TR2 to TR8, with concours, driving events and technical seminars.</div>
+        <ul class="ev-hl"><li>All Triumph models TR2&#8211;TR8</li><li>Concours and driving events</li><li>Technical seminars and workshops</li><li>City rotates annually &#8212; check VTR website</li></ul>
+        <div class="ev-venue"><strong>Venue rotates annually</strong>USA<br><a href="https://www.vintagetriumphregister.org/vtr-international" target="_blank" rel="noopener">Visit VTR &#8594;</a></div>
+      </div><div class="ev-btns">
+        <a href="https://www.vintagetriumphregister.org/vtr-international" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">&#127903; Tickets &amp; Info</a>
+        <a href="https://www.vintagetriumphregister.org/vtr-international" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info &#8594;</a>
+        <div class="ev-aff">Direct link to the event organiser.</div>
+      </div></div></div>
+    </div>
+
+    <div class="ev-acc" data-marque="jaguar" data-country="usa" data-month="3">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">MAR<br>Annual</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name">JCNA Annual Symposium</div>
+          <div class="ev-acc-sub">&#128205; USA &#8212; city rotates &#127482;&#127480;</div>
+        </div>
+        <div class="ev-acc-right"><span class="ev-price-pill">See website</span><div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div>
+      </div>
+      <div class="ev-acc-body"><div class="ev-detail"><div>
+        <span class="ev-marque-tag mt-jaguar">Jaguar</span>
+        <div class="ev-desc">Jaguar Clubs of North America&#8217;s national gathering &#8212; the largest annual Jaguar event in the Americas. All Jaguar models from prewar through modern, with concours judging, club championship awards and the JCNA AGM.</div>
+        <ul class="ev-hl"><li>All Jaguar models from prewar to modern</li><li>JCNA national concours championship</li><li>Club AGM and awards</li><li>City rotates annually</li></ul>
+        <div class="ev-venue"><strong>Venue rotates annually</strong>USA<br><a href="https://www.jcna.com/events/" target="_blank" rel="noopener">Visit JCNA &#8594;</a></div>
+      </div><div class="ev-btns">
+        <a href="https://www.jcna.com/events/" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">&#127903; Tickets &amp; Info</a>
+        <a href="https://www.jcna.com/events/" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info &#8594;</a>
+        <div class="ev-aff">Direct link to the event organiser.</div>
+      </div></div></div>
+    </div>
+
+    <div class="ev-acc" data-marque="mg" data-country="usa" data-month="7">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">JUL<br>Annual</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name">MG 2026 &#8212; MGCCA National Convention</div>
+          <div class="ev-acc-sub">&#128205; USA &#8212; see MGCCA site &#127482;&#127480;</div>
+        </div>
+        <div class="ev-acc-right"><span class="ev-price-pill">See website</span><div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div>
+      </div>
+      <div class="ev-acc-body"><div class="ev-detail"><div>
+        <span class="ev-marque-tag mt-mg">MG</span>
+        <div class="ev-desc">The MG Car Club of America&#8217;s annual national convention &#8212; the definitive gathering for North American MG enthusiasts. All MG models from TC to MGF, with driving events, concours and the MGCCA club programme.</div>
+        <ul class="ev-hl"><li>All MG models from TC to MGF</li><li>National concours and driving events</li><li>MGCCA awards and AGM</li><li>Check MGCCA website for date and location</li></ul>
+        <div class="ev-venue"><strong>Venue announced annually</strong>USA<br><a href="https://www.mgcca.org/events/" target="_blank" rel="noopener">Visit MGCCA &#8594;</a></div>
+      </div><div class="ev-btns">
+        <a href="https://www.mgcca.org/events/" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">&#127903; Tickets &amp; Info</a>
+        <a href="https://www.mgcca.org/events/" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info &#8594;</a>
+        <div class="ev-aff">Direct link to the event organiser.</div>
+      </div></div></div>
+    </div>
+
+    <div class="ev-acc" data-marque="all" data-country="usa" data-month="9">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">SEP<br>Annual</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name">Moss Motoring United</div>
+          <div class="ev-acc-sub">&#128205; USA &#8212; varies &#127482;&#127480;</div>
+        </div>
+        <div class="ev-acc-right"><span class="ev-price-pill">See website</span><div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div>
+      </div>
+      <div class="ev-acc-body"><div class="ev-detail"><div>
+        <span class="ev-marque-tag mt-mg">MG</span><span class="ev-marque-tag mt-triumph">Triumph</span><span class="ev-marque-tag mt-healey">Austin-Healey</span>
+        <div class="ev-desc">Moss Motors&#8217; sponsored gathering for British car enthusiasts across all marques &#8212; MG, Triumph, Austin-Healey and more. A cross-marque celebration of the British classic in North America, hosted by the world&#8217;s leading British parts supplier.</div>
+        <ul class="ev-hl"><li>All British classic marques welcome</li><li>Moss Motors sponsorship and presence</li><li>Cross-marque driving and social events</li><li>Check mossmotoring.com for date and location</li></ul>
+        <div class="ev-venue"><strong>Venue varies annually</strong>USA<br><a href="https://www.mossmotoring.com" target="_blank" rel="noopener">Visit Moss Motoring &#8594;</a></div>
+      </div><div class="ev-btns">
+        <a href="https://www.mossmotoring.com" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">&#127903; Tickets &amp; Info</a>
+        <a href="https://www.mossmotoring.com" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info &#8594;</a>
+        <div class="ev-aff">Direct link to the event organiser.</div>
+      </div></div></div>
+    </div>
+
+    <!-- ===== AUSTRALIA EVENTS ===== -->
+    <div class="ev-acc featured" data-marque="all" data-country="australia" data-month="10">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">OCT<br>October</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name"><span class="ev-feat-badge">Featured</span>Motorclassica</div>
+          <div class="ev-acc-sub">&#128205; Melbourne, Victoria &#127462;&#127482;</div>
+        </div>
+        <div class="ev-acc-right"><span class="ev-price-pill">See website</span><div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div>
+      </div>
+      <div class="ev-acc-body"><div class="ev-detail"><div>
+        <span class="ev-marque-tag mt-all">All Marques</span>
+        <div class="ev-desc">Australia&#8217;s premier classic car concours and show &#8212; held at the Royal Exhibition Building, Melbourne, a UNESCO World Heritage site. World-class display of significant vehicles including strong British representation from TR, Healey and Jaguar.</div>
+        <ul class="ev-hl"><li>UNESCO World Heritage venue &#8212; Royal Exhibition Building</li><li>Curated concours with international standards</li><li>Auctions, trade stands and lifestyle exhibits</li><li>Premier event on the Australian classic car calendar</li></ul>
+        <div class="ev-venue"><strong>Royal Exhibition Building</strong>Melbourne, Victoria, Australia<br><a href="https://maps.google.com/?q=Royal+Exhibition+Building+Melbourne" target="_blank" rel="noopener" data-track="maps">Google Maps &#8594;</a></div>
+      </div><div class="ev-btns">
+        <a href="https://www.motorclassica.com.au" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">&#127903; Tickets &amp; Info</a>
+        <a href="https://www.motorclassica.com.au" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info &#8594;</a>
+        <div class="ev-aff">Direct link to the event organiser.</div>
+      </div></div></div>
+    </div>
+
+    <div class="ev-acc" data-marque="all" data-country="australia" data-month="11">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">NOV<br>Annual</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name">Brisbane Concours d&#8217;Elegance</div>
+          <div class="ev-acc-sub">&#128205; Brisbane, Queensland &#127462;&#127482;</div>
+        </div>
+        <div class="ev-acc-right"><span class="ev-price-pill">See website</span><div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div>
+      </div>
+      <div class="ev-acc-body"><div class="ev-detail"><div>
+        <span class="ev-marque-tag mt-all">All Marques</span>
+        <div class="ev-desc">Queensland&#8217;s premier classic car event &#8212; an elegant concours showcasing the finest historic vehicles in the region. Strong British car presence alongside European and American classics in a beautiful outdoor subtropical setting.</div>
+        <ul class="ev-hl"><li>Premier concours event in Queensland</li><li>All classic marques welcomed</li><li>Outdoor setting in subtropical Brisbane</li><li>Check website for current date and entry details</li></ul>
+        <div class="ev-venue"><strong>Brisbane, Queensland</strong>Australia<br><a href="https://maps.google.com/?q=Brisbane+Queensland+Australia" target="_blank" rel="noopener" data-track="maps">Google Maps &#8594;</a></div>
+      </div><div class="ev-btns">
+        <a href="https://www.brisbaneconcours.com.au" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">&#127903; Tickets &amp; Info</a>
+        <a href="https://www.brisbaneconcours.com.au" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info &#8594;</a>
+        <div class="ev-aff">Direct link to the event organiser.</div>
+      </div></div></div>
+    </div>
+
+    <!-- ===== EUROPE EVENTS ===== -->
+    <div class="ev-acc featured" data-marque="all" data-country="europe" data-month="4">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">APR<br>April</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name"><span class="ev-feat-badge">Featured</span>Techno Classica Essen</div>
+          <div class="ev-acc-sub">&#128205; Essen, Germany &#127465;&#127466;</div>
+        </div>
+        <div class="ev-acc-right"><span class="ev-price-pill">See website</span><div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div>
+      </div>
+      <div class="ev-acc-body"><div class="ev-detail"><div>
+        <span class="ev-marque-tag mt-all">All Marques</span>
+        <div class="ev-desc">Europe&#8217;s largest classic car trade show and auction event &#8212; held annually at Messe Essen. Thousands of classic cars for sale, major club displays and live auctions. Strong British car presence with TR, Jaguar and Healey clubs well represented.</div>
+        <ul class="ev-hl"><li>Europe&#8217;s largest classic car trade show</li><li>Major live auction sessions</li><li>International club displays</li><li>Thousands of classic cars for sale</li></ul>
+        <div class="ev-venue"><strong>Messe Essen</strong>Essen, North Rhine-Westphalia, Germany<br><a href="https://maps.google.com/?q=Messe+Essen+Germany" target="_blank" rel="noopener" data-track="maps">Google Maps &#8594;</a></div>
+      </div><div class="ev-btns">
+        <a href="https://www.techno-classica.com" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">&#127903; Tickets &amp; Info</a>
+        <a href="https://www.techno-classica.com" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info &#8594;</a>
+        <div class="ev-aff">Direct link to the event organiser.</div>
+      </div></div></div>
+    </div>
+
+    <div class="ev-acc" data-marque="all" data-country="europe" data-month="7">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">JUL<br>Summer</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name">Baden-Baden Concours d&#8217;Elegance</div>
+          <div class="ev-acc-sub">&#128205; Baden-Baden, Germany &#127465;&#127466;</div>
+        </div>
+        <div class="ev-acc-right"><span class="ev-price-pill">See website</span><div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div>
+      </div>
+      <div class="ev-acc-body"><div class="ev-detail"><div>
+        <span class="ev-marque-tag mt-jaguar">Jaguar</span><span class="ev-marque-tag mt-healey">Austin-Healey</span>
+        <div class="ev-desc">A prestigious German concours with a strong Jaguar and British car presence &#8212; held in the elegant spa town of Baden-Baden. One of the most beautiful concours settings in Europe, attracting significant vehicles from across the continent.</div>
+        <ul class="ev-hl"><li>Prestigious concours in elegant spa town setting</li><li>Strong Jaguar and British car presence</li><li>International entries from across Europe</li><li>Check meilenwerk.de for current dates</li></ul>
+        <div class="ev-venue"><strong>Baden-Baden</strong>Baden-W&#252;rttemberg, Germany<br><a href="https://maps.google.com/?q=Baden-Baden+Germany" target="_blank" rel="noopener" data-track="maps">Google Maps &#8594;</a></div>
+      </div><div class="ev-btns">
+        <a href="https://www.meilenwerk.de" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">&#127903; Tickets &amp; Info</a>
+        <a href="https://www.meilenwerk.de" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info &#8594;</a>
+        <div class="ev-aff">Direct link to the event organiser.</div>
+      </div></div></div>
+    </div>
+
+    <div class="ev-acc featured" data-marque="all" data-country="europe" data-month="7">
+      <div class="ev-acc-head" onclick="tg(this)">
+        <div class="ev-date-chip">JUL<br>Biennial</div>
+        <div class="ev-acc-title">
+          <div class="ev-acc-name"><span class="ev-feat-badge">Featured</span>Le Mans Classic</div>
+          <div class="ev-acc-sub">&#128205; Le Mans, France &#127467;&#127479;</div>
+        </div>
+        <div class="ev-acc-right"><span class="ev-price-pill">See website</span><div class="ev-chevron"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div></div>
+      </div>
+      <div class="ev-acc-body"><div class="ev-detail"><div>
+        <span class="ev-marque-tag mt-all">All Marques</span>
+        <div class="ev-desc">The world&#8217;s greatest historic race meeting &#8212; held on the full Circuit de la Sarthe in even-numbered years. TR6, Austin-Healeys and Jaguar E-Types race through the night on the legendary 24 Hours track. Unmissable for British car lovers.</div>
+        <ul class="ev-hl"><li>Racing on the full Circuit de la Sarthe</li><li>TR6, Austin-Healeys and E-Types regularly race</li><li>Night racing &#8212; unique atmosphere</li><li>Biennial event &#8212; even-numbered years only</li></ul>
+        <div class="ev-venue"><strong>Circuit de la Sarthe</strong>Le Mans, Sarthe, France<br><a href="https://maps.google.com/?q=Circuit+de+la+Sarthe+Le+Mans" target="_blank" rel="noopener" data-track="maps">Google Maps &#8594;</a></div>
+      </div><div class="ev-btns">
+        <a href="https://www.lemansclassic.com" target="_blank" rel="noopener" class="ev-btn ev-btn-t" data-track="ticket">&#127903; Tickets &amp; Info</a>
+        <a href="https://www.lemansclassic.com" target="_blank" rel="noopener" class="ev-btn ev-btn-i" data-track="info">More info &#8594;</a>
+        <div class="ev-aff">Direct link to the event organiser.</div>
+      </div></div></div>
+    </div>
+
   </div>
 
   <div class="ev-grid" id="ev-grid">
-    <div class="ev-card  featured" data-marque="both" data-region="south" data-month="7" onclick="om('e002')">
+    <div class="ev-card  featured" data-marque="both" data-country="uk" data-region="south" data-month="7" onclick="om('e002')">
       <div class="ev-card-head">
         <span class="ev-feat-badge">Featured</span>
         <div class="ev-card-date">10–13 July 2025</div>
@@ -630,7 +978,7 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
         </div>
       </div>
     </div>
-    <div class="ev-card  featured" data-marque="triumph" data-region="midlands" data-month="7" onclick="om('e003')">
+    <div class="ev-card  featured" data-marque="triumph" data-country="uk" data-region="midlands" data-month="7" onclick="om('e003')">
       <div class="ev-card-head">
         <span class="ev-feat-badge">Featured</span>
         <div class="ev-card-date">4–6 July 2025</div>
@@ -646,7 +994,7 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
         </div>
       </div>
     </div>
-    <div class="ev-card  featured" data-marque="both" data-region="south" data-month="9" onclick="om('e001')">
+    <div class="ev-card  featured" data-marque="both" data-country="uk" data-region="south" data-month="9" onclick="om('e001')">
       <div class="ev-card-head">
         <span class="ev-feat-badge">Featured</span>
         <div class="ev-card-date">12–14 September 2025</div>
@@ -662,7 +1010,7 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
         </div>
       </div>
     </div>
-    <div class="ev-card" data-marque="both" data-region="midlands" data-month="3" onclick="om('e012')">
+    <div class="ev-card" data-marque="both" data-country="uk" data-region="midlands" data-month="3" onclick="om('e012')">
       <div class="ev-card-head">
         
         <div class="ev-card-date">28–30 March 2025</div>
@@ -678,7 +1026,7 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
         </div>
       </div>
     </div>
-    <div class="ev-card" data-marque="jaguar" data-region="midlands" data-month="5" onclick="om('e008')">
+    <div class="ev-card" data-marque="jaguar" data-country="uk" data-region="midlands" data-month="5" onclick="om('e008')">
       <div class="ev-card-head">
         
         <div class="ev-card-date">May 2025 (TBC)</div>
@@ -694,7 +1042,7 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
         </div>
       </div>
     </div>
-    <div class="ev-card" data-marque="both" data-region="south" data-month="5" onclick="om('e010')">
+    <div class="ev-card" data-marque="both" data-country="uk" data-region="south" data-month="5" onclick="om('e010')">
       <div class="ev-card-head">
         
         <div class="ev-card-date">Multiple dates 2025</div>
@@ -710,7 +1058,7 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
         </div>
       </div>
     </div>
-    <div class="ev-card" data-marque="jaguar" data-region="south" data-month="6" onclick="om('e009')">
+    <div class="ev-card" data-marque="jaguar" data-country="uk" data-region="south" data-month="6" onclick="om('e009')">
       <div class="ev-card-head">
         
         <div class="ev-card-date">June 2025 (TBC)</div>
@@ -726,7 +1074,7 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
         </div>
       </div>
     </div>
-    <div class="ev-card" data-marque="both" data-region="north" data-month="6" onclick="om('e011')">
+    <div class="ev-card" data-marque="both" data-country="uk" data-region="north" data-month="6" onclick="om('e011')">
       <div class="ev-card-head">
         
         <div class="ev-card-date">June 2025 (TBC)</div>
@@ -742,7 +1090,7 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
         </div>
       </div>
     </div>
-    <div class="ev-card" data-marque="both" data-region="midlands" data-month="7" onclick="om('e004')">
+    <div class="ev-card" data-marque="both" data-country="uk" data-region="midlands" data-month="7" onclick="om('e004')">
       <div class="ev-card-head">
         
         <div class="ev-card-date">25–27 July 2025</div>
@@ -758,7 +1106,7 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
         </div>
       </div>
     </div>
-    <div class="ev-card" data-marque="triumph" data-region="midlands" data-month="8" onclick="om('e007')">
+    <div class="ev-card" data-marque="triumph" data-country="uk" data-region="midlands" data-month="8" onclick="om('e007')">
       <div class="ev-card-head">
         
         <div class="ev-card-date">August 2025 (TBC)</div>
@@ -774,7 +1122,7 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
         </div>
       </div>
     </div>
-    <div class="ev-card" data-marque="both" data-region="south" data-month="9" onclick="om('e005')">
+    <div class="ev-card" data-marque="both" data-country="uk" data-region="south" data-month="9" onclick="om('e005')">
       <div class="ev-card-head">
         
         <div class="ev-card-date">6–7 September 2025</div>
@@ -790,7 +1138,7 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
         </div>
       </div>
     </div>
-    <div class="ev-card" data-marque="both" data-region="midlands" data-month="11" onclick="om('e006')">
+    <div class="ev-card" data-marque="both" data-country="uk" data-region="midlands" data-month="11" onclick="om('e006')">
       <div class="ev-card-head">
         
         <div class="ev-card-date">14–16 November 2025</div>
@@ -806,6 +1154,71 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[data-tra
         </div>
       </div>
     </div>
+    <div class="ev-card" data-marque="mg" data-country="uk" data-month="6">
+      <div class="ev-card-head"><div class="ev-card-date">June 2026</div><div class="ev-card-name">MG Live!</div><div class="ev-card-loc">&#128205; Silverstone &#127468;&#127463;</div></div>
+      <div class="ev-card-body"><span class="ev-marque-tag mt-mg" style="margin-bottom:8px;display:inline-block">MG</span><div class="ev-card-desc">The MG Car Club&#8217;s flagship annual event at Silverstone &#8212; track demos, concours and all MG models.</div><div class="ev-card-foot"><span class="ev-card-price">See website</span><a href="https://www.mgcc.co.uk/mglive/" target="_blank" rel="noopener" class="ev-card-btn">Info &#8594;</a></div></div>
+    </div>
+    <div class="ev-card" data-marque="healey" data-country="uk" data-month="7">
+      <div class="ev-card-head"><div class="ev-card-date">Annual &#8212; Summer</div><div class="ev-card-name">Austin-Healey Club National Weekend</div><div class="ev-card-loc">&#128205; UK (rotates) &#127468;&#127463;</div></div>
+      <div class="ev-card-body"><span class="ev-marque-tag mt-healey" style="margin-bottom:8px;display:inline-block">Austin-Healey</span><div class="ev-card-desc">The primary UK Austin-Healey gathering &#8212; all models, concours, driving tests and autojumble.</div><div class="ev-card-foot"><span class="ev-card-price">See website</span><a href="https://www.healey.co.uk/events/" target="_blank" rel="noopener" class="ev-card-btn">Info &#8594;</a></div></div>
+    </div>
+    <div class="ev-card" data-marque="triumph" data-country="uk" data-month="7">
+      <div class="ev-card-head"><div class="ev-card-date">Annual &#8212; Summer</div><div class="ev-card-name">Stag Owners Club Annual Rally</div><div class="ev-card-loc">&#128205; UK (varies) &#127468;&#127463;</div></div>
+      <div class="ev-card-body"><span class="ev-marque-tag mt-triumph" style="margin-bottom:8px;display:inline-block">Triumph Stag</span><div class="ev-card-desc">The definitive Triumph Stag gathering &#8212; concours, driving tour and parts autojumble.</div><div class="ev-card-foot"><span class="ev-card-price">See website</span><a href="https://www.stag.org.uk/events/" target="_blank" rel="noopener" class="ev-card-btn">Info &#8594;</a></div></div>
+    </div>
+    <div class="ev-card" data-marque="triumph" data-country="uk" data-month="8">
+      <div class="ev-card-head"><div class="ev-card-date">Year-round</div><div class="ev-card-name">Triumph World &#8212; TSSC Events</div><div class="ev-card-loc">&#128205; Various UK &#127468;&#127463;</div></div>
+      <div class="ev-card-body"><span class="ev-marque-tag mt-triumph" style="margin-bottom:8px;display:inline-block">Triumph</span><div class="ev-card-desc">The TSSC year-round events calendar for all Triumph models &#8212; the definitive source for UK Triumph events.</div><div class="ev-card-foot"><span class="ev-card-price">See website</span><a href="https://www.tssc.org.uk/events/" target="_blank" rel="noopener" class="ev-card-btn">View Events &#8594;</a></div></div>
+    </div>
+    <div class="ev-card" data-marque="both" data-country="uk" data-month="5">
+      <div class="ev-card-head"><div class="ev-card-date">Multiple dates 2026</div><div class="ev-card-name">Prescott Hill Climb</div><div class="ev-card-loc">&#128205; Gotherington &#127468;&#127463;</div></div>
+      <div class="ev-card-body"><span class="ev-marque-tag mt-triumph" style="margin-bottom:8px;display:inline-block">Triumph</span><span class="ev-marque-tag mt-healey" style="margin-bottom:8px;display:inline-block">Austin-Healey</span><div class="ev-card-desc">The Bugatti Owners Club&#8217;s famous hill climb &#8212; TR and Healey regulars compete throughout the season.</div><div class="ev-card-foot"><span class="ev-card-price">From &#163;15</span><a href="https://www.prescott-hillclimb.com" target="_blank" rel="noopener" class="ev-card-btn">Info &#8594;</a></div></div>
+    </div>
+    <div class="ev-card featured" data-marque="all" data-country="usa" data-month="3">
+      <div class="ev-card-head"><span class="ev-feat-badge">Featured</span><div class="ev-card-date">March 2026</div><div class="ev-card-name">Amelia Island Concours</div><div class="ev-card-loc">&#128205; Florida &#127482;&#127480;</div></div>
+      <div class="ev-card-body"><span class="ev-marque-tag mt-all" style="margin-bottom:8px;display:inline-block">All Marques</span><div class="ev-card-desc">One of the world&#8217;s premier concours &#8212; E-Types, Big Healeys and Triumph cars on oceanside fairways.</div><div class="ev-card-foot"><span class="ev-card-price">See website</span><a href="https://www.ameliaconcours.org" target="_blank" rel="noopener" class="ev-card-btn">Info &#8594;</a></div></div>
+    </div>
+    <div class="ev-card featured" data-marque="all" data-country="usa" data-month="8">
+      <div class="ev-card-head"><span class="ev-feat-badge">Featured</span><div class="ev-card-date">August 2026</div><div class="ev-card-name">Pebble Beach Concours</div><div class="ev-card-loc">&#128205; California &#127482;&#127480;</div></div>
+      <div class="ev-card-body"><span class="ev-marque-tag mt-all" style="margin-bottom:8px;display:inline-block">All Marques</span><div class="ev-card-desc">The world&#8217;s most prestigious concours at Pebble Beach Golf Links &#8212; Jaguar and Healey regularly featured.</div><div class="ev-card-foot"><span class="ev-card-price">See website</span><a href="https://www.pebblebeachconcours.net" target="_blank" rel="noopener" class="ev-card-btn">Info &#8594;</a></div></div>
+    </div>
+    <div class="ev-card" data-marque="triumph" data-country="usa" data-month="7">
+      <div class="ev-card-head"><div class="ev-card-date">Annual</div><div class="ev-card-name">VTR International</div><div class="ev-card-loc">&#128205; USA (rotates) &#127482;&#127480;</div></div>
+      <div class="ev-card-body"><span class="ev-marque-tag mt-triumph" style="margin-bottom:8px;display:inline-block">Triumph</span><div class="ev-card-desc">The Vintage Triumph Register&#8217;s national convention &#8212; premier North American Triumph gathering.</div><div class="ev-card-foot"><span class="ev-card-price">See website</span><a href="https://www.vintagetriumphregister.org/vtr-international" target="_blank" rel="noopener" class="ev-card-btn">Info &#8594;</a></div></div>
+    </div>
+    <div class="ev-card" data-marque="jaguar" data-country="usa" data-month="3">
+      <div class="ev-card-head"><div class="ev-card-date">Annual</div><div class="ev-card-name">JCNA Annual Symposium</div><div class="ev-card-loc">&#128205; USA (rotates) &#127482;&#127480;</div></div>
+      <div class="ev-card-body"><span class="ev-marque-tag mt-jaguar" style="margin-bottom:8px;display:inline-block">Jaguar</span><div class="ev-card-desc">Jaguar Clubs of North America&#8217;s national gathering &#8212; largest annual Jaguar event in the Americas.</div><div class="ev-card-foot"><span class="ev-card-price">See website</span><a href="https://www.jcna.com/events/" target="_blank" rel="noopener" class="ev-card-btn">Info &#8594;</a></div></div>
+    </div>
+    <div class="ev-card" data-marque="mg" data-country="usa" data-month="7">
+      <div class="ev-card-head"><div class="ev-card-date">Annual</div><div class="ev-card-name">MG 2026 &#8212; MGCCA Convention</div><div class="ev-card-loc">&#128205; USA &#127482;&#127480;</div></div>
+      <div class="ev-card-body"><span class="ev-marque-tag mt-mg" style="margin-bottom:8px;display:inline-block">MG</span><div class="ev-card-desc">The MG Car Club of America&#8217;s annual national convention &#8212; all MG models, concours and driving events.</div><div class="ev-card-foot"><span class="ev-card-price">See website</span><a href="https://www.mgcca.org/events/" target="_blank" rel="noopener" class="ev-card-btn">Info &#8594;</a></div></div>
+    </div>
+    <div class="ev-card" data-marque="all" data-country="usa" data-month="9">
+      <div class="ev-card-head"><div class="ev-card-date">Annual</div><div class="ev-card-name">Moss Motoring United</div><div class="ev-card-loc">&#128205; USA (varies) &#127482;&#127480;</div></div>
+      <div class="ev-card-body"><span class="ev-marque-tag mt-all" style="margin-bottom:8px;display:inline-block">All British</span><div class="ev-card-desc">Moss Motors&#8217; cross-marque gathering for MG, Triumph, Austin-Healey and British car enthusiasts.</div><div class="ev-card-foot"><span class="ev-card-price">See website</span><a href="https://www.mossmotoring.com" target="_blank" rel="noopener" class="ev-card-btn">Info &#8594;</a></div></div>
+    </div>
+    <div class="ev-card featured" data-marque="all" data-country="australia" data-month="10">
+      <div class="ev-card-head"><span class="ev-feat-badge">Featured</span><div class="ev-card-date">October 2026</div><div class="ev-card-name">Motorclassica</div><div class="ev-card-loc">&#128205; Melbourne &#127462;&#127482;</div></div>
+      <div class="ev-card-body"><span class="ev-marque-tag mt-all" style="margin-bottom:8px;display:inline-block">All Marques</span><div class="ev-card-desc">Australia&#8217;s premier classic car concours at the UNESCO World Heritage Royal Exhibition Building, Melbourne.</div><div class="ev-card-foot"><span class="ev-card-price">See website</span><a href="https://www.motorclassica.com.au" target="_blank" rel="noopener" class="ev-card-btn">Info &#8594;</a></div></div>
+    </div>
+    <div class="ev-card" data-marque="all" data-country="australia" data-month="11">
+      <div class="ev-card-head"><div class="ev-card-date">Annual</div><div class="ev-card-name">Brisbane Concours d&#8217;Elegance</div><div class="ev-card-loc">&#128205; Brisbane &#127462;&#127482;</div></div>
+      <div class="ev-card-body"><span class="ev-marque-tag mt-all" style="margin-bottom:8px;display:inline-block">All Marques</span><div class="ev-card-desc">Queensland&#8217;s premier classic car concours &#8212; strong British car presence in subtropical Brisbane.</div><div class="ev-card-foot"><span class="ev-card-price">See website</span><a href="https://www.brisbaneconcours.com.au" target="_blank" rel="noopener" class="ev-card-btn">Info &#8594;</a></div></div>
+    </div>
+    <div class="ev-card featured" data-marque="all" data-country="europe" data-month="4">
+      <div class="ev-card-head"><span class="ev-feat-badge">Featured</span><div class="ev-card-date">April 2026</div><div class="ev-card-name">Techno Classica Essen</div><div class="ev-card-loc">&#128205; Essen &#127465;&#127466;</div></div>
+      <div class="ev-card-body"><span class="ev-marque-tag mt-all" style="margin-bottom:8px;display:inline-block">All Marques</span><div class="ev-card-desc">Europe&#8217;s largest classic car trade show and auction &#8212; thousands of cars for sale at Messe Essen.</div><div class="ev-card-foot"><span class="ev-card-price">See website</span><a href="https://www.techno-classica.com" target="_blank" rel="noopener" class="ev-card-btn">Info &#8594;</a></div></div>
+    </div>
+    <div class="ev-card" data-marque="all" data-country="europe" data-month="7">
+      <div class="ev-card-head"><div class="ev-card-date">Summer 2026</div><div class="ev-card-name">Baden-Baden Concours</div><div class="ev-card-loc">&#128205; Baden-Baden &#127465;&#127466;</div></div>
+      <div class="ev-card-body"><span class="ev-marque-tag mt-jaguar" style="margin-bottom:8px;display:inline-block">Jaguar</span><span class="ev-marque-tag mt-healey" style="margin-bottom:8px;display:inline-block">Austin-Healey</span><div class="ev-card-desc">Prestigious German concours in elegant spa town Baden-Baden &#8212; strong Jaguar and British car presence.</div><div class="ev-card-foot"><span class="ev-card-price">See website</span><a href="https://www.meilenwerk.de" target="_blank" rel="noopener" class="ev-card-btn">Info &#8594;</a></div></div>
+    </div>
+    <div class="ev-card featured" data-marque="all" data-country="europe" data-month="7">
+      <div class="ev-card-head"><span class="ev-feat-badge">Featured</span><div class="ev-card-date">July 2026 (biennial)</div><div class="ev-card-name">Le Mans Classic</div><div class="ev-card-loc">&#128205; Le Mans &#127467;&#127479;</div></div>
+      <div class="ev-card-body"><span class="ev-marque-tag mt-all" style="margin-bottom:8px;display:inline-block">All Marques</span><div class="ev-card-desc">The world&#8217;s greatest historic race meeting &#8212; TR6, Austin-Healeys and E-Types race the full Circuit de la Sarthe by night.</div><div class="ev-card-foot"><span class="ev-card-price">See website</span><a href="https://www.lemansclassic.com" target="_blank" rel="noopener" class="ev-card-btn">Info &#8594;</a></div></div>
+    </div>
+
   </div>
 
   <div class="list-cta">
@@ -859,10 +1272,10 @@ function af(btn){
   let n=0;
   document.querySelectorAll('[data-marque]').forEach(el=>{
     const cok=flt.country==='all'||el.dataset.country===flt.country;
-    const mok=flt.marque==='all'||el.dataset.marque===flt.marque||el.dataset.marque==='both';
-    const rok=flt.region==='all'||el.dataset.region===flt.region;
+    const m=el.dataset.marque||'';
+    const mok=flt.marque==='all'||flt.marque==='british'||m==='all'||m==='both'||(flt.marque==='triumph'&&(m==='triumph'||m==='both'))||(flt.marque==='jaguar'&&(m==='jaguar'||m==='both'))||m.split(',').includes(flt.marque);
     const mok2=flt.month==='all'||el.dataset.month===flt.month;
-    const show=cok&&mok&&rok&&mok2;el.style.display=show?'':'none';if(show)n++;
+    const show=cok&&mok&&mok2;el.style.display=show?'':'none';if(show)n++;
   });
   document.getElementById('rc').textContent=n+' event'+(n!==1?'s':'');
 }
@@ -884,7 +1297,7 @@ function om(id){
       <a href="${ev.ticket_url+utm}" target="_blank" rel="noopener" class="modal-btn modal-btn-t">🎟 Get Tickets — ${ev.price}</a>
       <a href="${ev.info_url+utm}" target="_blank" rel="noopener" class="modal-btn modal-btn-i">More information →</a>
     </div>
-    <div class="modal-aff">${ev.affiliate_note==='awin'?'⟳ MarqueFile may earn a small commission from ticket purchases — at no cost to you.':'Direct link to the event organiser.'}</div>
+    <div class="modal-aff">${ev.affiliate_note==='awin'?'&#x27F3; MarqueFile may earn a small commission from ticket purchases &#8212; at no cost to you.':'Direct link to the event organiser.'}</div>
   `;
   document.getElementById('modal-bg').classList.add('open');document.body.style.overflow='hidden';
 }
