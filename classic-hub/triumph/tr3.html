@@ -95,6 +95,38 @@
   .sc-link{background:var(--green);color:#fff;padding:9px 18px;border-radius:4px;font-size:0.82rem;font-weight:600;white-space:nowrap;transition:background 0.2s;display:inline-block}
   .sc-link:hover{background:var(--green-light)}
   @media(max-width:600px){.hero-stats{gap:16px}.palette{grid-template-columns:repeat(2,1fr)}}
+
+/* ── MOBILE FIXES ── */
+@media(max-width:768px){
+  .site-nav.open{position:fixed;top:62px;left:0;right:0;bottom:0;overflow-y:auto;-webkit-overflow-scrolling:touch;z-index:199;background:var(--navy,#1a2332);flex-direction:column;padding:8px 0 40px}
+}
+@media(max-width:600px){
+  .marque-grid,.preview-grid,.ft-inner{grid-template-columns:1fr!important}
+  .ft-cols{grid-template-columns:1fr 1fr}
+  .trust-item{min-width:50%;border-right:none;border-bottom:1px solid var(--border,#e2ddd6)}
+  .trust-inner{flex-wrap:wrap}
+  .pairing-grid,.colour-grid{grid-template-columns:1fr!important}
+  .product-links{flex-direction:column}
+  .btn-buy,.btn-direct{width:100%;text-align:center;box-sizing:border-box}
+}
+@media(max-width:480px){
+  .hero h1{font-size:1.8rem!important}
+  .hero p{font-size:0.95rem}
+  .hero-eyebrow{font-size:0.68rem}
+  .hero-btns{flex-direction:column;align-items:center}
+  .hero-btns .btn{width:100%;max-width:280px;text-align:center}
+  .article-body{padding:32px 16px 60px}
+  .article-body h2{font-size:1.4rem}
+  .article-lede{font-size:1.1rem}
+  .section-title{font-size:1.6rem}
+  .ds-section{padding:32px 16px!important}
+  .ft-inner{grid-template-columns:1fr!important;gap:32px}
+  .ft-base{flex-direction:column;gap:4px}
+}
+.filter-bar,.pill-nav,.section-pills{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
+.filter-bar::-webkit-scrollbar,.pill-nav::-webkit-scrollbar{display:none}
+.table-wrap,.overflow-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
 </style></head><body>
 <header class="site-header">
   <div class="hdr-inner">
@@ -149,7 +181,7 @@
 <div class="page-body">
   <div class="data-section">
     <div class="ds-title">TR3 vs TR3A — what's the difference?</div>
-    <table class="dt">
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="dt">
       <thead><tr><th>Feature</th><th>TR3 (1955–1957)</th><th>TR3A (1957–1962)</th></tr></thead>
       <tbody>
         <tr><td>Units produced</td><td>~13,377</td><td>~58,236</td></tr>
@@ -160,7 +192,7 @@
         <tr><td>Cockpit</td><td>Narrower</td><td>Wider — more comfortable</td></tr>
         <tr><td>Brakes</td><td>Discs front (from TS13045)</td><td>Discs front standard</td></tr>
       </tbody>
-    </table>
+    </table></div>
     <div class="info" style="margin-top:16px">The TR3A designation is unofficial — Triumph called them all TR3. The term TR3A was adopted by enthusiasts to distinguish the wider-bodied, full-grille cars from 1957 onwards.</div>
   </div>
   <div class="data-section">
@@ -194,7 +226,7 @@
   </div>
   <div class="data-section">
     <div class="ds-title">What to look for when buying</div>
-    <table class="dt">
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="dt">
       <thead><tr><th>Area</th><th>What to check</th><th>Severity</th></tr></thead>
       <tbody>
         <tr><td>Chassis frame</td><td>Rot in the main chassis rails — welded box section rusts from inside</td><td style="color:#c0392b;font-weight:600">High</td></tr>
@@ -202,7 +234,7 @@
         <tr><td>Engine identity</td><td>Correct engine number for year — engine swaps common from TR4 era</td><td style="color:#e67e22;font-weight:600">Medium</td></tr>
         <tr><td>Gearbox</td><td>TR3A gearbox is robust — check for jumping out of 2nd gear</td><td style="color:#27ae60;font-weight:600">Lower</td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
   <div class="data-section">
     <div class="ds-title">Interior trim suppliers</div>
@@ -239,4 +271,16 @@
 </footer><script>
   const toggle=document.getElementById('nav-toggle'),nav=document.getElementById('site-nav');
   if(toggle&&nav)toggle.addEventListener('click',()=>nav.classList.toggle('open'));
-</script></body></html>
+</script>
+<script>
+/* Mobile nav close on link click */
+(function(){
+  var nav=document.querySelector('.site-nav');
+  if(!nav)return;
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){nav.classList.remove('open');});
+  });
+})();
+</script>
+
+</body></html>

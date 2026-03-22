@@ -110,6 +110,38 @@
   .approx-note{font-size:0.78rem;color:var(--grey);font-style:italic;margin-top:12px;line-height:1.6}
   .era-label{font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#2a2a5c;margin:16px 0 10px}
   .era-label:first-of-type{margin-top:0}
+
+/* ── MOBILE FIXES ── */
+@media(max-width:768px){
+  .site-nav.open{position:fixed;top:62px;left:0;right:0;bottom:0;overflow-y:auto;-webkit-overflow-scrolling:touch;z-index:199;background:var(--navy,#1a2332);flex-direction:column;padding:8px 0 40px}
+}
+@media(max-width:600px){
+  .marque-grid,.preview-grid,.ft-inner{grid-template-columns:1fr!important}
+  .ft-cols{grid-template-columns:1fr 1fr}
+  .trust-item{min-width:50%;border-right:none;border-bottom:1px solid var(--border,#e2ddd6)}
+  .trust-inner{flex-wrap:wrap}
+  .pairing-grid,.colour-grid{grid-template-columns:1fr!important}
+  .product-links{flex-direction:column}
+  .btn-buy,.btn-direct{width:100%;text-align:center;box-sizing:border-box}
+}
+@media(max-width:480px){
+  .hero h1{font-size:1.8rem!important}
+  .hero p{font-size:0.95rem}
+  .hero-eyebrow{font-size:0.68rem}
+  .hero-btns{flex-direction:column;align-items:center}
+  .hero-btns .btn{width:100%;max-width:280px;text-align:center}
+  .article-body{padding:32px 16px 60px}
+  .article-body h2{font-size:1.4rem}
+  .article-lede{font-size:1.1rem}
+  .section-title{font-size:1.6rem}
+  .ds-section{padding:32px 16px!important}
+  .ft-inner{grid-template-columns:1fr!important;gap:32px}
+  .ft-base{flex-direction:column;gap:4px}
+}
+.filter-bar,.pill-nav,.section-pills{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
+.filter-bar::-webkit-scrollbar,.pill-nav::-webkit-scrollbar{display:none}
+.table-wrap,.overflow-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
 </style>
 </head>
 <body>
@@ -217,7 +249,7 @@
 
   <div class="data-section">
     <div class="ds-title">Commission numbers &amp; production by series</div>
-    <table class="data-table">
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="data-table">
       <thead><tr><th>Series / Engine</th><th>Body</th><th>Commission No. Range</th><th>Built</th><th>Notes</th></tr></thead>
       <tbody>
         <tr><td><strong>S1 3.8L</strong> (1961–64)</td><td>OTS</td><td>850001+</td><td>7,828</td><td>First ~500 cars: flat floors, external bonnet latches. Three SU carbs. Most collectable.</td></tr>
@@ -229,7 +261,7 @@
         <tr><td><strong>S2</strong> (1968–71)</td><td>OTS/FHC/2+2</td><td>1R prefix (RHD)</td><td>~18,800</td><td>Open headlights, larger air intake, twin Strombergs (US). Power steering option.</td></tr>
         <tr><td><strong>S3 V12</strong> (1971–75)</td><td>OTS/2+2 only</td><td>1S prefix</td><td>~15,300</td><td>5.3L V12, 272bhp. Wider track, flared arches. No FHC offered. Power steering standard.</td></tr>
       </tbody>
-    </table>
+    </table></div>
     <p style="font-size:0.78rem;color:var(--grey);margin-top:8px">Total production: ~72,520 across all series and body styles. Source: JCNA model guide; Jaguar figures.</p>
   </div>
 
@@ -556,7 +588,7 @@
 
   <div class="data-section">
     <div class="ds-title">What to look for when buying</div>
-    <table class="data-table">
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="data-table">
       <thead><tr><th>Area</th><th>What to check</th><th>Severity</th></tr></thead>
       <tbody>
         <tr><td>Numbers matching</td><td>Body, engine and gearbox numbers — verify against Heritage Certificate</td><td style="color:#c0392b;font-weight:600">Critical</td></tr>
@@ -567,7 +599,7 @@
         <tr><td>Interior trim</td><td>Full leather retrim: £3,000–£6,000+. Check seat foam and door cards</td><td style="color:#e67e22;font-weight:600">Medium</td></tr>
         <tr><td>Chrome work</td><td>Re-chroming is expensive. Check bumpers, headlight surrounds, grille</td><td style="color:#27ae60;font-weight:600">Lower</td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <div class="data-section">
@@ -627,6 +659,18 @@
   if(toggle && nav) toggle.addEventListener('click', () => {
     nav.classList.toggle('open');
   });
+</script>
+
+
+<script>
+/* Mobile nav close on link click */
+(function(){
+  var nav=document.querySelector('.site-nav');
+  if(!nav)return;
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){nav.classList.remove('open');});
+  });
+})();
 </script>
 
 </body></html>

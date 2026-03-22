@@ -95,6 +95,38 @@
   .sc-link{background:var(--green);color:#fff;padding:9px 18px;border-radius:4px;font-size:0.82rem;font-weight:600;white-space:nowrap;transition:background 0.2s;display:inline-block}
   .sc-link:hover{background:var(--green-light)}
   @media(max-width:600px){.hero-stats{gap:16px}.palette{grid-template-columns:repeat(2,1fr)}}
+
+/* ── MOBILE FIXES ── */
+@media(max-width:768px){
+  .site-nav.open{position:fixed;top:62px;left:0;right:0;bottom:0;overflow-y:auto;-webkit-overflow-scrolling:touch;z-index:199;background:var(--navy,#1a2332);flex-direction:column;padding:8px 0 40px}
+}
+@media(max-width:600px){
+  .marque-grid,.preview-grid,.ft-inner{grid-template-columns:1fr!important}
+  .ft-cols{grid-template-columns:1fr 1fr}
+  .trust-item{min-width:50%;border-right:none;border-bottom:1px solid var(--border,#e2ddd6)}
+  .trust-inner{flex-wrap:wrap}
+  .pairing-grid,.colour-grid{grid-template-columns:1fr!important}
+  .product-links{flex-direction:column}
+  .btn-buy,.btn-direct{width:100%;text-align:center;box-sizing:border-box}
+}
+@media(max-width:480px){
+  .hero h1{font-size:1.8rem!important}
+  .hero p{font-size:0.95rem}
+  .hero-eyebrow{font-size:0.68rem}
+  .hero-btns{flex-direction:column;align-items:center}
+  .hero-btns .btn{width:100%;max-width:280px;text-align:center}
+  .article-body{padding:32px 16px 60px}
+  .article-body h2{font-size:1.4rem}
+  .article-lede{font-size:1.1rem}
+  .section-title{font-size:1.6rem}
+  .ds-section{padding:32px 16px!important}
+  .ft-inner{grid-template-columns:1fr!important;gap:32px}
+  .ft-base{flex-direction:column;gap:4px}
+}
+.filter-bar,.pill-nav,.section-pills{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
+.filter-bar::-webkit-scrollbar,.pill-nav::-webkit-scrollbar{display:none}
+.table-wrap,.overflow-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
 </style></head><body>
 <header class="site-header">
   <div class="hdr-inner">
@@ -150,7 +182,7 @@
   <div class="data-section">
     <div class="ds-title">TR4 vs TR4A</div>
     <p style="font-size:0.95rem;color:var(--grey);line-height:1.7;margin-bottom:16px">The TR4 was a revolution in TR design — styled by Giovanni Michelotti, it brought wind-up windows, a proper cockpit and rack-and-pinion steering to the TR line. The TR4A (1965–1967) added independent rear suspension as an option (IRS cars are identifiable by their wider rear track) and the famous Surrey Top — a removable centre roof panel that anticipates the modern targa.</p>
-    <table class="dt">
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="dt">
       <thead><tr><th>Feature</th><th>TR4 (1961–1965)</th><th>TR4A (1965–1967)</th></tr></thead>
       <tbody>
         <tr><td>Units produced</td><td>40,253</td><td>28,465</td></tr>
@@ -160,7 +192,7 @@
         <tr><td>Top</td><td>Soft top only</td><td>Surrey Top option (removable centre)</td></tr>
         <tr><td>Engine</td><td>2138cc 105bhp</td><td>2138cc 104bhp (slightly detuned for emissions)</td></tr>
       </tbody>
-    </table>
+    </table></div>
     <div class="info" style="margin-top:16px">⚡ <strong>IRS vs live axle TR4A:</strong> IRS cars are often preferred for road use. Live axle TR4As are easier to maintain and preferred for competition. Both are equally original.</div>
   </div>
   <div class="data-section">
@@ -228,4 +260,16 @@
 </footer><script>
   const toggle=document.getElementById('nav-toggle'),nav=document.getElementById('site-nav');
   if(toggle&&nav)toggle.addEventListener('click',()=>nav.classList.toggle('open'));
-</script></body></html>
+</script>
+<script>
+/* Mobile nav close on link click */
+(function(){
+  var nav=document.querySelector('.site-nav');
+  if(!nav)return;
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){nav.classList.remove('open');});
+  });
+})();
+</script>
+
+</body></html>

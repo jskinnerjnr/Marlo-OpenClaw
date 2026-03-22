@@ -68,6 +68,38 @@
   .int-mat{font-size:0.7rem;color:var(--grey)}
   @media(max-width:768px){.hero-stats{gap:20px}}
   .page-hero{background:linear-gradient(135deg,#1a1a2a,#2a2a4a)}
+
+/* ── MOBILE FIXES ── */
+@media(max-width:768px){
+  .site-nav.open{position:fixed;top:62px;left:0;right:0;bottom:0;overflow-y:auto;-webkit-overflow-scrolling:touch;z-index:199;background:var(--navy,#1a2332);flex-direction:column;padding:8px 0 40px}
+}
+@media(max-width:600px){
+  .marque-grid,.preview-grid,.ft-inner{grid-template-columns:1fr!important}
+  .ft-cols{grid-template-columns:1fr 1fr}
+  .trust-item{min-width:50%;border-right:none;border-bottom:1px solid var(--border,#e2ddd6)}
+  .trust-inner{flex-wrap:wrap}
+  .pairing-grid,.colour-grid{grid-template-columns:1fr!important}
+  .product-links{flex-direction:column}
+  .btn-buy,.btn-direct{width:100%;text-align:center;box-sizing:border-box}
+}
+@media(max-width:480px){
+  .hero h1{font-size:1.8rem!important}
+  .hero p{font-size:0.95rem}
+  .hero-eyebrow{font-size:0.68rem}
+  .hero-btns{flex-direction:column;align-items:center}
+  .hero-btns .btn{width:100%;max-width:280px;text-align:center}
+  .article-body{padding:32px 16px 60px}
+  .article-body h2{font-size:1.4rem}
+  .article-lede{font-size:1.1rem}
+  .section-title{font-size:1.6rem}
+  .ds-section{padding:32px 16px!important}
+  .ft-inner{grid-template-columns:1fr!important;gap:32px}
+  .ft-base{flex-direction:column;gap:4px}
+}
+.filter-bar,.pill-nav,.section-pills{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
+.filter-bar::-webkit-scrollbar,.pill-nav::-webkit-scrollbar{display:none}
+.table-wrap,.overflow-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
 </style></head><body>
 <header class="site-header">
   <div class="hdr-inner">
@@ -111,26 +143,26 @@
 
   <div class="data-section">
     <div class="ds-title">Body styles</div>
-    <table class="data-table">
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="data-table">
       <thead><tr><th>Style</th><th>Years</th><th>Notes</th></tr></thead>
       <tbody>
         <tr><td><strong>2-door coupe</strong></td><td>1975–1996</td><td>Throughout the production run. The definitive XJ-S shape.</td></tr>
         <tr><td><strong>XJ-SC targa</strong></td><td>1983–1988</td><td>5,013 built. NOT a full convertible — fixed cant rails and fixed rear quarter windows. Targa-style removable roof panels only.</td></tr>
         <tr><td><strong>Full convertible</strong></td><td>1988–1996</td><td>Immediately popular. Proper folding hood with wind-up windows. Available in V12 and AJ6.</td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <div class="data-section">
     <div class="ds-title">Variants by era</div>
-    <table class="data-table">
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="data-table">
       <thead><tr><th>Era</th><th>Years</th><th>Built</th><th>Key details</th></tr></thead>
       <tbody>
         <tr><td><strong>Pre-HE</strong></td><td>1975–1981</td><td>14,800</td><td>5.3L V12, 285bhp. BorgWarner auto (early), GM TH400 (later). 0–60 7.6s, 143mph. Launched in oil crisis — worst timing. Poor economy, complex electrics. Production halted 6 months in 1981.</td></tr>
         <tr><td><strong>H.E. (High Efficiency)</strong></td><td>1981–1991</td><td>73,207</td><td>Michael May "Fireball" combustion chambers: 295bhp, dramatically better fuel economy. "Starfish" alloy wheels. Burled elm interior. 3.6L AJ6 I6 added 1983 (225bhp, 5-speed Getrag manual). Full convertible from 1988.</td></tr>
         <tr><td><strong>XJS (Ford era)</strong></td><td>1991–1996</td><td>~27,000</td><td>4.0L AJ6 (improved), 6.0L V12 (308bhp from 1993). Ford acquisition improved build quality. Hyphen dropped from name. Some character lost.</td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <div class="data-section">
@@ -140,7 +172,7 @@
 
   <div class="data-section">
     <div class="ds-title">What to look for when buying</div>
-    <table class="data-table">
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="data-table">
       <thead><tr><th>Area</th><th>What to check</th><th>Severity</th></tr></thead>
       <tbody>
         <tr><td>Pre-HE: avoid unless sorted</td><td>Pre-1981 V12 cars have complex, unreliable fuel systems. Buy only with full documented restoration.</td><td style="color:#c0392b;font-weight:600">Critical</td></tr>
@@ -151,7 +183,7 @@
         <tr><td>Convertible roof mechanism</td><td>Convertible roof mechanisms seize and fail. Check full operation before purchase.</td><td style="color:#e67e22;font-weight:600">Medium (conv. only)</td></tr>
         <tr><td>Electrical systems (pre-Ford)</td><td>Pre-Ford era cars have complex, aged electrical systems. Budget for professional attention.</td><td style="color:#e67e22;font-weight:600">Medium</td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <div class="data-section">
@@ -462,4 +494,16 @@
   const toggle=document.getElementById('nav-toggle'),nav=document.getElementById('site-nav');
   if(toggle&&nav)toggle.addEventListener('click',()=>nav.classList.toggle('open'));
 </script>
+
+<script>
+/* Mobile nav close on link click */
+(function(){
+  var nav=document.querySelector('.site-nav');
+  if(!nav)return;
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){nav.classList.remove('open');});
+  });
+})();
+</script>
+
 </body></html>

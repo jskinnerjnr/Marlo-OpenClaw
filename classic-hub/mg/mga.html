@@ -69,6 +69,38 @@
   .int-mat{font-size:0.7rem;color:var(--grey)}
   @media(max-width:768px){.hero-stats{gap:20px}}
   .page-hero{background:linear-gradient(135deg,#5a0a0a,#8a1a1a)}
+
+/* ── MOBILE FIXES ── */
+@media(max-width:768px){
+  .site-nav.open{position:fixed;top:62px;left:0;right:0;bottom:0;overflow-y:auto;-webkit-overflow-scrolling:touch;z-index:199;background:var(--navy,#1a2332);flex-direction:column;padding:8px 0 40px}
+}
+@media(max-width:600px){
+  .marque-grid,.preview-grid,.ft-inner{grid-template-columns:1fr!important}
+  .ft-cols{grid-template-columns:1fr 1fr}
+  .trust-item{min-width:50%;border-right:none;border-bottom:1px solid var(--border,#e2ddd6)}
+  .trust-inner{flex-wrap:wrap}
+  .pairing-grid,.colour-grid{grid-template-columns:1fr!important}
+  .product-links{flex-direction:column}
+  .btn-buy,.btn-direct{width:100%;text-align:center;box-sizing:border-box}
+}
+@media(max-width:480px){
+  .hero h1{font-size:1.8rem!important}
+  .hero p{font-size:0.95rem}
+  .hero-eyebrow{font-size:0.68rem}
+  .hero-btns{flex-direction:column;align-items:center}
+  .hero-btns .btn{width:100%;max-width:280px;text-align:center}
+  .article-body{padding:32px 16px 60px}
+  .article-body h2{font-size:1.4rem}
+  .article-lede{font-size:1.1rem}
+  .section-title{font-size:1.6rem}
+  .ds-section{padding:32px 16px!important}
+  .ft-inner{grid-template-columns:1fr!important;gap:32px}
+  .ft-base{flex-direction:column;gap:4px}
+}
+.filter-bar,.pill-nav,.section-pills{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
+.filter-bar::-webkit-scrollbar,.pill-nav::-webkit-scrollbar{display:none}
+.table-wrap,.overflow-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
 </style></head><body>
 <header class="site-header">
   <div class="hdr-inner">
@@ -112,7 +144,7 @@
 
   <div class="data-section">
     <div class="ds-title">Variants</div>
-    <table class="data-table">
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="data-table">
       <thead><tr><th>Variant</th><th>Years</th><th>Built</th><th>Key details</th></tr></thead>
       <tbody>
         <tr><td><strong>1500</strong></td><td>1955–1959</td><td>58,750</td><td>1489cc B-Series I4, 68bhp (72bhp later). Twin H4 SU carbs. Drum brakes all round. Roadster + Fixed Head Coupe (FHC). 0–60 16s, 98mph.</td></tr>
@@ -120,13 +152,13 @@
         <tr><td><strong>1600</strong></td><td>1959–1961</td><td>31,501</td><td>1588cc, 79.5bhp. Front disc brakes added as standard. Significantly improved stopping.</td></tr>
         <tr><td><strong>1600 Mk2</strong></td><td>1961–1962</td><td>8,719</td><td>1622cc, 90bhp. Inset grille. Morris Mini-style tail lamps. 4:1 rear axle ratio. The most powerful pushrod MGA.</td></tr>
       </tbody>
-    </table>
+    </table></div>
     <div class="alert-box" style="margin-top:12px">&#9888; <strong>Twin Cam warning:</strong> The MGA Twin Cam suffered from piston burning, excessive oil consumption and engine damage in period. The problem is now understood and fixable by specialists — but a neglected Twin Cam can self-destruct expensively. Only buy with full engine rebuild history or have one done immediately.</div>
   </div>
 
   <div class="data-section">
     <div class="ds-title">What to look for when buying</div>
-    <table class="data-table">
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="data-table">
       <thead><tr><th>Area</th><th>What to check</th><th>Severity</th></tr></thead>
       <tbody>
         <tr><td>Sills &amp; floor</td><td>MGA sills rust badly — structural rot is common. Check inner and outer.</td><td style="color:#c0392b;font-weight:600">High</td></tr>
@@ -137,7 +169,7 @@
         <tr><td>Front trunnions</td><td>Front suspension trunnion wear causes vague steering — check and replace if needed.</td><td style="color:#e67e22;font-weight:600">Medium</td></tr>
         <tr><td>1st gear synchro</td><td>1st gear synchromesh fails on high-mileage cars — check for crunch engaging 1st.</td><td style="color:#27ae60;font-weight:600">Lower</td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <div class="data-section">
@@ -349,4 +381,16 @@
   const toggle=document.getElementById('nav-toggle'),nav=document.getElementById('site-nav');
   if(toggle&&nav)toggle.addEventListener('click',()=>nav.classList.toggle('open'));
 </script>
+
+<script>
+/* Mobile nav close on link click */
+(function(){
+  var nav=document.querySelector('.site-nav');
+  if(!nav)return;
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){nav.classList.remove('open');});
+  });
+})();
+</script>
+
 </body></html>

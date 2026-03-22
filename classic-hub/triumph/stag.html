@@ -68,6 +68,38 @@
   .int-mat{font-size:0.7rem;color:var(--grey)}
   @media(max-width:768px){.hero-stats{gap:20px}}
   .page-hero{background:linear-gradient(135deg,#1a3a2a,#2a5c3f)}
+
+/* ── MOBILE FIXES ── */
+@media(max-width:768px){
+  .site-nav.open{position:fixed;top:62px;left:0;right:0;bottom:0;overflow-y:auto;-webkit-overflow-scrolling:touch;z-index:199;background:var(--navy,#1a2332);flex-direction:column;padding:8px 0 40px}
+}
+@media(max-width:600px){
+  .marque-grid,.preview-grid,.ft-inner{grid-template-columns:1fr!important}
+  .ft-cols{grid-template-columns:1fr 1fr}
+  .trust-item{min-width:50%;border-right:none;border-bottom:1px solid var(--border,#e2ddd6)}
+  .trust-inner{flex-wrap:wrap}
+  .pairing-grid,.colour-grid{grid-template-columns:1fr!important}
+  .product-links{flex-direction:column}
+  .btn-buy,.btn-direct{width:100%;text-align:center;box-sizing:border-box}
+}
+@media(max-width:480px){
+  .hero h1{font-size:1.8rem!important}
+  .hero p{font-size:0.95rem}
+  .hero-eyebrow{font-size:0.68rem}
+  .hero-btns{flex-direction:column;align-items:center}
+  .hero-btns .btn{width:100%;max-width:280px;text-align:center}
+  .article-body{padding:32px 16px 60px}
+  .article-body h2{font-size:1.4rem}
+  .article-lede{font-size:1.1rem}
+  .section-title{font-size:1.6rem}
+  .ds-section{padding:32px 16px!important}
+  .ft-inner{grid-template-columns:1fr!important;gap:32px}
+  .ft-base{flex-direction:column;gap:4px}
+}
+.filter-bar,.pill-nav,.section-pills{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
+.filter-bar::-webkit-scrollbar,.pill-nav::-webkit-scrollbar{display:none}
+.table-wrap,.overflow-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
 </style></head><body>
 <header class="site-header">
   <div class="hdr-inner">
@@ -112,20 +144,20 @@
   <div class="data-section">
     <div class="ds-title">The Reliability Issue — explained</div>
     <p style="font-size:0.9rem;color:var(--grey);line-height:1.7;margin-bottom:16px">The Triumph V8's reputation was damaged by three specific engineering issues, all of which are now well understood:</p>
-    <table class="data-table">
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="data-table">
       <thead><tr><th>Issue</th><th>Cause</th><th>Consequence</th></tr></thead>
       <tbody>
         <tr><td><strong>1. Water pump position</strong></td><td>The pump is positioned unusually high in the cooling circuit — a legacy of shared machining tooling with the Saab 99 slant-four. If coolant drops below the pump level, circulation stops.</td><td>No circulation = rapid overheating. Happens before the temperature gauge registers the problem.</td></tr>
         <tr><td><strong>2. Iron block, alloy heads</strong></td><td>Dissimilar metals in the cooling system cause electrolytic corrosion without year-round inhibitor. White sludge (aluminium oxide) blocks the radiator and galleries silently.</td><td>Blocked cooling, head gasket failure, head damage. The "white death" of neglected Stags.</td></tr>
         <tr><td><strong>3. Timing chain</strong></td><td>Long simplex roller timing chains were prone to failure under 25,000 miles on early cars. A stretched or failed chain causes catastrophic engine damage.</td><td>Many engines were destroyed. Listen for rattle on cold start — the first warning sign.</td></tr>
       </tbody>
-    </table>
+    </table></div>
     <div class="info-box" style="margin-top:16px">&#9432; <strong>The solution:</strong> Year-round antifreeze/inhibitor at correct concentration, regular coolant changes, timing chain replacement at recommended intervals, and careful temperature monitoring. Owners who follow this regime have trouble-free engines. Many Rover V8 swaps exist — a V8 Stag is more reliable but less original and commands a lower value.</div>
   </div>
 
   <div class="data-section">
     <div class="ds-title">What to look for when buying</div>
-    <table class="data-table">
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="data-table">
       <thead><tr><th>Area</th><th>What to check</th><th>Severity</th></tr></thead>
       <tbody>
         <tr><td>Engine: original V8?</td><td>Confirm it's the Triumph V8, not a Rover V8 swap. Check VIN plate and engine number.</td><td style="color:#c0392b;font-weight:600">Critical</td></tr>
@@ -136,7 +168,7 @@
         <tr><td>T-bar rust</td><td>The structural T-bar corrodes — expensive to repair. Check carefully.</td><td style="color:#e67e22;font-weight:600">Medium</td></tr>
         <tr><td>Hardtop condition</td><td>Hardtops are desirable and increasingly rare. Check for cracks and fit.</td><td style="color:#27ae60;font-weight:600">Lower</td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <div class="data-section">
@@ -243,4 +275,16 @@
   const toggle=document.getElementById('nav-toggle'),nav=document.getElementById('site-nav');
   if(toggle&&nav)toggle.addEventListener('click',()=>nav.classList.toggle('open'));
 </script>
+
+<script>
+/* Mobile nav close on link click */
+(function(){
+  var nav=document.querySelector('.site-nav');
+  if(!nav)return;
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){nav.classList.remove('open');});
+  });
+})();
+</script>
+
 </body></html>

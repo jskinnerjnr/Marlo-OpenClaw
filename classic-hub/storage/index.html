@@ -38,6 +38,38 @@ footer{background:#111;border-top:3px solid var(--green);padding:52px 24px 28px;
 .sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
 .sc{background:#fff;border:1px solid #e2ddd6;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow 0.2s,transform 0.2s}
 .sc:hover{box-shadow:0 4px 16px rgba(0,0,0,0.09);transform:translateY(-2px)}
+
+/* ── MOBILE FIXES ── */
+@media(max-width:768px){
+  .site-nav.open{position:fixed;top:62px;left:0;right:0;bottom:0;overflow-y:auto;-webkit-overflow-scrolling:touch;z-index:199;background:var(--navy,#1a2332);flex-direction:column;padding:8px 0 40px}
+}
+@media(max-width:600px){
+  .marque-grid,.preview-grid,.ft-inner{grid-template-columns:1fr!important}
+  .ft-cols{grid-template-columns:1fr 1fr}
+  .trust-item{min-width:50%;border-right:none;border-bottom:1px solid var(--border,#e2ddd6)}
+  .trust-inner{flex-wrap:wrap}
+  .pairing-grid,.colour-grid{grid-template-columns:1fr!important}
+  .product-links{flex-direction:column}
+  .btn-buy,.btn-direct{width:100%;text-align:center;box-sizing:border-box}
+}
+@media(max-width:480px){
+  .hero h1{font-size:1.8rem!important}
+  .hero p{font-size:0.95rem}
+  .hero-eyebrow{font-size:0.68rem}
+  .hero-btns{flex-direction:column;align-items:center}
+  .hero-btns .btn{width:100%;max-width:280px;text-align:center}
+  .article-body{padding:32px 16px 60px}
+  .article-body h2{font-size:1.4rem}
+  .article-lede{font-size:1.1rem}
+  .section-title{font-size:1.6rem}
+  .ds-section{padding:32px 16px!important}
+  .ft-inner{grid-template-columns:1fr!important;gap:32px}
+  .ft-base{flex-direction:column;gap:4px}
+}
+.filter-bar,.pill-nav,.section-pills{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
+.filter-bar::-webkit-scrollbar,.pill-nav::-webkit-scrollbar{display:none}
+.table-wrap,.overflow-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
 </style></head><body>
 <header class="site-header">
   <div class="hdr-inner">
@@ -501,4 +533,16 @@ footer{background:#111;border-top:3px solid var(--green);padding:52px 24px 28px;
   function fs(b){document.querySelectorAll('[data-sc]').forEach(x=>x.classList.remove('active'));b.classList.add('active');ac=b.dataset.sc;run();}
   function ft(b){document.querySelectorAll('[data-st]').forEach(x=>x.classList.remove('active'));b.classList.add('active');at=b.dataset.st;run();}
   function run(){let n=0;document.querySelectorAll('.sc').forEach(c=>{const ok=(ac==='all'||c.dataset.country===ac)&&(at==='all'||c.dataset.tier===at);c.style.display=ok?'flex':'none';if(ok)n++;});document.getElementById('sc').textContent=n+' facilit'+(n===1?'y':'ies')+' shown';}
-</script></body></html>
+</script>
+<script>
+/* Mobile nav close on link click */
+(function(){
+  var nav=document.querySelector('.site-nav');
+  if(!nav)return;
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){nav.classList.remove('open');});
+  });
+})();
+</script>
+
+</body></html>

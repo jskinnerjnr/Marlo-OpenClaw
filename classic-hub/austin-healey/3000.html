@@ -69,6 +69,38 @@
   .int-mat{font-size:0.7rem;color:var(--grey)}
   @media(max-width:768px){.hero-stats{gap:20px}}
 .page-hero{background:linear-gradient(135deg,#1a2a3a,#2a4a6a)}
+
+/* ── MOBILE FIXES ── */
+@media(max-width:768px){
+  .site-nav.open{position:fixed;top:62px;left:0;right:0;bottom:0;overflow-y:auto;-webkit-overflow-scrolling:touch;z-index:199;background:var(--navy,#1a2332);flex-direction:column;padding:8px 0 40px}
+}
+@media(max-width:600px){
+  .marque-grid,.preview-grid,.ft-inner{grid-template-columns:1fr!important}
+  .ft-cols{grid-template-columns:1fr 1fr}
+  .trust-item{min-width:50%;border-right:none;border-bottom:1px solid var(--border,#e2ddd6)}
+  .trust-inner{flex-wrap:wrap}
+  .pairing-grid,.colour-grid{grid-template-columns:1fr!important}
+  .product-links{flex-direction:column}
+  .btn-buy,.btn-direct{width:100%;text-align:center;box-sizing:border-box}
+}
+@media(max-width:480px){
+  .hero h1{font-size:1.8rem!important}
+  .hero p{font-size:0.95rem}
+  .hero-eyebrow{font-size:0.68rem}
+  .hero-btns{flex-direction:column;align-items:center}
+  .hero-btns .btn{width:100%;max-width:280px;text-align:center}
+  .article-body{padding:32px 16px 60px}
+  .article-body h2{font-size:1.4rem}
+  .article-lede{font-size:1.1rem}
+  .section-title{font-size:1.6rem}
+  .ds-section{padding:32px 16px!important}
+  .ft-inner{grid-template-columns:1fr!important;gap:32px}
+  .ft-base{flex-direction:column;gap:4px}
+}
+.filter-bar,.pill-nav,.section-pills{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
+.filter-bar::-webkit-scrollbar,.pill-nav::-webkit-scrollbar{display:none}
+.table-wrap,.overflow-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
 </style></head><body>
 <header class="site-header">
   <div class="hdr-inner">
@@ -112,7 +144,7 @@
 
   <div class="data-section">
     <div class="ds-title">Variants</div>
-    <table class="data-table">
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="data-table">
       <thead><tr><th>Variant</th><th>Years</th><th>Built</th><th>Key details</th></tr></thead>
       <tbody>
         <tr><td><strong>Mk1 BN7</strong> (2-seat)</td><td>1959–1961</td><td>2,825</td><td>2912cc BMC C-Series I6, 124bhp. Sidescreens. 115mph. 0–60 11.7s. Twin SU carbs.</td></tr>
@@ -122,12 +154,12 @@
         <tr><td><strong>Mk2 BJ7</strong></td><td>1962–1964</td><td>6,113</td><td>Major comfort upgrade: wind-up windows and curved wrap-around windscreen. Softer, more civilised.</td></tr>
         <tr><td><strong>Mk3 BJ8</strong></td><td>1964–1967</td><td>17,712</td><td>148bhp. Servo-assisted brakes standard. Phase 1 to early 1965; Phase 2 from late 1965 with walnut dashboard — the most desirable specification.</td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <div class="data-section">
     <div class="ds-title">What to look for when buying</div>
-    <table class="data-table">
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="data-table">
       <thead><tr><th>Area</th><th>What to check</th><th>Severity</th></tr></thead>
       <tbody>
         <tr><td>A-posts &amp; sills</td><td>Structural rust — the A-posts and sills are critical. Probe carefully for filler and hidden rot.</td><td style="color:#c0392b;font-weight:600">High</td></tr>
@@ -140,7 +172,7 @@
         <tr><td>Brake servo (Mk3)</td><td>Mk3 servo-assisted brakes — check servo function and pipe condition.</td><td style="color:#27ae60;font-weight:600">Lower</td></tr>
         <tr><td>Laycock overdrive</td><td>Check all overdrive positions engage — solenoid failures common.</td><td style="color:#27ae60;font-weight:600">Lower</td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <!-- BODY COLOURS -->
@@ -362,4 +394,16 @@
   const toggle=document.getElementById('nav-toggle'),nav=document.getElementById('site-nav');
   if(toggle&&nav)toggle.addEventListener('click',()=>nav.classList.toggle('open'));
 </script>
+
+<script>
+/* Mobile nav close on link click */
+(function(){
+  var nav=document.querySelector('.site-nav');
+  if(!nav)return;
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){nav.classList.remove('open');});
+  });
+})();
+</script>
+
 </body></html>

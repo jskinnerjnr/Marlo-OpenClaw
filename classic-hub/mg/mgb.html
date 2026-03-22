@@ -69,6 +69,38 @@
   .int-mat{font-size:0.7rem;color:var(--grey)}
   @media(max-width:768px){.hero-stats{gap:20px}}
   .page-hero{background:linear-gradient(135deg,#5a0a0a,#8a1a1a)}
+
+/* ── MOBILE FIXES ── */
+@media(max-width:768px){
+  .site-nav.open{position:fixed;top:62px;left:0;right:0;bottom:0;overflow-y:auto;-webkit-overflow-scrolling:touch;z-index:199;background:var(--navy,#1a2332);flex-direction:column;padding:8px 0 40px}
+}
+@media(max-width:600px){
+  .marque-grid,.preview-grid,.ft-inner{grid-template-columns:1fr!important}
+  .ft-cols{grid-template-columns:1fr 1fr}
+  .trust-item{min-width:50%;border-right:none;border-bottom:1px solid var(--border,#e2ddd6)}
+  .trust-inner{flex-wrap:wrap}
+  .pairing-grid,.colour-grid{grid-template-columns:1fr!important}
+  .product-links{flex-direction:column}
+  .btn-buy,.btn-direct{width:100%;text-align:center;box-sizing:border-box}
+}
+@media(max-width:480px){
+  .hero h1{font-size:1.8rem!important}
+  .hero p{font-size:0.95rem}
+  .hero-eyebrow{font-size:0.68rem}
+  .hero-btns{flex-direction:column;align-items:center}
+  .hero-btns .btn{width:100%;max-width:280px;text-align:center}
+  .article-body{padding:32px 16px 60px}
+  .article-body h2{font-size:1.4rem}
+  .article-lede{font-size:1.1rem}
+  .section-title{font-size:1.6rem}
+  .ds-section{padding:32px 16px!important}
+  .ft-inner{grid-template-columns:1fr!important;gap:32px}
+  .ft-base{flex-direction:column;gap:4px}
+}
+.filter-bar,.pill-nav,.section-pills{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
+.filter-bar::-webkit-scrollbar,.pill-nav::-webkit-scrollbar{display:none}
+.table-wrap,.overflow-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
 </style></head><body>
 <header class="site-header">
   <div class="hdr-inner">
@@ -112,7 +144,7 @@
 
   <div class="data-section">
     <div class="ds-title">Variants</div>
-    <table class="data-table">
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="data-table">
       <thead><tr><th>Variant</th><th>Years</th><th>Built</th><th>Key details</th></tr></thead>
       <tbody>
         <tr><td><strong>MGB Roadster — Chrome bumper</strong></td><td>1962–1974</td><td>~280,000</td><td>1798cc B-Series, 95bhp. 3-bearing crank to 1964, 5-bearing from Oct 1964. Twin 1.5" SU carbs. Non-synchro 1st to 1968; full synchro 1968+. 0–60 ~11s, 105mph.</td></tr>
@@ -122,12 +154,12 @@
         <tr><td><strong>MGB GT V8</strong></td><td>1973–1976</td><td>2,591</td><td>3528cc Rover V8, 137bhp. 0–60 under 8s, 125mph+. UK market only. Factory alloy wheels. Check engine provenance — Rover V8 swaps exist.</td></tr>
         <tr><td><strong>MG RV8</strong></td><td>1992–1995</td><td>2,000</td><td>Rover nostalgia project. Under 5% parts commonality with original MGB. 3.9L Rover V8, 190bhp. Majority exported to Japan.</td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <div class="data-section">
     <div class="ds-title">What to look for when buying</div>
-    <table class="data-table">
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="data-table">
       <thead><tr><th>Area</th><th>What to check</th><th>Severity</th></tr></thead>
       <tbody>
         <tr><td>Sills (inner &amp; outer)</td><td>The MGB sills rot from both sides simultaneously. The inner sill is structural. Probe carefully — filler and paint hide extensive rot.</td><td style="color:#c0392b;font-weight:600">High</td></tr>
@@ -139,7 +171,7 @@
         <tr><td>Brake servo (later cars)</td><td>Later cars have servo brakes — check function and pipe condition.</td><td style="color:#27ae60;font-weight:600">Lower</td></tr>
         <tr><td>MGC torsion bars</td><td>MGC-specific: check front torsion bar condition and suspension geometry.</td><td style="color:#e67e22;font-weight:600">Medium (MGC only)</td></tr>
       </tbody>
-    </table>
+    </table></div>
     <div class="alert-box" style="margin-top:12px">&#9888; <strong>Rubber bumper cars:</strong> Many have been lowered back to chrome bumper ride height — desirable, but only if done correctly. Always check suspension geometry has been properly reset. Incorrect lowering affects handling and safety.</div>
   </div>
 
@@ -149,7 +181,7 @@
 
     <div style="overflow-x:auto;margin-bottom:28px">
       <p style="font-size:0.8rem;font-weight:600;color:var(--text);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.06em">Early chrome bumper era (1962&ndash;1967) &mdash; BMC codes</p>
-      <table style="width:100%;border-collapse:collapse;font-size:0.85rem;margin-bottom:8px">
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table style="width:100%;border-collapse:collapse;font-size:0.85rem;margin-bottom:8px">
         <thead>
           <tr style="background:#1c1c1c;color:#fff">
             <th style="padding:10px 14px;text-align:left">Colour</th>
@@ -203,10 +235,10 @@
             <td style="padding:10px 14px;font-size:0.82rem;color:#6b6b6b">Mid-tone blue. Early chrome bumper era only.</td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
 
       <p style="font-size:0.8rem;font-weight:600;color:var(--text);margin-bottom:8px;margin-top:24px;text-transform:uppercase;letter-spacing:0.06em">Later chrome bumper era (1968&ndash;1974) &mdash; BLVC codes</p>
-      <table style="width:100%;border-collapse:collapse;font-size:0.85rem;margin-bottom:8px">
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table style="width:100%;border-collapse:collapse;font-size:0.85rem;margin-bottom:8px">
         <thead>
           <tr style="background:#1c1c1c;color:#fff">
             <th style="padding:10px 14px;text-align:left">Colour</th>
@@ -302,10 +334,10 @@
             <td style="padding:10px 14px;font-size:0.82rem;color:#6b6b6b">Deeper golden yellow. BLVC code not confirmed from primary sources.</td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
 
       <p style="font-size:0.8rem;font-weight:600;color:var(--text);margin-bottom:8px;margin-top:24px;text-transform:uppercase;letter-spacing:0.06em">Rubber bumper era (1974.5&ndash;1980) &mdash; BLVC codes</p>
-      <table style="width:100%;border-collapse:collapse;font-size:0.85rem;margin-bottom:8px">
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table style="width:100%;border-collapse:collapse;font-size:0.85rem;margin-bottom:8px">
         <thead>
           <tr style="background:#1c1c1c;color:#fff">
             <th style="padding:10px 14px;text-align:left">Colour</th>
@@ -373,7 +405,7 @@
             <td style="padding:10px 14px;font-size:0.82rem;color:#6b6b6b">Second 1980 LE option with silver pinstripes and silver trim.</td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
 
     <p style="font-size:0.78rem;color:#999;font-style:italic;margin-bottom:8px">&#9888; Hex colour swatches are digital approximations only and should not be used for colour matching. BLVC codes listed as confirmed (BLVC 11, 14, 32, 36, 42, 52, 55, 56) are from widely cited MG technical references and club registers. Codes marked &ldquo;Not confirmed&rdquo; require verification against a Heritage Certificate or primary MGCC/MGOC documentation.</p>
@@ -509,4 +541,16 @@
   const toggle=document.getElementById('nav-toggle'),nav=document.getElementById('site-nav');
   if(toggle&&nav)toggle.addEventListener('click',()=>nav.classList.toggle('open'));
 </script>
+
+<script>
+/* Mobile nav close on link click */
+(function(){
+  var nav=document.querySelector('.site-nav');
+  if(!nav)return;
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){nav.classList.remove('open');});
+  });
+})();
+</script>
+
 </body></html>

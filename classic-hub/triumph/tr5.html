@@ -95,6 +95,38 @@
   .sc-link{background:var(--green);color:#fff;padding:9px 18px;border-radius:4px;font-size:0.82rem;font-weight:600;white-space:nowrap;transition:background 0.2s;display:inline-block}
   .sc-link:hover{background:var(--green-light)}
   @media(max-width:600px){.hero-stats{gap:16px}.palette{grid-template-columns:repeat(2,1fr)}}
+
+/* ── MOBILE FIXES ── */
+@media(max-width:768px){
+  .site-nav.open{position:fixed;top:62px;left:0;right:0;bottom:0;overflow-y:auto;-webkit-overflow-scrolling:touch;z-index:199;background:var(--navy,#1a2332);flex-direction:column;padding:8px 0 40px}
+}
+@media(max-width:600px){
+  .marque-grid,.preview-grid,.ft-inner{grid-template-columns:1fr!important}
+  .ft-cols{grid-template-columns:1fr 1fr}
+  .trust-item{min-width:50%;border-right:none;border-bottom:1px solid var(--border,#e2ddd6)}
+  .trust-inner{flex-wrap:wrap}
+  .pairing-grid,.colour-grid{grid-template-columns:1fr!important}
+  .product-links{flex-direction:column}
+  .btn-buy,.btn-direct{width:100%;text-align:center;box-sizing:border-box}
+}
+@media(max-width:480px){
+  .hero h1{font-size:1.8rem!important}
+  .hero p{font-size:0.95rem}
+  .hero-eyebrow{font-size:0.68rem}
+  .hero-btns{flex-direction:column;align-items:center}
+  .hero-btns .btn{width:100%;max-width:280px;text-align:center}
+  .article-body{padding:32px 16px 60px}
+  .article-body h2{font-size:1.4rem}
+  .article-lede{font-size:1.1rem}
+  .section-title{font-size:1.6rem}
+  .ds-section{padding:32px 16px!important}
+  .ft-inner{grid-template-columns:1fr!important;gap:32px}
+  .ft-base{flex-direction:column;gap:4px}
+}
+.filter-bar,.pill-nav,.section-pills{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
+.filter-bar::-webkit-scrollbar,.pill-nav::-webkit-scrollbar{display:none}
+.table-wrap,.overflow-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
 </style></head><body>
 <header class="site-header">
   <div class="hdr-inner">
@@ -151,7 +183,7 @@
     <div class="ds-title">The rarest TR — and the most misunderstood</div>
     <p style="font-size:0.95rem;color:var(--grey);line-height:1.7;margin-bottom:16px">The TR5 was Triumph's first fuel-injected road car — the Lucas PI (petrol injection) system gave the 2498cc straight-six a healthy 150bhp in UK trim. But American emissions regulations killed the injection for export: US cars received twin Zenith-Stromberg carburettors, 104bhp, and the different name TR250 to distinguish them. Only 2,947 genuine PI-injected TR5s were built, making them genuinely rare.</p>
     <div class="alert">⚠️ <strong>Important:</strong> Some TR250s have been converted to look like TR5s, and some TR5s have had their injection replaced with carburettors. The engine number prefix identifies PI cars: CP suffix on a genuine TR5 engine.</div>
-    <table class="dt" style="margin-top:20px">
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="dt" style="margin-top:20px">
       <thead><tr><th>Feature</th><th>TR5 (UK/RoW)</th><th>TR250 (USA)</th></tr></thead>
       <tbody>
         <tr><td>Units produced</td><td>2,947</td><td>8,484</td></tr>
@@ -161,7 +193,7 @@
         <tr><td>Power</td><td>150bhp</td><td>104bhp</td></tr>
         <tr><td>Distinguishing features</td><td>No external badging difference — check engine</td><td>Racing stripes often fitted; different grille badge</td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
   <div class="data-section">
     <div class="ds-title">Factory body colours</div>
@@ -228,4 +260,16 @@
 </footer><script>
   const toggle=document.getElementById('nav-toggle'),nav=document.getElementById('site-nav');
   if(toggle&&nav)toggle.addEventListener('click',()=>nav.classList.toggle('open'));
-</script></body></html>
+</script>
+<script>
+/* Mobile nav close on link click */
+(function(){
+  var nav=document.querySelector('.site-nav');
+  if(!nav)return;
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){nav.classList.remove('open');});
+  });
+})();
+</script>
+
+</body></html>

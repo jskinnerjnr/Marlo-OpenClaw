@@ -69,6 +69,38 @@
   .int-mat{font-size:0.7rem;color:var(--grey)}
   @media(max-width:768px){.hero-stats{gap:20px}}
   .page-hero{background:linear-gradient(135deg,#5a0a0a,#8a1a1a)}
+
+/* ── MOBILE FIXES ── */
+@media(max-width:768px){
+  .site-nav.open{position:fixed;top:62px;left:0;right:0;bottom:0;overflow-y:auto;-webkit-overflow-scrolling:touch;z-index:199;background:var(--navy,#1a2332);flex-direction:column;padding:8px 0 40px}
+}
+@media(max-width:600px){
+  .marque-grid,.preview-grid,.ft-inner{grid-template-columns:1fr!important}
+  .ft-cols{grid-template-columns:1fr 1fr}
+  .trust-item{min-width:50%;border-right:none;border-bottom:1px solid var(--border,#e2ddd6)}
+  .trust-inner{flex-wrap:wrap}
+  .pairing-grid,.colour-grid{grid-template-columns:1fr!important}
+  .product-links{flex-direction:column}
+  .btn-buy,.btn-direct{width:100%;text-align:center;box-sizing:border-box}
+}
+@media(max-width:480px){
+  .hero h1{font-size:1.8rem!important}
+  .hero p{font-size:0.95rem}
+  .hero-eyebrow{font-size:0.68rem}
+  .hero-btns{flex-direction:column;align-items:center}
+  .hero-btns .btn{width:100%;max-width:280px;text-align:center}
+  .article-body{padding:32px 16px 60px}
+  .article-body h2{font-size:1.4rem}
+  .article-lede{font-size:1.1rem}
+  .section-title{font-size:1.6rem}
+  .ds-section{padding:32px 16px!important}
+  .ft-inner{grid-template-columns:1fr!important;gap:32px}
+  .ft-base{flex-direction:column;gap:4px}
+}
+.filter-bar,.pill-nav,.section-pills{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
+.filter-bar::-webkit-scrollbar,.pill-nav::-webkit-scrollbar{display:none}
+.table-wrap,.overflow-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
 </style></head><body>
 <header class="site-header">
   <div class="hdr-inner">
@@ -111,7 +143,7 @@
 
   <div class="data-section">
     <div class="ds-title">Midget variants</div>
-    <table class="data-table">
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="data-table">
       <thead><tr><th>Variant</th><th>Years</th><th>Key details</th></tr></thead>
       <tbody>
         <tr><td><strong>Mk1</strong></td><td>1961–1964</td><td>948cc → 1098cc (Oct 1962), 56bhp. Better trim than Sprite. No exterior door handles initially. Front discs from 1962. MG grille and badging.</td></tr>
@@ -119,14 +151,14 @@
         <tr><td><strong>Mk3</strong></td><td>1966–1974</td><td>1275cc A-Series (detuned Cooper S), 65bhp. Round rear wheel arches from 1972. Alternator from 1973. Continues after Sprite ends in 1971.</td></tr>
         <tr><td><strong>1500</strong></td><td>1974–1979</td><td>1493cc Triumph Spitfire engine (not A-Series). Morris Marina gearbox. Rubber bumpers. 65bhp UK / 50bhp US. Last car 7 December 1979.</td></tr>
       </tbody>
-    </table>
+    </table></div>
     <div class="alert-box" style="margin-top:12px">&#9888; <strong>Midget 1500 timing chain:</strong> The Triumph 1493cc engine has a known timing chain tensioner issue — always verify service history and listen carefully at cold start for chain rattle.</div>
   </div>
 
   <div class="data-section">
     <div class="ds-title">What to look for when buying</div>
     <p style="font-size:0.88rem;color:var(--grey);margin-bottom:12px">See the <a href="../austin-healey/sprite.html" style="color:var(--green);font-weight:600">Sprite page</a> for the complete buying guide — all rust, mechanical and hood issues are identical across both marques.</p>
-    <table class="data-table">
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="data-table">
       <thead><tr><th>Area</th><th>What to check</th><th>Severity</th></tr></thead>
       <tbody>
         <tr><td>Sills, floors &amp; A-posts</td><td>Rust everywhere — same as Sprite. These cars rot at every join and seam.</td><td style="color:#c0392b;font-weight:600">High</td></tr>
@@ -135,7 +167,7 @@
         <tr><td>1098cc crank bearings</td><td>Mk1/Mk2 with 1098cc: vulnerable to crank bearing failure. Check oil pressure.</td><td style="color:#e67e22;font-weight:600">Medium</td></tr>
         <tr><td>Hood &amp; mechanism</td><td>Hoods deteriorate and frames corrode. Check operation before buying.</td><td style="color:#27ae60;font-weight:600">Lower</td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <div class="data-section">
@@ -144,7 +176,7 @@
 
     <div style="overflow-x:auto;margin-bottom:28px">
       <p style="font-size:0.8rem;font-weight:600;color:var(--text);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.06em">Mk1&ndash;Mk2 (1961&ndash;1966) &mdash; BMC codes (shared with Sprite)</p>
-      <table style="width:100%;border-collapse:collapse;font-size:0.85rem;margin-bottom:8px">
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table style="width:100%;border-collapse:collapse;font-size:0.85rem;margin-bottom:8px">
         <thead>
           <tr style="background:#1c1c1c;color:#fff">
             <th style="padding:10px 14px;text-align:left">Colour</th>
@@ -198,10 +230,10 @@
             <td style="padding:10px 14px;font-size:0.82rem;color:#6b6b6b">Mid-tone blue. Early Midget era only.</td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
 
       <p style="font-size:0.8rem;font-weight:600;color:var(--text);margin-bottom:8px;margin-top:24px;text-transform:uppercase;letter-spacing:0.06em">Mk3 (1966&ndash;1974) &mdash; BLVC codes from 1968</p>
-      <table style="width:100%;border-collapse:collapse;font-size:0.85rem;margin-bottom:8px">
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table style="width:100%;border-collapse:collapse;font-size:0.85rem;margin-bottom:8px">
         <thead>
           <tr style="background:#1c1c1c;color:#fff">
             <th style="padding:10px 14px;text-align:left">Colour</th>
@@ -248,10 +280,10 @@
             <td style="padding:10px 14px;font-size:0.82rem;color:#6b6b6b">Bright orange-red. Shared with MGB.</td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
 
       <p style="font-size:0.8rem;font-weight:600;color:var(--text);margin-bottom:8px;margin-top:24px;text-transform:uppercase;letter-spacing:0.06em">Midget 1500 (1974&ndash;1979) &mdash; Rubber bumper era</p>
-      <table style="width:100%;border-collapse:collapse;font-size:0.85rem;margin-bottom:8px">
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table style="width:100%;border-collapse:collapse;font-size:0.85rem;margin-bottom:8px">
         <thead>
           <tr style="background:#1c1c1c;color:#fff">
             <th style="padding:10px 14px;text-align:left">Colour</th>
@@ -312,7 +344,7 @@
             <td style="padding:10px 14px;font-size:0.82rem;color:#6b6b6b">Continued into 1500 era.</td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
 
     <p style="font-size:0.78rem;color:#999;font-style:italic;margin-bottom:8px">&#9888; Hex swatches are digital approximations only. BLVC codes listed as confirmed (BLVC 11, 14, 32, 52, 55, 56) are from widely cited MG references. Codes marked &ldquo;Not confirmed&rdquo; require verification. The Midget&rsquo;s colour palette changed significantly by year &mdash; a Heritage Certificate is the definitive source for any specific car.</p>
@@ -428,4 +460,16 @@
   const toggle=document.getElementById('nav-toggle'),nav=document.getElementById('site-nav');
   if(toggle&&nav)toggle.addEventListener('click',()=>nav.classList.toggle('open'));
 </script>
+
+<script>
+/* Mobile nav close on link click */
+(function(){
+  var nav=document.querySelector('.site-nav');
+  if(!nav)return;
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){nav.classList.remove('open');});
+  });
+})();
+</script>
+
 </body></html>

@@ -95,6 +95,38 @@
   .sc-link{background:var(--green);color:#fff;padding:9px 18px;border-radius:4px;font-size:0.82rem;font-weight:600;white-space:nowrap;transition:background 0.2s;display:inline-block}
   .sc-link:hover{background:var(--green-light)}
   @media(max-width:600px){.hero-stats{gap:16px}.palette{grid-template-columns:repeat(2,1fr)}}
+
+/* ── MOBILE FIXES ── */
+@media(max-width:768px){
+  .site-nav.open{position:fixed;top:62px;left:0;right:0;bottom:0;overflow-y:auto;-webkit-overflow-scrolling:touch;z-index:199;background:var(--navy,#1a2332);flex-direction:column;padding:8px 0 40px}
+}
+@media(max-width:600px){
+  .marque-grid,.preview-grid,.ft-inner{grid-template-columns:1fr!important}
+  .ft-cols{grid-template-columns:1fr 1fr}
+  .trust-item{min-width:50%;border-right:none;border-bottom:1px solid var(--border,#e2ddd6)}
+  .trust-inner{flex-wrap:wrap}
+  .pairing-grid,.colour-grid{grid-template-columns:1fr!important}
+  .product-links{flex-direction:column}
+  .btn-buy,.btn-direct{width:100%;text-align:center;box-sizing:border-box}
+}
+@media(max-width:480px){
+  .hero h1{font-size:1.8rem!important}
+  .hero p{font-size:0.95rem}
+  .hero-eyebrow{font-size:0.68rem}
+  .hero-btns{flex-direction:column;align-items:center}
+  .hero-btns .btn{width:100%;max-width:280px;text-align:center}
+  .article-body{padding:32px 16px 60px}
+  .article-body h2{font-size:1.4rem}
+  .article-lede{font-size:1.1rem}
+  .section-title{font-size:1.6rem}
+  .ds-section{padding:32px 16px!important}
+  .ft-inner{grid-template-columns:1fr!important;gap:32px}
+  .ft-base{flex-direction:column;gap:4px}
+}
+.filter-bar,.pill-nav,.section-pills{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
+.filter-bar::-webkit-scrollbar,.pill-nav::-webkit-scrollbar{display:none}
+.table-wrap,.overflow-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
 </style></head><body>
 <header class="site-header">
   <div class="hdr-inner">
@@ -154,14 +186,14 @@
   </div>
   <div class="data-section">
     <div class="ds-title">Chassis numbers by year</div>
-    <table class="dt">
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="dt">
       <thead><tr><th>Year</th><th>Chassis range</th><th>Notes</th></tr></thead>
       <tbody>
         <tr><td>1953</td><td>TS1 – TS1500</td><td>Early production. Long door, no external handle. Sidescreen hood.</td></tr>
         <tr><td>1954</td><td>TS1501 – TS6000</td><td>Disc brakes introduced ~TS3500. Revised rear bodywork.</td></tr>
         <tr><td>1955</td><td>TS6001 – TS8628</td><td>Final year. Some cars with wind-up windows (prototype TR3 spec).</td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
   <div class="data-section">
     <div class="ds-title">Factory body colours</div>
@@ -229,4 +261,16 @@
 </footer><script>
   const toggle=document.getElementById('nav-toggle'),nav=document.getElementById('site-nav');
   if(toggle&&nav)toggle.addEventListener('click',()=>nav.classList.toggle('open'));
-</script></body></html>
+</script>
+<script>
+/* Mobile nav close on link click */
+(function(){
+  var nav=document.querySelector('.site-nav');
+  if(!nav)return;
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){nav.classList.remove('open');});
+  });
+})();
+</script>
+
+</body></html>

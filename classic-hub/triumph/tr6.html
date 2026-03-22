@@ -107,6 +107,38 @@
   .ps-int{width:32px;height:32px;border-radius:50%;border:2px solid rgba(0,0,0,0.1)}
   .pairing-note{font-size:0.72rem;color:var(--grey);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
   .approx-note{font-size:0.78rem;color:var(--grey);font-style:italic;margin-top:12px;line-height:1.6}
+
+/* ── MOBILE FIXES ── */
+@media(max-width:768px){
+  .site-nav.open{position:fixed;top:62px;left:0;right:0;bottom:0;overflow-y:auto;-webkit-overflow-scrolling:touch;z-index:199;background:var(--navy,#1a2332);flex-direction:column;padding:8px 0 40px}
+}
+@media(max-width:600px){
+  .marque-grid,.preview-grid,.ft-inner{grid-template-columns:1fr!important}
+  .ft-cols{grid-template-columns:1fr 1fr}
+  .trust-item{min-width:50%;border-right:none;border-bottom:1px solid var(--border,#e2ddd6)}
+  .trust-inner{flex-wrap:wrap}
+  .pairing-grid,.colour-grid{grid-template-columns:1fr!important}
+  .product-links{flex-direction:column}
+  .btn-buy,.btn-direct{width:100%;text-align:center;box-sizing:border-box}
+}
+@media(max-width:480px){
+  .hero h1{font-size:1.8rem!important}
+  .hero p{font-size:0.95rem}
+  .hero-eyebrow{font-size:0.68rem}
+  .hero-btns{flex-direction:column;align-items:center}
+  .hero-btns .btn{width:100%;max-width:280px;text-align:center}
+  .article-body{padding:32px 16px 60px}
+  .article-body h2{font-size:1.4rem}
+  .article-lede{font-size:1.1rem}
+  .section-title{font-size:1.6rem}
+  .ds-section{padding:32px 16px!important}
+  .ft-inner{grid-template-columns:1fr!important;gap:32px}
+  .ft-base{flex-direction:column;gap:4px}
+}
+.filter-bar,.pill-nav,.section-pills{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;scrollbar-width:none}
+.filter-bar::-webkit-scrollbar,.pill-nav::-webkit-scrollbar{display:none}
+.table-wrap,.overflow-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
 </style>
 </head>
 <body>
@@ -171,7 +203,7 @@
 
   <div class="data-section">
     <div class="ds-title">Production by year</div>
-    <table class="data-table">
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="data-table">
       <thead><tr><th>Year</th><th>Chassis range (CR prefix)</th><th>Approx. units</th><th>Key changes</th></tr></thead>
       <tbody>
         <tr><td>1969</td><td>CC50001 – CC75000</td><td>~3,000</td><td>Launch. Karmann body, Lucas PI injection (UK), Stromberg carbs (US)</td></tr>
@@ -183,7 +215,7 @@
         <tr><td>1975</td><td>CF40001 – CF52000</td><td>~8,600</td><td>Last of the injected UK cars (Mar 1975)</td></tr>
         <tr><td>1976</td><td>CF52001 – CF58000+</td><td>~6,200</td><td>Final year. UK cars now Zenith-Stromberg carburettors</td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <div class="data-section">
@@ -309,7 +341,7 @@
   </div>
   <div class="data-section">
     <div class="ds-title">What to look for when buying</div>
-    <table class="data-table">
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch"><table class="data-table">
       <thead><tr><th>Area</th><th>What to check</th><th>Severity</th></tr></thead>
       <tbody>
         <tr><td>Chassis rails</td><td>Rot in the outriggers and main rails — common and expensive to repair</td><td style="color:#c0392b;font-weight:600">High</td></tr>
@@ -320,7 +352,7 @@
         <tr><td>Differential</td><td>Whining on overrun indicates wear. Parts available but not cheap</td><td style="color:#27ae60;font-weight:600">Lower</td></tr>
         <tr><td>Hood (soft top)</td><td>Check for leaks at seams and rear window crazing</td><td style="color:#27ae60;font-weight:600">Lower</td></tr>
       </tbody>
-    </table>
+    </table></div>
   </div>
 
   <div class="data-section">
@@ -380,6 +412,18 @@
   if(toggle && nav) toggle.addEventListener('click', () => {
     nav.classList.toggle('open');
   });
+</script>
+
+
+<script>
+/* Mobile nav close on link click */
+(function(){
+  var nav=document.querySelector('.site-nav');
+  if(!nav)return;
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){nav.classList.remove('open');});
+  });
+})();
 </script>
 
 </body></html>
