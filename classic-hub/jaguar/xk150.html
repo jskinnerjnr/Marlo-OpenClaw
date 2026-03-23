@@ -106,6 +106,21 @@
 .filter-bar::-webkit-scrollbar,.pill-nav::-webkit-scrollbar{display:none}
 .table-wrap,.overflow-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
 
+
+/* ── TABLE MIN-WIDTH FIX — prevents column squish on mobile ── */
+.ds-section table,
+.overflow-wrap table,
+[style*="overflow-x:auto"] table,
+[style*="overflow-x: auto"] table {
+  min-width: 520px;
+}
+/* Colour name column — never truncate */
+.ds-section table td:first-child,
+.ds-section table th:first-child {
+  min-width: 120px;
+  white-space: nowrap;
+}
+
 </style></head><body>
 <header class="site-header">
   <div class="hdr-inner">
